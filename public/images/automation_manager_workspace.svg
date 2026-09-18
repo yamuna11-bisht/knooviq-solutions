@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%">
+  <defs>
+    <!-- Background Radial Glows -->
+    <radialGradient id="mgrGlowBlue" cx="20%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#050B17" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="mgrGlowCyan" cx="75%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#00A3E0" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#050B17" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="mgrGlowEmerald" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#050B17" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Linear Gradients -->
+    <linearGradient id="mgrCardBgDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0D192E" />
+      <stop offset="100%" stop-color="#060C18" />
+    </linearGradient>
+    <linearGradient id="mgrBlueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="mgrPurpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+    <linearGradient id="mgrCyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0077B6" />
+      <stop offset="100%" stop-color="#00A3E0" />
+    </linearGradient>
+
+    <filter id="softGlowMgr" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Deep Base Canvas -->
+  <rect width="1200" height="680" fill="#050B17" />
+  <rect width="1200" height="680" fill="url(#mgrGlowBlue)" />
+  <rect width="1200" height="680" fill="url(#mgrGlowCyan)" />
+  <rect width="1200" height="680" fill="url(#mgrGlowEmerald)" />
+
+  <!-- Blueprint Grid -->
+  <g stroke="#1E293B" stroke-width="0.75" opacity="0.35">
+    <line x1="80" y1="0" x2="80" y2="680" />
+    <line x1="240" y1="0" x2="240" y2="680" />
+    <line x1="400" y1="0" x2="400" y2="680" />
+    <line x1="560" y1="0" x2="560" y2="680" />
+    <line x1="720" y1="0" x2="720" y2="680" />
+    <line x1="880" y1="0" x2="880" y2="680" />
+    <line x1="1040" y1="0" x2="1040" y2="680" />
+    <line x1="0" y1="90" x2="1200" y2="90" />
+    <line x1="0" y1="220" x2="1200" y2="220" />
+    <line x1="0" y1="350" x2="1200" y2="350" />
+    <line x1="0" y1="480" x2="1200" y2="480" />
+    <line x1="0" y1="600" x2="1200" y2="600" />
+  </g>
+
+  <!-- Outer Console Terminal Frame -->
+  <rect x="35" y="30" width="1130" height="620" rx="18" fill="url(#mgrCardBgDark)" stroke="#334155" stroke-width="2" />
+
+  <!-- Top Title Bar -->
+  <rect x="35" y="30" width="1130" height="46" rx="18" fill="#091222" />
+  <rect x="35" y="60" width="1130" height="16" fill="#091222" />
+  <line x1="35" y1="76" x2="1165" y2="76" stroke="#1E293B" stroke-width="1.5" />
+
+  <!-- Window Control Dots -->
+  <circle cx="62" cy="53" r="6" fill="#EF4444" opacity="0.9" />
+  <circle cx="82" cy="53" r="6" fill="#F59E0B" opacity="0.9" />
+  <circle cx="102" cy="53" r="6" fill="#10B981" opacity="0.9" />
+
+  <text x="130" y="57" fill="#94A3B8" font-family="monospace" font-size="12" font-weight="bold">
+    knooviq-manager://central-governance-console
+  </text>
+
+  <rect x="880" y="42" width="265" height="26" rx="6" fill="#2563EB" fill-opacity="0.15" stroke="#2563EB" stroke-opacity="0.4" />
+  <circle cx="896" cy="55" r="4" fill="#3B82F6" />
+  <text x="910" y="59" fill="#60A5FA" font-family="monospace" font-size="10" font-weight="bold">
+    CENTRAL SCRIPT VAULT &amp; RUNNER
+  </text>
+
+  <!-- =========================================================================
+       PANEL 1 (LEFT): CENTRAL SCRIPT REPOSITORY & VAULT
+       ========================================================================= -->
+  <g transform="translate(60, 95)">
+    <rect x="0" y="0" width="345" height="490" rx="14" fill="#070E1C" stroke="#2563EB" stroke-width="1.5" />
+
+    <!-- Ribbon Header -->
+    <rect x="0" y="0" width="345" height="40" rx="14" fill="url(#mgrBlueGrad)" />
+    <rect x="0" y="26" width="345" height="14" fill="#1D4ED8" />
+    <text x="16" y="25" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold">
+      Central Script Vault &amp; Versions
+    </text>
+    <rect x="250" y="10" width="80" height="20" rx="4" fill="#1E3A8A" />
+    <text x="260" y="24" fill="#BFDBFE" font-family="monospace" font-size="10" font-weight="bold">SECURED</text>
+
+    <!-- Script Catalog Entries -->
+    <g transform="translate(14, 52)" font-family="monospace">
+      <!-- Script 1 -->
+      <rect x="0" y="0" width="317" height="68" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="12" y="20" fill="#F1F5F9" font-size="11" font-weight="bold">MM_MassMaterialUpdate.txs</text>
+      <text x="12" y="38" fill="#64748B" font-size="9">T-Code: MM02 • Target: S4_PRD</text>
+      <rect x="12" y="46" width="130" height="16" rx="3" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.5" />
+      <text x="18" y="58" fill="#34D399" font-size="9" font-weight="bold">PRODUCTION CERTIFIED</text>
+
+      <!-- Script 2 -->
+      <rect x="0" y="76" width="317" height="68" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="12" y="96" fill="#F1F5F9" font-size="11" font-weight="bold">FI_GeneralLedgerPosting.txs</text>
+      <text x="12" y="114" fill="#64748B" font-size="9">T-Code: FB50 • Target: S4_PRD</text>
+      <rect x="12" y="122" width="130" height="16" rx="3" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.5" />
+      <text x="18" y="134" fill="#34D399" font-size="9" font-weight="bold">PRODUCTION CERTIFIED</text>
+
+      <!-- Script 3 -->
+      <rect x="0" y="152" width="317" height="68" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="12" y="172" fill="#F1F5F9" font-size="11" font-weight="bold">SD_SalesOrderBatch.txs</text>
+      <text x="12" y="190" fill="#64748B" font-size="9">T-Code: VA01 • Target: S4_QAS</text>
+      <rect x="12" y="198" width="100" height="16" rx="3" fill="#38BDF8" fill-opacity="0.2" stroke="#38BDF8" stroke-width="0.5" />
+      <text x="18" y="210" fill="#38BDF8" font-size="9" font-weight="bold">QA VALIDATED</text>
+
+      <!-- Script 4 -->
+      <rect x="0" y="228" width="317" height="68" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="12" y="248" fill="#F1F5F9" font-size="11" font-weight="bold">CO_CostCenterAlloc.txs</text>
+      <text x="12" y="266" fill="#64748B" font-size="9">T-Code: KSU5 • Target: DEV_SBX</text>
+      <rect x="12" y="274" width="100" height="16" rx="3" fill="#A855F7" fill-opacity="0.2" stroke="#A855F7" stroke-width="0.5" />
+      <text x="18" y="286" fill="#C084FC" font-size="9" font-weight="bold">SANDBOX DRAFT</text>
+    </g>
+
+    <!-- Bottom Checksum Banner -->
+    <rect x="14" y="420" width="317" height="52" rx="8" fill="#0B132B" stroke="#1E293B" />
+    <text x="24" y="442" fill="#94A3B8" font-family="monospace" font-size="9" font-weight="bold">VERSION &amp; ROLLBACK INTEGRITY</text>
+    <text x="24" y="458" fill="#34D399" font-family="monospace" font-size="9">• Checksum Verified • Instant Rollback Ready</text>
+  </g>
+
+  <!-- =========================================================================
+       PANEL 2 (CENTER): ROLE-BASED ACCESS GOVERNANCE & PROMOTION
+       ========================================================================= -->
+  <g transform="translate(425, 95)">
+    <rect x="0" y="0" width="350" height="490" rx="14" fill="#070E1C" stroke="#7C3AED" stroke-width="1.5" />
+
+    <!-- Ribbon Header -->
+    <rect x="0" y="0" width="350" height="40" rx="14" fill="url(#mgrPurpleGrad)" />
+    <rect x="0" y="26" width="350" height="14" fill="#7C3AED" />
+    <text x="16" y="25" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold">
+      Role Governance &amp; Promotion Gates
+    </text>
+    <rect x="255" y="10" width="80" height="20" rx="4" fill="#581C87" />
+    <text x="265" y="24" fill="#E9D5FF" font-family="monospace" font-size="10" font-weight="bold">ENFORCED</text>
+
+    <!-- Permission Matrix Table -->
+    <g transform="translate(14, 52)" font-family="monospace">
+      <rect x="0" y="0" width="322" height="150" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="14" y="22" fill="#94A3B8" font-size="10" font-weight="bold">ROLE-BASED AUTHORIZATION</text>
+      <line x1="14" y1="30" x2="308" y2="30" stroke="#1E293B" />
+
+      <g transform="translate(14, 48)" font-size="10">
+        <text x="0" y="0" fill="#E2E8F0">Supply Chain Lead:</text>
+        <text x="175" y="0" fill="#34D399" font-weight="bold">AUTHORIZED</text>
+
+        <text x="0" y="25" fill="#E2E8F0">Operations Clerk:</text>
+        <text x="175" y="25" fill="#F59E0B" font-weight="bold">RESTRICTED</text>
+
+        <text x="0" y="50" fill="#E2E8F0">External Auditor:</text>
+        <text x="175" y="50" fill="#38BDF8" font-weight="bold">READ-ONLY</text>
+
+        <text x="0" y="75" fill="#E2E8F0">IT CoE Admin:</text>
+        <text x="175" y="75" fill="#C084FC" font-weight="bold">FULL ADMIN</text>
+      </g>
+    </g>
+
+    <!-- Stage Promotion Gate Display -->
+    <g transform="translate(14, 215)" font-family="monospace">
+      <rect x="0" y="0" width="322" height="190" rx="8" fill="#0B132B" stroke="#1E293B" />
+      <text x="14" y="24" fill="#94A3B8" font-size="10" font-weight="bold">LIFECYCLE PROMOTION PATHWAY</text>
+      <line x1="14" y1="32" x2="308" y2="32" stroke="#1E293B" />
+
+      <!-- Step Dev -->
+      <g transform="translate(14, 48)">
+        <circle cx="8" cy="8" r="6" fill="#10B981" />
+        <text x="22" y="12" fill="#E2E8F0" font-size="10">1. Development Sandbox Pass</text>
+      </g>
+
+      <!-- Step QA -->
+      <g transform="translate(14, 88)">
+        <circle cx="8" cy="8" r="6" fill="#10B981" />
+        <text x="22" y="12" fill="#E2E8F0" font-size="10">2. QA Functional Testing Pass</text>
+      </g>
+
+      <!-- Step Signoff -->
+      <g transform="translate(14, 128)">
+        <circle cx="8" cy="8" r="6" fill="#10B981" />
+        <text x="22" y="12" fill="#E2E8F0" font-size="10">3. CoE Lead Sign-Off Verified</text>
+      </g>
+
+      <rect x="14" y="152" width="294" height="24" rx="4" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.75" />
+      <text x="24" y="168" fill="#34D399" font-size="9" font-weight="bold">PRODUCTION RELEASE KEY ISSUED</text>
+    </g>
+
+    <!-- Bottom Status Note -->
+    <rect x="14" y="420" width="322" height="52" rx="8" fill="#0F172A" stroke="#334155" />
+    <text x="20" y="442" fill="#94A3B8" font-family="monospace" font-size="9" font-weight="bold">SEPARATION OF DUTIES</text>
+    <text x="20" y="458" fill="#C084FC" font-family="monospace" font-size="9">• Zero Developer Direct Prod Access</text>
+  </g>
+
+  <!-- =========================================================================
+       PANEL 3 (RIGHT): BATCH SCHEDULER & CONCURRENCY GOVERNOR
+       ========================================================================= -->
+  <g transform="translate(795, 95)">
+    <rect x="0" y="0" width="345" height="490" rx="14" fill="#070E1C" stroke="#00A3E0" stroke-width="1.5" />
+
+    <!-- Ribbon Header -->
+    <rect x="0" y="0" width="345" height="40" rx="14" fill="url(#mgrCyanGrad)" />
+    <rect x="0" y="26" width="345" height="14" fill="#0077B6" />
+    <text x="16" y="25" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold">
+      Batch Scheduler &amp; Telemetry
+    </text>
+    <rect x="250" y="10" width="80" height="20" rx="4" fill="#023E8A" />
+    <text x="262" y="24" fill="#E0F2FE" font-family="monospace" font-size="10" font-weight="bold">RUNNING</text>
+
+    <!-- Active Schedules -->
+    <g transform="translate(14, 52)" font-family="monospace">
+      <rect x="0" y="0" width="317" height="140" rx="8" fill="#0F172A" stroke="#334155" />
+      <text x="14" y="22" fill="#94A3B8" font-size="10" font-weight="bold">OFF-PEAK EXECUTION QUEUES</text>
+      <line x1="14" y1="30" x2="303" y2="30" stroke="#1E293B" />
+
+      <g transform="translate(14, 48)" font-size="10">
+        <text x="0" y="0" fill="#38BDF8" font-weight="bold">Midnight Financial Batch:</text>
+        <text x="0" y="18" fill="#64748B">Target: S4_PRD • Window: Off-Peak</text>
+        <rect x="210" y="-8" width="85" height="18" rx="3" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.5" />
+        <text x="220" y="5" fill="#34D399" font-size="9" font-weight="bold">SCHEDULED</text>
+
+        <text x="0" y="48" fill="#38BDF8" font-weight="bold">Material Revaluation Batch:</text>
+        <text x="0" y="66" fill="#64748B">Target: S4_PRD • Concurrency: Auto</text>
+        <rect x="210" y="40" width="85" height="18" rx="3" fill="#38BDF8" fill-opacity="0.2" stroke="#38BDF8" stroke-width="0.5" />
+        <text x="232" y="53" fill="#38BDF8" font-size="9" font-weight="bold">QUEUED</text>
+      </g>
+    </g>
+
+    <!-- Concurrency Throttle & Server Performance Module -->
+    <g transform="translate(14, 205)" font-family="monospace">
+      <rect x="0" y="0" width="317" height="200" rx="8" fill="#0B132B" stroke="#1E293B" />
+      <text x="14" y="24" fill="#94A3B8" font-size="10" font-weight="bold">CONCURRENCY &amp; SYSTEM HEALTH</text>
+      <line x1="14" y1="32" x2="303" y2="32" stroke="#1E293B" />
+
+      <g transform="translate(14, 52)" font-size="10">
+        <text x="0" y="0" fill="#64748B">Thread Governor:</text>
+        <text x="160" y="0" fill="#34D399" font-weight="bold">Dynamic Throttling</text>
+
+        <text x="0" y="26" fill="#64748B">SAP Dialog Load:</text>
+        <text x="160" y="26" fill="#38BDF8" font-weight="bold">Zero Impact Mode</text>
+
+        <text x="0" y="52" fill="#64748B">Connected Land:</text>
+        <text x="160" y="52" fill="#E2E8F0">S/4HANA, ECC, BW</text>
+
+        <text x="0" y="78" fill="#64748B">Failure Alerting:</text>
+        <text x="160" y="78" fill="#C084FC">Automated Pager</text>
+
+        <text x="0" y="104" fill="#64748B">Audit Export:</text>
+        <text x="160" y="104" fill="#10B981">SOX Compliant CSV</text>
+      </g>
+    </g>
+
+    <!-- Bottom Status Note -->
+    <rect x="14" y="420" width="317" height="52" rx="8" fill="#0F172A" stroke="#334155" />
+    <text x="20" y="442" fill="#94A3B8" font-family="monospace" font-size="9" font-weight="bold">INFRASTRUCTURE PROTECTION</text>
+    <text x="20" y="458" fill="#38BDF8" font-family="monospace" font-size="9">• Zero Production Overload Detected</text>
+  </g>
+
+  <!-- Bottom Global Status Footer -->
+  <g transform="translate(60, 615)" font-family="monospace" font-size="11">
+    <circle cx="8" cy="16" r="4" fill="#10B981" />
+    <text x="22" y="20" fill="#94A3B8">
+      STATUS: <tspan fill="#34D399" font-weight="bold">ENTERPRISE GOVERNANCE CLUSTER ONLINE</tspan> • SAP LANDSCAPE SYNCHRONIZED
+    </text>
+    <text x="760" y="20" fill="#64748B">
+      KNOOVIQ AUTOMATION MANAGER ENTERPRISE
+    </text>
+  </g>
+</svg>
