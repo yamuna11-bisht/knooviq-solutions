@@ -477,120 +477,129 @@ export const MiningMetalsIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCo
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden selection:bg-[#0070C0] selection:text-white">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION
+          SECTION 1: HERO SECTION (Pure Enterprise Hero - Zero Shading on Image)
           ========================================================================= */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 text-white pt-24 pb-16">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
+        {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=2000&q=85" 
-            alt="Mining Open Pit Operations" 
-            className="w-full h-full object-cover object-center opacity-30 scale-105 transform animate-subtle-zoom"
+            src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=2000&q=80" 
+            alt="Mining Open Pit and Metallurgical Enterprise Atmosphere" 
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/40" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/30 via-transparent to-transparent" />
+          {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant facility on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12">
-          <div className="max-w-4xl space-y-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          
+          <div className="max-w-3xl space-y-4">
             
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-amber-300 shadow-sm"
+              transition={{ duration: 0.55 }}
+              className="space-y-2.5"
             >
-              <Boxes className="w-3.5 h-3.5 text-amber-400" />
-              <span>SAP FOR MINING & METALS S/4HANA DIGITAL CORE</span>
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                <Boxes className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+              
+              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                Intelligent ERP for <br />
+                <span className="text-cyan-400">Mining & Metals</span>
+              </h1>
+
+              {/* Subheading / Value Proposition */}
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                Synchronizing Pit-to-Port Logistics, Ore Grade Blending & Smelter Operations on One Core.
+              </p>
             </motion.div>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 15 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]"
+              className="space-y-3 max-w-2xl"
             >
-              Intelligent Pit-to-Port Supply Chain, <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-white">Ore Assay Blending & Metallurgical Excellence</span>
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed font-normal"
-            >
-              Transform mining and metals enterprises with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated pit-to-port multimodal transport logistics, laboratory assay blending, smelter MES continuous casting, and GISTM tailings dam governance.
-            </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="flex flex-wrap items-center gap-2 pt-1"
-            >
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Pit-to-Port Multimodal Logistics</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Ore Assay Stockpile Blending</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
-                <span>GISTM Tailings Dam Satellite InSAR</span>
-              </span>
+              {/* Clear Open Typography */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+                Optimize mining and metals enterprises with integrated{' '}
+                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated{' '}
+                <strong className="text-cyan-300 font-semibold">Pit-to-Port Multimodal Logistics</strong>, stockpile assay reconciliation, and{' '}
+                <strong className="text-white font-semibold">GISTM-compliant tailings dam governance</strong>.
+              </p>
+              
+              {/* Clean Feature Highlights */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                  <span>Clean Core Architecture</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>Pit-to-Port Multimodal Logistics</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                  <span>Smelter MES Heat Tracking</span>
+                </span>
+              </div>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 pt-3"
-            >
-              <button
-                type="button"
-                onClick={() => onOpenContact('Mining & Metals Architecture Advisory')}
-                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#0070C0] to-amber-500 hover:from-[#005a9e] hover:to-amber-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-amber-900/40 transition-all flex items-center gap-2 group cursor-pointer"
-              >
-                <span>Request Technical Advisory</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <Link
-                to="/solutions/sap-s4hana"
-                className="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs sm:text-sm uppercase tracking-wider border border-white/20 transition-all flex items-center gap-2"
-              >
-                <span>Explore S/4HANA Solutions</span>
-              </Link>
-            </motion.div>
-
+            {/* Enterprise Architectural Trust Ribbon */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 pt-6 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-amber-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-amber-300 font-bold mb-1">Architecture</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">SAP S/4HANA Clean Core</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA Core</div>
+                <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-amber-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-amber-300 font-bold mb-1">Pit-to-Port</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Multimodal Rail Logistics</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Truck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">PIT-TO-PORT</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Multimodal Logistics</div>
+                <div className="text-xs text-slate-300 mt-0.5">Automated Train Consists</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-amber-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-amber-300 font-bold mb-1">Metallurgy</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Smelter MES & Heat Tracking</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Factory className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">METALLURGY</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Smelter MES Tracking</div>
+                <div className="text-xs text-slate-300 mt-0.5">Heat-Level Chemistry</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-amber-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-amber-300 font-bold mb-1">ESG & Safety</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">GISTM Tailings Governance</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ESG & SAFETY</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">GISTM Governance</div>
+                <div className="text-xs text-slate-300 mt-0.5">Tailings Dam Telemetry</div>
               </div>
             </motion.div>
 
           </div>
+
         </div>
+
       </section>
 
       {/* =========================================================================

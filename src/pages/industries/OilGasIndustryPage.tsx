@@ -491,127 +491,126 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden selection:bg-[#0070C0] selection:text-white">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Enterprise Cinematic Dark Hero with Clean Core Pills)
+          SECTION 1: HERO SECTION (Pure Enterprise Hero - Zero Shading on Image)
           ========================================================================= */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 text-white pt-24 pb-16">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
-        {/* Background Image with Deep Overlay */}
+        {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2000&q=85" 
-            alt="Oil & Gas Industrial Operations" 
-            className="w-full h-full object-cover object-center opacity-30 scale-105 transform animate-subtle-zoom"
+            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2000&q=80" 
+            alt="Oil & Gas Upstream and Refining Enterprise Atmosphere" 
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/40" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-900/30 via-transparent to-transparent" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12">
-          <div className="max-w-4xl space-y-6">
+        {/* Seamless Cinematic Left Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+          
+          <div className="max-w-3xl space-y-4">
             
-            {/* Sector Badge */}
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-sky-300 shadow-sm"
+              transition={{ duration: 0.55 }}
+              className="space-y-2.5"
             >
-              <Flame className="w-3.5 h-3.5 text-sky-400" />
-              <span>SAP OIL & GAS S/4HANA & UPSTREAM PRA</span>
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                <Flame className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+              
+              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                Intelligent ERP for <br />
+                <span className="text-cyan-400">Oil & Gas Energy</span>
+              </h1>
+
+              {/* Subheading / Value Proposition */}
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                Orchestrating Upstream Telemetry, Midstream Logistics & Refinery Reliability on One Unified Core.
+              </p>
             </motion.div>
 
-            {/* Main Headline */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 15 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]"
+              className="space-y-3 max-w-2xl"
             >
-              Intelligent Upstream, Midstream & Downstream <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-cyan-200 to-white">Hydrocarbon Excellence</span>
-            </motion.h1>
-
-            {/* Narrative Subtitle */}
-            <motion.p 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed font-normal"
-            >
-              Transform energy assets with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated <strong className="text-sky-300 font-semibold">Production Revenue Accounting (PRA)</strong>, real-time TSW midstream scheduling, predictive refinery asset integrity, and continuous emissions governance.
-            </motion.p>
-
-            {/* Capability Feature Badges (Zero numbers, pure enterprise capability) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="flex flex-wrap items-center gap-2 pt-1"
-            >
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>SAP PRA Volumetric Allocation</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>TSW Marine & Pipeline Logistics</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-sky-400" />
-                <span>Predictive Refinery Turnarounds</span>
-              </span>
+              {/* Clear Open Typography */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+                Transform energy operations with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated <strong className="text-cyan-300 font-semibold">Production Revenue Accounting (PRA)</strong>, predictive turnaround scheduling, and real-time custody transfer tracking.
+              </p>
+              
+              {/* Clean Feature Highlights */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                  <span>Clean Core Architecture</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>Automated PRA Allocation</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                  <span>Sub-Second Logistics Tracking</span>
+                </span>
+              </div>
             </motion.div>
 
-            {/* CTA Action Buttons */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 pt-3"
-            >
-              <button
-                type="button"
-                onClick={() => onOpenContact('Oil & Gas Architecture Consultation')}
-                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#0070C0] to-sky-500 hover:from-[#005a9e] hover:to-sky-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-sky-900/40 transition-all flex items-center gap-2 group cursor-pointer"
-              >
-                <span>Request Technical Advisory</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <Link
-                to="/solutions/sap-s4hana"
-                className="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs sm:text-sm uppercase tracking-wider border border-white/20 transition-all flex items-center gap-2"
-              >
-                <span>Explore S/4HANA Solutions</span>
-              </Link>
-            </motion.div>
-
-            {/* Enterprise Architectural Trust Ribbon (Qualitative Architectural Focus) */}
+            {/* Enterprise Architectural Trust Ribbon */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 pt-6 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-sky-300 font-bold mb-1">Architecture</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">SAP S/4HANA Clean Core</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA Core</div>
+                <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-sky-300 font-bold mb-1">Upstream Accounting</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Automated PRA Allocation</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Compass className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">UPSTREAM PRA</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Automated Allocation</div>
+                <div className="text-xs text-slate-300 mt-0.5">Volumetric Ledgers</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-sky-300 font-bold mb-1">Midstream Logistics</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Trader's & Scheduler's TSW</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Layers className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">MIDSTREAM TSW</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Marine & Pipelines</div>
+                <div className="text-xs text-slate-300 mt-0.5">Zero Demurrage Flow</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-sky-300 font-bold mb-1">Downstream APM</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Predictive Turnarounds</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Factory className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">DOWNSTREAM APM</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Turnaround Health</div>
+                <div className="text-xs text-slate-300 mt-0.5">Predictive Integrity</div>
               </div>
             </motion.div>
 
           </div>
+
         </div>
+
       </section>
 
       {/* =========================================================================
