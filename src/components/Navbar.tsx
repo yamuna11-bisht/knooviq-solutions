@@ -485,6 +485,11 @@ const INDUSTRY_ROUTE_MAP: Record<string, string> = {
   'Medical Devices': '/industries/medical-devices',
   'Diagnostics': '/industries/diagnostics',
   'Wellness & Care': '/industries/wellness-care',
+  'Oil & Gas': '/industries/oil-gas',
+  'Power & Utilities': '/industries/power-utilities',
+  'Renewable Energy': '/industries/renewable-energy',
+  'Mining & Metals': '/industries/mining-metals',
+  'Energy Services': '/industries/energy-services',
 };
 
 interface NavbarProps {
