@@ -490,6 +490,11 @@ const INDUSTRY_ROUTE_MAP: Record<string, string> = {
   'Renewable Energy': '/industries/renewable-energy',
   'Mining & Metals': '/industries/mining-metals',
   'Energy Services': '/industries/energy-services',
+  'Engineering': '/industries/engineering',
+  'Construction & EPC': '/industries/construction-epc',
+  'Infrastructure': '/industries/infrastructure',
+  'Real Estate': '/industries/real-estate',
+  'Facilities & Assets': '/industries/facilities-assets',
 };
 
 interface NavbarProps {

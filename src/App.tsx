@@ -86,6 +86,11 @@ import { PowerUtilitiesIndustryPage } from './pages/industries/PowerUtilitiesInd
 import { RenewableEnergyIndustryPage } from './pages/industries/RenewableEnergyIndustryPage';
 import { MiningMetalsIndustryPage } from './pages/industries/MiningMetalsIndustryPage';
 import { EnergyServicesIndustryPage } from './pages/industries/EnergyServicesIndustryPage';
+import { EngineeringIndustryPage } from './pages/industries/EngineeringIndustryPage';
+import { ConstructionEpcIndustryPage } from './pages/industries/ConstructionEpcIndustryPage';
+import { InfrastructureIndustryPage } from './pages/industries/InfrastructureIndustryPage';
+import { RealEstateIndustryPage } from './pages/industries/RealEstateIndustryPage';
+import { FacilitiesAssetsIndustryPage } from './pages/industries/FacilitiesAssetsIndustryPage';
 
 // Wrapper component to selectively show public layout elements (Navbar, Footer, Chatbot)
 const AppContent: React.FC = () => {
@@ -380,6 +385,15 @@ const AppContent: React.FC = () => {
           <Route path="/industries/mining-metals" element={<MiningMetalsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/mining-and-metals" element={<MiningMetalsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/energy-services" element={<EnergyServicesIndustryPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Built Environment Dedicated Industry Pages */}
+          <Route path="/industries/engineering" element={<EngineeringIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/construction-epc" element={<ConstructionEpcIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/construction" element={<ConstructionEpcIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/infrastructure" element={<InfrastructureIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/real-estate" element={<RealEstateIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/facilities-assets" element={<FacilitiesAssetsIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/facilities-management" element={<FacilitiesAssetsIndustryPage onOpenContact={handleOpenContactModal} />} />
 
           <Route path="/insights" element={<InsightsPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/careers" element={<CareersPage />} />
