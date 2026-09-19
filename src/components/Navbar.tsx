@@ -106,16 +106,16 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     iconColor: 'bg-gradient-to-br from-teal-500/20 to-emerald-600/15 border-teal-500/30 text-teal-600 dark:text-teal-400',
     icon: <Cpu className="w-3.5 h-3.5" />,
     items: [
-      { name: 'SAP BTP', path: '/solutions/sap-btp' },
-      { name: 'SAP HANA', path: '/solutions/sap-s4hana' },
-      { name: 'SAP Fiori', path: '/solutions/sap-btp' },
-      { name: 'SAP UI5', path: '/solutions/sap-btp' },
-      { name: 'SAP ABAP', path: '/solutions/sap-btp' },
-      { name: 'SAP Integration Suite', path: '/solutions/sap-btp' },
-      { name: 'SAP APIs', path: '/solutions/sap-btp' },
-      { name: 'SAP Extensions', path: '/solutions/sap-btp' },
-      { name: 'Enterprise Architecture', path: '/solutions/sap-s4hana' },
-      { name: 'SAP Security', path: '/solutions/sap-btp' }
+      { name: 'SAP BTP', path: '/technology/sap-btp' },
+      { name: 'SAP HANA', path: '/technology/sap-hana' },
+      { name: 'SAP Fiori', path: '/technology/sap-fiori' },
+      { name: 'SAP UI5', path: '/technology/sap-fiori' },
+      { name: 'SAP ABAP', path: '/technology/sap-btp' },
+      { name: 'SAP Integration Suite', path: '/technology/sap-integration-suite' },
+      { name: 'SAP APIs', path: '/technology/sap-integration-suite' },
+      { name: 'SAP Extensions', path: '/technology/sap-btp' },
+      { name: 'Enterprise Architecture', path: '/technology/cloud-transformation' },
+      { name: 'SAP Security', path: '/technology/sap-btp' }
     ]
   },
   {
@@ -307,13 +307,13 @@ const TRANSFORMATION_MEGA_MENU: TransformationMegaCategory[] = [
   {
     id: 'sap-technology-cloud',
     title: 'SAP Technology & Cloud',
-    path: '/transformation#sap-technology',
+    path: '/technology/sap-btp',
     items: [
-      { name: 'SAP BTP', path: '/solutions/sap-btp' },
-      { name: 'SAP HANA', path: '/transformation#sap-technology' },
-      { name: 'SAP Fiori', path: '/transformation#sap-technology' },
-      { name: 'SAP Integration Suite', path: '/transformation#sap-technology' },
-      { name: 'Cloud Transformation', path: '/transformation#cloud-transformation' }
+      { name: 'SAP BTP', path: '/technology/sap-btp' },
+      { name: 'SAP HANA', path: '/technology/sap-hana' },
+      { name: 'SAP Fiori', path: '/technology/sap-fiori' },
+      { name: 'SAP Integration Suite', path: '/technology/sap-integration-suite' },
+      { name: 'Cloud Transformation', path: '/technology/cloud-transformation' }
     ]
   },
   {

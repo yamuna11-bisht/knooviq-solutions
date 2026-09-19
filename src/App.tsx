@@ -76,6 +76,11 @@ import { PharmaceuticalsIndustryPage } from './pages/industries/PharmaceuticalsI
 import { MedicalDevicesIndustryPage } from './pages/industries/MedicalDevicesIndustryPage';
 import { DiagnosticsIndustryPage } from './pages/industries/DiagnosticsIndustryPage';
 import { WellnessCareIndustryPage } from './pages/industries/WellnessCareIndustryPage';
+import { SapBtpPage } from './pages/technology/SapBtpPage';
+import { SapHanaPage } from './pages/technology/SapHanaPage';
+import { SapFioriPage } from './pages/technology/SapFioriPage';
+import { SapIntegrationSuitePage } from './pages/technology/SapIntegrationSuitePage';
+import { CloudTransformationPage } from './pages/technology/CloudTransformationPage';
 
 // Wrapper component to selectively show public layout elements (Navbar, Footer, Chatbot)
 const AppContent: React.FC = () => {
@@ -301,6 +306,28 @@ const AppContent: React.FC = () => {
           <Route path="/transformation/supply-chain" element={<SapBusinessApplicationsPage onOpenContact={handleOpenContactModal} initialApp="supply-chain" />} />
           <Route path="/transformation/human-capital" element={<SapBusinessApplicationsPage onOpenContact={handleOpenContactModal} initialApp="human-capital" />} />
           <Route path="/transformation/customer-experience" element={<SapBusinessApplicationsPage onOpenContact={handleOpenContactModal} initialApp="cx" />} />
+
+          {/* Dedicated SAP Technology & Cloud Suite (5 Dedicated Pages, Exactly 7 Sections Each) */}
+          <Route path="/technology/sap-btp" element={<SapBtpPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-btp" element={<SapBtpPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-btp" element={<SapBtpPage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/technology/sap-hana" element={<SapHanaPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-hana" element={<SapHanaPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-hana" element={<SapHanaPage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/technology/sap-fiori" element={<SapFioriPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-fiori" element={<SapFioriPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-fiori" element={<SapFioriPage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/technology/sap-integration-suite" element={<SapIntegrationSuitePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-integration-suite" element={<SapIntegrationSuitePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-integration-suite" element={<SapIntegrationSuitePage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/technology/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
 
           <Route path="/transformation" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/transformation/:slug" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
