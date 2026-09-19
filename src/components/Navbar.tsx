@@ -495,6 +495,13 @@ const INDUSTRY_ROUTE_MAP: Record<string, string> = {
   'Infrastructure': '/industries/infrastructure',
   'Real Estate': '/industries/real-estate',
   'Facilities & Assets': '/industries/facilities-assets',
+  'Technology Services': '/industries/technology-services',
+  'Software & SaaS': '/industries/software-saas',
+  'High-Tech': '/industries/high-tech-electronics',
+  'Electronics': '/industries/high-tech-electronics',
+  'Warehouse & Warehousing': '/industries/warehouse-ewm',
+  'Transportation & Logistics': '/industries/transportation-logistics',
+  'Aerospace & Defense': '/industries/transportation-logistics',
 };
 
 interface NavbarProps {
