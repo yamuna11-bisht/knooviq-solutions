@@ -64,7 +64,7 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
             <button
               key={ind.id}
               onClick={() => setSelectedIndustry(ind.id)}
-              className={`flex items-center justify-center px-4 py-3 rounded-2xl text-xs font-bold transition-all shadow-sm ${
+              className={`industry-category-tab flex items-center justify-center px-4 py-2.5 rounded-2xl transition-all shadow-sm ${
                 selectedIndustry === ind.id
                   ? 'bg-[#00A3E0]/15 dark:bg-sky-500/20 text-[#00A3E0] dark:text-cyan-300 border border-[#00A3E0] dark:border-sky-400/50 shadow-md'
                   : 'border border-slate-200 dark:border-sky-500/15 bg-white dark:bg-[#0B1528]/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#0B1528]'
@@ -90,7 +90,7 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
             {/* Left Overview (7 cols) */}
             <div className="lg:col-span-7 space-y-6">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#00A3E0]">
+                <span className="industry-category-title text-[#00A3E0] block mb-1">
                   Industry Focus
                 </span>
                 <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -107,7 +107,7 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
               </p>
 
               <div className="pt-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
+                <h4 className="industry-category-title text-slate-500 dark:text-slate-400 mb-3">
                   Tailored SAP Functional Solutions
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -133,10 +133,10 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
               {current.id === 'consumer-commerce' && (
                 <div className="p-4 rounded-2xl bg-[#0070C0]/10 border border-[#0070C0]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#0070C0] dark:text-cyan-300 block">
+                    <span className="industry-category-title text-[#0070C0] dark:text-cyan-300 block mb-0.5">
                       Dedicated Industry Practice
                     </span>
-                    <span className="text-xs font-bold text-slate-900 dark:text-white">
+                    <span className="industry-category-item text-slate-900 dark:text-white block font-bold">
                       Retail & E-Commerce Comprehensive Blueprint
                     </span>
                   </div>
@@ -154,7 +154,7 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
             {/* Right Side Challenges & Advantage (5 cols) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="rounded-2xl bg-slate-50 dark:bg-[#050B17]/90 p-6 border border-slate-200 dark:border-sky-500/20 space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-rose-500 dark:text-rose-400 flex items-center gap-2">
+                <h4 className="industry-category-title text-rose-500 dark:text-rose-400 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4" />
                   <span>Key Domain Challenges Solved</span>
                 </h4>
@@ -169,7 +169,7 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
               </div>
 
               <div className="rounded-2xl bg-slate-50 dark:bg-[#050B17]/90 p-6 border border-slate-200 dark:border-sky-500/20 space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+                <h4 className="industry-category-title text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4" />
                   <span>KNOOVIQ Advantage</span>
                 </h4>

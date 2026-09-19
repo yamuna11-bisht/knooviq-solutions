@@ -119,7 +119,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-01',
       title: 'Engineer-To-Order (ETO) Project Governance',
       description: 'Milestone billing, multi-level WBS tracking, progress confirmation, and real-time earned value management (EVM) for large capital equipment.',
-      image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=800&q=80',
       highlights: ['SAP Project Systems (PS)', 'Milestone Progress Billing', 'Earned Value Management']
     },
     {
@@ -139,7 +139,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-03',
       title: 'Connected Equipment Telematics & Predictive EAM',
       description: 'Real-time vibration, thermal, and hydraulic pressure analytics that trigger automated service work orders before machine failure occurs.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
       highlights: ['Predictive Anomaly Alerts', 'Automated Service Work Orders', 'Remote Diagnostics']
     },
     {
@@ -169,7 +169,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-06',
       title: 'As-Built to As-Maintained Digital Twin Hub',
       description: 'Maintains an immutable digital asset ledger recording every field retrofit, software patch, and replaced component over 30-year equipment lifecycles.',
-      image: 'https://images.unsplash.com/photo-1558441719-aa3445544f50?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80',
       highlights: ['30-Year Asset Genealogy', 'Retrofit Revision Tracking', 'Equipment Service Passport']
     }
   ];
@@ -272,7 +272,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full h-[540px] sm:h-[560px] lg:h-[580px] flex items-center pt-24 sm:pt-28 lg:pt-28 pb-8 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
@@ -560,7 +560,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
                 <button
                   key={cat.key}
                   onClick={() => setActiveSolutionCategory(cat.key)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold uppercase transition-all ${
+                  className={`industry-category-tab px-4 py-2 rounded-lg transition-all ${
                     isActive
                       ? 'bg-[#0070C0] text-white shadow-xs'
                       : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300'
@@ -580,13 +580,16 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
                 return (
                   <div
                     key={sol.title}
-                    className="h-[400px] rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col group"
+                    className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                   >
-                    {/* 1. Top Image Portion - Exactly 50% Height */}
-                    <div className="relative h-1/2 w-full overflow-hidden bg-slate-100 shrink-0">
+                    {/* 1. Top Image Portion */}
+                    <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
                       <img 
                         src={sol.image} 
                         alt={sol.title}
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=800&q=80';
+                        }}
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
                       />
                       <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
@@ -596,9 +599,9 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
                       </div>
                     </div>
 
-                    {/* 2. Bottom Content Body - Exactly 50% Height */}
-                    <div className="h-1/2 p-5 flex flex-col justify-between overflow-hidden">
-                      <div className="space-y-2">
+                    {/* 2. Bottom Content Body */}
+                    <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                      <div className="space-y-2.5">
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-mono font-bold text-[#0070C0] uppercase tracking-wider">
                             {sol.categoryLabel}
@@ -608,19 +611,19 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
                           </div>
                         </div>
 
-                        <h3 className="text-base font-bold text-slate-950 truncate group-hover:text-[#0070C0] transition-colors">
+                        <h3 className="text-base sm:text-lg font-bold text-slate-950 line-clamp-2 leading-snug group-hover:text-[#0070C0] transition-colors" title={sol.title}>
                           {sol.title}
                         </h3>
 
-                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed line-clamp-2">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
                           {sol.description}
                         </p>
                       </div>
 
-                      <div className="space-y-1.5 pt-2 border-t border-slate-100">
+                      <div className="space-y-2 pt-3 border-t border-slate-100 mt-4">
                         {sol.highlights.map((hl, hIdx) => (
                           <div key={hIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 font-medium">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                             <span className="truncate">{hl}</span>
                           </div>
                         ))}

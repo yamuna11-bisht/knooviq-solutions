@@ -1915,7 +1915,7 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
           {/* =========================================================================
               2. FULL-SCREEN HERO SECTION (Full Bleed Background with Deep Enterprise Atmosphere)
               ========================================================================= */}
-          <section className="relative w-full h-[540px] sm:h-[560px] lg:h-[580px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl py-6 sm:py-8 lg:py-8">
+          <section className="relative w-full min-h-[540px] sm:min-h-[560px] lg:min-h-[580px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl py-10 sm:py-12 lg:py-14">
         
         {/* Full-Bleed Enterprise Background Image (Covers entire screen) */}
         <div 

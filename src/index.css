@@ -490,5 +490,55 @@
   will-change: transform;
 }
 
+/* ===================================================
+   STANDARDIZED INDUSTRIES TYPOGRAPHY DESIGN SYSTEM
+   =================================================== */
 
+/* Main Industry Category Heading (e.g., CONSUMER & COMMERCE, INDUSTRIAL & MANUFACTURING) */
+.industry-category-title {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
 
+@media (min-width: 640px) {
+  .industry-category-title {
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.35;
+  }
+}
+
+/* Sub-Category Typography (e.g., Retail & E-Commerce, Consumer Goods, Food & Beverage, etc.) */
+.industry-category-item {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 0.84375rem; /* 13.5px */
+  line-height: 1.45;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .industry-category-item {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5;
+  }
+}
+
+/* Reusable Category Switcher Tabs across Industry Pages */
+.industry-category-tab {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 640px) {
+  .industry-category-tab {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.4;
+  }
+}

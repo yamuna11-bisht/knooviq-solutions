@@ -455,7 +455,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
       {/* =========================================================================
           SECTION 1: HERO SECTION (Pure Enterprise Retail Hero - Zero Shading on Image)
           ========================================================================= */}
-      <section className="relative w-full h-[540px] sm:h-[560px] lg:h-[580px] flex items-center pt-24 sm:pt-28 lg:pt-28 pb-8 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Enterprise Retail Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
@@ -1156,7 +1156,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveSolutionCategory(cat.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase transition-all duration-300 ${
+                  className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 ${
                     isActive
                       ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25 scale-105'
                       : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-2xs'

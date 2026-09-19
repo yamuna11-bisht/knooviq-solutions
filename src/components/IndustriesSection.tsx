@@ -68,7 +68,7 @@ export const IndustriesSection: React.FC<{ onOpenContact: (srv?: string) => void
               <button
                 key={ind.id}
                 onClick={() => setActiveTab(ind.id)}
-                className={`flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-300 ${
+                className={`industry-category-tab flex items-center justify-center px-4 py-2.5 rounded-xl whitespace-nowrap transition-all duration-300 ${
                   isActive
                     ? 'glow-btn text-white'
                     : 'bg-white dark:bg-[#0B1528] text-slate-700 dark:text-slate-300 hover:text-[#00A3E0] dark:hover:text-white border border-slate-200 dark:border-sky-500/20 shadow-sm'
