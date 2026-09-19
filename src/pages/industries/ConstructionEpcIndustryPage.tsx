@@ -287,7 +287,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       icon: Scale,
       tag: 'RETAINAGE LOCKUP',
       title: 'Stalled Retention Money',
-      desc: 'Delayed defect liability inspections and unclosed punchlists trap 5% to 10% of total project contract cash in client escrow.',
+      desc: 'Delayed defect liability inspections and unclosed punchlists trap critical operating liquidity and cash reserves in client escrow.',
       footer: 'Restricted Operating Cashflow'
     }
   ];
@@ -371,7 +371,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
   const transformationStages = [
     {
       id: 'stage-1',
-      badge: 'PHASE 01',
+      badge: 'FOUNDATION',
       title: 'Baseline WBS Structuring',
       subtitle: 'Tender to ERP Cost Control',
       description: 'Transforming winning bids into structured SAP PS WBS hierarchies with locked baseline budgets, rate codes, and progressive milestone gates.',
@@ -383,11 +383,11 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       icon: FolderKanban,
       before: 'Spreadsheet tenders disconnected from site billing systems',
       after: 'Unified WBS baseline with real-time commitment control',
-      metrics: ['Zero unbudgeted cost codes', 'Locked baseline budgets', 'Transparent tender handoff']
+      metrics: ['Eliminated unbudgeted cost codes', 'Locked baseline budgets', 'Transparent tender handoff']
     },
     {
       id: 'stage-2',
-      badge: 'PHASE 02',
+      badge: 'INTEGRATION',
       title: 'Mobile Site Execution',
       subtitle: 'Field Progress Telemetry',
       description: 'Equipping site superintendents with offline mobile apps for daily labor logging, material receipts, and Joint Measurement Sheet (JMS) sign-offs.',
@@ -403,7 +403,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
     },
     {
       id: 'stage-3',
-      badge: 'PHASE 03',
+      badge: 'ORCHESTRATION',
       title: 'AIA Progressive Invoicing',
       subtitle: 'Automate Cashflow Recovery',
       description: 'Streamlining customer billing with automated AIA G702 / G703 document generation, schedule of values verification, and retention schedules.',
@@ -413,13 +413,13 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       borderBase: 'border-amber-500/30',
       activeBorder: 'border-amber-400 ring-2 ring-amber-500/30 bg-amber-950/30',
       icon: FileCheck,
-      before: '3-week invoice preparation cycles causing severe working capital strain',
-      after: '3-day automated certified application generation and submission',
-      metrics: ['18 days reduction in billing cycle', 'Audit-proof SOV backing', 'Automated retainage logic']
+      before: 'Prolonged manual invoice preparation cycles causing severe working capital strain',
+      after: 'Continuous automated certified payment application submission',
+      metrics: ['Accelerated billing cycle velocity', 'Audit-proof SOV backing', 'Automated retainage logic']
     },
     {
       id: 'stage-4',
-      badge: 'PHASE 04',
+      badge: 'AUTONOMY',
       title: 'Predictive EVM Intelligence',
       subtitle: 'Autonomous Project Control',
       description: 'Deploying AI models on SAP BTP analyzing historical cost performance (CPI/SPI) to predict potential cost-to-complete overruns months in advance.',
@@ -431,7 +431,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       icon: TrendingUp,
       before: 'Retrospective post-mortem accounting after contract margins collapsed',
       after: 'Proactive early-warning triggers preventing cost overruns before they occur',
-      metrics: ['24% cost overrun reduction', 'Predictive cashflow curves', 'Protected contractor margins']
+      metrics: ['Eliminated cost overrun risks', 'Predictive cashflow curves', 'Protected contractor margins']
     }
   ];
 
@@ -610,19 +610,18 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                 Mega-EPC projects frequently bleed margin due to disconnected site field logs, contested subcontractor measurements, and multi-week billing compilation cycles. Knooviq orchestrates the physical job site directly with corporate financial ledgers, enabling real-time cost-to-complete visibility and rapid cash cycle turnaround.
               </p>
 
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">18 Days</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Faster Billing</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-emerald-600">Zero</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">JMS Disputes</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">24%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Overrun Prevented</div>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {[
+                  'Automated Progressive Billing Workflows',
+                  'Earned Value Budget Integrity (CPI / SPI)',
+                  'Collaborative Subcontractor JMS Sign-Offs',
+                  'Live Heavy Equipment Telematics Sync'
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <CheckCircle2 className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
 
             </div>
@@ -649,7 +648,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                       </h3>
                     </div>
                     <span className="text-xs font-mono font-bold text-sky-200 bg-white/10 px-2 py-1 rounded backdrop-blur-md">
-                      STEP 0{activeJourneyStep + 1} / 06
+                      STAGE WORKFLOW
                     </span>
                   </div>
                 </div>
@@ -1009,7 +1008,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              1. Site Telemetry & Rugged Mobility
+              Site Telemetry & Rugged Mobility
             </button>
             <button
               onClick={() => setActiveArchTab('core')}
@@ -1019,7 +1018,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              2. SAP S/4HANA PS & Financials Core
+              SAP S/4HANA PS & Financials Core
             </button>
             <button
               onClick={() => setActiveArchTab('cloud')}
@@ -1029,7 +1028,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              3. Cloud BTP Subcontractor Hub
+              Cloud BTP Subcontractor Hub
             </button>
           </div>
 
@@ -1251,33 +1250,33 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
               <tbody className="divide-y divide-slate-200 bg-white">
                 <tr>
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Progressive Client Billing</td>
-                  <td className="p-4 sm:p-5 text-slate-600">Manual spreadsheet AIA G702 compilation taking 2 to 3 weeks.</td>
+                  <td className="p-4 sm:p-5 text-slate-600">Manual progressive spreadsheet compilation with prolonged preparation lag.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Automated Schedule of Values (SOV) generation in SAP.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">18 days faster cash collection; zero invoice disputes.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Accelerated cash collection velocity; eliminated billing disputes.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Earned Value (EVM)</td>
                   <td className="p-4 sm:p-5 text-slate-600">Retrospective quarterly cost-to-complete reviews after overrun.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Real-time Cost & Schedule Performance Index (CPI/SPI).</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">24% reduction in project budget overruns.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Systemic mitigation of project budget overruns.</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Subcontractor Claims</td>
                   <td className="p-4 sm:p-5 text-slate-600">Disputed paper measurement sheets and delayed certifications.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Mobile Joint Measurement Sheet (JMS) with digital signatures.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Zero trade claim disputes; clean audit trail.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Eliminated trade claim disputes; clean audit trail.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Equipment & Fleet</td>
                   <td className="p-4 sm:p-5 text-slate-600">Unmonitored plant hours and forgotten internal chargeouts.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Live CANbus telematics automated WBS chargeouts.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">100% equipment recovery; reduced idle fuel burn.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Total plant equipment cost recovery; reduced idle fuel burn.</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Retention Management</td>
                   <td className="p-4 sm:p-5 text-slate-600">Spreadsheet tracking leading to forgotten escrow claims.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Automated milestone escrow release notifications.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Accelerated release of 5% to 10% contract value.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Accelerated release of withheld retention contract value.</td>
                 </tr>
               </tbody>
             </table>
@@ -1298,7 +1297,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
               <span>TRANSFORMATION ROADMAP & DELTA INSPECTOR</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Four Phases to Autonomous Mega-EPC Operations
+              Phased Roadmap to Autonomous Mega-EPC Operations
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
               Inspect how legacy manual job site spreadsheets transform into a synchronized enterprise operational fabric across every stage of the SAP deployment.
@@ -1412,47 +1411,95 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       </section>
 
       {/* =========================================================================
-          SECTION 9: REAL-WORLD BUSINESS IMPACT & KPIS
+          SECTION 9: STRATEGIC ENTERPRISE VALUE DRIVERS & OPERATIONAL SAFEGUARDS
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
-              <TrendingUp className="w-3.5 h-3.5 text-[#0070C0]" />
-              <span>PROVEN METRICS</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>ENTERPRISE VALUE DRIVERS</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Measurable Outcomes from Mega-EPC Transformation
+              Strategic Value Drivers & Operational Safeguards
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
-              Representative performance gains realized by general contractors and mega-EPC developers.
+              Architectural outcomes delivered across general contractor and mega-EPC enterprise operations.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">18 Days</div>
-              <div className="text-sm font-bold text-slate-900">Faster Cash Recovery</div>
-              <p className="text-xs text-slate-500">Automated progressive AIA G702 / G703 billing generation.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <FileCheck className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Progressive Invoicing Velocity
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Automated milestone and AIA payment applications eliminating billing compilation latency and accelerating contractor cash recovery.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>COMMERCIAL ASSURANCE</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">24%</div>
-              <div className="text-sm font-bold text-slate-900">Cost Overrun Prevention</div>
-              <p className="text-xs text-slate-500">Live Earned Value Management (CPI/SPI) variance triggers.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <TrendingUp className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Earned Value Budget Control
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Real-time CPI and SPI performance tracking across active WBS cost elements, safeguarding estimated contractor profit margins.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>MARGIN INTEGRITY</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">Zero</div>
-              <div className="text-sm font-bold text-slate-900">Subcontractor Disputes</div>
-              <p className="text-xs text-slate-500">Digital Joint Measurement Sheet (JMS) verified on mobile.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <Workflow className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Subcontractor Claim Certainty
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Collaborative digital Joint Measurement Sheets (JMS) preventing work certification disputes and eliminating trade litigation risk.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>RISK MITIGATION</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">100%</div>
-              <div className="text-sm font-bold text-slate-900">Equipment Cost Recovery</div>
-              <p className="text-xs text-slate-500">Telematics integration automating internal plant hire chargeouts.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <Truck className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Plant & Fleet Cost Recovery
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Automated internal plant hire chargeouts driven by live machinery telematics, eliminating equipment idling cost leakage.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>FLEET GOVERNANCE</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
           </div>
 
@@ -1573,7 +1620,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
             </span>
             <span className="flex items-center gap-1.5">
               <Globe2 className="w-4 h-4 text-sky-300" />
-              <span>Global 24/7 SLA Support</span>
+              <span>Continuous Global SLA Support</span>
             </span>
           </div>
 

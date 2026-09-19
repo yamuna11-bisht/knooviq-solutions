@@ -266,7 +266,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       icon: Wrench,
       tag: 'DISORGANIZED MAINTENANCE',
       title: 'Unproductive Technician Dispatch',
-      desc: 'Paper work orders and missing spare parts force technicians to spend 40% of their shifts searching for tools instead of wrenching.',
+      desc: 'Paper work orders and missing spare parts force technicians to spend vital shift hours searching for tools instead of wrenching.',
       footer: 'Depressed Wrench Time & High MTTR'
     },
     {
@@ -371,7 +371,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
   const transformationStages = [
     {
       id: 'stage-1',
-      badge: 'PHASE 01',
+      badge: 'FOUNDATION',
       title: 'Asset Register Digitization',
       subtitle: 'Hierarchy & Barcoding',
       description: 'Cataloging physical plant equipment (chillers, AHUs, switchgear, pumps) into standardized SAP Asset Central hierarchies with QR codes.',
@@ -383,11 +383,11 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       icon: Building2,
       before: 'Uncataloged legacy plant rooms with missing manuals and unknown asset ages',
       after: 'Unified SAP Asset Hierarchy with digital technical nameplates and QR verification',
-      metrics: ['100% asset register accuracy', 'Single-source equipment history', 'Clean maintenance records']
+      metrics: ['Exacting asset register accuracy', 'Single-source equipment history', 'Clean maintenance records']
     },
     {
       id: 'stage-2',
-      badge: 'PHASE 02',
+      badge: 'INTEGRATION',
       title: 'Mobile Work Order Dispatch',
       subtitle: 'Technician Field Automation',
       description: 'Deploying SAP Service & Asset Manager on mobile tablets to eliminate paper work orders and enable instant digital labor and spare parts logging.',
@@ -397,13 +397,13 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       borderBase: 'border-cyan-500/30',
       activeBorder: 'border-cyan-400 ring-2 ring-cyan-500/30 bg-cyan-950/30',
       icon: Wrench,
-      before: 'Paper clipboards and manual work order entry causing 40% lost wrench time',
+      before: 'Paper clipboards and manual work order entry causing extensive lost wrench time',
       after: 'Mobile digital work packs with integrated schematics and parts reservations',
-      metrics: ['45% increase in wrench time', '50% reduction in MTTR', 'Touchless job closeouts']
+      metrics: ['Maximized technician wrench time', 'Accelerated reduction in MTTR', 'Touchless job closeouts']
     },
     {
       id: 'stage-3',
-      badge: 'PHASE 03',
+      badge: 'ORCHESTRATION',
       title: 'Predictive APM Integration',
       subtitle: 'Vibration & Sensor AI',
       description: 'Connecting BMS sensor streams to SAP Asset Performance Management for continuous vibration FFT and bearing temperature pattern analysis.',
@@ -415,11 +415,11 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       icon: Gauge,
       before: 'Run-to-failure emergency breakdowns causing expensive emergency technician callouts',
       after: 'Early warning anomaly detection scheduling planned repairs weeks before failure',
-      metrics: ['80% reduction in catastrophic trips', '30% lower maintenance cost', 'Extended chiller life']
+      metrics: ['Eradicated catastrophic trips', 'Significantly lower maintenance cost', 'Extended chiller life']
     },
     {
       id: 'stage-4',
-      badge: 'PHASE 04',
+      badge: 'AUTONOMY',
       title: 'Autonomous Building Operations',
       subtitle: 'Energy & Carbon Optimization',
       description: 'Closing the loop between occupancy sensors, weather forecasts, and BMS setpoints to minimize utility consumption and carbon emissions.',
@@ -431,7 +431,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       icon: Zap,
       before: 'Static cooling schedules running empty office floors with massive energy waste',
       after: 'Dynamic demand-controlled HVAC optimization reducing overall building energy consumption',
-      metrics: ['22% reduction in electricity bills', 'Verified ESG carbon accounting', 'Optimal indoor comfort']
+      metrics: ['Optimized electricity consumption', 'Verified ESG carbon accounting', 'Optimal indoor comfort']
     }
   ];
 
@@ -554,7 +554,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">FIELD MOBILITY</span>
                 </div>
                 <div className="text-sm sm:text-base font-bold text-white leading-snug">Mobile Work Orders</div>
-                <div className="text-xs text-slate-300 mt-0.5">+45% Wrench Time</div>
+                <div className="text-xs text-slate-300 mt-0.5">Maximized Wrench Time</div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
@@ -572,7 +572,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ENERGY & ESG</span>
                 </div>
                 <div className="text-sm sm:text-base font-bold text-white leading-snug">Scope 1 & 2 Carbon</div>
-                <div className="text-xs text-slate-300 mt-0.5">-22% Power Consumption</div>
+                <div className="text-xs text-slate-300 mt-0.5">Optimized Energy Consumption</div>
               </div>
             </motion.div>
 
@@ -610,19 +610,18 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                 Traditional facility management suffers from reactive firefighting: discovering chiller failures only after tenant complaints flood the helpdesk, paper work orders getting lost in transit, and multi-campus BMS systems operating in dark silos. Knooviq transforms facilities operations into an intelligent, closed-loop predictive enterprise running on SAP S/4HANA.
               </p>
 
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">-80%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Chiller Breakdowns</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-emerald-600">+45%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Technician Wrench Time</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">-22%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Building Energy Use</div>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {[
+                  'Predictive Vibration FFT & APM Health Scores',
+                  'Mobile Work Order Dispatch & Hands-On Wrench Time',
+                  'Dynamic Demand-Controlled HVAC Optimization',
+                  'MRO Spare Parts Bill of Materials Governance'
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <CheckCircle2 className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
 
             </div>
@@ -649,7 +648,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                       </h3>
                     </div>
                     <span className="text-xs font-mono font-bold text-sky-200 bg-white/10 px-2 py-1 rounded backdrop-blur-md">
-                      STEP 0{activeJourneyStep + 1} / 06
+                      STAGE WORKFLOW
                     </span>
                   </div>
                 </div>
@@ -1009,7 +1008,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              1. IoT BMS & Chiller Telemetry
+              IoT BMS & Chiller Telemetry
             </button>
             <button
               onClick={() => setActiveArchTab('core')}
@@ -1019,7 +1018,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              2. SAP S/4HANA PM / EAM Clean Core
+              SAP S/4HANA PM / EAM Clean Core
             </button>
             <button
               onClick={() => setActiveArchTab('cloud')}
@@ -1029,7 +1028,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              3. Cloud BTP Technician & ESG Hub
+              Cloud BTP Technician & ESG Hub
             </button>
           </div>
 
@@ -1253,19 +1252,19 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Equipment Reliability</td>
                   <td className="p-4 sm:p-5 text-slate-600">Run-to-failure breakdown repairs after tenant complaints.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Predictive APM vibration FFT and thermal anomaly alerts.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">80% reduction in catastrophic chiller downtime.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Systemic prevention of catastrophic chiller downtime.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Technician Productivity</td>
                   <td className="p-4 sm:p-5 text-slate-600">Paper work orders and manual spare parts searches in storage.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Offline mobile app with digital schematics and parts reservations.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">+45% increase in technician wrench time.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Substantial increase in technician hands-on wrench time.</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Building Energy & ESG</td>
-                  <td className="p-4 sm:p-5 text-slate-600">Static 24/7 HVAC cooling schedules running empty spaces.</td>
+                  <td className="p-4 sm:p-5 text-slate-600">Static unoptimized HVAC cooling schedules running empty spaces.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Demand-controlled ventilation tied to occupancy and weather.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">22% reduction in facility electricity costs.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Measurable reduction in facility electricity costs.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
                   <td className="p-4 sm:p-5 font-bold text-slate-900">MRO Spare Parts</td>
@@ -1277,7 +1276,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Vendor Governance</td>
                   <td className="p-4 sm:p-5 text-slate-600">Unverified maintenance retainers with no proof of service.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Digital work sign-offs and automated SLA response time scoring.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">100% verified SLA performance; zero fee leakage.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Fully verified SLA performance; eliminated fee leakage.</td>
                 </tr>
               </tbody>
             </table>
@@ -1298,7 +1297,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
               <span>TRANSFORMATION ROADMAP & DELTA INSPECTOR</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Four Phases to Autonomous Facilities Operations
+              Phased Roadmap to Autonomous Facilities Operations
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
               Inspect how legacy manual facility maintenance transforms into an orchestrated predictive operational fabric across every stage of the SAP deployment.
@@ -1412,47 +1411,95 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       </section>
 
       {/* =========================================================================
-          SECTION 9: REAL-WORLD BUSINESS IMPACT & KPIS
+          SECTION 9: STRATEGIC ENTERPRISE VALUE DRIVERS & OPERATIONAL SAFEGUARDS
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
-              <TrendingUp className="w-3.5 h-3.5 text-[#0070C0]" />
-              <span>PROVEN METRICS</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>ENTERPRISE VALUE DRIVERS</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Measurable Outcomes from Facilities Modernization
+              Strategic Value Drivers & Operational Safeguards
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
-              Representative performance gains realized across corporate campuses, healthcare centers, and industrial facilities.
+              Architectural outcomes delivered across corporate campuses, healthcare centers, and industrial facilities.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">-80%</div>
-              <div className="text-sm font-bold text-slate-900">Unplanned Breakdown Downtime</div>
-              <p className="text-xs text-slate-500">Predictive APM vibration FFT alerts before physical seizure.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <Gauge className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Catastrophic Downtime Prevention
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Predictive APM vibration FFT alerts and thermal anomaly detection scheduling proactive repairs weeks before physical chiller failure.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>PLANT RELIABILITY</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">+45%</div>
-              <div className="text-sm font-bold text-slate-900">Technician Wrench Time</div>
-              <p className="text-xs text-slate-500">Offline mobile work packs with digital schematics and parts sync.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <Wrench className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Field Technician Efficiency
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Offline mobile work packs with digital schematics, automated spare reservations, and instant labor logging maximizing hands-on wrench time.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>WORKFORCE MOBILITY</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">-22%</div>
-              <div className="text-sm font-bold text-slate-900">Electricity Bill Savings</div>
-              <p className="text-xs text-slate-500">Demand-controlled ventilation adjusting cooling CFM based on occupancy.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <Zap className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Demand-Controlled Energy Savings
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Dynamic HVAC ventilation and cooling adjustments synchronized with live zone occupancy and weather forecasts, eliminating utility waste.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>ENERGY OPTIMIZATION</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">100%</div>
-              <div className="text-sm font-bold text-slate-900">Vendor SLA Compliance</div>
-              <p className="text-xs text-slate-500">Verified digital contractor sign-offs and response time audit logs.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Vendor Maintenance SLA Integrity
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Verified digital proof-of-service sign-offs and automated vendor SLA response time audit scoring eliminating maintenance fee leakage.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>SLA COMPLIANCE</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
           </div>
 
@@ -1573,7 +1620,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
             </span>
             <span className="flex items-center gap-1.5">
               <Globe2 className="w-4 h-4 text-sky-300" />
-              <span>Global 24/7 SLA Support</span>
+              <span>Continuous Global SLA Support</span>
             </span>
           </div>
 

@@ -371,7 +371,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
   const transformationStages = [
     {
       id: 'stage-1',
-      badge: 'PHASE 01',
+      badge: 'FOUNDATION',
       title: 'Lease Contract Digitization',
       subtitle: 'IFRS 16 & ASC 842 Setup',
       description: 'Ingesting property leases into SAP Flexible Real Estate (RE-FX), establishing automated RoU schedules, and locking indexation rules.',
@@ -383,11 +383,11 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       icon: Receipt,
       before: 'Fragmented paper contracts and manual spreadsheets for IFRS 16 schedules',
       after: 'Unified SAP RE-FX digital repository with automated balance sheet amortization',
-      metrics: ['100% IFRS 16 compliance', 'Zero audit penalties', 'Instant discount rate recalculation']
+      metrics: ['Complete IFRS 16 compliance', 'Eliminated audit penalties', 'Instant discount rate recalculation']
     },
     {
       id: 'stage-2',
-      badge: 'PHASE 02',
+      badge: 'INTEGRATION',
       title: 'CAM Pooling & Metering',
       subtitle: 'Dynamic Expense Recovery',
       description: 'Connecting building maintenance expenses and smart utility submeters to SAP cost centers for automated monthly tenant billing.',
@@ -399,11 +399,11 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       icon: FileSpreadsheet,
       before: 'Annual manual CAM reconciliation resulting in bitter tenant disputes and delayed payments',
       after: 'Monthly automated pro-rata CAM billing with transparent expense documentation',
-      metrics: ['100% CAM cost recovery', 'Zero tenant audit disputes', '45 days faster cash clearing']
+      metrics: ['Total CAM cost recovery', 'Eliminated tenant audit disputes', 'Accelerated cash clearing velocity']
     },
     {
       id: 'stage-3',
-      badge: 'PHASE 03',
+      badge: 'ORCHESTRATION',
       title: 'Turnover & Retail Billing',
       subtitle: 'Percentage Rent Automation',
       description: 'Integrating tenant electronic POS takeaways to verify gross retail turnover and automatically generate tiered rental invoices.',
@@ -415,11 +415,11 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       icon: Coins,
       before: 'Unverified tenant sales certificates causing massive turnover rent under-billing',
       after: 'Automated POS sales ingestion triggering instant percentage rent calculations',
-      metrics: ['18% increase in captured turnover rent', 'Automated sales verification', 'Zero billing leakage']
+      metrics: ['Maximized captured turnover rent', 'Automated sales verification', 'Eliminated billing leakage']
     },
     {
       id: 'stage-4',
-      badge: 'PHASE 04',
+      badge: 'AUTONOMY',
       title: 'Autonomous REIT Intelligence',
       subtitle: 'Portfolio Yield Maximization',
       description: 'Deploying predictive AI models on SAP BTP forecasting tenant churn, optimizing lease renewal rates, and tracking real-time portfolio NOI.',
@@ -431,7 +431,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       icon: BarChart3,
       before: 'Delayed quarterly financial consolidation obscuring real property portfolio performance',
       after: 'Real-time NOI, FFO, and occupancy heatmaps empowering proactive asset management',
-      metrics: ['12% higher portfolio NOI', 'Optimized lease expiry profiles (WALE)', 'Maximized investor returns']
+      metrics: ['Expanded portfolio Net Operating Income', 'Optimized lease expiry profiles (WALE)', 'Maximized investor returns']
     }
   ];
 
@@ -610,19 +610,18 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                 Property asset managers frequently suffer revenue erosion from delayed CAM reconciliations, overlooked contractual rent step-ups, and spreadsheet-based IFRS 16 calculations. Knooviq transforms real estate portfolios into an orchestrated, audit-proof operational engine where property management, tenant submeters, and corporate finance operate in real time.
               </p>
 
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">100%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">CAM Recovery</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-emerald-600">Zero</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">IFRS 16 Audit Penalties</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">+12%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Portfolio NOI</div>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {[
+                  'Automated IFRS 16 & ASC 842 Compliance',
+                  'Leak-Proof CAM Expense Pooling & Recovery',
+                  'POS-Integrated Retail Turnover Billing',
+                  'Real-Time Portfolio NOI & Yield Heatmaps'
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <CheckCircle2 className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
 
             </div>
@@ -649,7 +648,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                       </h3>
                     </div>
                     <span className="text-xs font-mono font-bold text-sky-200 bg-white/10 px-2 py-1 rounded backdrop-blur-md">
-                      STEP 0{activeJourneyStep + 1} / 06
+                      STAGE WORKFLOW
                     </span>
                   </div>
                 </div>
@@ -1009,7 +1008,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              1. IoT Submeters & Smart Building
+              IoT Submeters & Smart Building
             </button>
             <button
               onClick={() => setActiveArchTab('core')}
@@ -1019,7 +1018,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              2. SAP S/4HANA RE-FX Clean Core
+              SAP S/4HANA RE-FX Clean Core
             </button>
             <button
               onClick={() => setActiveArchTab('cloud')}
@@ -1029,7 +1028,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              3. Cloud BTP Tenant & REIT Platform
+              Cloud BTP Tenant & REIT Platform
             </button>
           </div>
 
@@ -1253,19 +1252,19 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                   <td className="p-4 sm:p-5 font-bold text-slate-900">IFRS 16 / ASC 842</td>
                   <td className="p-4 sm:p-5 text-slate-600">Manual Excel formulas prone to error and auditor restatements.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Automated SAP RE-FX valuation schedule and RoU ledger.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">100% audit compliance; automated remeasurements.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Complete audit compliance; automated remeasurements.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
                   <td className="p-4 sm:p-5 font-bold text-slate-900">CAM Expense Settlement</td>
                   <td className="p-4 sm:p-5 text-slate-600">Annual retrospective audits causing tenant payment withholdings.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Monthly automated pro-rata pooling based on verified GLA.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Zero CAM disputes; 100% operational expense recovery.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Eliminated CAM disputes; total operational expense recovery.</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Retail Turnover Rent</td>
                   <td className="p-4 sm:p-5 text-slate-600">Tenant self-reported turnover figures without POS verification.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Automated POS sales ingestion and breakpoint billing.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">18% increase in captured turnover percentage rent.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Substantial expansion in captured turnover percentage rent.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Contract Escalations</td>
@@ -1277,7 +1276,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Portfolio Performance</td>
                   <td className="p-4 sm:p-5 text-slate-600">Quarterly manual aggregation of NOI and occupancy stats.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Real-time REIT yield dashboards (NOI, FFO, WALE).</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">+12% higher portfolio Net Operating Income.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Substantially enhanced portfolio Net Operating Income.</td>
                 </tr>
               </tbody>
             </table>
@@ -1298,7 +1297,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
               <span>TRANSFORMATION ROADMAP & DELTA INSPECTOR</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Four Phases to Autonomous Real Estate Operations
+              Phased Roadmap to Autonomous Real Estate Operations
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
               Inspect how legacy property spreadsheets transform into an intelligent real-time real estate fabric across every stage of the SAP deployment.
@@ -1412,47 +1411,95 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       </section>
 
       {/* =========================================================================
-          SECTION 9: REAL-WORLD BUSINESS IMPACT & KPIS
+          SECTION 9: STRATEGIC ENTERPRISE VALUE DRIVERS & OPERATIONAL SAFEGUARDS
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
-              <TrendingUp className="w-3.5 h-3.5 text-[#0070C0]" />
-              <span>PROVEN METRICS</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>ENTERPRISE VALUE DRIVERS</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Measurable Outcomes from Real Estate Modernization
+              Strategic Value Drivers & Operational Safeguards
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
-              Representative performance improvements realized by commercial landlords, mall developers, and REITs.
+              Architectural outcomes delivered across commercial landlords, retail mall operators, and global REIT portfolios.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">100%</div>
-              <div className="text-sm font-bold text-slate-900">CAM Cost Recovery</div>
-              <p className="text-xs text-slate-500">Automated pro-rata pooling based on verified leasable area.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <Receipt className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  IFRS 16 Audit Compliance
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Automated Right-of-Use asset amortization and lease liability interest recalculations eliminating balance sheet restatement risks.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>AUDIT INTEGRITY</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">Zero</div>
-              <div className="text-sm font-bold text-slate-900">IFRS 16 Audit Issues</div>
-              <p className="text-xs text-slate-500">Automated Right-of-Use asset and interest schedule calculations.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <FileSpreadsheet className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  CAM Cost Recovery
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Monthly automated pro-rata expense pooling tied directly to smart submeters and verified GLA, eliminating tenant billing disputes.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>EXPENSE ASSURANCE</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">+18%</div>
-              <div className="text-sm font-bold text-slate-900">Turnover Rent Growth</div>
-              <p className="text-xs text-slate-500">POS integration automating percentage rent above natural break.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <Coins className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Turnover Rent Capture
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Direct electronic POS takeaway ingestion automating percentage rent invoicing above contractual breakpoints with zero revenue leakage.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>RETAIL CAPTURE</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">+12%</div>
-              <div className="text-sm font-bold text-slate-900">Portfolio NOI Expansion</div>
-              <p className="text-xs text-slate-500">Reduced vacancy latency and disciplined contract escalation runs.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <BarChart3 className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Portfolio NOI Expansion
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Real-time REIT yield dashboards, proactive lease renewal cycles, and disciplined contract escalations maximizing total investor returns.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>YIELD EXPANSION</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
           </div>
 
@@ -1573,7 +1620,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
             </span>
             <span className="flex items-center gap-1.5">
               <Globe2 className="w-4 h-4 text-sky-300" />
-              <span>Global 24/7 SLA Support</span>
+              <span>Continuous Global SLA Support</span>
             </span>
           </div>
 

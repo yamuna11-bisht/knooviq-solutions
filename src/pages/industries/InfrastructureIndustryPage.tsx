@@ -371,7 +371,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
   const transformationStages = [
     {
       id: 'stage-1',
-      badge: 'PHASE 01',
+      badge: 'FOUNDATION',
       title: 'Linear Asset Digitization',
       subtitle: 'Chainage & Milepost Setup',
       description: 'Mapping highways, railways, and tunnels into SAP Linear Asset Management (LAM) with precise geographic chainage markers and asset attributes.',
@@ -383,11 +383,11 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       icon: Route,
       before: 'Disconnected static spreadsheets with ambiguous milepost defect locations',
       after: 'Unified SAP Linear Asset structure with GPS and chainage offset accuracy',
-      metrics: ['100% linear asset accuracy', 'Exact GIS defect mapping', 'Clean corridor register']
+      metrics: ['Exacting linear asset accuracy', 'Exact GIS defect mapping', 'Clean corridor register']
     },
     {
       id: 'stage-2',
-      badge: 'PHASE 02',
+      badge: 'INTEGRATION',
       title: 'Capital Budget Governance',
       subtitle: 'Multi-Year Tranche Controls',
       description: 'Aligning sovereign bond funding and development bank loans to SAP Funds Management with strict multi-tier milestone disbursement rules.',
@@ -399,11 +399,11 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       icon: Landmark,
       before: 'Spreadsheet tracking of multi-billion dollar capital pools with funding leakage',
       after: 'Automated multi-year appropriation ledger preventing unapproved budget drawdowns',
-      metrics: ['Zero unbudgeted appropriations', 'Audit-ready grant drawdowns', 'Strict commitment control']
+      metrics: ['Eliminated unbudgeted appropriations', 'Audit-ready grant drawdowns', 'Strict commitment control']
     },
     {
       id: 'stage-3',
-      badge: 'PHASE 03',
+      badge: 'ORCHESTRATION',
       title: 'Concessionaire PPP Automation',
       subtitle: 'Toll & Annuity Ledgers',
       description: 'Deploying real-time automated revenue reconciliation between electronic toll collection (ETC) gateways and private concessionaire ledgers.',
@@ -415,11 +415,11 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       icon: BarChart3,
       before: 'Monthly manual toll audits with prolonged disputes over traffic volume splits',
       after: 'Daily automated revenue settlement with transparent escrow allocations',
-      metrics: ['Sub-second toll ledger posting', 'Zero concessionaire disputes', 'Transparent revenue audits']
+      metrics: ['Instant toll ledger posting', 'Zero concessionaire disputes', 'Transparent revenue audits']
     },
     {
       id: 'stage-4',
-      badge: 'PHASE 04',
+      badge: 'AUTONOMY',
       title: 'Predictive Civil Operations',
       subtitle: 'Structural Health Telemetry',
       description: 'Integrating IoT strain gauges, vibration sensors, and weather feeds into SAP Asset Central to schedule predictive resurfacing and repairs.',
@@ -431,7 +431,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       icon: Gauge,
       before: 'Reactive repairs triggered only after visible structural distress or public hazard',
       after: 'Predictive maintenance dispatched months ahead based on sensor strain curves',
-      metrics: ['35% reduction in lifecycle maintenance cost', 'Extended civil asset longevity', 'Uncompromised public safety']
+      metrics: ['Optimized lifecycle maintenance cost', 'Extended civil asset longevity', 'Uncompromised public safety']
     }
   ];
 
@@ -610,19 +610,18 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                 National infrastructure programs face acute fiscal risks when linear corridors (highways, tunnels, rail networks) lack dynamic chainage maintenance tracking and public-private partnership (PPP) concession ledgers suffer from reconciliation lag. Knooviq delivers an integrated digital core uniting geospatial GIS data, structural health sensors, and sovereign capital governance.
               </p>
 
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">100%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">Linear Accuracy</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-emerald-600">Zero</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">PPP Toll Disputes</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs text-center">
-                  <div className="text-xl sm:text-2xl font-black text-[#0070C0]">35%</div>
-                  <div className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">OpEx Savings</div>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {[
+                  'Dynamic Chainage & Milepost Precision',
+                  'Sovereign Capital Appropriation Control',
+                  'Automated Concessionaire Toll Clearing',
+                  'Continuous Civil Structural Health Telemetry'
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+                    <CheckCircle2 className="w-4 h-4 text-[#0070C0] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
 
             </div>
@@ -649,7 +648,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                       </h3>
                     </div>
                     <span className="text-xs font-mono font-bold text-sky-200 bg-white/10 px-2 py-1 rounded backdrop-blur-md">
-                      STEP 0{activeJourneyStep + 1} / 06
+                      STAGE WORKFLOW
                     </span>
                   </div>
                 </div>
@@ -1009,7 +1008,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              1. GIS & Structural IoT Telemetry
+              GIS & Structural IoT Telemetry
             </button>
             <button
               onClick={() => setActiveArchTab('core')}
@@ -1019,7 +1018,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              2. SAP S/4HANA LAM & Funds Core
+              SAP S/4HANA LAM & Funds Core
             </button>
             <button
               onClick={() => setActiveArchTab('cloud')}
@@ -1029,7 +1028,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              3. Cloud BTP Concessionaire Portal
+              Cloud BTP Concessionaire Portal
             </button>
           </div>
 
@@ -1253,13 +1252,13 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Linear Asset Maintenance</td>
                   <td className="p-4 sm:p-5 text-slate-600">Discrete asset numbering with ambiguous location descriptions.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">SAP LAM dynamic chainage offsets and GIS visual layers.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">100% location accuracy; 35% faster repair dispatch.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Flawless location accuracy; accelerated repair dispatch.</td>
                 </tr>
                 <tr className="bg-slate-50/50">
                   <td className="p-4 sm:p-5 font-bold text-slate-900">PPP Concession Revenue</td>
                   <td className="p-4 sm:p-5 text-slate-600">Manual monthly spreadsheet toll volume reconciliations.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Real-time ETC tolling gateway integration and automated split.</td>
-                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Zero toll revenue leakage; dispute-free settlements.</td>
+                  <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Eliminated toll revenue leakage; dispute-free settlements.</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Capital Appropriation</td>
@@ -1275,7 +1274,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-bold text-slate-900">Structural Safety Monitoring</td>
-                  <td className="p-4 sm:p-5 text-slate-600">Manual inspection cycles every 2 years with unseen fatigue.</td>
+                  <td className="p-4 sm:p-5 text-slate-600">Periodic manual inspection cycles with undetected structural fatigue.</td>
                   <td className="p-4 sm:p-5 text-slate-900 font-medium">Continuous IoT strain gauge and vibration data streaming.</td>
                   <td className="p-4 sm:p-5 text-emerald-600 font-semibold">Predictive civil risk mitigation; extended asset life.</td>
                 </tr>
@@ -1298,7 +1297,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
               <span>TRANSFORMATION ROADMAP & DELTA INSPECTOR</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Four Phases to Autonomous Infrastructure Operations
+              Phased Roadmap to Autonomous Infrastructure Operations
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
               Inspect how legacy public works administration transforms into an orchestrated digital corridor across every stage of the SAP deployment.
@@ -1412,47 +1411,95 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       </section>
 
       {/* =========================================================================
-          SECTION 9: REAL-WORLD BUSINESS IMPACT & KPIS
+          SECTION 9: STRATEGIC ENTERPRISE VALUE DRIVERS & OPERATIONAL SAFEGUARDS
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
-              <TrendingUp className="w-3.5 h-3.5 text-[#0070C0]" />
-              <span>PROVEN METRICS</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>ENTERPRISE VALUE DRIVERS</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Measurable Outcomes from Infrastructure Modernization
+              Strategic Value Drivers & Operational Safeguards
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
-              Representative performance improvements realized across major tollways, transit authorities, and bridge operators.
+              Architectural outcomes delivered across sovereign infrastructure corridors and public-private concessionaires.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">35%</div>
-              <div className="text-sm font-bold text-slate-900">Linear OpEx Savings</div>
-              <p className="text-xs text-slate-500">Chainage-based maintenance scheduling preventing premature resurfacing.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <Route className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Corridor Maintenance Optimization
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Dynamic chainage and milepost-based maintenance dispatch eliminating resurfacing guesswork and optimizing civil upkeep budgets.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>LINEAR PRECISION</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">100%</div>
-              <div className="text-sm font-bold text-slate-900">Tolling Audit Reconciliation</div>
-              <p className="text-xs text-slate-500">Sub-second electronic toll revenue clearing into concessionaire ledgers.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <BarChart3 className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Tolling Audit Integrity
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Real-time electronic toll collection gateway integration ensuring continuous concessionaire revenue reconciliation and zero leakage.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>REVENUE ASSURANCE</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#0070C0] tracking-tight">Zero</div>
-              <div className="text-sm font-bold text-slate-900">Statutory Audit Delays</div>
-              <p className="text-xs text-slate-500">Immutable multi-agency compliance documentation for multilateral lenders.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-[#0070C0]">
+                  <Landmark className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Sovereign Capex Compliance
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Strict multi-tranche public finance and multilateral loan ledger controls, ensuring audit-proof documentation for capital grants.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-sky-700 uppercase">
+                <span>FUNDS INTEGRITY</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-2">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-600 tracking-tight">15 Yrs</div>
-              <div className="text-sm font-bold text-slate-900">Extended Civil Asset Life</div>
-              <p className="text-xs text-slate-500">Structural health monitoring detecting foundation and girder fatigue early.</p>
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                  <Gauge className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  Structural Longevity Assurance
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Continuous IoT strain and vibration telemetry detecting structural fatigue early, extending the operational life of civil megastructures.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono font-bold text-emerald-700 uppercase">
+                <span>CIVIL RESILIENCE</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              </div>
             </div>
           </div>
 
@@ -1573,7 +1620,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
             </span>
             <span className="flex items-center gap-1.5">
               <Globe2 className="w-4 h-4 text-sky-300" />
-              <span>Global 24/7 SLA Support</span>
+              <span>Continuous Global SLA Support</span>
             </span>
           </div>
 
