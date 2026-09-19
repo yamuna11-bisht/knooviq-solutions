@@ -81,6 +81,11 @@ import { SapHanaPage } from './pages/technology/SapHanaPage';
 import { SapFioriPage } from './pages/technology/SapFioriPage';
 import { SapIntegrationSuitePage } from './pages/technology/SapIntegrationSuitePage';
 import { CloudTransformationPage } from './pages/technology/CloudTransformationPage';
+import { OilGasIndustryPage } from './pages/industries/OilGasIndustryPage';
+import { PowerUtilitiesIndustryPage } from './pages/industries/PowerUtilitiesIndustryPage';
+import { RenewableEnergyIndustryPage } from './pages/industries/RenewableEnergyIndustryPage';
+import { MiningMetalsIndustryPage } from './pages/industries/MiningMetalsIndustryPage';
+import { EnergyServicesIndustryPage } from './pages/industries/EnergyServicesIndustryPage';
 
 // Wrapper component to selectively show public layout elements (Navbar, Footer, Chatbot)
 const AppContent: React.FC = () => {
@@ -365,6 +370,16 @@ const AppContent: React.FC = () => {
           <Route path="/industries/diagnostics" element={<DiagnosticsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/wellness-care" element={<WellnessCareIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/wellness" element={<WellnessCareIndustryPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Energy & Resources Dedicated Industry Pages */}
+          <Route path="/industries/oil-gas" element={<OilGasIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/oil-and-gas" element={<OilGasIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/power-utilities" element={<PowerUtilitiesIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/power-and-utilities" element={<PowerUtilitiesIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/renewable-energy" element={<RenewableEnergyIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/mining-metals" element={<MiningMetalsIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/mining-and-metals" element={<MiningMetalsIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/energy-services" element={<EnergyServicesIndustryPage onOpenContact={handleOpenContactModal} />} />
 
           <Route path="/insights" element={<InsightsPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/careers" element={<CareersPage />} />

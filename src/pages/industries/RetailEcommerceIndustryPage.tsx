@@ -455,7 +455,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
       {/* =========================================================================
           SECTION 1: HERO SECTION (Pure Enterprise Retail Hero - Zero Shading on Image)
           ========================================================================= */}
-      <section className="relative w-full h-[540px] sm:h-[560px] lg:h-[580px] flex items-center pt-24 sm:pt-28 lg:pt-28 pb-8 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Enterprise Retail Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
@@ -464,12 +464,12 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
             alt="Connected Retail Flagship Enterprise Atmosphere" 
             className="w-full h-full object-cover object-center"
           />
-          {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant store on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        {/* Seamless Cinematic Left Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           
           <div className="max-w-3xl space-y-4">
             
@@ -479,20 +479,21 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
               transition={{ duration: 0.55 }}
               className="space-y-2.5"
             >
-              {/* Practice Tag */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 shadow-xl">
-                <Store className="w-3 h-3 text-cyan-300" />
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                <Store className="w-3.5 h-3.5 text-cyan-400" />
                 <span>KNOOVIQ INDUSTRY PRACTICE</span>
               </div>
               
               {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                Retail & <span className="text-[#38BDF8] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">E-Commerce</span>
+                Intelligent ERP for <br />
+                <span className="text-cyan-400">Retail & E-Commerce</span>
               </h1>
 
               {/* Subheading / Value Proposition */}
-              <p className="text-base sm:text-lg lg:text-xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Bridging Physical Stores, Digital Channels & Intelligent Supply Chains into One Unified Enterprise.
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                Unified Omnichannel Commerce, Agile Inventory Routing & Storefront Control.
               </p>
             </motion.div>
 
@@ -502,26 +503,29 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
               transition={{ duration: 0.6, delay: 0.1 }}
               className="space-y-3 max-w-2xl"
             >
-              <p className="text-xs sm:text-sm text-slate-200 font-normal leading-relaxed">
-                Transform retail operations with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, <strong className="text-cyan-300 font-semibold">AI-driven demand sensing</strong>, automated order orchestration, and <strong className="text-white font-semibold">real-time inventory visibility</strong> across every touchpoint.
+              {/* Clear Open Typography */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+                Empowering retail brands, digital merchants, and omnichannel store networks with{' '}
+                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated{' '}
+                <strong className="text-cyan-300 font-semibold">AI Demand Sensing</strong>, dynamic order orchestration, and real-time inventory visibility.
               </p>
               
-              <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 shadow-sm">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+              {/* Clean Feature Highlights */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
                   <span>Clean Core Architecture</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 shadow-sm">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>AI Demand Sensing</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 shadow-sm">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400" />
-                  <span>Sub-Second Visibility</span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                  <span>Sub-Second Stock Visibility</span>
                 </span>
               </div>
             </motion.div>
-
 
             {/* Enterprise Architectural Trust Ribbon */}
             <motion.div 
@@ -530,21 +534,40 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-cyan-300 font-bold mb-1">Architecture</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">SAP S/4HANA Clean Core</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA Core</div>
+                <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-cyan-300 font-bold mb-1">Omnichannel Mesh</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Unified POS & E-Commerce</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Store className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">OMNICHANNEL</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Unified Commerce</div>
+                <div className="text-xs text-slate-300 mt-0.5">POS & Digital Sync</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-cyan-300 font-bold mb-1">Stock Accuracy</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Sub-Second Visibility</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Boxes className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">STOCK VISIBILITY</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Sub-Second Accuracy</div>
+                <div className="text-xs text-slate-300 mt-0.5">Zero Phantom Stock</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-white/[0.06] backdrop-blur-md border border-white/10 hover:border-sky-400/40 hover:bg-white/[0.09] transition-all">
-                <span className="block text-[10.5px] font-mono uppercase text-cyan-300 font-bold mb-1">Fulfillment</span>
-                <span className="block text-xs sm:text-sm font-semibold text-white">Autonomous Order Routing</span>
+
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Truck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">FULFILLMENT</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Dynamic Routing</div>
+                <div className="text-xs text-slate-300 mt-0.5">Touchless Orchestration</div>
               </div>
             </motion.div>
 
@@ -1156,7 +1179,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveSolutionCategory(cat.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase transition-all duration-300 ${
+                  className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 ${
                     isActive
                       ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25 scale-105'
                       : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-2xs'

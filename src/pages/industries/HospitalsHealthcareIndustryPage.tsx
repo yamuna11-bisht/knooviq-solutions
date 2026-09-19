@@ -250,7 +250,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full min-h-[580px] lg:min-h-[600px] flex items-center pt-24 sm:pt-28 lg:pt-28 pb-10 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
@@ -612,7 +612,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
                 <button
                   key={cat}
                   onClick={() => setActiveSolutionCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold uppercase transition-all ${
+                  className={`industry-category-tab px-4 py-2 rounded-lg transition-all ${
                     activeSolutionCategory === cat
                       ? 'bg-[#0070C0] text-white shadow-xs'
                       : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300'

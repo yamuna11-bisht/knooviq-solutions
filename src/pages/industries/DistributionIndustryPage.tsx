@@ -524,7 +524,7 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       {/* =========================================================================
           SECTION 1: HERO SECTION (Pure Enterprise Distribution Hero)
           ========================================================================= */}
-      <section className="relative w-full h-[540px] sm:h-[560px] lg:h-[580px] flex items-center pt-24 sm:pt-28 lg:pt-28 pb-8 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
@@ -1118,7 +1118,7 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                 <button
                   key={tab.id}
                   onClick={() => setActiveSolutionCategory(tab.id)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                  className={`industry-category-tab px-4 py-2 rounded-xl transition-all ${
                     activeSolutionCategory === tab.id
                       ? 'bg-[#0070C0] text-white shadow-md shadow-sky-600/30'
                       : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'

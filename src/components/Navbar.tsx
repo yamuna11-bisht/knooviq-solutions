@@ -485,6 +485,11 @@ const INDUSTRY_ROUTE_MAP: Record<string, string> = {
   'Medical Devices': '/industries/medical-devices',
   'Diagnostics': '/industries/diagnostics',
   'Wellness & Care': '/industries/wellness-care',
+  'Oil & Gas': '/industries/oil-gas',
+  'Power & Utilities': '/industries/power-utilities',
+  'Renewable Energy': '/industries/renewable-energy',
+  'Mining & Metals': '/industries/mining-metals',
+  'Energy Services': '/industries/energy-services',
 };
 
 interface NavbarProps {
@@ -996,18 +1001,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                                 <Link 
                                   to={INDUSTRY_ROUTE_MAP[cat.name]} 
                                   onClick={() => setActiveMenu(null)}
-                                  className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] hover:text-[#0070C0] dark:hover:text-cyan-300 transition-colors flex items-center justify-between group/cat"
+                                  className="industry-category-title text-[#0A1931] dark:text-[#00A3E0] hover:text-[#0070C0] dark:hover:text-cyan-300 transition-colors flex items-center justify-between group/cat"
                                 >
                                   <span>{cat.name}</span>
-                                  <ArrowRight className="w-3 h-3 opacity-0 group-hover/cat:opacity-100 group-hover/cat:translate-x-0.5 transition-all" />
+                                  <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover/cat:opacity-100 group-hover/cat:translate-x-0.5 transition-all shrink-0" />
                                 </Link>
                               ) : (
-                                <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
+                                <h4 className="industry-category-title text-[#0A1931] dark:text-[#00A3E0]">
                                   {cat.name}
                                 </h4>
                               )}
                             </div>
-                                <ul className="space-y-1 text-xs">
+                                <ul className="space-y-1">
                                   {cat.items.map((subItem) => {
                                     const industryRoute = INDUSTRY_ROUTE_MAP[subItem];
                                     return (
@@ -1015,7 +1020,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                                         <Link 
                                           to={industryRoute || '/industries'} 
                                           onClick={() => setActiveMenu(null)} 
-                                          className="px-2 py-1 rounded block transition-colors font-medium text-[11.5px] leading-snug text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10"
+                                          className="industry-category-item px-2 py-1 rounded block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10"
                                         >
                                           <span>{subItem}</span>
                                         </Link>
@@ -1344,15 +1349,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </button>
 
               {mobileSubmenu === 'industries' && (
-                <div className="pt-2 pl-2 space-y-1.5 border-t border-slate-200 dark:border-white/5 mt-1 text-xs">
-                  <div className="pb-1 mb-1 border-b border-slate-200 dark:border-white/5 space-y-1">
-                    <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 px-2 pt-0.5">Industry Practices</p>
+                <div className="pt-2 pl-2 space-y-2 border-t border-slate-200 dark:border-white/5 mt-1">
+                  <div className="pb-1.5 mb-1 border-b border-slate-200 dark:border-white/5 space-y-1">
+                    <p className="industry-category-title text-slate-500 dark:text-slate-400 px-2 pt-0.5">Industry Practices</p>
                     {Object.entries(INDUSTRY_ROUTE_MAP).map(([name, path]) => (
                       <Link
                         key={name}
                         to={path}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center justify-between py-1 px-2 rounded-lg bg-[#0070C0]/10 text-[#0070C0] dark:text-cyan-300 font-bold"
+                        className="industry-category-item flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-[#0070C0]/10 text-[#0070C0] dark:text-cyan-300"
                       >
                         <span>{name}</span>
                       </Link>
@@ -1363,7 +1368,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                       key={cat.id}
                       to="/industries" 
                       onClick={() => setMobileMenuOpen(false)} 
-                      className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium hover:text-[#00A3E0]"
+                      className="industry-category-item block py-1 px-2 text-slate-700 dark:text-slate-300 hover:text-[#00A3E0]"
                     >
                       • {cat.name}
                     </Link>
