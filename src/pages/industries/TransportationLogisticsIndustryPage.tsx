@@ -6,65 +6,52 @@ import {
   Layers, 
   Activity, 
   ShieldCheck, 
-  Gauge, 
   TrendingUp, 
   BarChart3, 
   CheckCircle2, 
   ArrowRight, 
   ChevronRight, 
-  ChevronDown, 
   Sparkles, 
   Clock, 
   Workflow, 
   Compass, 
-  Cpu, 
   Zap, 
   Boxes, 
-  HelpCircle,
-  Award,
-  Globe2,
-  RefreshCw,
-  FileText,
-  Radio,
-  Server,
-  AlertTriangle,
-  FolderKanban,
+  Globe2, 
+  RefreshCw, 
+  FileText, 
+  Radio, 
+  Server, 
+  Factory,
+  Scan,
+  Cloud,
+  Sliders,
   FileCheck,
-  Split,
-  Binary,
-  Plane,
   Navigation,
-  Anchor
+  Anchor,
+  QrCode
 } from 'lucide-react';
 
-interface IndustryPageProps {
-  onOpenContact: (defaultService?: string) => void;
+interface TransportationLogisticsIndustryPageProps {
+  onOpenContact?: (defaultTopic?: string) => void;
 }
 
-export const TransportationLogisticsIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
+export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisticsIndustryPageProps> = ({ 
+  onOpenContact 
+}) => {
+  // State for Section 2 Interactive Journey
   const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
-  // State for Circular Chevron Wheel
+  // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
-  // State for Modular Solutions Filter
+  // State for Section 6 Solution Category Filter
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<string>('ALL');
 
-  // State for Transformation Stage Console
+  // State for Section 8 Transformation Stage
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
 
-  // State for Architecture Tab
-  const [activeArchTab, setActiveArchTab] = useState<string>('core');
-
-  // State for FAQ Accordion
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
-  // Section 4: Circular Chevron Radial Wheel Segments (KNOOVIQ Transportation & Aerospace Ecosystem)
+  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ Transportation & Fleet Logistics)
   const wheelSegments = [
     {
       id: 'multimodal-routing',
@@ -87,64 +74,64 @@ export const TransportationLogisticsIndustryPage: React.FC<IndustryPageProps> = 
       icon: FileCheck
     },
     {
-      id: 'rotable-mro',
-      title: 'Aerospace Rotable Asset Management',
-      desc: 'Tracking high-value rotable avionics, turbine blades, and landing gears through closed-loop overhaul cycles.',
+      id: 'fleet-telematics',
+      title: 'Real-Time Fleet Telematics & GPS Geofencing',
+      desc: 'Continuous OBD-II engine diagnostic streaming, driver hours-of-service (HOS) compliance, and automated arrival triggers.',
       side: 'right',
       color: '#10B981',
       textColor: 'text-emerald-400',
       bgGlow: 'rgba(16, 185, 129, 0.3)',
-      icon: RefreshCw
+      icon: Truck
     },
     {
-      id: 'life-limited-parts',
-      title: 'Life-Limited Parts (LLP) Airworthiness Ledger',
-      desc: 'Strict cumulative flight hour and cycle tracking ensuring continuous compliance with FAA and EASA mandates.',
+      id: 'yard-dock-scheduling',
+      title: 'Yard Management & Dock Appointment Booking',
+      desc: 'Carrier portal scheduling dock doors, synchronizing gate security scanners, and tracking trailer yard staging locations.',
       side: 'right',
       color: '#F59E0B',
       textColor: 'text-amber-400',
       bgGlow: 'rgba(245, 158, 11, 0.3)',
-      icon: ShieldCheck
+      icon: Boxes
     },
     {
-      id: 'flightline-turnaround',
-      title: 'Flight-Line Aircraft Turnaround Execution',
-      desc: 'Synchronizing line maintenance crews, ground equipment, and critical spare parts to minimize aircraft on ground (AOG).',
+      id: 'epod-mobile',
+      title: 'Digital Proof-of-Delivery (e-POD) Workflows',
+      desc: 'Mobile driver app capturing glass signatures, photographic damage proof, and instant GPS delivery geostamps.',
       side: 'left',
       color: '#F97316',
       textColor: 'text-orange-400',
       bgGlow: 'rgba(249, 115, 22, 0.3)',
-      icon: Plane
+      icon: QrCode
     },
     {
-      id: 'coldchain-telemetry',
-      title: 'In-Transit Cold-Chain & Geofence Telemetry',
-      desc: 'Real-time temperature, shock, and tilt sensor monitoring with automated rerouting triggers for sensitive cargo.',
+      id: 'cold-chain-iot',
+      title: 'Cold Chain IoT Temperature Monitoring',
+      desc: 'Refrigerated reefer trailer IoT sensors streaming live cargo temperature, humidity, and door opening events.',
       side: 'left',
       color: '#8B5CF6',
       textColor: 'text-purple-400',
       bgGlow: 'rgba(139, 92, 246, 0.3)',
-      icon: Activity
+      icon: Radio
     },
     {
-      id: 'carrier-collaboration',
-      title: 'Digital Carrier Collaboration & Tendering',
-      desc: 'Automated broadcast and waterfall tendering portals connecting 3PL carriers with automated booking confirmations.',
+      id: 'esg-emissions',
+      title: 'Scope 3 Fleet Carbon Accounting',
+      desc: 'GLEC framework compliant calculation of per-shipment CO2e emissions across multi-tier subcontracted carriers.',
       side: 'left',
       color: '#EC4899',
       textColor: 'text-pink-400',
       bgGlow: 'rgba(236, 72, 153, 0.3)',
-      icon: Globe2
+      icon: ShieldCheck
     },
     {
-      id: 'customs-green-logistics',
-      title: 'Customs Clearance & Carbon Emissions Ledger',
-      desc: 'Automated global trade documentation generation coupled with carbon emissions tracking per transport lane.',
+      id: 'carrier-collaboration',
+      title: 'Carrier Collaboration & Spot Network',
+      desc: 'Automated electronic tendering, lane performance scoring, and spot-bid auction portals for rapid capacity acquisition.',
       side: 'left',
       color: '#3B82F6',
       textColor: 'text-blue-400',
       bgGlow: 'rgba(59, 130, 246, 0.3)',
-      icon: FileText
+      icon: Globe2
     }
   ];
 
@@ -181,778 +168,835 @@ export const TransportationLogisticsIndustryPage: React.FC<IndustryPageProps> = 
     const tip = 7.5;
     const theta1 = -90 + index * 45 + gap;
     const theta2 = -90 + (index + 1) * 45 - gap;
-    const midAngle = (theta1 + theta2) / 2 + tip / 2;
+    const thetaMid = (theta1 + theta2) / 2 + tip / 2;
     const rad = (deg: number) => (deg * Math.PI) / 180;
     return {
-      x: cx + rMid * Math.cos(rad(midAngle)),
-      y: cy + rMid * Math.sin(rad(midAngle))
+      x: cx + rMid * Math.cos(rad(thetaMid)),
+      y: cy + rMid * Math.sin(rad(thetaMid))
     };
   };
 
   // Section 2: Journey Steps
   const journeySteps = [
     {
-      id: 'planning',
-      label: 'Freight Planning',
-      sublabel: 'Multi-Modal Cockpit',
-      tech: 'SAP Transportation Management',
-      desc: 'Consolidating delivery requirements into multi-modal transport units, optimizing vehicle capacity and transit routes.',
+      id: 'consolidation',
+      label: 'Order Consolidation & Load Build',
+      sublabel: 'Dynamic Load Building',
+      desc: 'Algorithmic 3D truckload optimization combining sales orders, stock transfers, and purchase orders into full truckload (FTL) and LTL routes.',
+      tech: 'SAP TM Freight Unit Builder',
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
       icon: Navigation
     },
     {
       id: 'tendering',
-      label: 'Carrier Tendering',
-      sublabel: 'Dynamic Tendering',
-      tech: 'SAP Business Network Logistics',
-      desc: 'Broadcasting shipments to approved freight forwarders, evaluating bids, and securing automated booking confirmations.',
+      label: 'Carrier Tendering & Spot Booking',
+      sublabel: 'Tender Orchestration',
+      desc: 'Automated broadcast and waterfall tendering evaluating carrier contract rates, lane allocation quotas, and historical reliability scorecards.',
+      tech: 'SAP Business Network for Logistics',
       image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80',
       icon: Globe2
     },
     {
-      id: 'tracking',
-      label: 'In-Transit Telemetry',
-      sublabel: 'Milestone Events',
-      tech: 'SAP Global Track & Trace',
-      desc: 'Capturing live GPS, AIS marine signals, and temperature telemetry with automated exception alerts for delays.',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
-      icon: Activity
+      id: 'telematics',
+      label: 'Fleet Telematics & Route Adjustment',
+      sublabel: 'In-Transit Visibility',
+      desc: 'Continuous ingestion of OBD-II telematics, GPS coordinates, and real-time highway traffic feeds adjusting arrival ETAs dynamically.',
+      tech: 'SAP Event Management & BTP IoT',
+      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1200&q=80',
+      icon: Truck
     },
     {
-      id: 'mro',
-      label: 'Flight-Line MRO',
-      sublabel: 'AOG Turnaround',
-      tech: 'SAP S/4HANA Aerospace MRO',
-      desc: 'Orchestrating line maintenance technicians, issuing certified rotable components, and clearing deferred defect items.',
-      image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80',
-      icon: Plane
+      id: 'yard',
+      label: 'Yard & Dock Appointment Booking',
+      sublabel: 'Facility Inbound',
+      desc: 'Carrier portal scheduling dock doors, synchronizing gate security scanners, and tracking trailer yard parking spots.',
+      tech: 'SAP Yard Logistics (YL)',
+      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80',
+      icon: Boxes
     },
     {
-      id: 'overhaul',
-      label: 'Rotable Overhaul',
-      sublabel: 'Component Genealogy',
-      tech: 'SAP Plant Maintenance & QM',
-      desc: 'Tracking life-limited parts through teardown, non-destructive testing (NDT), repair, and digital airworthiness release.',
-      image: 'https://images.unsplash.com/photo-1508873696983-2df5703bc20d?auto=format&fit=crop&w=1200&q=80',
-      icon: RefreshCw
+      id: 'epod',
+      label: 'Digital Proof-of-Delivery (e-POD)',
+      sublabel: 'Electronic Sign-Off',
+      desc: 'Mobile glass signatures, photographic cargo condition captures, and instant geostamped delivery confirmations.',
+      tech: 'SAP Fiori Logistics Mobile Apps',
+      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80',
+      icon: QrCode
     },
     {
-      id: 'settlement',
-      label: 'Freight Audit',
-      sublabel: 'Automated Settlement',
-      tech: 'SAP TM Freight Settlement',
-      desc: 'Reconciling carrier freight invoices against agreed rate cards and GPS delivery timestamps, preventing billing disputes.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+      id: 'audit-settlement',
+      label: 'Freight Audit & Touchless Settlement',
+      sublabel: 'Carrier Billing',
+      desc: 'Three-way matching of contracted rate tables, actual GPS mileage/detention hours, and carrier invoices with zero manual disputes.',
+      tech: 'SAP S/4HANA Finance (FI-CA)',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
       icon: FileCheck
     }
   ];
 
-  // Section 3: Industry Challenges & Bottlenecks Data (6 Cards)
-  const industryChallenges = [
+  // Section 3: Transportation Industry Challenges
+  const transportationChallenges = [
     {
-      id: 'freight-leakage',
-      tag: 'FINANCIAL ACCURACY',
-      title: 'Carrier Freight Billing Leakage',
-      desc: 'Unverified fuel surcharges, detention penalties, and demurrage fees slip past manual invoice checks, inflating transport costs.',
-      status: 'FINANCIAL DRAIN',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
+      icon: Truck,
+      tag: 'EMPTY MILES',
+      title: 'Empty Miles & Asset Underutilization',
+      desc: 'Running empty return legs (deadhead) and dispatching partially filled trailers erode operating margins and increase corporate carbon emissions.',
+      footer: 'Deadhead Mileage Costs'
     },
     {
-      id: 'aog-delays',
-      tag: 'AIRCRAFT READINESS',
-      title: 'Aircraft on Ground (AOG) Downtime',
-      desc: 'Missing rotable components or delayed airworthiness certifications ground commercial and defense aircraft unexpectedly.',
-      status: 'CRITICAL SHUTDOWN',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
+      icon: FileCheck,
+      tag: 'BILLING DISPUTES',
+      title: 'Freight Invoice Overbilling Errors',
+      desc: 'Manual carrier freight audit processes struggle to verify accessorial detention charges, fuel surcharges, and negotiated contract rate caps.',
+      footer: 'Unchecked Carrier Overpayments'
     },
     {
-      id: 'multimodal-blindspots',
-      tag: 'VISIBILITY DEFICIT',
-      title: 'Multi-Modal In-Transit Blindspots',
-      desc: 'Cargo transfers between ocean vessels, rail yards, and long-haul trucks lack unified milestone tracking, delaying plant receipts.',
-      status: 'SUPPLY FRICTION',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
+      icon: Navigation,
+      tag: 'VISIBILITY GAPS',
+      title: 'In-Transit Milestone Blindspots',
+      desc: 'Shippers lack live GPS visibility between carrier pickup and destination dock, relying on frantic phone calls during customer delivery crises.',
+      footer: 'In-Transit Supply Blindspots'
     },
     {
-      id: 'llp-compliance-risk',
-      tag: 'AIRWORTHINESS AUDIT',
-      title: 'Life-Limited Parts (LLP) Tracking Failures',
-      desc: 'Discrepancies in flight hour and cycle records risk non-compliance with FAA and EASA mandates, risking fleet grounding.',
-      status: 'AUDIT GROUNDING',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
+      icon: Boxes,
+      tag: 'YARD CONGESTION',
+      title: 'Yard Congestion & Detention Fines',
+      desc: 'Unscheduled carrier arrivals overwhelm warehouse staging areas, causing long truck queues at facility gates and high driver detention penalties.',
+      footer: 'Detention & Demurrage Fees'
     },
     {
-      id: 'empty-miles',
-      tag: 'CAPACITY UNDERUTILIZATION',
-      title: 'Deadhead Miles & Inefficient Load Fill',
-      desc: 'Sub-optimal freight planning leads to partially loaded trailers and empty return legs, wasting fuel and operational hours.',
-      status: 'CAPACITY LOSS',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
+      icon: ShieldCheck,
+      tag: 'DRIVER SAFETY',
+      title: 'Driver Hours-of-Service (HOS) Risks',
+      desc: 'Failing to track driver rest mandates and ELD logbooks in real time leads to DOT highway enforcement penalties, impounds, and safety risks.',
+      footer: 'DOT Regulatory Non-Compliance'
     },
     {
-      id: 'customs-holds',
-      tag: 'TRADE COMPLIANCE',
-      title: 'Border Clearance & Customs Bottlenecks',
-      desc: 'Missing export control documentation, incorrect harmonized tariff codes, or delayed electronic manifests delay global freight.',
-      status: 'BORDER DETENTION',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
+      icon: BarChart3,
+      tag: 'RATE SURGES',
+      title: 'Volatile Spot Freight Surcharges',
+      desc: 'Sudden regional capacity shortages force logistics managers into high-priced spot market freight bookings without centralized rate benchmarking.',
+      footer: 'Uncontrolled Spot Freight Spend'
     }
   ];
 
-  // Section 5: Architecture Tabs Data
-  const architectureTabs = [
+  // Section 6: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
+  const industrySolutions = [
     {
-      id: 'core',
-      name: 'Digital Transportation Core',
-      tag: 'SAP S/4HANA TRANSPORTATION MANAGEMENT',
-      headline: 'Integrated Freight Execution & Commercial Ledger',
-      desc: 'The authoritative logistics core managing freight orders, multi-modal routing, carrier agreements, and financial settlements.',
-      capabilities: [
-        'Centralized freight order planning optimizing multi-modal road, ocean, rail, and air legs',
-        'Automated three-way freight audit matching invoices against contracted rate sheets',
-        'Native integration with SAP S/4HANA Finance for immediate accruals and payment releases',
-        'Global trade services integration ensuring electronic customs and export control compliance'
-      ],
-      diagramDetails: [
-        { label: 'Freight Planning', value: 'Multi-Modal Optimization' },
-        { label: 'Carrier Settlement', value: 'Automated 3-Way Match' },
-        { label: 'Ledger Posting', value: 'Real-Time Accruals' },
-        { label: 'Trade Services', value: 'Automated Customs Manifest' }
-      ]
+      title: 'Multi-Modal Freight Routing',
+      tag: 'ROUTE OPTIMIZER',
+      category: 'FREIGHT_ROUTING',
+      categoryLabel: 'Freight & Routing',
+      description: 'Algorithmic 3D truckload optimization combining sales orders, stock transfers, and purchase orders into full truckload (FTL) and LTL routes.',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Dynamic 3D Load Building', 'Multi-Modal Leg Linking', 'Cost & Transit Time Balance'],
+      icon: Navigation
     },
     {
-      id: 'edge',
-      name: 'Aerospace MRO & Hangar Edge',
-      tag: 'SAP S/4HANA AEROSPACE & DEFENSE MRO',
-      headline: 'Flight-Line Work Execution & Rotable Component Hub',
-      desc: 'Connecting aircraft maintenance hangars, component overhaul shops, and field technicians in real time.',
-      capabilities: [
-        'Life-limited parts tracking recording cumulative flight hours, landings, and operating cycles',
-        'Rotable pool management coordinating loaner exchanges, teardown inspections, and overhauls',
-        'Mobile maintenance terminals for hangar technicians with digital task cards and sign-offs',
-        'Immediate airworthiness certificate generation compliant with FAA and EASA requirements'
-      ],
-      diagramDetails: [
-        { label: 'Life-Limited Parts', value: 'Cumulative Flight Cycles' },
-        { label: 'Rotable Pool', value: 'Closed-Loop Overhaul' },
-        { label: 'Mobile Work Orders', value: 'Paperless Hangar' },
-        { label: 'Airworthiness', value: 'FAA / EASA Verification' }
-      ]
+      title: 'Automated Carrier Freight Audit',
+      tag: 'TOUCHLESS SETTLEMENT',
+      category: 'SETTLEMENT_ESG',
+      categoryLabel: 'Settlement & Analytics',
+      description: 'Three-way matching reconciling contract rate agreements, bill of ladings, and carrier invoices with automated dispute resolution.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Tariff & Fuel Surcharge Verification', 'Accessorial Detention Audits', 'Touchless Invoice Clearing'],
+      icon: FileCheck
     },
     {
-      id: 'cloud',
-      name: 'Logistics Network Intelligence',
-      tag: 'SAP BUSINESS NETWORK FOR LOGISTICS',
-      headline: 'Global Track & Trace & Predictive ETA Cockpit',
-      desc: 'Leveraging cloud collaboration to connect carriers, marine AIS signals, and GPS telemetry into a unified command center.',
-      capabilities: [
-        'Real-time shipment visibility ingesting GPS, flight radar, and marine vessel AIS telemetry',
-        'Automated carrier collaboration portal for tendering, dock scheduling, and electronic invoicing',
-        'Predictive delay alerts forecasting shipment disruptions based on weather and port congestion',
-        'Clean Core extensibility integrating specialized telematic sensors without modifying ERP code'
-      ],
-      diagramDetails: [
-        { label: 'Live Telemetry', value: 'Multi-Modal GPS & AIS' },
-        { label: 'Carrier Network', value: 'Cloud Tendering' },
-        { label: 'Predictive ETA', value: 'Disruption Alerts' },
-        { label: 'Clean Extension', value: 'SAP BTP Architecture' }
-      ]
+      title: 'Fleet Telematics & Geofencing',
+      tag: 'CONNECTED FLEET',
+      category: 'FLEET_OPERATIONS',
+      categoryLabel: 'Fleet & Yard Operations',
+      description: 'Continuous OBD-II engine diagnostic streaming, driver hours-of-service (HOS) compliance, and automated arrival triggers.',
+      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Sub-Second GPS Tracking', 'ELD Hours-of-Service Alerts', 'Automated Geofence Arrival'],
+      icon: Truck
+    },
+    {
+      title: 'Yard Management & Dock Booking',
+      tag: 'FACILITY INBOUND',
+      category: 'FLEET_OPERATIONS',
+      categoryLabel: 'Fleet & Yard Operations',
+      description: 'Carrier portal scheduling dock doors, synchronizing gate security scanners, and tracking trailer yard staging locations.',
+      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Carrier Dock Self-Booking', 'Shunter Task Allocation', 'Trailer Spot Inventory'],
+      icon: Boxes
+    },
+    {
+      title: 'Digital Proof-of-Delivery (e-POD)',
+      tag: 'MOBILE DRIVER APP',
+      category: 'FLEET_OPERATIONS',
+      categoryLabel: 'Fleet & Yard Operations',
+      description: 'Mobile driver app capturing glass signatures, photographic damage proof, and instant GPS delivery geostamps.',
+      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Sign-on-Glass Capture', 'Cargo Damage Photos', 'Instant Milestone Update'],
+      icon: QrCode
+    },
+    {
+      title: 'Cold Chain IoT Temperature Mesh',
+      tag: 'CARGO INTEGRITY',
+      category: 'FREIGHT_ROUTING',
+      categoryLabel: 'Freight & Routing',
+      description: 'Refrigerated reefer trailer IoT sensors streaming live cargo temperature, humidity, and door opening events.',
+      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Reefer Sensor Ingestion', 'Thermal Excursion Alerts', 'Pharma & Food Compliance'],
+      icon: Radio
+    },
+    {
+      title: 'Scope 3 Fleet Carbon Accounting',
+      tag: 'ESG LOGISTICS',
+      category: 'SETTLEMENT_ESG',
+      categoryLabel: 'Settlement & Analytics',
+      description: 'GLEC framework compliant calculation of per-shipment CO2e emissions across multi-tier subcontracted carriers.',
+      image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80',
+      highlights: ['GLEC Standard Calculations', 'Carrier Carbon Benchmarking', 'Eco-Route Recommendations'],
+      icon: ShieldCheck
+    },
+    {
+      title: 'Carrier Collaboration & Spot Network',
+      tag: 'B2B CARRIER MESH',
+      category: 'FREIGHT_ROUTING',
+      categoryLabel: 'Freight & Routing',
+      description: 'Automated electronic tendering, lane performance scoring, and spot-bid auction portals for rapid capacity acquisition.',
+      image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Electronic Tender Broadcasts', 'Carrier OTIF Scorecards', 'Spot Market Reverse Auctions'],
+      icon: Globe2
+    },
+    {
+      title: 'Fleet Preventive Maintenance Hub',
+      tag: 'VEHICLE HEALTH',
+      category: 'SETTLEMENT_ESG',
+      categoryLabel: 'Settlement & Analytics',
+      description: 'Automated odometer tracking, preventive tire and brake maintenance schedules, and warranty claim tracking.',
+      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Odometer-Triggered PM Orders', 'Tire & Brake Wear Telemetry', 'Vehicle Asset Depreciation'],
+      icon: Sliders
     }
   ];
 
-  // Section 6: Modular Solutions Data
-  const modularSolutions = [
-    {
-      category: 'CORE',
-      title: 'Multi-Modal Freight Execution & Rate Engine',
-      badge: 'SAP TM CORE',
-      desc: 'Plan, tender, and execute multi-modal freight operations with dynamic rate calculation and automated carrier assignment.',
-      features: [
-        'Multi-modal shipment consolidation and routing',
-        'Carrier rate card contract management',
-        'Dynamic waterfall and broadcast tendering',
-        'Automated freight cost distribution and accruals'
-      ]
-    },
-    {
-      category: 'MRO',
-      title: 'Aerospace Rotable Pool & Overhaul Execution',
-      badge: 'AEROSPACE MRO',
-      desc: 'Manage high-value aviation rotable components through complete teardown, non-destructive inspection, and airworthiness release.',
-      features: [
-        'Life-limited part cycle tracking and forecasting',
-        'Rotable exchange pool and loaner administration',
-        'Component repair work order bill-of-materials',
-        'Electronic maintenance release sign-offs'
-      ]
-    },
-    {
-      category: 'SETTLEMENT',
-      title: 'Automated Carrier Freight Audit & Dispute Resolution',
-      badge: 'FREIGHT SETTLEMENT',
-      desc: 'Eliminate freight overcharges through automated three-way matching of rate agreements, GPS delivery events, and carrier invoices.',
-      features: [
-        'Automated fuel surcharge and accessorial verification',
-        'Carrier electronic invoice intake and reconciliation',
-        'Dispute management portal for freight forwarders',
-        'Instant financial ledger accrual and payment release'
-      ]
-    },
-    {
-      category: 'VISIBILITY',
-      title: 'Global Track & Trace Command Center',
-      badge: 'LOGISTICS NETWORK',
-      desc: 'Real-time multi-modal shipment monitoring tracking temperature, location, and milestone progress across global supply routes.',
-      features: [
-        'Real-time GPS, maritime AIS, and flight radar sync',
-        'Cold-chain temperature excursion alerts',
-        'Predictive port congestion and delay modeling',
-        'Customer self-service delivery tracking portal'
-      ]
-    }
-  ];
-
-  // Filtered Modular Solutions
-  const filteredSolutions = activeSolutionCategory === 'ALL' 
-    ? modularSolutions 
-    : modularSolutions.filter(s => s.category === activeSolutionCategory);
-
-  // Section 7: Standardization & Clean Core Matrix
-  const matrixRows = [
-    {
-      dimension: 'Freight Planning',
-      legacy: 'Decentralized spreadsheets and manual phone calls to book disparate carrier trucks and shipping containers.',
-      cleanCore: 'Centralized SAP TM cockpit optimizing multi-modal vehicle consolidation, routes, and tendering.',
-      valueImpact: 'Minimized Transport Spend'
-    },
-    {
-      dimension: 'Freight Audit',
-      legacy: 'Manual sample checking of paper carrier invoices allowing unverified surcharges and overpayments.',
-      cleanCore: 'Automated three-way matching reconciling contract rate sheets against verified GPS delivery milestones.',
-      valueImpact: 'Zero Freight Overpayments'
-    },
-    {
-      dimension: 'Aircraft Maintenance',
-      legacy: 'Paper logbooks and scattered maintenance sheets causing delayed AOG turnarounds and compliance gaps.',
-      cleanCore: 'Digitized line maintenance execution with instant rotable spare reservations and electronic sign-offs.',
-      valueImpact: 'Maximum Fleet Readiness'
-    },
-    {
-      dimension: 'Life-Limited Parts',
-      legacy: 'Manual flight hour calculation spreadsheets vulnerable to audit discrepancies and regulatory grounding.',
-      cleanCore: 'Automated airworthiness ledgers tracking cumulative cycles directly connected to flight operations.',
-      valueImpact: 'Flawless Airworthiness'
-    },
-    {
-      dimension: 'Shipment Tracking',
-      legacy: 'Periodic phone check-ins with carriers leaving dispatch teams unaware of in-transit port delays.',
-      cleanCore: 'Unified global logistics network ingesting GPS, marine AIS, and flight telemetry in real time.',
-      valueImpact: 'Continuous Pipeline Visibility'
-    }
-  ];
-
-  // Section 8: Transformation Roadmap Stages Data
+  // Section 8: Transformation in Action (Connected 4-Phase Architecture Pipeline)
   const transformationStages = [
     {
-      badge: 'FOUNDATION',
-      title: 'Transportation Core & Freight Settlement',
-      subtitle: 'Freight Master Data & Automated Audit',
-      tag: 'CORE UNIFICATION',
+      phase: 'INITIAL CHALLENGE',
+      badge: 'SILOED FLEETS',
+      title: 'Disconnected Fleet Logistics',
+      subtitle: 'Legacy Logistics Fragmentation',
+      description: 'Truck dispatchers, independent freight carriers, warehouse yard managers, and billing clerks operating on phone calls and spreadsheets.',
+      accent: 'rose',
+      borderBase: 'border-rose-500/30 hover:border-rose-400',
+      activeBorder: 'border-rose-400 ring-2 ring-rose-500/30 bg-rose-950/20 shadow-[0_0_25px_rgba(244,63,94,0.2)]',
+      glowColor: 'bg-rose-500',
+      textColor: 'text-rose-400',
+      icon: Activity,
+      tag: 'Empty Miles & Detention Penalties',
+      before: 'Manual dispatch calls & paper bill of ladings',
+      after: 'Synchronized event-driven multi-modal logistics mesh',
+      metrics: ['Empty Deadhead Miles', 'Manual Invoice Audit Overhead', 'Detention Demurrage Fines']
+    },
+    {
+      phase: 'STRATEGIC FRAMEWORK',
+      badge: 'CLEAN CORE',
+      title: 'BTP Telematics Fabric',
+      subtitle: 'Architecture Foundation',
+      description: 'Deploying decoupled event-driven microservices on SAP BTP to ingest high-velocity GPS breadcrumbs, reefer temperature telemetry, and mobile e-POD signatures.',
+      accent: 'sky',
+      borderBase: 'border-sky-500/30 hover:border-sky-400',
+      activeBorder: 'border-sky-400 ring-2 ring-sky-500/30 bg-sky-950/20 shadow-[0_0_25px_rgba(56,189,248,0.2)]',
+      glowColor: 'bg-sky-500',
       textColor: 'text-sky-400',
-      description: 'Deploy SAP TM core, establish master carrier agreements, and automate freight audit reconciliation.',
-      before: 'Unmonitored freight expenditures and manual auditing of complex third-party carrier invoices.',
-      after: 'Unified SAP Transportation Management managing rate agreements and automated invoice verification.',
-      metrics: ['Single-source-of-truth carrier rate cards', 'Automated three-way invoice matching', 'Standardized transport order creation']
+      icon: Workflow,
+      tag: 'Real-Time Logistics Mesh',
+      before: 'Disconnected carrier portals & missing shipment status',
+      after: 'Sub-second geofence triggers & predictive delivery ETAs',
+      metrics: ['Decoupled Core', 'IoT Telematics Integration', 'Mobile e-POD Engine']
     },
     {
-      badge: 'INTEGRATION',
-      title: 'Multi-Modal Optimization & Cloud Tendering',
-      subtitle: 'Dynamic Routing & Carrier Collaboration',
-      tag: 'LOGISTICS AGILITY',
+      phase: 'DEPLOYED STACK',
+      badge: 'LIVE ECOSYSTEM',
+      title: 'S/4HANA Transportation Core',
+      subtitle: 'SAP TM + Yard Logistics',
+      description: 'Unifying S/4HANA Transportation Management (TM) with SAP Yard Logistics, driving automated carrier tendering and three-way freight invoice matching.',
+      accent: 'cyan',
+      borderBase: 'border-cyan-500/30 hover:border-cyan-400',
+      activeBorder: 'border-cyan-400 ring-2 ring-cyan-500/30 bg-cyan-950/20 shadow-[0_0_25px_rgba(34,211,238,0.2)]',
+      glowColor: 'bg-cyan-500',
       textColor: 'text-cyan-400',
-      description: 'Activate algorithmic vehicle consolidation, multi-modal routing, and electronic carrier tendering portals.',
-      before: 'Disjointed booking of individual road and ocean legs with high deadhead mileage.',
-      after: 'Automated multi-modal optimization combining transport legs and securing best carrier rates.',
-      metrics: ['Optimal trailer load fill rates', 'Automated carrier tendering workflows', 'Minimized freight accessorial costs']
+      icon: Truck,
+      tag: 'Orchestrated S/4HANA',
+      before: 'Disjointed yard queues & unverified accessorial fees',
+      after: 'Centralized dynamic routing & touchless carrier settlements',
+      metrics: ['S/4HANA TM Core', 'Yard Logistics Engine', 'Universal Journal ACDOCA']
     },
     {
-      badge: 'ORCHESTRATION',
-      title: 'Aerospace MRO & Life-Limited Parts Ledger',
-      subtitle: 'Hangar Execution & Rotable Governance',
-      tag: 'AEROSPACE READINESS',
+      phase: 'STRATEGIC VALUE',
+      badge: 'REALIZED IMPACT',
+      title: 'Fleet Availability Velocity',
+      subtitle: 'High-Velocity Execution',
+      description: 'Attaining end-to-end shipment visibility, compressing delivery turnaround, eliminating deadhead miles, and protecting operating margins.',
+      accent: 'emerald',
+      borderBase: 'border-emerald-500/30 hover:border-emerald-400',
+      activeBorder: 'border-emerald-400 ring-2 ring-emerald-500/30 bg-emerald-950/20 shadow-[0_0_25px_rgba(52,211,153,0.2)]',
+      glowColor: 'bg-emerald-500',
       textColor: 'text-emerald-400',
-      description: 'Deploy specialized aerospace maintenance solutions tracking rotable component overhauls and life-limited parts.',
-      before: 'Manual paper logbooks and disconnected component pools causing expensive AOG groundings.',
-      after: 'Integrated hangar execution tracking cumulative cycles and managing closed-loop rotable pools.',
-      metrics: ['Real-time AOG part availability', 'Automated flight cycle accumulation', 'Digital airworthiness certifications']
-    },
-    {
-      badge: 'AUTONOMY',
-      title: 'Predictive Global Track & Trace Command Center',
-      subtitle: 'Telemetry Streaming & Disruption Modeling',
-      tag: 'ENTERPRISE SCALE',
-      textColor: 'text-purple-400',
-      description: 'Implement real-time multi-modal telemetry streaming, predictive delay alerts, and carbon emissions accounting.',
-      before: 'Blind transit periods between logistics handoffs and reactive customer communication.',
-      after: 'Complete global visibility command center predicting port bottlenecks and rerouting shipments proactively.',
-      metrics: ['Real-time multi-modal shipment telemetry', 'Predictive delay mitigation alerts', 'Comprehensive green freight carbon accounting']
-    }
-  ];
-
-  // Section 10: FAQs
-  const faqs = [
-    {
-      q: 'How does SAP Transportation Management (TM) handle complex carrier freight rate agreements?',
-      a: 'SAP TM features an advanced Charge Calculation engine that models multi-dimensional rate matrices, including distance brackets, dimensional weight, tiered volume discounts, dynamic fuel surcharges, and localized accessorial fees. When a freight order is planned, the system evaluates carrier contracts to select the most cost-effective provider and creates precise financial accruals automatically.'
-    },
-    {
-      q: 'How does the platform support Aerospace & Defense MRO compliance with FAA and EASA regulations?',
-      a: 'SAP S/4HANA Aerospace & Defense MRO provides full lifecycle traceability for life-limited parts (LLPs) and rotable components. The system records cumulative flight hours, engine operating cycles, and maintenance touchpoints in a tamper-resistant digital ledger, automatically generating required release-to-service certificates and ensuring complete regulatory audit compliance.'
-    },
-    {
-      q: 'Can third-party freight forwarders and carriers interact with the system without direct ERP access?',
-      a: 'Yes. Through SAP Business Network for Logistics, external carriers receive freight tendering requests, confirm bookings, submit electronic proof of delivery (ePOD), and transmit digital freight invoices through secure cloud portals or standard EDI/API connections, keeping your internal SAP core secure and clean.'
-    },
-    {
-      q: 'What is the advantage of KNOOVIQ’s Clean Core architecture for logistics and aerospace enterprises?',
-      a: 'By developing custom carrier telematics integrations, specialized AOG routing algorithms, and bespoke flight-line apps on SAP Business Technology Platform (BTP), KNOOVIQ keeps the core SAP ERP completely standard. This ensures mission-critical logistics operations run without interruption while maintaining continuous upgradeability.'
+      icon: ShieldCheck,
+      tag: 'Touchless Operations',
+      before: 'High deadhead mileage & unresolved freight invoice disputes',
+      after: 'Maximized fleet utilization & touchless carrier settlements',
+      metrics: ['Zero Deadhead Miles', 'Touchless Invoicing', 'Protected Operating Margins']
     }
   ];
 
   return (
-    <div className="bg-slate-900 text-white min-h-screen">
+    <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
+      
       {/* =========================================================================
-          SECTION 1: HERO SECTION
+          SECTION 1: HERO SECTION (Pure Enterprise Transportation Hero)
           ========================================================================= */}
-      <section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-16">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+        
+        {/* Full-Bleed Enterprise Transportation Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2000&q=80" 
-            alt="Transportation, Logistics & Aerospace / Defense MRO" 
+            src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2000&q=80" 
+            alt="Multi-Modal Transportation and Fleet Logistics Facility Atmosphere" 
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl">
+        {/* Seamless Cinematic Left Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+          
+          <div className="max-w-3xl space-y-4">
             
-            {/* Practice Pill Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="space-y-2.5"
+            >
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                <Truck className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+              
+              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                Intelligent ERP for <br />
+                <span className="text-cyan-400">Transportation & Fleet Logistics</span>
+              </h1>
+
+              {/* Subheading / Value Proposition */}
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                Multi-Modal Freight Orchestration, Fleet Telematics & Automated Carrier Settlement.
+              </p>
+            </motion.div>
+
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-mono font-bold uppercase tracking-wider mb-6"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-3 max-w-2xl"
             >
-              <Plane className="w-4 h-4 text-sky-400" />
-              <span>TRANSPORTATION, LOGISTICS & AEROSPACE / DEFENSE MRO</span>
+              {/* Clear Open Typography */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+                Empowering freight carriers, 3PL logistics networks, and enterprise private fleet operators with{' '}
+                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated{' '}
+                <strong className="text-cyan-300 font-semibold">SAP TM Dynamic Route Building</strong>, real-time IoT telematics, and touchless freight audit settlements.
+              </p>
+              
+              {/* Clean Feature Highlights */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                  <span>Clean Core Architecture</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>SAP TM Dynamic Routing</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                  <span>IoT Fleet Telematics</span>
+                </span>
+              </div>
             </motion.div>
 
-            {/* Headline */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-4"
-            >
-              Global Logistics & Aerospace with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400">
-                Precision Clean Core
-              </span>
-            </motion.h1>
-
-            {/* Subheadline / Value Proposition */}
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-slate-200 leading-relaxed mb-6 font-normal"
-            >
-              Unify multi-modal freight optimization, automated carrier freight audits, aerospace rotable pool overhauls, and life-limited parts airworthiness on SAP S/4HANA.
-            </motion.p>
-
-            {/* Feature Pills */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-3 mb-8"
-            >
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                <span>Multi-Modal Dynamic Freight Optimization</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Aerospace Rotable Pool & Overhaul Core</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                <span>Continuous FAA & EASA Airworthiness Tracking</span>
-              </span>
-            </motion.div>
-
-            {/* Architectural Trust Ribbon */}
+            {/* Enterprise Architectural Trust Ribbon */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Navigation className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">FREIGHT OPTIM</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Truck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Multi-Modal Cockpit</div>
-                <div className="text-[10px] text-slate-300">Carrier Dynamic Tender</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA TM</div>
+                <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <FileCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">FREIGHT AUDIT</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Navigation className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ROUTING</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Automated 3-Way Match</div>
-                <div className="text-[10px] text-slate-300">Zero Overcharges</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Multi-Modal Freight</div>
+                <div className="text-xs text-slate-300 mt-0.5">Dynamic Load Planning</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Plane className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">AEROSPACE MRO</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Activity className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">TELEMATICS</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Rotable Component Pool</div>
-                <div className="text-[10px] text-slate-300">Rapid AOG Resolution</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">GPS & Geofencing</div>
+                <div className="text-xs text-slate-300 mt-0.5">Sub-Second Milestones</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">AIRWORTHINESS</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <FileCheck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SETTLEMENT</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Life-Limited Parts</div>
-                <div className="text-[10px] text-slate-300">FAA / EASA Audit Ready</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Freight Audit & Pay</div>
+                <div className="text-xs text-slate-300 mt-0.5">Touchless Settlement</div>
               </div>
             </motion.div>
 
           </div>
+
         </div>
+
       </section>
 
       {/* =========================================================================
-          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE & JOURNEY VISUALIZER
+          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE ("Building a Connected Transportation Enterprise")
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10 relative overflow-hidden">
+      <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-[#F8FBFE] to-white border-b border-slate-200 relative overflow-hidden">
+        
+        {/* Subtle Ambient Tone */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
             {/* Left Narrative Column */}
-            <div className="lg:col-span-6 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-                <Activity className="w-3.5 h-3.5 text-sky-400" />
+            <div className="lg:col-span-6 space-y-4">
+              
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
+                <Activity className="w-3.5 h-3.5 text-[#0070C0]" />
                 <span>EXECUTIVE INDUSTRY PERSPECTIVE</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-                Aligning Global Multi-Modal Logistics with <span className="text-sky-400">Asset Airworthiness</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
+                Building a Connected <span className="text-[#0070C0]">Transportation Enterprise</span>
               </h2>
 
-              <div className="border-l-4 border-sky-500 pl-4 py-2 bg-white/5 rounded-r-xl">
-                <p className="text-sm font-semibold text-slate-200 leading-relaxed italic">
-                  &ldquo;In transportation and defense aviation, operational success demands real-time synchronization—where multi-modal carrier routes are optimized continuously and serialized components maintain indisputable airworthiness traceability.&rdquo;
+              {/* Executive Thesis Quote */}
+              <div className="border-l-4 border-[#0070C0] border-y border-r border-slate-300 pl-4 py-2 bg-gradient-to-r from-sky-50/80 via-sky-50/30 to-transparent rounded-r-xl">
+                <p className="text-sm font-semibold text-slate-800 leading-relaxed italic">
+                  &ldquo;Logistics resilience is defined at the freight milestone: unifying carrier booking, multi-modal routing, and real-time fleet telematics into one cohesive operational core.&rdquo;
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Logistics networks and aerospace operators face escalating operational complexity from volatile fuel surcharges, uncoordinated multi-modal handoffs, and strict civil and defense aviation safety standards. A single grounded aircraft or disputed freight invoice creates massive financial friction. Knooviq establishes an automated digital logistics thread uniting freight planning, carrier settlement, rotable inventory, and airworthiness ledgers into a unified SAP Clean Core.
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Knooviq engineers an integrated enterprise ecosystem on SAP S/4HANA Clean Core. By bridging data across telematics systems, carrier networks, and distribution yards, logistics leaders eliminate deadhead miles, automate carrier settlement, and maintain continuous shipment visibility.
               </p>
 
-              {/* Information Checklist Grid (Zero Numbers/Percents) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {[
-                  'Multi-modal dynamic route optimization reducing freight spend and carbon footprint',
-                  'Automated three-way invoice matching preventing unverified accessorial charges',
-                  'Closed-loop rotable component management minimizing Aircraft on Ground downtime',
-                  'Tamper-resistant digital airworthiness ledgers tracking cumulative flight cycles'
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <span className="text-xs text-slate-200 font-medium leading-snug">{item}</span>
+              {/* 3 Executive Strategic Pillars */}
+              <div className="space-y-2.5 pt-1">
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Navigation className="w-4 h-4" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Interactive Journey Visualizer */}
-            <div className="lg:col-span-6">
-              <div className="rounded-2xl bg-slate-900/90 border border-white/10 p-5 sm:p-6 shadow-2xl backdrop-blur-md">
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <Workflow className="w-4 h-4 text-sky-400" />
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
-                      STAGE WORKFLOW
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono text-sky-400 font-semibold">
-                    {journeySteps[activeJourneyStep].label}
-                  </span>
-                </div>
-
-                {/* Workflow Stage Buttons */}
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 mb-5">
-                  {journeySteps.map((step, idx) => {
-                    const isSelected = activeJourneyStep === idx;
-                    const StepIcon = step.icon;
-                    return (
-                      <button
-                        key={step.id}
-                        onClick={() => setActiveJourneyStep(idx)}
-                        className={`p-2 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${
-                          isSelected
-                            ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                            : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
-                        }`}
-                      >
-                        <StepIcon className="w-3.5 h-3.5" />
-                        <span className="text-[10px] font-mono font-semibold truncate w-full">
-                          {step.label}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Active Step Showcase Card */}
-                <div className="relative rounded-xl overflow-hidden border border-white/10 bg-slate-950">
-                  <div className="h-44 sm:h-52 w-full relative">
-                    <img 
-                      src={journeySteps[activeJourneyStep].image} 
-                      alt={journeySteps[activeJourneyStep].label} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-                      <div>
-                        <span className="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider block">
-                          {journeySteps[activeJourneyStep].sublabel}
-                        </span>
-                        <h4 className="text-base font-bold text-white">
-                          {journeySteps[activeJourneyStep].label}
-                        </h4>
-                      </div>
-                      <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/10 backdrop-blur-md text-slate-200 border border-white/15">
-                        {journeySteps[activeJourneyStep].tech}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      {journeySteps[activeJourneyStep].desc}
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Multi-Modal Carrier Optimization</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Algorithmic 3D truckload optimization combining sales orders, stock transfers, and purchase orders into full truckload (FTL) and LTL routes.
                     </p>
                   </div>
                 </div>
 
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 3: KEY CHALLENGES & DOMAIN BOTTLENECKS (6 Cards)
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-400/30 text-xs font-mono font-bold uppercase tracking-wider text-rose-300">
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-              <span>INDUSTRY BOTTLENECKS & RISKS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Operational Vulnerabilities in Transportation & Aerospace MRO
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Structural bottlenecks that inflate freight expenditures, ground commercial fleets, and compromise airworthiness compliance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {industryChallenges.map((challenge) => (
-              <div 
-                key={challenge.id}
-                className="p-6 rounded-2xl bg-slate-950/80 border border-white/10 hover:border-sky-400/40 transition-all flex flex-col justify-between group"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                      {challenge.tag}
-                    </span>
-                    <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${challenge.statusColor}`}>
-                      {challenge.status}
-                    </span>
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Truck className="w-4 h-4" />
                   </div>
-
-                  <h3 className="text-base font-bold text-white group-hover:text-sky-300 transition-colors">
-                    {challenge.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {challenge.desc}
-                  </p>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Live Fleet Telematics & Geofencing</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Sub-second GPS streaming, automated gate arrival triggers, cold chain reefer alerts, and driver hours-of-service compliance.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-                  <span>Standard SAP Resolution</span>
-                  <span className="text-sky-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    <span>Mitigate</span>
-                    <ArrowRight className="w-3 h-3" />
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <FileCheck className="w-4 h-4" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Touchless Freight Audit & Settlement</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Automated three-way invoice matching verifying negotiated contract tariffs, fuel surcharges, and validated detention time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Side: Clean Photography Showcase & Stage Navigator */}
+            <div className="lg:col-span-6 space-y-3.5">
+              
+              {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
+              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+                <img 
+                  src={journeySteps[activeJourneyStep].image} 
+                  alt={journeySteps[activeJourneyStep].label} 
+                  className="w-full h-full object-cover object-center transition-all duration-500"
+                />
+              </div>
+
+              {/* Stage Navigation Grid (Clean Labels + Icons, No Numbers) */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {journeySteps.map((step, idx) => {
+                  const isSelected = activeJourneyStep === idx;
+                  const StepIcon = step.icon;
+                  return (
+                    <button
+                      key={step.id}
+                      type="button"
+                      onClick={() => setActiveJourneyStep(idx)}
+                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
+                        isSelected
+                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
+                          : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
+                      }`}
+                    >
+                      <div className={`p-1.5 rounded-lg shrink-0 ${
+                        isSelected ? 'bg-white/20 text-white' : 'bg-sky-50 text-[#0070C0] border border-slate-300'
+                      }`}>
+                        <StepIcon className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold truncate">{step.label}</div>
+                        <div className={`text-[10px] truncate ${isSelected ? 'text-sky-100' : 'text-slate-500'}`}>
+                          {step.sublabel}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Selected Stage Detail Card */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-300 shadow-xs space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#003B73]">
+                    {journeySteps[activeJourneyStep].label}
+                  </span>
+                  <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-sky-50 text-[#0070C0] border border-sky-300">
+                    {journeySteps[activeJourneyStep].tech}
                   </span>
                 </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {journeySteps[activeJourneyStep].desc}
+                </p>
               </div>
-            ))}
+
+            </div>
+
           </div>
 
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 4: CIRCULAR CHEVRON RADIAL WHEEL (8 Segments)
+          SECTION 3: INDUSTRY CHALLENGES ("Navigating the Complexity of Modern Transportation & Logistics")
           ========================================================================= */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-12 sm:py-14 lg:py-16 bg-[#F8FAFC] border-b border-slate-200 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Compass className="w-3.5 h-3.5 text-sky-400" />
-              <span>PLATFORM ECOSYSTEM</span>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2.5"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-mono font-bold uppercase tracking-wider text-rose-600">
+              <Compass className="w-3.5 h-3.5 text-rose-600" />
+              <span>CORE BOTTLENECKS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              KNOOVIQ Transportation & Aerospace Ecosystem
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
+              Navigating the Complexity of Modern Transportation & Logistics
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Eight interlocking capability modules synchronizing freight logistics and aerospace maintenance operations.
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              Volatile carrier rates, empty return legs, and delayed milestone visibility constrain profitability. Knooviq addresses the six systemic challenges logistics leaders face.
             </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {transportationChallenges.map((item, idx) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  className="h-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-white border border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all group"
+                >
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="p-2.5 rounded-xl bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white group-hover:scale-105 transition-all">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-[#0070C0] font-semibold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070C0] group-hover:scale-125 transition-transform" />
+                    <span>{item.footer}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 4: KNOOVIQ TRANSPORTATION PLATFORM (Circular Chevron Radial Diagram)
+          ========================================================================= */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] text-white border-b border-slate-800 relative overflow-hidden">
+        
+        {/* Dark Ambient Radial Hues */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-sky-500/10 via-cyan-500/10 to-blue-500/10 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-inner">
+              <Workflow className="w-3.5 h-3.5 text-cyan-300" />
+              <span>CONNECTED TRANSPORTATION ECOSYSTEM</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+              Capabilities Designed for Transportation & Fleet Logistics
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              A synchronized, circular enterprise platform uniting freight routing, carrier tendering, yard dock booking, mobile e-POD, and automated audit settlement into one continuous loop.
+            </p>
+          </motion.div>
+
+          {/* 3-Column Radial Wheel & Flanking Capabilities Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
             
-            {/* Left Flanking Capability Cards (4) */}
-            <div className="lg:col-span-3 space-y-3 order-2 lg:order-1">
-              {wheelSegments.filter(s => s.side === 'left').map((segment, idx) => {
-                const isHovered = hoveredWheelIndex === (idx + 4);
-                const SegmentIcon = segment.icon;
+            {/* Left Column */}
+            <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+              {[7, 6, 5, 4].map((segIdx) => {
+                const item = wheelSegments[segIdx];
+                const isHovered = hoveredWheelIndex === segIdx;
                 return (
                   <div
-                    key={segment.id}
-                    onMouseEnter={() => setHoveredWheelIndex(idx + 4)}
+                    key={item.id}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
-                      isHovered 
-                        ? 'bg-white/10 border-sky-400 shadow-lg scale-[1.02]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                      isHovered
+                        ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
+                        : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
+                    style={{
+                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHovered ? item.color : undefined
+                    }}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <SegmentIcon className={`w-4 h-4 ${segment.textColor}`} />
-                      <h4 className="text-xs font-bold text-white truncate">{segment.title}</h4>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="space-y-1 text-left">
+                        <h4 className="text-sm sm:text-base font-bold tracking-tight" style={{ color: item.color }}>
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div 
+                        className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
+                        style={{ 
+                          backgroundColor: item.color,
+                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                        }}
+                      />
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-snug">{segment.desc}</p>
                   </div>
                 );
               })}
             </div>
 
-            {/* Center Circular Radial SVG Wheel (6 cols) */}
-            <div className="lg:col-span-6 flex items-center justify-center order-1 lg:order-2">
-              <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px]">
-                <svg 
-                  viewBox="0 0 500 500" 
-                  className="w-full h-full drop-shadow-2xl transition-all"
-                >
-                  <circle cx="250" cy="250" r="230" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-                  <circle cx="250" cy="250" r="105" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="4 4" />
+            {/* Center Column: 8-Segment Interlocking Chevron Circular Wheel */}
+            <div className="order-1 lg:order-2 lg:col-span-4 flex justify-center items-center py-4 sm:py-6">
+              <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
+                
+                {/* Glow ring under wheel */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/15 via-cyan-500/10 to-blue-500/15 blur-2xl rounded-full pointer-events-none" />
 
-                  {wheelSegments.map((segment, index) => {
-                    const isHovered = hoveredWheelIndex === index;
-                    const path = getChevronPath(index);
-                    const coords = getIconCoords(index);
-                    const SegmentIcon = segment.icon;
+                <svg
+                  viewBox="0 0 500 500"
+                  className="w-full h-full drop-shadow-2xl overflow-visible"
+                >
+                  {/* 8 Interlocking Chevron Segments */}
+                  {wheelSegments.map((seg, idx) => {
+                    const isHovered = hoveredWheelIndex === idx;
+                    const d = getChevronPath(idx);
+                    const iconPos = getIconCoords(idx);
+                    const IconComponent = seg.icon;
 
                     return (
-                      <g 
-                        key={segment.id}
-                        onMouseEnter={() => setHoveredWheelIndex(index)}
+                      <g
+                        key={seg.id}
+                        onMouseEnter={() => setHoveredWheelIndex(idx)}
                         onMouseLeave={() => setHoveredWheelIndex(null)}
                         className="cursor-pointer transition-all duration-300"
                       >
+                        {/* Chevron Wedge */}
                         <path
-                          d={path}
-                          fill={isHovered ? segment.color : 'rgba(15, 23, 42, 0.85)'}
-                          stroke={segment.color}
-                          strokeWidth={isHovered ? '2.5' : '1.5'}
+                          d={d}
+                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          stroke={seg.color}
+                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeLinejoin="round"
                           className="transition-all duration-300"
+                          style={{
+                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                          }}
                         />
-                        <foreignObject 
-                          x={coords.x - 12} 
-                          y={coords.y - 12} 
-                          width="24" 
-                          height="24"
-                          className="pointer-events-none"
+
+                        {/* Segment Icon */}
+                        <foreignObject
+                          x={iconPos.x - 14}
+                          y={iconPos.y - 14}
+                          width={28}
+                          height={28}
+                          className="pointer-events-none overflow-visible"
                         >
-                          <div className="w-full h-full flex items-center justify-center">
-                            <SegmentIcon 
-                              className={`w-4 h-4 transition-colors ${
-                                isHovered ? 'text-white' : segment.textColor
-                              }`} 
-                            />
+                          <div 
+                            className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
+                              isHovered ? 'scale-125' : ''
+                            }`}
+                            style={{ color: seg.color }}
+                          >
+                            <IconComponent className="w-5 h-5 drop-shadow-md" />
                           </div>
                         </foreignObject>
                       </g>
                     );
                   })}
 
-                  {/* Core Center Hub */}
-                  <circle cx="250" cy="250" r="80" fill="#0284C7" className="drop-shadow-lg" />
-                  <circle cx="250" cy="250" r="74" fill="#0B1528" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="2" />
+                  {/* Center Hub Outer Circle */}
+                  <circle
+                    cx="250"
+                    cy="250"
+                    r="106"
+                    fill="#070B14"
+                    stroke="#FFFFFF"
+                    strokeWidth="2.5"
+                    className="drop-shadow-2xl"
+                  />
+                  <circle
+                    cx="250"
+                    cy="250"
+                    r="102"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    strokeWidth="1"
+                    strokeOpacity="0.25"
+                  />
+
+                  {/* Center Hub Label */}
+                  <foreignObject
+                    x="150"
+                    y="200"
+                    width="200"
+                    height="100"
+                    className="pointer-events-none"
+                  >
+                    <div className="w-full h-full flex flex-col items-center justify-center text-center select-none px-3">
+                      <span className="text-sm sm:text-base font-black text-white tracking-wider uppercase leading-tight">
+                        KNOOVIQ Freight
+                      </span>
+                      <span className="text-xs sm:text-sm font-semibold text-slate-300 mt-1 tracking-wide">
+                        Platform
+                      </span>
+                    </div>
+                  </foreignObject>
                 </svg>
 
-                {/* Hub Center Label Overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center p-4">
-                  <Plane className="w-5 h-5 text-cyan-400 mb-1" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-300 font-bold">KNOOVIQ</span>
-                  <span className="text-xs font-black text-white leading-tight">TM & MRO</span>
-                  <span className="text-[9px] font-mono text-slate-400">CLEAN CORE</span>
-                </div>
               </div>
             </div>
 
-            {/* Right Flanking Capability Cards (4) */}
-            <div className="lg:col-span-3 space-y-3 order-3">
-              {wheelSegments.filter(s => s.side === 'right').map((segment, idx) => {
-                const isHovered = hoveredWheelIndex === idx;
-                const SegmentIcon = segment.icon;
+            {/* Right Column */}
+            <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+              {[0, 1, 2, 3].map((segIdx) => {
+                const item = wheelSegments[segIdx];
+                const isHovered = hoveredWheelIndex === segIdx;
                 return (
                   <div
-                    key={segment.id}
-                    onMouseEnter={() => setHoveredWheelIndex(idx)}
+                    key={item.id}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
-                      isHovered 
-                        ? 'bg-white/10 border-sky-400 shadow-lg scale-[1.02]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                      isHovered
+                        ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
+                        : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
+                    style={{
+                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHovered ? item.color : undefined
+                    }}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <SegmentIcon className={`w-4 h-4 ${segment.textColor}`} />
-                      <h4 className="text-xs font-bold text-white truncate">{segment.title}</h4>
+                    <div className="flex items-start justify-between gap-3">
+                      <div 
+                        className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
+                        style={{ 
+                          backgroundColor: item.color,
+                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                        }}
+                      />
+                      <div className="space-y-1 text-left flex-1">
+                        <h4 className="text-sm sm:text-base font-bold tracking-tight" style={{ color: item.color }}>
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-snug">{segment.desc}</p>
                   </div>
                 );
               })}
@@ -964,272 +1008,461 @@ export const TransportationLogisticsIndustryPage: React.FC<IndustryPageProps> = 
       </section>
 
       {/* =========================================================================
-          SECTION 5: CLEAN CORE ARCHITECTURE LAYERS (3 Tabs)
+          SECTION 5: SAP & TECHNOLOGY FOUNDATION ("Technology Foundation for Transportation & Logistics")
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
+      <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Server className="w-3.5 h-3.5 text-sky-400" />
-              <span>CLEAN CORE ARCHITECTURE</span>
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
+              <Layers className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>PLATFORM ARCHITECTURE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Three-Tier Logistics & MRO Architecture
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
+              Technology Foundation for Transportation & Logistics
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Decoupling fleet execution and telematics from the central financial ledger and airworthiness registers.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              We engineer clean-core SAP technology suites layered with modern cloud extensions, IoT telematics interfaces, and touchless freight audit automation.
             </p>
           </div>
 
-          {/* Architecture Layer Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {architectureTabs.map((tab) => {
-              const isActive = activeArchTab === tab.id;
+          {/* Layered Technology Ecosystem Visual */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {/* Tech 1: SAP S/4HANA TM */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CORE ERP SUITE</span>
+                <Truck className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Transportation Management (TM)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Integrated freight units, multi-modal routing algorithms, automated carrier tendering, and real-time freight cost calculation.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Universal Journal (ACDOCA) freight settlement</div>
+                <div className="flex items-center gap-1.5">• Dynamic 3D truckload optimization</div>
+              </div>
+            </div>
+
+            {/* Tech 2: SAP Yard Logistics */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">DOMAIN SOLUTION</span>
+                <Boxes className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Yard Logistics (YL)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Distribution center yard execution, driver self-service check-in, dock door appointment slots, and automated shunter truck dispatch.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Dock door appointment self-service</div>
+                <div className="flex items-center gap-1.5">• Real-time trailer yard map & staging</div>
+              </div>
+            </div>
+
+            {/* Tech 3: SAP BTP */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">INTEGRATION & EXTENSIONS</span>
+                <Cloud className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Business Technology Platform
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Decoupled extension microservices ingesting millions of GPS telemetry pings, ELD hours-of-service feeds, and digital e-POD signatures.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Real-time GPS & OBD-II event stream</div>
+                <div className="flex items-center gap-1.5">• Automated geofence arrival triggers</div>
+              </div>
+            </div>
+
+            {/* Tech 4: SAP Analytics Cloud */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BUSINESS INTELLIGENCE</span>
+                <BarChart3 className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Analytics Cloud
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Real-time visibility into On-Time In-Full (OTIF) delivery rates, cost-per-ton-mile analytics, carrier performance rankings, and Scope 3 emissions.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Carrier OTIF & On-Time Performance</div>
+                <div className="flex items-center gap-1.5">• GLEC Scope 3 Carbon Emissions Scorecards</div>
+              </div>
+            </div>
+
+            {/* Tech 5: SAP Fiori */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">ROLE-BASED UX</span>
+                <Scan className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Fiori Logistics Mobile Apps
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Mobile smartphone and ruggedized cab tablet apps designed for truck drivers, yard security gate guards, and freight billing auditors.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Driver Mobile e-POD Glass Signatures</div>
+                <div className="flex items-center gap-1.5">• Gate Security QR Code Scanning UX</div>
+              </div>
+            </div>
+
+            {/* Tech 6: AI & Automation */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">COGNITIVE ENGINES</span>
+                <Sparkles className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                AI Routing & Capacity Prediction
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Predictive algorithms analyzing historical route delays, weather anomalies, and spot rate curves to dynamically optimize logistics networks.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Predictive Dynamic Route Re-routing</div>
+                <div className="flex items-center gap-1.5">• Automated Spot Freight Tender Bidding</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 6: INDUSTRY SOLUTIONS ("Solutions for Every Stage of Transportation & Logistics")
+          ========================================================================= */}
+      <section id="industry-solutions" className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200 relative scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-7 sm:mb-8 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0] shadow-2xs">
+              <Truck className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>ENTERPRISE FUNCTIONAL CATALOG</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+              Solutions for Every Stage of Transportation & Logistics
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              Explore specialized enterprise functional modules engineered to modernize transportation execution across multi-modal freight, fleet telematics, and automated carrier settlement.
+            </p>
+          </div>
+
+          {/* Solution Domain Category Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-7 sm:mb-8">
+            {[
+              { id: 'ALL', label: 'All Solutions' },
+              { id: 'FREIGHT_ROUTING', label: 'Freight & Routing' },
+              { id: 'FLEET_OPERATIONS', label: 'Fleet & Yard Operations' },
+              { id: 'SETTLEMENT_ESG', label: 'Settlement & Analytics' }
+            ].map((cat) => {
+              const isActive = activeSolutionCategory === cat.id;
               return (
                 <button
-                  key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id)}
-                  className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider transition-all border ${
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveSolutionCategory(cat.id)}
+                  className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                      : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
+                      ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25 scale-105'
+                      : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-2xs'
                   }`}
                 >
-                  {tab.name}
+                  {cat.label}
                 </button>
               );
             })}
           </div>
 
-          {/* Active Layer Details */}
-          {(() => {
-            const currentTab = architectureTabs.find(t => t.id === activeArchTab) || architectureTabs[0];
-            return (
-              <div className="rounded-2xl bg-slate-950/90 border border-white/10 p-6 sm:p-8 shadow-2xl">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  
-                  <div className="lg:col-span-7 space-y-4">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
-                      {currentTab.tag}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
-                      {currentTab.headline}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      {currentTab.desc}
-                    </p>
-
-                    <div className="space-y-2.5 pt-2">
-                      {currentTab.capabilities.map((cap, cIdx) => (
-                        <div key={cIdx} className="flex items-start gap-2 text-xs text-slate-200">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                          <span>{cap}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-5">
-                    <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-slate-900 border border-white/10">
-                      {currentTab.diagramDetails.map((item, dIdx) => (
-                        <div key={dIdx} className="p-3 rounded-lg bg-white/5 border border-white/10">
-                          <span className="text-[10px] font-mono text-slate-400 uppercase block mb-1">
-                            {item.label}
-                          </span>
-                          <span className="text-xs font-bold text-sky-300">
-                            {item.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            );
-          })()}
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 6: MODULAR TAILORED SOLUTIONS
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-950 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Boxes className="w-3.5 h-3.5 text-sky-400" />
-              <span>MODULAR SOLUTIONS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Specialized Solutions for Transportation & MRO
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              High-impact functional modules delivering immediate cost containment, visibility, and fleet readiness.
-            </p>
-          </div>
-
-          {/* Category Filter Chips */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-10">
-            {['ALL', 'CORE', 'MRO', 'SETTLEMENT', 'VISIBILITY'].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveSolutionCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all border ${
-                  activeSolutionCategory === cat
-                    ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                    : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Solution Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredSolutions.map((sol, idx) => (
-              <div 
-                key={idx}
-                className="p-6 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-sky-400/40 transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-300 border border-sky-500/30 font-bold">
-                      {sol.badge}
-                    </span>
-                    <span className="text-[10px] font-mono text-slate-400 uppercase">
-                      {sol.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-white">
-                    {sol.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {sol.desc}
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    {sol.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-200">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 mt-6 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400">Architecture Scope: Clean Core</span>
-                  <button
-                    onClick={() => onOpenContact(`Transportation & MRO: ${sol.title}`)}
-                    className="text-xs font-bold text-sky-400 hover:text-sky-300 inline-flex items-center gap-1 transition-colors"
+          {/* Structured Compact 3-Column Enterprise Grid (Symmetrical 3x3 Grid) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+            {industrySolutions
+              .filter((sol) => activeSolutionCategory === 'ALL' || sol.category === activeSolutionCategory)
+              .map((sol) => {
+                const IconComponent = sol.icon;
+                return (
+                  <div
+                    key={sol.title}
+                    className="h-[400px] rounded-xl bg-white border-2 border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group"
                   >
-                    <span>Request Blueprint</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                    {/* 1. Top Image Banner - 50% Pure Photo */}
+                    <div className="relative h-1/2 w-full overflow-hidden bg-slate-100 shrink-0">
+                      <img 
+                        src={sol.image} 
+                        alt={sol.title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+                      
+                      {/* Floating Tag Pill */}
+                      <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-slate-950/80 border border-white/20 text-[9px] font-mono font-bold text-sky-300 uppercase tracking-wider backdrop-blur-md shadow-xs">
+                        {sol.tag}
+                      </div>
+                    </div>
+
+                    {/* 2. Card Content Body - 50% Height */}
+                    <div className="h-1/2 p-3.5 sm:p-4 flex flex-col justify-between space-y-2.5 overflow-hidden">
+                      
+                      <div className="space-y-1.5">
+                        {/* Category & Icon Indicator */}
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-mono font-bold text-[#0070C0] uppercase tracking-wider">
+                            {sol.categoryLabel}
+                          </span>
+                          <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
+                            <IconComponent className="w-3.5 h-3.5" />
+                          </div>
+                        </div>
+
+                        {/* Title - Bold & Compact */}
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors leading-snug">
+                          {sol.title}
+                        </h3>
+
+                        {/* Description - Snug & Concise */}
+                        <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                          {sol.description}
+                        </p>
+                      </div>
+
+                      {/* Key Capabilities Structured Inline Chips */}
+                      <div className="space-y-2.5 pt-1">
+                        <div className="flex flex-wrap gap-1.5">
+                          {sol.highlights.map((hl, hIdx) => (
+                            <span
+                              key={hIdx}
+                              className="px-2 py-0.5 rounded-md bg-slate-100 text-[10px] font-medium text-slate-700 border border-slate-200/80"
+                            >
+                              {hl}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 7: BUSINESS OUTCOMES ("Turning Transportation Complexity into Business Advantage")
+          ========================================================================= */}
+      <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-mono font-bold uppercase tracking-wider text-emerald-700">
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
+              <span>MEASURABLE BUSINESS IMPACT</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
+              Turning Transportation Complexity into Business Advantage
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              When multi-modal freight routing, live telematics, yard scheduling, and freight ledgers operate in unison, logistics enterprises achieve sustainable operational efficiency.
+            </p>
+          </div>
+
+          {/* 6 Outcomes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Outcome 1 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Truck className="w-5 h-5" />
               </div>
-            ))}
+              <h3 className="text-lg font-black text-slate-900">
+                Reduced Freight Spend
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Optimize carrier selection and load consolidation. Cut empty return deadhead miles through automated backhaul pairing algorithms.
+              </p>
+            </div>
+
+            {/* Outcome 2 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <FileCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Touchless Freight Audit & Settlement
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Automate three-way carrier invoice reconciliation against contracted rate tariffs and verified GPS detention hours, eliminating overpayments.
+              </p>
+            </div>
+
+            {/* Outcome 3 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Navigation className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Sub-Second Shipment Visibility
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Provide customers and distribution hubs with live GPS tracking, automated geofence milestone alerts, and dynamic arrival ETAs.
+              </p>
+            </div>
+
+            {/* Outcome 4 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Boxes className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Eliminated Yard Detention Fees
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Synchronize driver dock appointments with warehouse loading crews, eradicating staging area gridlock and expensive driver waiting penalties.
+              </p>
+            </div>
+
+            {/* Outcome 5 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <QrCode className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Instant Digital e-POD Verification
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Replace lost paper delivery notes with mobile glass signatures and photographic condition records, accelerating billing cash collection.
+              </p>
+            </div>
+
+            {/* Outcome 6 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Audited Scope 3 Fleet Carbon Reductions
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Calculate and benchmark greenhouse gas emissions per ton-mile compliant with GLEC standards across owned fleets and subcontracted carriers.
+              </p>
+            </div>
+
           </div>
 
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 7: LEGACY VS CLEAN CORE STANDARDIZATION MATRIX
+          SECTION 8: TRANSFORMATION IN ACTION (Connected 4-Phase Architecture Pipeline)
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-10 sm:py-12 lg:py-14 bg-gradient-to-b from-[#060D1A] via-[#0A1628] to-[#060C17] border-b border-slate-800 relative overflow-hidden text-white">
+        
+        {/* Subtle Ambient Background Grids & Radial Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(0,112,192,0.18),transparent)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Split className="w-3.5 h-3.5 text-sky-400" />
-              <span>STANDARDIZATION MATRIX</span>
+          {/* Header */}
+          <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+              <Workflow className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <span>TRANSFORMATION ARCHITECTURE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Legacy Practice vs. Modern Clean Core
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Transformation in Action
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Replacing manual logistics coordination and paper logbooks with automated enterprise execution.
+            <div className="text-xs sm:text-sm font-semibold text-cyan-400 font-mono tracking-wider uppercase">
+              Intelligent Transportation & Fleet Logistics Architecture
+            </div>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              How transportation enterprises advance from disconnected carrier tendering to an integrated clean-core event ecosystem.
             </p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse rounded-2xl overflow-hidden border border-white/10 text-left text-xs">
-              <thead className="bg-slate-950 text-slate-300 font-mono text-[11px] uppercase">
-                <tr>
-                  <th className="p-4 border-b border-white/10">Process Dimension</th>
-                  <th className="p-4 border-b border-white/10 text-rose-300">Legacy Approach</th>
-                  <th className="p-4 border-b border-white/10 text-sky-300">Modern Clean Core (KNOOVIQ)</th>
-                  <th className="p-4 border-b border-white/10 text-emerald-300">Measurable Value Impact</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 bg-slate-950/60">
-                {matrixRows.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/5 transition-colors">
-                    <td className="p-4 font-bold text-white whitespace-nowrap">{row.dimension}</td>
-                    <td className="p-4 text-slate-400 leading-relaxed">{row.legacy}</td>
-                    <td className="p-4 text-slate-200 leading-relaxed font-medium">{row.cleanCore}</td>
-                    <td className="p-4 text-emerald-400 font-mono font-semibold whitespace-nowrap">{row.valueImpact}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 8: TRANSFORMATION ROADMAP
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
-              <span>TRANSFORMATION ROADMAP</span>
+          {/* Flowing Laser Conduit Connecting the Stages */}
+          <div className="hidden lg:block relative mb-4">
+            <div className="h-0.5 bg-slate-800 rounded-full w-full relative overflow-hidden">
+              <motion.div 
+                animate={{ x: ['-25%', '125%'] }} 
+                transition={{ repeat: Infinity, duration: 4, ease: 'linear' }}
+                className="absolute top-0 bottom-0 w-48 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_12px_#22d3ee]" 
+              />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Phased Transportation & Aerospace MRO Roadmap
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Four progressive architectural stages transitioning logistics and defense aviation to autonomous Clean Core orchestration.
-            </p>
           </div>
 
-          {/* Stages Selector */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {/* 4 Connected Interactive Transformation Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch mb-3.5 sm:mb-4">
             {transformationStages.map((stage, sIdx) => {
+              const IconComp = stage.icon;
               const isSelected = activeTransformStage === sIdx;
               return (
                 <div
-                  key={sIdx}
+                  key={stage.title}
                   onClick={() => setActiveTransformStage(sIdx)}
-                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+                  className={`cursor-pointer rounded-xl backdrop-blur-md p-4 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-2 ${
                     isSelected
-                      ? 'bg-sky-500/20 border-sky-400 shadow-xl scale-[1.02]'
-                      : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                      ? stage.activeBorder
+                      : `bg-white/[0.03] ${stage.borderBase}`
                   }`}
                 >
-                  <div className="space-y-2">
-                    <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${stage.textColor}`}>
-                      {stage.badge}
-                    </span>
-                    <h4 className="text-sm font-bold text-white">{stage.title}</h4>
-                    <p className="text-[11px] text-slate-300 leading-snug">{stage.subtitle}</p>
+                  {/* Subtle Top Glowing Strip on Active */}
+                  {isSelected && (
+                    <div className={`absolute top-0 left-0 right-0 h-0.5 ${stage.glowColor} shadow-[0_0_10px_currentColor]`} />
+                  )}
+
+                  <div className="space-y-2.5">
+                    {/* Header: Phase badge & Icon */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className={`w-2 h-2 rounded-full ${stage.glowColor} ${isSelected ? 'animate-ping' : ''}`} />
+                        <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${stage.textColor}`}>
+                          {stage.badge}
+                        </span>
+                      </div>
+                      <div className={`p-1.5 rounded-lg bg-white/5 border border-white/10 ${stage.textColor} group-hover:scale-110 transition-transform`}>
+                        <IconComp className="w-3.5 h-3.5" />
+                      </div>
+                    </div>
+
+                    {/* Stage Title & Subtitle */}
+                    <div>
+                      <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                        {stage.title}
+                      </h3>
+                      <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wide">
+                        {stage.subtitle}
+                      </div>
+                    </div>
+
+                    {/* Concise Narrative */}
+                    <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                      {stage.description}
+                    </p>
                   </div>
-                  <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-slate-400">{stage.tag}</span>
-                    <span className={`font-bold ${isSelected ? 'text-sky-300' : 'text-slate-400'}`}>
-                      {isSelected ? 'ACTIVE' : 'EXPLORE'}
+
+                  {/* Bottom Deliverable Pillar */}
+                  <div className="pt-2.5 mt-3 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-[9.5px] font-mono font-medium text-slate-400">
+                      {stage.tag}
+                    </span>
+                    <span className={`text-[9.5px] font-mono font-bold uppercase tracking-wider ${stage.textColor} group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5`}>
+                      <span>{isSelected ? 'ACTIVE' : 'INSPECT'}</span>
+                      <ChevronRight className="w-3 h-3" />
                     </span>
                   </div>
                 </div>
@@ -1237,44 +1470,46 @@ export const TransportationLogisticsIndustryPage: React.FC<IndustryPageProps> = 
             })}
           </div>
 
-          {/* Interactive Live Transformation Console */}
+          {/* Interactive Live Transformation Console / Delta Inspector */}
           {(() => {
             const currentStage = transformationStages[activeTransformStage];
             return (
-              <div className="rounded-2xl bg-slate-900 border border-white/10 p-6 shadow-2xl backdrop-blur-md">
-                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-4">
-                  <div>
-                    <span className={`text-xs font-mono font-bold uppercase tracking-wider ${currentStage.textColor}`}>
-                      {currentStage.badge} ARCHITECTURAL DELTA
-                    </span>
-                    <h3 className="text-lg font-bold text-white mt-0.5">
-                      {currentStage.title} &mdash; {currentStage.subtitle}
-                    </h3>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-mono">
-                    Scope: {currentStage.tag}
-                  </span>
-                </div>
+              <div className="rounded-xl bg-slate-900/90 border-2 border-slate-700/80 p-3.5 sm:p-4 shadow-xl backdrop-blur-md relative overflow-hidden">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
+                  
+                  {/* Left: Active Stage Name & Transformation Contrast */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 flex-1">
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className={`w-2.5 h-2.5 rounded-full ${currentStage.glowColor} animate-pulse`} />
+                      <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                        {currentStage.title} Delta:
+                      </span>
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
-                    <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider mb-1">Legacy State</div>
-                    <p className="text-xs text-slate-200">{currentStage.before}</p>
+                    {/* Before vs After Ribbon */}
+                    <div className="flex flex-wrap items-center gap-2 text-xs">
+                      <span className="px-2 py-0.5 rounded-md bg-rose-950/60 border border-rose-500/40 text-rose-300 text-[10.5px] font-mono">
+                        PRIOR: {currentStage.before}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <span className="px-2 py-0.5 rounded-md bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-[10.5px] font-mono font-medium">
+                        TRANSFORMED: {currentStage.after}
+                      </span>
+                    </div>
                   </div>
-                  <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
-                    <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">Modernized Clean Core</div>
-                    <p className="text-xs text-slate-200">{currentStage.after}</p>
-                  </div>
-                </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-4 mt-4 border-t border-white/10">
-                  <span className="text-xs font-mono text-slate-400 uppercase">Key Results:</span>
-                  {currentStage.metrics.map((m, idx) => (
-                    <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-sky-200">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      <span>{m}</span>
-                    </span>
-                  ))}
+                  {/* Right: Stage Key Capabilities Chips */}
+                  <div className="flex flex-wrap items-center gap-1.5 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-white/10 w-full lg:w-auto">
+                    {currentStage.metrics.map((item, mIdx) => (
+                      <span
+                        key={mIdx}
+                        className="px-2 py-0.5 rounded-md bg-white/5 border border-white/15 text-[10px] font-mono text-slate-300 font-semibold"
+                      >
+                        ✓ {item}
+                      </span>
+                    ))}
+                  </div>
+
                 </div>
               </div>
             );
@@ -1284,171 +1519,79 @@ export const TransportationLogisticsIndustryPage: React.FC<IndustryPageProps> = 
       </section>
 
       {/* =========================================================================
-          SECTION 9: STRATEGIC ENTERPRISE VALUE DRIVERS (Zero Numbers/Percents)
+          SECTION 9: FINAL CTA (Full-Width Blue Executive Section)
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-              <span>ENTERPRISE SAFEGUARDS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Strategic Value Drivers for Transportation & Aerospace
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Architectural advantages realized by transportation networks and defense aviation fleets running on SAP Clean Core.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 inline-block">
-                  <FileCheck className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Zero Freight Overcharges</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Automated three-way invoice matching reconciles contracted freight rates with GPS delivery proof, eliminating billing leakage completely.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-sky-400 font-bold uppercase">
-                SETTLEMENT INTEGRITY
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 inline-block">
-                  <Plane className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Rapid AOG Turnaround</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Closed-loop rotable component pool administration coordinates replacement loaners instantly, minimizing expensive aircraft on ground downtime.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-emerald-400 font-bold uppercase">
-                FLEET READINESS
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 inline-block">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Flawless Airworthiness</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Continuous cumulative flight hour and cycle tracking for life-limited parts guarantees perpetual compliance with civil and defense mandates.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-purple-400 font-bold uppercase">
-                REGULATORY SAFETY
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 inline-block">
-                  <Activity className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Continuous Cargo Visibility</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Multi-modal GPS, flight radar, and marine vessel AIS telemetry provide continuous pipeline transparency and cold-chain integrity assurance.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-amber-400 font-bold uppercase">
-                SUPPLY ASSURANCE
-              </div>
-            </div>
-          </div>
-
+      <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-gradient-to-r from-[#003B73] via-[#005B9E] to-[#0070C0] text-white">
+        
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%)',
+              backgroundSize: '100% 100%'
+            }}
+          />
+          <div 
+            className="absolute inset-0 opacity-[0.08]"
+            style={{
+              backgroundImage: 'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
+              backgroundSize: '36px 36px'
+            }}
+          />
         </div>
-      </section>
 
-      {/* =========================================================================
-          SECTION 10: INDUSTRY FAQS (Accordion)
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-950 border-b border-white/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           
-          <div className="text-center mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <HelpCircle className="w-3.5 h-3.5 text-sky-400" />
-              <span>COMMONLY ASKED QUESTIONS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Transportation Management & Aerospace MRO Inquiries
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Key architectural questions on modernizing logistics networks and aviation MRO on SAP Clean Core.
-            </p>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-widest text-cyan-200 backdrop-blur-sm shadow-sm">
+            <Truck className="w-3.5 h-3.5 text-cyan-300" />
+            <span>CONNECT YOUR TRANSPORTATION & FLEET ENTERPRISE</span>
           </div>
 
-          <div className="space-y-3">
-            {faqs.map((faq, fIdx) => {
-              const isOpen = openFaqIndex === fIdx;
-              return (
-                <div 
-                  key={fIdx}
-                  className="rounded-2xl border border-white/10 bg-slate-900/80 overflow-hidden transition-all"
-                >
-                  <button
-                    onClick={() => toggleFaq(fIdx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors"
-                  >
-                    <span className="text-sm font-bold text-white">{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 text-sky-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-white/5">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 11: FINAL EXECUTIVE CTA
-          ========================================================================= */}
-      <section className="py-20 bg-gradient-to-r from-sky-950 via-slate-950 to-blue-950 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>KNOOVIQ PRACTICE ENGAGEMENT</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-            Accelerate Your Transportation & MRO Modernization
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto">
+            Ready to Build a Smarter Transportation & Fleet Business?
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-200 max-w-2xl mx-auto leading-relaxed">
-            Schedule an architectural consultation with our SAP Transportation Management and Aerospace MRO practice specialists to optimize your carrier freight settlement, rotable component pools, and fleet readiness.
+          <p className="text-base sm:text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed font-normal">
+            Connect your fleets, freight carriers, yards, and logistics partners with Knooviq.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
-              onClick={() => onOpenContact('Transportation & Aerospace MRO Architecture Consultation')}
-              className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-sky-500/25 flex items-center gap-2"
+              type="button"
+              onClick={() => onOpenContact?.('Transportation & Fleet Logistics Practice')}
+              className="px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#003B73] text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl shadow-black/25 transition-all flex items-center gap-2 group"
             >
-              <span>Consult Practice Architect</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Talk to Transportation Experts</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#0070C0]" />
             </button>
+
             <Link
-              to="/industries"
-              className="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold uppercase tracking-wider border border-white/20 transition-all flex items-center gap-2"
+              to="/solutions/sap-s4hana"
+              className="px-8 py-4 rounded-xl bg-transparent hover:bg-white/10 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-white/40 hover:border-white transition-all flex items-center gap-2"
             >
-              <span>Explore All Industries</span>
+              <span>Explore SAP Solutions</span>
             </Link>
           </div>
+
+          <div className="pt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-sky-200">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-300" />
+              <span>SAP Certified Clean Core</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-cyan-300" />
+              <span>Rapid Time-to-Value Delivery</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Globe2 className="w-4 h-4 text-sky-300" />
+              <span>Global 24/7 SLA AMS Support</span>
+            </span>
+          </div>
+
         </div>
+
       </section>
+
     </div>
   );
 };

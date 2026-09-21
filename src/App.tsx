@@ -94,8 +94,20 @@ import { FacilitiesAssetsIndustryPage } from './pages/industries/FacilitiesAsset
 import { TechnologyServicesIndustryPage } from './pages/industries/TechnologyServicesIndustryPage';
 import { SoftwareSaasIndustryPage } from './pages/industries/SoftwareSaasIndustryPage';
 import { HighTechElectronicsIndustryPage } from './pages/industries/HighTechElectronicsIndustryPage';
+import { HighTechIndustryPage } from './pages/industries/HighTechIndustryPage';
+import { ElectronicsIndustryPage } from './pages/industries/ElectronicsIndustryPage';
+import { AerospaceDefenseIndustryPage } from './pages/industries/AerospaceDefenseIndustryPage';
 import { WarehouseEwmIndustryPage } from './pages/industries/WarehouseEwmIndustryPage';
 import { TransportationLogisticsIndustryPage } from './pages/industries/TransportationLogisticsIndustryPage';
+import { BankingIndustryPage } from './pages/industries/BankingIndustryPage';
+import { InsuranceIndustryPage } from './pages/industries/InsuranceIndustryPage';
+import { FinancialServicesIndustryPage } from './pages/industries/FinancialServicesIndustryPage';
+import { FinTechIndustryPage } from './pages/industries/FinTechIndustryPage';
+import { ProfessionalServicesIndustryPage } from './pages/industries/ProfessionalServicesIndustryPage';
+import { HospitalityIndustryPage } from './pages/industries/HospitalityIndustryPage';
+import { TravelTourismIndustryPage } from './pages/industries/TravelTourismIndustryPage';
+import { EntertainmentIndustryPage } from './pages/industries/EntertainmentIndustryPage';
+import { EducationIndustryPage } from './pages/industries/EducationIndustryPage';
 
 // Wrapper component to selectively show public layout elements (Navbar, Footer, Chatbot)
 const AppContent: React.FC = () => {
@@ -405,17 +417,37 @@ const AppContent: React.FC = () => {
           <Route path="/industries/professional-staffing" element={<TechnologyServicesIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/software-saas" element={<SoftwareSaasIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/subscription-billing" element={<SoftwareSaasIndustryPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/industries/high-tech-electronics" element={<HighTechElectronicsIndustryPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/industries/high-tech" element={<HighTechElectronicsIndustryPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/industries/electronics" element={<HighTechElectronicsIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/high-tech" element={<HighTechIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/high-tech-electronics" element={<HighTechIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/electronics" element={<ElectronicsIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/electronics-manufacturing" element={<ElectronicsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/warehouse-ewm" element={<WarehouseEwmIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/warehouse" element={<WarehouseEwmIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/warehousing" element={<WarehouseEwmIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/warehouse-warehousing" element={<WarehouseEwmIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/transportation-logistics" element={<TransportationLogisticsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/transportation" element={<TransportationLogisticsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/logistics" element={<TransportationLogisticsIndustryPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/industries/aerospace-defense" element={<TransportationLogisticsIndustryPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/industries/aerospace" element={<TransportationLogisticsIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/aerospace-defense" element={<AerospaceDefenseIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/aerospace" element={<AerospaceDefenseIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/defense" element={<AerospaceDefenseIndustryPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Financial & Business Services Dedicated Industry Pages */}
+          <Route path="/industries/banking" element={<BankingIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/insurance" element={<InsuranceIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/financial-services" element={<FinancialServicesIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/financial" element={<FinancialServicesIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/fintech" element={<FinTechIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/professional-services" element={<ProfessionalServicesIndustryPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Experience, Media & Education Dedicated Industry Pages */}
+          <Route path="/industries/hospitality" element={<HospitalityIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/travel-tourism" element={<TravelTourismIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/travel" element={<TravelTourismIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/entertainment" element={<EntertainmentIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/media-entertainment" element={<EntertainmentIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/education" element={<EducationIndustryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/industries/higher-education" element={<EducationIndustryPage onOpenContact={handleOpenContactModal} />} />
 
           <Route path="/insights" element={<InsightsPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/careers" element={<CareersPage />} />

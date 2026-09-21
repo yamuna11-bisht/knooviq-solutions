@@ -497,11 +497,20 @@ const INDUSTRY_ROUTE_MAP: Record<string, string> = {
   'Facilities & Assets': '/industries/facilities-assets',
   'Technology Services': '/industries/technology-services',
   'Software & SaaS': '/industries/software-saas',
-  'High-Tech': '/industries/high-tech-electronics',
-  'Electronics': '/industries/high-tech-electronics',
+  'High-Tech': '/industries/high-tech',
+  'Electronics': '/industries/electronics',
   'Warehouse & Warehousing': '/industries/warehouse-ewm',
   'Transportation & Logistics': '/industries/transportation-logistics',
-  'Aerospace & Defense': '/industries/transportation-logistics',
+  'Aerospace & Defense': '/industries/aerospace-defense',
+  'Banking': '/industries/banking',
+  'Insurance': '/industries/insurance',
+  'Financial Services': '/industries/financial-services',
+  'FinTech': '/industries/fintech',
+  'Professional Services': '/industries/professional-services',
+  'Hospitality': '/industries/hospitality',
+  'Travel & Tourism': '/industries/travel-tourism',
+  'Entertainment': '/industries/entertainment',
+  'Education': '/industries/education',
 };
 
 interface NavbarProps {

@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  CreditCard, 
-  Layers, 
-  Activity, 
   ShieldCheck, 
+  FileCheck2, 
   TrendingUp, 
   BarChart3, 
+  Activity, 
   CheckCircle2, 
   ArrowRight, 
   ChevronRight, 
@@ -20,23 +19,24 @@ import {
   Globe2, 
   RefreshCw, 
   FileText, 
-  Radio, 
-  Server, 
-  Cloud, 
-  FileCheck, 
-  Split, 
+  Layers, 
+  Lock, 
+  Scale, 
+  CreditCard, 
+  HeartHandshake, 
+  Users, 
+  Building2, 
+  Cpu, 
   Database, 
   Sliders, 
-  AlertTriangle, 
-  Cpu,
-  Users
+  AlertTriangle 
 } from 'lucide-react';
 
-interface SoftwareSaasIndustryPageProps {
+interface InsuranceIndustryPageProps {
   onOpenContact?: (defaultTopic?: string) => void;
 }
 
-export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> = ({ 
+export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
   // State for Section 2 Interactive Journey
@@ -51,42 +51,42 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
   // State for Section 9 Transformation Stage
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
 
-  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ SaaS Revenue Platform Ecosystem)
+  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ Insurance Platform Ecosystem)
   const wheelSegments = [
     {
-      id: 'usage-rating',
-      title: 'Consumption Metering & Dynamic Rating',
-      desc: 'High-throughput ingestion capturing API calls, compute milliseconds, and storage metrics for real-time rating.',
+      id: 'policy-admin',
+      title: 'Policy Lifecycle Administration',
+      desc: 'Unified multi-line policy administration managing quotes, underwriting, mid-term endorsements, and automatic renewals.',
       side: 'right',
       color: '#22C55E', // Green
       textColor: 'text-emerald-400',
       bgGlow: 'rgba(34, 197, 94, 0.3)',
-      icon: Zap
+      icon: FileCheck2
     },
     {
-      id: 'contract-lifecycle',
-      title: 'Contract Lifecycle & Coterminous Terms',
-      desc: 'Seamless subscription renewals, mid-contract tier upgrades, seat expansions, and coterminous alignment.',
+      id: 'claims-fnol',
+      title: 'Digital FNOL & Automated Claims',
+      desc: 'Mobile-first First Notice of Loss with automated claim triage, fast-track settlement approval, and fraud anomaly detection.',
       side: 'right',
       color: '#84CC16', // Lime Green
       textColor: 'text-lime-400',
       bgGlow: 'rgba(132, 204, 22, 0.3)',
-      icon: FileCheck
+      icon: HeartHandshake
     },
     {
-      id: 'convergent-billing',
-      title: 'Automated Convergent Invoicing',
-      desc: 'Consolidate flat fees, dynamic consumption overages, and partner add-ons onto a single enterprise invoice.',
+      id: 'ifrs17-ledger',
+      title: 'IFRS 17 & LDTI Actuarial Sub-Ledger',
+      desc: 'Contractual Service Margin (CSM) calculations, discounted cash flows, and multi-GAAP financial statement generation.',
       side: 'right',
       color: '#EAB308', // Yellow
       textColor: 'text-yellow-400',
       bgGlow: 'rgba(234, 179, 8, 0.3)',
-      icon: CreditCard
+      icon: Scale
     },
     {
-      id: 'rev-rec',
-      title: 'ASC 606 / IFRS 15 Revenue Accounting',
-      desc: 'Automated contract identification, standalone selling price (SSP) allocation, and balance sheet liability scheduling.',
+      id: 'reinsurance-treaty',
+      title: 'Reinsurance & Retrocession Ceding',
+      desc: 'Automated treaty allocation, proportional and non-proportional cession calculations, and reinsurer claims recoveries.',
       side: 'right',
       color: '#F97316', // Orange
       textColor: 'text-orange-400',
@@ -94,39 +94,39 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: ShieldCheck
     },
     {
-      id: 'dunning-churn',
-      title: 'Automated Dunning & Churn Defense',
-      desc: 'Tokenized card updater networks, intelligent retry schedules, and automated dunning preventing involuntary churn.',
+      id: 'underwriting-ai',
+      title: 'Predictive Underwriting & Risk Scoring',
+      desc: 'Dynamic risk scoring models incorporating telematics, IoT sensors, and external credit data for precision rate calculation.',
       side: 'left',
       color: '#F43F5E', // Rose
       textColor: 'text-rose-400',
       bgGlow: 'rgba(244, 63, 94, 0.3)',
-      icon: RefreshCw
+      icon: Activity
     },
     {
-      id: 'multi-currency-tax',
-      title: 'Global Tax & Statutory E-Invoicing',
-      desc: 'Multi-jurisdiction sales tax calculation, digital services taxes, European reverse-charge VAT, and Peppol e-invoices.',
+      id: 'billing-disbursements',
+      title: 'Premium Collections & Disbursements',
+      desc: 'Automated direct debit billing, split broker commission reconciliations, and instant claims payout via digital wallets.',
       side: 'left',
       color: '#EC4899', // Pink
       textColor: 'text-pink-400',
       bgGlow: 'rgba(236, 72, 153, 0.3)',
-      icon: Globe2
+      icon: CreditCard
     },
     {
-      id: 'partner-revshare',
-      title: 'Marketplace & Partner Revenue Sharing',
-      desc: 'Multi-party settlement calculating ecosystem developer royalties, agency commissions, and platform fees.',
+      id: 'broker-portal',
+      title: 'Agent & Broker Distribution Mesh',
+      desc: 'Self-service partner portals with real-time commission hierarchies, instant quote binding, and digital policy issuing.',
       side: 'left',
       color: '#A855F7', // Purple
       textColor: 'text-purple-400',
       bgGlow: 'rgba(168, 85, 247, 0.3)',
-      icon: Split
+      icon: Users
     },
     {
-      id: 'saas-metrics',
-      title: 'ARR, NRR & Cohort Margin Analytics',
-      desc: 'Real-time Net Retention Rate, customer lifetime value, and cohort margin telemetry directly from general ledgers.',
+      id: 'actuarial-analytics',
+      title: 'Actuarial Reserves & Solvency II',
+      desc: 'Continuous Solvency Capital Requirement (SCR) monitoring, best-estimate liabilities, and automated regulatory submissions.',
       side: 'left',
       color: '#06B6D4', // Cyan
       textColor: 'text-cyan-400',
@@ -175,525 +175,541 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
   // Section 2: Journey Steps (Clean, no numbers, no statistics, no percentages)
   const journeySteps = [
     {
-      id: 'consumption-rating',
-      label: 'Usage Ingestion',
-      sublabel: 'Idempotent Telemetry',
-      desc: 'Stream high-velocity API calls, data throughput, and compute seconds into real-time convergent charging mediation with sub-second latency.',
-      tech: 'SAP BTP Event Mesh',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-      icon: Zap
+      id: 'quote-bind',
+      label: 'Digital Quote & Binding',
+      sublabel: 'Omnichannel Origination',
+      desc: 'Deliver instant multi-quote comparisons across direct and broker channels with dynamic rating engines and automated policy issuance.',
+      tech: 'SAP Customer Experience & FS-QUO',
+      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+      icon: FileCheck2
     },
     {
-      id: 'contract-terms',
-      label: 'Subscription Terms',
-      sublabel: 'Coterminous Align',
-      desc: 'Unify tiered subscriptions, seat licenses, minimum commitments, and add-on upgrades into automated coterminous contract lifecycles.',
-      tech: 'SAP Subscription Billing',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
-      icon: FileCheck
-    },
-    {
-      id: 'convergent-billing',
-      label: 'Convergent Invoicing',
-      sublabel: 'Unified Billing Core',
-      desc: 'Consolidate flat recurring fees, dynamic usage overages, and partner add-ons on a single transparent enterprise billing statement.',
-      tech: 'SAP Convergent Invoicing',
+      id: 'policy-management',
+      label: 'Policy Administration',
+      sublabel: 'Centralized Contract Lifecycle',
+      desc: 'Manage mid-term endorsements, co-insurance splits, and seamless policy renewals on unified multi-line insurance contract repositories.',
+      tech: 'SAP for Insurance FS-PM',
       image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
-      icon: CreditCard
-    },
-    {
-      id: 'rev-rec',
-      label: 'Revenue Accounting',
-      sublabel: 'ASC 606 / IFRS 15',
-      desc: 'Automate standalone selling price (SSP) allocation, contract liability schedules, and cumulative catch-ups for mid-term amendments.',
-      tech: 'SAP Revenue Accounting (RAR)',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
       icon: ShieldCheck
     },
     {
-      id: 'dunning-defense',
-      label: 'Dunning & Churn',
-      sublabel: 'ARR Preservation',
-      desc: 'Prevent involuntary churn via tokenized card updater sync, smart retry schedules factoring in clearing windows, and self-service portals.',
-      tech: 'SAP Billing Dunning Core',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
-      icon: RefreshCw
+      id: 'claims-adjudication',
+      label: 'Claims Settlement',
+      sublabel: 'Automated Adjudication',
+      desc: 'Process digital FNOL submissions, assign loss adjusters, detect fraudulent billing anomalies, and trigger instant claims payouts.',
+      tech: 'SAP Claims Management FS-CM',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+      icon: HeartHandshake
     },
     {
-      id: 'saas-finops',
-      label: 'Cohort Telemetry',
-      sublabel: 'ARR & NRR Analytics',
-      desc: 'Deliver real-time Net Retention Rate, customer lifetime value, and cohort margins reconciled directly against general ledgers.',
-      tech: 'SAP Analytics Cloud',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
-      icon: BarChart3
+      id: 'reinsurance-cession',
+      label: 'Reinsurance Management',
+      sublabel: 'Treaty Allocation & Ceding',
+      desc: 'Calculate complex proportional and non-proportional reinsurance cessions with automated billing and retrocession tracking.',
+      tech: 'SAP Reinsurance Management FS-RI',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      icon: Layers
+    },
+    {
+      id: 'collections-disbursements',
+      label: 'Collections & Billing',
+      sublabel: 'Sub-Ledger Payment Rails',
+      desc: 'Automate premium payment reconciliation, dunning processes, broker commission disbursements, and co-insurer settlements.',
+      tech: 'SAP Collections & Disbursements FS-CD',
+      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      icon: CreditCard
+    },
+    {
+      id: 'ifrs17-reporting',
+      label: 'IFRS 17 Financial Close',
+      sublabel: 'Actuarial Contractual Margin',
+      desc: 'Calculate Contractual Service Margin (CSM) amortization and loss recovery components compliant with IFRS 17 and local solvency audits.',
+      tech: 'SAP S/4HANA Financial Products Subledger (FPSL)',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      icon: Scale
     }
   ];
 
-  // Section 3: SaaS Challenges & Bottlenecks Data
-  const saasChallenges = [
+  // Section 3: Insurance Challenges Data
+  const insuranceChallenges = [
     {
-      tag: 'METERING DRIFT',
-      icon: Zap,
-      title: 'Unmetered Usage Slippage',
-      desc: 'Disconnected product telemetry drops high-volume API calls and storage events, resulting in unbilled customer overages and gross margin leakage.',
-      footer: 'Unbilled Consumption Waste'
+      tag: 'IFRS 17 ACCOUNTING BURDEN',
+      icon: Scale,
+      title: 'Actuarial & Accounting Data Disconnect',
+      desc: 'Disconnected actuarial models and financial sub-ledgers force prolonged manual spreadsheets to compute Contractual Service Margin (CSM).',
+      footer: 'Prolonged IFRS 17 Calculation Cycles'
     },
     {
-      tag: 'REV-REC DELAY',
+      tag: 'CLAIMS FRICTION',
+      icon: HeartHandshake,
+      title: 'Paper FNOL & Manual Adjudication Stalls',
+      desc: 'Fragmented legacy claims workflows cause customer frustration, extended adjuster review cycles, and delayed claims settlement payouts.',
+      footer: 'Extended Settlement Processing Delays'
+    },
+    {
+      tag: 'REINSURANCE COMPLEXITY',
       icon: ShieldCheck,
-      title: 'Manual ASC 606 Spreadsheets',
-      desc: 'Tracking standalone selling prices and mid-term amendments across offline spreadsheets creates massive audit restatement risks and compliance penalties.',
-      footer: 'Spreadsheet Rev-Rec Vulnerability'
+      title: 'Treaty Calculation & Recovery Leakage',
+      desc: 'Managing multi-layered excess-of-loss treaties on disparate systems results in missed reinsurance recoveries and delayed retrocession billing.',
+      footer: 'Uncaptured Reinsurance Recoveries'
     },
     {
-      tag: 'CHURN LEAKAGE',
-      icon: RefreshCw,
-      title: 'Passive Involuntary Churn',
-      desc: 'Up to 30% of customer cancellations stem from expired credit cards and silent payment failures without intelligent multi-attempt dunning schedules.',
-      footer: 'Silent ARR Erosion'
+      tag: 'FRAUDULENT LEAKAGE',
+      icon: AlertTriangle,
+      title: 'Undetected Claims Fraud Schemes',
+      desc: 'Static rule-based claim validation fails to intercept organized claims staging, medical bill padding, and inflated property loss submissions.',
+      footer: 'High Uncaught Claims Loss Leakage'
     },
     {
-      tag: 'CONTRACT FRICTION',
-      icon: FileCheck,
-      title: 'Complex Coterminous Upgrades',
-      desc: 'Legacy billing systems fail to calculate precise prorations when enterprise buyers add seats mid-quarter, creating billing disputes and churn.',
-      footer: 'Proration Calculation Friction'
+      tag: 'BROKER DISTRIBUTION FRICTION',
+      icon: Users,
+      title: 'Delayed Broker Commission Settlement',
+      desc: 'Manual commission splits across complex multi-tiered brokerage hierarchies create partner friction and high administrative reconciliation overhead.',
+      footer: 'Manual Broker Commission Splitting'
     },
     {
-      tag: 'DATA SILOS',
-      icon: Database,
-      title: 'Fragmented Billing & ERP Stacks',
-      desc: 'Disconnected CPQ tools, gateway processors, and finance ledgers cause weeks of month-end reconciliation lag and unaligned revenue recognition.',
-      footer: 'Delayed Financial Close'
-    },
-    {
-      tag: 'TAX RISK',
-      icon: Globe2,
-      title: 'Cross-Border Digital Tax Frictions',
-      desc: 'Expanding globally triggers complex US state economic nexus, EU reverse-charge VAT, and statutory e-invoicing penalties across jurisdictions.',
-      footer: 'Statutory Compliance Penalties'
+      tag: 'LEGACY CORE RIGIDITY',
+      icon: FileText,
+      title: 'Multi-Month New Product Launch Delays',
+      desc: 'Hardcoded policy administration systems prevent carriers from rapidly launching parametric, usage-based, or embedded insurance offerings.',
+      footer: 'Slow Time-to-Market for New Products'
     }
   ];
 
-  // Section 7: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
+  // Section 7: Symmetrical 3x3 Modular Solutions (9 Cards)
   const industrySolutions = [
     {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'RECURRING BILLING',
-      icon: CreditCard,
-      title: 'Enterprise Subscription Core',
-      description: 'Manage complex recurring billing plans, annual advance invoices, coterminous add-ons, and payment gateway collections on Clean Core.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Seat & Tier Plans', 'Coterminous Alignment', 'Consolidated Statements', 'Gateway Auto-Settlement']
+      category: 'POLICY_CLAIMS',
+      categoryLabel: 'Policy & Claims',
+      tag: 'POLICY ENGINE',
+      title: 'SAP for Insurance Policy Management (FS-PM)',
+      description: 'End-to-end multi-line policy administration platform supporting life, health, and P&C contracts with continuous lifecycle tracking.',
+      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      icon: FileCheck2,
+      highlights: ['Multi-Line Product Engine', 'Automated Endorsement Processing', 'Continuous Renewal Rules']
     },
     {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'EVENT MEDIATION',
-      icon: Zap,
-      title: 'High-Volume Consumption Rating',
-      description: 'Capture cloud application telemetry, API calls, and computational consumption, transforming raw usage records into rated line items.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Idempotent Ingestion', 'Dynamic Volume Tiers', 'Prepaid Drawdowns', 'Real-Time Quota Triggers']
+      category: 'POLICY_CLAIMS',
+      categoryLabel: 'Policy & Claims',
+      tag: 'CLAIMS AUTOMATION',
+      title: 'Digital Claims Management & FNOL Hub (FS-CM)',
+      description: 'Streamlined claims lifecycle management featuring automated triage, fraud heuristic scoring, and instant payment settlement.',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+      icon: HeartHandshake,
+      highlights: ['Mobile Digital FNOL', 'Automated Loss Adjuster Triage', 'Fast-Track Payout Gateway']
     },
     {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'REVENUE ACCOUNTING',
-      icon: ShieldCheck,
-      title: 'Automated ASC 606 Revenue RAR',
-      description: 'Comply effortlessly with statutory revenue recognition standards through automated contract allocation, SSP scheduling, and catch-ups.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Automated SSP Allocations', 'Contract Asset/Liability', 'Cumulative Catch-Ups', 'Audit-Ready Reporting']
-    },
-    {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'CONTRACT LIFECYCLE',
-      icon: FileCheck,
-      title: 'Coterminous Renewal Management',
-      description: 'Synchronize multi-year contract renewals, mid-quarter seat expansions, and edition upgrades without manual proration spreadsheets.',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Automated Proration Logic', 'Coterminous Alignment', 'CPQ Contract Sync', 'Early Renewal Incentives']
-    },
-    {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'CREDIT MANAGEMENT',
-      icon: Database,
-      title: 'Prepaid Commitments & Drawdowns',
-      description: 'Manage enterprise prepaid consumption commitments, burndown drawdowns, and use-it-or-lose-it expiration schedules with full transparency.',
-      image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Enterprise Burndown', 'Prepaid Balance Ledger', 'Expiration Schedules', 'Self-Service Telemetry']
-    },
-    {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'ECOSYSTEM SETTLEMENT',
-      icon: Split,
-      title: 'Multi-Party Marketplace RevShare',
-      description: 'Calculate and distribute developer royalties, agency commissions, and cloud platform revenue splits across multi-sided marketplaces.',
+      category: 'POLICY_CLAIMS',
+      categoryLabel: 'Policy & Claims',
+      tag: 'PREMIUM BILLING',
+      title: 'Collections & Disbursements Suite (FS-CD)',
+      description: 'High-volume sub-ledger managing policyholder premium invoicing, direct debit mandates, broker payouts, and co-insurance clearings.',
       image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Developer Royalty Splits', 'Self-Invoicing Portals', 'Tax Withholding Rules', 'Consolidated Ledgers']
+      icon: CreditCard,
+      highlights: ['Automated Direct Debits', 'Broker Commission Engine', 'Real-Time Clearing Reconciliation']
     },
     {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'PAYMENT RECOVERY',
-      icon: RefreshCw,
-      title: 'Smart Dunning & Churn Defense',
-      description: 'Defend recurring ARR against card expirations and network declines using intelligent multi-attempt retry schedules and card updaters.',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Tokenized Card Updaters', 'Smart Decline Retries', 'Dunning Email Sequences', 'Card Updater Portal']
-    },
-    {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'USAGE GOVERNANCE',
-      icon: Sliders,
-      title: 'Real-Time Usage Alerts & Tiers',
-      description: 'Trigger automated customer notifications and in-app upgrade prompts when usage reaches commitment thresholds, driving expansion.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Real-Time Quota Triggers', 'Automated Tier Step-Ups', 'In-App Upgrade Webhooks', 'Overage Buffer Policies']
-    },
-    {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'FINOPS ANALYTICS',
-      icon: BarChart3,
-      title: 'SaaS Unit Economics & Cockpit',
-      description: 'Deliver real-time Net Retention Rate (NRR), customer lifetime value (LTV), and cohort margin visibility directly linked to hosting ledgers.',
+      category: 'IFRS_FINANCE',
+      categoryLabel: 'Actuarial & Finance',
+      tag: 'IFRS 17 ENGINE',
+      title: 'SAP S/4HANA Financial Products Subledger (FPSL)',
+      description: 'Dedicated financial sub-ledger connecting actuarial cash flow engines with accounting ledgers for complete IFRS 17 and LDTI compliance.',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Real-Time NRR Tracking', 'Cohort Gross Margins', 'Cloud Cost Attribution', 'Predictive Churn Alerts']
+      icon: Scale,
+      highlights: ['CSM Calculation & Amortization', 'Building Block Approach (BBA)', 'Multi-GAAP Parallel Posting']
+    },
+    {
+      category: 'IFRS_FINANCE',
+      categoryLabel: 'Actuarial & Finance',
+      tag: 'REINSURANCE HUB',
+      title: 'SAP Reinsurance Management Suite (FS-RI)',
+      description: 'Comprehensive reinsurance contract administration automating treaty calculations, facultative placements, and reinsurer claims recoveries.',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      icon: ShieldCheck,
+      highlights: ['Proportional & Non-Proportional', 'Automated Retrocession Cessions', 'Loss Recovery Claims Tracking']
+    },
+    {
+      category: 'IFRS_FINANCE',
+      categoryLabel: 'Actuarial & Finance',
+      tag: 'SOLVENCY II',
+      title: 'Solvency & Capital Adequacy Compliance Suite',
+      description: 'Enterprise regulatory modeling evaluating Best Estimate Liabilities (BEL), Risk Margin, and Solvency Capital Requirements (SCR).',
+      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      icon: BarChart3,
+      highlights: ['SCR / MCR Dynamic Modeling', 'Pillar 3 Regulatory Reporting', 'Stress & Scenario Simulation']
+    },
+    {
+      category: 'DISTRIBUTION_AI',
+      categoryLabel: 'Underwriting & Digital',
+      tag: 'AI UNDERWRITING',
+      title: 'Algorithmic Risk Underwriting & Rating Engine',
+      description: 'Machine learning rating engine scoring applicant risk profiles in seconds with automated integration to telematics and bureau feeds.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      icon: Activity,
+      highlights: ['Telematics IoT Ingestion', 'Instant Decision Scorecards', 'Dynamic Premium Rating']
+    },
+    {
+      category: 'DISTRIBUTION_AI',
+      categoryLabel: 'Underwriting & Digital',
+      tag: 'BROKER PORTAL',
+      title: 'Agent & Broker Digital Distribution Portal',
+      description: 'Cloud-native partner portal enabling brokers to bind coverage, manage policy portfolios, and track commission settlements in real time.',
+      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80',
+      icon: Users,
+      highlights: ['Instant Quote-to-Bind API', 'Hierarchy Commission Tracking', 'Real-Time Policy Servicing']
+    },
+    {
+      category: 'DISTRIBUTION_AI',
+      categoryLabel: 'Underwriting & Digital',
+      tag: 'FRAUD INTERCEPTION',
+      title: 'AI Claims Anomaly & Fraud Interception Suite',
+      description: 'Real-time claims screening identifying identity fraud, inflated billing patterns, and organized claims staging before payout approval.',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      icon: Lock,
+      highlights: ['Social Network Fraud Analysis', 'Medical Bill Padding Detection', 'Automated Special Investigations (SIU)']
     }
   ];
 
-  // Section 9: Transformation in Action (Connected 4-Phase Architecture Pipeline)
+  // Section 9: Transformation Pipeline Data
   const transformationStages = [
     {
       badge: 'PHASE 01',
-      textColor: 'text-cyan-400',
-      glowColor: 'bg-cyan-400',
-      activeBorder: 'border-cyan-400/80 bg-cyan-950/30',
-      borderBase: 'border-slate-800',
-      icon: Zap,
-      title: 'Telemetry Mediation',
-      subtitle: 'Event Mesh Ingestion',
-      tag: 'Sub-Second Rating',
-      description: 'Decoupled event streaming ingests and rates operational telemetry continuously, guaranteeing zero unbilled overage consumption.',
-      before: 'Fragmented log files, batch CSV imports & unrated consumption',
-      after: 'SAP BTP Event Mesh with sub-second convergent rating',
-      metrics: ['Idempotent Ingestion', 'Zero Usage Leakage', 'Real-Time Quota Triggers']
+      title: 'Legacy Insurance Core Audit',
+      subtitle: 'Actuarial & System Landscape Review',
+      description: 'Assess legacy mainframe policy engines, manual reinsurance treaty spreadsheets, and siloed actuarial data stores causing IFRS 17 bottlenecks.',
+      tag: 'Landscape Assessment',
+      icon: Compass,
+      textColor: 'text-sky-400',
+      glowColor: 'bg-sky-500',
+      borderBase: 'border-sky-500/20',
+      activeBorder: 'border-sky-400 bg-sky-950/40',
+      before: 'Fragmented policy admin silos & disconnected actuarial models',
+      after: 'Unified enterprise insurance architecture roadmap with clean core',
+      metrics: ['Zero Legacy Core Friction', 'Clean Core Decoupling', 'Actuarial Data Governance']
     },
     {
       badge: 'PHASE 02',
-      textColor: 'text-sky-400',
-      glowColor: 'bg-sky-400',
-      activeBorder: 'border-sky-400/80 bg-sky-950/30',
-      borderBase: 'border-slate-800',
-      icon: FileCheck,
-      title: 'Subscription Terms',
-      subtitle: 'Coterminous Lifecycles',
-      tag: 'Automated Proration',
-      description: 'Unified contract rules handle multi-tier plans, seat licenses, prepaid credits, and prorated mid-term upgrades on a single invoice.',
-      before: 'Manual proration spreadsheets, separate invoices & billing disputes',
-      after: 'SAP Subscription Billing with unified coterminous invoicing',
-      metrics: ['Coterminous Alignment', 'Unified Invoice Statements', 'Self-Service Tier Upgrades']
+      title: 'FPSL & IFRS 17 Foundation',
+      subtitle: 'Sub-Ledger Accounting Deployment',
+      description: 'Deploy SAP S/4HANA Financial Products Subledger (FPSL) with automated Contractual Service Margin (CSM) calculation and multi-GAAP posting.',
+      tag: 'Sub-Ledger Modernization',
+      icon: Scale,
+      textColor: 'text-emerald-400',
+      glowColor: 'bg-emerald-500',
+      borderBase: 'border-emerald-500/20',
+      activeBorder: 'border-emerald-400 bg-emerald-950/40',
+      before: 'Spreadsheet-based IFRS 17 close requiring 3+ weeks',
+      after: 'Continuous sub-second actuarial accounting and CSM calculation',
+      metrics: ['Continuous CSM Posting', 'Multi-GAAP Parallel Valuation', 'Audit-Ready Actuarial Lineage']
     },
     {
       badge: 'PHASE 03',
-      textColor: 'text-emerald-400',
-      glowColor: 'bg-emerald-400',
-      activeBorder: 'border-emerald-400/80 bg-emerald-950/30',
-      borderBase: 'border-slate-800',
-      icon: ShieldCheck,
-      title: 'Statutory Rev-Rec',
-      subtitle: 'ASC 606 Automation',
-      tag: 'Audit-Proof Ledgers',
-      description: 'Automated revenue accounting separates deferred contract liabilities from earned ARR, posting cumulative catch-ups directly to S/4HANA.',
-      before: 'Offline rev-rec spreadsheets & agonizing audit reconciliation',
-      after: 'Automated SAP RAR schedules on Universal Journal (ACDOCA)',
-      metrics: ['Automated SSP Allocations', 'Cumulative Catch-Up Postings', 'Audit-Ready Disclosures']
+      title: 'Digital Claims & Reinsurance',
+      subtitle: 'Automated Processing & Treaty Ceding',
+      description: 'Implement digital FNOL intake, automated fraud detection heuristics, and seamless reinsurance treaty calculation with instant recoveries.',
+      tag: 'Operational Automation',
+      icon: HeartHandshake,
+      textColor: 'text-purple-400',
+      glowColor: 'bg-purple-500',
+      borderBase: 'border-purple-500/20',
+      activeBorder: 'border-purple-400 bg-purple-950/40',
+      before: 'Paper FNOL taking days & missed reinsurance recovery claims',
+      after: 'Same-day digital claim triage & automated treaty recoveries',
+      metrics: ['Touchless Claims Settlement', 'Automated Cession Calculations', 'Real-Time Fraud Scoring']
     },
     {
       badge: 'PHASE 04',
-      textColor: 'text-amber-400',
-      glowColor: 'bg-amber-400',
-      activeBorder: 'border-amber-400/80 bg-amber-950/30',
-      borderBase: 'border-slate-800',
-      icon: RefreshCw,
-      title: 'FinOps & Retention',
-      subtitle: 'Dunning & SAC Cockpit',
-      tag: 'ARR Preservation',
-      description: 'Intelligent card retry algorithms recover failed transactions while SAP Analytics Cloud provides real-time cohort margin telemetry.',
-      before: 'Passive payment failures causing silent churn & margin blindspots',
-      after: 'Smart dunning engine with live SAC Net Retention Rate cockpit',
-      metrics: ['Tokenized Card Updaters', 'Smart Dunning Schedules', 'True Cohort Gross Margin']
+      title: 'Composable Insurance Mesh',
+      subtitle: 'Parametric Products & Open APIs',
+      description: 'Roll out cloud-native partner distribution APIs for instant embedded coverage, telematics pricing, and parametric micro-insurance products.',
+      tag: 'Digital Ecosystem Expansion',
+      icon: Zap,
+      textColor: 'text-cyan-400',
+      glowColor: 'bg-cyan-500',
+      borderBase: 'border-cyan-500/20',
+      activeBorder: 'border-cyan-400 bg-cyan-950/40',
+      before: 'Monolithic policy systems requiring 12 months to launch new lines',
+      after: 'Agile product engine launching new digital coverages in weeks',
+      metrics: ['Microservices API Layer', 'Real-Time Telematics Ingestion', 'Parametric Policy Automation']
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Pure Enterprise Software & SaaS Hero)
+          SECTION 1: HERO SECTION (Cinematic Full-Bleed Dark Blue Hero Banner)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative min-h-[620px] lg:min-h-[680px] bg-slate-900 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Full-Bleed Enterprise SaaS Background Image with Seamless Cinematic Scrim */}
+        {/* Background Photo with Dark Gradient Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80" 
-            alt="Software, SaaS & Subscription Billing Operations" 
-            className="w-full h-full object-cover object-center"
+            src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=2000&q=80" 
+            alt="Insurance Enterprise Finance" 
+            className="w-full h-full object-cover object-center brightness-60"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+        {/* Hero Top Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-4">
+          {/* Breadcrumb Navigation */}
+          <div className="mb-4 sm:mb-6">
+            <Link 
+              to="/industries" 
+              className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+            >
+              <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+              <span>Back to Industries</span>
+            </Link>
+          </div>
+
+          <div className="max-w-3xl space-y-4 sm:space-y-6">
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="space-y-2.5"
-            >
-              {/* Practice Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <CreditCard className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ INDUSTRY PRACTICE</span>
-              </div>
-              
-              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                Intelligent ERP for <br />
-                <span className="text-cyan-400">Software & SaaS</span>
-              </h1>
+            {/* Practice Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+              <span>KNOOVIQ INDUSTRY PRACTICE</span>
+            </div>
 
-              {/* Subheading / Value Proposition */}
-              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Automated Subscription Billing, Usage Rating & ASC 606 Revenue Recognition.
-              </p>
-            </motion.div>
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+              Intelligent Insurance & Actuarial Transformation
+            </h1>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-3 max-w-2xl"
-            >
-              {/* Clear Open Typography */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
-                Empowering cloud software providers, digital platforms, and subscription enterprises with{' '}
-                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, high-velocity{' '}
-                <strong className="text-cyan-300 font-semibold">BRIM Event Mediation</strong>, automated ASC 606 revenue compliance, and proactive churn recovery.
-              </p>
-              
-              {/* Clean Feature Highlights */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                  <span>Clean Core Architecture</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Sub-Second Metering Rating</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                  <span>ASC 606 Automated RAR</span>
-                </span>
-              </div>
-            </motion.div>
+            {/* Sub-headline */}
+            <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
+              Modernize multi-line policy administration, streamline IFRS 17 / LDTI actuarial reporting, automate digital claims adjudication, and manage complex reinsurance treaties on clean-core SAP architecture.
+            </p>
 
-            {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
-            >
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA BRIM</div>
-                <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
+            {/* Feature Highlight Pills */}
+            <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Automated IFRS 17 & LDTI</span>
               </div>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Touchless Digital Claims</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Dynamic Reinsurance Ceding</span>
+              </div>
+            </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <CreditCard className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">BILLING CORE</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">Unified Invoicing</div>
-                <div className="text-xs text-slate-300 mt-0.5">Seat & Usage Sync</div>
-              </div>
+            {/* Hero CTAs */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+              <button
+                type="button"
+                onClick={() => onOpenContact?.('Insurance Practice & IFRS 17 Consultation')}
+                className="px-6 py-3 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-[#0070C0]/30 transition-all flex items-center gap-2 group cursor-pointer"
+              >
+                <span>Consult With Insurance Architects</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">COMPLIANCE</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">ASC 606 / IFRS 15</div>
-                <div className="text-xs text-slate-300 mt-0.5">Zero Audit Risk</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <RefreshCw className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">RETENTION</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">Smart Dunning</div>
-                <div className="text-xs text-slate-300 mt-0.5">ARR Protection</div>
-              </div>
-            </motion.div>
+              <Link
+                to="#industry-solutions"
+                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 backdrop-blur-md transition-all flex items-center gap-2"
+              >
+                <span>Explore Solutions</span>
+              </Link>
+            </div>
 
           </div>
 
         </div>
 
+        {/* Enterprise Architectural Trust Ribbon (Inside Hero, 4-Column Layout) */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-slate-950/70 backdrop-blur-md py-4 sm:py-5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-white text-xs font-mono">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                  <FileCheck2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">Policy Management</div>
+                  <div className="text-[10px] text-slate-400">SAP FS-PM Multi-Line Core</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <Scale className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">Actuarial Accounting</div>
+                  <div className="text-[10px] text-slate-400">SAP FPSL Continuous Close</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  <HeartHandshake className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">Claims Adjudication</div>
+                  <div className="text-[10px] text-slate-400">SAP FS-CM Digital FNOL</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">Reinsurance Ceding</div>
+                  <div className="text-[10px] text-slate-400">SAP FS-RI Treaty Recovery</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       {/* =========================================================================
-          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE ("Building a Connected SaaS Revenue Core")
+          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE (2-Column Layout)
           ========================================================================= */}
-      <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-[#F8FBFE] to-white border-b border-slate-200 relative overflow-hidden">
-        
-        {/* Subtle Ambient Tone */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-12 sm:py-14 lg:py-16 bg-white border-b border-slate-200 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Left Narrative Column */}
-            <div className="lg:col-span-6 space-y-4">
+            {/* Left Column (6 Cols): Executive Narrative, Thesis, Strategic Pillars */}
+            <div className="lg:col-span-6 space-y-5">
               
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
-                <Activity className="w-3.5 h-3.5 text-[#0070C0]" />
-                <span>EXECUTIVE INDUSTRY PERSPECTIVE</span>
+                <Scale className="w-3.5 h-3.5 text-[#0070C0]" />
+                <span>EXECUTIVE PERSPECTIVE</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
-                Building a Connected <span className="text-[#0070C0]">SaaS Revenue Core</span>
+                Unifying Underwriting Precision & Actuarial Governance
               </h2>
 
-              {/* Executive Thesis Quote */}
+              {/* Executive Thesis Quote Card */}
               <div className="border-l-4 border-[#0070C0] border-y border-r border-slate-300 pl-4 py-2 bg-gradient-to-r from-sky-50/80 via-sky-50/30 to-transparent rounded-r-xl">
-                <p className="text-sm font-semibold text-slate-800 leading-relaxed italic">
-                  &ldquo;Modern SaaS valuation is defined by monetization velocity: unifying product telemetry, consumption-based contracts, and statutory revenue ledgers into one cohesive operational core.&rdquo;
+                <p className="text-xs sm:text-sm font-semibold text-slate-800 italic leading-relaxed">
+                  "Underwriters, actuaries, and financial controllers must operate from a single, shared source of truth where policy transactions, actuarial projections, and Contractual Service Margin (CSM) accounting align seamlessly."
                 </p>
               </div>
 
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Knooviq engineers an integrated revenue ecosystem on SAP S/4HANA Clean Core. By bridging data across cloud application telemetry and core general ledgers, SaaS leadership gains continuous visibility, automated billing flow, and audit-ready revenue realization.
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                As statutory IFRS 17 guidelines demand unprecedented granularity into insurance contract portfolios, carriers cannot rely on siloed actuarial models and disparate policy ledgers. Enterprise insurance leaders require an integrated sub-ledger architecture that calculates contractual margins in real time, automates reinsurance recoveries, and accelerates touchless digital claims adjudication.
               </p>
 
-              {/* 3 Executive Strategic Pillars */}
-              <div className="space-y-2.5 pt-1">
-                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
-                    <Zap className="w-4 h-4" />
+              {/* 3 Strategic Pillars */}
+              <div className="space-y-2 pt-1">
+                
+                <div className="p-3 rounded-xl border border-slate-300 bg-white hover:border-[#0070C0] transition-colors flex items-start gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-200">
+                    <Scale className="w-4 h-4" />
                   </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">High-Throughput Consumption Rating</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Single-pane-of-glass coordination across millions of API events, compute telemetry, and tiered volume discounts without latency.
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-bold text-slate-900">Seamless IFRS 17 Compliance</h3>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+                      Harmonize actuarial cash flow projections and financial postings with automated Contractual Service Margin (CSM) calculations.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                <div className="p-3 rounded-xl border border-slate-300 bg-white hover:border-[#0070C0] transition-colors flex items-start gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-200">
+                    <HeartHandshake className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-bold text-slate-900">Touchless Claims Orchestration</h3>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+                      Deliver instant mobile FNOL intake, automated fraud anomaly screening, and rapid settlement disbursement rails.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-xl border border-slate-300 bg-white hover:border-[#0070C0] transition-colors flex items-start gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-200">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Statutory ASC 606 & IFRS 15 Compliance</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Automated standalone selling price (SSP) allocation and performance obligation scheduling on the Universal Journal.
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-bold text-slate-900">Automated Reinsurance Recovery</h3>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+                      Eliminate recovery leakage with automated treaty calculation, multi-layered cessions, and real-time retrocession tracking.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
-                    <RefreshCw className="w-4 h-4" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Proactive Dunning & Churn Defense</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Automated card updater networks and smart decline retry algorithms actively defending recurring annual revenue.
-                    </p>
-                  </div>
-                </div>
               </div>
 
             </div>
 
-            {/* Right Side: Clean Photography Showcase & Stage Navigator */}
-            <div className="lg:col-span-6 space-y-3.5">
+            {/* Right Column (6 Cols): Dynamic Photo Showcase & 6 Stage Navigation */}
+            <div className="lg:col-span-6 space-y-4">
               
-              {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
-              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+              {/* Dynamic Photo Showcase */}
+              <div className="relative h-60 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
+                  className="w-full h-full object-cover object-center transition-all duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                
+                {/* Overlay Text on Image */}
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <div className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider">
+                    STAGE {activeJourneyStep + 1} OF 6 • {journeySteps[activeJourneyStep].tech}
+                  </div>
+                  <div className="text-base sm:text-lg font-black text-white leading-tight mt-0.5">
+                    {journeySteps[activeJourneyStep].label}
+                  </div>
+                  <div className="text-xs text-slate-200 mt-1 line-clamp-2 font-medium">
+                    {journeySteps[activeJourneyStep].desc}
+                  </div>
+                </div>
               </div>
 
-              {/* Stage Navigation Grid (Clean Labels + Icons, No Numbers) */}
+              {/* 6 Stage Navigation Buttons */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {journeySteps.map((step, idx) => {
-                  const isSelected = activeJourneyStep === idx;
-                  const StepIcon = step.icon;
+                  const isActive = activeJourneyStep === idx;
+                  const IconComponent = step.icon;
                   return (
                     <button
                       key={step.id}
                       type="button"
                       onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
-                        isSelected
-                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
-                          : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
+                      className={`p-2.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between cursor-pointer ${
+                        isActive 
+                          ? 'border-[#0070C0] bg-sky-50/90 shadow-sm' 
+                          : 'border-slate-300 bg-white hover:border-slate-400 hover:bg-slate-50'
                       }`}
                     >
-                      <div className={`p-1.5 rounded-lg shrink-0 ${
-                        isSelected ? 'bg-white/20 text-white' : 'bg-sky-50 text-[#0070C0] border border-slate-300'
-                      }`}>
-                        <StepIcon className="w-3.5 h-3.5" />
+                      <div className="flex items-center justify-between w-full mb-1">
+                        <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-[#0070C0]' : 'text-slate-500'}`}>
+                          0{idx + 1}
+                        </span>
+                        <IconComponent className={`w-3.5 h-3.5 ${isActive ? 'text-[#0070C0]' : 'text-slate-400'}`} />
                       </div>
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold truncate">{step.label}</div>
-                        <div className={`text-[10px] truncate ${isSelected ? 'text-sky-100' : 'text-slate-500'}`}>
-                          {step.sublabel}
-                        </div>
+                      <div className={`text-xs font-bold truncate ${isActive ? 'text-slate-900' : 'text-slate-700'}`}>
+                        {step.label}
                       </div>
                     </button>
                   );
                 })}
               </div>
 
-              {/* Selected Stage Detail Card (Placed Below the Image & Controls with Defined Border) */}
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-300 shadow-xs space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#003B73]">
-                    {journeySteps[activeJourneyStep].label}
-                  </span>
-                  <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-sky-50 text-[#0070C0] border border-sky-300">
-                    {journeySteps[activeJourneyStep].tech}
-                  </span>
+              {/* Selected Stage Detail Card */}
+              <div className="p-4 rounded-xl border border-slate-300 bg-slate-50/70">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-600 mb-1">
+                  <span className="font-bold text-[#0070C0] uppercase">Selected Milestone Detail</span>
+                  <span>{journeySteps[activeJourneyStep].sublabel}</span>
                 </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-700 leading-relaxed font-medium">
                   {journeySteps[activeJourneyStep].desc}
                 </p>
               </div>
@@ -706,64 +722,57 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 3: INDUSTRY CHALLENGES ("Navigating the Complexity of Modern Cloud Billing")
+          SECTION 3: CORE BOTTLENECKS / CHALLENGES (3x2 Grid)
           ========================================================================= */}
       <section className="py-12 sm:py-14 lg:py-16 bg-[#F8FAFC] border-b border-slate-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2.5"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-mono font-bold uppercase tracking-wider text-rose-600">
-              <Compass className="w-3.5 h-3.5 text-rose-600" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-300 text-xs font-mono font-bold uppercase tracking-wider text-rose-700">
+              <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
               <span>CORE BOTTLENECKS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
-              Navigating the Complexity of Modern Cloud Billing
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+              Operational Pressures Challenging Modern Insurance Carriers
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              Disjointed billing scripts and siloed product telemetry constrain ARR growth. Knooviq addresses the six systemic challenges cloud software leaders face.
+              From burdensome IFRS 17 actuarial reconciliations to high claims processing costs, carriers must modernize their underlying operational fabric.
             </p>
-          </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {saasChallenges.map((item, idx) => {
-              const IconComponent = item.icon;
+          {/* 6 Challenge Cards in 3x2 Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {insuranceChallenges.map((challenge, cIdx) => {
+              const IconComp = challenge.icon;
               return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                  className="h-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-white border border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all group"
+                <div
+                  key={cIdx}
+                  className="p-5 rounded-2xl bg-white border border-slate-300 hover:border-[#0070C0] hover:shadow-md transition-all duration-300 flex flex-col justify-between"
                 >
-                  <div className="space-y-2.5">
+                  <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="p-2.5 rounded-xl bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white group-hover:scale-105 transition-all">
-                        <IconComponent className="w-5 h-5" />
+                      <div className="p-2.5 rounded-xl bg-sky-50 text-[#0070C0] border border-slate-200">
+                        <IconComp className="w-5 h-5" />
                       </div>
-                      <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                        {item.tag}
+                      <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
+                        {challenge.tag}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                      {item.title}
+
+                    <h3 className="text-base font-bold text-slate-900 tracking-tight leading-snug">
+                      {challenge.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {item.desc}
+
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      {challenge.desc}
                     </p>
                   </div>
+
                   <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-[#0070C0] font-semibold flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070C0] group-hover:scale-125 transition-transform" />
-                    <span>{item.footer}</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070C0]" />
+                    <span>{challenge.footer}</span>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -772,35 +781,27 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 4: KNOOVIQ SAAS PLATFORM ECOSYSTEM (Circular Chevron Radial Diagram)
+          SECTION 4: PLATFORM ECOSYSTEM WHEEL (3-Column Radial Layout)
           ========================================================================= */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] text-white border-b border-slate-800 relative overflow-hidden">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] border-b border-slate-800 relative overflow-hidden text-white">
         
-        {/* Dark Ambient Radial Hues */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-500/10 via-emerald-500/10 to-pink-500/10 blur-[140px] rounded-full pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
+        {/* Subtle Background Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-sky-600/10 blur-[130px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Section Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-inner">
-              <Workflow className="w-3.5 h-3.5 text-cyan-300" />
-              <span>CONNECTED SAAS ECOSYSTEM</span>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
+              <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
+              <span>CORE INSURANCE PLATFORM ECOSYSTEM</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Capabilities Designed for Modern SaaS
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Composable Insurance Platform Matrix
             </h2>
-            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              A synchronized, circular enterprise platform uniting usage metering, coterminous contracts, automated invoicing, ASC 606 general ledgers, and cognitive AI into one continuous loop.
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              A synchronized enterprise architecture unifying policy administration, IFRS 17 actuarial ledgers, reinsurance treaties, and touchless claims processing.
             </p>
-          </motion.div>
+          </div>
 
           {/* 3-Column Radial Wheel & Flanking Capabilities Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
@@ -852,7 +853,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
                 
                 {/* Glow ring under wheel */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/15 via-emerald-500/10 to-pink-500/15 blur-2xl rounded-full pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/15 via-emerald-500/10 to-purple-500/15 blur-2xl rounded-full pointer-events-none" />
 
                 <svg
                   viewBox="0 0 500 500"
@@ -889,15 +890,16 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         <foreignObject
                           x={iconPos.x - 14}
                           y={iconPos.y - 14}
-                          width={28}
-                          height={28}
-                          className="pointer-events-none overflow-visible"
+                          width="28"
+                          height="28"
+                          className="pointer-events-none"
                         >
                           <div 
-                            className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
-                            }`}
-                            style={{ color: seg.color }}
+                            className="w-full h-full flex items-center justify-center transition-transform duration-300"
+                            style={{ 
+                              color: seg.color,
+                              transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                            }}
                           >
                             <IconComponent className="w-5 h-5 drop-shadow-md" />
                           </div>
@@ -939,7 +941,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         KNOOVIQ CORE
                       </div>
                       <div className="text-sm sm:text-base font-black text-white leading-tight mt-0.5">
-                        SAAS REVENUE
+                        INSURANCE HUB
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
                         {hoveredWheelIndex !== null 
@@ -1001,7 +1003,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 6: SAP & TECHNOLOGY SOLUTIONS ("Technology Foundation for Intelligent SaaS")
+          SECTION 6: TECHNOLOGY FOUNDATION (3x2 Grid)
           ========================================================================= */}
       <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1012,121 +1014,121 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>PLATFORM ARCHITECTURE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Technology Foundation for Intelligent SaaS
+              Technology Foundation for Intelligent Insurance
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              We engineer clean-core SAP technology suites layered with modern cloud event streaming, role-based interfaces, and autonomous business AI.
+              Clean-core SAP insurance technology suites layered with real-time actuarial sub-ledgers, AI underwriting models, and touchless claims engines.
             </p>
           </div>
 
-          {/* Layered Technology Ecosystem Visual */}
+          {/* 6 Technology Suite Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Tech 1: SAP S/4HANA Core */}
+            {/* Tech 1 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CORE ERP SUITE</span>
-                <Cpu className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">POLICY CORE</span>
+                <FileCheck2 className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP S/4HANA
+                SAP Policy Management (FS-PM)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Integrated enterprise processes uniting financial ledgers, contract assets, subscription invoices, and profit center accounting into a single in-memory database.
+                Centralized contract repository orchestrating multi-line insurance policies from initial quote binding to complex midterm modifications.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Universal Journal (ACDOCA)</div>
-                <div className="flex items-center gap-1.5">• Real-time Financial Month-End Close</div>
+                <div className="flex items-center gap-1.5">• Multi-Line Contract Repository</div>
+                <div className="flex items-center gap-1.5">• Automated Endorsement Engine</div>
               </div>
             </div>
 
-            {/* Tech 2: SAP BRIM */}
+            {/* Tech 2 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BILLING ENGINE</span>
-                <CreditCard className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">ACTUARIAL SUB-LEDGER</span>
+                <Scale className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP BRIM / Billing
+                SAP Financial Products Subledger (FPSL)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                High-volume convergent charging and invoicing engine capable of rating millions of consumption events and compiling single itemized bills.
+                Specialized sub-ledger connecting actuarial models with financial accounting for seamless IFRS 17, LDTI, and local multi-GAAP reporting.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Convergent Invoicing (CI)</div>
-                <div className="flex items-center gap-1.5">• Convergent Charging (CC) High-Speed Rating</div>
+                <div className="flex items-center gap-1.5">• Automated CSM Amortization</div>
+                <div className="flex items-center gap-1.5">• Building Block & PAA Approaches</div>
               </div>
             </div>
 
-            {/* Tech 3: SAP BTP */}
+            {/* Tech 3 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">INTEGRATION & EVENT MESH</span>
-                <Cloud className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CLAIMS ADJUDICATION</span>
+                <HeartHandshake className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP Business Technology Platform
+                SAP Claims Management (FS-CM)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Seamless side-by-side extensibility keeping the ERP core clean while connecting cloud API telemetry, payment processors, and custom portals.
+                End-to-end claims lifecycle processing with automated damage assessment, fraud screening heuristics, and instant payment settlement.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• SAP Event Mesh (Kafka / REST)</div>
-                <div className="flex items-center gap-1.5">• Serverless Mediation Microservices</div>
+                <div className="flex items-center gap-1.5">• Digital FNOL Ingestion</div>
+                <div className="flex items-center gap-1.5">• Touchless Fast-Track Approval</div>
               </div>
             </div>
 
-            {/* Tech 4: SAP RAR */}
+            {/* Tech 4 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">REVENUE ACCOUNTING</span>
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">REINSURANCE ENGINE</span>
                 <ShieldCheck className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP Revenue Accounting (RAR)
+                SAP Reinsurance Management (FS-RI)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Automated statutory revenue compliance separating deferred contract liabilities from earned ARR with automated catch-up postings.
+                Automates reinsurance treaty management, multi-layered risk cessions, retrocession tracking, and claims recovery reconciliations.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• ASC 606 & IFRS 15 Standard Rules</div>
-                <div className="flex items-center gap-1.5">• Standalone Selling Price (SSP) Allocation</div>
+                <div className="flex items-center gap-1.5">• Proportional & Non-Proportional</div>
+                <div className="flex items-center gap-1.5">• Automated Reinsurance Billing</div>
               </div>
             </div>
 
-            {/* Tech 5: SAP Analytics Cloud */}
+            {/* Tech 5 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BUSINESS INTELLIGENCE</span>
-                <BarChart3 className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BILLING & CLEARING</span>
+                <CreditCard className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP Analytics Cloud
+                SAP Collections & Disbursements (FS-CD)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Executive visibility into Net Retention Rate (NRR), customer cohort margins, churn velocity, and predictive subscription pipeline modeling.
+                High-volume insurance transactional sub-ledger managing premium payment matching, direct debit sweeps, and broker commission payouts.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Real-time ARR, MRR, GRR & NRR Cockpits</div>
-                <div className="flex items-center gap-1.5">• Customer Cohort Profitability Analysis</div>
+                <div className="flex items-center gap-1.5">• Real-Time Inbound Payment Match</div>
+                <div className="flex items-center gap-1.5">• Multi-Tier Broker Splits</div>
               </div>
             </div>
 
-            {/* Tech 6: AI & Churn Defense */}
+            {/* Tech 6 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">COGNITIVE ENGINES</span>
-                <Sparkles className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">AI & DIGITAL APIs</span>
+                <Zap className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                AI & Churn Defense
+                SAP BTP Digital Insurance Mesh
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Intelligent payment retry logic factoring in banking clearing windows, automated card updater network sync, and predictive churn prevention.
+                Cloud-native API gateway enabling embedded insurance partnerships, telematics IoT ingestion, and automated fraud heuristic scoring.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Smart Multi-Attempt Dunning Algorithms</div>
-                <div className="flex items-center gap-1.5">• Usage Velocity Anomaly Alerts</div>
+                <div className="flex items-center gap-1.5">• Open Insurance API Fabric</div>
+                <div className="flex items-center gap-1.5">• Telematics & IoT Event Ingestion</div>
               </div>
             </div>
 
@@ -1136,21 +1138,21 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 7: INDUSTRY SOLUTIONS ("Solutions for Every Stage of SaaS")
+          SECTION 7: MODULAR SOLUTIONS CATALOG (Symmetrical 3x3 Grid, h-[400px])
           ========================================================================= */}
       <section id="industry-solutions" className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200 relative scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-7 sm:mb-8 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0] shadow-2xs">
-              <CreditCard className="w-3.5 h-3.5 text-[#0070C0]" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#0070C0]" />
               <span>ENTERPRISE FUNCTIONAL CATALOG</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Solutions for Every Stage of SaaS
+              Solutions for Every Insurance Domain
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              Explore specialized enterprise functional modules engineered to modernize cloud monetization across subscription plans, dynamic metering, and statutory ledgers.
+              Explore specialized enterprise functional modules engineered to modernize insurance operations across core policy administration, IFRS 17 actuarial sub-ledgers, and digital claims.
             </p>
           </div>
 
@@ -1158,9 +1160,9 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
           <div className="flex flex-wrap items-center justify-center gap-2 mb-7 sm:mb-8">
             {[
               { id: 'ALL', label: 'All Solutions' },
-              { id: 'CORE_BILLING', label: 'Subscription Core' },
-              { id: 'METERING', label: 'Usage & Metering' },
-              { id: 'REVENUE_FINOPS', label: 'Rev-Rec & FinOps' }
+              { id: 'POLICY_CLAIMS', label: 'Policy & Claims' },
+              { id: 'IFRS_FINANCE', label: 'Actuarial & Finance' },
+              { id: 'DISTRIBUTION_AI', label: 'Underwriting & Digital' }
             ].map((cat) => {
               const isActive = activeSolutionCategory === cat.id;
               return (
@@ -1180,7 +1182,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             })}
           </div>
 
-          {/* Structured Compact 3-Column Enterprise Grid (Symmetrical 3x3 Grid) */}
+          {/* Structured Compact 3-Column Enterprise Grid (Symmetrical 3x3 Grid, h-[400px]) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
             {industrySolutions
               .filter((sol) => activeSolutionCategory === 'ALL' || sol.category === activeSolutionCategory)
@@ -1255,7 +1257,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 8: BUSINESS OUTCOMES ("Turning Billing Complexity into Growth Advantage")
+          SECTION 8: BUSINESS OUTCOMES (3x2 Grid)
           ========================================================================= */}
       <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1266,91 +1268,91 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>MEASURABLE BUSINESS IMPACT</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Turning Billing Complexity into Growth Advantage
+              Turning Insurance Complexity into Competitive Advantage
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              When usage telemetry, subscriptions, payment gateways, and statutory ledgers operate in unison, SaaS organizations achieve sustainable commercial acceleration.
+              When multi-line policy engines, IFRS 17 sub-ledgers, and digital claims execute in continuous sync, carriers achieve agility, operational savings, and audit readiness.
             </p>
           </div>
 
-          {/* 6 Outcomes (Large typography, flowing blue paths, generous whitespace, NO dashboards) */}
+          {/* 6 Outcomes (Large typography, generous whitespace, NO dashboards) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             {/* Outcome 1 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <Zap className="w-5 h-5" />
+                <Scale className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Touchless Month-End Close
+                Continuous IFRS 17 Actuarial Close
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Eliminate manual spreadsheet reconciliations and proration calculations. Compress the monthly subscription billing close from weeks down to hours.
+                Compress multi-week actuarial reporting cycles down to continuous sub-ledger postings with full audit transparency into Contractual Service Margin (CSM) shifts.
               </p>
             </div>
 
             {/* Outcome 2 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <ShieldCheck className="w-5 h-5" />
+                <HeartHandshake className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                100% ASC 606 Audit Traceability
+                Same-Day Claims Settlement
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Deliver automated standalone selling price allocations and contract balance schedules, guaranteeing zero audit restatements or compliance penalties.
+                Automated digital FNOL assessment and intelligent loss adjuster allocation allow low-complexity claims to be adjudicated and paid within 24 hours.
               </p>
             </div>
 
             {/* Outcome 3 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <RefreshCw className="w-5 h-5" />
+                <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                45% Involuntary Churn Recovery
+                Zero Reinsurance Recovery Leakage
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Recover failed transactions through automated card network updater synchronizations and smart multi-attempt dunning retry schedules.
+                Automated proportional and non-proportional treaty calculations guarantee that every eligible claim dollar is captured and billed to reinsurers.
               </p>
             </div>
 
             {/* Outcome 4 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <Database className="w-5 h-5" />
+                <Clock className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Zero Unbilled Usage Leakage
+                Rapid Product Time-to-Market
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Process high-throughput API and consumption telemetry through an idempotent event mesh, ensuring zero dropped events or unrated consumption.
+                Clean-core policy configuration templates allow underwriters to design, rate, and launch innovative parametric and cyber coverages in weeks.
               </p>
             </div>
 
             {/* Outcome 5 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <FileCheck className="w-5 h-5" />
+                <Lock className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Frictionless Coterminous Expansion
+                Proactive Fraud Scheme Prevention
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Enable sales teams to add seats and product tiers mid-contract with instant automated proration and aligned annual renewal cycles.
+                Continuous AI claims pattern recognition flags staged accidents, inflated medical invoices, and duplicate property submissions before payment release.
               </p>
             </div>
 
             {/* Outcome 6 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <BarChart3 className="w-5 h-5" />
+                <Users className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Live Cohort Margin & NRR Telemetry
+                Frictionless Broker Collaboration
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Arm executive leadership with real-time Net Retention Rate and customer profitability metrics reconciled directly against core finance ledgers.
+                Self-service digital partner portals with automated multi-tier commission settlements enhance broker loyalty and accelerate bind ratios.
               </p>
             </div>
 
@@ -1360,7 +1362,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 9: SUCCESS STORY / USE CASE ("Transformation in Action")
+          SECTION 9: SUCCESS STORY / TRANSFORMATION (Conduit Pipeline & Delta Inspector)
           ========================================================================= */}
       <section className="py-10 sm:py-12 lg:py-14 bg-gradient-to-b from-[#060D1A] via-[#0A1628] to-[#060C17] border-b border-slate-800 relative overflow-hidden text-white">
         
@@ -1377,13 +1379,13 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>TRANSFORMATION ARCHITECTURE</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Transformation in Action
+              Insurance Modernization in Action
             </h2>
             <div className="text-xs sm:text-sm font-semibold text-cyan-400 font-mono tracking-wider uppercase">
-              Intelligent SaaS Revenue Architecture
+              Actuarial Subledger & Policy Architecture
             </div>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              How high-growth cloud enterprises advance from fragmented billing scripts to an integrated clean-core subscription ecosystem.
+              How global life, health, and P&C carriers advance from legacy policy silos to an integrated, cloud-native insurance enterprise.
             </p>
           </div>
 
@@ -1398,7 +1400,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             </div>
           </div>
 
-          {/* 4 Connected Interactive Transformation Cards (Compact, Crisp, Zero Numbers) */}
+          {/* 4 Connected Interactive Transformation Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch mb-3.5 sm:mb-4">
             {transformationStages.map((stage, sIdx) => {
               const IconComp = stage.icon;
@@ -1516,7 +1518,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
           ========================================================================= */}
       <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-gradient-to-r from-[#003B73] via-[#005B9E] to-[#0070C0] text-white">
         
-        {/* Abstract 3D Digital Commerce / Network Mesh Visual */}
+        {/* Abstract 3D Digital Network Mesh Visual */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div 
             className="absolute inset-0 opacity-15"
@@ -1537,25 +1539,25 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-widest text-cyan-200 backdrop-blur-sm shadow-sm">
-            <CreditCard className="w-3.5 h-3.5 text-cyan-300" />
-            <span>CONNECT YOUR SAAS REVENUE CORE</span>
+            <ShieldCheck className="w-3.5 h-3.5 text-cyan-300" />
+            <span>CONNECT YOUR INSURANCE FOUNDATION</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto">
-            Ready to Build a Smarter Subscription Business?
+            Ready to Modernize Your Insurance Business?
           </h2>
 
           <p className="text-base sm:text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed font-normal">
-            Connect your consumption metering, subscription billing, ASC 606 revenue recognition, and churn recovery with Knooviq.
+            Automate policy lifecycle administration, streamline IFRS 17 actuarial reporting, and eliminate reinsurance recovery leakage with Knooviq.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
               type="button"
-              onClick={() => onOpenContact?.('Software & SaaS Consultation')}
+              onClick={() => onOpenContact?.('Insurance & IFRS 17 Architecture Consultation')}
               className="px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#003B73] text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl shadow-black/25 transition-all flex items-center gap-2 group cursor-pointer"
             >
-              <span>Talk to Our SaaS Experts</span>
+              <span>Talk to Our Insurance Architects</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#0070C0]" />
             </button>
 
@@ -1570,15 +1572,15 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
           <div className="pt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-sky-200">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-300" />
-              <span>SAP Certified Clean Core</span>
+              <span>IFRS 17 & LDTI Compliant</span>
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-cyan-300" />
-              <span>Rapid Time-to-Value Delivery</span>
+              <span>Sub-Second Actuarial Postings</span>
             </span>
             <span className="flex items-center gap-1.5">
               <Globe2 className="w-4 h-4 text-sky-300" />
-              <span>Global 24/7 SLA AMS Support</span>
+              <span>Multi-Line P&C and Life Support</span>
             </span>
           </div>
 

@@ -6,69 +6,57 @@ import {
   Users2, 
   Activity, 
   ShieldCheck, 
-  Gauge, 
   TrendingUp, 
   BarChart3, 
   CheckCircle2, 
   ArrowRight, 
   ChevronRight, 
-  ChevronDown, 
   Sparkles, 
   Clock, 
   Workflow, 
   Compass, 
-  Cpu, 
   Zap, 
   Boxes, 
-  HelpCircle,
-  Award,
-  Globe2,
-  RefreshCw,
-  FileText,
-  Radio,
-  Server,
-  AlertTriangle,
-  FolderKanban,
+  Globe2, 
+  RefreshCw, 
+  FileText, 
+  Radio, 
+  Server, 
+  Factory,
+  Scan,
+  Cloud,
+  Sliders,
   FileCheck,
-  Split,
-  Binary,
-  Layers,
-  UserCheck
+  UserCheck,
+  Cpu,
+  Layers
 } from 'lucide-react';
 
-interface IndustryPageProps {
-  onOpenContact: (defaultService?: string) => void;
+interface TechnologyServicesIndustryPageProps {
+  onOpenContact?: (defaultTopic?: string) => void;
 }
 
-export const TechnologyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
+export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustryPageProps> = ({ 
+  onOpenContact 
+}) => {
+  // State for Section 2 Interactive Journey
   const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
-  // State for Circular Chevron Wheel
+  // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
-  // State for Modular Solutions Filter
+  // State for Section 6 Solution Category Filter
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<string>('ALL');
 
-  // State for Transformation Stage Console
+  // State for Section 8 Transformation Stage
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
 
-  // State for Architecture Tab
-  const [activeArchTab, setActiveArchTab] = useState<string>('core');
-
-  // State for FAQ Accordion
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
-  // Section 4: Circular Chevron Radial Wheel Segments (KNOOVIQ Tech Services Platform Ecosystem)
+  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ Technology Services Platform)
   const wheelSegments = [
     {
-      id: 'resource-bench',
-      title: 'Global Resource & Bench Orchestration',
-      desc: 'Real-time talent matching aligning consultant technical certifications, billing rate tiers, and client availability.',
+      id: 'resource-mgmt',
+      title: 'Global Resource Management & Bench Allocation',
+      desc: 'Dynamic matching of certified consultant skills against open project requisitions, minimizing idle bench time.',
       side: 'right',
       color: '#0284C7',
       textColor: 'text-sky-400',
@@ -76,74 +64,74 @@ export const TechnologyServicesIndustryPage: React.FC<IndustryPageProps> = ({ on
       icon: Users2
     },
     {
-      id: 'sow-milestone',
-      title: 'Statement-of-Work Milestone Governance',
-      desc: 'Automated stage-gate validation locking project deliverable acceptance before progressive invoice generation.',
+      id: 'time-expense',
+      title: 'Mobile Time, Expense & Deliverable Capture',
+      desc: 'Intuitive native mobile recording of billable hours, project receipts, and deliverable attachments with instant validation.',
       side: 'right',
       color: '#0EA5E9',
       textColor: 'text-cyan-400',
       bgGlow: 'rgba(14, 165, 233, 0.3)',
-      icon: FileCheck
+      icon: Clock
     },
     {
-      id: 'time-expense',
-      title: 'Time & Expense Multi-Entity Capture',
-      desc: 'Mobile-first timesheet booking with cross-border tax compliance, automated exchange rate valuation, and direct ledger posting.',
+      id: 'milestone-billing',
+      title: 'Fixed-Price Milestone & Stage-Gate Billing',
+      desc: 'Locking client invoices to verified digital customer sign-offs, preventing unbilled WIP and billing disputes.',
       side: 'right',
       color: '#10B981',
       textColor: 'text-emerald-400',
       bgGlow: 'rgba(16, 185, 129, 0.3)',
-      icon: Clock
+      icon: ShieldCheck
     },
     {
-      id: 'intercompany-settlement',
-      title: 'Intercompany Margin & Transfer Pricing',
-      desc: 'Automated cross-border staffing chargebacks between parent entities and offshore Global Capability Centers (GCCs).',
+      id: 'contractor-vms',
+      title: 'Contractor VMS & Subcontractor Governance',
+      desc: 'Seamless onboarding of third-party talent with strict statement-of-work (SOW) caps and automated PO matching.',
       side: 'right',
       color: '#F59E0B',
       textColor: 'text-amber-400',
       bgGlow: 'rgba(245, 158, 11, 0.3)',
-      icon: RefreshCw
+      icon: UserCheck
     },
     {
-      id: 'contractor-vendor',
-      title: 'Contractor Sourcing & VMS Integration',
-      desc: 'Seamless onboarding of third-party specialist contractors with rate cards, background verification, and auto PO generation.',
+      id: 'intercompany-billing',
+      title: 'Automated GCC Intercompany Transfer Pricing',
+      desc: 'Multi-entity cross-border chargebacks between onshore consulting branches and offshore Global Capability Centers.',
       side: 'left',
       color: '#F97316',
       textColor: 'text-orange-400',
       bgGlow: 'rgba(249, 115, 22, 0.3)',
-      icon: UserCheck
+      icon: RefreshCw
     },
     {
-      id: 'evm-profitability',
-      title: 'Project Profitability & Margin Analytics',
-      desc: 'Continuous tracking of cost-to-complete against fixed-price contractual caps to protect engagement gross margins.',
+      id: 'project-financials',
+      title: 'Multi-Model Project Cost Accounting',
+      desc: 'Real-time revenue recognition (ASC 606 / IFRS 15), work-in-progress (WIP) valuation, and profit center attribution.',
       side: 'left',
       color: '#8B5CF6',
       textColor: 'text-purple-400',
       bgGlow: 'rgba(139, 92, 246, 0.3)',
-      icon: BarChart3
+      icon: FileText
     },
     {
-      id: 'skill-taxonomy',
-      title: 'Competency Taxonomy & Talent Growth',
-      desc: 'Centralized repository of verified staff competencies, cloud credentials, and proactive upskilling pipelines.',
+      id: 'practice-analytics',
+      title: 'Practice Profitability & Utilization Analytics',
+      desc: 'Real-time dashboards tracking consultant billable realization, margin drift, and unbilled receivable aging.',
       side: 'left',
       color: '#EC4899',
       textColor: 'text-pink-400',
       bgGlow: 'rgba(236, 72, 153, 0.3)',
-      icon: Sparkles
+      icon: BarChart3
     },
     {
-      id: 'statutory-billing',
-      title: 'Global Multi-Currency Billing Engine',
-      desc: 'Automated generation of localized customer invoices with statutory withholding, GST, VAT, and e-invoicing compliance.',
+      id: 'ai-staffing',
+      title: 'AI-Powered Capacity & Demand Forecasting',
+      desc: 'Predictive machine learning models forecasting consultant availability, project ramp-downs, and rate elasticity.',
       side: 'left',
       color: '#3B82F6',
       textColor: 'text-blue-400',
       bgGlow: 'rgba(59, 130, 246, 0.3)',
-      icon: FileText
+      icon: Sparkles
     }
   ];
 
@@ -180,11 +168,11 @@ export const TechnologyServicesIndustryPage: React.FC<IndustryPageProps> = ({ on
     const tip = 7.5;
     const theta1 = -90 + index * 45 + gap;
     const theta2 = -90 + (index + 1) * 45 - gap;
-    const midAngle = (theta1 + theta2) / 2 + tip / 2;
+    const thetaMid = (theta1 + theta2) / 2 + tip / 2;
     const rad = (deg: number) => (deg * Math.PI) / 180;
     return {
-      x: cx + rMid * Math.cos(rad(midAngle)),
-      y: cy + rMid * Math.sin(rad(midAngle))
+      x: cx + rMid * Math.cos(rad(thetaMid)),
+      y: cy + rMid * Math.sin(rad(thetaMid))
     };
   };
 
@@ -192,768 +180,823 @@ export const TechnologyServicesIndustryPage: React.FC<IndustryPageProps> = ({ on
   const journeySteps = [
     {
       id: 'demand',
-      label: 'Staffing Intake',
+      label: 'Staffing Intake & Requisition',
       sublabel: 'Requisition & SOW',
-      tech: 'SAP SuccessFactors & Fieldglass',
       desc: 'Capturing role specifications, bill rate thresholds, and delivery milestones with automated contract approval workflows.',
+      tech: 'SAP SuccessFactors & Fieldglass',
       image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
       icon: Briefcase
     },
     {
-      id: 'allocation',
-      label: 'Talent Matching',
-      sublabel: 'Skill Matrix Query',
-      tech: 'S/4HANA Resource Management',
-      desc: 'Querying global delivery pools to match technical proficiencies, visa eligibility, and availability schedules.',
-      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
+      id: 'matching',
+      label: 'Global Skill & Bench Matching',
+      sublabel: 'Talent Deployment',
+      desc: 'Dynamic matching algorithms evaluating consultant skill certifications, regional cost rates, and rolling calendar availability.',
+      tech: 'SAP Resource Management',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
       icon: Users2
     },
     {
-      id: 'engagement',
-      label: 'Engagement Setup',
-      sublabel: 'WBS & Cost Center',
-      tech: 'SAP S/4HANA Cloud for Projects',
-      desc: 'Generating hierarchical project structures mapping billable tasks, overhead limits, and staffing budgets.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
-      icon: FolderKanban
-    },
-    {
-      id: 'tracking',
-      label: 'Time & Expense',
-      sublabel: 'Multi-Currency Booking',
-      tech: 'SAP Fiori My Timesheet',
-      desc: 'Mobile-enabled time recording with automated overtime rules, per diem policies, and project manager sign-off.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      id: 'time',
+      label: 'Mobile Time & Expense Capture',
+      sublabel: 'Daily Field Logging',
+      desc: 'Intuitive mobile logging of hours and receipts with policy enforcement, project work breakdown structure (WBS) checks, and manager approval.',
+      tech: 'SAP Fiori My Timesheet Apps',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
       icon: Clock
     },
     {
-      id: 'settlement',
-      label: 'Intercompany Billing',
-      sublabel: 'Transfer Pricing',
-      tech: 'SAP Advanced Intercompany Sales',
-      desc: 'Reconciling cross-border entity allocations with transfer pricing documentation and statutory tax withholding.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      id: 'milestone',
+      label: 'Deliverable Sign-Off & Billing',
+      sublabel: 'Invoice Generation',
+      desc: 'Digital deliverable acceptance triggering progressive milestone invoices, WIP unbilled clearing, and revenue recognition under ASC 606.',
+      tech: 'SAP S/4HANA Project Systems',
+      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80',
+      icon: ShieldCheck
+    },
+    {
+      id: 'intercompany',
+      label: 'GCC Intercompany Settlement',
+      sublabel: 'Cross-Border Ledgers',
+      desc: 'Automated intercompany billing generating dual accounting documents, applying transfer pricing markups, and updating local statutory ledgers.',
+      tech: 'SAP Advanced Intercompany Billing',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
       icon: RefreshCw
     },
     {
-      id: 'invoicing',
-      label: 'Revenue & Invoicing',
-      sublabel: 'Milestone Recognition',
-      tech: 'SAP Revenue Accounting (RAR)',
-      desc: 'Reconciling earned revenue according to delivery progress, generating client invoices, and eliminating revenue leakage.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      id: 'analytics',
+      label: 'Practice Profitability & Margin',
+      sublabel: 'Decision Support',
+      desc: 'Executive analytics providing real-time visibility into practice-level realization, unbilled WIP aging, and engagement margin health.',
+      tech: 'SAP Analytics Cloud',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      icon: BarChart3
+    }
+  ];
+
+  // Section 3: Technology Services Challenges
+  const serviceChallenges = [
+    {
+      icon: Users2,
+      tag: 'BENCH DWELL',
+      title: 'Unassigned Bench Dwell Time',
+      desc: 'Siloed talent databases and delayed visibility into upcoming project roll-offs cause extended unbilled bench duration and margin erosion.',
+      footer: 'Bench Bleed & Margin Drag'
+    },
+    {
+      icon: Clock,
+      tag: 'BILLING DELAYS',
+      title: 'Delayed Timesheet Submissions',
+      desc: 'Consultants submitting timesheets weeks late cause customer billing delays, disputed expense line items, and severe cash flow friction.',
+      footer: 'Unbilled WIP Slippage'
+    },
+    {
+      icon: ShieldCheck,
+      tag: 'SCOPE CREEP',
+      title: 'Fixed-Bid Scope Creep & Margin Bleed',
+      desc: 'Delivering unapproved client change requests without stage-gate deliverable sign-offs leads to project budget overruns and margin erosion.',
+      footer: 'Unrecoverable Project Overruns'
+    },
+    {
+      icon: UserCheck,
+      tag: 'SUBCONTRACTORS',
+      title: 'Subcontractor Spend Sprawl',
+      desc: 'Uncoordinated hiring of third-party staffing contractors without centralized rate benchmarking leads to uncontrolled vendor costs.',
+      footer: 'Unvetted Contractor Spend'
+    },
+    {
+      icon: RefreshCw,
+      tag: 'TRANSFER PRICING',
+      title: 'GCC Intercompany Friction',
+      desc: 'Manual quarterly reconciliations between onshore customer entities and offshore Global Capability Centers cause tax audit exposure.',
+      footer: 'Cross-Border Tax Vulnerabilities'
+    },
+    {
+      icon: BarChart3,
+      tag: 'FINANCIAL SILOS',
+      title: 'Fragmented Practice Visibility',
+      desc: 'Financial managers lacking real-time insight into engagement utilization, unbilled receivables, and project completion estimates.',
+      footer: 'Practice Margin Blindspots'
+    }
+  ];
+
+  // Section 6: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
+  const industrySolutions = [
+    {
+      title: 'Global Resource Management Hub',
+      tag: 'BENCH ALLOCATION',
+      category: 'RESOURCE_MANAGEMENT',
+      categoryLabel: 'Talent & Resourcing',
+      description: 'Centralized talent allocation matching certified consultant skills, rolling availability, and location rate cards to project demands.',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Dynamic Skill Taxonomies', 'Bench Availability Leveling', 'Automated Requisition Match'],
+      icon: Users2
+    },
+    {
+      title: 'Mobile Time & Expense Tracking',
+      tag: 'T&E AUTOMATION',
+      category: 'PROJECT_FINANCIALS',
+      categoryLabel: 'Financials & Billing',
+      description: 'Intuitive native mobile recording of billable hours, project receipts, and mileage with real-time project WBS policy checks.',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Real-Time Project Validation', 'Mobile Receipt Capture', 'Automated Manager Routing'],
+      icon: Clock
+    },
+    {
+      title: 'Fixed-Price Milestone Governance',
+      tag: 'MILESTONE INVOICING',
+      category: 'PROJECT_FINANCIALS',
+      categoryLabel: 'Financials & Billing',
+      description: 'Locking progressive client invoices to digital deliverable acceptance sign-offs, preventing unbilled WIP and billing disputes.',
+      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Stage-Gate Acceptance Sign-Off', 'Automated Billing Triggers', 'ASC 606 Revenue Timing'],
+      icon: ShieldCheck
+    },
+    {
+      title: 'Contractor VMS & Statement-of-Work',
+      tag: 'VENDOR MANAGEMENT',
+      category: 'GOVERNANCE_TAX',
+      categoryLabel: 'Governance & Analytics',
+      description: 'Standardize third-party staffing agency engagements with clear rate cards, deliverables verification, and automated PO generation.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+      highlights: ['SOW Milestone Deliverable Gates', 'Timesheet PO Cap Validation', 'Agency Spend Benchmarks'],
+      icon: UserCheck
+    },
+    {
+      title: 'GCC Intercompany Transfer Pricing',
+      tag: 'CROSS-BORDER CORE',
+      category: 'GOVERNANCE_TAX',
+      categoryLabel: 'Governance & Analytics',
+      description: 'Automated multi-entity chargebacks between onshore business units and offshore Global Capability Centers compliant with tax rules.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Dual Booking Document Sync', 'Configured Markup Calculations', 'Statutory Tax Defense Proof'],
+      icon: RefreshCw
+    },
+    {
+      title: 'Multi-Model Project Accounting',
+      tag: 'PROJECT SYSTEMS',
+      category: 'PROJECT_FINANCIALS',
+      categoryLabel: 'Financials & Billing',
+      description: 'Hierarchical Work Breakdown Structure (WBS) budgeting uniting time-and-materials, fixed-price, and retainer contracts into one ledger.',
+      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      highlights: ['WBS Cost Budget Allocation', 'Live Cost-to-Complete Tracking', 'Multi-Currency Revaluation'],
       icon: FileText
+    },
+    {
+      title: 'Practice Profitability Analytics',
+      tag: 'SAC INTELLIGENCE',
+      category: 'GOVERNANCE_TAX',
+      categoryLabel: 'Governance & Analytics',
+      description: 'Real-time visibility into practice-level realization rates, unbilled receivables, and early warning margin drift alerts.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Practice Realization Metrics', 'Unbilled WIP Aging Curves', 'Margin Drift Projections'],
+      icon: BarChart3
+    },
+    {
+      title: 'Consultant Skill Credentialing',
+      tag: 'TALENT CREDENTIALS',
+      category: 'RESOURCE_MANAGEMENT',
+      categoryLabel: 'Talent & Resourcing',
+      description: 'Centralized repository verifying cloud certifications, technical proficiencies, security clearances, and client badges.',
+      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Certification Expiry Alerts', 'Client Badge Compliance', 'Skills Gap Analysis'],
+      icon: Briefcase
+    },
+    {
+      title: 'Client Rate Card & Margin Optimizer',
+      tag: 'RATE CARD GOVERNANCE',
+      category: 'RESOURCE_MANAGEMENT',
+      categoryLabel: 'Talent & Resourcing',
+      description: 'Commercial rate card authoring and margin modeling evaluating consultant blends to protect gross margins before bid submission.',
+      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Role Blending Margin Simulator', 'Multi-Year Escalation Curves', 'Standard Discount Controls'],
+      icon: Sliders
     }
   ];
 
-  // Section 3: Technology Services Industry Challenges & Bottlenecks Data (6 Cards)
-  const industryChallenges = [
-    {
-      id: 'bench-fragmentation',
-      tag: 'CAPACITY MANAGEMENT',
-      title: 'Unmonitored Bench & Capacity Drift',
-      desc: 'Consulting teams maintain disconnected spreadsheets, causing delayed consultant redeployment, sub-optimal utilization, and unrecovered payroll overheads.',
-      status: 'CRITICAL BOTTLENECK',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
-    },
-    {
-      id: 'milestone-disputes',
-      tag: 'CONTRACT GOVERNANCE',
-      title: 'Fixed-Price Milestone Disputes',
-      desc: 'Ambiguous completion criteria between engineering teams and clients delay customer sign-off, locking working capital and creating bad debt reserves.',
-      status: 'HIGH RISK',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
-    },
-    {
-      id: 'intercompany-friction',
-      tag: 'CROSS-BORDER TAX',
-      title: 'Complex Intercompany Chargebacks',
-      desc: 'Offshore delivery hubs struggle with manual reconciliation of staff hours across jurisdictions, exposing the organization to double-taxation and transfer pricing audits.',
-      status: 'AUDIT EXPOSURE',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
-    },
-    {
-      id: 'revenue-leakage',
-      tag: 'FINANCIAL ACCURACY',
-      title: 'Unbilled Time & Travel Slippage',
-      desc: 'Late time approvals and unlogged out-of-pocket expenses slip past monthly client billing windows, permanently eroding project gross margins.',
-      status: 'MARGIN EROSION',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
-    },
-    {
-      id: 'contractor-rate-creep',
-      tag: 'VENDOR GOVERNANCE',
-      title: 'Subcontractor Rate Card Inconsistencies',
-      desc: 'Decentralized procurement of specialist contractors leads to overlapping agency margins, unverified technical credentials, and untracked PO over-expenditures.',
-      status: 'PROCUREMENT LEAKAGE',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
-    },
-    {
-      id: 'statutory-reporting',
-      tag: 'COMPLIANCE INTEGRITY',
-      title: 'Multi-Country Withholding & Tax Complexity',
-      desc: 'Deploying engineering talent across multiple territories demands real-time compliance with local labor mandates, contractor classifications, and statutory electronic invoicing.',
-      status: 'GOVERNANCE BOTTLENECK',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
-    }
-  ];
-
-  // Section 5: Architecture Tabs Data
-  const architectureTabs = [
-    {
-      id: 'core',
-      name: 'Digital Core Orchestration',
-      tag: 'SAP S/4HANA PROFESSIONAL SERVICES',
-      headline: 'Centralized Engagement Accounting & Project System Ledger',
-      desc: 'A unified single-source-of-truth linking client contracts, work breakdown structures, multi-currency ledgers, and revenue accounting.',
-      capabilities: [
-        'Single-instance universal ledger for real-time engagement gross margin analysis',
-        'Automated multi-currency billing engines supporting localized statutory taxes',
-        'Real-time Earned Value Management (EVM) tracking deliverable progress',
-        'Direct integration with SAP Revenue Accounting and Reporting (RAR) for compliance'
-      ],
-      diagramDetails: [
-        { label: 'Work Breakdown Ledger', value: 'WBS Hierarchies' },
-        { label: 'Revenue Recognition', value: 'Standard Compliance' },
-        { label: 'Billing Schedule', value: 'Milestone Triggers' },
-        { label: 'Currency Valuation', value: 'Automated FX Hedging' }
-      ]
-    },
-    {
-      id: 'edge',
-      name: 'Talent & Vendor Operations',
-      tag: 'HYBRID WORKFORCE PLATFORM',
-      headline: 'Mobile Time Capture & Vendor Management Suite',
-      desc: 'Empowering consultants, project managers, and procurement officers with intuitive self-service apps and vendor portals.',
-      capabilities: [
-        'Responsive mobile timesheet and expense entry with receipt optical recognition',
-        'Automated contractor onboarding, background compliance checks, and SOW locks',
-        'Automated skill matrix mapping matching certifications to open requisitions',
-        'Proactive capacity leveling alerts preventing project delivery delays'
-      ],
-      diagramDetails: [
-        { label: 'Mobile Time Logging', value: 'SAP Fiori Experience' },
-        { label: 'Contractor Hub', value: 'VMS Integration' },
-        { label: 'Skill Repository', value: 'Continuous Taxonomy' },
-        { label: 'Approval Automation', value: 'Multi-Tier Stage-Gates' }
-      ]
-    },
-    {
-      id: 'cloud',
-      name: 'Cloud Intelligence & Analytics',
-      tag: 'SAP BTP & ANALYTICS CLOUD',
-      headline: 'Predictive Utilization & Margin Drift Modeling',
-      desc: 'Leveraging SAP Business Technology Platform to anticipate consultant bench time, pipeline staffing gaps, and engagement profitability.',
-      capabilities: [
-        'Predictive bench utilization modeling based on historical staffing pipelines',
-        'Automated anomaly detection flagging projects with budget burn drift',
-        'Enterprise data unification across CRM pipelines, HR systems, and finance ledgers',
-        'Role-tailored executive cockpits for practice leaders and managing partners'
-      ],
-      diagramDetails: [
-        { label: 'Predictive Forecasting', value: 'Capacity Intelligence' },
-        { label: 'Margin Variance', value: 'Real-Time Telemetry' },
-        { label: 'Executive Cockpit', value: 'Managing Partner View' },
-        { label: 'Data Unification', value: 'Clean Core Integration' }
-      ]
-    }
-  ];
-
-  // Section 6: Modular Solutions Data
-  const modularSolutions = [
-    {
-      category: 'CORE',
-      title: 'Universal Project Financial Management',
-      badge: 'S/4HANA PS & FINANCE',
-      desc: 'Synchronize contract milestone gates directly with project expenditure baselines and billing schedules to ensure positive engagement cash flows.',
-      features: [
-        'Hierarchical work breakdown structure (WBS) budgeting',
-        'Live cost-to-complete variance tracking',
-        'Automated milestone billing schedule generation',
-        'Multi-currency balance sheet and revenue valuation'
-      ]
-    },
-    {
-      category: 'TALENT',
-      title: 'Global Delivery Talent Allocation Hub',
-      badge: 'RESOURCE MANAGEMENT',
-      desc: 'Optimize consultant deployment across global capability centers using dynamic skill taxonomy, availability schedules, and cost rate tiers.',
-      features: [
-        'Verified technical credential and certification tracking',
-        'Cross-location bench visibility and capacity leveling',
-        'Automated role assignment and calendar scheduling',
-        'Client rate card and margin optimization'
-      ]
-    },
-    {
-      category: 'COMPLIANCE',
-      title: 'Contractor VMS & Statement-of-Work Governance',
-      badge: 'VENDOR MANAGEMENT',
-      desc: 'Standardize third-party staffing agency engagements with clear rate cards, deliverables verification, and automated purchase order generation.',
-      features: [
-        'Subcontractor credential and tax classification audits',
-        'Statement-of-work milestone acceptance workflows',
-        'Automated vendor timesheet validation against project caps',
-        'Consolidated agency spend and rate benchmarking'
-      ]
-    },
-    {
-      category: 'ANALYTICS',
-      title: 'Practice Profitability & Margin Intelligence',
-      badge: 'SAP ANALYTICS CLOUD',
-      desc: 'Deliver real-time visibility into engagement margins, unbilled inventory, and consultant billability across global business units.',
-      features: [
-        'Practice-level utilization and realization scorecards',
-        'Unbilled WIP aging and invoice collection tracking',
-        'Early margin warning system for fixed-bid contracts',
-        'Intercompany transfer pricing margin compliance'
-      ]
-    }
-  ];
-
-  // Filtered Modular Solutions
-  const filteredSolutions = activeSolutionCategory === 'ALL' 
-    ? modularSolutions 
-    : modularSolutions.filter(s => s.category === activeSolutionCategory);
-
-  // Section 7: Standardization & Clean Core Matrix
-  const matrixRows = [
-    {
-      dimension: 'Resource Planning',
-      legacy: 'Ad-hoc spreadsheets, outdated bench files, and disconnected regional talent databases.',
-      cleanCore: 'Centralized resource allocation engine with live availability, skill taxonomy, and project matching.',
-      valueImpact: 'Optimal Global Utilization'
-    },
-    {
-      dimension: 'Time & Expense Entry',
-      legacy: 'Delayed end-of-month timesheets resulting in client billing disputes and unrecoverable slippage.',
-      cleanCore: 'Native mobile timesheet recording with real-time project validation and automated policy checks.',
-      valueImpact: 'Rapid Billing Turnaround'
-    },
-    {
-      dimension: 'Milestone Governance',
-      legacy: 'Subjective completion claims causing delayed client sign-off and working capital lockup.',
-      cleanCore: 'Formal digital stage-gate sign-offs mapped directly to automated invoice creation triggers.',
-      valueImpact: 'Consistent Cash Velocity'
-    },
-    {
-      dimension: 'Intercompany Staffing',
-      legacy: 'Manual cross-entity journal vouchers creating transfer pricing audit risks and reconciliation friction.',
-      cleanCore: 'Automated intercompany sales orders, internal invoices, and transfer pricing documentation.',
-      valueImpact: 'Audit-Proof Entity Governance'
-    },
-    {
-      dimension: 'Revenue Accounting',
-      legacy: 'Spreadsheet-based percentage-of-completion calculations vulnerable to manual calculation errors.',
-      cleanCore: 'Automated revenue recognition engines aligning deliverable progress with statutory compliance.',
-      valueImpact: 'Flawless Financial Integrity'
-    }
-  ];
-
-  // Section 8: Transformation Roadmap Stages Data
+  // Section 8: Transformation in Action (Connected 4-Phase Architecture Pipeline)
   const transformationStages = [
     {
-      badge: 'FOUNDATION',
-      title: 'Digital Core & Unified Time Booking',
-      subtitle: 'Core Ledger & Universal Timesheets',
-      tag: 'CORE UNIFICATION',
+      phase: 'INITIAL CHALLENGE',
+      badge: 'SILOED PRACTICES',
+      title: 'Disconnected Resourcing',
+      subtitle: 'Legacy Staffing Fragmentation',
+      description: 'Practice managers, resourcing coordinators, project managers, and finance teams operating on regional spreadsheets and isolated billing databases.',
+      accent: 'rose',
+      borderBase: 'border-rose-500/30 hover:border-rose-400',
+      activeBorder: 'border-rose-400 ring-2 ring-rose-500/30 bg-rose-950/20 shadow-[0_0_25px_rgba(244,63,94,0.2)]',
+      glowColor: 'bg-rose-500',
+      textColor: 'text-rose-400',
+      icon: Activity,
+      tag: 'Bench Bleed & Delayed Invoicing',
+      before: 'Spreadsheet bench lookups & end-of-month time sheets',
+      after: 'Synchronized event-driven global talent and billing ledger',
+      metrics: ['Extended Bench Days', 'Delayed Milestone Invoices', 'Intercompany Tax Gaps']
+    },
+    {
+      phase: 'STRATEGIC FRAMEWORK',
+      badge: 'CLEAN CORE',
+      title: 'BTP Resourcing Fabric',
+      subtitle: 'Architecture Foundation',
+      description: 'Deploying decoupled event-driven microservices on SAP BTP to manage real-time skill matching algorithms, contractor VMS portals, and mobile timesheets.',
+      accent: 'sky',
+      borderBase: 'border-sky-500/30 hover:border-sky-400',
+      activeBorder: 'border-sky-400 ring-2 ring-sky-500/30 bg-sky-950/20 shadow-[0_0_25px_rgba(56,189,248,0.2)]',
+      glowColor: 'bg-sky-500',
       textColor: 'text-sky-400',
-      description: 'Establish unified master data across clients, project WBS structures, and mobile-enabled consultant time logging.',
-      before: 'Fragmented regional ERPs and disparate local timesheet portals with unstandardized billing codes.',
-      after: 'Unified SAP S/4HANA Cloud for Projects establishing real-time time capture and contract ledger synchronization.',
-      metrics: ['Single-source-of-truth project master data', 'Immediate time capture into financial ledgers', 'Standardized global billing rate cards']
+      icon: Workflow,
+      tag: 'Sub-Second Resourcing Mesh',
+      before: 'Disconnected regional bench files & manual CV searches',
+      after: 'Instant algorithmic role matching & unified global bench',
+      metrics: ['Decoupled Core', 'Dynamic Skill Taxonomy', 'Mobile Timesheet Engine']
     },
     {
-      badge: 'INTEGRATION',
-      title: 'Resource Allocation & Skill Taxonomy',
-      subtitle: 'Talent Bench & Requisition Matching',
-      tag: 'WORKFORCE ALIGNMENT',
+      phase: 'DEPLOYED STACK',
+      badge: 'LIVE ECOSYSTEM',
+      title: 'S/4HANA Project Services Core',
+      subtitle: 'SAP Project Systems + Fieldglass',
+      description: 'Unifying S/4HANA Project Systems with SAP Fieldglass and automated intercompany billing, driving touchless milestone invoicing and GCC reconciliations.',
+      accent: 'cyan',
+      borderBase: 'border-cyan-500/30 hover:border-cyan-400',
+      activeBorder: 'border-cyan-400 ring-2 ring-cyan-500/30 bg-cyan-950/20 shadow-[0_0_25px_rgba(34,211,238,0.2)]',
+      glowColor: 'bg-cyan-500',
       textColor: 'text-cyan-400',
-      description: 'Deploy real-time skill matching algorithms to optimize consultant allocation and minimize unassigned bench periods.',
-      before: 'Practice managers relying on email inquiries and regional spreadsheets to discover available staff.',
-      after: 'Integrated SAP Resource Management providing complete global visibility into certified technical talent.',
-      metrics: ['Global availability and skill matrix visibility', 'Automated requisition matching', 'Minimized bench idle duration']
+      icon: Cpu,
+      tag: 'Orchestrated S/4HANA',
+      before: 'Disjointed contractor spend & manual intercompany entries',
+      after: 'Centralized project financials & automated GCC chargebacks',
+      metrics: ['S/4HANA Cloud for Projects', 'Fieldglass Integration', 'Universal Journal ACDOCA']
     },
     {
-      badge: 'ORCHESTRATION',
-      title: 'Contractor VMS & Milestone Governance',
-      subtitle: 'Vendor Governance & Stage-Gate Invoicing',
-      tag: 'VALUE PROTECTION',
+      phase: 'STRATEGIC VALUE',
+      badge: 'REALIZED IMPACT',
+      title: 'Margin & Utilization Velocity',
+      subtitle: 'Predictable Practice Growth',
+      description: 'Attaining optimal global consultant utilization, eliminating unbilled WIP slippage, protecting fixed-bid margins, and accelerating cash collection.',
+      accent: 'emerald',
+      borderBase: 'border-emerald-500/30 hover:border-emerald-400',
+      activeBorder: 'border-emerald-400 ring-2 ring-emerald-500/30 bg-emerald-950/20 shadow-[0_0_25px_rgba(52,211,153,0.2)]',
+      glowColor: 'bg-emerald-500',
       textColor: 'text-emerald-400',
-      description: 'Automate third-party specialist contractor onboarding and enforce strict digital deliverable acceptance before billing.',
-      before: 'Subcontractor invoices approved without verified timesheets or delivered project milestones.',
-      after: 'Closed-loop contractor governance locking vendor payments and client invoices to verified stage-gates.',
-      metrics: ['Locked subcontractor spend caps', 'Zero milestone invoice disputes', 'Eliminated revenue leakage']
-    },
-    {
-      badge: 'AUTONOMY',
-      title: 'Predictive Margin & GCC Orchestration',
-      subtitle: 'Predictive Analytics & Intercompany Core',
-      tag: 'ENTERPRISE SCALE',
-      textColor: 'text-purple-400',
-      description: 'Implement predictive capacity forecasting and automated cross-border transfer pricing across global delivery hubs.',
-      before: 'Manual quarterly intercompany reconciliations and delayed visibility into practice profitability.',
-      after: 'Real-time multi-entity chargebacks with predictive talent demand analytics and margin drift alerts.',
-      metrics: ['Continuous multi-entity margin tracking', 'Automated transfer pricing compliance', 'Predictive talent capacity leveling']
-    }
-  ];
-
-  // Section 10: FAQs
-  const faqs = [
-    {
-      q: 'How does SAP S/4HANA Professional Services handle fixed-price versus time-and-materials contracts?',
-      a: 'SAP S/4HANA Cloud for Projects natively supports multi-model commercial structures within the same customer engagement. Time-and-materials work packages generate billing proposals directly from approved consultant timesheets and expenses. Simultaneously, fixed-price milestones are tied to digital deliverable sign-offs that trigger revenue recognition and progressive billing schedules, ensuring complete compliance with statutory accounting standards.'
-    },
-    {
-      q: 'Can third-party specialist contractors log time and expenses alongside full-time staff?',
-      a: 'Yes. Through SAP Fieldglass and S/4HANA integration, contractors are onboarded with strict rate cards and statement-of-work boundaries. They record hours through unified, intuitive portals where time entries are automatically validated against purchase order limits and contract caps before passing to practice managers for final approval.'
-    },
-    {
-      q: 'How are cross-border staff assignments and intercompany transfer pricing handled?',
-      a: 'Our solution deploys SAP Advanced Intercompany Sales and Resource-Related Intercompany Billing. When a consultant from an offshore Global Capability Center (GCC) delivers hours on an onshore client project, the platform automatically generates internal billing documents, applies configured markups or cost-plus margins, and updates local statutory tax ledgers without manual intervention.'
-    },
-    {
-      q: 'What makes KNOOVIQ’s Clean Core implementation superior for technology services firms?',
-      a: 'KNOOVIQ adheres strictly to SAP Clean Core standards. All industry-specific extensions—such as specialized skill matching algorithms or custom client invoicing templates—are built on SAP Business Technology Platform (BTP) using public APIs. This ensures your core ERP remains fully agile, upgradeable without downtime, and perpetually ready for new technological capabilities.'
+      icon: ShieldCheck,
+      tag: 'Touchless Operations',
+      before: 'High bench dwell time & unbilled milestone write-downs',
+      after: 'Maximized consultant billability & touchless client invoicing',
+      metrics: ['Maximized Utilization', 'Zero Milestone Disputes', 'Protected Practice Margins']
     }
   ];
 
   return (
-    <div className="bg-slate-900 text-white min-h-screen">
+    <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
+      
       {/* =========================================================================
-          SECTION 1: HERO SECTION
+          SECTION 1: HERO SECTION (Pure Enterprise Services Hero)
           ========================================================================= */}
-      <section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-16">
-        {/* Full-bleed background image with deep gradient scrim */}
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+        
+        {/* Full-Bleed Enterprise Technology Services Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" 
-            alt="Technology Services & Professional Staffing" 
+            alt="Technology Services and Professional Staffing Global Workspace" 
             className="w-full h-full object-cover object-center"
           />
-          {/* Deep cinematic gradient scrim */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl">
+        {/* Seamless Cinematic Left Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+          
+          <div className="max-w-3xl space-y-4">
             
-            {/* Practice Pill Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="space-y-2.5"
+            >
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+              
+              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                Intelligent ERP for <br />
+                <span className="text-cyan-400">Technology Services & Staffing</span>
+              </h1>
+
+              {/* Subheading / Value Proposition */}
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                Global Talent Bench Governance, Milestone Billing & Intercompany GCC Settlement.
+              </p>
+            </motion.div>
+
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-mono font-bold uppercase tracking-wider mb-6"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-3 max-w-2xl"
             >
-              <Briefcase className="w-4 h-4 text-sky-400" />
-              <span>TECHNOLOGY SERVICES & PROFESSIONAL STAFFING</span>
+              {/* Clear Open Typography */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+                Empowering IT consultancies, global capability centers (GCCs), and professional staffing agencies with{' '}
+                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated{' '}
+                <strong className="text-cyan-300 font-semibold">Dynamic Skill Matching</strong>, mobile time & expense tracking, and touchless intercompany settlement.
+              </p>
+              
+              {/* Clean Feature Highlights */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                  <span>Clean Core Architecture</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>Dynamic Skill Matching</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                  <span>Automated GCC Ledgers</span>
+                </span>
+              </div>
             </motion.div>
 
-            {/* Headline */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-4"
-            >
-              Orchestrating Global Talent with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400">
-                Precision ERP Governance
-              </span>
-            </motion.h1>
-
-            {/* Subheadline / Value Proposition */}
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-slate-200 leading-relaxed mb-6 font-normal"
-            >
-              Unify consultant skill matrices, multi-currency time and expense capture, fixed-bid milestone sign-offs, and intercompany GCC billing on a single, agile SAP S/4HANA digital core.
-            </motion.p>
-
-            {/* Feature Pills */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-3 mb-8"
-            >
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                <span>Global Talent Bench Optimization</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Milestone Stage-Gate Billing</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                <span>Automated GCC Intercompany Ledger</span>
-              </span>
-            </motion.div>
-
-            {/* Architectural Trust Ribbon */}
+            {/* Enterprise Architectural Trust Ribbon */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Users2 className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">BENCH MATCH</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Users2 className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">TALENT BENCH</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Dynamic Taxonomy</div>
-                <div className="text-[10px] text-slate-300">Instant Role Pairing</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Dynamic Taxonomy</div>
+                <div className="text-xs text-slate-300 mt-0.5">Instant Role Pairing</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Clock className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">MOBILE T&E</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Clock className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">MOBILE T&E</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Live Ledger Sync</div>
-                <div className="text-[10px] text-slate-300">Zero Unbilled Slippage</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Live Ledger Sync</div>
+                <div className="text-xs text-slate-300 mt-0.5">Zero Unbilled Slippage</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">TRANSFER PRICING</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <RefreshCw className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">GCC TRANSFER</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Automated GCC Settlement</div>
-                <div className="text-[10px] text-slate-300">Statutory Tax Proof</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Automated Settlement</div>
+                <div className="text-xs text-slate-300 mt-0.5">Statutory Tax Proof</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">REVENUE CONTROL</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">REVENUE CONTROL</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Milestone Verification</div>
-                <div className="text-[10px] text-slate-300">Continuous Audit Ready</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Milestone Verification</div>
+                <div className="text-xs text-slate-300 mt-0.5">Continuous Audit Ready</div>
               </div>
             </motion.div>
 
           </div>
+
         </div>
+
       </section>
 
       {/* =========================================================================
-          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE & JOURNEY VISUALIZER
+          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10 relative overflow-hidden">
+      <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-[#F8FBFE] to-white border-b border-slate-200 relative overflow-hidden">
+        
+        {/* Subtle Ambient Tone */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
             {/* Left Narrative Column */}
-            <div className="lg:col-span-6 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-                <Activity className="w-3.5 h-3.5 text-sky-400" />
+            <div className="lg:col-span-6 space-y-4">
+              
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
+                <Activity className="w-3.5 h-3.5 text-[#0070C0]" />
                 <span>EXECUTIVE INDUSTRY PERSPECTIVE</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-                Aligning Global Staffing Capacity with <span className="text-sky-400">Engagement Profitability</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
+                Building a Connected <span className="text-[#0070C0]">Technology Services Enterprise</span>
               </h2>
 
-              <div className="border-l-4 border-sky-500 pl-4 py-2 bg-white/5 rounded-r-xl">
-                <p className="text-sm font-semibold text-slate-200 leading-relaxed italic">
-                  &ldquo;In professional staffing and technology services, margin protection relies on the speed at which billable talent is deployed, verified against milestone criteria, and invoiced without revenue leakage.&rdquo;
+              {/* Executive Thesis Quote */}
+              <div className="border-l-4 border-[#0070C0] border-y border-r border-slate-300 pl-4 py-2 bg-gradient-to-r from-sky-50/80 via-sky-50/30 to-transparent rounded-r-xl">
+                <p className="text-sm font-semibold text-slate-800 leading-relaxed italic">
+                  &ldquo;Professional services profitability is defended at the utilization margin: matching certified global talent to client demand while eliminating unbilled work-in-progress and intercompany transfer pricing friction.&rdquo;
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Consulting firms and IT staffing organizations face margin pressure from delayed bench allocation, disputed deliverable sign-offs, and intricate transfer pricing between onshore client teams and offshore development centers. Knooviq establishes an automated digital operating thread connecting talent discovery, timesheet verification, and multi-entity ledgers into an integrated SAP Clean Core.
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Knooviq engineers an integrated enterprise ecosystem on SAP S/4HANA Clean Core. By harmonizing data across staffing requisitions, mobile timesheets, fixed-bid deliverable milestones, and cross-border GCC ledgers, technology services leaders maximize consultant realization and protect practice profitability.
               </p>
 
-              {/* Information Checklist Grid (Zero Numbers/Percents) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {[
-                  'Automated skill matrix queries matching verified consultant certifications',
-                  'Closed-loop statement-of-work milestone acceptance before invoice generation',
-                  'Live multi-currency timesheet recording with automated labor law validation',
-                  'Instant intercompany chargebacks across global capability centers'
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <span className="text-xs text-slate-200 font-medium leading-snug">{item}</span>
+              {/* 3 Executive Strategic Pillars */}
+              <div className="space-y-2.5 pt-1">
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Users2 className="w-4 h-4" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Interactive Journey Visualizer */}
-            <div className="lg:col-span-6">
-              <div className="rounded-2xl bg-slate-900/90 border border-white/10 p-5 sm:p-6 shadow-2xl backdrop-blur-md">
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <Workflow className="w-4 h-4 text-sky-400" />
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
-                      STAGE WORKFLOW
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono text-sky-400 font-semibold">
-                    {journeySteps[activeJourneyStep].label}
-                  </span>
-                </div>
-
-                {/* Workflow Stage Buttons */}
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 mb-5">
-                  {journeySteps.map((step, idx) => {
-                    const isSelected = activeJourneyStep === idx;
-                    const StepIcon = step.icon;
-                    return (
-                      <button
-                        key={step.id}
-                        onClick={() => setActiveJourneyStep(idx)}
-                        className={`p-2 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${
-                          isSelected
-                            ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                            : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
-                        }`}
-                      >
-                        <StepIcon className="w-3.5 h-3.5" />
-                        <span className="text-[10px] font-mono font-semibold truncate w-full">
-                          {step.label}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Active Step Showcase Card */}
-                <div className="relative rounded-xl overflow-hidden border border-white/10 bg-slate-950">
-                  <div className="h-44 sm:h-52 w-full relative">
-                    <img 
-                      src={journeySteps[activeJourneyStep].image} 
-                      alt={journeySteps[activeJourneyStep].label} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-                      <div>
-                        <span className="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider block">
-                          {journeySteps[activeJourneyStep].sublabel}
-                        </span>
-                        <h4 className="text-base font-bold text-white">
-                          {journeySteps[activeJourneyStep].label}
-                        </h4>
-                      </div>
-                      <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/10 backdrop-blur-md text-slate-200 border border-white/15">
-                        {journeySteps[activeJourneyStep].tech}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      {journeySteps[activeJourneyStep].desc}
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Global Talent Bench Allocation</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Real-time skill matching algorithms leveling bench capacity across global delivery centers to minimize idle time.
                     </p>
                   </div>
                 </div>
 
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 3: KEY CHALLENGES & DOMAIN BOTTLENECKS (6 Cards)
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-400/30 text-xs font-mono font-bold uppercase tracking-wider text-rose-300">
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-              <span>INDUSTRY BOTTLENECKS & RISKS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Operational Vulnerabilities in Technology Services
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Structural bottlenecks that erode margins, delay client billing cycles, and strain workforce governance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {industryChallenges.map((challenge) => (
-              <div 
-                key={challenge.id}
-                className="p-6 rounded-2xl bg-slate-950/80 border border-white/10 hover:border-sky-400/40 transition-all flex flex-col justify-between group"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                      {challenge.tag}
-                    </span>
-                    <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${challenge.statusColor}`}>
-                      {challenge.status}
-                    </span>
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Clock className="w-4 h-4" />
                   </div>
-
-                  <h3 className="text-base font-bold text-white group-hover:text-sky-300 transition-colors">
-                    {challenge.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {challenge.desc}
-                  </p>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Mobile Time & Milestone Billing</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Intuitive daily timesheet recording with strict WBS project limits and digital sign-off gates for milestone invoices.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-                  <span>Standard SAP Resolution</span>
-                  <span className="text-sky-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    <span>Mitigate</span>
-                    <ArrowRight className="w-3 h-3" />
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <RefreshCw className="w-4 h-4" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Automated GCC Intercompany Ledgers</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Continuous multi-entity chargebacks between onshore business units and offshore capability centers without manual month-end delays.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Side: Clean Photography Showcase & Stage Navigator */}
+            <div className="lg:col-span-6 space-y-3.5">
+              
+              {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
+              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+                <img 
+                  src={journeySteps[activeJourneyStep].image} 
+                  alt={journeySteps[activeJourneyStep].label} 
+                  className="w-full h-full object-cover object-center transition-all duration-500"
+                />
+              </div>
+
+              {/* Stage Navigation Grid (Clean Labels + Icons, No Numbers) */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {journeySteps.map((step, idx) => {
+                  const isSelected = activeJourneyStep === idx;
+                  const StepIcon = step.icon;
+                  return (
+                    <button
+                      key={step.id}
+                      type="button"
+                      onClick={() => setActiveJourneyStep(idx)}
+                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
+                        isSelected
+                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
+                          : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
+                      }`}
+                    >
+                      <div className={`p-1.5 rounded-lg shrink-0 ${
+                        isSelected ? 'bg-white/20 text-white' : 'bg-sky-50 text-[#0070C0] border border-slate-300'
+                      }`}>
+                        <StepIcon className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold truncate">{step.label}</div>
+                        <div className={`text-[10px] truncate ${isSelected ? 'text-sky-100' : 'text-slate-500'}`}>
+                          {step.sublabel}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Selected Stage Detail Card */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-300 shadow-xs space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#003B73]">
+                    {journeySteps[activeJourneyStep].label}
+                  </span>
+                  <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-sky-50 text-[#0070C0] border border-sky-300">
+                    {journeySteps[activeJourneyStep].tech}
                   </span>
                 </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {journeySteps[activeJourneyStep].desc}
+                </p>
               </div>
-            ))}
+
+            </div>
+
           </div>
 
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 4: CIRCULAR CHEVRON RADIAL WHEEL (8 Segments)
+          SECTION 3: INDUSTRY CHALLENGES
           ========================================================================= */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-12 sm:py-14 lg:py-16 bg-[#F8FAFC] border-b border-slate-200 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Compass className="w-3.5 h-3.5 text-sky-400" />
-              <span>PLATFORM ECOSYSTEM</span>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2.5"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-mono font-bold uppercase tracking-wider text-rose-600">
+              <Compass className="w-3.5 h-3.5 text-rose-600" />
+              <span>CORE BOTTLENECKS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              KNOOVIQ Tech Services Platform Ecosystem
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
+              Navigating the Complexity of Technology Services & Staffing
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Eight interlocking capability modules synchronizing the complete professional services lifecycle.
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              Unassigned bench time, delayed timesheets, and manual intercompany reconciliations degrade margins. Knooviq addresses the six systemic challenges services leaders face.
             </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {serviceChallenges.map((item, idx) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  className="h-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-white border border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all group"
+                >
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="p-2.5 rounded-xl bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white group-hover:scale-105 transition-all">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-[#0070C0] font-semibold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070C0] group-hover:scale-125 transition-transform" />
+                    <span>{item.footer}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 4: CIRCULAR CHEVRON RADIAL DIAGRAM
+          ========================================================================= */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] text-white border-b border-slate-800 relative overflow-hidden">
+        
+        {/* Dark Ambient Radial Hues */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-sky-500/10 via-cyan-500/10 to-amber-500/10 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-inner">
+              <Workflow className="w-3.5 h-3.5 text-cyan-300" />
+              <span>CONNECTED SERVICES ECOSYSTEM</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+              Capabilities Designed for Technology Services & Staffing
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              A synchronized, circular enterprise platform uniting global bench staffing, mobile time recording, milestone stage-gate billing, contractor governance, and intercompany ledgers into one continuous loop.
+            </p>
+          </motion.div>
+
+          {/* 3-Column Radial Wheel & Flanking Capabilities Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
             
-            {/* Left Flanking Capability Cards (4) */}
-            <div className="lg:col-span-3 space-y-3 order-2 lg:order-1">
-              {wheelSegments.filter(s => s.side === 'left').map((segment, idx) => {
-                const isHovered = hoveredWheelIndex === (idx + 4);
-                const SegmentIcon = segment.icon;
+            {/* Left Column */}
+            <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+              {[7, 6, 5, 4].map((segIdx) => {
+                const item = wheelSegments[segIdx];
+                const isHovered = hoveredWheelIndex === segIdx;
                 return (
                   <div
-                    key={segment.id}
-                    onMouseEnter={() => setHoveredWheelIndex(idx + 4)}
+                    key={item.id}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
-                      isHovered 
-                        ? 'bg-white/10 border-sky-400 shadow-lg scale-[1.02]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                      isHovered
+                        ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
+                        : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
+                    style={{
+                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHovered ? item.color : undefined
+                    }}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <SegmentIcon className={`w-4 h-4 ${segment.textColor}`} />
-                      <h4 className="text-xs font-bold text-white truncate">{segment.title}</h4>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="space-y-1 text-left">
+                        <h4 className="text-sm sm:text-base font-bold tracking-tight" style={{ color: item.color }}>
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div 
+                        className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
+                        style={{ 
+                          backgroundColor: item.color,
+                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                        }}
+                      />
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-snug">{segment.desc}</p>
                   </div>
                 );
               })}
             </div>
 
-            {/* Center Circular Radial SVG Wheel (6 cols) */}
-            <div className="lg:col-span-6 flex items-center justify-center order-1 lg:order-2">
-              <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px]">
-                <svg 
-                  viewBox="0 0 500 500" 
-                  className="w-full h-full drop-shadow-2xl transition-all"
-                >
-                  <circle cx="250" cy="250" r="230" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-                  <circle cx="250" cy="250" r="105" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="4 4" />
+            {/* Center Column: 8-Segment Interlocking Chevron Circular Wheel */}
+            <div className="order-1 lg:order-2 lg:col-span-4 flex justify-center items-center py-4 sm:py-6">
+              <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
+                
+                {/* Glow ring under wheel */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/15 via-cyan-500/10 to-amber-500/15 blur-2xl rounded-full pointer-events-none" />
 
-                  {wheelSegments.map((segment, index) => {
-                    const isHovered = hoveredWheelIndex === index;
-                    const path = getChevronPath(index);
-                    const coords = getIconCoords(index);
-                    const SegmentIcon = segment.icon;
+                <svg
+                  viewBox="0 0 500 500"
+                  className="w-full h-full drop-shadow-2xl overflow-visible"
+                >
+                  {/* 8 Interlocking Chevron Segments */}
+                  {wheelSegments.map((seg, idx) => {
+                    const isHovered = hoveredWheelIndex === idx;
+                    const d = getChevronPath(idx);
+                    const iconPos = getIconCoords(idx);
+                    const IconComponent = seg.icon;
 
                     return (
-                      <g 
-                        key={segment.id}
-                        onMouseEnter={() => setHoveredWheelIndex(index)}
+                      <g
+                        key={seg.id}
+                        onMouseEnter={() => setHoveredWheelIndex(idx)}
                         onMouseLeave={() => setHoveredWheelIndex(null)}
                         className="cursor-pointer transition-all duration-300"
                       >
+                        {/* Chevron Wedge */}
                         <path
-                          d={path}
-                          fill={isHovered ? segment.color : 'rgba(15, 23, 42, 0.85)'}
-                          stroke={segment.color}
-                          strokeWidth={isHovered ? '2.5' : '1.5'}
+                          d={d}
+                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          stroke={seg.color}
+                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeLinejoin="round"
                           className="transition-all duration-300"
+                          style={{
+                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                          }}
                         />
-                        <foreignObject 
-                          x={coords.x - 12} 
-                          y={coords.y - 12} 
-                          width="24" 
-                          height="24"
-                          className="pointer-events-none"
+
+                        {/* Segment Icon */}
+                        <foreignObject
+                          x={iconPos.x - 14}
+                          y={iconPos.y - 14}
+                          width={28}
+                          height={28}
+                          className="pointer-events-none overflow-visible"
                         >
-                          <div className="w-full h-full flex items-center justify-center">
-                            <SegmentIcon 
-                              className={`w-4 h-4 transition-colors ${
-                                isHovered ? 'text-white' : segment.textColor
-                              }`} 
-                            />
+                          <div 
+                            className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
+                              isHovered ? 'scale-125' : ''
+                            }`}
+                            style={{ color: seg.color }}
+                          >
+                            <IconComponent className="w-5 h-5 drop-shadow-md" />
                           </div>
                         </foreignObject>
                       </g>
                     );
                   })}
 
-                  {/* Core Center Hub */}
-                  <circle cx="250" cy="250" r="80" fill="#0284C7" className="drop-shadow-lg" />
-                  <circle cx="250" cy="250" r="74" fill="#0B1528" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="2" />
+                  {/* Center Hub Outer Circle */}
+                  <circle
+                    cx="250"
+                    cy="250"
+                    r="106"
+                    fill="#070B14"
+                    stroke="#FFFFFF"
+                    strokeWidth="2.5"
+                    className="drop-shadow-2xl"
+                  />
+                  <circle
+                    cx="250"
+                    cy="250"
+                    r="102"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    strokeWidth="1"
+                    strokeOpacity="0.25"
+                  />
+
+                  {/* Center Hub Label */}
+                  <foreignObject
+                    x="150"
+                    y="200"
+                    width="200"
+                    height="100"
+                    className="pointer-events-none"
+                  >
+                    <div className="w-full h-full flex flex-col items-center justify-center text-center select-none px-3">
+                      <span className="text-sm sm:text-base font-black text-white tracking-wider uppercase leading-tight">
+                        KNOOVIQ Services
+                      </span>
+                      <span className="text-xs sm:text-sm font-semibold text-slate-300 mt-1 tracking-wide">
+                        Platform
+                      </span>
+                    </div>
+                  </foreignObject>
                 </svg>
 
-                {/* Hub Center Label Overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center p-4">
-                  <Briefcase className="w-5 h-5 text-cyan-400 mb-1" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-300 font-bold">KNOOVIQ</span>
-                  <span className="text-xs font-black text-white leading-tight">TECH SERVICES</span>
-                  <span className="text-[9px] font-mono text-slate-400">CLEAN CORE</span>
-                </div>
               </div>
             </div>
 
-            {/* Right Flanking Capability Cards (4) */}
-            <div className="lg:col-span-3 space-y-3 order-3">
-              {wheelSegments.filter(s => s.side === 'right').map((segment, idx) => {
-                const isHovered = hoveredWheelIndex === idx;
-                const SegmentIcon = segment.icon;
+            {/* Right Column */}
+            <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+              {[0, 1, 2, 3].map((segIdx) => {
+                const item = wheelSegments[segIdx];
+                const isHovered = hoveredWheelIndex === segIdx;
                 return (
                   <div
-                    key={segment.id}
-                    onMouseEnter={() => setHoveredWheelIndex(idx)}
+                    key={item.id}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
-                      isHovered 
-                        ? 'bg-white/10 border-sky-400 shadow-lg scale-[1.02]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                      isHovered
+                        ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
+                        : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
+                    style={{
+                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHovered ? item.color : undefined
+                    }}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <SegmentIcon className={`w-4 h-4 ${segment.textColor}`} />
-                      <h4 className="text-xs font-bold text-white truncate">{segment.title}</h4>
+                    <div className="flex items-start justify-between gap-3">
+                      <div 
+                        className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
+                        style={{ 
+                          backgroundColor: item.color,
+                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                        }}
+                      />
+                      <div className="space-y-1 text-left flex-1">
+                        <h4 className="text-sm sm:text-base font-bold tracking-tight" style={{ color: item.color }}>
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-snug">{segment.desc}</p>
                   </div>
                 );
               })}
@@ -965,272 +1008,461 @@ export const TechnologyServicesIndustryPage: React.FC<IndustryPageProps> = ({ on
       </section>
 
       {/* =========================================================================
-          SECTION 5: CLEAN CORE ARCHITECTURE LAYERS (3 Tabs)
+          SECTION 5: SAP & TECHNOLOGY FOUNDATION
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
+      <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Server className="w-3.5 h-3.5 text-sky-400" />
-              <span>CLEAN CORE ARCHITECTURE</span>
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
+              <Layers className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>PLATFORM ARCHITECTURE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Three-Tier Technology Services Architecture
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
+              Technology Foundation for Technology Services & Staffing
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Separating core transactional integrity from agile workforce applications and cloud analytics.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              We engineer clean-core SAP technology suites layered with modern cloud extensions, mobile timesheet interfaces, and automated intercompany billing.
             </p>
           </div>
 
-          {/* Architecture Layer Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {architectureTabs.map((tab) => {
-              const isActive = activeArchTab === tab.id;
+          {/* Layered Technology Ecosystem Visual */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {/* Tech 1: SAP S/4HANA */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CORE ERP SUITE</span>
+                <Briefcase className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP S/4HANA Cloud for Projects
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Integrated Project Systems (PS), hierarchical Work Breakdown Structure (WBS) budgeting, and revenue recognition compliant with ASC 606 / IFRS 15.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Universal Journal (ACDOCA) engagement ledgers</div>
+                <div className="flex items-center gap-1.5">• Automated milestone billing schedules</div>
+              </div>
+            </div>
+
+            {/* Tech 2: SAP Fieldglass */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">DOMAIN SOLUTION</span>
+                <UserCheck className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Fieldglass VMS
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Contingent workforce and statement-of-work (SOW) management enforcing agreed rate cards, purchase order limits, and deliverable acceptance.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Subcontractor SOW milestone validation</div>
+                <div className="flex items-center gap-1.5">• Closed-loop contractor invoice three-way match</div>
+              </div>
+            </div>
+
+            {/* Tech 3: SAP BTP */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">INTEGRATION & EXTENSIONS</span>
+                <Cloud className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Business Technology Platform
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Decoupled extension microservices running specialized consultant skill matching algorithms and external applicant tracking system (ATS) sync.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• AI consultant skill taxonomy parser</div>
+                <div className="flex items-center gap-1.5">• Third-party ATS & VMS integration APIs</div>
+              </div>
+            </div>
+
+            {/* Tech 4: SAP Analytics Cloud */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BUSINESS INTELLIGENCE</span>
+                <BarChart3 className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Analytics Cloud
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Real-time visibility into practice-level consultant utilization, billable realization, unbilled WIP aging curves, and engagement margin drift.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Global Consultant Utilization Scorecards</div>
+                <div className="flex items-center gap-1.5">• Early Margin Warning System for Fixed-Bid</div>
+              </div>
+            </div>
+
+            {/* Tech 5: SAP Fiori Mobile UX */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">ROLE-BASED UX</span>
+                <Scan className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Fiori Mobile Timesheet UX
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Intuitive mobile web and smartphone apps designed for consultants, practice managers, project leads, and GCC finance approvers.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• One-tap mobile time & expense entry</div>
+                <div className="flex items-center gap-1.5">• Manager milestone approval workflows</div>
+              </div>
+            </div>
+
+            {/* Tech 6: AI & Automation */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">COGNITIVE ENGINES</span>
+                <Sparkles className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                AI Capacity & Demand Forecasting
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Machine learning models predicting consultant bench roll-offs, project staffing shortages, and client bill rate elasticities.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Predictive bench roll-off forecasting</div>
+                <div className="flex items-center gap-1.5">• Automated talent requisition matching</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 6: INDUSTRY SOLUTIONS ("Solutions for Every Stage of Technology Services")
+          ========================================================================= */}
+      <section id="industry-solutions" className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200 relative scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-7 sm:mb-8 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0] shadow-2xs">
+              <Briefcase className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>ENTERPRISE FUNCTIONAL CATALOG</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+              Solutions for Every Stage of Technology Services
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              Explore specialized enterprise functional modules engineered to modernize technology staffing, project delivery, and cross-border GCC execution.
+            </p>
+          </div>
+
+          {/* Solution Domain Category Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-7 sm:mb-8">
+            {[
+              { id: 'ALL', label: 'All Solutions' },
+              { id: 'RESOURCE_MANAGEMENT', label: 'Talent & Resourcing' },
+              { id: 'PROJECT_FINANCIALS', label: 'Financials & Billing' },
+              { id: 'GOVERNANCE_TAX', label: 'Governance & Analytics' }
+            ].map((cat) => {
+              const isActive = activeSolutionCategory === cat.id;
               return (
                 <button
-                  key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id)}
-                  className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider transition-all border ${
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveSolutionCategory(cat.id)}
+                  className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                      : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
+                      ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25 scale-105'
+                      : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-2xs'
                   }`}
                 >
-                  {tab.name}
+                  {cat.label}
                 </button>
               );
             })}
           </div>
 
-          {/* Active Layer Details */}
-          {(() => {
-            const currentTab = architectureTabs.find(t => t.id === activeArchTab) || architectureTabs[0];
-            return (
-              <div className="rounded-2xl bg-slate-950/90 border border-white/10 p-6 sm:p-8 shadow-2xl">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  
-                  <div className="lg:col-span-7 space-y-4">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
-                      {currentTab.tag}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
-                      {currentTab.headline}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      {currentTab.desc}
-                    </p>
-
-                    <div className="space-y-2.5 pt-2">
-                      {currentTab.capabilities.map((cap, cIdx) => (
-                        <div key={cIdx} className="flex items-start gap-2 text-xs text-slate-200">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                          <span>{cap}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-5">
-                    <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-slate-900 border border-white/10">
-                      {currentTab.diagramDetails.map((item, dIdx) => (
-                        <div key={dIdx} className="p-3 rounded-lg bg-white/5 border border-white/10">
-                          <span className="text-[10px] font-mono text-slate-400 uppercase block mb-1">
-                            {item.label}
-                          </span>
-                          <span className="text-xs font-bold text-sky-300">
-                            {item.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            );
-          })()}
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 6: MODULAR TAILORED SOLUTIONS
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-950 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Boxes className="w-3.5 h-3.5 text-sky-400" />
-              <span>MODULAR SOLUTIONS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Specialized Solutions for Technology Services
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Composable capabilities designed to accelerate professional services performance without disrupting daily delivery.
-            </p>
-          </div>
-
-          {/* Category Filter Chips */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-10">
-            {['ALL', 'CORE', 'TALENT', 'COMPLIANCE', 'ANALYTICS'].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveSolutionCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all border ${
-                  activeSolutionCategory === cat
-                    ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                    : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Solution Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredSolutions.map((sol, idx) => (
-              <div 
-                key={idx}
-                className="p-6 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-sky-400/40 transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-300 border border-sky-500/30 font-bold">
-                      {sol.badge}
-                    </span>
-                    <span className="text-[10px] font-mono text-slate-400 uppercase">
-                      {sol.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-white">
-                    {sol.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {sol.desc}
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    {sol.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-200">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 mt-6 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400">Architecture Scope: Clean Core</span>
-                  <button
-                    onClick={() => onOpenContact(`Technology Services: ${sol.title}`)}
-                    className="text-xs font-bold text-sky-400 hover:text-sky-300 inline-flex items-center gap-1 transition-colors"
+          {/* Structured Compact 3-Column Enterprise Grid (Symmetrical 3x3 Grid) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+            {industrySolutions
+              .filter((sol) => activeSolutionCategory === 'ALL' || sol.category === activeSolutionCategory)
+              .map((sol) => {
+                const IconComponent = sol.icon;
+                return (
+                  <div
+                    key={sol.title}
+                    className="h-[400px] rounded-xl bg-white border-2 border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group"
                   >
-                    <span>Request Blueprint</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                    {/* 1. Top Image Banner - 50% Pure Photo */}
+                    <div className="relative h-1/2 w-full overflow-hidden bg-slate-100 shrink-0">
+                      <img 
+                        src={sol.image} 
+                        alt={sol.title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+                      
+                      {/* Floating Tag Pill */}
+                      <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-slate-950/80 border border-white/20 text-[9px] font-mono font-bold text-sky-300 uppercase tracking-wider backdrop-blur-md shadow-xs">
+                        {sol.tag}
+                      </div>
+                    </div>
+
+                    {/* 2. Card Content Body - 50% Height */}
+                    <div className="h-1/2 p-3.5 sm:p-4 flex flex-col justify-between space-y-2.5 overflow-hidden">
+                      
+                      <div className="space-y-1.5">
+                        {/* Category & Icon Indicator */}
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-mono font-bold text-[#0070C0] uppercase tracking-wider">
+                            {sol.categoryLabel}
+                          </span>
+                          <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
+                            <IconComponent className="w-3.5 h-3.5" />
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors leading-snug">
+                          {sol.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                          {sol.description}
+                        </p>
+                      </div>
+
+                      {/* Key Capabilities Structured Inline Chips */}
+                      <div className="space-y-2.5 pt-1">
+                        <div className="flex flex-wrap gap-1.5">
+                          {sol.highlights.map((hl, hIdx) => (
+                            <span
+                              key={hIdx}
+                              className="px-2 py-0.5 rounded-md bg-slate-100 text-[10px] font-medium text-slate-700 border border-slate-200/80"
+                            >
+                              {hl}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 7: BUSINESS OUTCOMES
+          ========================================================================= */}
+      <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-mono font-bold uppercase tracking-wider text-emerald-700">
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
+              <span>MEASURABLE BUSINESS IMPACT</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
+              Turning Professional Services Complexity into Profit Advantage
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              When consultant staffing, mobile timesheets, fixed-bid milestones, and GCC ledgers operate in unison, services organizations achieve sustainable profitability.
+            </p>
+          </div>
+
+          {/* 6 Outcomes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Outcome 1 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Users2 className="w-5 h-5" />
               </div>
-            ))}
+              <h3 className="text-lg font-black text-slate-900">
+                Minimized Bench Idle Time
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Deploy global consultants rapidly using dynamic skill matching algorithms, reducing unbilled bench dwell time by weeks.
+              </p>
+            </div>
+
+            {/* Outcome 2 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Clock className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Eliminated Unbilled WIP Slippage
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Mobile daily timesheet entry enforces project WBS boundaries, preventing lost hours and month-end invoice disputes.
+              </p>
+            </div>
+
+            {/* Outcome 3 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Protected Fixed-Bid Margins
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Stage-gate deliverable sign-offs prevent unauthorized scope creep, ensuring fixed-price contracts deliver their intended profit margins.
+              </p>
+            </div>
+
+            {/* Outcome 4 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <UserCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Governed Subcontractor Spend
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Enforce negotiated rate cards and statement-of-work limits across third-party staffing agencies with automated PO matching.
+              </p>
+            </div>
+
+            {/* Outcome 5 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <RefreshCw className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Automated GCC Transfer Pricing
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Generate intercompany chargebacks automatically between onshore client units and offshore capability centers without tax reconciliation backlogs.
+              </p>
+            </div>
+
+            {/* Outcome 6 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <BarChart3 className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Continuous Margin Transparency
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Deliver real-time insight into practice realization, consultant billability, and engagement margins across global business units.
+              </p>
+            </div>
+
           </div>
 
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 7: LEGACY VS CLEAN CORE STANDARDIZATION MATRIX
+          SECTION 8: TRANSFORMATION IN ACTION
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-10 sm:py-12 lg:py-14 bg-gradient-to-b from-[#060D1A] via-[#0A1628] to-[#060C17] border-b border-slate-800 relative overflow-hidden text-white">
+        
+        {/* Subtle Ambient Background Grids & Radial Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(0,112,192,0.18),transparent)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Split className="w-3.5 h-3.5 text-sky-400" />
-              <span>STANDARDIZATION MATRIX</span>
+          {/* Header */}
+          <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+              <Workflow className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <span>TRANSFORMATION ARCHITECTURE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Legacy Practice vs. Modern Clean Core
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Transformation in Action
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Transforming fragmented staffing records into an integrated, real-time enterprise ledger.
+            <div className="text-xs sm:text-sm font-semibold text-cyan-400 font-mono tracking-wider uppercase">
+              Intelligent Technology Services Architecture
+            </div>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              How technology services firms advance from fragmented resourcing spreadsheets to an integrated clean-core event ecosystem.
             </p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse rounded-2xl overflow-hidden border border-white/10 text-left text-xs">
-              <thead className="bg-slate-950 text-slate-300 font-mono text-[11px] uppercase">
-                <tr>
-                  <th className="p-4 border-b border-white/10">Process Dimension</th>
-                  <th className="p-4 border-b border-white/10 text-rose-300">Legacy Approach</th>
-                  <th className="p-4 border-b border-white/10 text-sky-300">Modern Clean Core (KNOOVIQ)</th>
-                  <th className="p-4 border-b border-white/10 text-emerald-300">Measurable Value Impact</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 bg-slate-950/60">
-                {matrixRows.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/5 transition-colors">
-                    <td className="p-4 font-bold text-white whitespace-nowrap">{row.dimension}</td>
-                    <td className="p-4 text-slate-400 leading-relaxed">{row.legacy}</td>
-                    <td className="p-4 text-slate-200 leading-relaxed font-medium">{row.cleanCore}</td>
-                    <td className="p-4 text-emerald-400 font-mono font-semibold whitespace-nowrap">{row.valueImpact}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 8: TRANSFORMATION ROADMAP
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
-              <span>TRANSFORMATION ROADMAP</span>
+          {/* Flowing Laser Conduit Connecting the Stages */}
+          <div className="hidden lg:block relative mb-4">
+            <div className="h-0.5 bg-slate-800 rounded-full w-full relative overflow-hidden">
+              <motion.div 
+                animate={{ x: ['-25%', '125%'] }} 
+                transition={{ repeat: Infinity, duration: 4, ease: 'linear' }}
+                className="absolute top-0 bottom-0 w-48 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_12px_#22d3ee]" 
+              />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Phased Professional Services Transformation
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Four progressive architectural stages transitioning consulting firms to real-time Clean Core automation.
-            </p>
           </div>
 
-          {/* Stages Selector */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {/* 4 Connected Interactive Transformation Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch mb-3.5 sm:mb-4">
             {transformationStages.map((stage, sIdx) => {
+              const IconComp = stage.icon;
               const isSelected = activeTransformStage === sIdx;
               return (
                 <div
-                  key={sIdx}
+                  key={stage.title}
                   onClick={() => setActiveTransformStage(sIdx)}
-                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+                  className={`cursor-pointer rounded-xl backdrop-blur-md p-4 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-2 ${
                     isSelected
-                      ? 'bg-sky-500/20 border-sky-400 shadow-xl scale-[1.02]'
-                      : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                      ? stage.activeBorder
+                      : `bg-white/[0.03] ${stage.borderBase}`
                   }`}
                 >
-                  <div className="space-y-2">
-                    <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${stage.textColor}`}>
-                      {stage.badge}
-                    </span>
-                    <h4 className="text-sm font-bold text-white">{stage.title}</h4>
-                    <p className="text-[11px] text-slate-300 leading-snug">{stage.subtitle}</p>
+                  {/* Subtle Top Glowing Strip on Active */}
+                  {isSelected && (
+                    <div className={`absolute top-0 left-0 right-0 h-0.5 ${stage.glowColor} shadow-[0_0_10px_currentColor]`} />
+                  )}
+
+                  <div className="space-y-2.5">
+                    {/* Header: Phase badge & Icon */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className={`w-2 h-2 rounded-full ${stage.glowColor} ${isSelected ? 'animate-ping' : ''}`} />
+                        <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${stage.textColor}`}>
+                          {stage.badge}
+                        </span>
+                      </div>
+                      <div className={`p-1.5 rounded-lg bg-white/5 border border-white/10 ${stage.textColor} group-hover:scale-110 transition-transform`}>
+                        <IconComp className="w-3.5 h-3.5" />
+                      </div>
+                    </div>
+
+                    {/* Stage Title & Subtitle */}
+                    <div>
+                      <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                        {stage.title}
+                      </h3>
+                      <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wide">
+                        {stage.subtitle}
+                      </div>
+                    </div>
+
+                    {/* Concise Narrative */}
+                    <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                      {stage.description}
+                    </p>
                   </div>
-                  <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-slate-400">{stage.tag}</span>
-                    <span className={`font-bold ${isSelected ? 'text-sky-300' : 'text-slate-400'}`}>
-                      {isSelected ? 'ACTIVE' : 'EXPLORE'}
+
+                  {/* Bottom Deliverable Pillar */}
+                  <div className="pt-2.5 mt-3 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-[9.5px] font-mono font-medium text-slate-400">
+                      {stage.tag}
+                    </span>
+                    <span className={`text-[9.5px] font-mono font-bold uppercase tracking-wider ${stage.textColor} group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5`}>
+                      <span>{isSelected ? 'ACTIVE' : 'INSPECT'}</span>
+                      <ChevronRight className="w-3 h-3" />
                     </span>
                   </div>
                 </div>
@@ -1238,44 +1470,46 @@ export const TechnologyServicesIndustryPage: React.FC<IndustryPageProps> = ({ on
             })}
           </div>
 
-          {/* Interactive Live Transformation Console */}
+          {/* Interactive Live Transformation Console / Delta Inspector */}
           {(() => {
             const currentStage = transformationStages[activeTransformStage];
             return (
-              <div className="rounded-2xl bg-slate-900 border border-white/10 p-6 shadow-2xl backdrop-blur-md">
-                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-4">
-                  <div>
-                    <span className={`text-xs font-mono font-bold uppercase tracking-wider ${currentStage.textColor}`}>
-                      {currentStage.badge} ARCHITECTURAL DELTA
-                    </span>
-                    <h3 className="text-lg font-bold text-white mt-0.5">
-                      {currentStage.title} &mdash; {currentStage.subtitle}
-                    </h3>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-mono">
-                    Scope: {currentStage.tag}
-                  </span>
-                </div>
+              <div className="rounded-xl bg-slate-900/90 border-2 border-slate-700/80 p-3.5 sm:p-4 shadow-xl backdrop-blur-md relative overflow-hidden">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
+                  
+                  {/* Left: Active Stage Name & Transformation Contrast */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 flex-1">
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className={`w-2.5 h-2.5 rounded-full ${currentStage.glowColor} animate-pulse`} />
+                      <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                        {currentStage.title} Delta:
+                      </span>
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
-                    <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider mb-1">Legacy State</div>
-                    <p className="text-xs text-slate-200">{currentStage.before}</p>
+                    {/* Before vs After Ribbon */}
+                    <div className="flex flex-wrap items-center gap-2 text-xs">
+                      <span className="px-2 py-0.5 rounded-md bg-rose-950/60 border border-rose-500/40 text-rose-300 text-[10.5px] font-mono">
+                        PRIOR: {currentStage.before}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <span className="px-2 py-0.5 rounded-md bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-[10.5px] font-mono font-medium">
+                        TRANSFORMED: {currentStage.after}
+                      </span>
+                    </div>
                   </div>
-                  <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
-                    <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">Modernized Clean Core</div>
-                    <p className="text-xs text-slate-200">{currentStage.after}</p>
-                  </div>
-                </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-4 mt-4 border-t border-white/10">
-                  <span className="text-xs font-mono text-slate-400 uppercase">Key Results:</span>
-                  {currentStage.metrics.map((m, idx) => (
-                    <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-sky-200">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      <span>{m}</span>
-                    </span>
-                  ))}
+                  {/* Right: Stage Key Capabilities Chips */}
+                  <div className="flex flex-wrap items-center gap-1.5 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-white/10 w-full lg:w-auto">
+                    {currentStage.metrics.map((item, mIdx) => (
+                      <span
+                        key={mIdx}
+                        className="px-2 py-0.5 rounded-md bg-white/5 border border-white/15 text-[10px] font-mono text-slate-300 font-semibold"
+                      >
+                        ✓ {item}
+                      </span>
+                    ))}
+                  </div>
+
                 </div>
               </div>
             );
@@ -1285,171 +1519,79 @@ export const TechnologyServicesIndustryPage: React.FC<IndustryPageProps> = ({ on
       </section>
 
       {/* =========================================================================
-          SECTION 9: STRATEGIC ENTERPRISE VALUE DRIVERS (Zero Numbers/Percents)
+          SECTION 9: FINAL CTA (Full-Width Blue Executive Section)
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-              <span>ENTERPRISE SAFEGUARDS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Strategic Value Drivers for Modern Professional Services
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Architectural advantages realized by consulting practices running on SAP Clean Core.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 inline-block">
-                  <TrendingUp className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Continuous Bench Utilization</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Real-time talent matching eliminates idle consultant bench periods by pairing technical credentials with incoming client project demand immediately.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-sky-400 font-bold uppercase">
-                CAPACITY OPTIMIZATION
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 inline-block">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Zero Milestone Disputes</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Clear digital acceptance criteria map deliverable proof directly to invoice proposals, safeguarding client relationships and accelerating cash flow.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-emerald-400 font-bold uppercase">
-                BILLING ACCELERATION
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 inline-block">
-                  <RefreshCw className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Seamless GCC Transfer Pricing</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Automated intercompany billing enforces statutory cross-border markup documentation, eliminating transfer pricing audit exposures across all jurisdictions.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-purple-400 font-bold uppercase">
-                TAX & ENTITY GOVERNANCE
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 inline-block">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Full Revenue Compliance</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Native integration with SAP Revenue Accounting and Reporting (RAR) automatically aligns earned revenue with delivery completion and accounting standards.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-amber-400 font-bold uppercase">
-                FINANCIAL INTEGRITY
-              </div>
-            </div>
-          </div>
-
+      <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-gradient-to-r from-[#003B73] via-[#005B9E] to-[#0070C0] text-white">
+        
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%)',
+              backgroundSize: '100% 100%'
+            }}
+          />
+          <div 
+            className="absolute inset-0 opacity-[0.08]"
+            style={{
+              backgroundImage: 'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
+              backgroundSize: '36px 36px'
+            }}
+          />
         </div>
-      </section>
 
-      {/* =========================================================================
-          SECTION 10: INDUSTRY FAQS (Accordion)
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-950 border-b border-white/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           
-          <div className="text-center mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <HelpCircle className="w-3.5 h-3.5 text-sky-400" />
-              <span>COMMONLY ASKED QUESTIONS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Technology Services & Staffing ERP Inquiries
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Critical architecture considerations for technology consultancies modernizing on SAP.
-            </p>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-widest text-cyan-200 backdrop-blur-sm shadow-sm">
+            <Briefcase className="w-3.5 h-3.5 text-cyan-300" />
+            <span>CONNECT YOUR TECHNOLOGY SERVICES ENTERPRISE</span>
           </div>
 
-          <div className="space-y-3">
-            {faqs.map((faq, fIdx) => {
-              const isOpen = openFaqIndex === fIdx;
-              return (
-                <div 
-                  key={fIdx}
-                  className="rounded-2xl border border-white/10 bg-slate-900/80 overflow-hidden transition-all"
-                >
-                  <button
-                    onClick={() => toggleFaq(fIdx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors"
-                  >
-                    <span className="text-sm font-bold text-white">{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 text-sky-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-white/5">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 11: FINAL EXECUTIVE CTA
-          ========================================================================= */}
-      <section className="py-20 bg-gradient-to-r from-sky-950 via-slate-950 to-blue-950 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>KNOOVIQ PRACTICE ENGAGEMENT</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-            Accelerate Your Technology Services Transformation
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto">
+            Ready to Build a Smarter Technology Services Business?
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-200 max-w-2xl mx-auto leading-relaxed">
-            Schedule a dedicated solution architecture session with our SAP Professional Services practice leads to evaluate your staffing utilization, milestone billing, and GCC transfer pricing.
+          <p className="text-base sm:text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed font-normal">
+            Connect your talent resourcing, mobile timesheets, fixed-bid milestones, and GCC ledgers with Knooviq.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
-              onClick={() => onOpenContact('Technology Services Architecture Consultation')}
-              className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-sky-500/25 flex items-center gap-2"
+              type="button"
+              onClick={() => onOpenContact?.('Technology Services & Staffing Practice')}
+              className="px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#003B73] text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl shadow-black/25 transition-all flex items-center gap-2 group"
             >
-              <span>Consult Practice Architect</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Talk to Services Experts</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#0070C0]" />
             </button>
+
             <Link
-              to="/industries"
-              className="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold uppercase tracking-wider border border-white/20 transition-all flex items-center gap-2"
+              to="/solutions/sap-s4hana"
+              className="px-8 py-4 rounded-xl bg-transparent hover:bg-white/10 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-white/40 hover:border-white transition-all flex items-center gap-2"
             >
-              <span>Explore All Industries</span>
+              <span>Explore SAP Solutions</span>
             </Link>
           </div>
+
+          <div className="pt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-sky-200">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-300" />
+              <span>SAP Certified Clean Core</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-cyan-300" />
+              <span>Rapid Time-to-Value Delivery</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Globe2 className="w-4 h-4 text-sky-300" />
+              <span>Global 24/7 SLA AMS Support</span>
+            </span>
+          </div>
+
         </div>
+
       </section>
+
     </div>
   );
 };

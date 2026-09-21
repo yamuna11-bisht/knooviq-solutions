@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
+  Zap, 
   CreditCard, 
-  Layers, 
-  Activity, 
-  ShieldCheck, 
   TrendingUp, 
   BarChart3, 
+  Activity, 
   CheckCircle2, 
   ArrowRight, 
   ChevronRight, 
@@ -15,28 +14,29 @@ import {
   Clock, 
   Workflow, 
   Compass, 
-  Zap, 
   Boxes, 
   Globe2, 
   RefreshCw, 
   FileText, 
-  Radio, 
-  Server, 
-  Cloud, 
-  FileCheck, 
-  Split, 
+  ShieldCheck, 
+  Layers, 
+  Lock, 
+  Coins, 
+  Smartphone, 
+  QrCode, 
+  Users, 
+  Building2, 
+  Cpu, 
   Database, 
   Sliders, 
-  AlertTriangle, 
-  Cpu,
-  Users
+  AlertTriangle 
 } from 'lucide-react';
 
-interface SoftwareSaasIndustryPageProps {
+interface FinTechIndustryPageProps {
   onOpenContact?: (defaultTopic?: string) => void;
 }
 
-export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> = ({ 
+export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
   // State for Section 2 Interactive Journey
@@ -51,12 +51,12 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
   // State for Section 9 Transformation Stage
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
 
-  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ SaaS Revenue Platform Ecosystem)
+  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ FinTech Platform Ecosystem)
   const wheelSegments = [
     {
-      id: 'usage-rating',
-      title: 'Consumption Metering & Dynamic Rating',
-      desc: 'High-throughput ingestion capturing API calls, compute milliseconds, and storage metrics for real-time rating.',
+      id: 'realtime-rails',
+      title: 'Real-Time Payment Rails & Clearing',
+      desc: 'Sub-second payment settlement pipelines routing transactions across FedNow, RTP, SEPA Instant, Pix, and UPI rails.',
       side: 'right',
       color: '#22C55E', // Green
       textColor: 'text-emerald-400',
@@ -64,74 +64,74 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: Zap
     },
     {
-      id: 'contract-lifecycle',
-      title: 'Contract Lifecycle & Coterminous Terms',
-      desc: 'Seamless subscription renewals, mid-contract tier upgrades, seat expansions, and coterminous alignment.',
+      id: 'baas-ledgers',
+      title: 'Embedded Finance & BaaS Sub-Ledgers',
+      desc: 'High-concurrency virtual account ledger architecture synchronizing partner card programs and consumer credit balances.',
       side: 'right',
       color: '#84CC16', // Lime Green
       textColor: 'text-lime-400',
       bgGlow: 'rgba(132, 204, 22, 0.3)',
-      icon: FileCheck
+      icon: Layers
     },
     {
-      id: 'convergent-billing',
-      title: 'Automated Convergent Invoicing',
-      desc: 'Consolidate flat fees, dynamic consumption overages, and partner add-ons onto a single enterprise invoice.',
+      id: 'digital-wallets',
+      title: 'Multi-Currency Stored-Value Wallets',
+      desc: 'Frictionless cross-border wallet balances with instant FX auto-conversion, peer-to-peer transfers, and regulatory float auditing.',
       side: 'right',
       color: '#EAB308', // Yellow
       textColor: 'text-yellow-400',
       bgGlow: 'rgba(234, 179, 8, 0.3)',
-      icon: CreditCard
+      icon: Smartphone
     },
     {
-      id: 'rev-rec',
-      title: 'ASC 606 / IFRS 15 Revenue Accounting',
-      desc: 'Automated contract identification, standalone selling price (SSP) allocation, and balance sheet liability scheduling.',
+      id: 'merchant-settlement',
+      title: 'Merchant Interchange & Fee Settlement',
+      desc: 'Automated interchange fee splitting, chargeback reserve management, and daily merchant disbursement reconciliation.',
       side: 'right',
       color: '#F97316', // Orange
       textColor: 'text-orange-400',
       bgGlow: 'rgba(249, 115, 22, 0.3)',
-      icon: ShieldCheck
+      icon: CreditCard
     },
     {
-      id: 'dunning-churn',
-      title: 'Automated Dunning & Churn Defense',
-      desc: 'Tokenized card updater networks, intelligent retry schedules, and automated dunning preventing involuntary churn.',
+      id: 'fraud-prevention',
+      title: 'Sub-Second AI Fraud Interception',
+      desc: 'Machine learning fraud detection scoring high-velocity transactions in under 20 milliseconds to stop account takeovers.',
       side: 'left',
       color: '#F43F5E', // Rose
       textColor: 'text-rose-400',
       bgGlow: 'rgba(244, 63, 94, 0.3)',
-      icon: RefreshCw
+      icon: Lock
     },
     {
-      id: 'multi-currency-tax',
-      title: 'Global Tax & Statutory E-Invoicing',
-      desc: 'Multi-jurisdiction sales tax calculation, digital services taxes, European reverse-charge VAT, and Peppol e-invoices.',
+      id: 'iso20022-mesh',
+      title: 'ISO 20022 Event Streaming Mesh',
+      desc: 'Cloud-native Kafka and SAP Event Mesh pipelines translating disparate payload formats into standardized financial messaging.',
       side: 'left',
       color: '#EC4899', // Pink
       textColor: 'text-pink-400',
       bgGlow: 'rgba(236, 72, 153, 0.3)',
-      icon: Globe2
+      icon: Workflow
     },
     {
-      id: 'partner-revshare',
-      title: 'Marketplace & Partner Revenue Sharing',
-      desc: 'Multi-party settlement calculating ecosystem developer royalties, agency commissions, and platform fees.',
+      id: 'kyc-compliance',
+      title: 'Automated AML & Travel Rule Compliance',
+      desc: 'Cryptographic compliance verification for counterparty identity exchange and regulatory anti-money laundering monitoring.',
       side: 'left',
       color: '#A855F7', // Purple
       textColor: 'text-purple-400',
       bgGlow: 'rgba(168, 85, 247, 0.3)',
-      icon: Split
+      icon: ShieldCheck
     },
     {
-      id: 'saas-metrics',
-      title: 'ARR, NRR & Cohort Margin Analytics',
-      desc: 'Real-time Net Retention Rate, customer lifetime value, and cohort margin telemetry directly from general ledgers.',
+      id: 'ledger-sync',
+      title: 'Enterprise ERP General Ledger Sync',
+      desc: 'Clean-core integration posting aggregated transactional batches into SAP S/4HANA Universal Journal without API rate stalls.',
       side: 'left',
       color: '#06B6D4', // Cyan
       textColor: 'text-cyan-400',
       bgGlow: 'rgba(6, 182, 212, 0.3)',
-      icon: BarChart3
+      icon: Database
     }
   ];
 
@@ -175,525 +175,541 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
   // Section 2: Journey Steps (Clean, no numbers, no statistics, no percentages)
   const journeySteps = [
     {
-      id: 'consumption-rating',
-      label: 'Usage Ingestion',
-      sublabel: 'Idempotent Telemetry',
-      desc: 'Stream high-velocity API calls, data throughput, and compute seconds into real-time convergent charging mediation with sub-second latency.',
-      tech: 'SAP BTP Event Mesh',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      id: 'api-authorization',
+      label: 'Sub-Second Auth',
+      sublabel: 'Tokenized Card & Pay Ingestion',
+      desc: 'Authorize high-velocity payment requests with sub-20ms latency, cryptographic token validation, and instant balance checks.',
+      tech: 'SAP BTP & Distributed Cloud Gateway',
+      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
       icon: Zap
     },
     {
-      id: 'contract-terms',
-      label: 'Subscription Terms',
-      sublabel: 'Coterminous Align',
-      desc: 'Unify tiered subscriptions, seat licenses, minimum commitments, and add-on upgrades into automated coterminous contract lifecycles.',
-      tech: 'SAP Subscription Billing',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
-      icon: FileCheck
+      id: 'fraud-scoring',
+      label: 'Real-Time Fraud AI',
+      sublabel: 'Behavioral Anomaly Interception',
+      desc: 'Evaluate device fingerprints, IP proxy risk, and transactional velocities to block synthetic identities and bot-driven fraud.',
+      tech: 'Machine Learning Risk Engine',
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
+      icon: Lock
     },
     {
-      id: 'convergent-billing',
-      label: 'Convergent Invoicing',
-      sublabel: 'Unified Billing Core',
-      desc: 'Consolidate flat recurring fees, dynamic usage overages, and partner add-ons on a single transparent enterprise billing statement.',
-      tech: 'SAP Convergent Invoicing',
+      id: 'iso20022-clearing',
+      label: 'ISO 20022 Clearing',
+      sublabel: 'Multi-Rail Routing',
+      desc: 'Route structured XML payment messages dynamically through the most cost-effective and immediate global clearing corridor.',
+      tech: 'SAP Integration Suite & Event Mesh',
+      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      icon: Workflow
+    },
+    {
+      id: 'virtual-ledger',
+      label: 'Virtual Accounts & Wallets',
+      sublabel: 'Multi-Tenant Stored Value',
+      desc: 'Update multi-currency virtual wallet balances and calculate interchange revenue splits with zero ledger divergence.',
+      tech: 'SAP Financial Services Subledger',
+      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80',
+      icon: Smartphone
+    },
+    {
+      id: 'merchant-disbursement',
+      label: 'Merchant Settlement',
+      sublabel: 'Automated Payout Rails',
+      desc: 'Reconcile scheme fees, calculate net merchant payouts, manage rolling chargeback reserves, and trigger local clearing wires.',
+      tech: 'SAP Collections & Disbursements',
       image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
       icon: CreditCard
     },
     {
-      id: 'rev-rec',
-      label: 'Revenue Accounting',
-      sublabel: 'ASC 606 / IFRS 15',
-      desc: 'Automate standalone selling price (SSP) allocation, contract liability schedules, and cumulative catch-ups for mid-term amendments.',
-      tech: 'SAP Revenue Accounting (RAR)',
+      id: 'erp-gl-postings',
+      label: 'Continuous ERP Close',
+      sublabel: 'Clean-Core GL Synchronization',
+      desc: 'Batch millions of micro-transactions into compressed, audit-ready summary postings on the SAP S/4HANA Universal Journal.',
+      tech: 'SAP S/4HANA Clean-Core Finance',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-      icon: ShieldCheck
-    },
-    {
-      id: 'dunning-defense',
-      label: 'Dunning & Churn',
-      sublabel: 'ARR Preservation',
-      desc: 'Prevent involuntary churn via tokenized card updater sync, smart retry schedules factoring in clearing windows, and self-service portals.',
-      tech: 'SAP Billing Dunning Core',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
-      icon: RefreshCw
-    },
-    {
-      id: 'saas-finops',
-      label: 'Cohort Telemetry',
-      sublabel: 'ARR & NRR Analytics',
-      desc: 'Deliver real-time Net Retention Rate, customer lifetime value, and cohort margins reconciled directly against general ledgers.',
-      tech: 'SAP Analytics Cloud',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
-      icon: BarChart3
+      icon: Database
     }
   ];
 
-  // Section 3: SaaS Challenges & Bottlenecks Data
-  const saasChallenges = [
+  // Section 3: FinTech Challenges Data
+  const fintechChallenges = [
     {
-      tag: 'METERING DRIFT',
+      tag: 'TRANSACTION LATENCY',
       icon: Zap,
-      title: 'Unmetered Usage Slippage',
-      desc: 'Disconnected product telemetry drops high-volume API calls and storage events, resulting in unbilled customer overages and gross margin leakage.',
-      footer: 'Unbilled Consumption Waste'
+      title: 'High-Throughput Authorization Bottlenecks',
+      desc: 'Legacy core banking systems collapse under the strain of Black Friday transaction surges, triggering rejected payments and customer churn.',
+      footer: 'Peak Concurrency Queue Stalls'
     },
     {
-      tag: 'REV-REC DELAY',
-      icon: ShieldCheck,
-      title: 'Manual ASC 606 Spreadsheets',
-      desc: 'Tracking standalone selling prices and mid-term amendments across offline spreadsheets creates massive audit restatement risks and compliance penalties.',
-      footer: 'Spreadsheet Rev-Rec Vulnerability'
-    },
-    {
-      tag: 'CHURN LEAKAGE',
-      icon: RefreshCw,
-      title: 'Passive Involuntary Churn',
-      desc: 'Up to 30% of customer cancellations stem from expired credit cards and silent payment failures without intelligent multi-attempt dunning schedules.',
-      footer: 'Silent ARR Erosion'
-    },
-    {
-      tag: 'CONTRACT FRICTION',
-      icon: FileCheck,
-      title: 'Complex Coterminous Upgrades',
-      desc: 'Legacy billing systems fail to calculate precise prorations when enterprise buyers add seats mid-quarter, creating billing disputes and churn.',
-      footer: 'Proration Calculation Friction'
-    },
-    {
-      tag: 'DATA SILOS',
+      tag: 'LEDGER DIVERGENCE',
       icon: Database,
-      title: 'Fragmented Billing & ERP Stacks',
-      desc: 'Disconnected CPQ tools, gateway processors, and finance ledgers cause weeks of month-end reconciliation lag and unaligned revenue recognition.',
-      footer: 'Delayed Financial Close'
+      title: 'Virtual Account & General Ledger Drift',
+      desc: 'High-frequency transaction databases frequently fall out of sync with backend statutory ERP general ledgers, creating millions in phantom breaks.',
+      footer: 'Micro-Transaction GL Drift'
     },
     {
-      tag: 'TAX RISK',
-      icon: Globe2,
-      title: 'Cross-Border Digital Tax Frictions',
-      desc: 'Expanding globally triggers complex US state economic nexus, EU reverse-charge VAT, and statutory e-invoicing penalties across jurisdictions.',
-      footer: 'Statutory Compliance Penalties'
+      tag: 'FRAUDULENT VELOCITY',
+      icon: Lock,
+      title: 'Synthetic Identity & Automated Bot Raids',
+      desc: 'Traditional batch fraud reviews fail against millisecond-speed credential stuffing and synthetic account creation across open API endpoints.',
+      footer: 'Millisecond Account Takeover Risks'
+    },
+    {
+      tag: 'PAYMENTS DISPARITY',
+      icon: Workflow,
+      title: 'Fragmented Global Clearing Specifications',
+      desc: 'Navigating conflicting XML schemas across FedNow, SEPA Instant, Pix, and SWIFT MX delays geographical expansion and drives engineering debt.',
+      footer: 'Schema Discrepancy Parsing Errors'
+    },
+    {
+      tag: 'SETTLEMENT LEAKAGE',
+      icon: CreditCard,
+      title: 'Complex Interchange & Scheme Fee Leakage',
+      desc: 'Manual spreadsheet reconciliation of card network interchange fees, chargeback fines, and gateway interchange leads to revenue loss.',
+      footer: 'Unreconciled Scheme Fee Deductions'
+    },
+    {
+      tag: 'REGULATORY AUDITING',
+      icon: ShieldCheck,
+      title: 'Stricter FinTech Regulatory Audits',
+      desc: 'Central banks and licensing authorities enforce stringent audit requirements on customer float safeguarding and Travel Rule compliance.',
+      footer: 'Safeguarding Float Audit Exposure'
     }
   ];
 
-  // Section 7: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
+  // Section 7: Symmetrical 3x3 Modular Solutions (9 Cards)
   const industrySolutions = [
     {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'RECURRING BILLING',
-      icon: CreditCard,
-      title: 'Enterprise Subscription Core',
-      description: 'Manage complex recurring billing plans, annual advance invoices, coterminous add-ons, and payment gateway collections on Clean Core.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Seat & Tier Plans', 'Coterminous Alignment', 'Consolidated Statements', 'Gateway Auto-Settlement']
-    },
-    {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'EVENT MEDIATION',
-      icon: Zap,
-      title: 'High-Volume Consumption Rating',
-      description: 'Capture cloud application telemetry, API calls, and computational consumption, transforming raw usage records into rated line items.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Idempotent Ingestion', 'Dynamic Volume Tiers', 'Prepaid Drawdowns', 'Real-Time Quota Triggers']
-    },
-    {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'REVENUE ACCOUNTING',
-      icon: ShieldCheck,
-      title: 'Automated ASC 606 Revenue RAR',
-      description: 'Comply effortlessly with statutory revenue recognition standards through automated contract allocation, SSP scheduling, and catch-ups.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Automated SSP Allocations', 'Contract Asset/Liability', 'Cumulative Catch-Ups', 'Audit-Ready Reporting']
-    },
-    {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'CONTRACT LIFECYCLE',
-      icon: FileCheck,
-      title: 'Coterminous Renewal Management',
-      description: 'Synchronize multi-year contract renewals, mid-quarter seat expansions, and edition upgrades without manual proration spreadsheets.',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Automated Proration Logic', 'Coterminous Alignment', 'CPQ Contract Sync', 'Early Renewal Incentives']
-    },
-    {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'CREDIT MANAGEMENT',
-      icon: Database,
-      title: 'Prepaid Commitments & Drawdowns',
-      description: 'Manage enterprise prepaid consumption commitments, burndown drawdowns, and use-it-or-lose-it expiration schedules with full transparency.',
-      image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Enterprise Burndown', 'Prepaid Balance Ledger', 'Expiration Schedules', 'Self-Service Telemetry']
-    },
-    {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'ECOSYSTEM SETTLEMENT',
-      icon: Split,
-      title: 'Multi-Party Marketplace RevShare',
-      description: 'Calculate and distribute developer royalties, agency commissions, and cloud platform revenue splits across multi-sided marketplaces.',
+      category: 'PAYMENTS_RAILS',
+      categoryLabel: 'Payment Rails',
+      tag: 'INSTANT RAILS',
+      title: 'Multi-Rail Real-Time Clearing Gateway',
+      description: 'Ultra-low latency payment orchestration routing transactions dynamically across FedNow, RTP, SEPA Instant, and local clearing networks.',
       image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Developer Royalty Splits', 'Self-Invoicing Portals', 'Tax Withholding Rules', 'Consolidated Ledgers']
+      icon: Zap,
+      highlights: ['Sub-20ms Transaction Routing', 'ISO 20022 Native XML', 'Zero-Downtime Multi-Region Active']
     },
     {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'PAYMENT RECOVERY',
-      icon: RefreshCw,
-      title: 'Smart Dunning & Churn Defense',
-      description: 'Defend recurring ARR against card expirations and network declines using intelligent multi-attempt retry schedules and card updaters.',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Tokenized Card Updaters', 'Smart Decline Retries', 'Dunning Email Sequences', 'Card Updater Portal']
+      category: 'PAYMENTS_RAILS',
+      categoryLabel: 'Payment Rails',
+      tag: 'CARD ISSUING',
+      title: 'Virtual Card Issuing & Scheme Reconciliation',
+      description: 'Programmatic Mastercard/Visa card provisioning with automated interchange fee calculation and chargeback dispute workflows.',
+      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+      icon: CreditCard,
+      highlights: ['Tokenized Virtual Cards', 'Real-Time Interchange Splits', 'Automated Dispute Filing']
     },
     {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'USAGE GOVERNANCE',
-      icon: Sliders,
-      title: 'Real-Time Usage Alerts & Tiers',
-      description: 'Trigger automated customer notifications and in-app upgrade prompts when usage reaches commitment thresholds, driving expansion.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Real-Time Quota Triggers', 'Automated Tier Step-Ups', 'In-App Upgrade Webhooks', 'Overage Buffer Policies']
+      category: 'PAYMENTS_RAILS',
+      categoryLabel: 'Payment Rails',
+      tag: 'MERCHANT SETTLEMENT',
+      title: 'Merchant Payout & Reserve Settlement Engine',
+      description: 'High-volume merchant reconciliation calculating gross card sales, net interchange deductions, and rolling risk reserve withholdings.',
+      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
+      icon: Coins,
+      highlights: ['Automated Net Payout Rails', 'Dynamic Risk Reserve Holds', 'Same-Day Wire Clearing']
     },
     {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'FINOPS ANALYTICS',
-      icon: BarChart3,
-      title: 'SaaS Unit Economics & Cockpit',
-      description: 'Deliver real-time Net Retention Rate (NRR), customer lifetime value (LTV), and cohort margin visibility directly linked to hosting ledgers.',
+      category: 'LEDGER_BAAS',
+      categoryLabel: 'Ledgers & BaaS',
+      tag: 'VIRTUAL SUB-LEDGER',
+      title: 'SAP Financial Products Subledger for FinTech',
+      description: 'High-scale multi-currency sub-ledger tracking millions of virtual customer accounts and stored-value digital wallets.',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Real-Time NRR Tracking', 'Cohort Gross Margins', 'Cloud Cost Attribution', 'Predictive Churn Alerts']
+      icon: Layers,
+      highlights: ['High-Concurrency Account Pools', 'Continuous Balance Validation', 'Safeguarding Float Auditing']
+    },
+    {
+      category: 'LEDGER_BAAS',
+      categoryLabel: 'Ledgers & BaaS',
+      tag: 'EMBEDDED FINANCE',
+      title: 'Banking-as-a-Service (BaaS) Orchestration Hub',
+      description: 'Turnkey API platform enabling platforms and retailers to embed branded checking accounts, debit cards, and credit lines.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      icon: Building2,
+      highlights: ['White-Label Account APIs', 'Instant KYC Verification', 'Partner Deposit Sweeps']
+    },
+    {
+      category: 'LEDGER_BAAS',
+      categoryLabel: 'Ledgers & BaaS',
+      tag: 'ERP INTEGRATION',
+      title: 'SAP S/4HANA Clean-Core GL Synchronizer',
+      description: 'Intelligent compression engine summarizing high-frequency payment batches into audit-proof journal entries on Universal Journal.',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      icon: Database,
+      highlights: ['High-Volume Data Compression', 'Zero Reconciliation Breaks', 'Statutory Financial Audit Lineage']
+    },
+    {
+      category: 'RISK_COMPLIANCE',
+      categoryLabel: 'Risk & Security',
+      tag: 'AI FRAUD DEFENSE',
+      title: 'Sub-Second Machine Learning Fraud Interceptor',
+      description: 'Continuous transactional risk scoring evaluating behavioral anomalies, synthetic identities, and device velocity indicators.',
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+      icon: Lock,
+      highlights: ['Sub-20ms Scoring SLA', 'Behavioral Biometric Pattern AI', 'Automated Step-Up Authentication']
+    },
+    {
+      category: 'RISK_COMPLIANCE',
+      categoryLabel: 'Risk & Security',
+      tag: 'TRAVEL RULE & AML',
+      title: 'Digital AML & Travel Rule Messaging Mesh',
+      description: 'Automated compliance framework verifying originator and beneficiary identities across domestic and international payments.',
+      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      icon: ShieldCheck,
+      highlights: ['Automated Sanctions Screening', 'Encrypted Identity Exchange', 'Regulatory SAR Case Tracking']
+    },
+    {
+      category: 'RISK_COMPLIANCE',
+      categoryLabel: 'Risk & Security',
+      tag: 'EVENT MESH',
+      title: 'Cloud-Native ISO 20022 Financial Event Mesh',
+      description: 'High-throughput Kafka and SAP Event Mesh pipelines ensuring guaranteed event delivery and state synchronization.',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+      icon: Workflow,
+      highlights: ['100,000+ TPS Throughput', 'Schema Registry Validation', 'End-to-End Tracing Telemetry']
     }
   ];
 
-  // Section 9: Transformation in Action (Connected 4-Phase Architecture Pipeline)
+  // Section 9: Transformation Pipeline Data
   const transformationStages = [
     {
       badge: 'PHASE 01',
-      textColor: 'text-cyan-400',
-      glowColor: 'bg-cyan-400',
-      activeBorder: 'border-cyan-400/80 bg-cyan-950/30',
-      borderBase: 'border-slate-800',
-      icon: Zap,
-      title: 'Telemetry Mediation',
-      subtitle: 'Event Mesh Ingestion',
-      tag: 'Sub-Second Rating',
-      description: 'Decoupled event streaming ingests and rates operational telemetry continuously, guaranteeing zero unbilled overage consumption.',
-      before: 'Fragmented log files, batch CSV imports & unrated consumption',
-      after: 'SAP BTP Event Mesh with sub-second convergent rating',
-      metrics: ['Idempotent Ingestion', 'Zero Usage Leakage', 'Real-Time Quota Triggers']
+      title: 'Architecture & Latency Audit',
+      subtitle: 'Concurrency & Scalability Review',
+      description: 'Analyze legacy monolithic databases, third-party payment gateway latency bottlenecks, and micro-transaction reconciliation drift.',
+      tag: 'FinTech Architecture Audit',
+      icon: Compass,
+      textColor: 'text-sky-400',
+      glowColor: 'bg-sky-500',
+      borderBase: 'border-sky-500/20',
+      activeBorder: 'border-sky-400 bg-sky-950/40',
+      before: 'Fragmented custom databases & batch reconciliation drift',
+      after: 'Composable microservices architecture with clean-core ERP backing',
+      metrics: ['Zero Database Stalls', 'Sub-20ms Response Times', 'Audit-Ready Data Pipelines']
     },
     {
       badge: 'PHASE 02',
-      textColor: 'text-sky-400',
-      glowColor: 'bg-sky-400',
-      activeBorder: 'border-sky-400/80 bg-sky-950/30',
-      borderBase: 'border-slate-800',
-      icon: FileCheck,
-      title: 'Subscription Terms',
-      subtitle: 'Coterminous Lifecycles',
-      tag: 'Automated Proration',
-      description: 'Unified contract rules handle multi-tier plans, seat licenses, prepaid credits, and prorated mid-term upgrades on a single invoice.',
-      before: 'Manual proration spreadsheets, separate invoices & billing disputes',
-      after: 'SAP Subscription Billing with unified coterminous invoicing',
-      metrics: ['Coterminous Alignment', 'Unified Invoice Statements', 'Self-Service Tier Upgrades']
+      title: 'Virtual Sub-Ledger & Clearing Mesh',
+      subtitle: 'Real-Time Payment Rails Integration',
+      description: 'Deploy high-concurrency virtual account sub-ledgers, connect ISO 20022 instant payment rails, and establish automated reconciliation.',
+      tag: 'Payment Infrastructure',
+      icon: Zap,
+      textColor: 'text-emerald-400',
+      glowColor: 'bg-emerald-500',
+      borderBase: 'border-emerald-500/20',
+      activeBorder: 'border-emerald-400 bg-emerald-950/40',
+      before: 'Settlement reconciliations taking 48+ hours with manual breaks',
+      after: 'Continuous sub-second transaction clearing with zero ledger drift',
+      metrics: ['Continuous Subledger Validation', 'ISO 20022 Native Integration', 'Automated Scheme Reconciliations']
     },
     {
       badge: 'PHASE 03',
-      textColor: 'text-emerald-400',
-      glowColor: 'bg-emerald-400',
-      activeBorder: 'border-emerald-400/80 bg-emerald-950/30',
-      borderBase: 'border-slate-800',
-      icon: ShieldCheck,
-      title: 'Statutory Rev-Rec',
-      subtitle: 'ASC 606 Automation',
-      tag: 'Audit-Proof Ledgers',
-      description: 'Automated revenue accounting separates deferred contract liabilities from earned ARR, posting cumulative catch-ups directly to S/4HANA.',
-      before: 'Offline rev-rec spreadsheets & agonizing audit reconciliation',
-      after: 'Automated SAP RAR schedules on Universal Journal (ACDOCA)',
-      metrics: ['Automated SSP Allocations', 'Cumulative Catch-Up Postings', 'Audit-Ready Disclosures']
+      title: 'Autonomous Fraud & AML Defense',
+      subtitle: 'Machine Learning Interception',
+      description: 'Implement real-time behavioral AI fraud detection scoring payments in under 20 milliseconds and automated Travel Rule identity exchange.',
+      tag: 'Risk & Fraud Shield',
+      icon: Lock,
+      textColor: 'text-purple-400',
+      glowColor: 'bg-purple-500',
+      borderBase: 'border-purple-500/20',
+      activeBorder: 'border-purple-400 bg-purple-950/40',
+      before: 'High false-positive declines & manual fraud investigations',
+      after: 'Autonomous sub-20ms fraud blocks & 80% lower review backlogs',
+      metrics: ['Millisecond Fraud Defense', 'Automated Sanctions Screening', 'Travel Rule Compliance']
     },
     {
       badge: 'PHASE 04',
-      textColor: 'text-amber-400',
-      glowColor: 'bg-amber-400',
-      activeBorder: 'border-amber-400/80 bg-amber-950/30',
-      borderBase: 'border-slate-800',
-      icon: RefreshCw,
-      title: 'FinOps & Retention',
-      subtitle: 'Dunning & SAC Cockpit',
-      tag: 'ARR Preservation',
-      description: 'Intelligent card retry algorithms recover failed transactions while SAP Analytics Cloud provides real-time cohort margin telemetry.',
-      before: 'Passive payment failures causing silent churn & margin blindspots',
-      after: 'Smart dunning engine with live SAC Net Retention Rate cockpit',
-      metrics: ['Tokenized Card Updaters', 'Smart Dunning Schedules', 'True Cohort Gross Margin']
+      title: 'Global BaaS & Embedded Finance',
+      subtitle: 'Ecosystem Scale & Clean-Core ERP Sync',
+      description: 'Scale developer API sandboxes for partner embedded finance and sync summarized financial vouchers directly into SAP S/4HANA.',
+      tag: 'Ecosystem Scale',
+      icon: Globe2,
+      textColor: 'text-cyan-400',
+      glowColor: 'bg-cyan-500',
+      borderBase: 'border-cyan-500/20',
+      activeBorder: 'border-cyan-400 bg-cyan-950/40',
+      before: 'Siloed FinTech apps disconnected from enterprise audit ledgers',
+      after: 'Unified global BaaS ecosystem with audit-proof ERP ledger close',
+      metrics: ['Partner BaaS Portals', 'Automated Float Governance', 'Continuous Universal Journal Sync']
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Pure Enterprise Software & SaaS Hero)
+          SECTION 1: HERO SECTION (Cinematic Full-Bleed Dark Blue Hero Banner)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative min-h-[620px] lg:min-h-[680px] bg-slate-900 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Full-Bleed Enterprise SaaS Background Image with Seamless Cinematic Scrim */}
+        {/* Background Photo with Dark Gradient Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80" 
-            alt="Software, SaaS & Subscription Billing Operations" 
-            className="w-full h-full object-cover object-center"
+            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=2000&q=80" 
+            alt="FinTech Digital Payments" 
+            className="w-full h-full object-cover object-center brightness-60"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+        {/* Hero Top Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-4">
+          {/* Breadcrumb Navigation */}
+          <div className="mb-4 sm:mb-6">
+            <Link 
+              to="/industries" 
+              className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+            >
+              <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+              <span>Back to Industries</span>
+            </Link>
+          </div>
+
+          <div className="max-w-3xl space-y-4 sm:space-y-6">
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="space-y-2.5"
-            >
-              {/* Practice Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <CreditCard className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ INDUSTRY PRACTICE</span>
-              </div>
-              
-              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                Intelligent ERP for <br />
-                <span className="text-cyan-400">Software & SaaS</span>
-              </h1>
+            {/* Practice Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+              <Zap className="w-3.5 h-3.5 text-cyan-400" />
+              <span>KNOOVIQ INDUSTRY PRACTICE</span>
+            </div>
 
-              {/* Subheading / Value Proposition */}
-              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Automated Subscription Billing, Usage Rating & ASC 606 Revenue Recognition.
-              </p>
-            </motion.div>
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+              High-Velocity FinTech & Embedded Payments Architecture
+            </h1>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-3 max-w-2xl"
-            >
-              {/* Clear Open Typography */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
-                Empowering cloud software providers, digital platforms, and subscription enterprises with{' '}
-                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, high-velocity{' '}
-                <strong className="text-cyan-300 font-semibold">BRIM Event Mediation</strong>, automated ASC 606 revenue compliance, and proactive churn recovery.
-              </p>
-              
-              {/* Clean Feature Highlights */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                  <span>Clean Core Architecture</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Sub-Second Metering Rating</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                  <span>ASC 606 Automated RAR</span>
-                </span>
-              </div>
-            </motion.div>
+            {/* Sub-headline */}
+            <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
+              Scale sub-second payment settlement pipelines, orchestrate multi-tenant virtual account ledgers, automate interchange fee reconciliations, and protect high-throughput rails with AI fraud defense on clean-core SAP architecture.
+            </p>
 
-            {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
-            >
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA BRIM</div>
-                <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
+            {/* Feature Highlight Pills */}
+            <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Sub-20ms Payment Settlement</span>
               </div>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Multi-Currency Virtual Sub-Ledgers</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Automated Scheme Fee Matching</span>
+              </div>
+            </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <CreditCard className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">BILLING CORE</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">Unified Invoicing</div>
-                <div className="text-xs text-slate-300 mt-0.5">Seat & Usage Sync</div>
-              </div>
+            {/* Hero CTAs */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+              <button
+                type="button"
+                onClick={() => onOpenContact?.('FinTech & Real-Time Payments Architecture Consultation')}
+                className="px-6 py-3 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-[#0070C0]/30 transition-all flex items-center gap-2 group cursor-pointer"
+              >
+                <span>Consult With FinTech Architects</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">COMPLIANCE</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">ASC 606 / IFRS 15</div>
-                <div className="text-xs text-slate-300 mt-0.5">Zero Audit Risk</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
-                <div className="flex items-center gap-2 mb-1">
-                  <RefreshCw className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">RETENTION</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">Smart Dunning</div>
-                <div className="text-xs text-slate-300 mt-0.5">ARR Protection</div>
-              </div>
-            </motion.div>
+              <Link
+                to="#industry-solutions"
+                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 backdrop-blur-md transition-all flex items-center gap-2"
+              >
+                <span>Explore Solutions</span>
+              </Link>
+            </div>
 
           </div>
 
         </div>
 
+        {/* Enterprise Architectural Trust Ribbon (Inside Hero, 4-Column Layout) */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-slate-950/70 backdrop-blur-md py-4 sm:py-5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-white text-xs font-mono">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                  <Zap className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">Instant Settlement</div>
+                  <div className="text-[10px] text-slate-400">FedNow, RTP & SEPA Instant</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <Layers className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">Virtual Ledgers</div>
+                  <div className="text-[10px] text-slate-400">Multi-Tenant Account Pools</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">Fraud Defense</div>
+                  <div className="text-[10px] text-slate-400">Sub-20ms Behavioral AI</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                  <Database className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold uppercase tracking-wider text-slate-200 text-[11px]">ERP Reconciliation</div>
+                  <div className="text-[10px] text-slate-400">SAP S/4HANA Clean-Core Sync</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       {/* =========================================================================
-          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE ("Building a Connected SaaS Revenue Core")
+          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE (2-Column Layout)
           ========================================================================= */}
-      <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-[#F8FBFE] to-white border-b border-slate-200 relative overflow-hidden">
-        
-        {/* Subtle Ambient Tone */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-12 sm:py-14 lg:py-16 bg-white border-b border-slate-200 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Left Narrative Column */}
-            <div className="lg:col-span-6 space-y-4">
+            {/* Left Column (6 Cols): Executive Narrative, Thesis, Strategic Pillars */}
+            <div className="lg:col-span-6 space-y-5">
               
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
-                <Activity className="w-3.5 h-3.5 text-[#0070C0]" />
-                <span>EXECUTIVE INDUSTRY PERSPECTIVE</span>
+                <Zap className="w-3.5 h-3.5 text-[#0070C0]" />
+                <span>EXECUTIVE PERSPECTIVE</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
-                Building a Connected <span className="text-[#0070C0]">SaaS Revenue Core</span>
+                Architecting Frictionless Scale with Enterprise Audit Rigor
               </h2>
 
-              {/* Executive Thesis Quote */}
+              {/* Executive Thesis Quote Card */}
               <div className="border-l-4 border-[#0070C0] border-y border-r border-slate-300 pl-4 py-2 bg-gradient-to-r from-sky-50/80 via-sky-50/30 to-transparent rounded-r-xl">
-                <p className="text-sm font-semibold text-slate-800 leading-relaxed italic">
-                  &ldquo;Modern SaaS valuation is defined by monetization velocity: unifying product telemetry, consumption-based contracts, and statutory revenue ledgers into one cohesive operational core.&rdquo;
+                <p className="text-xs sm:text-sm font-semibold text-slate-800 italic leading-relaxed">
+                  "FinTech platforms process thousands of payment authorizations per second, but scale without ledger integrity leads to fatal audit failures. The modern FinTech architecture pairs sub-millisecond cloud APIs with clean-core ERP ledger synchronization."
                 </p>
               </div>
 
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Knooviq engineers an integrated revenue ecosystem on SAP S/4HANA Clean Core. By bridging data across cloud application telemetry and core general ledgers, SaaS leadership gains continuous visibility, automated billing flow, and audit-ready revenue realization.
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                As real-time payment schemes and embedded finance programs evolve, high-growth FinTechs can no longer operate on brittle custom database setups that drift from statutory general ledgers. Modern payment technology leaders require cloud-native event streaming meshes that process micro-transactions instantaneously while compressing records into audit-proof SAP accounting journals.
               </p>
 
-              {/* 3 Executive Strategic Pillars */}
-              <div className="space-y-2.5 pt-1">
-                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+              {/* 3 Strategic Pillars */}
+              <div className="space-y-2 pt-1">
+                
+                <div className="p-3 rounded-xl border border-slate-300 bg-white hover:border-[#0070C0] transition-colors flex items-start gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-200">
                     <Zap className="w-4 h-4" />
                   </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">High-Throughput Consumption Rating</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Single-pane-of-glass coordination across millions of API events, compute telemetry, and tiered volume discounts without latency.
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-bold text-slate-900">Sub-Second Payment Settlement</h3>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+                      Orchestrate high-throughput payment rails across FedNow, RTP, and instant schemes with sub-20ms latency.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
-                    <ShieldCheck className="w-4 h-4" />
+                <div className="p-3 rounded-xl border border-slate-300 bg-white hover:border-[#0070C0] transition-colors flex items-start gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-200">
+                    <Layers className="w-4 h-4" />
                   </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Statutory ASC 606 & IFRS 15 Compliance</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Automated standalone selling price (SSP) allocation and performance obligation scheduling on the Universal Journal.
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-bold text-slate-900">Virtual Account & Float Integrity</h3>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+                      Maintain multi-currency stored-value digital wallets with continuous balance audits and regulatory safeguarding compliance.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
-                    <RefreshCw className="w-4 h-4" />
+                <div className="p-3 rounded-xl border border-slate-300 bg-white hover:border-[#0070C0] transition-colors flex items-start gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-200">
+                    <Database className="w-4 h-4" />
                   </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Proactive Dunning & Churn Defense</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Automated card updater networks and smart decline retry algorithms actively defending recurring annual revenue.
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-bold text-slate-900">Automated ERP Ledger Sync</h3>
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+                      Batch millions of transactions into compressed, audit-ready summaries on the SAP Universal Journal without system stalls.
                     </p>
                   </div>
                 </div>
+
               </div>
 
             </div>
 
-            {/* Right Side: Clean Photography Showcase & Stage Navigator */}
-            <div className="lg:col-span-6 space-y-3.5">
+            {/* Right Column (6 Cols): Dynamic Photo Showcase & 6 Stage Navigation */}
+            <div className="lg:col-span-6 space-y-4">
               
-              {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
-              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+              {/* Dynamic Photo Showcase */}
+              <div className="relative h-60 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
+                  className="w-full h-full object-cover object-center transition-all duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                
+                {/* Overlay Text on Image */}
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <div className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider">
+                    STAGE {activeJourneyStep + 1} OF 6 • {journeySteps[activeJourneyStep].tech}
+                  </div>
+                  <div className="text-base sm:text-lg font-black text-white leading-tight mt-0.5">
+                    {journeySteps[activeJourneyStep].label}
+                  </div>
+                  <div className="text-xs text-slate-200 mt-1 line-clamp-2 font-medium">
+                    {journeySteps[activeJourneyStep].desc}
+                  </div>
+                </div>
               </div>
 
-              {/* Stage Navigation Grid (Clean Labels + Icons, No Numbers) */}
+              {/* 6 Stage Navigation Buttons */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {journeySteps.map((step, idx) => {
-                  const isSelected = activeJourneyStep === idx;
-                  const StepIcon = step.icon;
+                  const isActive = activeJourneyStep === idx;
+                  const IconComponent = step.icon;
                   return (
                     <button
                       key={step.id}
                       type="button"
                       onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
-                        isSelected
-                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
-                          : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
+                      className={`p-2.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between cursor-pointer ${
+                        isActive 
+                          ? 'border-[#0070C0] bg-sky-50/90 shadow-sm' 
+                          : 'border-slate-300 bg-white hover:border-slate-400 hover:bg-slate-50'
                       }`}
                     >
-                      <div className={`p-1.5 rounded-lg shrink-0 ${
-                        isSelected ? 'bg-white/20 text-white' : 'bg-sky-50 text-[#0070C0] border border-slate-300'
-                      }`}>
-                        <StepIcon className="w-3.5 h-3.5" />
+                      <div className="flex items-center justify-between w-full mb-1">
+                        <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-[#0070C0]' : 'text-slate-500'}`}>
+                          0{idx + 1}
+                        </span>
+                        <IconComponent className={`w-3.5 h-3.5 ${isActive ? 'text-[#0070C0]' : 'text-slate-400'}`} />
                       </div>
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold truncate">{step.label}</div>
-                        <div className={`text-[10px] truncate ${isSelected ? 'text-sky-100' : 'text-slate-500'}`}>
-                          {step.sublabel}
-                        </div>
+                      <div className={`text-xs font-bold truncate ${isActive ? 'text-slate-900' : 'text-slate-700'}`}>
+                        {step.label}
                       </div>
                     </button>
                   );
                 })}
               </div>
 
-              {/* Selected Stage Detail Card (Placed Below the Image & Controls with Defined Border) */}
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-300 shadow-xs space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#003B73]">
-                    {journeySteps[activeJourneyStep].label}
-                  </span>
-                  <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-sky-50 text-[#0070C0] border border-sky-300">
-                    {journeySteps[activeJourneyStep].tech}
-                  </span>
+              {/* Selected Stage Detail Card */}
+              <div className="p-4 rounded-xl border border-slate-300 bg-slate-50/70">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-600 mb-1">
+                  <span className="font-bold text-[#0070C0] uppercase">Selected Milestone Detail</span>
+                  <span>{journeySteps[activeJourneyStep].sublabel}</span>
                 </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-700 leading-relaxed font-medium">
                   {journeySteps[activeJourneyStep].desc}
                 </p>
               </div>
@@ -706,64 +722,57 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 3: INDUSTRY CHALLENGES ("Navigating the Complexity of Modern Cloud Billing")
+          SECTION 3: CORE BOTTLENECKS / CHALLENGES (3x2 Grid)
           ========================================================================= */}
       <section className="py-12 sm:py-14 lg:py-16 bg-[#F8FAFC] border-b border-slate-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2.5"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-mono font-bold uppercase tracking-wider text-rose-600">
-              <Compass className="w-3.5 h-3.5 text-rose-600" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-300 text-xs font-mono font-bold uppercase tracking-wider text-rose-700">
+              <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
               <span>CORE BOTTLENECKS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
-              Navigating the Complexity of Modern Cloud Billing
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+              Operational Hurdles Restricting FinTech Scalability
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              Disjointed billing scripts and siloed product telemetry constrain ARR growth. Knooviq addresses the six systemic challenges cloud software leaders face.
+              From authorization queue delays to complex scheme fee leakage, FinTech platforms must resolve core technical vulnerabilities.
             </p>
-          </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {saasChallenges.map((item, idx) => {
-              const IconComponent = item.icon;
+          {/* 6 Challenge Cards in 3x2 Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {fintechChallenges.map((challenge, cIdx) => {
+              const IconComp = challenge.icon;
               return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                  className="h-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-white border border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all group"
+                <div
+                  key={cIdx}
+                  className="p-5 rounded-2xl bg-white border border-slate-300 hover:border-[#0070C0] hover:shadow-md transition-all duration-300 flex flex-col justify-between"
                 >
-                  <div className="space-y-2.5">
+                  <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="p-2.5 rounded-xl bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white group-hover:scale-105 transition-all">
-                        <IconComponent className="w-5 h-5" />
+                      <div className="p-2.5 rounded-xl bg-sky-50 text-[#0070C0] border border-slate-200">
+                        <IconComp className="w-5 h-5" />
                       </div>
-                      <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                        {item.tag}
+                      <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
+                        {challenge.tag}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                      {item.title}
+
+                    <h3 className="text-base font-bold text-slate-900 tracking-tight leading-snug">
+                      {challenge.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {item.desc}
+
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      {challenge.desc}
                     </p>
                   </div>
+
                   <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-[#0070C0] font-semibold flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070C0] group-hover:scale-125 transition-transform" />
-                    <span>{item.footer}</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070C0]" />
+                    <span>{challenge.footer}</span>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -772,35 +781,27 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 4: KNOOVIQ SAAS PLATFORM ECOSYSTEM (Circular Chevron Radial Diagram)
+          SECTION 4: PLATFORM ECOSYSTEM WHEEL (3-Column Radial Layout)
           ========================================================================= */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] text-white border-b border-slate-800 relative overflow-hidden">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] border-b border-slate-800 relative overflow-hidden text-white">
         
-        {/* Dark Ambient Radial Hues */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-500/10 via-emerald-500/10 to-pink-500/10 blur-[140px] rounded-full pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
+        {/* Subtle Background Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-sky-600/10 blur-[130px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Section Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-inner">
-              <Workflow className="w-3.5 h-3.5 text-cyan-300" />
-              <span>CONNECTED SAAS ECOSYSTEM</span>
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
+              <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
+              <span>FINTECH PLATFORM ECOSYSTEM</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Capabilities Designed for Modern SaaS
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Composable Financial Technology Architecture
             </h2>
-            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              A synchronized, circular enterprise platform uniting usage metering, coterminous contracts, automated invoicing, ASC 606 general ledgers, and cognitive AI into one continuous loop.
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              A synchronized enterprise payments matrix uniting real-time clearing rails, multi-tenant virtual ledgers, millisecond AI fraud defense, and clean-core ERP ledgers.
             </p>
-          </motion.div>
+          </div>
 
           {/* 3-Column Radial Wheel & Flanking Capabilities Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
@@ -852,7 +853,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
                 
                 {/* Glow ring under wheel */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/15 via-emerald-500/10 to-pink-500/15 blur-2xl rounded-full pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/15 via-emerald-500/10 to-purple-500/15 blur-2xl rounded-full pointer-events-none" />
 
                 <svg
                   viewBox="0 0 500 500"
@@ -889,15 +890,16 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         <foreignObject
                           x={iconPos.x - 14}
                           y={iconPos.y - 14}
-                          width={28}
-                          height={28}
-                          className="pointer-events-none overflow-visible"
+                          width="28"
+                          height="28"
+                          className="pointer-events-none"
                         >
                           <div 
-                            className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
-                            }`}
-                            style={{ color: seg.color }}
+                            className="w-full h-full flex items-center justify-center transition-transform duration-300"
+                            style={{ 
+                              color: seg.color,
+                              transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                            }}
                           >
                             <IconComponent className="w-5 h-5 drop-shadow-md" />
                           </div>
@@ -939,7 +941,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         KNOOVIQ CORE
                       </div>
                       <div className="text-sm sm:text-base font-black text-white leading-tight mt-0.5">
-                        SAAS REVENUE
+                        FINTECH MESH
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
                         {hoveredWheelIndex !== null 
@@ -1001,7 +1003,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 6: SAP & TECHNOLOGY SOLUTIONS ("Technology Foundation for Intelligent SaaS")
+          SECTION 6: TECHNOLOGY FOUNDATION (3x2 Grid)
           ========================================================================= */}
       <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1012,121 +1014,121 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>PLATFORM ARCHITECTURE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Technology Foundation for Intelligent SaaS
+              Technology Foundation for Scalable FinTech
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              We engineer clean-core SAP technology suites layered with modern cloud event streaming, role-based interfaces, and autonomous business AI.
+              Cloud-native microservices and event streaming meshes seamlessly integrated into enterprise SAP financial ledgers for uninterrupted performance.
             </p>
           </div>
 
-          {/* Layered Technology Ecosystem Visual */}
+          {/* 6 Technology Suite Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Tech 1: SAP S/4HANA Core */}
+            {/* Tech 1 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CORE ERP SUITE</span>
-                <Cpu className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">PAYMENT ORCHESTRATION</span>
+                <Zap className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP S/4HANA
+                Real-Time Multi-Rail Switch
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Integrated enterprise processes uniting financial ledgers, contract assets, subscription invoices, and profit center accounting into a single in-memory database.
+                Distributed routing gateway ensuring sub-20ms transaction clearance across FedNow, RTP, SEPA Instant, and local card networks.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Universal Journal (ACDOCA)</div>
-                <div className="flex items-center gap-1.5">• Real-time Financial Month-End Close</div>
+                <div className="flex items-center gap-1.5">• Multi-Rail Failover Routing</div>
+                <div className="flex items-center gap-1.5">• Sub-20ms P99 Latency SLA</div>
               </div>
             </div>
 
-            {/* Tech 2: SAP BRIM */}
+            {/* Tech 2 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BILLING ENGINE</span>
-                <CreditCard className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">VIRTUAL SUB-LEDGER</span>
+                <Layers className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP BRIM / Billing
+                SAP Financial Products Subledger
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                High-volume convergent charging and invoicing engine capable of rating millions of consumption events and compiling single itemized bills.
+                High-volume transactional sub-ledger managing millions of multi-currency customer wallets, stored-value balances, and regulatory float pools.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Convergent Invoicing (CI)</div>
-                <div className="flex items-center gap-1.5">• Convergent Charging (CC) High-Speed Rating</div>
+                <div className="flex items-center gap-1.5">• Continuous Balance Validation</div>
+                <div className="flex items-center gap-1.5">• Multi-Tenant Virtual Accounts</div>
               </div>
             </div>
 
-            {/* Tech 3: SAP BTP */}
+            {/* Tech 3 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">INTEGRATION & EVENT MESH</span>
-                <Cloud className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CLEAN-CORE ERP POSTINGS</span>
+                <Database className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP Business Technology Platform
+                SAP S/4HANA Ledger Sync
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Seamless side-by-side extensibility keeping the ERP core clean while connecting cloud API telemetry, payment processors, and custom portals.
+                Asynchronous compression pipeline summarizing millions of daily payments into audit-proof vouchers on the Universal Journal.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• SAP Event Mesh (Kafka / REST)</div>
-                <div className="flex items-center gap-1.5">• Serverless Mediation Microservices</div>
+                <div className="flex items-center gap-1.5">• High-Volume Batch Compression</div>
+                <div className="flex items-center gap-1.5">• Real-Time Settlement Reconciliation</div>
               </div>
             </div>
 
-            {/* Tech 4: SAP RAR */}
+            {/* Tech 4 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">REVENUE ACCOUNTING</span>
-                <ShieldCheck className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">AI FRAUD DEFENSE</span>
+                <Lock className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP Revenue Accounting (RAR)
+                Sub-Second Behavioral ML Engine
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Automated statutory revenue compliance separating deferred contract liabilities from earned ARR with automated catch-up postings.
+                Machine learning model scoring live transaction patterns, IP velocity, and device signals in milliseconds to intercept account takeover.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• ASC 606 & IFRS 15 Standard Rules</div>
-                <div className="flex items-center gap-1.5">• Standalone Selling Price (SSP) Allocation</div>
+                <div className="flex items-center gap-1.5">• In-Flight Payment Scoring</div>
+                <div className="flex items-center gap-1.5">• 80% Reduction in False Declines</div>
               </div>
             </div>
 
-            {/* Tech 5: SAP Analytics Cloud */}
+            {/* Tech 5 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BUSINESS INTELLIGENCE</span>
-                <BarChart3 className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">EVENT STREAMING</span>
+                <Workflow className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP Analytics Cloud
+                SAP Event Mesh & Kafka Fabric
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Executive visibility into Net Retention Rate (NRR), customer cohort margins, churn velocity, and predictive subscription pipeline modeling.
+                Event-driven distributed messaging architecture publishing ISO 20022 events to billing, fraud, and risk systems with guaranteed order.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Real-time ARR, MRR, GRR & NRR Cockpits</div>
-                <div className="flex items-center gap-1.5">• Customer Cohort Profitability Analysis</div>
+                <div className="flex items-center gap-1.5">• 100,000+ TPS Throughput</div>
+                <div className="flex items-center gap-1.5">• Guaranteed Once-Delivery State</div>
               </div>
             </div>
 
-            {/* Tech 6: AI & Churn Defense */}
+            {/* Tech 6 */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">COGNITIVE ENGINES</span>
-                <Sparkles className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">EMBEDDED APIS</span>
+                <Globe2 className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                AI & Churn Defense
+                SAP BTP BaaS API Mesh
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Intelligent payment retry logic factoring in banking clearing windows, automated card updater network sync, and predictive churn prevention.
+                Secure API gateway facilitating rapid partner onboarding, granular permission scoping, developer sandboxes, and rate-limiting governance.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Smart Multi-Attempt Dunning Algorithms</div>
-                <div className="flex items-center gap-1.5">• Usage Velocity Anomaly Alerts</div>
+                <div className="flex items-center gap-1.5">• Zero-Trust OAuth 2.0 Auth</div>
+                <div className="flex items-center gap-1.5">• Developer Sandbox Environments</div>
               </div>
             </div>
 
@@ -1136,21 +1138,21 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 7: INDUSTRY SOLUTIONS ("Solutions for Every Stage of SaaS")
+          SECTION 7: MODULAR SOLUTIONS CATALOG (Symmetrical 3x3 Grid, h-[400px])
           ========================================================================= */}
       <section id="industry-solutions" className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200 relative scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-7 sm:mb-8 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0] shadow-2xs">
-              <CreditCard className="w-3.5 h-3.5 text-[#0070C0]" />
+              <Zap className="w-3.5 h-3.5 text-[#0070C0]" />
               <span>ENTERPRISE FUNCTIONAL CATALOG</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Solutions for Every Stage of SaaS
+              Solutions for Every FinTech Domain
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              Explore specialized enterprise functional modules engineered to modernize cloud monetization across subscription plans, dynamic metering, and statutory ledgers.
+              Explore specialized enterprise functional modules engineered to modernize FinTech operations across real-time payment rails, virtual sub-ledgers, and fraud defense.
             </p>
           </div>
 
@@ -1158,9 +1160,9 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
           <div className="flex flex-wrap items-center justify-center gap-2 mb-7 sm:mb-8">
             {[
               { id: 'ALL', label: 'All Solutions' },
-              { id: 'CORE_BILLING', label: 'Subscription Core' },
-              { id: 'METERING', label: 'Usage & Metering' },
-              { id: 'REVENUE_FINOPS', label: 'Rev-Rec & FinOps' }
+              { id: 'PAYMENTS_RAILS', label: 'Payment Rails' },
+              { id: 'LEDGER_BAAS', label: 'Ledgers & BaaS' },
+              { id: 'RISK_COMPLIANCE', label: 'Risk & Security' }
             ].map((cat) => {
               const isActive = activeSolutionCategory === cat.id;
               return (
@@ -1180,7 +1182,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             })}
           </div>
 
-          {/* Structured Compact 3-Column Enterprise Grid (Symmetrical 3x3 Grid) */}
+          {/* Structured Compact 3-Column Enterprise Grid (Symmetrical 3x3 Grid, h-[400px]) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
             {industrySolutions
               .filter((sol) => activeSolutionCategory === 'ALL' || sol.category === activeSolutionCategory)
@@ -1255,7 +1257,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 8: BUSINESS OUTCOMES ("Turning Billing Complexity into Growth Advantage")
+          SECTION 8: BUSINESS OUTCOMES (3x2 Grid)
           ========================================================================= */}
       <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1266,14 +1268,14 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>MEASURABLE BUSINESS IMPACT</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Turning Billing Complexity into Growth Advantage
+              Scaling FinTech Velocity without Regulatory Compromise
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              When usage telemetry, subscriptions, payment gateways, and statutory ledgers operate in unison, SaaS organizations achieve sustainable commercial acceleration.
+              When high-speed payment switches, virtual account sub-ledgers, and enterprise ERP sync execute in real time, FinTechs capture hyper-scale growth safely.
             </p>
           </div>
 
-          {/* 6 Outcomes (Large typography, flowing blue paths, generous whitespace, NO dashboards) */}
+          {/* 6 Outcomes (Large typography, generous whitespace, NO dashboards) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             {/* Outcome 1 */}
@@ -1282,75 +1284,75 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                 <Zap className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Touchless Month-End Close
+                Sub-20ms Authorization SLA
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Eliminate manual spreadsheet reconciliations and proration calculations. Compress the monthly subscription billing close from weeks down to hours.
+                Process peak-cycle payment volumes with guaranteed sub-20ms authorization response times across global card and account-to-account rails.
               </p>
             </div>
 
             {/* Outcome 2 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <ShieldCheck className="w-5 h-5" />
+                <Database className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                100% ASC 606 Audit Traceability
+                Zero ERP Reconciliation Breaks
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Deliver automated standalone selling price allocations and contract balance schedules, guaranteeing zero audit restatements or compliance penalties.
+                Automated continuous batching synchronizes high-frequency transactional data directly into the SAP Universal Journal with zero missing penny breaks.
               </p>
             </div>
 
             {/* Outcome 3 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <RefreshCw className="w-5 h-5" />
+                <Lock className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                45% Involuntary Churn Recovery
+                Millisecond Fraud Interception
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Recover failed transactions through automated card network updater synchronizations and smart multi-attempt dunning retry schedules.
+                Autonomous machine learning behavioral analysis intercepts account takeovers and synthetic identity fraud before funds leave the platform.
               </p>
             </div>
 
             {/* Outcome 4 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <Database className="w-5 h-5" />
+                <CreditCard className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Zero Unbilled Usage Leakage
+                Zero Scheme Fee Revenue Leakage
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Process high-throughput API and consumption telemetry through an idempotent event mesh, ensuring zero dropped events or unrated consumption.
+                Algorithmic scheme fee reconciliation automatically validates card network invoices down to individual basis points, preventing interchange overbilling.
               </p>
             </div>
 
             {/* Outcome 5 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <FileCheck className="w-5 h-5" />
+                <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Frictionless Coterminous Expansion
+                Continuous Regulatory Float Auditing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Enable sales teams to add seats and product tiers mid-contract with instant automated proration and aligned annual renewal cycles.
+                Automated safeguarding reconciliation matches customer wallet balances against custodian bank reserves in real time for audit compliance.
               </p>
             </div>
 
             {/* Outcome 6 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <BarChart3 className="w-5 h-5" />
+                <Globe2 className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Live Cohort Margin & NRR Telemetry
+                Accelerated Global Corridor Expansion
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Arm executive leadership with real-time Net Retention Rate and customer profitability metrics reconciled directly against core finance ledgers.
+                Composable ISO 20022 messaging pipelines allow FinTechs to expand into new international payment corridors in weeks without rewriting code.
               </p>
             </div>
 
@@ -1360,7 +1362,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 9: SUCCESS STORY / USE CASE ("Transformation in Action")
+          SECTION 9: SUCCESS STORY / TRANSFORMATION (Conduit Pipeline & Delta Inspector)
           ========================================================================= */}
       <section className="py-10 sm:py-12 lg:py-14 bg-gradient-to-b from-[#060D1A] via-[#0A1628] to-[#060C17] border-b border-slate-800 relative overflow-hidden text-white">
         
@@ -1377,13 +1379,13 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>TRANSFORMATION ARCHITECTURE</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Transformation in Action
+              FinTech Architecture in Action
             </h2>
             <div className="text-xs sm:text-sm font-semibold text-cyan-400 font-mono tracking-wider uppercase">
-              Intelligent SaaS Revenue Architecture
+              Real-Time Settlement & Clean-Core ERP Progression
             </div>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              How high-growth cloud enterprises advance from fragmented billing scripts to an integrated clean-core subscription ecosystem.
+              How high-growth FinTech unicorns and digital neo-banks transition from brittle database scripts to an enterprise-grade payments engine.
             </p>
           </div>
 
@@ -1398,7 +1400,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             </div>
           </div>
 
-          {/* 4 Connected Interactive Transformation Cards (Compact, Crisp, Zero Numbers) */}
+          {/* 4 Connected Interactive Transformation Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch mb-3.5 sm:mb-4">
             {transformationStages.map((stage, sIdx) => {
               const IconComp = stage.icon;
@@ -1516,7 +1518,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
           ========================================================================= */}
       <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-gradient-to-r from-[#003B73] via-[#005B9E] to-[#0070C0] text-white">
         
-        {/* Abstract 3D Digital Commerce / Network Mesh Visual */}
+        {/* Abstract 3D Digital Network Mesh Visual */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div 
             className="absolute inset-0 opacity-15"
@@ -1537,25 +1539,25 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-widest text-cyan-200 backdrop-blur-sm shadow-sm">
-            <CreditCard className="w-3.5 h-3.5 text-cyan-300" />
-            <span>CONNECT YOUR SAAS REVENUE CORE</span>
+            <Zap className="w-3.5 h-3.5 text-cyan-300" />
+            <span>CONNECT YOUR FINTECH RAILS</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto">
-            Ready to Build a Smarter Subscription Business?
+            Ready to Scale Your High-Velocity FinTech Platform?
           </h2>
 
           <p className="text-base sm:text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed font-normal">
-            Connect your consumption metering, subscription billing, ASC 606 revenue recognition, and churn recovery with Knooviq.
+            Orchestrate instant payment rails, automate interchange fee matching, and synchronize virtual accounts into clean-core SAP ledgers with Knooviq.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
               type="button"
-              onClick={() => onOpenContact?.('Software & SaaS Consultation')}
+              onClick={() => onOpenContact?.('FinTech & Payment Architecture Consultation')}
               className="px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#003B73] text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl shadow-black/25 transition-all flex items-center gap-2 group cursor-pointer"
             >
-              <span>Talk to Our SaaS Experts</span>
+              <span>Talk to Our FinTech Architects</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#0070C0]" />
             </button>
 
@@ -1570,15 +1572,15 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
           <div className="pt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-sky-200">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-300" />
-              <span>SAP Certified Clean Core</span>
+              <span>ISO 20022 Compliant Architecture</span>
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-cyan-300" />
-              <span>Rapid Time-to-Value Delivery</span>
+              <span>Sub-20ms P99 Latency SLA</span>
             </span>
             <span className="flex items-center gap-1.5">
               <Globe2 className="w-4 h-4 text-sky-300" />
-              <span>Global 24/7 SLA AMS Support</span>
+              <span>Multi-Currency Global Rails</span>
             </span>
           </div>
 

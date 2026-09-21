@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  CreditCard, 
+  Cpu, 
   Layers, 
   Activity, 
   ShieldCheck, 
@@ -22,21 +22,18 @@ import {
   FileText, 
   Radio, 
   Server, 
-  Cloud, 
-  FileCheck, 
+  FolderKanban, 
   Split, 
-  Database, 
-  Sliders, 
-  AlertTriangle, 
-  Cpu,
-  Users
+  Factory,
+  Scan,
+  Cloud
 } from 'lucide-react';
 
-interface SoftwareSaasIndustryPageProps {
+interface HighTechIndustryPageProps {
   onOpenContact?: (defaultTopic?: string) => void;
 }
 
-export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> = ({ 
+export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
   // State for Section 2 Interactive Journey
@@ -45,92 +42,92 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
-  // State for Section 7 Solution Category Filter
+  // State for Section 6 Solution Category Filter
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<string>('ALL');
 
-  // State for Section 9 Transformation Stage
+  // State for Section 8 Transformation Stage
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
 
-  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ SaaS Revenue Platform Ecosystem)
+  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ High-Tech Silicon Platform)
   const wheelSegments = [
     {
-      id: 'usage-rating',
-      title: 'Consumption Metering & Dynamic Rating',
-      desc: 'High-throughput ingestion capturing API calls, compute milliseconds, and storage metrics for real-time rating.',
+      id: 'fabless-foundry',
+      title: 'Fabless-Foundry Digital Mesh',
+      desc: 'Seamless EDI and API bridge syncing GDSII tapeouts, mask revisions, wafer fab orders, and foundry WIP status.',
       side: 'right',
-      color: '#22C55E', // Green
-      textColor: 'text-emerald-400',
-      bgGlow: 'rgba(34, 197, 94, 0.3)',
-      icon: Zap
+      color: '#0284C7',
+      textColor: 'text-sky-400',
+      bgGlow: 'rgba(2, 132, 199, 0.3)',
+      icon: Cpu
     },
     {
-      id: 'contract-lifecycle',
-      title: 'Contract Lifecycle & Coterminous Terms',
-      desc: 'Seamless subscription renewals, mid-contract tier upgrades, seat expansions, and coterminous alignment.',
+      id: 'wafer-genealogy',
+      title: 'Wafer Lot & Die Genealogy',
+      desc: 'Micro-barcode and laser-engraved 2D DataMatrix tracking every individual die from ingot crystal to final BGA package.',
       side: 'right',
-      color: '#84CC16', // Lime Green
-      textColor: 'text-lime-400',
-      bgGlow: 'rgba(132, 204, 22, 0.3)',
-      icon: FileCheck
-    },
-    {
-      id: 'convergent-billing',
-      title: 'Automated Convergent Invoicing',
-      desc: 'Consolidate flat fees, dynamic consumption overages, and partner add-ons onto a single enterprise invoice.',
-      side: 'right',
-      color: '#EAB308', // Yellow
-      textColor: 'text-yellow-400',
-      bgGlow: 'rgba(234, 179, 8, 0.3)',
-      icon: CreditCard
-    },
-    {
-      id: 'rev-rec',
-      title: 'ASC 606 / IFRS 15 Revenue Accounting',
-      desc: 'Automated contract identification, standalone selling price (SSP) allocation, and balance sheet liability scheduling.',
-      side: 'right',
-      color: '#F97316', // Orange
-      textColor: 'text-orange-400',
-      bgGlow: 'rgba(249, 115, 22, 0.3)',
-      icon: ShieldCheck
-    },
-    {
-      id: 'dunning-churn',
-      title: 'Automated Dunning & Churn Defense',
-      desc: 'Tokenized card updater networks, intelligent retry schedules, and automated dunning preventing involuntary churn.',
-      side: 'left',
-      color: '#F43F5E', // Rose
-      textColor: 'text-rose-400',
-      bgGlow: 'rgba(244, 63, 94, 0.3)',
-      icon: RefreshCw
-    },
-    {
-      id: 'multi-currency-tax',
-      title: 'Global Tax & Statutory E-Invoicing',
-      desc: 'Multi-jurisdiction sales tax calculation, digital services taxes, European reverse-charge VAT, and Peppol e-invoices.',
-      side: 'left',
-      color: '#EC4899', // Pink
-      textColor: 'text-pink-400',
-      bgGlow: 'rgba(236, 72, 153, 0.3)',
-      icon: Globe2
-    },
-    {
-      id: 'partner-revshare',
-      title: 'Marketplace & Partner Revenue Sharing',
-      desc: 'Multi-party settlement calculating ecosystem developer royalties, agency commissions, and platform fees.',
-      side: 'left',
-      color: '#A855F7', // Purple
-      textColor: 'text-purple-400',
-      bgGlow: 'rgba(168, 85, 247, 0.3)',
+      color: '#0EA5E9',
+      textColor: 'text-cyan-400',
+      bgGlow: 'rgba(14, 165, 233, 0.3)',
       icon: Split
     },
     {
-      id: 'saas-metrics',
-      title: 'ARR, NRR & Cohort Margin Analytics',
-      desc: 'Real-time Net Retention Rate, customer lifetime value, and cohort margin telemetry directly from general ledgers.',
+      id: 'wafer-probe',
+      title: 'Wafer Probe & Sort Telemetry',
+      desc: 'High-speed automated ingestion of electronic wafer maps, binning test results, and defect density heatmaps.',
+      side: 'right',
+      color: '#10B981',
+      textColor: 'text-emerald-400',
+      bgGlow: 'rgba(16, 185, 129, 0.3)',
+      icon: Activity
+    },
+    {
+      id: 'cleanroom-iot',
+      title: 'Cleanroom Ambient & Particle Locks',
+      desc: 'Sub-second sensor streaming monitoring Class 1 cleanroom particle counts, humidity, and laminar flow velocity.',
+      side: 'right',
+      color: '#F59E0B',
+      textColor: 'text-amber-400',
+      bgGlow: 'rgba(245, 158, 11, 0.3)',
+      icon: Radio
+    },
+    {
+      id: 'osat-integration',
+      title: 'OSAT Subcontracting Governance',
+      desc: 'Real-time consignment inventory and stage-gate authorization across third-party assembly and test partners.',
       side: 'left',
-      color: '#06B6D4', // Cyan
-      textColor: 'text-cyan-400',
-      bgGlow: 'rgba(6, 182, 212, 0.3)',
+      color: '#F97316',
+      textColor: 'text-orange-400',
+      bgGlow: 'rgba(249, 115, 22, 0.3)',
+      icon: Factory
+    },
+    {
+      id: 'advanced-packaging',
+      title: 'Multi-Die & Chiplet Packaging',
+      desc: 'Managing 2.5D/3D heterogeneous chiplet integration with complex multi-level semiconductor bill-of-materials.',
+      side: 'left',
+      color: '#8B5CF6',
+      textColor: 'text-purple-400',
+      bgGlow: 'rgba(139, 92, 246, 0.3)',
+      icon: Layers
+    },
+    {
+      id: 'mask-governance',
+      title: 'Reticle & Mask Asset Governance',
+      desc: 'Complete maintenance tracking, shot counts, and degradation monitoring for high-value photolithography reticles.',
+      side: 'left',
+      color: '#EC4899',
+      textColor: 'text-pink-400',
+      bgGlow: 'rgba(236, 72, 153, 0.3)',
+      icon: Workflow
+    },
+    {
+      id: 'parametric-yield',
+      title: 'Parametric Yield & Machine Learning',
+      desc: 'Real-time algorithmic prediction identifying process drift, ion implantation anomalies, and etching deviations.',
+      side: 'left',
+      color: '#3B82F6',
+      textColor: 'text-blue-400',
+      bgGlow: 'rgba(59, 130, 246, 0.3)',
       icon: BarChart3
     }
   ];
@@ -163,274 +160,286 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
   const getIconCoords = (index: number) => {
     const cx = 250;
     const cy = 250;
-    const r = 168;
-    const midAngle = -90 + index * 45 + 22.5;
-    const rad = (midAngle * Math.PI) / 180;
+    const rMid = 168;
+    const gap = 1.6;
+    const tip = 7.5;
+    const theta1 = -90 + index * 45 + gap;
+    const theta2 = -90 + (index + 1) * 45 - gap;
+    const thetaMid = (theta1 + theta2) / 2 + tip / 2;
+    const rad = (deg: number) => (deg * Math.PI) / 180;
     return {
-      x: cx + r * Math.cos(rad),
-      y: cy + r * Math.sin(rad)
+      x: cx + rMid * Math.cos(rad(thetaMid)),
+      y: cy + rMid * Math.sin(rad(thetaMid))
     };
   };
 
   // Section 2: Journey Steps (Clean, no numbers, no statistics, no percentages)
   const journeySteps = [
     {
-      id: 'consumption-rating',
-      label: 'Usage Ingestion',
-      sublabel: 'Idempotent Telemetry',
-      desc: 'Stream high-velocity API calls, data throughput, and compute seconds into real-time convergent charging mediation with sub-second latency.',
-      tech: 'SAP BTP Event Mesh',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-      icon: Zap
+      id: 'tapeout',
+      label: 'Tapeout & Silicon BOM',
+      sublabel: 'Design to Foundry',
+      desc: 'Synchronizing fabless chip architectures with foundry process design kits (PDKs) and automated tapeout ECO locks.',
+      tech: 'SAP PLM & Enterprise BOM',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+      icon: Cpu
     },
     {
-      id: 'contract-terms',
-      label: 'Subscription Terms',
-      sublabel: 'Coterminous Align',
-      desc: 'Unify tiered subscriptions, seat licenses, minimum commitments, and add-on upgrades into automated coterminous contract lifecycles.',
-      tech: 'SAP Subscription Billing',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
-      icon: FileCheck
+      id: 'cleanroom',
+      label: 'Cleanroom Wafer Fab',
+      sublabel: 'Front-End Production',
+      desc: 'Orchestrating wafer cassette lots across steppers, diffusion furnaces, and ion implanters with real-time particle monitoring.',
+      tech: 'SAP Digital Manufacturing',
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      icon: Factory
     },
     {
-      id: 'convergent-billing',
-      label: 'Convergent Invoicing',
-      sublabel: 'Unified Billing Core',
-      desc: 'Consolidate flat recurring fees, dynamic usage overages, and partner add-ons on a single transparent enterprise billing statement.',
-      tech: 'SAP Convergent Invoicing',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
-      icon: CreditCard
+      id: 'probe',
+      label: 'Wafer Probe & Sort',
+      sublabel: 'Parametric Testing',
+      desc: 'Automated ingestion of multi-gigabyte probe telemetry files linking parametric test values to spatial die defect maps.',
+      tech: 'S/4HANA Quality Core',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
+      icon: Activity
     },
     {
-      id: 'rev-rec',
-      label: 'Revenue Accounting',
-      sublabel: 'ASC 606 / IFRS 15',
-      desc: 'Automate standalone selling price (SSP) allocation, contract liability schedules, and cumulative catch-ups for mid-term amendments.',
-      tech: 'SAP Revenue Accounting (RAR)',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      id: 'osat',
+      label: 'OSAT Subcontracting',
+      sublabel: 'Back-End Packaging',
+      desc: 'Managing outsourced assembly and test across global OSAT partners with live consignment stock and yield reconciliation.',
+      tech: 'SAP BTP Subcontracting Mesh',
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
+      icon: Layers
+    },
+    {
+      id: 'burn-in',
+      label: 'Burn-In & Serialization',
+      sublabel: 'DHR Verification',
+      desc: 'Final stress screening at temperature extremes with laser-etched 2D DataMatrix marking and digital Device History Records.',
+      tech: 'SAP Serial & Batch Lineage',
+      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80',
       icon: ShieldCheck
     },
     {
-      id: 'dunning-defense',
-      label: 'Dunning & Churn',
-      sublabel: 'ARR Preservation',
-      desc: 'Prevent involuntary churn via tokenized card updater sync, smart retry schedules factoring in clearing windows, and self-service portals.',
-      tech: 'SAP Billing Dunning Core',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
-      icon: RefreshCw
-    },
-    {
-      id: 'saas-finops',
-      label: 'Cohort Telemetry',
-      sublabel: 'ARR & NRR Analytics',
-      desc: 'Deliver real-time Net Retention Rate, customer lifetime value, and cohort margins reconciled directly against general ledgers.',
+      id: 'analytics',
+      label: 'Parametric Yield Analytics',
+      sublabel: 'Machine Learning',
+      desc: 'Predictive algorithmic anomaly detection identifying subtle etching and chemical-mechanical planarization drifts.',
       tech: 'SAP Analytics Cloud',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
       icon: BarChart3
     }
   ];
 
-  // Section 3: SaaS Challenges & Bottlenecks Data
-  const saasChallenges = [
+  // Section 3: High-Tech Challenges & Bottlenecks
+  const highTechChallenges = [
     {
-      tag: 'METERING DRIFT',
-      icon: Zap,
-      title: 'Unmetered Usage Slippage',
-      desc: 'Disconnected product telemetry drops high-volume API calls and storage events, resulting in unbilled customer overages and gross margin leakage.',
-      footer: 'Unbilled Consumption Waste'
+      icon: Split,
+      tag: 'DESIGN & TAPE-OUT',
+      title: 'Design-to-Tapeout Disconnect',
+      desc: 'Disjointed EDA/CAD files, manual engineering change orders (ECOs), and unaligned foundry PDK versions cause costly tapeout delays and respin cycles.',
+      footer: 'Silicon Revision Drift'
     },
     {
-      tag: 'REV-REC DELAY',
+      icon: Radio,
+      tag: 'CLEANROOM RISKS',
+      title: 'Cleanroom Ambient Excursions',
+      desc: 'Undetected microscopic airborne particulate spikes, humidity fluctuations, or laminar velocity shifts risk catastrophic lot scrapping in Class 1 cleanrooms.',
+      footer: 'High-Value Wafer Scrapping'
+    },
+    {
+      icon: Activity,
+      tag: 'TEST TELEMETRY',
+      title: 'Disjointed Wafer Probe Files',
+      desc: 'Multi-gigabyte parametric test files trapped in proprietary tester formats prevent real-time electronic binning and rapid spatial defect containment.',
+      footer: 'Parametric Data Blindspots'
+    },
+    {
+      icon: Factory,
+      tag: 'SUBCONTRACTING',
+      title: 'OSAT Subcontractor Opacity',
+      desc: 'Managing multi-tier outsourced assembly and test partners via fragmented spreadsheets creates blindspots in WIP velocity, consignment loss, and billing.',
+      footer: 'Back-End Consignment Gaps'
+    },
+    {
+      icon: Layers,
+      tag: 'ADVANCED PACKAGING',
+      title: 'Multi-Die & Chiplet Complexity',
+      desc: '2.5D and 3D heterogeneous packaging architectures with micro-bumps and interposers break conventional monolithic single-die ERP bill-of-materials.',
+      footer: 'Heterogeneous BOM Bottlenecks'
+    },
+    {
       icon: ShieldCheck,
-      title: 'Manual ASC 606 Spreadsheets',
-      desc: 'Tracking standalone selling prices and mid-term amendments across offline spreadsheets creates massive audit restatement risks and compliance penalties.',
-      footer: 'Spreadsheet Rev-Rec Vulnerability'
-    },
-    {
-      tag: 'CHURN LEAKAGE',
-      icon: RefreshCw,
-      title: 'Passive Involuntary Churn',
-      desc: 'Up to 30% of customer cancellations stem from expired credit cards and silent payment failures without intelligent multi-attempt dunning schedules.',
-      footer: 'Silent ARR Erosion'
-    },
-    {
-      tag: 'CONTRACT FRICTION',
-      icon: FileCheck,
-      title: 'Complex Coterminous Upgrades',
-      desc: 'Legacy billing systems fail to calculate precise prorations when enterprise buyers add seats mid-quarter, creating billing disputes and churn.',
-      footer: 'Proration Calculation Friction'
-    },
-    {
-      tag: 'DATA SILOS',
-      icon: Database,
-      title: 'Fragmented Billing & ERP Stacks',
-      desc: 'Disconnected CPQ tools, gateway processors, and finance ledgers cause weeks of month-end reconciliation lag and unaligned revenue recognition.',
-      footer: 'Delayed Financial Close'
-    },
-    {
-      tag: 'TAX RISK',
-      icon: Globe2,
-      title: 'Cross-Border Digital Tax Frictions',
-      desc: 'Expanding globally triggers complex US state economic nexus, EU reverse-charge VAT, and statutory e-invoicing penalties across jurisdictions.',
-      footer: 'Statutory Compliance Penalties'
+      tag: 'COMPLIANCE',
+      title: 'Rigorous Traceability Mandates',
+      desc: 'Automotive (AEC-Q100) and aerospace silicon standards require complete unbroken die genealogy from single crystal ingots to the vehicle control unit.',
+      footer: 'Lineage & Audit Overhead'
     }
   ];
 
-  // Section 7: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
+  // Section 6: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
   const industrySolutions = [
     {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'RECURRING BILLING',
-      icon: CreditCard,
-      title: 'Enterprise Subscription Core',
-      description: 'Manage complex recurring billing plans, annual advance invoices, coterminous add-ons, and payment gateway collections on Clean Core.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Seat & Tier Plans', 'Coterminous Alignment', 'Consolidated Statements', 'Gateway Auto-Settlement']
-    },
-    {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'EVENT MEDIATION',
-      icon: Zap,
-      title: 'High-Volume Consumption Rating',
-      description: 'Capture cloud application telemetry, API calls, and computational consumption, transforming raw usage records into rated line items.',
+      title: 'Wafer Lot & Die Genealogy',
+      tag: 'WAFER LINEAGE',
+      category: 'DESIGN_FAB',
+      categoryLabel: 'Design & Fab Core',
+      description: 'End-to-end genealogical lineage tracking individual wafers, carrier FOUPs, and diced chip assemblies across production stages.',
       image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Idempotent Ingestion', 'Dynamic Volume Tiers', 'Prepaid Drawdowns', 'Real-Time Quota Triggers']
+      highlights: ['Slot-Level Tracking', 'Automated Lot Split/Merge', 'Digital DHR Records'],
+      icon: Split
     },
     {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'REVENUE ACCOUNTING',
-      icon: ShieldCheck,
-      title: 'Automated ASC 606 Revenue RAR',
-      description: 'Comply effortlessly with statutory revenue recognition standards through automated contract allocation, SSP scheduling, and catch-ups.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Automated SSP Allocations', 'Contract Asset/Liability', 'Cumulative Catch-Ups', 'Audit-Ready Reporting']
+      title: 'Fabless-to-Foundry Mesh',
+      tag: 'FOUNDRY SYNC',
+      category: 'DESIGN_FAB',
+      categoryLabel: 'Design & Fab Core',
+      description: 'Seamless RosettaNet and REST API thread connecting fabless chip design houses with world-class wafer foundries for live WIP sync.',
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      highlights: ['GDSII Release Locks', 'Foundry WIP Telemetry', 'Tapeout ECO Controls'],
+      icon: Cpu
     },
     {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'CONTRACT LIFECYCLE',
-      icon: FileCheck,
-      title: 'Coterminous Renewal Management',
-      description: 'Synchronize multi-year contract renewals, mid-quarter seat expansions, and edition upgrades without manual proration spreadsheets.',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Automated Proration Logic', 'Coterminous Alignment', 'CPQ Contract Sync', 'Early Renewal Incentives']
+      title: 'Cleanroom DMC Edge Interlocks',
+      tag: 'CLEANROOM EDGE',
+      category: 'DESIGN_FAB',
+      categoryLabel: 'Design & Fab Core',
+      description: 'Sub-second machine and air-handling integration locking photolithography steppers automatically upon environmental particle breaches.',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      highlights: ['SECS/GEM Protocols', 'Sub-Second Machine Lockouts', 'Laminar Flow Velocity'],
+      icon: Radio
     },
     {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'CREDIT MANAGEMENT',
-      icon: Database,
-      title: 'Prepaid Commitments & Drawdowns',
-      description: 'Manage enterprise prepaid consumption commitments, burndown drawdowns, and use-it-or-lose-it expiration schedules with full transparency.',
-      image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Enterprise Burndown', 'Prepaid Balance Ledger', 'Expiration Schedules', 'Self-Service Telemetry']
+      title: 'Electronic Wafer Map Ingestion',
+      tag: 'TEST & SORT',
+      category: 'TEST_PACKAGING',
+      categoryLabel: 'Test & Packaging',
+      description: 'High-speed automated ingestion of electronic wafer sort files, translating test parameters into spatial defect density heatmaps.',
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Multi-Bin Classification', 'Defect Heatmap Generation', 'Instant Die Pegging'],
+      icon: Activity
     },
     {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'ECOSYSTEM SETTLEMENT',
-      icon: Split,
-      title: 'Multi-Party Marketplace RevShare',
-      description: 'Calculate and distribute developer royalties, agency commissions, and cloud platform revenue splits across multi-sided marketplaces.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Developer Royalty Splits', 'Self-Invoicing Portals', 'Tax Withholding Rules', 'Consolidated Ledgers']
+      title: 'OSAT Subcontracting Governance',
+      tag: 'OSAT PARTNER MESH',
+      category: 'TEST_PACKAGING',
+      categoryLabel: 'Test & Packaging',
+      description: 'Stage-gate validation, wafer consignment tracking, and packaging assembly yield reconciliation across third-party OSAT facilities.',
+      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Consignment Reconciliation', 'Assembly Yield Accounting', 'Subcontracting Stage-Gates'],
+      icon: Factory
     },
     {
-      category: 'CORE_BILLING',
-      categoryLabel: 'Core Subscription',
-      tag: 'PAYMENT RECOVERY',
-      icon: RefreshCw,
-      title: 'Smart Dunning & Churn Defense',
-      description: 'Defend recurring ARR against card expirations and network declines using intelligent multi-attempt retry schedules and card updaters.',
+      title: 'Multi-Die & Chiplet Packaging',
+      tag: 'HETEROGENEOUS BOM',
+      category: 'TEST_PACKAGING',
+      categoryLabel: 'Test & Packaging',
+      description: 'Configurable multi-level semiconductor bill-of-materials managing silicon substrates, micro-bumps, interposers, and resin encapsulation.',
+      image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+      highlights: ['2.5D/3D Multi-Die Modules', 'Interposer Lot Tracking', 'Micro-Bump Verification'],
+      icon: Layers
+    },
+    {
+      title: 'Automotive AEC-Q100 Compliance',
+      tag: 'MISSION CRITICAL',
+      category: 'GOVERNANCE',
+      categoryLabel: 'Yield & Compliance',
+      description: 'Automated adherence to zero-defect automotive qualification, environmental burn-in logs, and Production Part Approval Process (PPAP).',
       image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Tokenized Card Updaters', 'Smart Decline Retries', 'Dunning Email Sequences', 'Card Updater Portal']
+      highlights: ['AEC-Q100 Qualification', 'Zero-Defect Screening', 'Electronic PPAP Workflows'],
+      icon: ShieldCheck
     },
     {
-      category: 'METERING',
-      categoryLabel: 'Usage & Metering',
-      tag: 'USAGE GOVERNANCE',
-      icon: Sliders,
-      title: 'Real-Time Usage Alerts & Tiers',
-      description: 'Trigger automated customer notifications and in-app upgrade prompts when usage reaches commitment thresholds, driving expansion.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Real-Time Quota Triggers', 'Automated Tier Step-Ups', 'In-App Upgrade Webhooks', 'Overage Buffer Policies']
+      title: 'Parametric Yield Analytics',
+      tag: 'YIELD SCIENCE',
+      category: 'GOVERNANCE',
+      categoryLabel: 'Yield & Compliance',
+      description: 'Machine learning algorithms running on SAP Analytics Cloud identifying subtle etching, deposition, and test bin distribution shifts.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Process Drift Alerts', 'Scrap Root-Cause Isolation', 'Predictive Yield Modeling'],
+      icon: BarChart3
     },
     {
-      category: 'REVENUE_FINOPS',
-      categoryLabel: 'Rev-Rec & Compliance',
-      tag: 'FINOPS ANALYTICS',
-      icon: BarChart3,
-      title: 'SaaS Unit Economics & Cockpit',
-      description: 'Deliver real-time Net Retention Rate (NRR), customer lifetime value (LTV), and cohort margin visibility directly linked to hosting ledgers.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Real-Time NRR Tracking', 'Cohort Gross Margins', 'Cloud Cost Attribution', 'Predictive Churn Alerts']
+      title: 'Photolithography Reticle Assets',
+      tag: 'TOOLING ASSETS',
+      category: 'GOVERNANCE',
+      categoryLabel: 'Yield & Compliance',
+      description: 'Shot count tracking, reticle degradation curves, cleanroom pod maintenance, and automated stepper inspection schedules.',
+      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Shot Count Accumulation', 'Inspection Triggers', 'Reticle Cleaning Cadence'],
+      icon: Workflow
     }
   ];
 
-  // Section 9: Transformation in Action (Connected 4-Phase Architecture Pipeline)
+  // Section 8: Transformation in Action (Connected 4-Phase Architecture Pipeline)
   const transformationStages = [
     {
-      badge: 'PHASE 01',
-      textColor: 'text-cyan-400',
-      glowColor: 'bg-cyan-400',
-      activeBorder: 'border-cyan-400/80 bg-cyan-950/30',
-      borderBase: 'border-slate-800',
-      icon: Zap,
-      title: 'Telemetry Mediation',
-      subtitle: 'Event Mesh Ingestion',
-      tag: 'Sub-Second Rating',
-      description: 'Decoupled event streaming ingests and rates operational telemetry continuously, guaranteeing zero unbilled overage consumption.',
-      before: 'Fragmented log files, batch CSV imports & unrated consumption',
-      after: 'SAP BTP Event Mesh with sub-second convergent rating',
-      metrics: ['Idempotent Ingestion', 'Zero Usage Leakage', 'Real-Time Quota Triggers']
+      phase: 'INITIAL CHALLENGE',
+      badge: 'SILOED FOUNDRIES',
+      title: 'Disconnected Silicon',
+      subtitle: 'Legacy Fab Fragmentation',
+      description: 'Fabless chip designers, wafer foundries, cleanrooms, and OSAT packaging partners running disconnected portals, causing tapeout revisions and parametric test data blindspots.',
+      accent: 'rose',
+      borderBase: 'border-rose-500/30 hover:border-rose-400',
+      activeBorder: 'border-rose-400 ring-2 ring-rose-500/30 bg-rose-950/20 shadow-[0_0_25px_rgba(244,63,94,0.2)]',
+      glowColor: 'bg-rose-500',
+      textColor: 'text-rose-400',
+      icon: Activity,
+      tag: 'Tapeout Delays & Test Silos',
+      before: 'Manual GDSII tapeout approvals & delayed wafer probe status',
+      after: 'Synchronized event-driven foundry digital thread',
+      metrics: ['Wafer Map Discrepancies', 'Manual OSAT PO Clearing', 'Cleanroom Excursions']
     },
     {
-      badge: 'PHASE 02',
+      phase: 'STRATEGIC FRAMEWORK',
+      badge: 'CLEAN CORE',
+      title: 'BTP Silicon Fabric',
+      subtitle: 'Architecture Foundation',
+      description: 'Deploying decoupled event-driven microservices on SAP BTP to ingest multi-gigabyte wafer sort test maps and integrate SECS/GEM cleanroom equipment telemetry.',
+      accent: 'sky',
+      borderBase: 'border-sky-500/30 hover:border-sky-400',
+      activeBorder: 'border-sky-400 ring-2 ring-sky-500/30 bg-sky-950/20 shadow-[0_0_25px_rgba(56,189,248,0.2)]',
+      glowColor: 'bg-sky-500',
       textColor: 'text-sky-400',
-      glowColor: 'bg-sky-400',
-      activeBorder: 'border-sky-400/80 bg-sky-950/30',
-      borderBase: 'border-slate-800',
-      icon: FileCheck,
-      title: 'Subscription Terms',
-      subtitle: 'Coterminous Lifecycles',
-      tag: 'Automated Proration',
-      description: 'Unified contract rules handle multi-tier plans, seat licenses, prepaid credits, and prorated mid-term upgrades on a single invoice.',
-      before: 'Manual proration spreadsheets, separate invoices & billing disputes',
-      after: 'SAP Subscription Billing with unified coterminous invoicing',
-      metrics: ['Coterminous Alignment', 'Unified Invoice Statements', 'Self-Service Tier Upgrades']
+      icon: Workflow,
+      tag: 'Real-Time Telemetry Mesh',
+      before: 'Overnight batch files & unparsed probe raw data',
+      after: 'Sub-second electronic binning & automated lot genealogy',
+      metrics: ['Decoupled Core', 'SECS/GEM Integration', 'Wafer Map Ingestion']
     },
     {
-      badge: 'PHASE 03',
+      phase: 'DEPLOYED STACK',
+      badge: 'LIVE ECOSYSTEM',
+      title: 'S/4HANA Silicon Core',
+      subtitle: 'Discrete Manufacturing + DMC',
+      description: 'Unifying S/4HANA Discrete Manufacturing with SAP Digital Manufacturing Cloud (DMC), driving automated carrier pod dispatch and lot split/merge accounting.',
+      accent: 'cyan',
+      borderBase: 'border-cyan-500/30 hover:border-cyan-400',
+      activeBorder: 'border-cyan-400 ring-2 ring-cyan-500/30 bg-cyan-950/20 shadow-[0_0_25px_rgba(34,211,238,0.2)]',
+      glowColor: 'bg-cyan-500',
+      textColor: 'text-cyan-400',
+      icon: Cpu,
+      tag: 'Orchestrated S/4HANA',
+      before: 'Disjointed cleanroom logs and isolated OSAT consignments',
+      after: 'Centralized lot traceability and touchless cleanroom workflows',
+      metrics: ['S/4HANA Discrete Core', 'Cleanroom DMC Engine', 'Universal Journal ACDOCA']
+    },
+    {
+      phase: 'STRATEGIC VALUE',
+      badge: 'REALIZED IMPACT',
+      title: 'Autonomous Velocity',
+      subtitle: 'Zero-Defect Execution',
+      description: 'Attaining end-to-end silicon traceability from crystal ingot to finished BGA package, minimizing scrap, safeguarding margins, and meeting AEC-Q100 standards.',
+      accent: 'emerald',
+      borderBase: 'border-emerald-500/30 hover:border-emerald-400',
+      activeBorder: 'border-emerald-400 ring-2 ring-emerald-500/30 bg-emerald-950/20 shadow-[0_0_25px_rgba(52,211,153,0.2)]',
+      glowColor: 'bg-emerald-500',
       textColor: 'text-emerald-400',
-      glowColor: 'bg-emerald-400',
-      activeBorder: 'border-emerald-400/80 bg-emerald-950/30',
-      borderBase: 'border-slate-800',
       icon: ShieldCheck,
-      title: 'Statutory Rev-Rec',
-      subtitle: 'ASC 606 Automation',
-      tag: 'Audit-Proof Ledgers',
-      description: 'Automated revenue accounting separates deferred contract liabilities from earned ARR, posting cumulative catch-ups directly to S/4HANA.',
-      before: 'Offline rev-rec spreadsheets & agonizing audit reconciliation',
-      after: 'Automated SAP RAR schedules on Universal Journal (ACDOCA)',
-      metrics: ['Automated SSP Allocations', 'Cumulative Catch-Up Postings', 'Audit-Ready Disclosures']
-    },
-    {
-      badge: 'PHASE 04',
-      textColor: 'text-amber-400',
-      glowColor: 'bg-amber-400',
-      activeBorder: 'border-amber-400/80 bg-amber-950/30',
-      borderBase: 'border-slate-800',
-      icon: RefreshCw,
-      title: 'FinOps & Retention',
-      subtitle: 'Dunning & SAC Cockpit',
-      tag: 'ARR Preservation',
-      description: 'Intelligent card retry algorithms recover failed transactions while SAP Analytics Cloud provides real-time cohort margin telemetry.',
-      before: 'Passive payment failures causing silent churn & margin blindspots',
-      after: 'Smart dunning engine with live SAC Net Retention Rate cockpit',
-      metrics: ['Tokenized Card Updaters', 'Smart Dunning Schedules', 'True Cohort Gross Margin']
+      tag: 'Zero-Defect Operations',
+      before: 'Uncontained wafer yield excursions and slow audit responses',
+      after: 'Predictable silicon yield and immutable Device History Records',
+      metrics: ['Die-Level Traceability', 'AEC-Q100 Compliance', 'Protected Gross Margins']
     }
   ];
 
@@ -438,15 +447,15 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Pure Enterprise Software & SaaS Hero)
+          SECTION 1: HERO SECTION (Pure Enterprise High-Tech Hero)
           ========================================================================= */}
       <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
-        {/* Full-Bleed Enterprise SaaS Background Image with Seamless Cinematic Scrim */}
+        {/* Full-Bleed Enterprise High-Tech Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80" 
-            alt="Software, SaaS & Subscription Billing Operations" 
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80" 
+            alt="Semiconductor and Cleanroom Wafer Manufacturing Atmosphere" 
             className="w-full h-full object-cover object-center"
           />
         </div>
@@ -466,19 +475,19 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             >
               {/* Practice Pill Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <CreditCard className="w-3.5 h-3.5 text-cyan-400" />
+                <Cpu className="w-3.5 h-3.5 text-cyan-400" />
                 <span>KNOOVIQ INDUSTRY PRACTICE</span>
               </div>
               
               {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
                 Intelligent ERP for <br />
-                <span className="text-cyan-400">Software & SaaS</span>
+                <span className="text-cyan-400">High-Tech & Semiconductors</span>
               </h1>
 
               {/* Subheading / Value Proposition */}
               <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Automated Subscription Billing, Usage Rating & ASC 606 Revenue Recognition.
+                Precision Wafer Traceability, Foundry Sync & Zero-Defect Silicon Manufacturing.
               </p>
             </motion.div>
 
@@ -490,9 +499,9 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             >
               {/* Clear Open Typography */}
               <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
-                Empowering cloud software providers, digital platforms, and subscription enterprises with{' '}
-                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, high-velocity{' '}
-                <strong className="text-cyan-300 font-semibold">BRIM Event Mediation</strong>, automated ASC 606 revenue compliance, and proactive churn recovery.
+                Empowering fabless innovators, wafer foundries, cleanrooms, and OSAT packaging networks with{' '}
+                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated{' '}
+                <strong className="text-cyan-300 font-semibold">SECS/GEM Machine Telemetry</strong>, wafer sort defect mapping, and unbroken die genealogy.
               </p>
               
               {/* Clean Feature Highlights */}
@@ -503,11 +512,11 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Sub-Second Metering Rating</span>
+                  <span>Wafer-Level Die Genealogy</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                  <span>ASC 606 Automated RAR</span>
+                  <span>SECS/GEM Telemetry</span>
                 </span>
               </div>
             </motion.div>
@@ -524,35 +533,35 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                   <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
                 </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA BRIM</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA Discrete</div>
                 <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
                 <div className="flex items-center gap-2 mb-1">
-                  <CreditCard className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">BILLING CORE</span>
+                  <Factory className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SHOP FLOOR</span>
                 </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">Unified Invoicing</div>
-                <div className="text-xs text-slate-300 mt-0.5">Seat & Usage Sync</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Cleanroom DMC Edge</div>
+                <div className="text-xs text-slate-300 mt-0.5">Class 1 Interlocks</div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
                 <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">COMPLIANCE</span>
+                  <Split className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">LINEAGE</span>
                 </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">ASC 606 / IFRS 15</div>
-                <div className="text-xs text-slate-300 mt-0.5">Zero Audit Risk</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Die-Level Genealogy</div>
+                <div className="text-xs text-slate-300 mt-0.5">Zero-Defect Tracking</div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
                 <div className="flex items-center gap-2 mb-1">
-                  <RefreshCw className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">RETENTION</span>
+                  <Boxes className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SUPPLY CHAIN</span>
                 </div>
-                <div className="text-sm sm:text-base font-bold text-white leading-snug">Smart Dunning</div>
-                <div className="text-xs text-slate-300 mt-0.5">ARR Protection</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">OSAT Partner Mesh</div>
+                <div className="text-xs text-slate-300 mt-0.5">Global WIP Sync</div>
               </div>
             </motion.div>
 
@@ -563,7 +572,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE ("Building a Connected SaaS Revenue Core")
+          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE ("Building a Connected Semiconductor Enterprise")
           ========================================================================= */}
       <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-[#F8FBFE] to-white border-b border-slate-200 relative overflow-hidden">
         
@@ -584,30 +593,42 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
-                Building a Connected <span className="text-[#0070C0]">SaaS Revenue Core</span>
+                Building a Connected <span className="text-[#0070C0]">Semiconductor Enterprise</span>
               </h2>
 
               {/* Executive Thesis Quote */}
               <div className="border-l-4 border-[#0070C0] border-y border-r border-slate-300 pl-4 py-2 bg-gradient-to-r from-sky-50/80 via-sky-50/30 to-transparent rounded-r-xl">
                 <p className="text-sm font-semibold text-slate-800 leading-relaxed italic">
-                  &ldquo;Modern SaaS valuation is defined by monetization velocity: unifying product telemetry, consumption-based contracts, and statutory revenue ledgers into one cohesive operational core.&rdquo;
+                  &ldquo;Semiconductor leadership demands flawless execution across microscopic tolerances: bridging fabless chip tapeouts, cleanroom photolithography, and global OSAT packaging into one unified operational core.&rdquo;
                 </p>
               </div>
 
               <p className="text-slate-600 text-sm leading-relaxed">
-                Knooviq engineers an integrated revenue ecosystem on SAP S/4HANA Clean Core. By bridging data across cloud application telemetry and core general ledgers, SaaS leadership gains continuous visibility, automated billing flow, and audit-ready revenue realization.
+                Knooviq engineers an integrated enterprise ecosystem on SAP S/4HANA Clean Core. By harmonizing data across foundries, cleanrooms, and testing facilities, semiconductor leaders achieve complete die visibility, automated yield tracking, and high-velocity operations.
               </p>
 
               {/* 3 Executive Strategic Pillars */}
               <div className="space-y-2.5 pt-1">
                 <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
                   <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
-                    <Zap className="w-4 h-4" />
+                    <Cpu className="w-4 h-4" />
                   </div>
                   <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">High-Throughput Consumption Rating</h4>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Fabless-to-Foundry Digital Backbone</h4>
                     <p className="text-xs text-slate-500 leading-relaxed">
-                      Single-pane-of-glass coordination across millions of API events, compute telemetry, and tiered volume discounts without latency.
+                      Single-pane-of-glass coordination syncing GDSII tapeouts, mask revisions, and foundry WIP status without latency.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Split className="w-4 h-4" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Die-Level Lot & Wafer Map Lineage</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Trace every individual die from crystal ingot growth through photolithography, probe sort, and BGA packaging.
                     </p>
                   </div>
                 </div>
@@ -617,21 +638,9 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Statutory ASC 606 & IFRS 15 Compliance</h4>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Closed-Loop Yield & Quality Governance</h4>
                     <p className="text-xs text-slate-500 leading-relaxed">
-                      Automated standalone selling price (SSP) allocation and performance obligation scheduling on the Universal Journal.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
-                    <RefreshCw className="w-4 h-4" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Proactive Dunning & Churn Defense</h4>
-                    <p className="text-xs text-slate-500 leading-relaxed">
-                      Automated card updater networks and smart decline retry algorithms actively defending recurring annual revenue.
+                      Continuous parametric drift detection, Class 1 cleanroom interlocks, and automated automotive AEC-Q100 compliance.
                     </p>
                   </div>
                 </div>
@@ -661,7 +670,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                       key={step.id}
                       type="button"
                       onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
+                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
                           : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
@@ -683,7 +692,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                 })}
               </div>
 
-              {/* Selected Stage Detail Card (Placed Below the Image & Controls with Defined Border) */}
+              {/* Selected Stage Detail Card */}
               <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-300 shadow-xs space-y-1.5">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-[#003B73]">
@@ -706,7 +715,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 3: INDUSTRY CHALLENGES ("Navigating the Complexity of Modern Cloud Billing")
+          SECTION 3: INDUSTRY CHALLENGES ("Navigating the Complexity of Advanced Silicon Manufacturing")
           ========================================================================= */}
       <section className="py-12 sm:py-14 lg:py-16 bg-[#F8FAFC] border-b border-slate-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -723,15 +732,15 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>CORE BOTTLENECKS</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
-              Navigating the Complexity of Modern Cloud Billing
+              Navigating the Complexity of Advanced Silicon Manufacturing
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              Disjointed billing scripts and siloed product telemetry constrain ARR growth. Knooviq addresses the six systemic challenges cloud software leaders face.
+              Disjointed fabless portals, uncalibrated cleanrooms, and siloed test data constrain yield. Knooviq addresses the six systemic challenges high-tech leaders face.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {saasChallenges.map((item, idx) => {
+            {highTechChallenges.map((item, idx) => {
               const IconComponent = item.icon;
               return (
                 <motion.div
@@ -772,12 +781,12 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 4: KNOOVIQ SAAS PLATFORM ECOSYSTEM (Circular Chevron Radial Diagram)
+          SECTION 4: KNOOVIQ HIGH-TECH SILICON PLATFORM (Circular Chevron Radial Diagram)
           ========================================================================= */}
       <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] text-white border-b border-slate-800 relative overflow-hidden">
         
         {/* Dark Ambient Radial Hues */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-500/10 via-emerald-500/10 to-pink-500/10 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-sky-500/10 via-emerald-500/10 to-purple-500/10 blur-[140px] rounded-full pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -792,13 +801,13 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-inner">
               <Workflow className="w-3.5 h-3.5 text-cyan-300" />
-              <span>CONNECTED SAAS ECOSYSTEM</span>
+              <span>CONNECTED SILICON ECOSYSTEM</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Capabilities Designed for Modern SaaS
+              Capabilities Designed for High-Tech & Semiconductors
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              A synchronized, circular enterprise platform uniting usage metering, coterminous contracts, automated invoicing, ASC 606 general ledgers, and cognitive AI into one continuous loop.
+              A synchronized, circular enterprise platform uniting chip design, wafer foundry execution, cleanrooms, packaging networks, and parametric yield AI into one continuous loop.
             </p>
           </motion.div>
 
@@ -852,7 +861,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
                 
                 {/* Glow ring under wheel */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/15 via-emerald-500/10 to-pink-500/15 blur-2xl rounded-full pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/15 via-cyan-500/10 to-purple-500/15 blur-2xl rounded-full pointer-events-none" />
 
                 <svg
                   viewBox="0 0 500 500"
@@ -929,23 +938,18 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                   {/* Center Hub Label */}
                   <foreignObject
                     x="150"
-                    y="195"
+                    y="200"
                     width="200"
-                    height="110"
+                    height="100"
                     className="pointer-events-none"
                   >
-                    <div className="w-full h-full flex flex-col items-center justify-center text-center px-3">
-                      <div className="text-[10px] font-mono tracking-widest text-cyan-400 font-bold uppercase">
-                        KNOOVIQ CORE
-                      </div>
-                      <div className="text-sm sm:text-base font-black text-white leading-tight mt-0.5">
-                        SAAS REVENUE
-                      </div>
-                      <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
-                        {hoveredWheelIndex !== null 
-                          ? `MODULE 0${hoveredWheelIndex + 1}` 
-                          : '8 CAPABILITIES'}
-                      </div>
+                    <div className="w-full h-full flex flex-col items-center justify-center text-center select-none px-3">
+                      <span className="text-sm sm:text-base font-black text-white tracking-wider uppercase leading-tight">
+                        KNOOVIQ Silicon
+                      </span>
+                      <span className="text-xs sm:text-sm font-semibold text-slate-300 mt-1 tracking-wide">
+                        Platform
+                      </span>
                     </div>
                   </foreignObject>
                 </svg>
@@ -954,7 +958,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             </div>
 
             {/* Right Column (4 Capabilities: Top-Right to Bottom-Right) */}
-            <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+            <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
                 const isHovered = hoveredWheelIndex === segIdx;
@@ -981,7 +985,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                           boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
-                      <div className="space-y-1 text-right">
+                      <div className="space-y-1 text-left flex-1">
                         <h4 className="text-sm sm:text-base font-bold tracking-tight" style={{ color: item.color }}>
                           {item.title}
                         </h4>
@@ -1001,7 +1005,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 6: SAP & TECHNOLOGY SOLUTIONS ("Technology Foundation for Intelligent SaaS")
+          SECTION 5: SAP & TECHNOLOGY FOUNDATION ("Technology Foundation for High-Tech Silicon")
           ========================================================================= */}
       <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1012,89 +1016,71 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>PLATFORM ARCHITECTURE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Technology Foundation for Intelligent SaaS
+              Technology Foundation for High-Tech Silicon
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              We engineer clean-core SAP technology suites layered with modern cloud event streaming, role-based interfaces, and autonomous business AI.
+              We engineer clean-core SAP technology suites layered with modern cloud extensions, SECS/GEM edge interfaces, and machine learning yield analytics.
             </p>
           </div>
 
           {/* Layered Technology Ecosystem Visual */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Tech 1: SAP S/4HANA Core */}
+            {/* Tech 1: SAP S/4HANA */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CORE ERP SUITE</span>
                 <Cpu className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP S/4HANA
+                SAP S/4HANA Discrete
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Integrated enterprise processes uniting financial ledgers, contract assets, subscription invoices, and profit center accounting into a single in-memory database.
+                Single-source financial ledgers, lot splitting/merging accounting, and discrete manufacturing orders managing multi-level semiconductor bill-of-materials.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Universal Journal (ACDOCA)</div>
-                <div className="flex items-center gap-1.5">• Real-time Financial Month-End Close</div>
+                <div className="flex items-center gap-1.5">• Universal Journal (ACDOCA) wafer valuation</div>
+                <div className="flex items-center gap-1.5">• Ingot-to-wafer lot split & merge lineage</div>
               </div>
             </div>
 
-            {/* Tech 2: SAP BRIM */}
+            {/* Tech 2: SAP DMC */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BILLING ENGINE</span>
-                <CreditCard className="w-5 h-5 text-[#0070C0]" />
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">DOMAIN SOLUTION</span>
+                <Factory className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP BRIM / Billing
+                SAP Digital Manufacturing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                High-volume convergent charging and invoicing engine capable of rating millions of consumption events and compiling single itemized bills.
+                Connect photolithography steppers, automated guided vehicles (AGVs), and wafer cassette carrier pods (FOUPs) with SECS/GEM standards.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Convergent Invoicing (CI)</div>
-                <div className="flex items-center gap-1.5">• Convergent Charging (CC) High-Speed Rating</div>
+                <div className="flex items-center gap-1.5">• SECS/GEM standard machine interlocks</div>
+                <div className="flex items-center gap-1.5">• Carrier pod FOUP barcode scanning</div>
               </div>
             </div>
 
             {/* Tech 3: SAP BTP */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">INTEGRATION & EVENT MESH</span>
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">INTEGRATION & EXTENSIONS</span>
                 <Cloud className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
                 SAP Business Technology Platform
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Seamless side-by-side extensibility keeping the ERP core clean while connecting cloud API telemetry, payment processors, and custom portals.
+                Decoupled extension microservices ingesting multi-gigabyte wafer sort files and providing RosettaNet B2B connections to world foundries.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• SAP Event Mesh (Kafka / REST)</div>
-                <div className="flex items-center gap-1.5">• Serverless Mediation Microservices</div>
+                <div className="flex items-center gap-1.5">• Ingest high-density wafer maps off-core</div>
+                <div className="flex items-center gap-1.5">• RosettaNet / EDI foundry B2B protocols</div>
               </div>
             </div>
 
-            {/* Tech 4: SAP RAR */}
-            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">REVENUE ACCOUNTING</span>
-                <ShieldCheck className="w-5 h-5 text-[#0070C0]" />
-              </div>
-              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                SAP Revenue Accounting (RAR)
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Automated statutory revenue compliance separating deferred contract liabilities from earned ARR with automated catch-up postings.
-              </p>
-              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• ASC 606 & IFRS 15 Standard Rules</div>
-                <div className="flex items-center gap-1.5">• Standalone Selling Price (SSP) Allocation</div>
-              </div>
-            </div>
-
-            {/* Tech 5: SAP Analytics Cloud */}
+            {/* Tech 4: SAP Analytics Cloud */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">BUSINESS INTELLIGENCE</span>
@@ -1104,29 +1090,47 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                 SAP Analytics Cloud
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Executive visibility into Net Retention Rate (NRR), customer cohort margins, churn velocity, and predictive subscription pipeline modeling.
+                Real-time visibility into parametric probe binning, spatial wafer defect density, OSAT yield rates, and fab scrap sensitivity analysis.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Real-time ARR, MRR, GRR & NRR Cockpits</div>
-                <div className="flex items-center gap-1.5">• Customer Cohort Profitability Analysis</div>
+                <div className="flex items-center gap-1.5">• Spatial Wafer Defect Heatmaps</div>
+                <div className="flex items-center gap-1.5">• Parametric Yield & Bin Drift Diagnostics</div>
               </div>
             </div>
 
-            {/* Tech 6: AI & Churn Defense */}
+            {/* Tech 5: SAP Fiori */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">ROLE-BASED UX</span>
+                <Scan className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Fiori Cleanroom Apps
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Touch-optimized cleanroom tablet interfaces for equipment calibration sign-off, cassette lot dispatch, and digital DHR review.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Cleanroom Cassette Barcode Auditing</div>
+                <div className="flex items-center gap-1.5">• Electronic Sign-Off & Equipment Release</div>
+              </div>
+            </div>
+
+            {/* Tech 6: AI & Automation */}
             <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">COGNITIVE ENGINES</span>
                 <Sparkles className="w-5 h-5 text-[#0070C0]" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
-                AI & Churn Defense
+                AI Yield Predictive Engines
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Intelligent payment retry logic factoring in banking clearing windows, automated card updater network sync, and predictive churn prevention.
+                Algorithmic yield anomaly detection flagging ion implantation drift and etching variations before lots progress to back-end dicing.
               </p>
               <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
-                <div className="flex items-center gap-1.5">• Smart Multi-Attempt Dunning Algorithms</div>
-                <div className="flex items-center gap-1.5">• Usage Velocity Anomaly Alerts</div>
+                <div className="flex items-center gap-1.5">• Machine Learning Yield Anomaly Alerts</div>
+                <div className="flex items-center gap-1.5">• Automated Quarantine of Deviating Wafers</div>
               </div>
             </div>
 
@@ -1136,31 +1140,31 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 7: INDUSTRY SOLUTIONS ("Solutions for Every Stage of SaaS")
+          SECTION 6: INDUSTRY SOLUTIONS ("Solutions for Every Stage of Silicon Manufacturing")
           ========================================================================= */}
       <section id="industry-solutions" className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200 relative scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-7 sm:mb-8 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0] shadow-2xs">
-              <CreditCard className="w-3.5 h-3.5 text-[#0070C0]" />
+              <Cpu className="w-3.5 h-3.5 text-[#0070C0]" />
               <span>ENTERPRISE FUNCTIONAL CATALOG</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
-              Solutions for Every Stage of SaaS
+              Solutions for Every Stage of Silicon Manufacturing
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              Explore specialized enterprise functional modules engineered to modernize cloud monetization across subscription plans, dynamic metering, and statutory ledgers.
+              Explore specialized enterprise functional modules engineered to modernize semiconductor execution across chip tapeouts, wafer fab, and packaging networks.
             </p>
           </div>
 
-          {/* Solution Domain Category Tabs - 4 Symmetrical Tabs */}
+          {/* Solution Domain Category Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-7 sm:mb-8">
             {[
               { id: 'ALL', label: 'All Solutions' },
-              { id: 'CORE_BILLING', label: 'Subscription Core' },
-              { id: 'METERING', label: 'Usage & Metering' },
-              { id: 'REVENUE_FINOPS', label: 'Rev-Rec & FinOps' }
+              { id: 'DESIGN_FAB', label: 'Design & Fab Core' },
+              { id: 'TEST_PACKAGING', label: 'Test & Packaging' },
+              { id: 'GOVERNANCE', label: 'Yield & Compliance' }
             ].map((cat) => {
               const isActive = activeSolutionCategory === cat.id;
               return (
@@ -1168,7 +1172,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveSolutionCategory(cat.id)}
-                  className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 ${
                     isActive
                       ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25 scale-105'
                       : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-2xs'
@@ -1255,7 +1259,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 8: BUSINESS OUTCOMES ("Turning Billing Complexity into Growth Advantage")
+          SECTION 7: BUSINESS OUTCOMES ("Turning Silicon Complexity into Business Advantage")
           ========================================================================= */}
       <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1266,91 +1270,91 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               <span>MEASURABLE BUSINESS IMPACT</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Turning Billing Complexity into Growth Advantage
+              Turning Silicon Complexity into Business Advantage
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              When usage telemetry, subscriptions, payment gateways, and statutory ledgers operate in unison, SaaS organizations achieve sustainable commercial acceleration.
+              When design specifications, cleanrooms, wafer test telemetry, and packaging ledgers operate in unison, semiconductor organizations achieve sustainable commercial performance.
             </p>
           </div>
 
-          {/* 6 Outcomes (Large typography, flowing blue paths, generous whitespace, NO dashboards) */}
+          {/* 6 Outcomes */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             {/* Outcome 1 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <Zap className="w-5 h-5" />
+                <Split className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Touchless Month-End Close
+                Die-Level Traceability
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Eliminate manual spreadsheet reconciliations and proration calculations. Compress the monthly subscription billing close from weeks down to hours.
+                Know the exact ingot, wafer cassette, probe bin, and OSAT lot origin of every deployed silicon device. Eradicate untraceable quality escapes.
               </p>
             </div>
 
             {/* Outcome 2 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <ShieldCheck className="w-5 h-5" />
+                <Radio className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                100% ASC 606 Audit Traceability
+                Cleanroom Risk Containment
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Deliver automated standalone selling price allocations and contract balance schedules, guaranteeing zero audit restatements or compliance penalties.
+                Automate tool interlocks and cleanroom atmosphere monitoring. Prevent particle breach excursions before full wafer cassettes suffer catastrophic damage.
               </p>
             </div>
 
             {/* Outcome 3 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <RefreshCw className="w-5 h-5" />
+                <Cpu className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                45% Involuntary Churn Recovery
+                Faster Time-to-Market
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Recover failed transactions through automated card network updater synchronizations and smart multi-attempt dunning retry schedules.
+                Harmonize design tapeouts with foundry PDK versions. Eliminate engineering change confusion and speed up initial silicon samples to customers.
               </p>
             </div>
 
             {/* Outcome 4 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <Database className="w-5 h-5" />
+                <Factory className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Zero Unbilled Usage Leakage
+                OSAT Partner Synchronization
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Process high-throughput API and consumption telemetry through an idempotent event mesh, ensuring zero dropped events or unrated consumption.
+                Gain real-time consignment stock visibility and WIP stage-gate tracking across outsourced assembly and test facilities worldwide.
               </p>
             </div>
 
             {/* Outcome 5 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <FileCheck className="w-5 h-5" />
+                <BarChart3 className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Frictionless Coterminous Expansion
+                Parametric Yield Optimization
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Enable sales teams to add seats and product tiers mid-contract with instant automated proration and aligned annual renewal cycles.
+                Transform multi-gigabyte wafer sort telemetry into actionable machine learning alerts. Isolate etching drifts before scrap rates increase.
               </p>
             </div>
 
             {/* Outcome 6 */}
             <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
               <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
-                <BarChart3 className="w-5 h-5" />
+                <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-black text-slate-900">
-                Live Cohort Margin & NRR Telemetry
+                Mission-Critical Compliance
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Arm executive leadership with real-time Net Retention Rate and customer profitability metrics reconciled directly against core finance ledgers.
+                Compile immutable digital Device History Records automatically for aerospace, defense, medical, and automotive AEC-Q100 certifications.
               </p>
             </div>
 
@@ -1360,7 +1364,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 9: SUCCESS STORY / USE CASE ("Transformation in Action")
+          SECTION 8: TRANSFORMATION IN ACTION (Connected 4-Phase Architecture Pipeline)
           ========================================================================= */}
       <section className="py-10 sm:py-12 lg:py-14 bg-gradient-to-b from-[#060D1A] via-[#0A1628] to-[#060C17] border-b border-slate-800 relative overflow-hidden text-white">
         
@@ -1370,7 +1374,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Header - Compact & High-Impact */}
+          {/* Header */}
           <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
               <Workflow className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
@@ -1380,10 +1384,10 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
               Transformation in Action
             </h2>
             <div className="text-xs sm:text-sm font-semibold text-cyan-400 font-mono tracking-wider uppercase">
-              Intelligent SaaS Revenue Architecture
+              Intelligent High-Tech & Semiconductor Architecture
             </div>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-              How high-growth cloud enterprises advance from fragmented billing scripts to an integrated clean-core subscription ecosystem.
+              How semiconductor enterprises advance from fragmented foundry communication to an integrated clean-core event ecosystem.
             </p>
           </div>
 
@@ -1398,7 +1402,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             </div>
           </div>
 
-          {/* 4 Connected Interactive Transformation Cards (Compact, Crisp, Zero Numbers) */}
+          {/* 4 Connected Interactive Transformation Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch mb-3.5 sm:mb-4">
             {transformationStages.map((stage, sIdx) => {
               const IconComp = stage.icon;
@@ -1463,7 +1467,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             })}
           </div>
 
-          {/* Interactive Live Transformation Console / Delta Inspector (Compact) */}
+          {/* Interactive Live Transformation Console / Delta Inspector */}
           {(() => {
             const currentStage = transformationStages[activeTransformStage];
             return (
@@ -1512,11 +1516,10 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 11: FINAL CTA (Full-Width Blue Executive Section)
+          SECTION 9: FINAL CTA (Full-Width Blue Executive Section)
           ========================================================================= */}
       <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-gradient-to-r from-[#003B73] via-[#005B9E] to-[#0070C0] text-white">
         
-        {/* Abstract 3D Digital Commerce / Network Mesh Visual */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div 
             className="absolute inset-0 opacity-15"
@@ -1537,25 +1540,25 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-widest text-cyan-200 backdrop-blur-sm shadow-sm">
-            <CreditCard className="w-3.5 h-3.5 text-cyan-300" />
-            <span>CONNECT YOUR SAAS REVENUE CORE</span>
+            <Cpu className="w-3.5 h-3.5 text-cyan-300" />
+            <span>CONNECT YOUR SILICON ENTERPRISE</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto">
-            Ready to Build a Smarter Subscription Business?
+            Ready to Build a Smarter Semiconductor Business?
           </h2>
 
           <p className="text-base sm:text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed font-normal">
-            Connect your consumption metering, subscription billing, ASC 606 revenue recognition, and churn recovery with Knooviq.
+            Connect your silicon design, wafer foundries, cleanrooms, and OSAT partners with Knooviq.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
               type="button"
-              onClick={() => onOpenContact?.('Software & SaaS Consultation')}
-              className="px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#003B73] text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl shadow-black/25 transition-all flex items-center gap-2 group cursor-pointer"
+              onClick={() => onOpenContact?.('High-Tech & Semiconductor Practice')}
+              className="px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#003B73] text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl shadow-black/25 transition-all flex items-center gap-2 group"
             >
-              <span>Talk to Our SaaS Experts</span>
+              <span>Talk to Semiconductor Experts</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#0070C0]" />
             </button>
 

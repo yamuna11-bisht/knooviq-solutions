@@ -1077,9 +1077,11 @@ export const INDUSTRIES_DATA: IndustryItem[] = [
     solutions: [
       'Technology Services & Professional Staffing',
       'Software, SaaS & Subscription Billing',
-      'High-Tech & Electronics Contract Manufacturing',
+      'High-Tech Semiconductor & Cleanrooms',
+      'Electronics & PCBA Manufacturing Services',
       'Warehouse & Warehousing Execution (SAP EWM)',
-      'Transportation, Logistics & Aerospace / Defense MRO'
+      'Transportation & Multi-Modal Fleet Logistics',
+      'Aerospace, Defense & Certified Aviation MRO'
     ],
     caseSnippet: 'Accelerated warehouse dispatch velocity by 35% with automated SAP EWM, RF scanner routing, and live TM route optimization.',
     keyChallenges: ['Freight cost leakage', 'Warehouse congestion during peak cycles', 'High-tech electronics warranty tracking'],

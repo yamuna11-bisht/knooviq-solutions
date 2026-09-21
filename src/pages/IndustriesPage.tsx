@@ -158,7 +158,7 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
                       Dedicated Industry Practices
                     </span>
                     <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
-                      5 Specialized Blueprints
+                      7 Specialized Blueprints
                     </span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -177,24 +177,38 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
                       <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
                     </Link>
                     <Link
-                      to="/industries/high-tech-electronics"
+                      to="/industries/high-tech"
                       className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
                     >
-                      <span>High-Tech Electronics</span>
+                      <span>High-Tech & Semiconductor</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/electronics"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Electronics & PCBA Manufacturing</span>
                       <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
                     </Link>
                     <Link
                       to="/industries/warehouse-ewm"
                       className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
                     >
-                      <span>Warehouse Execution (EWM)</span>
+                      <span>Warehouse Execution (SAP EWM)</span>
                       <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
                     </Link>
                     <Link
                       to="/industries/transportation-logistics"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Transportation & Fleet Logistics</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/aerospace-defense"
                       className="sm:col-span-2 flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
                     >
-                      <span>Transportation, Logistics & Aerospace MRO</span>
+                      <span>Aerospace, Defense & MRO</span>
                       <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
                     </Link>
                   </div>
@@ -246,6 +260,101 @@ export const IndustriesPage: React.FC<{ onOpenContact: (topic?: string) => void 
                       className="sm:col-span-2 flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
                     >
                       <span>Facilities & Asset Management</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* Financial & Business Services Dedicated Sub-Practices */}
+              {current.id === 'financial-business-services' && (
+                <div className="p-4 rounded-2xl bg-[#0070C0]/10 border border-[#0070C0]/30 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="industry-category-title text-[#0070C0] dark:text-cyan-300 block">
+                      Dedicated Industry Practices
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
+                      5 Specialized Blueprints
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <Link
+                      to="/industries/banking"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Banking & Capital Markets</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/insurance"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Insurance & Claims</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/financial-services"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Financial Services & Multi-GAAP</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/fintech"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>FinTech & Payment Platforms</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/professional-services"
+                      className="sm:col-span-2 flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Professional Services & Consulting</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* Experience, Media & Education Dedicated Sub-Practices */}
+              {current.id === 'experience-media-education' && (
+                <div className="p-4 rounded-2xl bg-[#0070C0]/10 border border-[#0070C0]/30 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="industry-category-title text-[#0070C0] dark:text-cyan-300 block">
+                      Dedicated Industry Practices
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
+                      4 Specialized Blueprints
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <Link
+                      to="/industries/hospitality"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Hospitality & Resorts</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/travel-tourism"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Travel & Tourism</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/entertainment"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Media & Entertainment</span>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
+                    </Link>
+                    <Link
+                      to="/industries/education"
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-[#050B17] border border-slate-200 dark:border-sky-500/20 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-[#0070C0] transition-colors"
+                    >
+                      <span>Higher Education & Research</span>
                       <ArrowRight className="h-3.5 w-3.5 text-[#0070C0]" />
                     </Link>
                   </div>

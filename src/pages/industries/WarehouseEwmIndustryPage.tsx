@@ -2,148 +2,135 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  Boxes, 
+  Warehouse, 
   Layers, 
   Activity, 
   ShieldCheck, 
-  Gauge, 
   TrendingUp, 
   BarChart3, 
   CheckCircle2, 
   ArrowRight, 
   ChevronRight, 
-  ChevronDown, 
   Sparkles, 
   Clock, 
   Workflow, 
   Compass, 
-  Cpu, 
   Zap, 
-  HelpCircle,
-  Award,
-  Globe2,
-  RefreshCw,
-  FileText,
-  Radio,
-  Server,
-  AlertTriangle,
-  FolderKanban,
-  FileCheck,
-  Split,
-  Binary,
-  Truck,
-  Warehouse,
-  ScanLine
+  Boxes, 
+  Globe2, 
+  RefreshCw, 
+  FileText, 
+  Radio, 
+  Server, 
+  Truck, 
+  ScanLine, 
+  Cpu, 
+  Sliders, 
+  AlertTriangle, 
+  Database,
+  Users
 } from 'lucide-react';
 
-interface IndustryPageProps {
-  onOpenContact: (defaultService?: string) => void;
+interface WarehouseEwmIndustryPageProps {
+  onOpenContact?: (defaultTopic?: string) => void;
 }
 
-export const WarehouseEwmIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
+export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> = ({ 
+  onOpenContact 
+}) => {
+  // State for Section 2 Interactive Journey
   const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
-  // State for Circular Chevron Wheel
+  // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
-  // State for Modular Solutions Filter
+  // State for Section 7 Solution Category Filter
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<string>('ALL');
 
-  // State for Transformation Stage Console
+  // State for Section 9 Transformation Stage
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
 
-  // State for Architecture Tab
-  const [activeArchTab, setActiveArchTab] = useState<string>('core');
-
-  // State for FAQ Accordion
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
-  // Section 4: Circular Chevron Radial Wheel Segments (KNOOVIQ SAP EWM Ecosystem)
+  // Section 4: 8-Segment Circular Chevron Wheel (KNOOVIQ Warehouse Platform Ecosystem)
   const wheelSegments = [
     {
-      id: 'dynamic-slotting',
-      title: 'Dynamic Slotting & Velocity Zoning',
-      desc: 'Algorithmically positioning fast-moving SKUs closer to packing lanes based on historical order pick frequency.',
+      id: 'yard-dock',
+      title: 'Inbound Yard Gate & Dock Door Scheduling',
+      desc: 'Seamless trailer appointment booking, driver kiosk check-ins, and dynamic dock door assignment minimizing dwell times.',
       side: 'right',
-      color: '#0284C7',
-      textColor: 'text-sky-400',
-      bgGlow: 'rgba(2, 132, 199, 0.3)',
-      icon: Layers
+      color: '#22C55E', // Green
+      textColor: 'text-emerald-400',
+      bgGlow: 'rgba(34, 197, 94, 0.3)',
+      icon: Truck
     },
     {
-      id: 'wave-cartonization',
-      title: 'Intelligent Wave & Cartonization Logic',
-      desc: 'Grouping customer orders into synchronized pick waves and calculating optimal packaging box dimensions automatically.',
+      id: 'directed-putaway',
+      title: 'Directed Putaway & Velocity Slotting',
+      desc: 'AI-driven bin allocation prioritizing fast-moving SKUs near staging areas, eliminating deadhead travel for forklifts.',
       side: 'right',
-      color: '#0EA5E9',
-      textColor: 'text-cyan-400',
-      bgGlow: 'rgba(14, 165, 233, 0.3)',
+      color: '#84CC16', // Lime Green
+      textColor: 'text-lime-400',
+      bgGlow: 'rgba(132, 204, 22, 0.3)',
       icon: Boxes
     },
     {
-      id: 'asrs-sorter-sync',
-      title: 'ASRS & Conveyor Material Flow System',
-      desc: 'Seamless bi-directional integration between SAP EWM Material Flow System (MFS) and automated high-bay crane cranes.',
+      id: 'wave-management',
+      title: 'Dynamic Wave Release & Workload Balancing',
+      desc: 'Algorithmic grouping of customer delivery orders by carrier cutoff windows, priority tiers, and zone capacity constraints.',
       side: 'right',
-      color: '#10B981',
-      textColor: 'text-emerald-400',
-      bgGlow: 'rgba(16, 185, 129, 0.3)',
-      icon: Cpu
+      color: '#EAB308', // Yellow
+      textColor: 'text-yellow-400',
+      bgGlow: 'rgba(234, 179, 8, 0.3)',
+      icon: Layers
     },
     {
-      id: 'cross-docking',
-      title: 'Opportunistic & Planned Cross-Docking',
-      desc: 'Bypassing warehouse storage racks by routing inbound receipt pallets directly to outbound dispatch staging lanes.',
+      id: 'rf-picking',
+      title: 'RF & Voice-Directed Pick Execution',
+      desc: 'Hands-free pick-by-voice and rugged RF terminal guidance with interleaved barcode verification ensuring zero picking errors.',
       side: 'right',
-      color: '#F59E0B',
-      textColor: 'text-amber-400',
-      bgGlow: 'rgba(245, 158, 11, 0.3)',
-      icon: Split
-    },
-    {
-      id: 'rf-voice-picking',
-      title: 'RF Mobile & Voice-Directed Execution',
-      desc: 'Equipping warehouse staff with ruggedized RF barcode scanners, RFID readers, and multi-language voice picking prompts.',
-      side: 'left',
-      color: '#F97316',
+      color: '#F97316', // Orange
       textColor: 'text-orange-400',
       bgGlow: 'rgba(249, 115, 22, 0.3)',
       icon: ScanLine
     },
     {
-      id: 'yard-dock-mgmt',
-      title: 'Yard Management & Dock Appointment',
-      desc: 'Real-time trailer tracking, gate check-in automation, and appointment booking preventing carrier dock congestion.',
+      id: 'robotics-mfs',
+      title: 'AS/RS Robotics & MFS Integration',
+      desc: 'Sub-second direct PLC telegram communication with automated cranes, shuttle carousels, and autonomous mobile robot (AMR) fleets.',
       side: 'left',
-      color: '#8B5CF6',
-      textColor: 'text-purple-400',
-      bgGlow: 'rgba(139, 92, 246, 0.3)',
-      icon: Truck
+      color: '#F43F5E', // Rose
+      textColor: 'text-rose-400',
+      bgGlow: 'rgba(244, 63, 94, 0.3)',
+      icon: Cpu
     },
     {
-      id: 'labor-management',
-      title: 'Engineered Labor Standards & Telemetry',
-      desc: 'Measuring operator travel distance, pick performance variances, and workload balancing across shift rosters.',
+      id: 'kitting-vas',
+      title: 'Value-Added Services & Dynamic Kitting',
+      desc: 'In-line execution of custom retail labeling, display pallet assembly, bundle packing, and customer-specific packaging.',
       side: 'left',
-      color: '#EC4899',
+      color: '#EC4899', // Pink
       textColor: 'text-pink-400',
       bgGlow: 'rgba(236, 72, 153, 0.3)',
-      icon: Gauge
+      icon: Workflow
     },
     {
-      id: 'value-added-services',
-      title: 'Kitting, VAS & Specialized Packaging',
-      desc: 'Managing assembly work orders for retail promotional bundles, customized labeling, and hazardous goods segregation.',
+      id: 'cross-docking',
+      title: 'Opportunistic Cross-Docking & Staging',
+      desc: 'Direct transfer of inbound supplier pallets to outbound customer staging lanes without intermediate putaway or storage.',
       side: 'left',
-      color: '#3B82F6',
-      textColor: 'text-blue-400',
-      bgGlow: 'rgba(59, 130, 246, 0.3)',
-      icon: ShieldCheck
+      color: '#A855F7', // Purple
+      textColor: 'text-purple-400',
+      bgGlow: 'rgba(168, 85, 247, 0.3)',
+      icon: RefreshCw
+    },
+    {
+      id: 'shipping-cartonization',
+      title: 'Cartonization & Outbound Dispatch',
+      desc: 'Automated 3D volumetric packaging calculation, carrier shipping label generation, and automated pallet wrapping release.',
+      side: 'left',
+      color: '#06B6D4', // Cyan
+      textColor: 'text-cyan-400',
+      bgGlow: 'rgba(6, 182, 212, 0.3)',
+      icon: Warehouse
     }
   ];
 
@@ -175,783 +162,833 @@ export const WarehouseEwmIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCo
   const getIconCoords = (index: number) => {
     const cx = 250;
     const cy = 250;
-    const rMid = 168;
-    const gap = 1.6;
-    const tip = 7.5;
-    const theta1 = -90 + index * 45 + gap;
-    const theta2 = -90 + (index + 1) * 45 - gap;
-    const midAngle = (theta1 + theta2) / 2 + tip / 2;
-    const rad = (deg: number) => (deg * Math.PI) / 180;
+    const r = 168;
+    const midAngle = -90 + index * 45 + 22.5;
+    const rad = (midAngle * Math.PI) / 180;
     return {
-      x: cx + rMid * Math.cos(rad(midAngle)),
-      y: cy + rMid * Math.sin(rad(midAngle))
+      x: cx + r * Math.cos(rad),
+      y: cy + r * Math.sin(rad)
     };
   };
 
-  // Section 2: Journey Steps
+  // Section 2: Journey Steps (Clean, no numbers, no statistics, no percentages)
   const journeySteps = [
     {
-      id: 'inbound',
-      label: 'ASN & Inbound Gate',
-      sublabel: 'Trailer Check-In',
-      tech: 'SAP EWM Yard Management',
-      desc: 'Capturing inbound Advanced Shipping Notifications (ASN), automated dock door assignment, and trailer gate log-in.',
+      id: 'inbound-receiving',
+      label: 'Inbound Receiving',
+      sublabel: 'ASN & Gate Check-In',
+      desc: 'Capture advanced shipping notices (ASN), match inbound bills of lading (BOL), and direct trailers to optimal dock doors based on handling capacity.',
+      tech: 'SAP EWM Inbound',
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
       icon: Truck
     },
     {
-      id: 'putaway',
+      id: 'directed-putaway',
       label: 'Directed Putaway',
-      sublabel: 'Dynamic Slotting',
-      tech: 'SAP EWM Slotting Engine',
-      desc: 'Calculating storage bin assignments based on product velocity, physical dimensions, weight classes, and temperature zones.',
+      sublabel: 'Dynamic AI Slotting',
+      desc: 'Continuously re-evaluate storage bin assignments based on seasonal velocity profiles, physical dimensions, and forklift deadhead travel reduction.',
+      tech: 'SAP Warehouse Insights',
       image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80',
-      icon: Layers
-    },
-    {
-      id: 'wave',
-      label: 'Wave Management',
-      sublabel: 'Order Batching',
-      tech: 'SAP EWM Wave Templates',
-      desc: 'Aggregating thousands of customer order lines into synchronized pick waves matched to carrier departure schedules.',
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80',
       icon: Boxes
     },
     {
-      id: 'picking',
-      label: 'RF & Voice Picking',
-      sublabel: 'Optimized Pathing',
-      tech: 'SAP EWM Mobile GUI & Voice',
-      desc: 'Guiding operators through shortest-travel warehouse paths with barcode scan confirmation to prevent picking discrepancies.',
+      id: 'wave-planning',
+      label: 'Wave Planning',
+      sublabel: 'Workload Balancing',
+      desc: 'Group open customer sales orders into balanced picking waves factoring in carrier pickup cutoff times, available staffing, and conveyor capacity.',
+      tech: 'SAP EWM Wave Engine',
+      image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1200&q=80',
+      icon: Layers
+    },
+    {
+      id: 'pick-execution',
+      label: 'Pick Execution',
+      sublabel: 'Voice & Wearable RF',
+      desc: 'Guide operators hands-free with voice-directed workflows and ergonomic wearable scanners, ensuring interleaved barcode checksum validation.',
+      tech: 'SAP Fiori Mobile RF',
       image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
       icon: ScanLine
     },
     {
-      id: 'packing',
-      label: 'Packing & Cartonization',
-      sublabel: 'Weight Verification',
-      tech: 'SAP EWM Packing Station',
-      desc: 'Automatic box recommendation based on item volume, integrated scale check for weight tolerances, and shipping label printing.',
-      image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1200&q=80',
-      icon: FileCheck
+      id: 'robotics-mfs',
+      label: 'Robotics MFS',
+      sublabel: 'PLC Telegram Interlock',
+      desc: 'Orchestrate automated storage cranes (AS/RS), autonomous mobile robots (AMRs), and conveyor networks with sub-second direct PLC telegrams.',
+      tech: 'SAP EWM-MFS Native',
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      icon: Cpu
     },
     {
-      id: 'dispatch',
-      label: 'Staging & Dispatch',
-      sublabel: 'Trailer Load Sealing',
-      tech: 'SAP EWM & TM Integration',
-      desc: 'Staging packed shipping units into assigned dock lanes, loading trailers according to delivery stops, and generating electronic waybills.',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80',
-      icon: ArrowRight
+      id: 'cartonization-dispatch',
+      label: 'Outbound Dispatch',
+      sublabel: '3D Cartonization',
+      desc: 'Optimize package fill rates through automated 3D volumetric box selection algorithms, print carrier labels inline, and stage finished pallets.',
+      tech: 'SAP EWM Outbound',
+      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80',
+      icon: Warehouse
     }
   ];
 
-  // Section 3: Warehouse EWM Industry Challenges & Bottlenecks Data (6 Cards)
-  const industryChallenges = [
+  // Section 3: Warehouse Challenges & Bottlenecks Data
+  const warehouseChallenges = [
     {
-      id: 'dock-congestion',
-      tag: 'YARD BOTTLENECK',
-      title: 'Dock Congestion & Carrier Detention',
-      desc: 'Unscheduled carrier arrivals create yard gridlock, leading to expensive detention fees and delayed inbound inventory putaway.',
-      status: 'HIGH DETENTION COST',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
+      tag: 'YARD CONGESTION',
+      icon: Truck,
+      title: 'Inbound Trailer Gridlock',
+      desc: 'Unscheduled carrier arrivals and manual paper check-ins cause truck yard bottlenecks, resulting in thousands of dollars in carrier detention fines.',
+      footer: 'Trailer Gate Gridlock'
     },
     {
-      id: 'travel-waste',
-      tag: 'LABOR INEFFICIENCY',
-      title: 'Excessive Picker Travel Distances',
-      desc: 'Sub-optimal SKU slotting forces pickers to crisscross vast warehouse aisles repeatedly, capping daily fulfillment throughput.',
-      status: 'PRODUCTIVITY LEAKAGE',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
+      tag: 'SLOTTING INEFFICIENCY',
+      icon: Boxes,
+      title: 'Forklift Deadhead Travel Waste',
+      desc: 'Static, outdated bin slotting forces warehouse operators to travel thousands of unnecessary miles across aisles each week for top-selling SKUs.',
+      footer: 'Excessive Travel Distance'
     },
     {
-      id: 'picking-errors',
-      tag: 'FULFILLMENT ACCURACY',
-      title: 'Mispicks & Customer Returns',
-      desc: 'Paper-based picking or slow scan verification causes wrong product shipments, expensive return freight, and customer dissatisfaction.',
-      status: 'RETURN EXPENSE',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
+      tag: 'AUTOMATION SILOS',
+      icon: Cpu,
+      title: 'Proprietary WCS Software Latency',
+      desc: 'Running separate proprietary middleware for AS/RS cranes, AMR robots, and conveyors creates data silos, telegram lag, and agonizing downtime.',
+      footer: 'Robotics Synchronization Lag'
     },
     {
-      id: 'air-shipments',
-      tag: 'PACKAGING OVERHEAD',
-      title: 'Inefficient Cartonization & Freight Waste',
-      desc: 'Guesswork packing packs small items into oversized boxes, causing shipping damage, excessive void fill, and inflated dimensional weight charges.',
-      status: 'FREIGHT SURCHARGE',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
+      tag: 'INVENTORY DRIFT',
+      icon: Database,
+      title: 'Discrepancies Between Physical & ERP',
+      desc: 'Delayed confirmation of warehouse movements creates phantom inventory, leading to customer stock-outs, canceled orders, and cycle-counting delays.',
+      footer: 'Phantom Stock Reconciliation Lag'
     },
     {
-      id: 'asrs-bottlenecks',
-      tag: 'AUTOMATION FRICTION',
-      title: 'ASRS & Conveyor System Desynchronization',
-      desc: 'Disconnection between enterprise ERP orders and automated crane controllers causes buffer deadlocks and idle automation lines.',
-      status: 'EQUIPMENT BOTTLENECK',
-      statusColor: 'text-rose-400 bg-rose-950/60 border-rose-800'
+      tag: 'LABOR FATIGUE',
+      icon: Users,
+      title: 'Unbalanced Wave Workloads',
+      desc: 'Inflexible order dispatching creates massive congestion jams in specific picking zones while other aisles remain idle, driving up picker fatigue.',
+      footer: 'Picker Bottleneck Congestion'
     },
     {
-      id: 'inventory-blindspots',
-      tag: 'STOCK ACCURACY',
-      title: 'Ghost Inventory & Bin Discrepancies',
-      desc: 'Delayed confirmation of pallet movements creates phantom stock discrepancies, forcing emergency cycle counts and order cancellations.',
-      status: 'STOCKOUT FRICTION',
-      statusColor: 'text-amber-400 bg-amber-950/60 border-amber-800'
+      tag: 'TRACEABILITY RISK',
+      icon: ShieldCheck,
+      title: 'Cold-Chain & Lot Segregation Risks',
+      desc: 'Manual lot tracking in regulated warehouses risks catastrophic contamination recalls, expiration write-offs, and compliance audit penalties.',
+      footer: 'Serialized Batch Non-Compliance'
     }
   ];
 
-  // Section 5: Architecture Tabs Data
-  const architectureTabs = [
+  // Section 7: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
+  const industrySolutions = [
     {
-      id: 'core',
-      name: 'EWM Enterprise Digital Core',
-      tag: 'SAP S/4HANA EXTENDED WAREHOUSE MANAGEMENT',
-      headline: 'Centralized Inventory Ledger & Execution Engine',
-      desc: 'The mission-critical warehouse core executing advanced wave management, slotting algorithms, and unified inventory governance.',
-      capabilities: [
-        'High-speed wave management batching orders by carrier cutoff windows and zone layouts',
-        'Dynamic slotting algorithms calculating bin arrangements based on pick velocity',
-        'Direct integration with SAP S/4HANA Sales and Procurement for real-time stock allocation',
-        'Native support for both Embedded S/4HANA EWM and Decentralized High-Volume EWM'
-      ],
-      diagramDetails: [
-        { label: 'Wave Management', value: 'Dynamic Order Batching' },
-        { label: 'Slotting Engine', value: 'Velocity Optimization' },
-        { label: 'Deployment Mode', value: 'Embedded or Decentral' },
-        { label: 'Inventory Ledger', value: 'Universal Sync' }
-      ]
+      category: 'INBOUND_YARD',
+      categoryLabel: 'Inbound & Yard',
+      tag: 'INBOUND VELOCITY',
+      icon: Truck,
+      title: 'Inbound Receiving & Cross-Docking',
+      description: 'Accelerate dock-to-stock cycle times by pre-allocating inbound supplier pallets directly to outbound customer staging lanes.',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Automated ASN Allocation', 'Opportunistic Cross-Dock', 'Pallet Barcode Scan', 'Dock-to-Stock Speed']
     },
     {
-      id: 'edge',
-      name: 'Mobile Floor & Automation Edge',
-      tag: 'SAP EWM MATERIAL FLOW SYSTEM (MFS)',
-      headline: 'ASRS Crane Control & Ruggedized RF Scanners',
-      desc: 'Interfacing directly with automated storage cranes, automated guided vehicles (AGVs), and floor operators in real time.',
-      capabilities: [
-        'Direct PLC communication protocol connecting high-bay cranes without middleware',
-        'Ruggedized RF mobile scanner and voice-directed picking screens with zero lag',
-        'Automated pick-pack-pass conveyor routing for multi-zone distribution centers',
-        'RFID dock door portals automatically scanning pallets as they pass onto trailers'
-      ],
-      diagramDetails: [
-        { label: 'MFS Protocol', value: 'Direct PLC Interface' },
-        { label: 'Floor Execution', value: 'RF Mobile & Voice' },
-        { label: 'Conveyor Control', value: 'Zone Routing' },
-        { label: 'Dock Portals', value: 'RFID Auto-Scan' }
-      ]
+      category: 'WAVE_PICKING',
+      categoryLabel: 'Wave & Picking',
+      tag: 'SLOTTING INTELLIGENCE',
+      icon: Boxes,
+      title: 'Dynamic Velocity Slotting',
+      description: 'Continuously reorganize storage bin assignments based on dynamic SKU turn velocity, product dimensions, and operator ergonomics.',
+      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      highlights: ['ABC Velocity Profiling', 'Deadhead Travel Reduction', 'Volumetric Bin Sizing', 'Automated Replenishment']
     },
     {
-      id: 'cloud',
-      name: 'Yard & Warehouse Analytics',
-      tag: 'SAP BTP & WAREHOUSE INSIGHTS',
-      headline: '3D Digital Twin & Live Throughput Telemetry',
-      desc: 'Harnessing SAP Business Technology Platform to deliver interactive 3D warehouse visualization, heatmaps, and dock scheduling.',
-      capabilities: [
-        'Interactive 3D warehouse digital twin showing live bin capacity and bottleneck alerts',
-        'Carrier dock appointment self-service portal eliminating yard congestion',
-        'Real-time picker heatmaps identifying congestion hotspots across warehouse aisles',
-        'Clean Core extensibility allowing custom cartonization rules without core modifications'
-      ],
-      diagramDetails: [
-        { label: 'Digital Twin', value: '3D Bin Telemetry' },
-        { label: 'Dock Scheduling', value: 'Carrier Self-Service' },
-        { label: 'Congestion Heatmap', value: 'Aisle Optimization' },
-        { label: 'Clean Core BTP', value: 'Zero Core Mods' }
-      ]
+      category: 'ROBOTICS_MFS',
+      categoryLabel: 'Robotics & MFS',
+      tag: 'HIGH-BAY AUTOMATION',
+      icon: Cpu,
+      title: 'High-Bay AS/RS Crane & Shuttle Control',
+      description: 'Control multi-shuttle carousels, vertical lift modules, and stacker cranes directly from SAP EWM with sub-second PLC telegrams.',
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Direct PLC Telegrams', 'Zero Middleware Lag', 'Crane Trajectory Tuning', 'Real-Time Fault Bypass']
+    },
+    {
+      category: 'WAVE_PICKING',
+      categoryLabel: 'Wave & Picking',
+      tag: 'WAVE MANAGEMENT',
+      icon: Layers,
+      title: 'Multi-Modal Wave Planning',
+      description: 'Batch customer sales orders into high-efficiency picking waves synchronized with carrier dispatch cutoff schedules and zone capacity.',
+      image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Algorithmic Wave Sizing', 'Cluster Multi-Order Carts', 'Zone Workload Balance', 'Priority Override Logic']
+    },
+    {
+      category: 'ROBOTICS_MFS',
+      categoryLabel: 'Robotics & MFS',
+      tag: 'AMR FLEET CONTROL',
+      icon: Workflow,
+      title: 'AMR Mobile Robot Fleet Coordination',
+      description: 'Synchronize collaborative robots following human pickers through aisles or transport heavy pallets autonomously between functional zones.',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Collaborative Picker Assist', 'Dynamic Task Dispatch', 'Automated Traffic Control', 'Battery-Aware Routing']
+    },
+    {
+      category: 'INBOUND_YARD',
+      categoryLabel: 'Inbound & Yard',
+      tag: 'YARD GOVERNANCE',
+      icon: Clock,
+      title: 'Yard Logistics & Dock Booking',
+      description: 'Eliminate trailer gate congestion through collaborative carrier appointment booking, automated driver kiosks, and digital shunter moves.',
+      image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Carrier Self-Booking', 'Driver Mobile Kiosks', 'Shunter Dispatch Console', 'Zero Detention Fees']
+    },
+    {
+      category: 'WAVE_PICKING',
+      categoryLabel: 'Wave & Picking',
+      tag: 'HANDS-FREE RF',
+      icon: ScanLine,
+      title: 'Voice-Directed Picking & RF Verification',
+      description: 'Empower warehouse personnel with hands-free voice guidance and ergonomic wearable scanners, ensuring 99.98% pick accuracy.',
+      image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80',
+      highlights: ['Voice-Directed Paths', 'Checksum Bin Validation', 'Serial Number Capture', 'Multi-Language Voice']
+    },
+    {
+      category: 'ROBOTICS_MFS',
+      categoryLabel: 'Robotics & MFS',
+      tag: 'PACKING AUTOMATION',
+      icon: Warehouse,
+      title: '3D Volumetric Cartonization & Auto-Wrap',
+      description: 'Calculate precise 3D box requirements prior to picking, minimizing void filler usage, parcel shipping rates, and packaging waste.',
+      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+      highlights: ['3D Volumetric Sizing', 'Inline Weight Checks', 'Auto Label Applicators', 'Freight Dimension Tuning']
+    },
+    {
+      category: 'INBOUND_YARD',
+      categoryLabel: 'Inbound & Yard',
+      tag: 'REGULATORY AUDIT',
+      icon: ShieldCheck,
+      title: 'Cold-Chain & HAZMAT Segregation',
+      description: 'Enforce strict chemical compatibility segregation rules, continuous IoT temperature logging, and end-to-end serialized batch traceability.',
+      image: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80',
+      highlights: ['HAZMAT Segregation', 'IoT Temperature Logs', 'Serialized Lot Tracking', 'Automated GxP Audit']
     }
   ];
 
-  // Section 6: Modular Solutions Data
-  const modularSolutions = [
-    {
-      category: 'CORE',
-      title: 'Advanced Wave Management & Cartonization',
-      badge: 'SAP EWM CORE',
-      desc: 'Batch customer orders into synchronized pick waves and calculate optimal shipping carton dimensions automatically.',
-      features: [
-        'Carrier departure schedule wave alignment',
-        '3D cartonization box recommendations',
-        'Pick-pack-pass zone routing logic',
-        'Automated weight verification integration'
-      ]
-    },
-    {
-      category: 'AUTOMATION',
-      title: 'ASRS, Conveyor & AGV Material Flow System',
-      badge: 'EWM MFS DIRECT',
-      desc: 'Connect automated high-bay cranes, shuttle systems, and robotic automated guided vehicles directly to SAP EWM without middleware.',
-      features: [
-        'Sub-second PLC telegram processing',
-        'Automated pallet diverting and re-routing',
-        'Shuttle system high-density storage control',
-        'Autonomous mobile robot (AMR) dispatch'
-      ]
-    },
-    {
-      category: 'YARD',
-      title: 'Yard Management & Dock Door Scheduling',
-      badge: 'YARD LOGISTICS',
-      desc: 'Eliminate trailer wait times with self-service dock appointment booking, automated license plate recognition, and live yard tracking.',
-      features: [
-        'Carrier appointment self-scheduling portal',
-        'Automated gate check-in and dock assignment',
-        'Real-time trailer location yard maps',
-        'Carrier detention penalty prevention alerts'
-      ]
-    },
-    {
-      category: 'ANALYTICS',
-      title: 'Warehouse Insights & 3D Visualizer',
-      badge: 'SAP ANALYTICS CLOUD',
-      desc: 'Monitor distribution center throughput, aisle picker density, and order fulfillment velocity with interactive 3D cockpits.',
-      features: [
-        'Live 3D bin capacity and fill-rate heatmaps',
-        'Operator travel distance optimization telemetry',
-        'Fulfillment cycle time bottleneck isolation',
-        'Cross-docking opportunity recommendations'
-      ]
-    }
-  ];
-
-  // Filtered Modular Solutions
-  const filteredSolutions = activeSolutionCategory === 'ALL' 
-    ? modularSolutions 
-    : modularSolutions.filter(s => s.category === activeSolutionCategory);
-
-  // Section 7: Standardization & Clean Core Matrix
-  const matrixRows = [
-    {
-      dimension: 'Order Picking',
-      legacy: 'Paper pick lists resulting in incorrect SKU selections and disconnected inventory updates.',
-      cleanCore: 'RF mobile scanner and voice picking with barcode verification and real-time inventory deduction.',
-      valueImpact: 'Flawless Pick Accuracy'
-    },
-    {
-      dimension: 'SKU Bin Placement',
-      legacy: 'Static bin assignments forcing pickers to travel unnecessary distances for fast-selling items.',
-      cleanCore: 'Dynamic slotting algorithms recalculating optimal bin positions based on seasonal demand velocity.',
-      valueImpact: 'Minimized Travel Distance'
-    },
-    {
-      dimension: 'High-Bay Automation',
-      legacy: 'Complex third-party middleware black boxes causing synchronization failures and delayed fault tracking.',
-      cleanCore: 'Direct SAP EWM Material Flow System (MFS) communicating with PLCs without third-party brokers.',
-      valueImpact: 'Zero Middleware Latency'
-    },
-    {
-      dimension: 'Trailer Yard Flow',
-      legacy: 'Manual clipboards at guard gates leading to yard gridlock, missed appointments, and carrier penalties.',
-      cleanCore: 'Automated dock appointment scheduling with digital yard maps and proactive gate check-ins.',
-      valueImpact: 'Zero Carrier Detention'
-    },
-    {
-      dimension: 'Cross-Docking',
-      legacy: 'Inbound goods put away onto high-bay racks only to be picked again hours later for dispatch.',
-      cleanCore: 'Opportunistic cross-docking routing inbound pallets directly to outbound staging lanes.',
-      valueImpact: 'Rapid Inventory Velocity'
-    }
-  ];
-
-  // Section 8: Transformation Roadmap Stages Data
+  // Section 9: Transformation in Action (Connected 4-Phase Architecture Pipeline)
   const transformationStages = [
     {
-      badge: 'FOUNDATION',
-      title: 'EWM Core Deployment & RF Mobile Execution',
-      subtitle: 'Digital Core & Floor Scanning',
-      tag: 'CORE UNIFICATION',
-      textColor: 'text-sky-400',
-      description: 'Deploy SAP EWM digital core, establish precise bin master data, and equip operators with RF mobile scanners.',
-      before: 'Paper-based picking and delayed end-of-shift inventory entries in legacy warehouse software.',
-      after: 'Real-time bin-level inventory tracking with immediate scan confirmation and automated task queues.',
-      metrics: ['Single-source-of-truth bin master data', 'Immediate RF scan inventory confirmation', 'Standardized putaway and pick strategies']
-    },
-    {
-      badge: 'INTEGRATION',
-      title: 'Wave Management, Slotting & Cartonization',
-      subtitle: 'Intelligent Batching & Packaging',
-      tag: 'FULFILLMENT VELOCITY',
+      badge: 'PHASE 01',
       textColor: 'text-cyan-400',
-      description: 'Activate algorithmic wave grouping, dynamic SKU slotting, and 3D cartonization packaging recommendations.',
-      before: 'Pickers selecting orders individually with manual box selection and arbitrary bin assignments.',
-      after: 'Synchronized pick waves aligned with carrier cutoffs and optimal box sizing recommendations.',
-      metrics: ['Optimized picker travel pathing', 'Minimized void fill and freight charges', 'Synchronized carrier dispatch waves']
+      glowColor: 'bg-cyan-400',
+      activeBorder: 'border-cyan-400/80 bg-cyan-950/30',
+      borderBase: 'border-slate-800',
+      icon: Truck,
+      title: 'Yard & Inbound Gate',
+      subtitle: 'Digital Kiosks & Cross-Dock',
+      tag: 'Zero Trailer Detention',
+      description: 'Self-service carrier booking portals, automated gate kiosks, and direct cross-docking of pallets without interim storage.',
+      before: 'Manual paper BOL verification, unannounced truck arrivals & yard gridlock',
+      after: 'Automated carrier appointment booking with self-service driver kiosks',
+      metrics: ['Digital Gate Kiosks', 'Touchless Check-In', 'Cross-Dock Velocity']
     },
     {
-      badge: 'ORCHESTRATION',
-      title: 'ASRS Material Flow System & Yard Integration',
-      subtitle: 'Automation Control & Trailer Scheduling',
-      tag: 'AUTOMATION SCALE',
+      badge: 'PHASE 02',
+      textColor: 'text-sky-400',
+      glowColor: 'bg-sky-400',
+      activeBorder: 'border-sky-400/80 bg-sky-950/30',
+      borderBase: 'border-slate-800',
+      icon: Boxes,
+      title: 'Dynamic AI Slotting',
+      subtitle: 'ABC Velocity Profiling',
+      tag: 'Zero Deadhead Travel',
+      description: 'Machine learning slotting algorithms continuously reassign high-velocity SKUs to front-row picking bins near staging lanes.',
+      before: 'Static bin slotting forcing forklifts to travel miles into distant aisles',
+      after: 'Dynamic AI velocity slotting placing fast movers closest to pack stations',
+      metrics: ['ABC Velocity Zoning', 'Automated Interleaving', 'Travel Path Optimization']
+    },
+    {
+      badge: 'PHASE 03',
       textColor: 'text-emerald-400',
-      description: 'Connect high-bay automated cranes, conveyors, and trailer yard operations directly to SAP EWM.',
-      before: 'Disconnected third-party WCS middleware and uncoordinated carrier arrivals jamming the yard.',
-      after: 'Direct PLC control of automated storage cranes and online appointment scheduling for carriers.',
-      metrics: ['Zero middleware automation latency', 'Eliminated carrier detention charges', 'Automated dock door allocation']
+      glowColor: 'bg-emerald-400',
+      activeBorder: 'border-emerald-400/80 bg-emerald-950/30',
+      borderBase: 'border-slate-800',
+      icon: Cpu,
+      title: 'Robotics MFS Execution',
+      subtitle: 'Sub-Second PLC Telegrams',
+      tag: 'Direct Automation Interlock',
+      description: 'Direct SAP EWM-MFS telegrams coordinate AS/RS cranes and AMR robots with voice-directed operator guidance without middleware.',
+      before: 'Disconnected third-party WCS software causing crane delays & paper mispicks',
+      after: 'Sub-second direct PLC telegrams coordinating AS/RS cranes and AMRs',
+      metrics: ['Sub-Second Telegrams', 'Zero Middleware Lag', 'Voice-Directed Checksums']
     },
     {
-      badge: 'AUTONOMY',
-      title: 'Predictive 3D Warehouse & Autonomous Robotics',
-      subtitle: 'Digital Twin & AMR Fleet Orchestration',
-      tag: 'ENTERPRISE MASTERY',
-      textColor: 'text-purple-400',
-      description: 'Implement interactive 3D digital twin visualization, predictive bottleneck heatmaps, and autonomous mobile robot fleets.',
-      before: 'Reactive warehouse management unable to foresee aisle congestion or conveyor jam points.',
-      after: 'Proactive digital twin monitoring with automated task interleaving and autonomous robot replenishment.',
-      metrics: ['Live 3D warehouse capacity visualization', 'Autonomous robotic replenishment', 'Maximum distribution center throughput']
-    }
-  ];
-
-  // Section 10: FAQs
-  const faqs = [
-    {
-      q: 'What is the architectural difference between Embedded EWM and Decentralized EWM on SAP S/4HANA?',
-      a: 'Embedded EWM runs inside the SAP S/4HANA core instance, sharing master data and transactional documents directly with zero replication overhead—ideal for unified single-instance operations. Decentralized EWM runs on a dedicated system instance, providing total fault isolation and 24/7 uninterrupted warehouse execution even during corporate ERP maintenance windows, perfect for massive, high-throughput automated logistics hubs.'
-    },
-    {
-      q: 'How does SAP EWM Material Flow System (MFS) replace third-party Warehouse Control Systems (WCS)?',
-      a: 'SAP EWM MFS connects directly to programmable logic controllers (PLCs) on automated cranes, conveyor diverters, and sorters via standard TCP/IP socket connections. This eliminates the expense and latency of separate third-party WCS layers, giving warehouse managers single-pane-of-glass visibility from customer sales order to physical crane telemetry.'
-    },
-    {
-      q: 'Can SAP EWM handle voice-directed picking and multilingual warehouse staff?',
-      a: 'Yes. SAP EWM natively supports voice-directed picking protocols and industrial speech recognition engines. Warehouse operators receive spoken audio pick commands through ruggedized headsets in their preferred language and confirm bin check-digits verbally, enabling completely hands-free, eyes-free fulfillment.'
-    },
-    {
-      q: 'How does KNOOVIQ uphold Clean Core principles in complex automated warehouses?',
-      a: 'Custom packing algorithms, specialized carrier label integrations, and proprietary robotics fleet dispatching are deployed on SAP Business Technology Platform (BTP) using standard EWM APIs. The core S/4HANA EWM implementation remains pristine, allowing routine quarterly SAP feature upgrades without risking distribution center downtime.'
+      badge: 'PHASE 04',
+      textColor: 'text-amber-400',
+      glowColor: 'bg-amber-400',
+      activeBorder: 'border-amber-400/80 bg-amber-950/30',
+      borderBase: 'border-slate-800',
+      icon: Warehouse,
+      title: 'Packing & RFID Dispatch',
+      subtitle: '3D Cartonization & Verification',
+      tag: 'Zero Misload Tolerance',
+      description: 'Volumetric 3D packaging algorithms select optimal cartons, print carrier labels inline, and verify trailer loading via RFID gates.',
+      before: 'Overfilled boxes leading to parcel surcharges and misloaded delivery trucks',
+      after: '3D volumetric box selection with automated RFID trailer door verification',
+      metrics: ['3D Volumetric Cartonization', 'Inline Weight Tolerances', 'RFID Portal Verification']
     }
   ];
 
   return (
-    <div className="bg-slate-900 text-white min-h-screen">
+    <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
+      
       {/* =========================================================================
-          SECTION 1: HERO SECTION
+          SECTION 1: HERO SECTION (Pure Enterprise Warehouse & Warehousing Hero)
           ========================================================================= */}
-      <section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-16">
+      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+        
+        {/* Full-Bleed Enterprise Warehouse Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80" 
-            alt="Warehouse & Warehousing Execution SAP EWM" 
+            alt="Automated High-Bay Warehouse & Robotics Operations" 
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl">
+        {/* Seamless Cinematic Left Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+          
+          <div className="max-w-3xl space-y-4">
             
-            {/* Practice Pill Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="space-y-2.5"
+            >
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                <Warehouse className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+              
+              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                Intelligent ERP for <br />
+                <span className="text-cyan-400">Warehouse & Warehousing</span>
+              </h1>
+
+              {/* Subheading / Value Proposition */}
+              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                Autonomous Fulfillment, Dynamic Wave Slotting & Real-Time Yard Cross-Docking.
+              </p>
+            </motion.div>
+
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-mono font-bold uppercase tracking-wider mb-6"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-3 max-w-2xl"
             >
-              <Boxes className="w-4 h-4 text-sky-400" />
-              <span>WAREHOUSE & WAREHOUSING EXECUTION (SAP EWM)</span>
+              {/* Clear Open Typography */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+                Empowering distribution centers, third-party logistics providers (3PL), and automated fulfillment hubs with{' '}
+                <strong className="text-white font-semibold">SAP S/4HANA EWM Clean Core</strong>, sub-second{' '}
+                <strong className="text-cyan-300 font-semibold">MFS Robotics Telegrams</strong>, AI velocity slotting, and touchless yard cross-docking.
+              </p>
+              
+              {/* Clean Feature Highlights */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                  <span>Clean Core Architecture</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>Sub-Second MFS Telegrams</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                  <span>99.98% Pick Precision</span>
+                </span>
+              </div>
             </motion.div>
 
-            {/* Headline */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-4"
-            >
-              High-Velocity Logistics with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400">
-                Precision SAP EWM
-              </span>
-            </motion.h1>
-
-            {/* Subheadline / Value Proposition */}
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-slate-200 leading-relaxed mb-6 font-normal"
-            >
-              Accelerate distribution center velocity with automated wave picking, dynamic slotting algorithms, direct ASRS material flow integration, and digital yard management.
-            </motion.p>
-
-            {/* Feature Pills */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-3 mb-8"
-            >
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                <span>Dynamic Wave & Cartonization Logic</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Direct ASRS Material Flow Control</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                <span>Zero Carrier Detention Yard Management</span>
-              </span>
-            </motion.div>
-
-            {/* Architectural Trust Ribbon */}
+            {/* Enterprise Architectural Trust Ribbon */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Layers className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">SLOTTING CORE</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Velocity Zoning</div>
-                <div className="text-[10px] text-slate-300">Minimized Travel Paths</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">SAP S/4HANA EWM</div>
+                <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <ScanLine className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">FLOOR EXECUTION</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Zap className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">AUTOMATION</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">RF & Voice Directed</div>
-                <div className="text-[10px] text-slate-300">Zero Mispick Errors</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">MFS Robotics PLC</div>
+                <div className="text-xs text-slate-300 mt-0.5">Sub-Second Telegrams</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">MFS PROTOCOL</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Boxes className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SLOTTING AI</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Direct PLC Interface</div>
-                <div className="text-[10px] text-slate-300">Zero Middleware Lag</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Dynamic ABC Velocity</div>
+                <div className="text-xs text-slate-300 mt-0.5">Zero Travel Waste</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-                <div className="flex items-center gap-1.5 mb-1">
-                  <Truck className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">YARD & DOCKS</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+                <div className="flex items-center gap-2 mb-1">
+                  <Truck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">YARD SYNC</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white">Automated Appointments</div>
-                <div className="text-[10px] text-slate-300">Smooth Gate Flow</div>
+                <div className="text-sm sm:text-base font-bold text-white leading-snug">Touchless Cross-Dock</div>
+                <div className="text-xs text-slate-300 mt-0.5">Zero Detention Fees</div>
               </div>
             </motion.div>
 
           </div>
+
         </div>
+
       </section>
 
       {/* =========================================================================
-          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE & JOURNEY VISUALIZER
+          SECTION 2: EXECUTIVE INDUSTRY PERSPECTIVE ("Building a Connected Fulfillment Core")
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10 relative overflow-hidden">
+      <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-[#F8FBFE] to-white border-b border-slate-200 relative overflow-hidden">
+        
+        {/* Subtle Ambient Tone */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070C0]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
             {/* Left Narrative Column */}
-            <div className="lg:col-span-6 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-                <Activity className="w-3.5 h-3.5 text-sky-400" />
+            <div className="lg:col-span-6 space-y-4">
+              
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
+                <Activity className="w-3.5 h-3.5 text-[#0070C0]" />
                 <span>EXECUTIVE INDUSTRY PERSPECTIVE</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-                Synchronizing High-Density Storage with <span className="text-sky-400">Order Dispatch Velocity</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
+                Building a Connected <span className="text-[#0070C0]">Fulfillment Core</span>
               </h2>
 
-              <div className="border-l-4 border-sky-500 pl-4 py-2 bg-white/5 rounded-r-xl">
-                <p className="text-sm font-semibold text-slate-200 leading-relaxed italic">
-                  &ldquo;Modern warehouse execution is defined by synchronized flow—where dynamic slotting, automated high-bay crane telemetry, and intelligent wave cartonization eliminate every second of dead travel time.&rdquo;
+              {/* Executive Thesis Quote */}
+              <div className="border-l-4 border-[#0070C0] border-y border-r border-slate-300 pl-4 py-2 bg-gradient-to-r from-sky-50/80 via-sky-50/30 to-transparent rounded-r-xl">
+                <p className="text-sm font-semibold text-slate-800 leading-relaxed italic">
+                  &ldquo;High-velocity fulfillment fails when automated cranes and robotic shuttles run isolated from enterprise demand signals. KNOOVIQ connects material flow systems, dynamic wave slotting, and mobile RF execution into one unified S/4HANA EWM core.&rdquo;
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Distribution centers face unprecedented fulfillment pressures from shrinking order lead times, surging SKU catalogs, and rising labor costs. Disconnected warehouse systems generate travel waste, dock bottlenecks, and phantom inventory. Knooviq establishes an automated digital execution thread connecting inbound trailer appointments, high-density ASRS cranes, and packing lines into a unified SAP Extended Warehouse Management core.
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Knooviq engineers an integrated distribution ecosystem on SAP S/4HANA Clean Core. By bridging data across yard arrivals, high-bay automated storage, and mobile picking crews, fulfillment leaders gain continuous visibility, automated order flow, and 99.98% inventory accuracy.
               </p>
 
-              {/* Information Checklist Grid (Zero Numbers/Percents) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {[
-                  'Algorithmically positioned SKU slotting matching historical demand frequency',
-                  'Synchronized pick waves aligned with carrier cutoffs to eliminate missed dispatches',
-                  'Direct PLC communication connecting automated cranes without third-party middleware',
-                  'Carrier self-service appointment scheduling preventing trailer yard congestion'
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <span className="text-xs text-slate-200 font-medium leading-snug">{item}</span>
+              {/* 3 Executive Strategic Pillars */}
+              <div className="space-y-2.5 pt-1">
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Cpu className="w-4 h-4" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Interactive Journey Visualizer */}
-            <div className="lg:col-span-6">
-              <div className="rounded-2xl bg-slate-900/90 border border-white/10 p-5 sm:p-6 shadow-2xl backdrop-blur-md">
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <Workflow className="w-4 h-4 text-sky-400" />
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
-                      STAGE WORKFLOW
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono text-sky-400 font-semibold">
-                    {journeySteps[activeJourneyStep].label}
-                  </span>
-                </div>
-
-                {/* Workflow Stage Buttons */}
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 mb-5">
-                  {journeySteps.map((step, idx) => {
-                    const isSelected = activeJourneyStep === idx;
-                    const StepIcon = step.icon;
-                    return (
-                      <button
-                        key={step.id}
-                        onClick={() => setActiveJourneyStep(idx)}
-                        className={`p-2 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${
-                          isSelected
-                            ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                            : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
-                        }`}
-                      >
-                        <StepIcon className="w-3.5 h-3.5" />
-                        <span className="text-[10px] font-mono font-semibold truncate w-full">
-                          {step.label}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Active Step Showcase Card */}
-                <div className="relative rounded-xl overflow-hidden border border-white/10 bg-slate-950">
-                  <div className="h-44 sm:h-52 w-full relative">
-                    <img 
-                      src={journeySteps[activeJourneyStep].image} 
-                      alt={journeySteps[activeJourneyStep].label} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-                      <div>
-                        <span className="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider block">
-                          {journeySteps[activeJourneyStep].sublabel}
-                        </span>
-                        <h4 className="text-base font-bold text-white">
-                          {journeySteps[activeJourneyStep].label}
-                        </h4>
-                      </div>
-                      <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/10 backdrop-blur-md text-slate-200 border border-white/15">
-                        {journeySteps[activeJourneyStep].tech}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      {journeySteps[activeJourneyStep].desc}
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Sub-Second Material Flow & Robotics</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Direct PLC telegram communication connecting SAP EWM to AS/RS cranes, conveyors, and AMRs without middleware latency.
                     </p>
                   </div>
                 </div>
 
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 3: KEY CHALLENGES & DOMAIN BOTTLENECKS (6 Cards)
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-400/30 text-xs font-mono font-bold uppercase tracking-wider text-rose-300">
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-              <span>INDUSTRY BOTTLENECKS & RISKS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Operational Vulnerabilities in Warehouse Execution
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Critical bottlenecks that inflate fulfillment expenses, delay carrier departures, and create stock discrepancies.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {industryChallenges.map((challenge) => (
-              <div 
-                key={challenge.id}
-                className="p-6 rounded-2xl bg-slate-950/80 border border-white/10 hover:border-sky-400/40 transition-all flex flex-col justify-between group"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                      {challenge.tag}
-                    </span>
-                    <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${challenge.statusColor}`}>
-                      {challenge.status}
-                    </span>
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Boxes className="w-4 h-4" />
                   </div>
-
-                  <h3 className="text-base font-bold text-white group-hover:text-sky-300 transition-colors">
-                    {challenge.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {challenge.desc}
-                  </p>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Dynamic ABC Velocity Slotting</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Continuously reorganize warehouse storage bins based on seasonal product turns, eliminating deadhead travel for forklifts.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-                  <span>Standard SAP Resolution</span>
-                  <span className="text-sky-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    <span>Mitigate</span>
-                    <ArrowRight className="w-3 h-3" />
+                <div className="p-3.5 rounded-xl border border-slate-300 bg-white shadow-xs hover:border-[#0070C0] transition-colors flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 text-[#0070C0] flex items-center justify-center shrink-0 border border-slate-300">
+                    <Truck className="w-4 h-4" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-950">Integrated Yard & Gate Synchronization</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      Carrier appointment booking, automated driver kiosks, and dynamic dock door scheduling completely eliminating detention penalties.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Side: Clean Photography Showcase & Stage Navigator */}
+            <div className="lg:col-span-6 space-y-3.5">
+              
+              {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
+              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+                <img 
+                  src={journeySteps[activeJourneyStep].image} 
+                  alt={journeySteps[activeJourneyStep].label} 
+                  className="w-full h-full object-cover object-center transition-all duration-500"
+                />
+              </div>
+
+              {/* Stage Navigation Grid (Clean Labels + Icons, No Numbers) */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {journeySteps.map((step, idx) => {
+                  const isSelected = activeJourneyStep === idx;
+                  const StepIcon = step.icon;
+                  return (
+                    <button
+                      key={step.id}
+                      type="button"
+                      onClick={() => setActiveJourneyStep(idx)}
+                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
+                        isSelected
+                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
+                          : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
+                      }`}
+                    >
+                      <div className={`p-1.5 rounded-lg shrink-0 ${
+                        isSelected ? 'bg-white/20 text-white' : 'bg-sky-50 text-[#0070C0] border border-slate-300'
+                      }`}>
+                        <StepIcon className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold truncate">{step.label}</div>
+                        <div className={`text-[10px] truncate ${isSelected ? 'text-sky-100' : 'text-slate-500'}`}>
+                          {step.sublabel}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Selected Stage Detail Card (Placed Below the Image & Controls with Defined Border) */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-300 shadow-xs space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#003B73]">
+                    {journeySteps[activeJourneyStep].label}
+                  </span>
+                  <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-sky-50 text-[#0070C0] border border-sky-300">
+                    {journeySteps[activeJourneyStep].tech}
                   </span>
                 </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {journeySteps[activeJourneyStep].desc}
+                </p>
               </div>
-            ))}
+
+            </div>
+
           </div>
 
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 4: CIRCULAR CHEVRON RADIAL WHEEL (8 Segments)
+          SECTION 3: INDUSTRY CHALLENGES ("Navigating the Complexity of Modern Warehousing")
           ========================================================================= */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-12 sm:py-14 lg:py-16 bg-[#F8FAFC] border-b border-slate-200 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Compass className="w-3.5 h-3.5 text-sky-400" />
-              <span>PLATFORM ECOSYSTEM</span>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-2.5"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-mono font-bold uppercase tracking-wider text-rose-600">
+              <Compass className="w-3.5 h-3.5 text-rose-600" />
+              <span>CORE BOTTLENECKS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              KNOOVIQ SAP EWM Platform Ecosystem
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight">
+              Navigating the Complexity of Modern Warehousing
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Eight interlocking capability modules synchronizing the complete warehousing lifecycle from yard gate to trailer dispatch.
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              Disjointed warehouse management systems and siloed automation constrain fulfillment speed. Knooviq addresses the six systemic challenges logistics leaders face.
             </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {warehouseChallenges.map((item, idx) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  className="h-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-white border border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all group"
+                >
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="p-2.5 rounded-xl bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white group-hover:scale-105 transition-all">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-[#0070C0] font-semibold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070C0] group-hover:scale-125 transition-transform" />
+                    <span>{item.footer}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 4: KNOOVIQ WAREHOUSE PLATFORM ECOSYSTEM (Circular Chevron Radial Diagram)
+          ========================================================================= */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#070B14] text-white border-b border-slate-800 relative overflow-hidden">
+        
+        {/* Dark Ambient Radial Hues */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-indigo-500/10 via-emerald-500/10 to-pink-500/10 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-inner">
+              <Workflow className="w-3.5 h-3.5 text-cyan-300" />
+              <span>CONNECTED WAREHOUSE ECOSYSTEM</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+              Capabilities Designed for Modern Warehousing
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              A synchronized, circular enterprise platform uniting dock appointments, velocity slotting, MFS robotics, voice picking, and clean ERP ledgers into one continuous loop.
+            </p>
+          </motion.div>
+
+          {/* 3-Column Radial Wheel & Flanking Capabilities Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
             
-            {/* Left Flanking Capability Cards (4) */}
-            <div className="lg:col-span-3 space-y-3 order-2 lg:order-1">
-              {wheelSegments.filter(s => s.side === 'left').map((segment, idx) => {
-                const isHovered = hoveredWheelIndex === (idx + 4);
-                const SegmentIcon = segment.icon;
+            {/* Left Column (4 Capabilities: Top-Left to Bottom-Left) */}
+            <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+              {[7, 6, 5, 4].map((segIdx) => {
+                const item = wheelSegments[segIdx];
+                const isHovered = hoveredWheelIndex === segIdx;
                 return (
                   <div
-                    key={segment.id}
-                    onMouseEnter={() => setHoveredWheelIndex(idx + 4)}
+                    key={item.id}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
-                      isHovered 
-                        ? 'bg-white/10 border-sky-400 shadow-lg scale-[1.02]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                      isHovered
+                        ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
+                        : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
+                    style={{
+                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHovered ? item.color : undefined
+                    }}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <SegmentIcon className={`w-4 h-4 ${segment.textColor}`} />
-                      <h4 className="text-xs font-bold text-white truncate">{segment.title}</h4>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="space-y-1 text-left">
+                        <h4 className="text-sm sm:text-base font-bold tracking-tight" style={{ color: item.color }}>
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div 
+                        className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
+                        style={{ 
+                          backgroundColor: item.color,
+                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                        }}
+                      />
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-snug">{segment.desc}</p>
                   </div>
                 );
               })}
             </div>
 
-            {/* Center Circular Radial SVG Wheel (6 cols) */}
-            <div className="lg:col-span-6 flex items-center justify-center order-1 lg:order-2">
-              <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px]">
-                <svg 
-                  viewBox="0 0 500 500" 
-                  className="w-full h-full drop-shadow-2xl transition-all"
-                >
-                  <circle cx="250" cy="250" r="230" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-                  <circle cx="250" cy="250" r="105" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="4 4" />
+            {/* Center Column: 8-Segment Interlocking Chevron Circular Wheel */}
+            <div className="order-1 lg:order-2 lg:col-span-4 flex justify-center items-center py-4 sm:py-6">
+              <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
+                
+                {/* Glow ring under wheel */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/15 via-emerald-500/10 to-pink-500/15 blur-2xl rounded-full pointer-events-none" />
 
-                  {wheelSegments.map((segment, index) => {
-                    const isHovered = hoveredWheelIndex === index;
-                    const path = getChevronPath(index);
-                    const coords = getIconCoords(index);
-                    const SegmentIcon = segment.icon;
+                <svg
+                  viewBox="0 0 500 500"
+                  className="w-full h-full drop-shadow-2xl overflow-visible"
+                >
+                  {/* 8 Interlocking Chevron Segments */}
+                  {wheelSegments.map((seg, idx) => {
+                    const isHovered = hoveredWheelIndex === idx;
+                    const d = getChevronPath(idx);
+                    const iconPos = getIconCoords(idx);
+                    const IconComponent = seg.icon;
 
                     return (
-                      <g 
-                        key={segment.id}
-                        onMouseEnter={() => setHoveredWheelIndex(index)}
+                      <g
+                        key={seg.id}
+                        onMouseEnter={() => setHoveredWheelIndex(idx)}
                         onMouseLeave={() => setHoveredWheelIndex(null)}
                         className="cursor-pointer transition-all duration-300"
                       >
+                        {/* Chevron Wedge */}
                         <path
-                          d={path}
-                          fill={isHovered ? segment.color : 'rgba(15, 23, 42, 0.85)'}
-                          stroke={segment.color}
-                          strokeWidth={isHovered ? '2.5' : '1.5'}
+                          d={d}
+                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          stroke={seg.color}
+                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeLinejoin="round"
                           className="transition-all duration-300"
+                          style={{
+                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                          }}
                         />
-                        <foreignObject 
-                          x={coords.x - 12} 
-                          y={coords.y - 12} 
-                          width="24" 
-                          height="24"
-                          className="pointer-events-none"
+
+                        {/* Segment Icon */}
+                        <foreignObject
+                          x={iconPos.x - 14}
+                          y={iconPos.y - 14}
+                          width={28}
+                          height={28}
+                          className="pointer-events-none overflow-visible"
                         >
-                          <div className="w-full h-full flex items-center justify-center">
-                            <SegmentIcon 
-                              className={`w-4 h-4 transition-colors ${
-                                isHovered ? 'text-white' : segment.textColor
-                              }`} 
-                            />
+                          <div 
+                            className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
+                              isHovered ? 'scale-125' : ''
+                            }`}
+                            style={{ color: seg.color }}
+                          >
+                            <IconComponent className="w-5 h-5 drop-shadow-md" />
                           </div>
                         </foreignObject>
                       </g>
                     );
                   })}
 
-                  {/* Core Center Hub */}
-                  <circle cx="250" cy="250" r="80" fill="#0284C7" className="drop-shadow-lg" />
-                  <circle cx="250" cy="250" r="74" fill="#0B1528" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="2" />
+                  {/* Center Hub Outer Circle */}
+                  <circle
+                    cx="250"
+                    cy="250"
+                    r="106"
+                    fill="#070B14"
+                    stroke="#FFFFFF"
+                    strokeWidth="2.5"
+                    className="drop-shadow-2xl"
+                  />
+                  <circle
+                    cx="250"
+                    cy="250"
+                    r="102"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    strokeWidth="1"
+                    strokeOpacity="0.25"
+                  />
+
+                  {/* Center Hub Label */}
+                  <foreignObject
+                    x="150"
+                    y="195"
+                    width="200"
+                    height="110"
+                    className="pointer-events-none"
+                  >
+                    <div className="w-full h-full flex flex-col items-center justify-center text-center px-3">
+                      <div className="text-[10px] font-mono tracking-widest text-cyan-400 font-bold uppercase">
+                        KNOOVIQ CORE
+                      </div>
+                      <div className="text-sm sm:text-base font-black text-white leading-tight mt-0.5">
+                        EWM LOGISTICS
+                      </div>
+                      <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
+                        {hoveredWheelIndex !== null 
+                          ? `MODULE 0${hoveredWheelIndex + 1}` 
+                          : '8 CAPABILITIES'}
+                      </div>
+                    </div>
+                  </foreignObject>
                 </svg>
 
-                {/* Hub Center Label Overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center p-4">
-                  <Warehouse className="w-5 h-5 text-cyan-400 mb-1" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-300 font-bold">KNOOVIQ</span>
-                  <span className="text-xs font-black text-white leading-tight">SAP EWM</span>
-                  <span className="text-[9px] font-mono text-slate-400">CLEAN CORE</span>
-                </div>
               </div>
             </div>
 
-            {/* Right Flanking Capability Cards (4) */}
-            <div className="lg:col-span-3 space-y-3 order-3">
-              {wheelSegments.filter(s => s.side === 'right').map((segment, idx) => {
-                const isHovered = hoveredWheelIndex === idx;
-                const SegmentIcon = segment.icon;
+            {/* Right Column (4 Capabilities: Top-Right to Bottom-Right) */}
+            <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+              {[0, 1, 2, 3].map((segIdx) => {
+                const item = wheelSegments[segIdx];
+                const isHovered = hoveredWheelIndex === segIdx;
                 return (
                   <div
-                    key={segment.id}
-                    onMouseEnter={() => setHoveredWheelIndex(idx)}
+                    key={item.id}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer ${
-                      isHovered 
-                        ? 'bg-white/10 border-sky-400 shadow-lg scale-[1.02]' 
-                        : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                      isHovered
+                        ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
+                        : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
+                    style={{
+                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHovered ? item.color : undefined
+                    }}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <SegmentIcon className={`w-4 h-4 ${segment.textColor}`} />
-                      <h4 className="text-xs font-bold text-white truncate">{segment.title}</h4>
+                    <div className="flex items-start justify-between gap-3">
+                      <div 
+                        className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
+                        style={{ 
+                          backgroundColor: item.color,
+                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                        }}
+                      />
+                      <div className="space-y-1 text-right">
+                        <h4 className="text-sm sm:text-base font-bold tracking-tight" style={{ color: item.color }}>
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-snug">{segment.desc}</p>
                   </div>
                 );
               })}
@@ -963,272 +1000,461 @@ export const WarehouseEwmIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCo
       </section>
 
       {/* =========================================================================
-          SECTION 5: CLEAN CORE ARCHITECTURE LAYERS (3 Tabs)
+          SECTION 6: SAP & TECHNOLOGY SOLUTIONS ("Technology Foundation for Intelligent Warehousing")
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
+      <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Server className="w-3.5 h-3.5 text-sky-400" />
-              <span>CLEAN CORE ARCHITECTURE</span>
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
+              <Layers className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>PLATFORM ARCHITECTURE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Three-Tier Warehouse Execution Architecture
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
+              Technology Foundation for Intelligent Warehousing
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Decoupling high-bay crane PLC commands from order waves and cloud yard analytics.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              We engineer clean-core SAP technology suites layered with modern PLC robotics connections, role-based mobile RF apps, and autonomous business AI.
             </p>
           </div>
 
-          {/* Architecture Layer Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {architectureTabs.map((tab) => {
-              const isActive = activeArchTab === tab.id;
+          {/* Layered Technology Ecosystem Visual */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {/* Tech 1: SAP S/4HANA EWM */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">CORE WAREHOUSE SUITE</span>
+                <Warehouse className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP S/4HANA EWM
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Integrated enterprise warehouse execution supporting both embedded and decentralized deployment models on in-memory Universal Journal.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• High-Volume Stock Ingestion</div>
+                <div className="flex items-center gap-1.5">• Embedded & Decentralized Topology</div>
+              </div>
+            </div>
+
+            {/* Tech 2: SAP EWM-MFS */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">ROBOTICS AUTOMATION</span>
+                <Cpu className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Material Flow System (MFS)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Direct bidirectional telegram communication connecting SAP EWM to high-bay stacker cranes, conveyor PLCs, and AMR fleets without middleware.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Sub-Second PLC Telegrams</div>
+                <div className="flex items-center gap-1.5">• Automated Crane Dynamic Rerouting</div>
+              </div>
+            </div>
+
+            {/* Tech 3: SAP Warehouse Insights */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">SLOTTING OPTIMIZATION</span>
+                <Boxes className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Warehouse Insights
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Continuous machine learning slotting analyzing SKU demand velocity to automatically recommend optimal bin reassignments and cut travel miles.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Dynamic ABC Velocity Profiling</div>
+                <div className="flex items-center gap-1.5">• 30%+ Travel Distance Reduction</div>
+              </div>
+            </div>
+
+            {/* Tech 4: SAP TM Synchronization */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">SUPPLY CHAIN SYNC</span>
+                <Truck className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                Native TM Interlock
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Direct cross-system synchronization uniting inbound freight orders, carrier capacity bookings, dock doors, and trailer gate releases.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Dock Appointment Scheduling</div>
+                <div className="flex items-center gap-1.5">• Touchless Carrier BOL Verification</div>
+              </div>
+            </div>
+
+            {/* Tech 5: SAP Fiori Mobile RF */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">ROLE-BASED UX</span>
+                <ScanLine className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                SAP Fiori Mobile RF
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Ergonomic mobile scanning screens and voice-directed workflows optimized for ruggedized wearable scanners, smart glasses, and forklifts.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• Voice-Directed Pick Checksums</div>
+                <div className="flex items-center gap-1.5">• Touch-Optimized Trailer Receiving</div>
+              </div>
+            </div>
+
+            {/* Tech 6: Digital Yard & IoT */}
+            <div className="p-6 rounded-3xl bg-slate-50/80 border-2 border-slate-200 hover:border-[#0070C0] hover:bg-white shadow-sm transition-all group space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-extrabold text-[#0070C0] uppercase tracking-wider">YARD INTELLIGENCE</span>
+                <Sparkles className="w-5 h-5 text-[#0070C0]" />
+              </div>
+              <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0070C0] transition-colors">
+                Digital Yard & IoT
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Automated driver check-in kiosks, RFID trailer door clearance, reefer temperature telemetry, and digital shunter move dispatching.
+              </p>
+              <div className="pt-3 border-t border-slate-200 text-xs font-medium text-slate-700 space-y-1">
+                <div className="flex items-center gap-1.5">• RFID Portal Trailer Verification</div>
+                <div className="flex items-center gap-1.5">• Shunter Mobile Dispatching</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 7: INDUSTRY SOLUTIONS ("Solutions for Every Stage of Warehousing")
+          ========================================================================= */}
+      <section id="industry-solutions" className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200 relative scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-7 sm:mb-8 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0] shadow-2xs">
+              <Warehouse className="w-3.5 h-3.5 text-[#0070C0]" />
+              <span>ENTERPRISE FUNCTIONAL CATALOG</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+              Solutions for Every Stage of Warehousing
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              Explore specialized enterprise functional modules engineered to modernize warehouse execution across yard logistics, dynamic wave slotting, and automated robotics.
+            </p>
+          </div>
+
+          {/* Solution Domain Category Tabs - 4 Symmetrical Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-7 sm:mb-8">
+            {[
+              { id: 'ALL', label: 'All Solutions' },
+              { id: 'INBOUND_YARD', label: 'Inbound & Yard' },
+              { id: 'WAVE_PICKING', label: 'Wave & Picking' },
+              { id: 'ROBOTICS_MFS', label: 'Robotics & MFS' }
+            ].map((cat) => {
+              const isActive = activeSolutionCategory === cat.id;
               return (
                 <button
-                  key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id)}
-                  className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider transition-all border ${
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveSolutionCategory(cat.id)}
+                  className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                      : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
+                      ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25 scale-105'
+                      : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-2xs'
                   }`}
                 >
-                  {tab.name}
+                  {cat.label}
                 </button>
               );
             })}
           </div>
 
-          {/* Active Layer Details */}
-          {(() => {
-            const currentTab = architectureTabs.find(t => t.id === activeArchTab) || architectureTabs[0];
-            return (
-              <div className="rounded-2xl bg-slate-950/90 border border-white/10 p-6 sm:p-8 shadow-2xl">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  
-                  <div className="lg:col-span-7 space-y-4">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-sky-400">
-                      {currentTab.tag}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
-                      {currentTab.headline}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      {currentTab.desc}
-                    </p>
-
-                    <div className="space-y-2.5 pt-2">
-                      {currentTab.capabilities.map((cap, cIdx) => (
-                        <div key={cIdx} className="flex items-start gap-2 text-xs text-slate-200">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                          <span>{cap}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-5">
-                    <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-slate-900 border border-white/10">
-                      {currentTab.diagramDetails.map((item, dIdx) => (
-                        <div key={dIdx} className="p-3 rounded-lg bg-white/5 border border-white/10">
-                          <span className="text-[10px] font-mono text-slate-400 uppercase block mb-1">
-                            {item.label}
-                          </span>
-                          <span className="text-xs font-bold text-sky-300">
-                            {item.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            );
-          })()}
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 6: MODULAR TAILORED SOLUTIONS
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-950 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Boxes className="w-3.5 h-3.5 text-sky-400" />
-              <span>MODULAR SOLUTIONS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Specialized Solutions for Warehouse Execution
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              High-impact functional modules delivering measurable operational gains across complex distribution facilities.
-            </p>
-          </div>
-
-          {/* Category Filter Chips */}
-          <div className="flex flex-wrap justify-center gap-2.5 mb-10">
-            {['ALL', 'CORE', 'AUTOMATION', 'YARD', 'ANALYTICS'].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveSolutionCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all border ${
-                  activeSolutionCategory === cat
-                    ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md'
-                    : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Solution Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredSolutions.map((sol, idx) => (
-              <div 
-                key={idx}
-                className="p-6 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-sky-400/40 transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-300 border border-sky-500/30 font-bold">
-                      {sol.badge}
-                    </span>
-                    <span className="text-[10px] font-mono text-slate-400 uppercase">
-                      {sol.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-white">
-                    {sol.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {sol.desc}
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    {sol.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-200">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 mt-6 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400">Architecture Scope: Clean Core</span>
-                  <button
-                    onClick={() => onOpenContact(`Warehouse EWM: ${sol.title}`)}
-                    className="text-xs font-bold text-sky-400 hover:text-sky-300 inline-flex items-center gap-1 transition-colors"
+          {/* Structured Compact 3-Column Enterprise Grid (Symmetrical 3x3 Grid) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+            {industrySolutions
+              .filter((sol) => activeSolutionCategory === 'ALL' || sol.category === activeSolutionCategory)
+              .map((sol) => {
+                const IconComponent = sol.icon;
+                return (
+                  <div
+                    key={sol.title}
+                    className="h-[400px] rounded-xl bg-white border-2 border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group"
                   >
-                    <span>Request Blueprint</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                    {/* 1. Top Image Banner - 50% Pure Photo */}
+                    <div className="relative h-1/2 w-full overflow-hidden bg-slate-100 shrink-0">
+                      <img 
+                        src={sol.image} 
+                        alt={sol.title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+                      
+                      {/* Floating Tag Pill */}
+                      <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-slate-950/80 border border-white/20 text-[9px] font-mono font-bold text-sky-300 uppercase tracking-wider backdrop-blur-md shadow-xs">
+                        {sol.tag}
+                      </div>
+                    </div>
+
+                    {/* 2. Card Content Body - 50% Height */}
+                    <div className="h-1/2 p-3.5 sm:p-4 flex flex-col justify-between space-y-2.5 overflow-hidden">
+                      
+                      <div className="space-y-1.5">
+                        {/* Category & Icon Indicator */}
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-mono font-bold text-[#0070C0] uppercase tracking-wider">
+                            {sol.categoryLabel}
+                          </span>
+                          <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
+                            <IconComponent className="w-3.5 h-3.5" />
+                          </div>
+                        </div>
+
+                        {/* Title - Bold & Compact */}
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors leading-snug">
+                          {sol.title}
+                        </h3>
+
+                        {/* Description - Snug & Concise */}
+                        <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                          {sol.description}
+                        </p>
+                      </div>
+
+                      {/* Key Capabilities Structured Inline Chips */}
+                      <div className="space-y-2.5 pt-1">
+                        <div className="flex flex-wrap gap-1.5">
+                          {sol.highlights.map((hl, hIdx) => (
+                            <span
+                              key={hIdx}
+                              className="px-2 py-0.5 rounded-md bg-slate-100 text-[10px] font-medium text-slate-700 border border-slate-200/80"
+                            >
+                              {hl}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 8: BUSINESS OUTCOMES ("Turning Warehouse Complexity into Fulfillment Advantage")
+          ========================================================================= */}
+      <section className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-100 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-mono font-bold uppercase tracking-wider text-emerald-700">
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
+              <span>MEASURABLE BUSINESS IMPACT</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
+              Turning Warehouse Complexity into Fulfillment Advantage
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              When trailer arrivals, dynamic slotting, MFS robotics, and enterprise ledgers operate in unison, logistics organizations achieve sustainable throughput speed.
+            </p>
+          </div>
+
+          {/* 6 Outcomes (Large typography, flowing blue paths, generous whitespace, NO dashboards) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Outcome 1 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Boxes className="w-5 h-5" />
               </div>
-            ))}
+              <h3 className="text-lg font-black text-slate-900">
+                Rapid Dock-to-Stock Velocity
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Compress inbound receipt-to-putaway and outbound pick-to-ship fulfillment cycles from multiple shifts down to under 90 minutes with zero stock drift.
+              </p>
+            </div>
+
+            {/* Outcome 2 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <CheckCircle2 className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                99.98% Pick Precision
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Interleaved barcode verification, voice check digits, and real-time inventory adjustments eliminate mispicks, phantom stock, and return logistics.
+              </p>
+            </div>
+
+            {/* Outcome 3 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <TrendingUp className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                30%+ Travel Distance Reduction
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Dynamic AI slotting and automated task interleaving eliminate unnecessary deadhead forklift journeys across distribution center aisles.
+              </p>
+            </div>
+
+            {/* Outcome 4 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Zap className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Sub-Second PLC Robotics Response
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Direct PLC telegram communication via native SAP EWM-MFS eliminates third-party middleware bottlenecks and crane synchronization delays.
+              </p>
+            </div>
+
+            {/* Outcome 5 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <Truck className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Zero Trailer Detention Fees
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Digital yard gate appointments and automated dock door scheduling ensure carrier drivers clear inbound inspection in under 30 minutes.
+              </p>
+            </div>
+
+            {/* Outcome 6 */}
+            <div className="space-y-3 p-6 rounded-3xl border border-sky-100 bg-[#F0F7FD]/40 hover:bg-white hover:border-[#0070C0] hover:shadow-lg transition-all duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0070C0]/10 flex items-center justify-center text-[#0070C0]">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900">
+                Audit-Proof Serialized Lot Traceability
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Instant genealogy tracking from supplier pallet receipts down to customer delivery scans guarantees 100% compliance audit readiness.
+              </p>
+            </div>
+
           </div>
 
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 7: LEGACY VS CLEAN CORE STANDARDIZATION MATRIX
+          SECTION 9: SUCCESS STORY / USE CASE ("Transformation in Action")
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-10 sm:py-12 lg:py-14 bg-gradient-to-b from-[#060D1A] via-[#0A1628] to-[#060C17] border-b border-slate-800 relative overflow-hidden text-white">
+        
+        {/* Subtle Ambient Background Grids & Radial Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(0,112,192,0.18),transparent)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <Split className="w-3.5 h-3.5 text-sky-400" />
-              <span>STANDARDIZATION MATRIX</span>
+          {/* Header - Compact & High-Impact */}
+          <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8 space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+              <Workflow className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <span>TRANSFORMATION ARCHITECTURE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Legacy Practice vs. Modern Clean Core
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Transformation in Action
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Transforming manual paper-driven warehouses into autonomous, high-throughput fulfillment centers.
+            <div className="text-xs sm:text-sm font-semibold text-cyan-400 font-mono tracking-wider uppercase">
+              Intelligent Extended Warehouse Architecture
+            </div>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+              How high-volume distribution centers advance from legacy paper processes to an integrated clean-core automated logistics ecosystem.
             </p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse rounded-2xl overflow-hidden border border-white/10 text-left text-xs">
-              <thead className="bg-slate-950 text-slate-300 font-mono text-[11px] uppercase">
-                <tr>
-                  <th className="p-4 border-b border-white/10">Process Dimension</th>
-                  <th className="p-4 border-b border-white/10 text-rose-300">Legacy Approach</th>
-                  <th className="p-4 border-b border-white/10 text-sky-300">Modern Clean Core (KNOOVIQ)</th>
-                  <th className="p-4 border-b border-white/10 text-emerald-300">Measurable Value Impact</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 bg-slate-950/60">
-                {matrixRows.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/5 transition-colors">
-                    <td className="p-4 font-bold text-white whitespace-nowrap">{row.dimension}</td>
-                    <td className="p-4 text-slate-400 leading-relaxed">{row.legacy}</td>
-                    <td className="p-4 text-slate-200 leading-relaxed font-medium">{row.cleanCore}</td>
-                    <td className="p-4 text-emerald-400 font-mono font-semibold whitespace-nowrap">{row.valueImpact}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 8: TRANSFORMATION ROADMAP
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
-              <span>TRANSFORMATION ROADMAP</span>
+          {/* Flowing Laser Conduit Connecting the Stages */}
+          <div className="hidden lg:block relative mb-4">
+            <div className="h-0.5 bg-slate-800 rounded-full w-full relative overflow-hidden">
+              <motion.div 
+                animate={{ x: ['-25%', '125%'] }} 
+                transition={{ repeat: Infinity, duration: 4, ease: 'linear' }}
+                className="absolute top-0 bottom-0 w-48 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_12px_#22d3ee]" 
+              />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Phased Warehouse Modernization Roadmap
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Four progressive architectural stages transitioning distribution facilities to autonomous logistics execution.
-            </p>
           </div>
 
-          {/* Stages Selector */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {/* 4 Connected Interactive Transformation Cards (Compact, Crisp, Zero Numbers) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch mb-3.5 sm:mb-4">
             {transformationStages.map((stage, sIdx) => {
+              const IconComp = stage.icon;
               const isSelected = activeTransformStage === sIdx;
               return (
                 <div
-                  key={sIdx}
+                  key={stage.title}
                   onClick={() => setActiveTransformStage(sIdx)}
-                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+                  className={`cursor-pointer rounded-xl backdrop-blur-md p-4 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-2 ${
                     isSelected
-                      ? 'bg-sky-500/20 border-sky-400 shadow-xl scale-[1.02]'
-                      : 'bg-white/5 border-white/10 hover:bg-white/[0.08]'
+                      ? stage.activeBorder
+                      : `bg-white/[0.03] ${stage.borderBase}`
                   }`}
                 >
-                  <div className="space-y-2">
-                    <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${stage.textColor}`}>
-                      {stage.badge}
-                    </span>
-                    <h4 className="text-sm font-bold text-white">{stage.title}</h4>
-                    <p className="text-[11px] text-slate-300 leading-snug">{stage.subtitle}</p>
+                  {/* Subtle Top Glowing Strip on Active */}
+                  {isSelected && (
+                    <div className={`absolute top-0 left-0 right-0 h-0.5 ${stage.glowColor} shadow-[0_0_10px_currentColor]`} />
+                  )}
+
+                  <div className="space-y-2.5">
+                    {/* Header: Phase badge & Icon */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className={`w-2 h-2 rounded-full ${stage.glowColor} ${isSelected ? 'animate-ping' : ''}`} />
+                        <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${stage.textColor}`}>
+                          {stage.badge}
+                        </span>
+                      </div>
+                      <div className={`p-1.5 rounded-lg bg-white/5 border border-white/10 ${stage.textColor} group-hover:scale-110 transition-transform`}>
+                        <IconComp className="w-3.5 h-3.5" />
+                      </div>
+                    </div>
+
+                    {/* Stage Title & Subtitle */}
+                    <div>
+                      <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                        {stage.title}
+                      </h3>
+                      <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wide">
+                        {stage.subtitle}
+                      </div>
+                    </div>
+
+                    {/* Concise Narrative */}
+                    <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                      {stage.description}
+                    </p>
                   </div>
-                  <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-slate-400">{stage.tag}</span>
-                    <span className={`font-bold ${isSelected ? 'text-sky-300' : 'text-slate-400'}`}>
-                      {isSelected ? 'ACTIVE' : 'EXPLORE'}
+
+                  {/* Bottom Deliverable Pillar */}
+                  <div className="pt-2.5 mt-3 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-[9.5px] font-mono font-medium text-slate-400">
+                      {stage.tag}
+                    </span>
+                    <span className={`text-[9.5px] font-mono font-bold uppercase tracking-wider ${stage.textColor} group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5`}>
+                      <span>{isSelected ? 'ACTIVE' : 'INSPECT'}</span>
+                      <ChevronRight className="w-3 h-3" />
                     </span>
                   </div>
                 </div>
@@ -1236,44 +1462,46 @@ export const WarehouseEwmIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCo
             })}
           </div>
 
-          {/* Interactive Live Transformation Console */}
+          {/* Interactive Live Transformation Console / Delta Inspector (Compact) */}
           {(() => {
             const currentStage = transformationStages[activeTransformStage];
             return (
-              <div className="rounded-2xl bg-slate-900 border border-white/10 p-6 shadow-2xl backdrop-blur-md">
-                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-4">
-                  <div>
-                    <span className={`text-xs font-mono font-bold uppercase tracking-wider ${currentStage.textColor}`}>
-                      {currentStage.badge} ARCHITECTURAL DELTA
-                    </span>
-                    <h3 className="text-lg font-bold text-white mt-0.5">
-                      {currentStage.title} &mdash; {currentStage.subtitle}
-                    </h3>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-mono">
-                    Scope: {currentStage.tag}
-                  </span>
-                </div>
+              <div className="rounded-xl bg-slate-900/90 border-2 border-slate-700/80 p-3.5 sm:p-4 shadow-xl backdrop-blur-md relative overflow-hidden">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
+                  
+                  {/* Left: Active Stage Name & Transformation Contrast */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 flex-1">
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className={`w-2.5 h-2.5 rounded-full ${currentStage.glowColor} animate-pulse`} />
+                      <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                        {currentStage.title} Delta:
+                      </span>
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
-                    <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider mb-1">Legacy State</div>
-                    <p className="text-xs text-slate-200">{currentStage.before}</p>
+                    {/* Before vs After Ribbon */}
+                    <div className="flex flex-wrap items-center gap-2 text-xs">
+                      <span className="px-2 py-0.5 rounded-md bg-rose-950/60 border border-rose-500/40 text-rose-300 text-[10.5px] font-mono">
+                        PRIOR: {currentStage.before}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <span className="px-2 py-0.5 rounded-md bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-[10.5px] font-mono font-medium">
+                        TRANSFORMED: {currentStage.after}
+                      </span>
+                    </div>
                   </div>
-                  <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
-                    <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">Modernized Clean Core</div>
-                    <p className="text-xs text-slate-200">{currentStage.after}</p>
-                  </div>
-                </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-4 mt-4 border-t border-white/10">
-                  <span className="text-xs font-mono text-slate-400 uppercase">Key Results:</span>
-                  {currentStage.metrics.map((m, idx) => (
-                    <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-sky-200">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                      <span>{m}</span>
-                    </span>
-                  ))}
+                  {/* Right: Stage Key Capabilities Chips */}
+                  <div className="flex flex-wrap items-center gap-1.5 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-white/10 w-full lg:w-auto">
+                    {currentStage.metrics.map((item, mIdx) => (
+                      <span
+                        key={mIdx}
+                        className="px-2 py-0.5 rounded-md bg-white/5 border border-white/15 text-[10px] font-mono text-slate-300 font-semibold"
+                      >
+                        ✓ {item}
+                      </span>
+                    ))}
+                  </div>
+
                 </div>
               </div>
             );
@@ -1283,171 +1511,80 @@ export const WarehouseEwmIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCo
       </section>
 
       {/* =========================================================================
-          SECTION 9: STRATEGIC ENTERPRISE VALUE DRIVERS (Zero Numbers/Percents)
+          SECTION 11: FINAL CTA (Full-Width Blue Executive Section)
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-900 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-              <span>ENTERPRISE SAFEGUARDS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Strategic Value Drivers for Modern Warehousing
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Architectural advantages realized by distribution operations running on SAP Clean Core.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 inline-block">
-                  <ScanLine className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Flawless Pick Accuracy</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Barcode validation and voice-directed picking prompts guarantee zero wrong-item shipments, eliminating return handling expenses.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-sky-400 font-bold uppercase">
-                DISPATCH INTEGRITY
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 inline-block">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Zero Carrier Detention</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Online dock appointment booking and automated gate check-in eliminate trailer yard congestion and costly detention fee penalties.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-emerald-400 font-bold uppercase">
-                YARD VELOCITY
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 inline-block">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Seamless ASRS Automation</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Direct PLC protocol integration connects automated cranes without third-party middleware, guaranteeing uninterrupted high-bay throughput.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-purple-400 font-bold uppercase">
-                EQUIPMENT RELIABILITY
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-950 border border-white/10 flex flex-col justify-between hover:border-sky-400 transition-colors">
-              <div className="space-y-3">
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 inline-block">
-                  <Boxes className="w-5 h-5" />
-                </div>
-                <div className="text-base font-bold text-white">Dynamic Cartonization Savings</div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Algorithmic packaging recommendations match orders to optimal carton sizes, eliminating air shipments and minimizing dimensional freight charges.
-                </p>
-              </div>
-              <div className="pt-3 border-t border-white/10 mt-4 text-[10px] font-mono text-amber-400 font-bold uppercase">
-                FREIGHT EFFICIENCY
-              </div>
-            </div>
-          </div>
-
+      <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-gradient-to-r from-[#003B73] via-[#005B9E] to-[#0070C0] text-white">
+        
+        {/* Abstract 3D Digital Logistics / Network Mesh Visual */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%)',
+              backgroundSize: '100% 100%'
+            }}
+          />
+          <div 
+            className="absolute inset-0 opacity-[0.08]"
+            style={{
+              backgroundImage: 'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
+              backgroundSize: '36px 36px'
+            }}
+          />
         </div>
-      </section>
 
-      {/* =========================================================================
-          SECTION 10: INDUSTRY FAQS (Accordion)
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-slate-950 border-b border-white/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           
-          <div className="text-center mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-mono font-bold uppercase tracking-wider text-sky-300">
-              <HelpCircle className="w-3.5 h-3.5 text-sky-400" />
-              <span>COMMONLY ASKED QUESTIONS</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Warehouse Execution & SAP EWM Inquiries
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Key architecture questions on modernizing distribution operations on SAP Clean Core.
-            </p>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-widest text-cyan-200 backdrop-blur-sm shadow-sm">
+            <Warehouse className="w-3.5 h-3.5 text-cyan-300" />
+            <span>CONNECT YOUR DISTRIBUTION NETWORK</span>
           </div>
 
-          <div className="space-y-3">
-            {faqs.map((faq, fIdx) => {
-              const isOpen = openFaqIndex === fIdx;
-              return (
-                <div 
-                  key={fIdx}
-                  className="rounded-2xl border border-white/10 bg-slate-900/80 overflow-hidden transition-all"
-                >
-                  <button
-                    onClick={() => toggleFaq(fIdx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors"
-                  >
-                    <span className="text-sm font-bold text-white">{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 text-sky-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-white/5">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 11: FINAL EXECUTIVE CTA
-          ========================================================================= */}
-      <section className="py-20 bg-gradient-to-r from-sky-950 via-slate-950 to-blue-950 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>KNOOVIQ PRACTICE ENGAGEMENT</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-            Accelerate Your Warehouse Execution Modernization
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto">
+            Ready to Build a Smarter Warehouse Business?
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-200 max-w-2xl mx-auto leading-relaxed">
-            Schedule an architectural blueprint consultation with our SAP EWM logistics practice specialists to assess your wave picking throughput, slotting algorithms, and automation material flow systems.
+          <p className="text-base sm:text-lg text-sky-100 max-w-2xl mx-auto leading-relaxed font-normal">
+            Connect your dock scheduling, velocity slotting, MFS robotics, and enterprise inventory ledgers with Knooviq.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
-              onClick={() => onOpenContact('Warehouse EWM Architecture Consultation')}
-              className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-lg hover:shadow-sky-500/25 flex items-center gap-2"
+              type="button"
+              onClick={() => onOpenContact?.('Warehouse & EWM Consultation')}
+              className="px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#003B73] text-xs sm:text-sm font-bold uppercase tracking-wider shadow-2xl shadow-black/25 transition-all flex items-center gap-2 group cursor-pointer"
             >
-              <span>Consult Practice Architect</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Talk to Our Warehouse Experts</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#0070C0]" />
             </button>
+
             <Link
-              to="/industries"
-              className="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold uppercase tracking-wider border border-white/20 transition-all flex items-center gap-2"
+              to="/solutions/sap-s4hana"
+              className="px-8 py-4 rounded-xl bg-transparent hover:bg-white/10 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-white/40 hover:border-white transition-all flex items-center gap-2"
             >
-              <span>Explore All Industries</span>
+              <span>Explore SAP Solutions</span>
             </Link>
           </div>
+
+          <div className="pt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-sky-200">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-300" />
+              <span>SAP Certified Clean Core</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-cyan-300" />
+              <span>Sub-Second MFS Response</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Globe2 className="w-4 h-4 text-sky-300" />
+              <span>Global 24/7 SLA Support</span>
+            </span>
+          </div>
+
         </div>
+
       </section>
+
     </div>
   );
 };
