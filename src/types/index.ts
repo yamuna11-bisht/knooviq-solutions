@@ -70,6 +70,20 @@ export interface IndustryItem {
   knooviqAdvantage: string[];
 }
 
+export interface DigitalIntelligenceCategory {
+  id: string;
+  num: string;
+  name: string;
+  tagline: string;
+  description: string;
+  iconName: string;
+  badge: string;
+  items: string[];
+  caseSnippet: string;
+  keyChallenges: string[];
+  knooviqAdvantage: string[];
+}
+
 export interface CaseStudyItem {
   id: string;
   title: string;

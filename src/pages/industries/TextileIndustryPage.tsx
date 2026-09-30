@@ -70,7 +70,7 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       icon: Boxes,
       metric: '100% Bale Assay Traceability',
       tech: 'SAP Mill Products Bale Matrix',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80'
+      image: '/images/textile_fiber_sourcing.png'
     },
     {
       title: 'Spinning & Ring Spindles',
@@ -79,7 +79,7 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       icon: Factory,
       metric: '99.4% Yarn Count Consistency',
       tech: 'SAP MII Shop-Floor Connectivity',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'
+      image: '/images/textile_spinning_spindles.jpg'
     },
     {
       title: 'Warp Beam & Loom Shed',
@@ -88,7 +88,7 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       icon: Workflow,
       metric: '94.2% Weaving Loom Shed OEE',
       tech: 'SAP S/4HANA Production Scheduling',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80'
+      image: '/images/textile_warp_beam.png'
     },
     {
       title: 'Dye House & Color Kitchen',
@@ -97,7 +97,7 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       icon: Palette,
       metric: 'Zero Dye-Lot Shade Mismatches',
       tech: 'Laboratory Recipe & Colorimetric Integration',
-      image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80'
+      image: '/images/textile_dye_house.png'
     },
     {
       title: 'Four-Point Roll Inspection',
@@ -106,7 +106,7 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       icon: Scissors,
       metric: '32% Remnant Fabric Scrap Cut',
       tech: 'Serialized Roll Defect Grading Engine',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80'
+      image: '/images/textile_four_point_inspection.png'
     },
     {
       title: 'Export Packing & Vessel Dispatch',
@@ -321,7 +321,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'COMMERCE',
       categoryLabel: 'Mill Operations',
       description: 'Serialized fabric roll tracking capturing yardage, width, defect map, and exact dye-lot bath credentials.',
-      image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_roll_dye_lot_tracking.jpg',
+      imagePosition: 'center 40%',
       highlights: ['Dye-Lot Recipe Sync', 'Four-Point Defect Mapping', 'Continuous Yardage Log'],
       icon: Palette
     },
@@ -341,7 +342,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'COMMERCE',
       categoryLabel: 'Mill Operations',
       description: 'Automated dispensing valves and laboratory spectrophotometer sync preventing shade variation rejects.',
-      image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_chemical_kitchen_formulation.png',
+      imagePosition: 'center 20%',
       highlights: ['Automatic Dye Dispensing', 'Colorimetric Pass/Fail Gate', 'Batch Chemical Ledger'],
       icon: Sliders
     },
@@ -351,7 +353,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Plant & SCM',
       description: 'Automated roll length matching and cutting plans that minimize selvage trim and unusable end remnants.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_fabric_scrap_cut_optimization.png',
+      imagePosition: 'center center',
       highlights: ['Remnant Roll Matching', 'Nesting Scrap Reduction', 'Yardage Recovery Engine'],
       icon: Scissors
     },
@@ -361,7 +364,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Plant & SCM',
       description: 'Vibration monitoring on spinning spindles, lubrication schedules, and loom maintenance intervals.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_machinery_preventive_maintenance.jpg',
+      imagePosition: 'center 20%',
       highlights: ['Spindle Vibration Telemetry', 'Automated PM Work Orders', 'Spare-Parts Inventory Sync'],
       icon: PackageCheck
     },
@@ -371,7 +375,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Plant & SCM',
       description: 'Cotton bale purchasing contracts, price hedging, synthetic filament procurement, and moisture assays.',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_raw_fiber_procurement.png',
+      imagePosition: 'center 30%',
       highlights: ['Bale Assay Direct Input', 'Commodity Price Contracts', 'Supplier Quality Scoring'],
       icon: Truck
     },
@@ -381,7 +386,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'CUSTOMER',
       categoryLabel: 'Commercial & Export',
       description: 'Automated generation of certified packing lists, country of origin documents, and bill of lading reconciliation.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_export_documentation_compliance.jpg',
+      imagePosition: 'center 40%',
       highlights: ['Electronic Phytosanitary Logs', 'Automated Commercial Invoices', 'Letter of Credit Matching'],
       icon: Globe2
     },
@@ -391,7 +397,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'CUSTOMER',
       categoryLabel: 'Commercial & Export',
       description: 'High-density roll racking, automated barcode scanning, and container load optimization for export.',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_finished_roll_staging_warehouse.jpg',
+      imagePosition: 'center center',
       highlights: ['Roll Racking Automation', 'Container Cube Utilization', 'Shipment Dispatch Staging'],
       icon: Boxes
     },
@@ -401,7 +408,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
       category: 'CUSTOMER',
       categoryLabel: 'Commercial & Export',
       description: 'IoT telemetry measuring steam, power, and water consumption per fabric yard for sustainability reporting.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/textile_mill_energy_sustainability.jpg',
+      imagePosition: 'center 45%',
       highlights: ['Water & Steam Consumption', 'Carbon Footprint per Yard', 'Effluent Plant Monitoring'],
       icon: Sparkles
     }
@@ -1150,7 +1158,8 @@ export const TextileIndustryPage: React.FC<TextileIndustryPageProps> = ({
                     <img 
                       src={item.image} 
                       alt={item.title} 
-                      className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: (item as any).imagePosition || 'center' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
                     <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-bold">

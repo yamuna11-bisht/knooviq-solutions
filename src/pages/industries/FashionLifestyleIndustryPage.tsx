@@ -223,7 +223,7 @@ export const FashionLifestyleIndustryPage: React.FC<FashionLifestyleIndustryPage
       sublabel: 'Unified Checkout',
       tech: 'SAP Customer Checkout',
       desc: 'Unified inventory view powering in-store clienteling tablets, digital storefronts, and click-and-collect.',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/fashion_flagship_d2c.png',
       icon: ShoppingBag
     },
     {
@@ -352,7 +352,8 @@ export const FashionLifestyleIndustryPage: React.FC<FashionLifestyleIndustryPage
       category: 'CUSTOMER',
       categoryLabel: 'Customer & Analytics',
       description: 'Mobile associate tablets with customer purchase history, personalized fit recommendations, and endless aisle ordering.',
-      image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fashion_flagship_clienteling_vip.png',
+      imagePosition: 'center 20%',
       highlights: ['VIP Customer Profiles', 'Endless Aisle Fulfilled', 'Cross-Store Stock Lookup'],
       icon: ShoppingBag
     },
@@ -372,7 +373,8 @@ export const FashionLifestyleIndustryPage: React.FC<FashionLifestyleIndustryPage
       category: 'CUSTOMER',
       categoryLabel: 'Customer & Analytics',
       description: 'Machine learning models analyzing sell-through curves, social style sentiment, and localized weather impacts.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fashion_trend_sensing_sellthrough_ai.png',
+      imagePosition: 'center 15%',
       highlights: ['Sell-Through Forecasting', 'Color Shift Prediction', 'Localized Assortment AI'],
       icon: Sparkles
     }
@@ -1207,7 +1209,8 @@ export const FashionLifestyleIndustryPage: React.FC<FashionLifestyleIndustryPage
                       <img 
                         src={sol.image} 
                         alt={sol.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                        style={{ objectPosition: (sol as any).imagePosition || 'center center' }}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                       />
                       <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
                       

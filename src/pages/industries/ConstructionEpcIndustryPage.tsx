@@ -196,7 +196,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Tender Award',
       tech: 'SAP Commercial Project Mgmt',
       desc: 'Locking tender estimate structures into SAP PS baseline budgets, defining cost codes, contingency reserves, and payment milestones.',
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186156f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/epc_bid_cost_baseline.jpg',
       icon: FolderKanban
     },
     {
@@ -214,7 +214,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Progress & Labor Muster',
       tech: 'BTP Mobile Field App',
       desc: 'Superintendents log daily work progress, concrete pour quantities, subcontractor manpower headcount, and plant hours from mobile devices.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/epc_daily_site_telemetry.png',
       icon: HardHat
     },
     {
@@ -223,7 +223,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Progress Certification',
       tech: 'SAP PS Progress Ledger',
       desc: 'Collaborative verification of physically installed quantities with digital signatures, eliminating trade disputes over uncertified work.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/epc_joint_measurement_jms.jpg',
       icon: FileCheck
     },
     {
@@ -241,7 +241,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Defect Liability Release',
       tech: 'SAP Financials Escrow',
       desc: 'Punchlist clearing, as-built drawing verification, and automated staged release of retention monies across the defect liability period.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/epc_closeout_retention.jpg',
       icon: Scale
     }
   ];
@@ -307,7 +307,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'SAP PS & RAR',
       title: 'Progressive AIA G702 / G703 Billing Suite',
       description: 'Automates customer progress applications, schedule of values (SOV) tracking, retention withholding, and IFRS 15 revenue recognition.',
-      image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186156f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/epc_aia_billing_suite.png',
       icon: FileCheck,
       highlights: ['Automated Schedule of Values (SOV)', 'Retention deduction calculation', 'IFRS 15 percentage-of-completion']
     },
@@ -337,7 +337,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'LAYDOWN LOGISTICS',
       title: 'Laydown Yard & Material Gatepass Hub',
       description: 'Mobile barcode and RFID scanning tracking bulk materials from weighbridge receipt to site storage and work-front issuance.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/epc_material_gatepass_hub.jpg',
       icon: Boxes,
       highlights: ['Weighbridge integration & gatepass', 'Spool & rebar bundle barcoding', 'Work-front material consumption']
     },
@@ -347,7 +347,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'PLANT HIRE',
       title: 'Heavy Equipment Telematics & Chargeouts',
       description: 'Streams live operating hours, idle time, and fuel telematics directly from excavators and cranes to calculate internal project plant charges.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      image: '/images/epc_telematics_chargeout.jpg',
       icon: Truck,
       highlights: ['Automated equipment rate chargeout', 'Predictive maintenance dispatch', 'Fleet idle time minimization']
     },
@@ -357,7 +357,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'DEFECT LIABILITY',
       title: 'Retention Escrow & Punchlist Suite',
       description: 'Coordinates defect rectification lists, warranty milestones, and staged bank guarantee / cash retention disbursements.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/epc_retention_escrow_punchlist.png',
       icon: Scale,
       highlights: ['Digital punchlist resolution tracking', 'Scheduled retention release gates', 'Bank guarantee expiry alerts']
     }
@@ -466,8 +466,8 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
         {/* Full-bleed High Resolution Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1541888946425-d0fbb186156f?auto=format&fit=crop&w=2000&q=80" 
-            alt="Construction & Mega-EPC Infrastructure Site"
+            src="/images/construction_epc_hero.jpg" 
+            alt="Intelligent ERP for Construction & Mega-EPC Site Telemetry"
             className="w-full h-full object-cover object-center"
           />
         </div>

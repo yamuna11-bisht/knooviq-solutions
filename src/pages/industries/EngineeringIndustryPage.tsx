@@ -196,7 +196,7 @@ export const EngineeringIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCon
       sublabel: 'Parametric Geometry',
       tech: 'Revit & Tekla Gateway',
       desc: 'Parametric BIM and mechanical assemblies synchronized through SAP Engineering Control Center (ECTR) into master PLM records.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/engineering_cad_bim_modeling.png',
       icon: Compass
     },
     {
@@ -214,7 +214,7 @@ export const EngineeringIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCon
       sublabel: 'Engineering Handshake',
       tech: 'SAP Product Structure Sync',
       desc: 'Transforming functional engineering design BOMs into shop-floor manufacturing BOMs with automated supplier revision governance.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/engineering_ebom_mbom_sync.jpg',
       icon: Split
     },
     {
@@ -232,7 +232,7 @@ export const EngineeringIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCon
       sublabel: 'Critical Path Sourcing',
       tech: 'SAP S/4HANA SCM',
       desc: 'Triggering advance purchase requisitions for high-specification alloys, forging items, and custom fabricated subsystems.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/engineering_long_lead_release_forging.jpg',
       icon: Boxes
     },
     {
@@ -241,7 +241,7 @@ export const EngineeringIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCon
       sublabel: 'Digital Twin Delivery',
       tech: 'SAP Asset Central Hub',
       desc: 'Consolidating operational manuals, certified inspection certificates, and asset tag hierarchies for smooth customer handover.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/engineering_asset_central_commissioning.jpg',
       icon: ShieldCheck
     }
   ];
@@ -307,7 +307,7 @@ export const EngineeringIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCon
       tag: 'SAP ECTR SUITE',
       title: 'SAP Engineering Control Center (ECTR)',
       description: 'Integrates SolidWorks, AutoCAD, Revit, and Tekla into SAP PLM, ensuring version-controlled CAD structures and direct metadata authoring.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/knooviq_ectr_suite.png',
       icon: Compass,
       highlights: ['Direct CAD session metadata sync', 'Automated neutral document generation', 'Bi-directional part attribute mapping']
     },
@@ -337,7 +337,7 @@ export const EngineeringIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCon
       tag: 'BOM RECONCILIATION',
       title: 'Automated EBOM-to-MBOM Synchronizer',
       description: 'Translates functional engineering structures into operational routing and assembly BOMs without manual re-entry or transcription discrepancies.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      image: '/images/knooviq_ebom_mbom_sync.png',
       icon: Split,
       highlights: ['Visual redline diff comparison', 'Make-or-buy attribute preservation', 'Automated phantom assembly resolution']
     },
@@ -357,7 +357,7 @@ export const EngineeringIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCon
       tag: 'DIGITAL TWIN',
       title: 'As-Built Commissioning & Handover Hub',
       description: 'Compiles technical dossiers, inspection certs, asset tag hierarchies, and warranty documentation into a compliant digital twin for client operations.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/knooviq_asbuilt_handover_hub.jpg',
       icon: ShieldCheck,
       highlights: ['Automated tag-to-equipment mapping', 'Digital vendor sign-off punch lists', 'Accelerated contract closeout cycles']
     }

@@ -41,7 +41,9 @@ import {
   Network,
   Compass,
   Scale,
-  FileCheck2
+  FileCheck2,
+  Database,
+  Brain
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { KnooviqLogo } from './KnooviqLogo';
@@ -127,16 +129,16 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     iconColor: 'bg-gradient-to-br from-purple-500/20 to-fuchsia-600/15 border-purple-500/30 text-purple-600 dark:text-purple-400',
     icon: <Sparkles className="w-3.5 h-3.5" />,
     items: [
-      { name: 'SAP Business AI', path: '/solutions/sap-business-ai' },
-      { name: 'Generative AI', path: '/ai-consultant' },
-      { name: 'AI Agents', path: '/products/knooviq-ai-engagement' },
+      { name: 'SAP Business AI', path: '/technology/sap-business-ai' },
+      { name: 'Generative AI', path: '/technology/generative-ai' },
+      { name: 'AI Agents', path: '/technology/ai-agents' },
       { name: 'Machine Learning', path: '/products/knooviq-ai-insights' },
-      { name: 'SAP Analytics Cloud', path: '/solutions/sap-datasphere' },
-      { name: 'SAP Datasphere', path: '/solutions/sap-datasphere' },
-      { name: 'Business Intelligence', path: '/solutions/sap-datasphere' },
-      { name: 'Predictive Analytics', path: '/solutions/sap-datasphere' },
+      { name: 'SAP Analytics Cloud', path: '/technology/sap-analytics-cloud' },
+      { name: 'SAP Datasphere', path: '/technology/sap-datasphere' },
+      { name: 'Business Intelligence', path: '/technology/sap-analytics-cloud' },
+      { name: 'Predictive Analytics', path: '/technology/sap-analytics-cloud' },
       { name: 'Process Intelligence', path: '/solutions/sap-s4hana' },
-      { name: 'Intelligent Automation', path: '/products/automation-suite' }
+      { name: 'Intelligent Automation', path: '/technology/intelligent-automation' }
     ]
   },
   {
@@ -170,15 +172,11 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     icon: <RefreshCw className="w-3.5 h-3.5" />,
     items: [
       { name: 'ECC → S/4HANA', path: '/solutions/sap-migration' },
-      { name: 'System Conversion', path: '/solutions/rise-with-sap' },
-      { name: 'Greenfield', path: '/solutions/sap-s4hana' },
-      { name: 'Brownfield', path: '/solutions/rise-with-sap' },
-      { name: 'Selective Data Transition', path: '/solutions/sap-migration' },
-      { name: 'Data Migration', path: '/solutions/sap-migration' },
-      { name: 'SAP Upgrade', path: '/solutions/sap-migration' },
-      { name: 'Custom Code Migration', path: '/solutions/sap-migration' },
-      { name: 'Application Modernization', path: '/services' },
-      { name: 'Legacy Modernization', path: '/solutions/sap-migration' }
+      { name: 'System Conversion', path: '/solutions/system-conversion' },
+      { name: 'Greenfield', path: '/solutions/greenfield' },
+      { name: 'Brownfield', path: '/solutions/brownfield' },
+      { name: 'Data Migration', path: '/solutions/data-migration' },
+      { name: 'Custom Code Migration', path: '/solutions/custom-code-migration' }
     ]
   },
   {
@@ -211,16 +209,15 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     iconColor: 'bg-gradient-to-br from-rose-500/20 to-pink-600/15 border-rose-500/30 text-rose-600 dark:text-rose-400',
     icon: <Compass className="w-3.5 h-3.5" />,
     items: [
-      { name: 'SAP Strategy', path: '/solutions/sap-consulting' },
-      { name: 'SAP Assessment', path: '/solutions/sap-s4hana' },
-      { name: 'ERP Strategy', path: '/solutions/sap-consulting' },
-      { name: 'Digital Transformation Advisory', path: '/services' },
-      { name: 'Business Process Consulting', path: '/solutions/sap-consulting' },
-      { name: 'Solution Architecture', path: '/solutions/sap-s4hana' },
-      { name: 'Enterprise Architecture', path: '/solutions/sap-s4hana' },
+      { name: 'Advisory & Managed Services', path: '/advisory-managed-services' },
+      { name: 'SAP Strategy', path: '/services/sap-strategy' },
+      { name: 'SAP Assessment', path: '/services/sap-assessment' },
+      { name: 'Solution Architecture', path: '/services/solution-architecture' },
+      { name: 'Implementation & Integration', path: '/advisory-managed-services#implementation' },
+      { name: 'ERP Strategy', path: '/services/sap-strategy' },
+      { name: 'Digital Transformation Advisory', path: '/advisory-managed-services' },
       { name: 'Cloud Advisory', path: '/solutions/rise-with-sap' },
-      { name: 'Transformation Roadmap', path: '/solutions/sap-s4hana' },
-      { name: 'SAP Optimization', path: '/solutions/sap-consulting' }
+      { name: 'Transformation Roadmap', path: '/services/sap-strategy' }
     ]
   },
   {
@@ -232,16 +229,15 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     iconColor: 'bg-gradient-to-br from-emerald-500/20 to-teal-600/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400',
     icon: <ShieldCheck className="w-3.5 h-3.5" />,
     items: [
-      { name: 'SAP AMS', path: '/solutions/sap-support' },
-      { name: 'Application Support', path: '/solutions/sap-support' },
-      { name: 'SAP Basis', path: '/solutions/sap-support' },
-      { name: 'Monitoring', path: '/solutions/sap-support' },
-      { name: 'Performance Management', path: '/solutions/sap-support' },
-      { name: 'Incident Management', path: '/solutions/sap-support' },
-      { name: 'Change Management', path: '/solutions/sap-support' },
-      { name: 'Upgrade & Patch Management', path: '/solutions/sap-support' },
-      { name: 'SAP Security', path: '/solutions/sap-support' },
-      { name: '24×7 Support', path: '/solutions/sap-support' }
+      { name: 'SAP AMS', path: '/services/sap-ams' },
+      { name: 'Application Support', path: '/services/application-support' },
+      { name: 'SAP Basis & Technical Ops', path: '/services/sap-basis' },
+      { name: 'Continuous Monitoring', path: '/services/sap-ams#application-monitoring' },
+      { name: 'Performance Management', path: '/services/sap-basis' },
+      { name: 'Incident & Problem Management', path: '/services/sap-ams' },
+      { name: 'Change & Release Governance', path: '/services/sap-ams' },
+      { name: 'Upgrade & Patch Operations', path: '/services/sap-basis' },
+      { name: '24×7 Global Support', path: '/services/sap-ams' }
     ]
   },
   {
@@ -320,40 +316,40 @@ const TRANSFORMATION_MEGA_MENU: TransformationMegaCategory[] = [
     id: 'data-analytics-ai',
     title: 'Data, Analytics & AI',
     badge: 'GEN AI',
-    path: '/transformation#data-analytics-ai',
+    path: '/technology/data-analytics-ai',
     items: [
-      { name: 'SAP Business AI', path: '/solutions/sap-business-ai' },
-      { name: 'Generative AI', path: '/ai-consultant' },
-      { name: 'AI Agents', path: '/products/knooviq-ai-engagement' },
-      { name: 'SAP Analytics Cloud', path: '/solutions/sap-datasphere' },
-      { name: 'SAP Datasphere', path: '/solutions/sap-datasphere' },
-      { name: 'Intelligent Automation', path: '/products/automation-suite' }
+      { name: 'SAP Business AI', path: '/technology/sap-business-ai' },
+      { name: 'Generative AI', path: '/technology/generative-ai' },
+      { name: 'AI Agents', path: '/technology/ai-agents' },
+      { name: 'SAP Analytics Cloud', path: '/technology/sap-analytics-cloud' },
+      { name: 'SAP Datasphere', path: '/technology/sap-datasphere' },
+      { name: 'Intelligent Automation', path: '/technology/intelligent-automation' }
     ]
   },
   {
     id: 'migration-modernization',
     title: 'Migration & Modernization',
-    path: '/transformation#migration-modernization',
+    path: '/solutions/sap-migration',
     items: [
-      { name: 'ECC → S/4HANA', path: '/transformation#migration-modernization' },
-      { name: 'System Conversion', path: '/transformation#migration-modernization' },
-      { name: 'Greenfield', path: '/transformation#migration-modernization' },
-      { name: 'Brownfield', path: '/transformation#migration-modernization' },
-      { name: 'Data Migration', path: '/transformation#migration-modernization' },
-      { name: 'Custom Code Migration', path: '/transformation#migration-modernization' }
+      { name: 'ECC → S/4HANA', path: '/solutions/sap-migration' },
+      { name: 'System Conversion', path: '/solutions/system-conversion' },
+      { name: 'Greenfield', path: '/solutions/greenfield' },
+      { name: 'Brownfield', path: '/solutions/brownfield' },
+      { name: 'Data Migration', path: '/solutions/data-migration' },
+      { name: 'Custom Code Migration', path: '/solutions/custom-code-migration' }
     ]
   },
   {
     id: 'advisory-managed-services',
     title: 'Advisory & Managed Services',
-    path: '/transformation#advisory-consulting',
+    path: '/advisory-managed-services',
     items: [
-      { name: 'SAP Strategy', path: '/transformation#advisory-consulting' },
-      { name: 'SAP Assessment', path: '/transformation#advisory-consulting' },
-      { name: 'Solution Architecture', path: '/transformation#advisory-consulting' },
-      { name: 'SAP AMS', path: '/transformation#managed-services' },
-      { name: 'Application Support', path: '/transformation#managed-services' },
-      { name: 'SAP Basis', path: '/transformation#managed-services' }
+      { name: 'SAP Strategy', path: '/services/sap-strategy' },
+      { name: 'SAP Assessment', path: '/services/sap-assessment' },
+      { name: 'Solution Architecture', path: '/services/solution-architecture' },
+      { name: 'SAP AMS', path: '/services/sap-ams' },
+      { name: 'Application Support', path: '/services/application-support' },
+      { name: 'SAP Basis', path: '/services/sap-basis' }
     ]
   }
 ];
@@ -513,6 +509,102 @@ const INDUSTRY_ROUTE_MAP: Record<string, string> = {
   'Education': '/industries/education',
 };
 
+const AI_PRACTICE_ROUTES: Record<string, string> = {
+  'Generative AI': '/digital-intelligence/generative-ai',
+  'AI Agents': '/digital-intelligence/ai-agents',
+  'AI Assistants': '/digital-intelligence/ai-assistants',
+  'Machine Learning': '/digital-intelligence/machine-learning',
+  'Predictive AI': '/digital-intelligence/predictive-ai',
+  'Enterprise AI': '/digital-intelligence/enterprise-ai',
+};
+
+interface DigitalIntelligenceNavCategory {
+  id: string;
+  name: string;
+  badge?: string;
+  items: string[];
+}
+
+const DIGITAL_INTELLIGENCE_NAV_CATEGORIES: DigitalIntelligenceNavCategory[] = [
+  {
+    id: 'artificial-intelligence',
+    name: 'Artificial Intelligence',
+    badge: 'CORE AI',
+    items: [
+      'Generative AI',
+      'AI Agents',
+      'AI Assistants',
+      'Machine Learning',
+      'Predictive AI',
+      'Enterprise AI'
+    ]
+  },
+  {
+    id: 'data-intelligence',
+    name: 'Data Intelligence',
+    badge: 'DATA FABRIC',
+    items: [
+      'Data Strategy',
+      'Data Architecture',
+      'Data Engineering',
+      'Data Governance',
+      'Data Quality',
+      'Data Platforms',
+      'Business Intelligence',
+      'Predictive Analytics',
+      'Real-time Analytics'
+    ]
+  },
+  {
+    id: 'intelligent-automation',
+    name: 'Intelligent Automation',
+    badge: 'HYPER-AUTOMATION',
+    items: [
+      'Workflow Automation',
+      'RPA',
+      'Intelligent Document Processing',
+      'Process Automation',
+      'AI-powered Automation'
+    ]
+  },
+  {
+    id: 'process-intelligence',
+    name: 'Process Intelligence',
+    badge: 'PROCESS MINING',
+    items: [
+      'Process Discovery',
+      'Process Mining',
+      'Process Monitoring',
+      'Process Optimization',
+      'Continuous Improvement'
+    ]
+  },
+  {
+    id: 'digital-experience',
+    name: 'Digital Experience',
+    badge: 'EXPERIENCE',
+    items: [
+      'Customer Experience',
+      'Employee Experience',
+      'Digital Applications',
+      'Personalization',
+      'Experience Analytics'
+    ]
+  },
+  {
+    id: 'decision-intelligence',
+    name: 'Decision Intelligence',
+    badge: 'PRESCRIPTIVE',
+    items: [
+      'Decision Support',
+      'Forecasting & Planning',
+      'Scenario Analysis',
+      'Risk Intelligence',
+      'Business Performance Insights'
+    ]
+  }
+];
+
 interface NavbarProps {
   onOpenContact?: (defaultService?: string) => void;
 }
@@ -585,7 +677,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
       )}
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white dark:bg-[#030712] ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md dark:bg-[#030712] ${
           isScrolled || activeMenu
             ? 'border-b border-slate-200 dark:border-cyan-500/20 shadow-xl py-3'
             : 'border-b border-slate-200/70 dark:border-white/10 py-3.5'
@@ -608,7 +700,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 1. Home
                 2. About
                 3. Products
-                4. Solutions
+                4. Transformation
                 5. Services
                 6. Industries
                 7. Insights
@@ -619,11 +711,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               <Link
                 to="/"
                 onClick={() => { setActiveMenu(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className={`px-3 py-2 rounded-xl transition-all ${
-                  location.pathname === '/' && activeMenu === null
-                    ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                    : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                }`}
+                className="px-3 py-2 rounded-xl transition-all text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5"
               >
                 Home
               </Link>
@@ -823,7 +911,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   onClick={() => handleMenuToggle('transformation')}
                   type="button"
                   className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'transformation' || location.pathname.startsWith('/transformation') || location.pathname.startsWith('/solutions')
+                    activeMenu === 'transformation' || location.pathname.startsWith('/transformation')
                       ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
                   }`}
@@ -832,7 +920,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'transformation' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
                 </button>
 
-                {/* Transformation Mega Menu Dropdown (Exact Product Format) */}
+                {/* Transformation Mega Menu Dropdown */}
                 {activeMenu === 'transformation' && (
                   <div 
                     className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
@@ -840,47 +928,80 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   >
                     <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
                       
-                      {/* 6 Category Cards in exact Product layout (1 row of 6 on xl, 3 cols on lg, 2 cols on md) */}
+                      {/* 6 Category Cards in exact Savic / Enterprise layout */}
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 pb-6 border-b border-slate-200 dark:border-white/10">
-                        {TRANSFORMATION_MEGA_MENU.map((category) => (
-                          <div 
-                            key={category.id} 
-                            className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5 flex flex-col justify-between"
-                          >
-                            <div>
-                              <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] mb-3">
-                                <Link 
-                                  to={category.path} 
-                                  onClick={() => setActiveMenu(null)} 
-                                  className="hover:underline flex items-center justify-between group"
-                                >
-                                  <span className="leading-snug">{category.title}</span>
-                                  {category.badge && (
-                                    <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">
-                                      {category.badge}
-                                    </span>
-                                  )}
-                                </Link>
-                              </h4>
-                              <ul className="space-y-1 text-xs">
-                                {category.items.map((item, idx) => (
-                                  <li key={idx}>
+                        {TRANSFORMATION_MEGA_MENU.map((category) => {
+                          const isDataAi = category.id === 'data-analytics-ai';
+                          return (
+                            <div 
+                              key={category.id} 
+                              className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
+                                isDataAi 
+                                  ? 'bg-gradient-to-b from-sky-50/80 via-white to-sky-50/30 dark:from-[#09182E] dark:via-[#070E1C] dark:to-[#070E1C] border-sky-300 dark:border-[#00A3E0]/50 shadow-md ring-1 ring-sky-400/20'
+                                  : 'bg-slate-50 dark:bg-[#0B1528] border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15'
+                              }`}
+                            >
+                              <div>
+                                {isDataAi ? (
+                                  /* EXACT MATCH TO USER'S SCREENSHOT: DATA, ANALYTICS & AI with GEN AI pill badge */
+                                  <div className="flex items-start justify-between gap-1 mb-4 pb-1.5 border-b border-sky-100 dark:border-white/10">
                                     <Link 
-                                      to={item.path} 
-                                      onClick={() => setActiveMenu(null)} 
-                                      className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium leading-snug"
+                                      to={category.path} 
+                                      onClick={() => setActiveMenu(null)}
+                                      className="group block"
                                     >
-                                      {item.name}
+                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight group-hover:text-[#00A3E0] transition-colors">
+                                        DATA,
+                                      </span>
+                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight group-hover:text-[#00A3E0] transition-colors">
+                                        ANALYTICS & AI
+                                      </span>
                                     </Link>
-                                  </li>
-                                ))}
-                              </ul>
+                                    <span className="inline-flex items-center text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-md bg-[#00A3E0] text-white shadow-sm shrink-0">
+                                      GEN AI
+                                    </span>
+                                  </div>
+                                ) : (
+                                  <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] mb-3">
+                                    <Link 
+                                      to={category.path} 
+                                      onClick={() => setActiveMenu(null)} 
+                                      className="hover:underline flex items-center justify-between group"
+                                    >
+                                      <span className="leading-snug">{category.title}</span>
+                                      {category.badge && (
+                                        <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">
+                                          {category.badge}
+                                        </span>
+                                      )}
+                                    </Link>
+                                  </h4>
+                                )}
+
+                                <ul className="space-y-1.5 text-xs">
+                                  {category.items.map((item, idx) => (
+                                    <li key={idx}>
+                                      <Link 
+                                        to={item.path} 
+                                        onClick={() => setActiveMenu(null)} 
+                                        className={`px-2.5 py-1.5 rounded-lg block transition-all font-medium leading-snug ${
+                                          isDataAi
+                                            ? 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 hover:shadow-sm font-semibold'
+                                            : 'text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10'
+                                        }`}
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
 
-                      {/* Bottom Recommended Strip matching Product Format */}
+                      {/* Bottom Recommended Strip */}
                       <div className="pt-4 flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
@@ -905,7 +1026,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 )}
               </div>
 
-              {/* 5. SERVICES (Accely Image 3) */}
+              {/* 5. DIGITAL INTELLIGENCE (Replaces Services, structured identically to Industries) */}
               <div 
                 className="relative"
                 onMouseEnter={() => handleMouseEnter('services')}
@@ -914,69 +1035,70 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   onClick={() => handleMenuToggle('services')}
                   type="button"
                   className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'services'
+                    activeMenu === 'services' || location.pathname === '/digital-intelligence' || location.pathname === '/services'
                       ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
                   }`}
                 >
-                  <span>Services</span>
+                  <span>Digital Intelligence</span>
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'services' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
                 </button>
 
-                {/* Services Mega Menu Dropdown */}
+                {/* Digital Intelligence Mega Menu Dropdown */}
                 {activeMenu === 'services' && (
                   <div 
                     className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
                     onMouseEnter={() => handleMouseEnter('services')}
                   >
-                    <div className="max-w-5xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
-                      <div className="grid grid-cols-2 gap-8 pb-6 border-b border-slate-200 dark:border-white/10">
-                        
-                        {/* Section 1: Strategy and Consulting */}
-                        <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-5 rounded-xl border border-slate-200/60 dark:border-white/5">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            Strategy and Consulting
-                          </h4>
-                          <ul className="space-y-2 text-xs">
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">Business Consulting</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">Process Consulting</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">Technology Consulting</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">Clean Core Architecture & BTP Advisory</Link></li>
-                          </ul>
-                        </div>
-
-                        {/* Section 2: SAP Support */}
-                        <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-5 rounded-xl border border-slate-200/60 dark:border-white/5">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            SAP Support & Operations
-                          </h4>
-                          <ul className="space-y-2 text-xs">
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">SAP Managed Services</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">SAP AMS (24/7/365 Support)</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">SAP Migration & Database Conversion</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">SAP Discovery & Evaluation</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">SAP Implementation and Rollout</Link></li>
-                            <li><Link to="/services" onClick={() => setActiveMenu(null)} className="text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2.5 py-1.5 rounded-lg block transition-colors font-semibold">SAP Upgrade Services</Link></li>
-                          </ul>
-                        </div>
-
+                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl space-y-5">
+                      
+                      {/* 6 Digital Intelligence Practices (3 Columns x 2 Rows) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {DIGITAL_INTELLIGENCE_NAV_CATEGORIES.map((cat) => (
+                          <div 
+                            key={cat.id}
+                            className="space-y-2 bg-slate-50 dark:bg-[#0B1528] p-3.5 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-sky-300 dark:hover:border-cyan-500/30 hover:shadow-md transition-all flex flex-col justify-start"
+                          >
+                            <div className="pb-1.5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+                              <h4 className="font-black text-xs sm:text-sm tracking-wide uppercase text-[#0A1931] dark:text-[#00A3E0] select-none py-0.5">
+                                {cat.name}
+                              </h4>
+                            </div>
+                            <ul className="space-y-1">
+                              {cat.items.map((subItem) => (
+                                <li key={subItem}>
+                                  <Link 
+                                    to={AI_PRACTICE_ROUTES[subItem] || `/digital-intelligence?category=${cat.id}&item=${encodeURIComponent(subItem)}`} 
+                                    onClick={() => setActiveMenu(null)} 
+                                    className="industry-category-item px-2 py-1 rounded block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-medium"
+                                  >
+                                    <span>{subItem}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
 
-                      {/* Highlighted Yellow/Cyan Banner matching Image 3 */}
-                      <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                          Need dedicated SAP talent or specialized S/4HANA migration advisory?
-                        </p>
-                        <button
-                          onClick={() => {
-                            setActiveMenu(null);
-                            if (onOpenContact) onOpenContact('SAP Expert Consultation');
-                            else handleNavClick('/contact');
-                          }}
-                          className="rounded-xl bg-[#F59E0B] hover:bg-[#D97706] text-black font-extrabold px-6 py-2.5 text-xs tracking-wider uppercase transition-all shadow-md flex items-center gap-2"
+                      {/* Bottom Banner */}
+                      <div className="pt-3 border-t border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                            RECOMMENDED ARCHITECTURE:
+                          </span>
+                          <span className="text-slate-900 dark:text-white font-bold">
+                            Autonomous AI Agents, Unified Data Fabrics & Algorithmic Optimization
+                          </span>
+                        </div>
+                        <Link 
+                          to="/digital-intelligence" 
+                          onClick={() => setActiveMenu(null)} 
+                          className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1 shrink-0"
                         >
-                          <span>Talk to an SAP expert &rarr;</span>
-                        </button>
+                          <span>Explore All Digital Intelligence Capabilities</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
                       </div>
 
                     </div>
@@ -1332,26 +1454,50 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               )}
             </div>
 
-            {/* 5. Mobile Services Accordion */}
+            {/* 5. Mobile Digital Intelligence Accordion */}
             <div className="border border-slate-200 dark:border-white/10 rounded-2xl p-2 bg-slate-50 dark:bg-[#050B17]">
               <button
                 onClick={() => setMobileSubmenu(mobileSubmenu === 'services' ? null : 'services')}
                 className="w-full flex items-center justify-between px-2 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200"
               >
                 <span className="flex items-center gap-1.5 text-sky-500">
-                  <Briefcase className="h-3.5 w-3.5" />
-                  <span>Services & Strategy Consulting</span>
+                  <Brain className="h-3.5 w-3.5" />
+                  <span>Digital Intelligence (6 Practices)</span>
                 </span>
                 <ChevronDown className={`h-4 w-4 transition-transform ${mobileSubmenu === 'services' ? 'rotate-180' : ''}`} />
               </button>
 
               {mobileSubmenu === 'services' && (
-                <div className="pt-2 pl-2 space-y-1.5 border-t border-slate-200 dark:border-white/5 mt-1 text-xs">
-                  <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Business & Process Consulting</Link>
-                  <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• SAP Managed Services & 24/7 AMS</Link>
-                  <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• SAP S/4HANA Implementation & Rollout</Link>
-                  <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• ECC to S/4HANA Migration</Link>
-                  <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• SAP Discovery & Evaluation Audit</Link>
+                <div className="pt-2 pl-2 space-y-2 border-t border-slate-200 dark:border-white/5 mt-1 text-xs max-h-[460px] overflow-y-auto pr-1 custom-scrollbar">
+                  {DIGITAL_INTELLIGENCE_NAV_CATEGORIES.map((category) => (
+                    <div key={category.id} className="pt-1.5">
+                      <div className="font-black text-xs tracking-wider uppercase text-[#0A1931] dark:text-[#00A3E0] pb-0.5 border-b border-slate-200/50 dark:border-white/5">
+                        {category.name}
+                      </div>
+                      <div className="space-y-0.5 pt-1 pl-2">
+                        {category.items.map((item, idx) => (
+                          <Link
+                            key={idx}
+                            to={AI_PRACTICE_ROUTES[item] || `/digital-intelligence?category=${category.id}&item=${encodeURIComponent(item)}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium hover:text-[#00A3E0]"
+                          >
+                            • {item}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="pt-2 border-t border-slate-200 dark:border-white/5">
+                    <Link
+                      to="/digital-intelligence"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1"
+                    >
+                      <span>Explore All Digital Intelligence</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>

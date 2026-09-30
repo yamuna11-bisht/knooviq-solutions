@@ -205,7 +205,7 @@ export const ConsumerGoodsIndustryPage: React.FC<ConsumerGoodsIndustryPageProps>
       sublabel: 'Primary Logistics',
       tech: 'SAP TM Line-Haul',
       desc: 'Coordinating palletized full-truckload dispatches to master distributors and regional redistribution centers.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/consumer_goods_mother_dc_dispatch.jpg',
       icon: Truck
     },
     {
@@ -214,7 +214,7 @@ export const ConsumerGoodsIndustryPage: React.FC<ConsumerGoodsIndustryPageProps>
       sublabel: 'Secondary Stock Pool',
       tech: 'SAP DMS Portal',
       desc: 'Harmonizing inventory positions and electronic advance ship notice validation across stockists without latency.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/consumer_goods_distributor_hub.png',
       icon: Building2
     },
     {
@@ -291,7 +291,7 @@ export const ConsumerGoodsIndustryPage: React.FC<ConsumerGoodsIndustryPageProps>
       category: 'COMMERCE',
       categoryLabel: 'Trade & Commercial',
       description: 'End-to-end promotional budgeting, scheme formulation, bill-back validation, and rebate clearing on ERP.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/consumer_goods_trade_promotion_management.jpg',
       highlights: ['Scheme Rule Engine', 'Automated Claim Settlement', 'Trade Spend ROI Tracking'],
       icon: Sliders
     },
@@ -321,7 +321,7 @@ export const ConsumerGoodsIndustryPage: React.FC<ConsumerGoodsIndustryPageProps>
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Supply Chain & SCM',
       description: 'Unified sales, operations, and inventory planning aligning plant packaging lines with field demand signals.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/consumer_goods_integrated_business_planning.png',
       highlights: ['Multi-Echelon Balancing', 'Demand Consensus Modeling', 'Dynamic MRP Live Sync'],
       icon: Workflow
     },
@@ -331,7 +331,7 @@ export const ConsumerGoodsIndustryPage: React.FC<ConsumerGoodsIndustryPageProps>
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Supply Chain & SCM',
       description: 'High-density automated pallet shuttles, cross-dock flow sortation, and serialized pallet tagging on EWM.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/consumer_goods_mother_dc_warehouse_automation.png',
       highlights: ['Cross-Dock Staging', 'Dynamic Wave Allocation', 'Pallet Barcode Harmonization'],
       icon: PackageCheck
     },
@@ -351,7 +351,7 @@ export const ConsumerGoodsIndustryPage: React.FC<ConsumerGoodsIndustryPageProps>
       category: 'CUSTOMER',
       categoryLabel: 'Commercial & Analytics',
       description: 'Direct EDI electronic order ingestion, automatic fill-rate SLA monitoring, and penalty deduction dispute clearing.',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+      image: '/images/consumer_goods_key_account_modern_trade_hub.jpg',
       highlights: ['EDI Advance Ship Notices', 'Fill-Rate SLA Tracking', 'Deduction Dispute Engine'],
       icon: Users
     },
@@ -371,7 +371,7 @@ export const ConsumerGoodsIndustryPage: React.FC<ConsumerGoodsIndustryPageProps>
       category: 'CUSTOMER',
       categoryLabel: 'Commercial & Analytics',
       description: 'Deep learning models sensing localized sell-through patterns, weather impacts, and promotional lift curves.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/consumer_demand_sensing_ai.jpg',
       highlights: ['POS Takeaway Ingestion', 'Lift Decomposition Models', 'Regional Demand Sensing'],
       icon: Sparkles
     }

@@ -205,7 +205,7 @@ export const FoodBeverageIndustryPage: React.FC<FoodBeverageIndustryPageProps> =
       sublabel: 'Assay Clearance',
       tech: 'SAP QM & CoA',
       desc: 'Microbiological sampling, allergen testing, and automated electronic Certificate of Analysis release.',
-      image: 'https://images.unsplash.com/photo-1584727638096-042c45049ebe?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/food_beverage_quality_lab.jpg',
       icon: ShieldCheck
     },
     {
@@ -214,7 +214,7 @@ export const FoodBeverageIndustryPage: React.FC<FoodBeverageIndustryPageProps> =
       sublabel: 'Chilled Staging',
       tech: 'SAP EWM Cold Room',
       desc: 'Continuous IoT thermal telemetry in multi-temperature cold bays to maintain absolute product freshness.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/food_beverage_cold_storage.png',
       icon: Thermometer
     },
     {
@@ -223,7 +223,8 @@ export const FoodBeverageIndustryPage: React.FC<FoodBeverageIndustryPageProps> =
       sublabel: 'Reefer Logistics',
       tech: 'SAP TM Fleet',
       desc: 'Multi-stop refrigerated line-haul logistics with real-time temperature telemetry and transit alarms.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/food_beverage_cold_dispatch.jpg',
+      imagePosition: 'center 20%',
       icon: Truck
     },
     {
@@ -311,7 +312,7 @@ export const FoodBeverageIndustryPage: React.FC<FoodBeverageIndustryPageProps> =
       category: 'COMMERCE',
       categoryLabel: 'Process & Quality',
       description: 'Instant forward and backward lot traceability complying with global FSMA and HACCP standards.',
-      image: 'https://images.unsplash.com/photo-1584727638096-042c45049ebe?auto=format&fit=crop&w=800&q=80',
+      image: '/images/food_safety_audit_traceability.jpg',
       highlights: ['Bidirectional Genealogy', 'Sub-Second Recall Queries', 'Electronic CoA Logs'],
       icon: ShieldCheck
     },
@@ -461,7 +462,7 @@ export const FoodBeverageIndustryPage: React.FC<FoodBeverageIndustryPageProps> =
         {/* Full-bleed High Resolution Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1584727638096-042c45049ebe?auto=format&fit=crop&w=2000&q=90" 
+            src="/images/food_beverage_hero.png" 
             alt="Food & Beverage Enterprise Logistics & Automation"
             className="w-full h-full object-cover object-center"
           />
@@ -656,11 +657,12 @@ export const FoodBeverageIndustryPage: React.FC<FoodBeverageIndustryPageProps> =
             <div className="lg:col-span-6 space-y-3.5">
               
               {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
-              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+              <div className="relative h-64 sm:h-76 lg:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
+                  style={{ objectPosition: (journeySteps[activeJourneyStep] as any).imagePosition || 'center' }}
+                  className="w-full h-full object-cover transition-all duration-500"
                 />
               </div>
 

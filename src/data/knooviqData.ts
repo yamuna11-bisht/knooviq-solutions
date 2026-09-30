@@ -1,4 +1,4 @@
-import { ServiceItem, IndustryItem, CaseStudyItem, TrainingProgram, JobOpening, SolutionDetail, InsightArticle, ProcessStepItem } from '../types';
+import { ServiceItem, IndustryItem, DigitalIntelligenceCategory, CaseStudyItem, TrainingProgram, JobOpening, SolutionDetail, InsightArticle, ProcessStepItem } from '../types';
 
 export const COMPANY_INFO = {
   name: 'Knooviq Industries Private Limited',
@@ -139,6 +139,176 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Streamlined processes with clean digital core'
     ],
     technologies: ['SAP S/4HANA 2023', 'SAP Readiness Check', 'SAP ACTIVATE', 'SAP SLT']
+  }
+];
+
+export const DIGITAL_INTELLIGENCE_DATA: DigitalIntelligenceCategory[] = [
+  {
+    id: 'artificial-intelligence',
+    num: '01',
+    name: 'Artificial Intelligence',
+    tagline: 'Cognitive LLMs, Autonomous AI Agents & Enterprise Foundation Models',
+    description: 'Empowering enterprises with autonomous AI agents, fine-tuned domain LLMs, predictive neural networks, and automated cognitive assistants seamlessly embedded into mission-critical workflows.',
+    iconName: 'Cpu',
+    badge: 'CORE AI',
+    items: [
+      'Generative AI',
+      'AI Agents',
+      'AI Assistants',
+      'Machine Learning',
+      'Predictive AI',
+      'Enterprise AI'
+    ],
+    caseSnippet: 'Deployed enterprise LLM agent orchestration and predictive AI models, reducing tier-1 support resolution latency by 54% and automating 80% of routine domain inquiries.',
+    keyChallenges: [
+      'Enterprise data privacy & hallucination risks',
+      'Lack of autonomous agent domain grounding',
+      'High latency and computational inference costs'
+    ],
+    knooviqAdvantage: [
+      'Clean Core private LLM orchestration',
+      'Domain-grounded multi-agent frameworks',
+      'Enterprise-grade security, RBAC & audit logging'
+    ]
+  },
+  {
+    id: 'data-intelligence',
+    num: '02',
+    name: 'Data Intelligence',
+    tagline: 'Unified Data Fabric, Real-Time Streaming & Governed Lakehouses',
+    description: 'Transforming fragmented enterprise data silos into unified, high-integrity semantic layers with modern data architecture, automated governance, cloud platforms, and sub-second analytics.',
+    iconName: 'Database',
+    badge: 'DATA FABRIC',
+    items: [
+      'Data Strategy',
+      'Data Architecture',
+      'Data Engineering',
+      'Data Governance',
+      'Data Quality',
+      'Data Platforms',
+      'Business Intelligence',
+      'Predictive Analytics',
+      'Real-time Analytics'
+    ],
+    caseSnippet: 'Engineered a unified multi-cloud data lakehouse synchronizing transactional ERP and CRM data in real time, accelerating monthly board reporting cycles from 7 days to 2 hours.',
+    keyChallenges: [
+      'Sprawling heterogeneous data silos',
+      'Inconsistent cataloging & data quality leakage',
+      'Slow batch pipelines hindering real-time visibility'
+    ],
+    knooviqAdvantage: [
+      'Automated data lineage & catalog governance',
+      'High-throughput streaming ETL pipelines',
+      'Unified single source of truth semantic models'
+    ]
+  },
+  {
+    id: 'intelligent-automation',
+    num: '03',
+    name: 'Intelligent Automation',
+    tagline: 'Hyper-Automation, Unattended RPA & Cognitive Document Processing',
+    description: 'Eliminating manual operational friction across enterprise back-offices with intelligent document processing (IDP), self-healing RPA bots, and AI-driven automated process workflows.',
+    iconName: 'Zap',
+    badge: 'HYPER-AUTOMATION',
+    items: [
+      'Workflow Automation',
+      'RPA',
+      'Intelligent Document Processing',
+      'Process Automation',
+      'AI-powered Automation'
+    ],
+    caseSnippet: 'Automated 96% of invoice processing, 3-way matching, and exception handling across 12 countries, reducing processing costs by 62%.',
+    keyChallenges: [
+      'High human error rates in manual data re-keying',
+      'Unstructured document layouts & poor OCR accuracy',
+      'Brittle automation scripts breaking on UI changes'
+    ],
+    knooviqAdvantage: [
+      'Self-healing computer-vision powered RPA',
+      'Multimodal intelligent document comprehension',
+      'Straight-through automated ERP posting'
+    ]
+  },
+  {
+    id: 'process-intelligence',
+    num: '04',
+    name: 'Process Intelligence',
+    tagline: 'Event-Log Process Mining, Live Monitoring & Algorithmic Optimization',
+    description: 'Surfacing hidden operational bottlenecks, deviations, and rework loops directly from transaction event logs to continuously optimize enterprise process velocity and compliance.',
+    iconName: 'Workflow',
+    badge: 'PROCESS MINING',
+    items: [
+      'Process Discovery',
+      'Process Mining',
+      'Process Monitoring',
+      'Process Optimization',
+      'Continuous Improvement'
+    ],
+    caseSnippet: 'Discovered $3.8M in working capital leakage in order-to-cash cycles via real-time process mining, slashing order lead times by 31%.',
+    keyChallenges: [
+      'Zero real-time visibility into process deviations',
+      'Subjective process documentation divorced from reality',
+      'Costly compliance violations and rework loops'
+    ],
+    knooviqAdvantage: [
+      'Zero-code digital twin process reconstruction',
+      'Continuous automated root-cause detection',
+      'Automated conformance tracking & benchmark alerts'
+    ]
+  },
+  {
+    id: 'digital-experience',
+    num: '05',
+    name: 'Digital Experience',
+    tagline: 'Omnichannel Portals, Personalized Journeys & Modern Applications',
+    description: 'Crafting high-performance digital applications, intuitive self-service portals, and hyper-personalized interaction engines that elevate customer engagement and workforce satisfaction.',
+    iconName: 'Users',
+    badge: 'EXPERIENCE',
+    items: [
+      'Customer Experience',
+      'Employee Experience',
+      'Digital Applications',
+      'Personalization',
+      'Experience Analytics'
+    ],
+    caseSnippet: 'Launched unified enterprise digital portal serving 150,000+ corporate clients, driving digital adoption to 88% and lifting customer satisfaction scores by 42%.',
+    keyChallenges: [
+      'Fragmented experiences across mobile, web, and internal tools',
+      'Clunky legacy ERP user interfaces causing user fatigue',
+      'Inability to personalize customer interaction touchpoints'
+    ],
+    knooviqAdvantage: [
+      'Modern micro-frontend architecture & design system',
+      'Contextual AI-driven personalization algorithms',
+      'Real-time behavioral telemetry and journey analytics'
+    ]
+  },
+  {
+    id: 'decision-intelligence',
+    num: '06',
+    name: 'Decision Intelligence',
+    tagline: 'Forward-Looking Forecasting, Scenario Simulation & Risk Intelligence',
+    description: 'Transforming retrospective reporting into prescriptive foresight with what-if scenario simulations, probabilistic forecasting, automated risk alerts, and real-time business performance insights.',
+    iconName: 'TrendingUp',
+    badge: 'PRESCRIPTIVE',
+    items: [
+      'Decision Support',
+      'Forecasting & Planning',
+      'Scenario Analysis',
+      'Risk Intelligence',
+      'Business Performance Insights'
+    ],
+    caseSnippet: 'Built dynamic scenario-planning engine modeling supply chain disruptions, allowing executive leadership to prevent stockouts across 45 distribution centers.',
+    keyChallenges: [
+      'Lagging retrospective reporting lacking actionable foresight',
+      'Static spreadsheets incapable of dynamic stress-testing',
+      'Siloed financial and operational planning models'
+    ],
+    knooviqAdvantage: [
+      'Real-time probabilistic Monte Carlo scenario engines',
+      'Continuous macroeconomic and supplier risk radar',
+      'Unified operational and financial planning integration'
+    ]
   }
 ];
 

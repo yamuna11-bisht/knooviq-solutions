@@ -196,7 +196,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       sublabel: 'Unit Floorplan Management',
       tech: 'SAP RE-FX Space Hub',
       desc: 'Managing commercial office suites, retail units, and logistics bays with dynamic demising walls and leasable area calculations.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/re_space_allocation_global.png',
       icon: Building2
     },
     {
@@ -205,7 +205,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       sublabel: 'Clause & Right-of-Use Setup',
       tech: 'SAP Contract Management',
       desc: 'Modeling base rent, escalation schedules, and automated Right-of-Use (RoU) asset and lease liability amortization schedules.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/re_ifrs16_lease_valuation.jpg',
       icon: Receipt
     },
     {
@@ -223,7 +223,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       sublabel: 'Common Area Apportionment',
       tech: 'SAP Settlement Engine',
       desc: 'Aggregating security, janitorial, and HVAC costs into expense pools and calculating monthly pro-rata tenant recovery invoices.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/re_cam_expense_analytics.png',
       icon: FileSpreadsheet
     },
     {
@@ -232,7 +232,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       sublabel: 'POS Sales Certification',
       tech: 'SAP Billing & Revenue (RAR)',
       desc: 'Auditing retail tenant gross sales certificates and computing tiered percentage rent charges exceeding the natural break-even point.',
-      image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/re_retail_turnover_rent.jpg',
       icon: Coins
     },
     {
@@ -241,7 +241,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       sublabel: 'Portfolio Yield Optimization',
       tech: 'SAP REIT Intelligence Hub',
       desc: 'Simulating rent indexation step-ups, issuing digital renewal offers, and reconciling final security deposits upon space handover.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/re_reit_renewal_escalate.jpg',
       icon: TrendingUp
     }
   ];
@@ -307,7 +307,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       tag: 'SAP RE-FX CORE',
       title: 'IFRS 16 / ASC 842 Automated Valuation Engine',
       description: 'Calculates present value, discount rates, Right-of-Use asset amortization schedules, and automated monthly balance sheet postings.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      image: '/images/re_ifrs16_lease_valuation.jpg',
       icon: Receipt,
       highlights: ['Automated RoU asset schedule generator', 'Contract remeasurement workflows', 'Universal Journal posting sync']
     },
@@ -317,7 +317,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       tag: 'CAM SETTLEMENT',
       title: 'Dynamic CAM Cost Allocation & Pooling',
       description: 'Pools operational expenses (HVAC, security, janitorial) and apportions charges to tenants based on gross leasable area and submeters.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/re_cam_expense_analytics.png',
       icon: FileSpreadsheet,
       highlights: ['Automated expense pooling', 'Dynamic GLA pro-rata calculation', 'Tenant audit reconciliation statements']
     },
@@ -327,7 +327,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       tag: 'TURNOVER RENT',
       title: 'Retail Mall Percentage & Turnover Rent Engine',
       description: 'Integrates digital POS feeds and certified gross sales logs to automatically calculate base-versus-percentage rent billing.',
-      image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80',
+      image: '/images/re_retail_turnover_rent.jpg',
       icon: Coins,
       highlights: ['Tiered turnover rent threshold logic', 'Automated sales audit variance alerts', 'Natural break-point calculation']
     },
@@ -337,7 +337,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       tag: 'SPACE MANAGEMENT',
       title: 'Floorplan GIS & Commercial Space Allocator',
       description: 'Visual space management mapping CAD/BIM floor layouts, demising partition shifts, and vacant square footage in real time.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      image: '/images/re_floorplan_space_allocator.png',
       icon: Building2,
       highlights: ['Interactive floorplan GIS overlay', 'Dynamic demising wall tracking', 'Occupancy & vacancy rate heatmaps']
     },
@@ -347,7 +347,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       tag: 'REIT INTELLIGENCE',
       title: 'Real-Time REIT NOI & Portfolio Intelligence',
       description: 'Provides fund managers real-time dashboards for Net Operating Income (NOI), Funds From Operations (FFO), and weighted average lease expiry (WALE).',
-      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/re_reit_noi_portfolio_intel.png',
       icon: BarChart3,
       highlights: ['Live NOI & FFO calculations', 'Weighted average lease expiry (WALE)', 'Property yield & cap rate tracking']
     },
@@ -357,7 +357,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       tag: 'TENANT EXPERIENCE',
       title: 'Tenant Experience & Escrow Portal',
       description: 'Mobile portal for digital lease execution, maintenance request tracking, online utility payments, and security deposit management.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/re_tenant_experience_escrow.jpg',
       icon: Workflow,
       highlights: ['Digital lease e-signature integration', 'Instant rent & utility payment gateway', 'Move-out damage deduction ledger']
     }
@@ -466,8 +466,8 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
         {/* Full-bleed High Resolution Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80" 
-            alt="Modern Architectural Glass Skyscraper Real Estate Portfolio"
+            src="/images/real_estate_hero.png" 
+            alt="Modern Commercial Office Park & Retail Complex Real Estate Portfolio"
             className="w-full h-full object-cover object-center"
           />
         </div>

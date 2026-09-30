@@ -1,16 +1,11 @@
 import React from 'react';
 import { Hero } from '../components/Hero';
-import { AboutSection } from '../components/AboutSection';
-import { S4HanaShowcase } from '../components/S4HanaShowcase';
-import { ServicesSection } from '../components/ServicesSection';
-import { IndustriesSection } from '../components/IndustriesSection';
-import { WhyKnooviqSection } from '../components/WhyKnooviqSection';
-import { ProcessSection } from '../components/ProcessSection';
-import { TechEcosystemSection } from '../components/TechEcosystemSection';
-import { TrainingSection } from '../components/TrainingSection';
-import { CaseStudiesSection } from '../components/CaseStudiesSection';
-import { CareersSection } from '../components/CareersSection';
-import { ContactSection } from '../components/ContactSection';
+import { WhatKnooviqDoesSection } from '../components/home/WhatKnooviqDoesSection';
+import { IntelligentErpSection } from '../components/home/IntelligentErpSection';
+import { DataToIntelligenceSection } from '../components/home/DataToIntelligenceSection';
+import { HomeIndustriesSection } from '../components/home/HomeIndustriesSection';
+import { WhyKnooviqTypographySection } from '../components/home/WhyKnooviqTypographySection';
+import { FeaturedSolutionsSection } from '../components/home/FeaturedSolutionsSection';
 
 interface HomePageProps {
   onOpenContact: (service?: string) => void;
@@ -18,7 +13,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onOpenContact }) => {
   const handleExploreServices = () => {
-    const el = document.getElementById('services');
+    const el = document.getElementById('what-knooviq-does');
     if (el) {
       const offset = 80;
       const elementPosition = el.getBoundingClientRect().top;
@@ -28,45 +23,32 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContact }) => {
   };
 
   return (
-    <div className="space-y-0">
-      {/* Hero Section with Interactive 3D Ecosystem */}
+    <div className="space-y-0 bg-white min-h-screen">
+      {/* 1. Hero Section with 3D Globe Centerpiece (Preserved Untouched) */}
       <Hero 
         onOpenContact={onOpenContact}
         onExploreServices={handleExploreServices}
       />
 
-      {/* About KNOOVIQ Core Overview */}
-      <AboutSection onOpenContact={() => onOpenContact()} />
+      {/* 2. What KNOOVIQ Does: 6 Premium Service Cards */}
+      <WhatKnooviqDoesSection onOpenContact={onOpenContact} />
 
-      {/* S/4HANA Story: Legacy -> Transformation -> S/4HANA -> Intelligent Enterprise */}
-      <S4HanaShowcase onOpenContact={onOpenContact} />
+      {/* 4. Intelligent ERP for Facilities & Smart Asset Operations: Interactive Modules + Futuristic Dashboard UI */}
+      <IntelligentErpSection onOpenContact={onOpenContact} />
 
-      {/* Core SAP Services Showcase */}
-      <ServicesSection onSelectServiceForConsult={onOpenContact} />
+      {/* 5. From Data to Intelligence: 5-Stage Connected Cyber Flow (Connect → Collect → Analyze → Automate → Optimize) */}
+      <DataToIntelligenceSection />
 
-      {/* Industry Verticals */}
-      <IndustriesSection onOpenContact={onOpenContact} />
+      {/* 5. Solutions by Industry: 50% Content & 50% Image */}
+      <HomeIndustriesSection onOpenContact={onOpenContact} />
 
-      {/* Why KNOOVIQ Differentiators */}
-      <WhyKnooviqSection onOpenContact={onOpenContact} />
+      {/* 6. Why KNOOVIQ: Bold Typographic Statement & 4 Pillars (Innovation, Intelligence, Scalability, Reliability) */}
+      <WhyKnooviqTypographySection />
 
-      {/* 6-Stage Delivery Process Flow */}
-      <ProcessSection onOpenContact={onOpenContact} />
-
-      {/* Technology & Innovation Ecosystem */}
-      <TechEcosystemSection onOpenContact={onOpenContact} />
-
-      {/* Corporate SAP Training Programs */}
-      <TrainingSection onOpenContact={onOpenContact} />
-
-      {/* Enterprise Case Studies & Metrics */}
-      <CaseStudiesSection onOpenContact={() => onOpenContact()} />
-
-      {/* Careers & Talent Pipeline */}
-      <CareersSection />
-
-      {/* Official Enterprise Consultation & Contact Form */}
-      <ContactSection />
+      {/* 7. Case Studies / Featured Solutions: Smart Facilities, Cloud Infrastructure, Enterprise Automation */}
+      <FeaturedSolutionsSection onOpenContact={onOpenContact} />
     </div>
   );
 };
+
+export default HomePage;

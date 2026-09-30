@@ -1,21 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Cloud, 
-  Server, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight, 
-  Globe2, 
-  Compass, 
-  Layers, 
-  Clock, 
-  HardDrive, 
-  DollarSign, 
-  Calendar, 
-  Check, 
-  Building2, 
+import {
+  Cloud,
+  Server,
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  Globe2,
+  Compass,
+  Layers,
+  Clock,
+  HardDrive,
+  DollarSign,
+  Calendar,
+  Check,
+  Building2,
   Boxes,
   Sparkles,
   FileCheck
@@ -28,18 +28,18 @@ interface TechnologyPageProps {
 export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
   return (
     <div className="min-h-screen bg-white text-slate-800 selection:bg-blue-600 selection:text-white font-sans antialiased">
-      
+
       {/* =========================================================================
           SECTION 1: MULTI-HYPERSCALER ORBITAL HERO
           (Blue & White, Pure Information, Certified Hyperscaler Telemetry)
           ========================================================================= */}
       <section className="relative w-full min-h-[640px] lg:min-h-[700px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-blue-950 border-b border-blue-900">
-        
+
         {/* Full-Bleed Enterprise Background Image with Scrim */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80" 
-            alt="SAP Cloud Transformation Hyperscaler Infrastructure" 
+          <img
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80"
+            alt="SAP Cloud Transformation Hyperscaler Infrastructure"
             className="w-full h-full object-cover object-center opacity-25"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
@@ -48,7 +48,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
+
             {/* Left Column: Heading & Value Proposition */}
             <div className="lg:col-span-6 space-y-6">
               <motion.div
@@ -111,7 +111,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
 
             {/* Right Column: Multi-Cloud Hyperscaler Telemetry Showcase */}
             <div className="lg:col-span-6 space-y-4">
-              
+
               {/* Azure Card */}
               <div className="rounded-2xl bg-white p-4 sm:p-5 border border-blue-100 shadow-xl space-y-2">
                 <div className="flex items-center justify-between pb-2 border-b border-slate-100">
@@ -187,7 +187,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -204,8 +204,8 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"
                   alt="Executive Strategic Boardroom Planning"
                   className="w-full h-full object-cover"
                 />
@@ -282,7 +282,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
               <Layers className="w-3.5 h-3.5" />
@@ -297,13 +297,13 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
+
             {/* Blueprint 1: Azure */}
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80"
                     alt="Microsoft Azure Cloud Architecture"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -334,8 +334,8 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
                     alt="Amazon Web Services Cloud Architecture"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -366,8 +366,8 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
                     alt="Google Cloud Platform Architecture"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -405,7 +405,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section id="cutover-benchmarks" className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -422,8 +422,8 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise Cloud Cutover Execution"
                   className="w-full h-full object-cover"
                 />
@@ -520,7 +520,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
               <Compass className="w-3.5 h-3.5" />
@@ -535,7 +535,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+
             {/* R1: Rehost */}
             <div className="p-6 rounded-2xl bg-blue-50/40 border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all space-y-3">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-blue-100 text-blue-800 text-xs font-mono font-bold">
@@ -631,7 +631,7 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
               <DollarSign className="w-3.5 h-3.5" />

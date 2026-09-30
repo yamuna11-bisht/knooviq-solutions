@@ -46,8 +46,8 @@ export const NODES_DATA: NodeInfo[] = [
     inclination: 0.15,
     initialAngle: 0,
     size: 0.28,
-    status: '99.99% Uptime',
-    metric: 'Real-Time In-Memory',
+    status: 'High Availability',
+    metric: 'Intelligent Enterprise Core',
     description: 'Next-Gen Intelligent ERP with GROW & RISE Cloud deployments.'
   },
   {
@@ -61,7 +61,7 @@ export const NODES_DATA: NodeInfo[] = [
     initialAngle: Math.PI * 0.3,
     size: 0.26,
     status: 'Active Copilot',
-    metric: '10x Speed',
+    metric: 'Embedded Business AI',
     description: 'Embedded GenAI & conversational business intelligence across workflows.'
   },
   {
@@ -74,8 +74,8 @@ export const NODES_DATA: NodeInfo[] = [
     inclination: 0.45,
     initialAngle: Math.PI * 0.75,
     size: 0.25,
-    status: '500+ Connectors',
-    metric: '<10ms Latency',
+    status: 'Universal Connectors',
+    metric: 'Clean Core Integration',
     description: 'Clean Core extensions, low-code BuildApps, and enterprise API hub.'
   },
   {
@@ -89,7 +89,7 @@ export const NODES_DATA: NodeInfo[] = [
     initialAngle: Math.PI * 1.1,
     size: 0.27,
     status: 'Unified Fabric',
-    metric: 'Instant SAC Planning',
+    metric: 'Federated Business Data',
     description: 'Business data fabric with multi-cloud federated data warehouse.'
   },
   {
@@ -102,8 +102,8 @@ export const NODES_DATA: NodeInfo[] = [
     inclination: 0.3,
     initialAngle: Math.PI * 1.5,
     size: 0.24,
-    status: 'Global Payroll',
-    metric: 'AI Talent Match',
+    status: 'Global Workforce',
+    metric: 'Human Experience Management',
     description: 'End-to-end human experience management and workforce analytics.'
   },
   {
@@ -116,8 +116,8 @@ export const NODES_DATA: NodeInfo[] = [
     inclination: -0.4,
     initialAngle: Math.PI * 1.85,
     size: 0.26,
-    status: 'Zero-Bottleneck',
-    metric: 'Predictive Routing',
+    status: 'Intelligent Logistics',
+    metric: 'Connected Supply Network',
     description: 'Integrated Business Planning, Extended Warehouse & Ariba guided spend.'
   },
   {
@@ -130,8 +130,8 @@ export const NODES_DATA: NodeInfo[] = [
     inclination: 0.1,
     initialAngle: Math.PI * 0.5,
     size: 0.23,
-    status: 'Zero Technical Debt',
-    metric: 'Automated Upgrades',
+    status: 'Modernized Architecture',
+    metric: 'Decoupled Extensibility',
     description: 'Decoupled side-by-side extensibility preserving standard SAP core.'
   },
   {
@@ -144,8 +144,8 @@ export const NODES_DATA: NodeInfo[] = [
     inclination: -0.25,
     initialAngle: Math.PI * 0.9,
     size: 0.24,
-    status: 'Carbon Accounting',
-    metric: 'Audit Ready',
+    status: 'Sustainability Hub',
+    metric: 'ESG & Carbon Accounting',
     description: 'Transactional greenhouse gas emission tracking aligned with financial data.'
   }
 ];
@@ -288,11 +288,15 @@ const InteractiveOrbitNode: React.FC<{
 };
 
 // Central Intelligent S/4HANA Nucleus with Multi-Layer Holographic Cages
-const CentralNucleus: React.FC<{ isSelected: boolean }> = ({ isSelected }) => {
+const CentralNucleus: React.FC<{
+  isSelected: boolean;
+  onSelect?: (id: string) => void;
+}> = ({ isSelected, onSelect }) => {
   const coreGroup = useRef<THREE.Group>(null);
   const outerCage1 = useRef<THREE.Mesh>(null);
   const outerCage2 = useRef<THREE.Mesh>(null);
   const ringGroup = useRef<THREE.Group>(null);
+  const [hovered, setHovered] = useState(false);
 
   useFrame((_, delta) => {
     if (coreGroup.current) {
@@ -316,19 +320,34 @@ const CentralNucleus: React.FC<{ isSelected: boolean }> = ({ isSelected }) => {
       <Float speed={2} rotationIntensity={0.3} floatIntensity={0.6}>
         
         {/* Core Glowing Energy Sphere */}
-        <mesh>
+        <mesh
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect?.('s4hana');
+          }}
+          onPointerOver={(e) => {
+            e.stopPropagation();
+            setHovered(true);
+            document.body.style.cursor = 'pointer';
+          }}
+          onPointerOut={() => {
+            setHovered(false);
+            document.body.style.cursor = 'auto';
+          }}
+          scale={isSelected ? 1.15 : hovered ? 1.08 : 1}
+        >
           <sphereGeometry args={[1.05, 36, 36]} />
           <meshStandardMaterial
             color="#0077B6"
             emissive="#00A3E0"
-            emissiveIntensity={isSelected ? 3.8 : 2.6}
+            emissiveIntensity={isSelected ? 4.2 : hovered ? 3.4 : 2.6}
             roughness={0.1}
             metalness={0.9}
           />
         </mesh>
 
         {/* Inner High-Density Point Light */}
-        <pointLight color="#00D2FF" intensity={3.5} distance={7} />
+        <pointLight color="#00D2FF" intensity={isSelected ? 4.5 : 3.5} distance={8} />
 
         {/* Layer 1: Wireframe Icosahedron */}
         <mesh ref={outerCage1}>
@@ -337,7 +356,7 @@ const CentralNucleus: React.FC<{ isSelected: boolean }> = ({ isSelected }) => {
             color="#00D2FF"
             wireframe
             emissive="#00D2FF"
-            emissiveIntensity={1.8}
+            emissiveIntensity={isSelected ? 2.4 : 1.8}
             transparent
             opacity={0.75}
           />
@@ -370,8 +389,18 @@ const CentralNucleus: React.FC<{ isSelected: boolean }> = ({ isSelected }) => {
 
         {/* Central Core Hologram Badge */}
         <Html distanceFactor={9} center position={[0, 0, 0]}>
-          <div className="pointer-events-none select-none flex flex-col items-center justify-center text-center">
-            <div className="rounded-full bg-cyan-950/80 border border-cyan-400/80 px-3 py-1 backdrop-blur-md shadow-[0_0_30px_rgba(0,210,255,0.8)]">
+          <div 
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect?.('s4hana');
+            }}
+            className="pointer-events-auto cursor-pointer select-none flex flex-col items-center justify-center text-center transition-transform hover:scale-110"
+          >
+            <div className={`rounded-full px-3 py-1 backdrop-blur-md transition-all duration-300 ${
+              isSelected 
+                ? 'bg-cyan-950/95 border-2 border-cyan-300 shadow-[0_0_35px_rgba(0,210,255,1)]'
+                : 'bg-cyan-950/80 border border-cyan-400/80 shadow-[0_0_30px_rgba(0,210,255,0.8)]'
+            }`}>
               <div className="text-[12px] font-black tracking-widest text-white drop-shadow-[0_0_10px_rgba(0,210,255,1)]">
                 SAP S/4HANA
               </div>
@@ -513,11 +542,26 @@ const DeepDataParticles: React.FC<{ count?: number }> = ({ count = 280 }) => {
   );
 };
 
-// Dynamic Camera Parallax Controller driven by Mouse Movement
+// Responsive World Group that centers the 3D nucleus and orbits symmetrically
+const ResponsiveWorldGroup: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { size } = useThree();
+  const isDesktop = size.width > 1024;
+  const isTablet = size.width > 768 && size.width <= 1024;
+  const scale = isDesktop ? 1.05 : isTablet ? 0.9 : 0.76;
+
+  return (
+    <group position={[0, 0, 0]} scale={scale}>
+      {children}
+    </group>
+  );
+};
+
+// Dynamic Camera Parallax Controller driven by Mouse Movement (Centered Symmetrically)
 const CameraController: React.FC<{
   selectedNode: NodeInfo | null;
 }> = ({ selectedNode }) => {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
+  const isDesktop = size.width > 1024;
 
   useFrame((state) => {
     // Standard mouse coordinates (-1 to 1)
@@ -526,35 +570,50 @@ const CameraController: React.FC<{
 
     if (selectedNode) {
       // Focus slightly towards selected node perspective
-      const targetX = pointerX * 1.5;
-      const targetY = pointerY * 1.2 + 0.5;
-      const targetZ = 7.0;
+      const targetX = pointerX * 1.4;
+      const targetY = pointerY * 0.8 + 0.2;
+      const targetZ = isDesktop ? 8.2 : 9.5;
       camera.position.x = THREE.MathUtils.lerp(camera.position.x, targetX, 0.04);
       camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetY, 0.04);
       camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, 0.04);
+      camera.lookAt(0, 0, 0);
     } else {
-      // General responsive 3D parallax
-      const targetX = pointerX * 2.2;
-      const targetY = pointerY * 1.8;
-      const targetZ = 8.5;
+      // General responsive 3D parallax centered
+      const targetX = pointerX * 1.8;
+      const targetY = pointerY * 1.2;
+      const targetZ = isDesktop ? 9.2 : 10.6;
       camera.position.x = THREE.MathUtils.lerp(camera.position.x, targetX, 0.035);
       camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetY, 0.035);
       camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, 0.035);
+      camera.lookAt(0, 0, 0);
     }
-    camera.lookAt(0, 0, 0);
   });
 
   return null;
 };
 
-// Main Exported Full Hero 3D Scene Component
-export const FullHero3DScene: React.FC<{
+export interface FullHero3DSceneProps {
   selectedNodeId: string | null;
   onSelectNode: (id: string | null) => void;
-}> = ({ selectedNodeId, onSelectNode }) => {
-  const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [isRotating, setIsRotating] = useState(true);
+  isRotating?: boolean;
+  speedMultiplier?: number;
+  showInlineHud?: boolean;
+}
+
+// Main Exported Full Hero 3D Scene Component
+export const FullHero3DScene: React.FC<FullHero3DSceneProps> = ({
+  selectedNodeId,
+  onSelectNode,
+  isRotating: propIsRotating,
+  speedMultiplier: propSpeedMultiplier,
+  showInlineHud = false,
+}) => {
+  const [internalSpeed, setInternalSpeed] = useState(1);
+  const [internalRotating, setInternalRotating] = useState(true);
   const [useFallback, setUseFallback] = useState(false);
+
+  const speedMultiplier = propSpeedMultiplier !== undefined ? propSpeedMultiplier : internalSpeed;
+  const isRotating = propIsRotating !== undefined ? propIsRotating : internalRotating;
 
   useEffect(() => {
     try {
@@ -575,13 +634,13 @@ export const FullHero3DScene: React.FC<{
   }
 
   return (
-    <div className="absolute inset-0 w-full h-full select-none overflow-hidden">
+    <div className="absolute inset-0 w-full h-full select-none overflow-hidden pointer-events-auto">
       
       {/* WebGL 3D Canvas */}
       <Suspense fallback={<Fallback2D />}>
         <Canvas
-          camera={{ position: [0, 0, 8.5], fov: 48 }}
-          dpr={[1, 2]}
+          camera={{ position: [0, 0, 9.0], fov: 46 }}
+          dpr={[1, 1.8]}
           gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
           className="h-full w-full"
           onPointerDown={() => {
@@ -599,22 +658,28 @@ export const FullHero3DScene: React.FC<{
           {/* Dynamic Mouse Parallax Camera */}
           <CameraController selectedNode={selectedNode} />
 
-          {/* Central SAP S/4HANA Nucleus */}
-          <CentralNucleus isSelected={selectedNodeId === 's4hana'} />
-
-          {/* 8 Orbital SAP Nodes */}
-          {NODES_DATA.map((node) => (
-            <InteractiveOrbitNode
-              key={node.id}
-              node={node}
-              selectedId={selectedNodeId}
+          {/* Responsive World Anchor */}
+          <ResponsiveWorldGroup>
+            {/* Central SAP S/4HANA Nucleus */}
+            <CentralNucleus 
+              isSelected={selectedNodeId === 's4hana'} 
               onSelect={(id) => onSelectNode(id === selectedNodeId ? null : id)}
-              speedMultiplier={isRotating ? speedMultiplier : 0}
             />
-          ))}
 
-          {/* Floating 3D Polyhedrons / Crystals */}
-          <FloatingCrystals />
+            {/* 8 Orbital SAP Nodes */}
+            {NODES_DATA.map((node) => (
+              <InteractiveOrbitNode
+                key={node.id}
+                node={node}
+                selectedId={selectedNodeId}
+                onSelect={(id) => onSelectNode(id === selectedNodeId ? null : id)}
+                speedMultiplier={isRotating ? speedMultiplier : 0}
+              />
+            ))}
+
+            {/* Floating 3D Polyhedrons / Crystals */}
+            <FloatingCrystals />
+          </ResponsiveWorldGroup>
 
           {/* 300+ Deep Space Data Particles */}
           <DeepDataParticles count={320} />
@@ -624,52 +689,40 @@ export const FullHero3DScene: React.FC<{
         </Canvas>
       </Suspense>
 
-      {/* 3D Scene Controls HUD (Bottom Right) */}
-      <div className="absolute bottom-6 right-6 z-20 hidden sm:flex items-center gap-2 rounded-2xl border border-slate-300 dark:border-sky-500/25 bg-white/80 dark:bg-[#070E1C]/85 px-3 py-2 backdrop-blur-xl shadow-xl">
-        <button
-          onClick={() => setIsRotating(!isRotating)}
-          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-bold transition-all ${
-            isRotating 
-              ? 'bg-[#00A3E0] text-white shadow-md' 
-              : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300'
-          }`}
-          title="Toggle 3D Orbit Rotation"
-        >
-          <RotateCw className={`h-3.5 w-3.5 ${isRotating ? 'animate-spin-slow' : ''}`} />
-          <span>{isRotating ? 'Orbit Active' : 'Orbit Paused'}</span>
-        </button>
+      {/* Optional Inline 3D Scene Controls HUD */}
+      {showInlineHud && (
+        <div className="absolute bottom-6 right-6 z-20 hidden sm:flex items-center gap-2 rounded-2xl border border-slate-300 dark:border-sky-500/25 bg-white/80 dark:bg-[#070E1C]/85 px-3 py-2 backdrop-blur-xl shadow-xl">
+          <button
+            onClick={() => setInternalRotating(!internalRotating)}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-bold transition-all ${
+              internalRotating 
+                ? 'bg-[#00A3E0] text-white shadow-md' 
+                : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300'
+            }`}
+            title="Toggle 3D Orbit Rotation"
+          >
+            <RotateCw className={`h-3.5 w-3.5 ${internalRotating ? 'animate-spin-slow' : ''}`} />
+            <span>{internalRotating ? 'Orbit Active' : 'Orbit Paused'}</span>
+          </button>
 
-        <button
-          onClick={() => setSpeedMultiplier(speedMultiplier === 1 ? 2 : speedMultiplier === 2 ? 0.5 : 1)}
-          className="px-2.5 py-1 rounded-xl text-xs font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-[#00A3E0] transition-colors"
-          title="Adjust 3D Speed"
-        >
-          {speedMultiplier}x Speed
-        </button>
+          <button
+            onClick={() => setInternalSpeed(internalSpeed === 1 ? 2 : internalSpeed === 2 ? 0.5 : 1)}
+            className="px-2.5 py-1 rounded-xl text-xs font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-[#00A3E0] transition-colors"
+            title="Adjust 3D Speed"
+          >
+            {internalSpeed}x Speed
+          </button>
 
-        <button
-          onClick={() => onSelectNode(null)}
-          className="flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
-          title="Reset 3D Camera"
-        >
-          <Maximize2 className="h-3 w-3" />
-          <span>Reset</span>
-        </button>
-      </div>
-
-      {/* Live 3D Ecosystem Status Badge (Top Right HUD) */}
-      <div className="absolute top-24 right-6 z-20 hidden md:flex items-center gap-2.5 rounded-full border border-sky-500/30 bg-white/85 dark:bg-[#070E1C]/85 px-3.5 py-1.5 backdrop-blur-xl shadow-lg">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span className="text-[11px] font-bold text-slate-800 dark:text-white">
-          8 Active 3D SAP Nodes
-        </span>
-        <span className="text-[10px] font-mono text-[#00A3E0] font-bold bg-[#00A3E0]/10 px-2 py-0.5 rounded-full">
-          Live Interactive
-        </span>
-      </div>
+          <button
+            onClick={() => onSelectNode(null)}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+            title="Reset 3D Camera"
+          >
+            <Maximize2 className="h-3 w-3" />
+            <span>Reset</span>
+          </button>
+        </div>
+      )}
 
     </div>
   );

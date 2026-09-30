@@ -36,7 +36,10 @@ import {
   Boxes,
   FileCheck2,
   Bot,
-  HelpCircle
+  HelpCircle,
+  Search,
+  MessageSquare,
+  Filter
 } from 'lucide-react';
 
 interface PracticeItem {
@@ -63,6 +66,7 @@ interface PracticeSection {
   tagline: string;
   summary: string;
   architecturalImpact: string;
+  image?: string;
   deliverables: string[];
   valueDrivers: ValueDriver[];
   items: PracticeItem[];
@@ -87,21 +91,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Clean Core Realignment",
-            "desc": "Fit-to-standard process adoption eliminating legacy ERP modifications"
+        "badge": "01",
+        "title": "Clean Core Realignment",
+        "desc": "Fit-to-standard process adoption eliminating legacy ERP modifications"
       },
       {
-            "badge": "02",
-            "title": "Real-Time Visibility",
-            "desc": "Instant enterprise-wide operational and financial insights on demand"
+        "badge": "02",
+        "title": "Real-Time Visibility",
+        "desc": "Instant enterprise-wide operational and financial insights on demand"
       },
       {
-            "badge": "03",
-            "title": "Continuous Agility",
-            "desc": "Future-ready foundation supporting rapid innovation and cloud releases"
+        "badge": "03",
+        "title": "Continuous Agility",
+        "desc": "Future-ready foundation supporting rapid innovation and cloud releases"
       }
-],
+    ],
     items: [
       {
         name: 'SAP S/4HANA Transformation',
@@ -193,21 +197,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Universal Data Hub",
-            "desc": "Single source of financial and operational truth across all global entities"
+        "badge": "01",
+        "title": "Universal Data Hub",
+        "desc": "Single source of financial and operational truth across all global entities"
       },
       {
-            "badge": "02",
-            "title": "Synchronized Supply Chains",
-            "desc": "End-to-end material orchestration from procurement to fulfillment"
+        "badge": "02",
+        "title": "Synchronized Supply Chains",
+        "desc": "End-to-end material orchestration from procurement to fulfillment"
       },
       {
-            "badge": "03",
-            "title": "Empowered Workforce",
-            "desc": "Unified talent lifecycle management and employee experience architecture"
+        "badge": "03",
+        "title": "Empowered Workforce",
+        "desc": "Unified talent lifecycle management and employee experience architecture"
       }
-],
+    ],
     items: [
       {
         name: 'SAP S/4HANA',
@@ -278,21 +282,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Decoupled Extensions",
-            "desc": "Clean Core side-by-side app development on SAP BTP using RAP and CAP"
+        "badge": "01",
+        "title": "Decoupled Extensions",
+        "desc": "Clean Core side-by-side app development on SAP BTP using RAP and CAP"
       },
       {
-            "badge": "02",
-            "title": "High-Speed In-Memory",
-            "desc": "Columnar database engine processing transactional workloads instantaneously"
+        "badge": "02",
+        "title": "High-Speed In-Memory",
+        "desc": "Columnar database engine processing transactional workloads instantaneously"
       },
       {
-            "badge": "03",
-            "title": "Zero-Regression Upgrades",
-            "desc": "Seamless SAP cloud release adoption without custom code breakage"
+        "badge": "03",
+        "title": "Zero-Regression Upgrades",
+        "desc": "Seamless SAP cloud release adoption without custom code breakage"
       }
-],
+    ],
     items: [
       {
         name: 'SAP BTP (Business Technology Platform)',
@@ -384,42 +388,42 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Autonomous Business AI",
-            "desc": "Context-aware intelligence embedded directly into daily operational workflows"
+        "badge": "01",
+        "title": "Autonomous Business AI",
+        "desc": "Context-aware intelligence embedded directly into daily operational workflows"
       },
       {
-            "badge": "02",
-            "title": "Unified Data Fabric",
-            "desc": "Datasphere integration connecting SAP and non-SAP data without replication"
+        "badge": "02",
+        "title": "Unified Data Fabric",
+        "desc": "Datasphere integration connecting SAP and non-SAP data without replication"
       },
       {
-            "badge": "03",
-            "title": "Predictive Steering",
-            "desc": "Executive scenario modeling and augmented forecasting via SAC"
+        "badge": "03",
+        "title": "Predictive Steering",
+        "desc": "Executive scenario modeling and augmented forecasting via SAC"
       }
-],
+    ],
     items: [
       {
         name: 'SAP Business AI',
         desc: 'Purpose-built artificial intelligence embedded directly into standard business workflows, automating routine tasks and surfacing contextual recommendations.',
         tag: 'Embedded AI',
         deliverables: ['Automated Document Processing', 'Intelligent Cash Application Matching', 'Predictive Stock Replenishment'],
-        route: '/products/knooviq-ai-consultant'
+        route: '/technology/sap-business-ai'
       },
       {
         name: 'Generative AI',
         desc: 'Enterprise generative AI applications securely leveraging corporate business semantics to synthesize insights, draft communications, and summarize complex reports.',
         tag: 'GenAI Solutions',
         deliverables: ['Context-Aware Prompt Engineering', 'Secure Enterprise LLM Guardrails', 'Automated Narrative Generation'],
-        route: '/products/knooviq-ai-insights'
+        route: '/technology/generative-ai'
       },
       {
         name: 'AI Agents',
         desc: 'Autonomous multi-step agents executing complex operational tasks, tracking exceptions, and coordinating cross-system workflows without human intervention.',
         tag: 'Autonomous Agents',
         deliverables: ['Autonomous Exception Resolvers', 'Cross-System Multi-Agent Workflows', 'Task Verification Auditing'],
-        route: '/products/knooviq-ai-engagement'
+        route: '/technology/ai-agents'
       },
       {
         name: 'Machine Learning',
@@ -433,14 +437,14 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
         desc: 'Unified cloud solution combining business intelligence, collaborative financial planning, and augmented predictive analytics in one intuitive cockpit.',
         tag: 'Cloud Analytics',
         deliverables: ['Real-Time Executive Dashboards', 'Collaborative Enterprise Planning Models', 'Simulative Scenario Planning'],
-        route: '/solutions/sap-datasphere'
+        route: '/technology/sap-analytics-cloud'
       },
       {
         name: 'SAP Datasphere',
         desc: 'Comprehensive data fabric service providing semantic business context across distributed SAP and non-SAP data repositories without manual extraction.',
         tag: 'Unified Data Fabric',
         deliverables: ['Business Data Fabric Modeling', 'Federated Non-SAP Data Connections', 'Cataloging & Data Lineage Governance'],
-        route: '/solutions/sap-datasphere'
+        route: '/technology/sap-datasphere'
       },
       {
         name: 'SAP BW/4HANA',
@@ -490,21 +494,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Predictable Cloud Journey",
-            "desc": "Structured RISE and GROW methodology accelerating migration timelines"
+        "badge": "01",
+        "title": "Predictable Cloud Journey",
+        "desc": "Structured RISE and GROW methodology accelerating migration timelines"
       },
       {
-            "badge": "02",
-            "title": "Elastic Multi-Cloud",
-            "desc": "Flexible deployment options across major enterprise hyperscalers"
+        "badge": "02",
+        "title": "Elastic Multi-Cloud",
+        "desc": "Flexible deployment options across major enterprise hyperscalers"
       },
       {
-            "badge": "03",
-            "title": "Total Cost Governance",
-            "desc": "FinOps architecture delivering complete transparency over cloud workloads"
+        "badge": "03",
+        "title": "Total Cost Governance",
+        "desc": "FinOps architecture delivering complete transparency over cloud workloads"
       }
-],
+    ],
     items: [
       {
         name: 'RISE with SAP',
@@ -596,91 +600,63 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Risk-Mitigated Cutover",
-            "desc": "Near-zero downtime cutover protocols protecting mission-critical operations"
+        "badge": "01",
+        "title": "Risk-Mitigated Cutover",
+        "desc": "Near-zero downtime cutover protocols protecting mission-critical operations"
       },
       {
-            "badge": "02",
-            "title": "Automated Code Remediation",
-            "desc": "AI-driven custom code modernization ensuring Clean Core compliance"
+        "badge": "02",
+        "title": "Automated Code Remediation",
+        "desc": "AI-driven custom code modernization ensuring Clean Core compliance"
       },
       {
-            "badge": "03",
-            "title": "Flexible Transition Paths",
-            "desc": "Greenfield, brownfield, or selective data transition customized to business needs"
+        "badge": "03",
+        "title": "Flexible Transition Paths",
+        "desc": "Greenfield, brownfield, or selective data transition customized to business needs"
       }
-],
+    ],
     items: [
       {
-        name: 'SAP ECC to S/4HANA Migration',
+        name: 'ECC → S/4HANA',
         desc: 'End-to-end technical and functional conversion moving corporate history, ledgers, and open items into the modern S/4HANA architecture.',
         tag: 'Core Conversion',
         deliverables: ['Database Migration Option (DMO)', 'Financial Universal Journal Reconciliation', 'Fiori App Role Mapping'],
-        route: '/solutions/sap-s4hana'
+        route: '/solutions/sap-migration'
       },
       {
-        name: 'Brownfield Migration',
-        desc: 'System conversion strategy retaining existing historical transaction records and business configurations while modernizing database and code.',
-        tag: 'System Conversion',
-        deliverables: ['Full Historical Data Preservation', 'Minimal Organizational Disruption', 'Automated Software Update Manager (SUM)'],
-        route: '/solutions/sap-s4hana'
+        name: 'System Conversion',
+        desc: 'One-step in-place technical conversion leveraging SUM DMO to retain full historical transaction records and business configuration with < 12h downtime.',
+        tag: 'In-Place SUM DMO',
+        deliverables: ['Direct Database Conversion', '100% CVI Business Partner Sync', 'Downtime-Optimized Cutover'],
+        route: '/solutions/system-conversion'
       },
       {
-        name: 'Greenfield Implementation',
+        name: 'Greenfield',
         desc: 'Fresh re-implementation strategy discarding legacy customizations in favor of standard out-of-the-box SAP best practice processes.',
         tag: 'Clean Slate Redesign',
         deliverables: ['100% Clean Core Alignment', 'Elimination of Obsolete Custom Modifications', 'Streamlined Operating Model'],
-        route: '/solutions/sap-s4hana'
+        route: '/solutions/greenfield'
       },
       {
-        name: 'Selective Data Transition (Bluefield)',
-        desc: 'Hybrid migration carving out valuable historical data and active business entities while leaving behind inactive company codes and obsolete code.',
-        tag: 'Selective Carve-Out',
-        deliverables: ['Selective Master & Transactional Migration', 'Near-Zero Weekend Downtime', 'System Consolidation in Flight'],
-        route: '/solutions/sap-s4hana'
+        name: 'Brownfield',
+        desc: 'Preserve your existing business processes, historical ledgers, and proven operational configurations while upgrading to S/4HANA.',
+        tag: 'Preserved Investment',
+        deliverables: ['Full Historical Data Preservation', 'Minimal Organizational Disruption', 'Selective Data Carve-Out (Bluefield)'],
+        route: '/solutions/brownfield'
       },
       {
-        name: 'Legacy System Modernization',
-        desc: 'Retirement of outdated legacy satellite applications and peripheral spreadsheets by consolidating workflows directly onto the unified SAP platform.',
-        tag: 'Legacy Decommissioning',
-        deliverables: ['Application Rationalization', 'Historical Data Archival Repository', 'Infrastructure Footprint Reduction'],
-        route: '/solutions/sap-s4hana'
+        name: 'Data Migration',
+        desc: 'Automated data cleansing, extraction, staging, and validation from legacy ERP systems into SAP S/4HANA with 100% reconciliation.',
+        tag: 'LTMC / LTMOM Cockpit',
+        deliverables: ['Data Migration Cockpit Automation', 'Legacy Staging & Cleansing', 'Automated Dual Reconciliation'],
+        route: '/solutions/data-migration'
       },
       {
-        name: 'System Consolidation',
-        desc: 'Merging multiple regional SAP ECC instances or acquired business systems into a single centralized global S/4HANA instance.',
-        tag: 'Instance Harmonization',
-        deliverables: ['Global Chart of Accounts Alignment', 'Centralized Master Data Repositories', 'Consolidated Corporate Reporting'],
-        route: '/solutions/sap-s4hana'
-      },
-      {
-        name: 'Database Migration to HANA',
-        desc: 'Migrating legacy relational databases (Oracle, DB2, SQL Server) to the in-memory SAP HANA platform to unlock sub-second query performance.',
-        tag: 'Database Modernization',
-        deliverables: ['Heterogeneous System Copy', 'Columnar Storage Index Reduction', 'In-Memory Query Performance Gains'],
-        route: '/solutions/sap-datasphere'
-      },
-      {
-        name: 'Unicode Conversion',
-        desc: 'Pre-requisite character encoding conversions preparing legacy systems for global multi-language characters and modern interface protocols.',
-        tag: 'Technical Readiness',
-        deliverables: ['Single-Byte to Multi-Byte Transformation', 'Data Integrity Validation', 'System Internationalization Readiness'],
-        route: '/solutions/sap-s4hana'
-      },
-      {
-        name: 'Code Remediation',
-        desc: 'Automated scanning and refactoring of custom ABAP programs to ensure full compatibility with HANA memory syntax and S/4HANA simplification lists.',
-        tag: 'ABAP Refactoring',
-        deliverables: ['Automated Custom Code Migration Workbenches', 'Obsolete Table Syntax Replacement', 'Side-by-Side BTP Decoupling'],
-        route: '/solutions/sap-btp'
-      },
-      {
-        name: 'Clean Core Strategy',
-        desc: 'Architectural governance ensuring the core ERP stays pristine by enforcing standard APIs and building all extensions on SAP BTP.',
-        tag: 'Clean Core Governance',
-        deliverables: ['Zero Core ERP Table Modifications', 'Public Interface Contract Compliance', 'Rapid Regression-Free Upgrades'],
-        route: '/solutions/sap-s4hana'
+        name: 'Custom Code Migration',
+        desc: 'Automated scanning, remediation, and decoupling of custom ABAP programs into upgrade-safe Clean Core and SAP BTP microservices.',
+        tag: 'Clean Core Decoupling',
+        deliverables: ['Automated Custom Code Migration App', 'ABAP Cloud RAP Modernization', 'Side-by-Side BTP Decoupling'],
+        route: '/solutions/custom-code-migration'
       }
     ]
   },
@@ -702,21 +678,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "API-First Connected Core",
-            "desc": "Seamless interoperability across hybrid enterprise IT ecosystems"
+        "badge": "01",
+        "title": "API-First Connected Core",
+        "desc": "Seamless interoperability across hybrid enterprise IT ecosystems"
       },
       {
-            "badge": "02",
-            "title": "Event-Driven Real-Time",
-            "desc": "Instantaneous messaging and event mesh connecting distributed platforms"
+        "badge": "02",
+        "title": "Event-Driven Real-Time",
+        "desc": "Instantaneous messaging and event mesh connecting distributed platforms"
       },
       {
-            "badge": "03",
-            "title": "Accelerated Connectors",
-            "desc": "Pre-built integration content for rapid third-party and B2B EDI onboarding"
+        "badge": "03",
+        "title": "Accelerated Connectors",
+        "desc": "Pre-built integration content for rapid third-party and B2B EDI onboarding"
       }
-],
+    ],
     items: [
       {
         name: 'SAP BTP Integration Suite',
@@ -808,21 +784,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Strategic Roadmap Clarity",
-            "desc": "Target operating models aligned to long-term enterprise business objectives"
+        "badge": "01",
+        "title": "Strategic Roadmap Clarity",
+        "desc": "Target operating models aligned to long-term enterprise business objectives"
       },
       {
-            "badge": "02",
-            "title": "Fit-to-Standard Alignment",
-            "desc": "Process harmonization minimizing technical debt and maximizing standard ROI"
+        "badge": "02",
+        "title": "Fit-to-Standard Alignment",
+        "desc": "Process harmonization minimizing technical debt and maximizing standard ROI"
       },
       {
-            "badge": "03",
-            "title": "High User Adoption",
-            "desc": "Change management frameworks driving organizational alignment from day one"
+        "badge": "03",
+        "title": "High User Adoption",
+        "desc": "Change management frameworks driving organizational alignment from day one"
       }
-],
+    ],
     items: [
       {
         name: 'ERP Strategy & Roadmap',
@@ -914,21 +890,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "24/7 Enterprise SLAs",
-            "desc": "Proactive round-the-clock monitoring and incident mitigation guarantees"
+        "badge": "01",
+        "title": "24/7 Enterprise SLAs",
+        "desc": "Proactive round-the-clock monitoring and incident mitigation guarantees"
       },
       {
-            "badge": "02",
-            "title": "Continuous Core Optimization",
-            "desc": "Regular performance tuning, patch management, and health audits"
+        "badge": "02",
+        "title": "Continuous Core Optimization",
+        "desc": "Regular performance tuning, patch management, and health audits"
       },
       {
-            "badge": "03",
-            "title": "Disaster Recovery Readiness",
-            "desc": "Rigorous backup and business continuity protocols safeguarding data integrity"
+        "badge": "03",
+        "title": "Disaster Recovery Readiness",
+        "desc": "Rigorous backup and business continuity protocols safeguarding data integrity"
       }
-],
+    ],
     items: [
       {
         name: 'SAP Application Management Services (AMS)',
@@ -1020,21 +996,21 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
     ],
     valueDrivers: [
       {
-            "badge": "01",
-            "title": "Global Statutory Compliance",
-            "desc": "Turnkey legal reporting and tax engine integration across jurisdictions"
+        "badge": "01",
+        "title": "Global Statutory Compliance",
+        "desc": "Turnkey legal reporting and tax engine integration across jurisdictions"
       },
       {
-            "badge": "02",
-            "title": "Automated Digital Invoicing",
-            "desc": "Real-time e-invoicing and direct regulatory authority gateway synchronization"
+        "badge": "02",
+        "title": "Automated Digital Invoicing",
+        "desc": "Real-time e-invoicing and direct regulatory authority gateway synchronization"
       },
       {
-            "badge": "03",
-            "title": "Audit-Ready Governance",
-            "desc": "Multi-GAAP financial ledger accuracy and continuous regulatory transparency"
+        "badge": "03",
+        "title": "Audit-Ready Governance",
+        "desc": "Multi-GAAP financial ledger accuracy and continuous regulatory transparency"
       }
-],
+    ],
     items: [
       {
         name: 'India Localization: GST, E-Way Bill & E-Invoicing',
@@ -1110,35 +1086,94 @@ const TRANSFORMATION_PRACTICES: PracticeSection[] = [
   }
 ];
 
-const TRANSFORMATION_FAQS = [
+const PRACTICE_IMAGES: Record<string, string> = {
+  'business-transformation': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+  'business-applications': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+  'sap-technology': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+  'data-analytics-ai': 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+  'cloud-transformation': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+  'migration-modernization': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+  'integration-ecosystem': 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+  'advisory-consulting': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+  'managed-services': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
+  'compliance-localization': 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80'
+};
+
+interface TransformationFaq {
+  category: 'clean-core' | 'ai-joule' | 'migration' | 'governance';
+  categoryLabel: string;
+  q: string;
+  aiTakeaway: string;
+  a: string;
+  route: string;
+  routeLabel: string;
+}
+
+const TRANSFORMATION_FAQS: TransformationFaq[] = [
   {
-    q: 'What SAP transformation solutions does Knooviq deliver?',
-    a: 'Knooviq delivers comprehensive SAP transformation solutions across ten specialized strategic practices: Business Transformation, Business Applications, SAP Technology, Data, Analytics & AI, Cloud Transformation, Migration & Modernization, Integration & Ecosystem, Advisory & Consulting, Managed Services, and Compliance & Localization.'
+    category: 'clean-core',
+    categoryLabel: 'Clean Core & Architecture',
+    q: 'What is Clean Core and how does it prevent ERP technical debt in SAP S/4HANA?',
+    aiTakeaway: 'Clean Core strictly decouples bespoke extensions onto SAP BTP using released APIs only, guaranteeing automated, zero-disruption cloud upgrades.',
+    a: 'In legacy ECC architectures, custom modifications directly touched SAP standard tables and dynpros, turning future upgrades into multi-year, multi-million-dollar remediation projects. Clean Core mandates that the standard ERP runtime remains 100% untouched. All customer-specific innovations are built side-by-side on SAP BTP using RESTful Application Programming (RAP), Cloud Application Programming (CAP), and released Core Data Services (CDS) views.',
+    route: '/technology/sap-btp',
+    routeLabel: 'Explore BTP Clean Core Architecture'
   },
   {
-    q: 'How is Knooviq\'s transformation approach structured for enterprise success?',
-    a: 'Knooviq adopts a Clean Core architectural philosophy and Fit-to-Standard methodology. We decouple bespoke extensions onto SAP BTP, automate custom code remediation, and align process execution directly with strategic business priorities rather than implementing technical features in isolation.'
+    category: 'ai-joule',
+    categoryLabel: 'AI & Joule Copilot',
+    q: 'How does SAP Business AI & Joule operate without exposing private enterprise data?',
+    aiTakeaway: 'SAP Business AI Hub enforces a sovereign tenant boundary: customer ERP data is never used to train public LLMs, and PII masking occurs before inference.',
+    a: 'Unlike consumer AI chatbots, SAP Business AI and Joule operate within a certified enterprise privacy boundary on SAP BTP. When a user asks Joule to reconcile a financial variance or summarize a purchase order, data is retrieved directly from live S/4HANA memory (ACDOCA/BSEG) using the user\'s own SAP authorization profile. Prompts are anonymized and foundational LLM providers are contractually prohibited from retaining or training on customer data.',
+    route: '/technology/sap-business-ai',
+    routeLabel: 'Explore SAP Business AI Suite'
   },
   {
-    q: 'Can Knooviq manage end-to-end S/4HANA migrations with zero business disruption?',
-    a: 'Yes. Knooviq manages the complete transformation lifecycle—from initial Clean Core readiness diagnostic and architecture blueprinting, through Greenfield, Brownfield, or Selective Data Transition, to near-zero downtime cutover protocols and 24/7 post-go-live Managed Services.'
+    category: 'migration',
+    categoryLabel: 'Migration Strategy',
+    q: 'How do we choose between Greenfield S/4HANA and RISE Brownfield conversion?',
+    aiTakeaway: 'Greenfield is ideal for shedding legacy complexity with Fit-to-Standard processes; Brownfield or Selective Data Transition is preferred when preserving critical historical ledger data.',
+    a: 'If your current SAP ECC instance suffers from over 15+ years of undocumented custom code, disparate charts of accounts, and broken master data, a Greenfield implementation allows you to start fresh on Clean Core standard best practices. If your business requires continuous historical audit continuity and mature customized manufacturing logic, Knooviq\'s Selective Data Transition or System Conversion migrates only essential master and transactional data to RISE with SAP with near-zero downtime.',
+    route: '/solutions/rise-with-sap',
+    routeLabel: 'Explore RISE with SAP Pathways'
   },
   {
-    q: 'Which industries are supported by Knooviq’s SAP transformation practices?',
-    a: 'Knooviq serves enterprise leaders across manufacturing, life sciences, retail, consumer goods, energy, utilities, logistics, and professional services. Tailored industry templates accelerate implementation timelines and guarantee statutory compliance from day one.'
+    category: 'clean-core',
+    categoryLabel: 'Clean Core & Architecture',
+    q: 'What happens to existing custom ABAP code during Clean Core transformation?',
+    aiTakeaway: 'Custom ABAP code is automatedly analyzed via SAP Custom Code Migration Tool and transpiled to ABAP Cloud RAP or relocated to BTP microservices.',
+    a: 'Knooviq uses AI-accelerated code remediation to analyze your entire repository of Z-programs. Typically, 50-60% of custom code is completely obsolete and purged. The remaining 40% is refactored into released ABAP Cloud language elements or modern cloud-native apps running on SAP BTP, restoring your digital core to standard.',
+    route: '/technology/generative-ai',
+    routeLabel: 'Explore AI ABAP Modernization'
   },
   {
-    q: 'Does Knooviq provide cloud adoption support for mid-market enterprises?',
-    a: 'Yes. Through GROW with SAP and pre-configured cloud accelerators, Knooviq enables fast-growing businesses to deploy scalable public cloud ERP, automated financial governance, and real-time inventory visibility in a predictable, cloud-first delivery model.'
+    category: 'governance',
+    categoryLabel: 'Governance & ROI',
+    q: 'What strategic business outcomes and ROI can we expect from an engagement?',
+    aiTakeaway: 'Engagements deliver unified in-memory reporting, 70%+ reduction in custom maintenance costs, and autonomous sub-second workflow execution.',
+    a: 'Our clients achieve a unified single source of truth across global operating entities, instantaneous financial close cycles, 30%+ inventory buffer reductions through machine learning demand sensing, and a future-proof landscape where bi-annual SAP cloud updates deploy automatically without manual regression testing.',
+    route: '/solutions/sap-s4hana',
+    routeLabel: 'Explore S/4HANA Business Outcomes'
   },
   {
-    q: 'What strategic business outcomes can we expect from an engagement?',
-    a: 'Engagements deliver unified data models, continuous real-time financial reporting, streamlined supply chain execution, simplified IT landscapes with reduced technical debt, future-proof Clean Core extensibility for autonomous AI, and rigorous regulatory compliance.'
+    category: 'migration',
+    categoryLabel: 'Migration Strategy',
+    q: 'Can Knooviq manage enterprise migrations with near-zero business downtime?',
+    aiTakeaway: 'Yes. Near-Zero Downtime Technology (NZDT) and selective delta cutover protocols keep commercial operations live until the final weekend switch.',
+    a: 'We utilize advanced data replication and NZDT tooling to execute data migration and schema conversions in the background while business operations continue in production. The final cutover window is compressed to hours rather than days, ensuring supply chain shipping and invoicing never stop.',
+    route: '/solutions/sap-migration',
+    routeLabel: 'Explore Migration Methodologies'
   }
 ];
 
 export const TransformationPage: React.FC<{ onOpenContact: (service?: string) => void }> = ({ onOpenContact }) => {
   const [activeSection, setActiveSection] = useState<string>('business-transformation');
+  const [selectedErp, setSelectedErp] = useState<string>('ecc-custom');
+  const [selectedGoal, setSelectedGoal] = useState<string>('clean-core');
+  const [qaSearch, setQaSearch] = useState<string>('');
+  const [selectedQaCategory, setSelectedQaCategory] = useState<string>('all');
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
   const subnavRef = useRef<HTMLDivElement>(null);
   const isClickingRef = useRef(false);
 
@@ -1197,44 +1232,176 @@ export const TransformationPage: React.FC<{ onOpenContact: (service?: string) =>
     }, 600);
   };
 
+  const filteredFaqs = TRANSFORMATION_FAQS.filter((faq) => {
+    const matchesCategory = selectedQaCategory === 'all' || faq.category === selectedQaCategory;
+    const matchesSearch = qaSearch.trim() === '' || 
+      faq.q.toLowerCase().includes(qaSearch.toLowerCase()) || 
+      faq.a.toLowerCase().includes(qaSearch.toLowerCase()) ||
+      faq.aiTakeaway.toLowerCase().includes(qaSearch.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <div className="min-h-screen pt-16 sm:pt-20 bg-[#F8FAFC] dark:bg-[#070E1C] text-slate-900 dark:text-slate-100 transition-colors duration-300">
-      
-      {/* =========================================================================
-          1. PAGE HERO BANNER (Exact Savic Format - Clean, Focused, No Bloated Ribbons)
-          ========================================================================= */}
-      <section className="relative py-8 sm:py-12 lg:py-14 overflow-hidden bg-gradient-to-b from-[#0A1931] via-[#14324f] to-[#0A2540] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 shadow-sm mb-3.5">
-            <span className="w-2 h-2 rounded-full bg-[#00A3E0] animate-pulse" />
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#00A3E0] font-mono">
-              Enterprise SAP Solutions
-            </span>
-          </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3.5 leading-tight">
-            Business-Outcome-Driven <span className="text-[#00A3E0]">SAP Solutions</span>
+      {/* Clean Enterprise Breadcrumb & Header */}
+      <section className="relative pt-24 pb-8 overflow-hidden bg-[#061426] text-white border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400 mb-3">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-[#00A3E0] font-bold">Transformation Practices</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            Enterprise SAP Transformation Practices
           </h1>
-
-          <p className="text-sm sm:text-base text-white/80 max-w-2xl mx-auto mb-6 leading-relaxed font-sans">
-            End-to-end SAP transformation solutions architected around your strategic business outcomes — operational excellence, Clean Core agility, and sustainable competitive advantage.
+          <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+            Explore Knooviq's specialized practices across cloud ERP, architecture, automation, and enterprise modernization.
           </p>
+        </div>
+      </section>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button
-              onClick={() => onOpenContact('Talk to a Solutions Expert')}
-              className="btn-primary-gradient shimmer-sweep inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-xl shadow-[#00A3E0]/25"
-            >
-              <span>Talk to a Solutions Expert</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => onOpenContact('Book Discovery Workshop')}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-all backdrop-blur-sm"
-            >
-              <span>Book Discovery Workshop</span>
-            </button>
+      {/* =========================================================================
+          NEW SECTION: KNOOVIQ AI TRANSFORMATION ARCHITECTURE NAVIGATOR
+          (Interactive AI Format Information System)
+          ========================================================================= */}
+      <section id="ai-navigator" className="py-16 bg-[#040A17] border-y border-white/10 text-white relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-xs font-mono font-bold uppercase text-cyan-300 mb-3">
+              <Bot className="w-3.5 h-3.5 text-cyan-400" />
+              <span>AI-POWERED ARCHITECTURE NAVIGATOR</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+              Interactive Transformation AI Synthesis
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-2">
+              Select your current enterprise ERP baseline and transformation priority to generate a tailored target cloud architecture and AI injection blueprint.
+            </p>
           </div>
+
+          <div className="p-6 sm:p-8 rounded-2xl bg-[#08152B] border-2 border-[#00A3E0]/40 shadow-2xl space-y-6">
+            
+            {/* Step 1: Select ERP Baseline */}
+            <div className="space-y-2">
+              <span className="text-xs font-mono text-cyan-400 uppercase font-bold block">
+                1. Select Current ERP Foundation:
+              </span>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {[
+                  { id: 'ecc-custom', label: 'SAP ECC 6.0 AnyDB', sub: 'High Custom Monolith' },
+                  { id: 'ecc-hana', label: 'SAP ECC on HANA', sub: 'Database Upgraded' },
+                  { id: 's4-onprem', label: 'S/4HANA 1809/1909', sub: 'Legacy On-Premise' },
+                  { id: 'non-sap', label: 'Non-SAP / Legacy', sub: 'Oracle / Infor / Custom' }
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setSelectedErp(item.id)}
+                    className={`p-3 rounded-xl text-left border transition-all ${
+                      selectedErp === item.id
+                        ? 'bg-[#00A3E0]/20 border-[#00A3E0] shadow-sm'
+                        : 'bg-black/30 border-white/5 hover:border-white/20 text-slate-400'
+                    }`}
+                  >
+                    <span className="text-xs font-bold text-white block">{item.label}</span>
+                    <span className="text-[10px] text-slate-400 block mt-0.5">{item.sub}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Step 2: Select Strategic Goal */}
+            <div className="space-y-2">
+              <span className="text-xs font-mono text-cyan-400 uppercase font-bold block">
+                2. Select Primary Transformation Driver:
+              </span>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {[
+                  { id: 'clean-core', label: 'Clean Core Modernization', sub: 'Eliminate 80%+ Tech Debt' },
+                  { id: 'rise-cloud', label: 'RISE with SAP Cloud', sub: 'Cloud Speed & Managed SLA' },
+                  { id: 'ai-agents', label: 'Autonomous AI & Joule', sub: 'Embed Copilots & Swarms' },
+                  { id: 'supply-chain', label: 'Supply Chain Resiliency', sub: 'Real-Time Sync & IBP' }
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setSelectedGoal(item.id)}
+                    className={`p-3 rounded-xl text-left border transition-all ${
+                      selectedGoal === item.id
+                        ? 'bg-purple-600/20 border-purple-400 shadow-sm'
+                        : 'bg-black/30 border-white/5 hover:border-white/20 text-slate-400'
+                    }`}
+                  >
+                    <span className="text-xs font-bold text-white block">{item.label}</span>
+                    <span className="text-[10px] text-slate-400 block mt-0.5">{item.sub}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Generated AI Blueprint Output */}
+            <div className="p-5 rounded-xl bg-black/60 border border-white/10 space-y-4">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs font-mono font-bold text-cyan-300 uppercase">
+                    AI SENSING ENGINE &bull; GENERATED TARGET BLUEPRINT
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                  CONFIDENCE 99.2%
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-1">
+                  <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">Recommended Architecture</span>
+                  <div className="text-sm font-bold text-white">
+                    {selectedErp === 'ecc-custom' ? 'Selective Data Transition + Clean Core' :
+                     selectedErp === 'ecc-hana' ? 'RISE with SAP S/4HANA Private Cloud' :
+                     selectedErp === 's4-onprem' ? 'Cloud Upgrade & BTP Side-by-Side Decoupling' :
+                     'Greenfield S/4HANA Public Cloud Fit-to-Standard'}
+                  </div>
+                  <span className="text-[11px] text-slate-400 block">Universal Journal (ACDOCA) single source of truth</span>
+                </div>
+
+                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-1">
+                  <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">Autonomous AI Injections</span>
+                  <div className="text-sm font-bold text-cyan-300">
+                    {selectedGoal === 'ai-agents' ? 'Multi-Agent Autonomous Swarms + Joule' :
+                     selectedGoal === 'clean-core' ? 'Automated ABAP RAP Transpiler + DOX' :
+                     selectedGoal === 'rise-cloud' ? 'Joule Copilot + BTP Event Mesh' :
+                     'SAP IBP Machine Learning Demand Sensing'}
+                  </div>
+                  <span className="text-[11px] text-slate-400 block">Native embedding with zero customer data training</span>
+                </div>
+
+                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-1">
+                  <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">Projected Business Impact</span>
+                  <div className="text-sm font-bold text-emerald-400">
+                    -76% Custom Code Debt &bull; 6-8 Mos
+                  </div>
+                  <span className="text-[11px] text-slate-400 block">Near-Zero Downtime Cutover Protocol</span>
+                </div>
+              </div>
+
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                <span className="text-slate-400 italic">
+                  Deterministic recommendation based on Knooviq verified enterprise benchmarks.
+                </span>
+                <button
+                  onClick={() => onOpenContact('Custom AI Blueprint Discussion')}
+                  className="px-5 py-2.5 rounded-lg bg-[#00A3E0] text-white hover:bg-[#008cc0] font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                >
+                  <span>Request Full Technical Feasibility Dossier</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </section>
 
@@ -1256,11 +1423,10 @@ export const TransformationPage: React.FC<{ onOpenContact: (service?: string) =>
                     e.preventDefault();
                     scrollToSection(practice.id);
                   }}
-                  className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-colors ${
-                    isActive
+                  className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-colors ${isActive
                       ? 'text-[#00A3E0] dark:text-cyan-400 bg-blue-50 dark:bg-white/10 font-semibold shadow-xs'
                       : 'text-gray-600 dark:text-slate-300 hover:text-[#00A3E0] hover:bg-blue-50 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   {React.cloneElement(practice.icon as React.ReactElement, {
                     className: `w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#00A3E0] dark:text-cyan-400' : 'text-slate-500 dark:text-slate-400'}`
@@ -1287,18 +1453,17 @@ export const TransformationPage: React.FC<{ onOpenContact: (service?: string) =>
             <section
               key={practice.id}
               id={practice.id}
-              className={`py-16 sm:py-20 border-b border-gray-100 dark:border-white/10 scroll-mt-28 transition-colors duration-300 ${
-                isEven ? 'bg-white dark:bg-[#070E1C]' : 'bg-[#F8FAFC] dark:bg-[#050B17]'
-              }`}
+              className={`py-16 sm:py-20 border-b border-gray-100 dark:border-white/10 scroll-mt-28 transition-colors duration-300 ${isEven ? 'bg-white dark:bg-[#070E1C]' : 'bg-[#F8FAFC] dark:bg-[#050B17]'
+                }`}
             >
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
+
                 {/* Savic 5-Column Grid */}
                 <div className="grid lg:grid-cols-5 gap-12 items-start">
-                  
+
                   {/* Left Column (3 of 5 cols = 60%) */}
                   <div className="lg:col-span-3">
-                    
+
                     {/* Icon box + uppercase tagline kicker */}
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-[#0A1931] to-[#14324f] dark:from-[#00A3E0] dark:to-cyan-600 rounded-xl flex items-center justify-center shadow-md text-white shrink-0">
@@ -1331,12 +1496,16 @@ export const TransformationPage: React.FC<{ onOpenContact: (service?: string) =>
                         </h3>
                         <div className="space-y-2.5">
                           {practice.items.map((item) => (
-                            <div key={item.name} className="flex items-start gap-2.5">
-                              <CheckCircle2 className="w-4 h-4 text-[#00A3E0] mt-0.5 shrink-0" />
-                              <span className="text-sm text-slate-700 dark:text-slate-300 font-medium leading-snug">
+                            <Link 
+                              key={item.name} 
+                              to={item.route || '/solutions/sap-s4hana'}
+                              className="flex items-start gap-2.5 group hover:text-[#00A3E0] transition-colors"
+                            >
+                              <CheckCircle2 className="w-4 h-4 text-[#00A3E0] mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
+                              <span className="text-sm text-slate-700 dark:text-slate-300 font-medium leading-snug group-hover:text-[#00A3E0] dark:group-hover:text-cyan-400 group-hover:underline">
                                 {item.name}
                               </span>
-                            </div>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -1377,11 +1546,48 @@ export const TransformationPage: React.FC<{ onOpenContact: (service?: string) =>
                       >
                         Book Discovery Session
                       </button>
+                      {practice.id === 'data-analytics-ai' && (
+                        <Link
+                          to="/technology/data-analytics-ai"
+                          className="btn-secondary text-sm px-5 py-2.5 rounded-lg font-semibold border border-[#00A3E0] text-[#00A3E0] dark:text-cyan-400 hover:bg-[#00A3E0]/10 transition-all inline-flex items-center gap-1.5"
+                        >
+                          <span>Explore Practice Page</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
+                      {practice.id === 'migration-modernization' && (
+                        <Link
+                          to="/solutions/sap-migration"
+                          className="btn-secondary text-sm px-5 py-2.5 rounded-lg font-semibold border border-[#00A3E0] text-[#00A3E0] dark:text-cyan-400 hover:bg-[#00A3E0]/10 transition-all inline-flex items-center gap-1.5"
+                        >
+                          <span>Explore Migration Suite</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
                     </div>
                   </div>
 
                   {/* Right Column (2 of 5 cols = 40%) */}
                   <div className="lg:col-span-2">
+                    {/* Practice Image Card with Floating Badges */}
+                    <div className="relative rounded-2xl overflow-hidden mb-4 border border-slate-200 dark:border-white/10 shadow-lg h-44 sm:h-48 group">
+                      <img 
+                        src={practice.image || PRACTICE_IMAGES[practice.id]} 
+                        alt={practice.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1931] via-[#0A1931]/40 to-transparent" />
+                      <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                        <span className="text-xs font-mono font-bold text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded border border-white/20">
+                          PRACTICE {practice.num}
+                        </span>
+                        <span className="text-[10px] font-mono font-bold text-cyan-300 bg-[#00A3E0]/20 backdrop-blur-md px-2.5 py-1 rounded border border-[#00A3E0]/40">
+                          {practice.badge}
+                        </span>
+                      </div>
+                    </div>
+
                     {/* Gradient Strategic Outcomes Card */}
                     <div className="bg-gradient-to-br from-[#0A1931] via-[#14324f] to-[#0A2540] rounded-3xl p-7 sm:p-8 text-white shadow-xl mb-4 border border-white/10">
                       <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
@@ -1446,41 +1652,138 @@ export const TransformationPage: React.FC<{ onOpenContact: (service?: string) =>
       </div>
 
       {/* =========================================================================
-          4. FREQUENTLY ASKED QUESTIONS (Exact Savic Format)
+          4. INTERACTIVE QUESTION-ANSWERING & KNOWLEDGE ADVISORY CENTER
           ========================================================================= */}
-      <section id="faq" className="py-16 sm:py-20 bg-white dark:bg-[#070E1C] border-b border-gray-100 dark:border-white/10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-white/5 border border-blue-200 dark:border-white/10 text-xs font-mono font-bold text-[#00A3E0] uppercase tracking-wider mb-3">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>FAQ</span>
+      <section id="faq" className="py-20 bg-white dark:bg-[#070E1C] border-b border-gray-100 dark:border-white/10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-white/5 border border-blue-200 dark:border-white/10 text-xs font-mono font-bold text-[#00A3E0] uppercase tracking-wider mb-3">
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>TRANSFORMATION KNOWLEDGE &amp; Q&amp;A ADVISORY</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0A1931] dark:text-white mb-3 tracking-tight">
-              Frequently Asked Questions
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0A1931] dark:text-white mb-3 tracking-tight">
+              Enterprise Transformation Q&amp;A
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
-              Common questions about Knooviq’s SAP enterprise transformation solutions.
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+              Authoritative answers to the most critical technical and business questions regarding Clean Core, Joule AI, and S/4HANA cloud migration.
             </p>
           </div>
 
-          <div className="space-y-3">
-            {TRANSFORMATION_FAQS.map((faq, idx) => (
-              <details
-                key={idx}
-                className="group rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-[#0B1528] open:bg-white dark:open:bg-[#0B1528] open:shadow-sm transition-all duration-200"
-              >
-                <summary className="flex cursor-pointer items-center justify-between gap-4 px-6 py-4 font-semibold text-[#0A1931] dark:text-white text-sm sm:text-base leading-snug list-none select-none">
-                  <span>{faq.q}</span>
-                  <span className="shrink-0 w-6 h-6 rounded-full bg-slate-200/70 dark:bg-white/10 flex items-center justify-center text-slate-700 dark:text-slate-300 group-open:rotate-45 transition-transform duration-200 text-base leading-none font-bold">
-                    +
-                  </span>
-                </summary>
-                <p className="px-6 pb-5 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-slate-100 dark:border-white/5 pt-3">
-                  {faq.a}
-                </p>
-              </details>
-            ))}
+          {/* Interactive Search & Filter Bar */}
+          <div className="space-y-4 mb-8">
+            <div className="relative">
+              <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={qaSearch}
+                onChange={(e) => setQaSearch(e.target.value)}
+                placeholder="Search questions by keyword, Clean Core, Joule AI, Greenfield, timelines..."
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-100 dark:bg-[#0B1528] border border-slate-200 dark:border-white/10 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-[#00A3E0] transition-colors"
+              />
+            </div>
+
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {[
+                { id: 'all', label: 'All Questions' },
+                { id: 'clean-core', label: 'Clean Core & Architecture' },
+                { id: 'ai-joule', label: 'AI & Joule Copilot' },
+                { id: 'migration', label: 'Migration Strategy' },
+                { id: 'governance', label: 'Governance & ROI' }
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedQaCategory(cat.id)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    selectedQaCategory === cat.id
+                      ? 'bg-[#00A3E0] text-white shadow-sm'
+                      : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
+
+          {/* Expandable Q&A Cards */}
+          <div className="space-y-3">
+            {filteredFaqs.length === 0 ? (
+              <div className="text-center py-10 text-slate-500 dark:text-slate-400 text-sm">
+                No matching questions found for "{qaSearch}". Try another search term.
+              </div>
+            ) : (
+              filteredFaqs.map((faq, idx) => {
+                const isOpen = openFaqIndex === idx;
+                return (
+                  <div
+                    key={idx}
+                    className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                      isOpen
+                        ? 'border-[#00A3E0]/40 bg-sky-50/30 dark:bg-[#09152B] shadow-md'
+                        : 'border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-[#0B1528] hover:border-slate-300 dark:hover:border-white/20'
+                    }`}
+                  >
+                    <button
+                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                      className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4"
+                    >
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#00A3E0]">
+                          {faq.categoryLabel}
+                        </span>
+                        <h3 className="font-bold text-[#0A1931] dark:text-white text-sm sm:text-base leading-snug">
+                          {faq.q}
+                        </h3>
+                      </div>
+                      <span className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold transition-transform duration-200 ${
+                        isOpen 
+                          ? 'bg-[#00A3E0] text-white rotate-45' 
+                          : 'bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-300'
+                      }`}>
+                        +
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-5 pb-6 sm:px-6 space-y-4 pt-1 border-t border-slate-100 dark:border-white/5">
+                        
+                        {/* AI Executive Takeaway Callout */}
+                        <div className="p-3.5 rounded-xl bg-blue-500/10 border border-[#00A3E0]/30 text-xs">
+                          <div className="flex items-center gap-1.5 font-mono font-bold text-[#00A3E0] uppercase text-[10px] mb-1">
+                            <Sparkles className="w-3.5 h-3.5" />
+                            <span>AI EXECUTIVE TAKEAWAY</span>
+                          </div>
+                          <p className="text-slate-800 dark:text-slate-200 font-semibold leading-relaxed">
+                            {faq.aiTakeaway}
+                          </p>
+                        </div>
+
+                        {/* Detailed Answer */}
+                        <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+                          {faq.a}
+                        </p>
+
+                        {/* Action Link */}
+                        <div className="pt-2 flex justify-end">
+                          <Link
+                            to={faq.route}
+                            className="inline-flex items-center gap-1 text-xs font-bold text-[#00A3E0] hover:underline"
+                          >
+                            <span>{faq.routeLabel}</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+                        </div>
+
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+
         </div>
       </section>
 

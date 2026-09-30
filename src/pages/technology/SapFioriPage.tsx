@@ -1,21 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Layout, 
-  Smartphone, 
-  Tablet, 
-  Monitor, 
-  Sparkles, 
-  CheckCircle2, 
-  ArrowRight, 
-  Eye, 
-  Compass, 
-  ShieldCheck, 
-  RefreshCw, 
-  Lock, 
-  Bot, 
-  WifiOff, 
+import {
+  Layout,
+  Smartphone,
+  Tablet,
+  Monitor,
+  Sparkles,
+  CheckCircle2,
+  ArrowRight,
+  Eye,
+  Compass,
+  ShieldCheck,
+  RefreshCw,
+  Lock,
+  Bot,
+  WifiOff,
   Scan,
   Grid,
   Check
@@ -28,18 +28,18 @@ interface TechnologyPageProps {
 export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
   return (
     <div className="min-h-screen bg-white text-slate-800 selection:bg-blue-600 selection:text-white font-sans antialiased">
-      
+
       {/* =========================================================================
           SECTION 1: RESPONSIVE MULTI-DEVICE ENTERPRISE HERO
           (Blue & White, Pure Information, Multi-Device Form Factors Showcase)
           ========================================================================= */}
       <section className="relative w-full min-h-[640px] lg:min-h-[700px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-blue-950 border-b border-blue-900">
-        
+
         {/* Full-Bleed Enterprise Background Image with Blue Scrim */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80" 
-            alt="SAP Fiori Modern Human-Centered Enterprise Workspace" 
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80"
+            alt="SAP Fiori Modern Human-Centered Enterprise Workspace"
             className="w-full h-full object-cover object-center opacity-25"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
@@ -48,7 +48,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
+
             {/* Left Column: Heading & Value Proposition */}
             <div className="lg:col-span-6 space-y-6">
               <motion.div
@@ -112,7 +112,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
 
             {/* Right Column: Multi-Device Enterprise Form Factors Showcase */}
             <div className="lg:col-span-6 space-y-4">
-              
+
               {/* Desktop Viewport Architecture Card */}
               <div className="rounded-2xl bg-white p-5 border border-blue-100 shadow-xl space-y-3">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
@@ -196,7 +196,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           ========================================================================= */}
       <section id="floorplan-gallery" className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
               <Grid className="w-3.5 h-3.5" />
@@ -211,13 +211,13 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
+
             {/* Floorplan 1 */}
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
                     alt="List Report & Object Page Floorplan"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -248,8 +248,8 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
                     alt="Analytical List Page Floorplan"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -280,8 +280,8 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80"
                     alt="Overview Page Floorplan"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -312,8 +312,8 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80"
                     alt="Worklist Page Floorplan"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -351,7 +351,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -368,8 +368,8 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise UX Design Collaboration"
                   className="w-full h-full object-cover"
                 />
@@ -454,7 +454,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -471,8 +471,8 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1000&q=80"
                   alt="Design System Tokens and UI Components"
                   className="w-full h-full object-cover"
                 />
@@ -529,7 +529,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -546,8 +546,8 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80"
                   alt="Warehouse Technician Handheld Barcode Scanning"
                   className="w-full h-full object-cover"
                 />
@@ -610,7 +610,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -627,8 +627,8 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise Accessibility & Usability Testing"
                   className="w-full h-full object-cover"
                 />

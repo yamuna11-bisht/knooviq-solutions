@@ -4,11 +4,13 @@ interface KnooviqLogoProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showTagline?: boolean;
+  forceDark?: boolean;
 }
 
 export const KnooviqLogo: React.FC<KnooviqLogoProps> = ({
   className = '',
   size = 'md',
+  forceDark = false,
 }) => {
   // Height sizing for logo image
   const heightClass = {
@@ -20,21 +22,33 @@ export const KnooviqLogo: React.FC<KnooviqLogoProps> = ({
 
   return (
     <div className={`inline-flex items-center select-none transition-transform duration-200 hover:scale-[1.02] ${className}`}>
-      {/* Light Mode: Transparent Official Logo */}
-      <img
-        src="/knooviq-logo-transparent.png"
-        alt="KNOOVIQ INDUSTRIES PVT LTD"
-        className={`${heightClass} w-auto object-contain block dark:hidden`}
-        loading="eager"
-      />
+      {forceDark ? (
+        <img
+          src="/knooviq-logo-darkmode.png"
+          alt="KNOOVIQ INDUSTRIES PVT LTD"
+          className={`${heightClass} w-auto object-contain block`}
+          loading="eager"
+        />
+      ) : (
+        <>
+          {/* Light Mode: Transparent Official Logo */}
+          <img
+            src="/knooviq-logo-transparent.png"
+            alt="KNOOVIQ INDUSTRIES PVT LTD"
+            className={`${heightClass} w-auto object-contain block dark:hidden`}
+            loading="eager"
+          />
 
-      {/* Dark Mode: High-Contrast Transparent Official Logo */}
-      <img
-        src="/knooviq-logo-darkmode.png"
-        alt="KNOOVIQ INDUSTRIES PVT LTD"
-        className={`${heightClass} w-auto object-contain hidden dark:block`}
-        loading="eager"
-      />
+          {/* Dark Mode: High-Contrast Transparent Official Logo */}
+          <img
+            src="/knooviq-logo-darkmode.png"
+            alt="KNOOVIQ INDUSTRIES PVT LTD"
+            className={`${heightClass} w-auto object-contain hidden dark:block`}
+            loading="eager"
+          />
+        </>
+      )}
     </div>
   );
 };
+

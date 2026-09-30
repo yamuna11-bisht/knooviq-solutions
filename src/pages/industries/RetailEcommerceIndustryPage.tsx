@@ -187,7 +187,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
       sublabel: 'Physical Retail',
       desc: 'Smart POS terminals, RFID shelf auditing, and unified store order fulfillment with continuous offline resilience.',
       tech: 'In-Store Fiori Apps',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/retail_store_operations.png',
       icon: Store
     },
     {
@@ -196,7 +196,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
       sublabel: 'Web & Channels',
       desc: 'Headless storefronts, multi-tenant catalog orchestration, and centralized live stock allocation across channels.',
       tech: 'SAP Commerce Cloud',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/retail_digital_commerce.png',
       icon: ShoppingBag
     },
     {
@@ -214,7 +214,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
       sublabel: 'Dynamic Dispatch',
       desc: 'Algorithmic routing selecting the optimal store or distribution center for same-day dispatch and click-and-collect.',
       tech: 'SAP EWM / TM',
-      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/retail_order_fulfillment.png',
       icon: Truck
     },
     {
@@ -223,7 +223,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
       sublabel: 'Unified Profiles',
       desc: 'Omnichannel loyalty programs, personalized promotions, and integrated cross-channel return governance.',
       tech: 'SAP Emarsys / CX',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/retail_customer_loyalty.png',
       icon: Users
     },
     {
@@ -305,7 +305,7 @@ export const RetailEcommerceIndustryPage: React.FC<RetailEcommerceIndustryPagePr
       category: 'CUSTOMER',
       categoryLabel: 'Customer & Analytics',
       description: 'Flexible recurring customer billing, subscription replenishment schedules, and automated renewal handling.',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
+      image: '/images/retail_subscription_billing.png',
       highlights: ['Replenishment Cycles', 'Tier Plan Upgrades', 'Payment Settlement Engine'],
       icon: Zap
     },

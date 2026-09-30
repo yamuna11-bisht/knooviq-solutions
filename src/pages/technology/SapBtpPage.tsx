@@ -1,23 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Layers, 
-  Cpu, 
-  Activity, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight, 
-  Sparkles, 
-  Workflow, 
-  Compass, 
-  Boxes, 
-  Server, 
-  Database, 
-  Bot, 
-  Zap, 
-  Cloud, 
-  Lock, 
+import {
+  Layers,
+  Cpu,
+  Activity,
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  Workflow,
+  Compass,
+  Boxes,
+  Server,
+  Database,
+  Bot,
+  Zap,
+  Cloud,
+  Lock,
   Network,
   ChevronRight,
   Building2,
@@ -94,17 +94,17 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white">
-      
+
       {/* =========================================================================
           SECTION 1: HERO SECTION (Cinematic Blue & White Enterprise Architecture)
           ========================================================================= */}
       <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-blue-950">
-        
+
         {/* Background Image with Deep Blue Scrim */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80" 
-            alt="SAP BTP Enterprise Platform Cloud Architecture" 
+          <img
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80"
+            alt="SAP BTP Enterprise Platform Cloud Architecture"
             className="w-full h-full object-cover object-center opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
@@ -113,7 +113,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-3xl space-y-5">
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
                 <Layers className="w-3.5 h-3.5 text-blue-300" />
                 <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; SAP BTP</span>
               </div>
-              
+
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
                 Enterprise Agility via <br />
                 <span className="text-blue-300">SAP Business Technology Platform</span>
@@ -135,7 +135,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -144,7 +144,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               <p className="text-sm sm:text-base text-blue-100 font-normal leading-relaxed">
                 Stop modifying the ERP core. With <strong className="text-white font-semibold">SAP BTP</strong>, Knooviq engineers decouple custom business applications, orchestrate multi-cloud integrations, and accelerate data-driven decisions while keeping your SAP S/4HANA core 100% upgrade-ready.
               </p>
-              
+
               <div className="flex flex-wrap items-center gap-2.5 pt-1">
                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
                   <CheckCircle2 className="w-4 h-4 text-blue-300" />
@@ -162,7 +162,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
             </motion.div>
 
             {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.25 }}
@@ -215,7 +215,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
@@ -232,8 +232,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md h-64">
-                <img 
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise Architecture Planning"
                   className="w-full h-full object-cover"
                 />
@@ -243,7 +243,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
           {/* 4 Clean Informative Cards (Blue & White) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
+
             {/* Tier 1 */}
             <div className="p-6 rounded-2xl bg-white border border-blue-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
               <div className="space-y-3">
@@ -326,7 +326,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
               <Boxes className="w-3.5 h-3.5 text-blue-600" />
@@ -342,14 +342,14 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {servicesCatalog.map(srv => (
-              <div 
+              <div
                 key={srv.id}
                 className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col justify-between"
               >
                 <div>
                   <div className="h-44 w-full relative overflow-hidden">
-                    <img 
-                      src={srv.image} 
+                    <img
+                      src={srv.image}
                       alt={srv.title}
                       className="w-full h-full object-cover"
                     />
@@ -396,7 +396,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
@@ -413,8 +413,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise Modern Corporate Headquarters"
                   className="w-full h-full object-cover"
                 />
@@ -464,7 +464,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
               <TrendingUp className="w-3.5 h-3.5 text-blue-600" />
@@ -479,13 +479,13 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
+
             {/* Blueprint 1 */}
             <div className="rounded-2xl bg-white border border-blue-100 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
               <div>
                 <div className="h-48 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
                     alt="Asynchronous Event Buffer Architecture"
                     className="w-full h-full object-cover"
                   />
@@ -523,8 +523,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
             <div className="rounded-2xl bg-white border border-blue-100 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
               <div>
                 <div className="h-48 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
                     alt="Partner Collaboration SaaS"
                     className="w-full h-full object-cover"
                   />
@@ -562,8 +562,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
             <div className="rounded-2xl bg-white border border-blue-100 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
               <div>
                 <div className="h-48 w-full relative overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" 
+                  <img
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
                     alt="Enterprise RAG AI Architecture"
                     className="w-full h-full object-cover"
                   />
@@ -608,26 +608,26 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
+
             <div className="lg:col-span-6 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
                 <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
                 <span>ENTERPRISE GOVERNANCE AUDIT</span>
               </div>
-              
+
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
                 Enterprise Clean Core Readiness Standards
               </h2>
-              
+
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 Modern SAP Clean Core compliance is measured across 5 rigorous architectural gates. Adhering to these milestones guarantees that future SAP S/4HANA feature releases and cloud upgrades occur without custom code rework.
               </p>
 
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md mt-6 h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
                   alt="Enterprise Clean Core Audit"
                   className="w-full h-full object-cover"
                 />
@@ -644,7 +644,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               </div>
 
               <div className="space-y-3">
-                
+
                 {/* Gate 1 */}
                 <div className="p-4 rounded-xl bg-white border border-blue-200 space-y-1">
                   <div className="flex items-center gap-2">

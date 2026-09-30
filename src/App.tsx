@@ -57,7 +57,20 @@ import { AutomationEvolvePage } from './pages/AutomationEvolvePage';
 import { AutomationManagerPage } from './pages/AutomationManagerPage';
 import { SapS4HanaPage } from './pages/SapS4HanaPage';
 import { SapBusinessApplicationsPage } from './pages/SapBusinessApplicationsPage';
+import { MigrationModernizationPage } from './pages/MigrationModernizationPage';
+import { SystemConversionPage } from './pages/SystemConversionPage';
+import { GreenfieldPage } from './pages/GreenfieldPage';
+import { BrownfieldPage } from './pages/BrownfieldPage';
+import { DataMigrationPage } from './pages/DataMigrationPage';
+import { CustomCodeMigrationPage } from './pages/CustomCodeMigrationPage';
 import { TransformationPage } from './pages/TransformationPage';
+import { AdvisoryManagedServicesPage } from './pages/AdvisoryManagedServicesPage';
+import { SapStrategyPage } from './pages/SapStrategyPage';
+import { SapAssessmentPage } from './pages/advisory/SapAssessmentPage';
+import { SolutionArchitecturePage } from './pages/advisory/SolutionArchitecturePage';
+import { SapAmsPage } from './pages/advisory/SapAmsPage';
+import { ApplicationSupportPage } from './pages/advisory/ApplicationSupportPage';
+import { SapBasisPage } from './pages/advisory/SapBasisPage';
 import { RetailEcommerceIndustryPage } from './pages/industries/RetailEcommerceIndustryPage';
 import { ConsumerGoodsIndustryPage } from './pages/industries/ConsumerGoodsIndustryPage';
 import { FoodBeverageIndustryPage } from './pages/industries/FoodBeverageIndustryPage';
@@ -81,6 +94,20 @@ import { SapHanaPage } from './pages/technology/SapHanaPage';
 import { SapFioriPage } from './pages/technology/SapFioriPage';
 import { SapIntegrationSuitePage } from './pages/technology/SapIntegrationSuitePage';
 import { CloudTransformationPage } from './pages/technology/CloudTransformationPage';
+import { DataAnalyticsAiPage } from './pages/technology/DataAnalyticsAiPage';
+import { SapBusinessAiPage } from './pages/technology/SapBusinessAiPage';
+import { GenerativeAiPage } from './pages/technology/GenerativeAiPage';
+import { AiAgentsPage } from './pages/technology/AiAgentsPage';
+import { SapAnalyticsCloudPage } from './pages/technology/SapAnalyticsCloudPage';
+import { SapDataspherePage } from './pages/technology/SapDataspherePage';
+import { IntelligentAutomationPage } from './pages/technology/IntelligentAutomationPage';
+import { ArtificialIntelligencePage } from './pages/ArtificialIntelligencePage';
+import { GenerativeAiPracticePage } from './pages/ai/GenerativeAiPracticePage';
+import { AiAgentsPracticePage } from './pages/ai/AiAgentsPracticePage';
+import { AiAssistantsPracticePage } from './pages/ai/AiAssistantsPracticePage';
+import { MachineLearningPracticePage } from './pages/ai/MachineLearningPracticePage';
+import { PredictiveAiPracticePage } from './pages/ai/PredictiveAiPracticePage';
+import { EnterpriseAiPracticePage } from './pages/ai/EnterpriseAiPracticePage';
 import { OilGasIndustryPage } from './pages/industries/OilGasIndustryPage';
 import { PowerUtilitiesIndustryPage } from './pages/industries/PowerUtilitiesIndustryPage';
 import { RenewableEnergyIndustryPage } from './pages/industries/RenewableEnergyIndustryPage';
@@ -334,6 +361,43 @@ const AppContent: React.FC = () => {
           <Route path="/transformation/human-capital" element={<SapBusinessApplicationsPage onOpenContact={handleOpenContactModal} initialApp="human-capital" />} />
           <Route path="/transformation/customer-experience" element={<SapBusinessApplicationsPage onOpenContact={handleOpenContactModal} initialApp="cx" />} />
 
+          {/* Dedicated SAP Migration & Modernization Suite (6 Dedicated Standalone Pages) */}
+          <Route path="/solutions/sap-migration" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/migration-modernization" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/migration-modernization" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/migration-modernization" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/migration" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/sap-migration" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-migration" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/migration" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/ecc-s4hana" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/ecc-to-s4hana" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ecc-s4hana" element={<MigrationModernizationPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 2. System Conversion */}
+          <Route path="/solutions/system-conversion" element={<SystemConversionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/system-conversion" element={<SystemConversionPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 3. Greenfield */}
+          <Route path="/solutions/greenfield" element={<GreenfieldPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/greenfield" element={<GreenfieldPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 4. Brownfield */}
+          <Route path="/solutions/brownfield" element={<BrownfieldPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/brownfield" element={<BrownfieldPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/selective-data-transition" element={<BrownfieldPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/selective-data-transition" element={<BrownfieldPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 5. Data Migration */}
+          <Route path="/solutions/data-migration" element={<DataMigrationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/data-migration" element={<DataMigrationPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 6. Custom Code Migration */}
+          <Route path="/solutions/custom-code-migration" element={<CustomCodeMigrationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/customer-code-migration" element={<CustomCodeMigrationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/custom-code-migration" element={<CustomCodeMigrationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/customer-code-migration" element={<CustomCodeMigrationPage onOpenContact={handleOpenContactModal} />} />
+
           {/* Dedicated SAP Technology & Cloud Suite (5 Dedicated Pages, Exactly 7 Sections Each) */}
           <Route path="/technology/sap-btp" element={<SapBtpPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/solutions/sap-btp" element={<SapBtpPage onOpenContact={handleOpenContactModal} />} />
@@ -356,12 +420,122 @@ const AppContent: React.FC = () => {
           <Route path="/solutions/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
 
+          {/* Dedicated SAP Data, Analytics & AI Suite (SAP BTP Style) */}
+          <Route path="/technology/data-analytics-ai" element={<DataAnalyticsAiPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/data-analytics-ai" element={<DataAnalyticsAiPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/data-analytics-ai" element={<DataAnalyticsAiPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/data-analytics-ai" element={<DataAnalyticsAiPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 1. SAP Business AI */}
+          <Route path="/technology/sap-business-ai" element={<SapBusinessAiPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-business-ai" element={<SapBusinessAiPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-business-ai" element={<SapBusinessAiPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 2. Generative AI */}
+          <Route path="/technology/generative-ai" element={<GenerativeAiPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/generative-ai" element={<GenerativeAiPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/generative-ai" element={<GenerativeAiPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 3. AI Agents */}
+          <Route path="/technology/ai-agents" element={<AiAgentsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/ai-agents" element={<AiAgentsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ai-agents" element={<AiAgentsPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 4. SAP Analytics Cloud */}
+          <Route path="/technology/sap-analytics-cloud" element={<SapAnalyticsCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-analytics-cloud" element={<SapAnalyticsCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-analytics-cloud" element={<SapAnalyticsCloudPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 5. SAP Datasphere */}
+          <Route path="/technology/sap-datasphere" element={<SapDataspherePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-datasphere" element={<SapDataspherePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-datasphere" element={<SapDataspherePage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 6. Intelligent Automation */}
+          <Route path="/technology/intelligent-automation" element={<IntelligentAutomationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/intelligent-automation" element={<IntelligentAutomationPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/intelligent-automation" element={<IntelligentAutomationPage onOpenContact={handleOpenContactModal} />} />
+
           <Route path="/transformation" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/transformation/:slug" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/solutions/transformation" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/solutions" element={<SolutionsPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/solutions/:slug" element={<SolutionDetailPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/digital-intelligence" element={<ServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/digital-intelligence/artificial-intelligence" element={<Navigate to="/digital-intelligence" replace />} />
+          <Route path="/technology/artificial-intelligence" element={<ArtificialIntelligencePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/artificial-intelligence" element={<ArtificialIntelligencePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/artificial-intelligence" element={<ArtificialIntelligencePage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 6 Dedicated Artificial Intelligence Practice Pages */}
+          <Route path="/digital-intelligence/generative-ai" element={<GenerativeAiPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ai/generative-ai" element={<GenerativeAiPracticePage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/digital-intelligence/ai-agents" element={<AiAgentsPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ai/ai-agents" element={<AiAgentsPracticePage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/digital-intelligence/ai-assistants" element={<AiAssistantsPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/digital-intelligence/assistants" element={<AiAssistantsPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ai/ai-assistants" element={<AiAssistantsPracticePage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/digital-intelligence/machine-learning" element={<MachineLearningPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/digital-intelligence/ml" element={<MachineLearningPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ai/machine-learning" element={<MachineLearningPracticePage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/digital-intelligence/predictive-ai" element={<PredictiveAiPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/digital-intelligence/predictive" element={<PredictiveAiPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ai/predictive-ai" element={<PredictiveAiPracticePage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/digital-intelligence/enterprise-ai" element={<EnterpriseAiPracticePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/ai/enterprise-ai" element={<EnterpriseAiPracticePage onOpenContact={handleOpenContactModal} />} />
           <Route path="/services" element={<ServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory-managed-services" element={<AdvisoryManagedServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/services/advisory-managed-services" element={<AdvisoryManagedServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/advisory-managed-services" element={<AdvisoryManagedServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-consulting" element={<AdvisoryManagedServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-support" element={<AdvisoryManagedServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory" element={<AdvisoryManagedServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/managed-services" element={<AdvisoryManagedServicesPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory-managed-services/sap-strategy" element={<SapStrategyPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/services/sap-strategy" element={<SapStrategyPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory/sap-strategy" element={<SapStrategyPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-strategy" element={<SapStrategyPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-strategy" element={<SapStrategyPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 2. SAP Assessment */}
+          <Route path="/services/sap-assessment" element={<SapAssessmentPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory/sap-assessment" element={<SapAssessmentPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory-managed-services/sap-assessment" element={<SapAssessmentPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-assessment" element={<SapAssessmentPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-assessment" element={<SapAssessmentPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 3. Solution Architecture */}
+          <Route path="/services/solution-architecture" element={<SolutionArchitecturePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory/solution-architecture" element={<SolutionArchitecturePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory-managed-services/solution-architecture" element={<SolutionArchitecturePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/solution-architecture" element={<SolutionArchitecturePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solution-architecture" element={<SolutionArchitecturePage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 4. SAP AMS */}
+          <Route path="/services/sap-ams" element={<SapAmsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory/sap-ams" element={<SapAmsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory-managed-services/sap-ams" element={<SapAmsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-ams" element={<SapAmsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-ams" element={<SapAmsPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 5. Application Support */}
+          <Route path="/services/application-support" element={<ApplicationSupportPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory/application-support" element={<ApplicationSupportPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory-managed-services/application-support" element={<ApplicationSupportPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/application-support" element={<ApplicationSupportPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/application-support" element={<ApplicationSupportPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* 6. SAP Basis */}
+          <Route path="/services/sap-basis" element={<SapBasisPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory/sap-basis" element={<SapBasisPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/advisory-managed-services/sap-basis" element={<SapBasisPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/sap-basis" element={<SapBasisPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/sap-basis" element={<SapBasisPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries" element={<IndustriesPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/retail-ecommerce" element={<RetailEcommerceIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/retail" element={<RetailEcommerceIndustryPage onOpenContact={handleOpenContactModal} />} />

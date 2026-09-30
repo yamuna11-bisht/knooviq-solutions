@@ -80,7 +80,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       icon: Workflow,
       metric: '99.8% Pick Accuracy Rate',
       tech: 'SAP EWM Voice Picking Mesh',
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80'
+      image: '/images/distribution_voice_rf_wave_picking.png',
+      imagePosition: 'center center'
     },
     {
       title: 'Dynamic Multi-Drop Route Sequencing',
@@ -89,7 +90,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       icon: Truck,
       metric: '22% Lower Fleet Fuel Consumption',
       tech: 'SAP Transportation Management (TM)',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80'
+      image: '/images/distribution_dynamic_route_sequencing.jpg',
+      imagePosition: 'center 55%'
     },
     {
       title: 'Electronic Proof of Delivery (EPOD)',
@@ -107,7 +109,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       icon: TrendingUp,
       metric: 'Zero Freight Accessorial Disputes',
       tech: 'Automated Tariff Billing Engine',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80'
+      image: '/images/distribution_3pl_rate_settlement.png',
+      imagePosition: 'center 45%'
     }
   ];
 
@@ -314,7 +317,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       category: 'COMMERCE',
       categoryLabel: 'Warehouse Logistics',
       description: 'Multi-tenant warehouse management with client-specific rate tariffs, space billing, and segregated stock pools.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/distribution_3pl_warehouse_hub.jpg',
+      imagePosition: 'center 45%',
       highlights: ['Client Billing Tariffs', 'Segregated Tenant Ledgers', 'Automated Handling Fees'],
       icon: Building2
     },
@@ -324,7 +328,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       category: 'COMMERCE',
       categoryLabel: 'Warehouse Logistics',
       description: 'AI load sequencing balancing cube volume, vehicle weight limits, delivery time-windows, and driver shifts.',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/distribution_dynamic_route_planning.png',
+      imagePosition: 'center center',
       highlights: ['Cube Maximization', 'Multi-Stop Delivery Sequencing', 'Live Fleet GPS Telemetry'],
       icon: Truck
     },
@@ -334,7 +339,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       category: 'COMMERCE',
       categoryLabel: 'Warehouse Logistics',
       description: 'Direct inbound-to-outbound pallet transfer workflows eliminating intermediate storage steps.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/distribution_automated_cross_dock.png',
+      imagePosition: 'center center',
       highlights: ['Dock Door Scheduling', 'Zero-Putaway Flow', 'Transit Milestone Tracking'],
       icon: PackageCheck
     },
@@ -344,7 +350,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Fleet & Freight',
       description: 'Automated freight accruals, accessorial charge verification, and carrier dispute mitigation on ERP.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/distribution_freight_cost_settlement.png',
+      imagePosition: 'center center',
       highlights: ['Automated Rate Matrices', 'Accessorial Charge Audit', 'Self-Billing Invoicing'],
       icon: FileCheck
     },
@@ -354,7 +361,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Fleet & Freight',
       description: 'Driver mobile app with navigation guidance, digital checklists, electronic proof of delivery, and delay reporting.',
-      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80',
+      image: '/images/distribution_fleet_telemetry_dispatch.png',
+      imagePosition: 'center 40%',
       highlights: ['Glass Signature Capture', 'Driver Pre-Trip Check', 'Real-Time ETA Updates'],
       icon: MapPin
     },
@@ -364,7 +372,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Fleet & Freight',
       description: 'Managing dealer partner consignment inventory, automated replenishment triggers, and consumption billing.',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/distribution_consignment_stock_vendor_hub.png',
+      imagePosition: 'center 30%',
       highlights: ['Dealer Consignment Audit', 'Consumption Invoicing', 'Automatic Stock Transfers'],
       icon: Boxes
     },
@@ -529,8 +538,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
         {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80" 
-            alt="Automated High Bay Distribution and Logistics Center" 
+            src="/images/distribution_hero.jpg" 
+            alt="Modern Automated Wholesale Distribution and Logistics Fulfillment Center" 
             className="w-full h-full object-cover object-center"
           />
           {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase facility on right */}
@@ -711,7 +720,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].title} 
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: (journeySteps[activeJourneyStep] as any).imagePosition || 'center' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
                 
@@ -1144,7 +1154,8 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                     <img 
                       src={item.image} 
                       alt={item.title} 
-                      className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: (item as any).imagePosition || 'center center' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
                     <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-bold">

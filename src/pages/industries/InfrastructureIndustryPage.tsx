@@ -196,7 +196,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Land & Environmental',
       tech: 'GIS & SAP Cadastral Portal',
       desc: 'Mapping land acquisition parcels, environmental permits, and statutory compensation disbursement to WBS milestones.',
-      image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/infra_right_of_way_gis.png',
       icon: MapPin
     },
     {
@@ -214,7 +214,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Chainage & Mileposts',
       tech: 'SAP Linear Asset Mgmt',
       desc: 'Structuring civil infrastructure assets into continuous linear segments with dynamic starting/ending chainage offsets.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/infra_linear_asset_structuring.png',
       icon: Route
     },
     {
@@ -223,7 +223,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Progressive Verification',
       tech: 'SAP Earned Value Engine',
       desc: 'Certifying major civil engineering milestones, tunnel breakthrough tranches, and viaduct erection progress for payment release.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/infra_epc_disbursement.png',
       icon: TrendingUp
     },
     {
@@ -232,7 +232,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Toll & Annuity Sharing',
       tech: 'SAP Revenue Accounting',
       desc: 'Achieving Commercial Operation Date (COD) and transitioning project ledgers into automated concessionaire toll and annuity revenue sharing.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/infra_commercial_ops_cod.jpg',
       icon: BarChart3
     },
     {
@@ -241,7 +241,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Predictive Monitoring',
       tech: 'SAP Asset Central IoT',
       desc: 'Streaming continuous bridge strain gauge, vibration, and foundation telemetry to schedule predictive civil maintenance work orders.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/infra_structural_integrity.png',
       icon: Gauge
     }
   ];
@@ -307,7 +307,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'SAP LAM CORE',
       title: 'Linear Asset Management (SAP LAM)',
       description: 'Native chainage-based asset structuring mapping maintenance work orders, pavement condition indexes, and rail inspections to exact mileposts.',
-      image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/infra_linear_asset_structuring.png',
       icon: Route,
       highlights: ['Chainage start/end offset tracking', 'GIS map overlay integration', 'Dynamic linear defect logging']
     },
@@ -347,7 +347,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'IOT DIGITAL TWIN',
       title: 'Structural Health Monitoring (SHM) Hub',
       description: 'Continuous ingestion of strain, tilt, and temperature sensor streams from bridges, tunnels, and dams to trigger predictive maintenance.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      image: '/images/infra_commercial_ops_cod.jpg',
       icon: Gauge,
       highlights: ['Real-time strain & vibration feeds', 'Automated civil safety alerts', 'Digital twin deflection modeling']
     },
@@ -357,7 +357,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'GREEN INFRASTRUCTURE',
       title: 'Embodied Carbon & Green Asset Ledger',
       description: 'Calculates embedded Scope 3 greenhouse gas emissions from low-carbon concrete and steel, generating audited green bond compliance reports.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/infra_embodied_carbon_green_asset.png',
       icon: ShieldCheck,
       highlights: ['Material embodied carbon tracking', 'Green bond certification reporting', 'Life-cycle sustainability scoring']
     }
@@ -466,8 +466,8 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
         {/* Full-bleed High Resolution Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=2000&q=80" 
-            alt="Mega-Infrastructure Bridge and Highway Network"
+            src="/images/infrastructure_hero.jpg" 
+            alt="Intelligent ERP for Infrastructure & Megaprojects"
             className="w-full h-full object-cover object-center"
           />
         </div>

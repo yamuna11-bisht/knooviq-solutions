@@ -1,18 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Network, 
-  Workflow, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight, 
-  Compass, 
-  Lock, 
-  Layers, 
-  Zap, 
-  Server, 
-  Globe2, 
+import {
+  Network,
+  Workflow,
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  Compass,
+  Lock,
+  Layers,
+  Zap,
+  Server,
+  Globe2,
   RefreshCw,
   Boxes,
   Sparkles,
@@ -83,18 +83,18 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
   return (
     <div className="min-h-screen bg-white text-slate-800 selection:bg-blue-600 selection:text-white font-sans antialiased">
-      
+
       {/* =========================================================================
           SECTION 1: HERO SECTION (Global Interconnected API Plexus)
           (Blue & White, Pure Information, Live Bus Telemetry Cards)
           ========================================================================= */}
       <section className="relative w-full min-h-[640px] lg:min-h-[700px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-blue-950 border-b border-blue-900">
-        
+
         {/* Full-Bleed Enterprise Background Image with Scrim */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=80" 
-            alt="SAP Integration Suite Global Interconnected Enterprise iPaaS" 
+          <img
+            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=80"
+            alt="SAP Integration Suite Global Interconnected Enterprise iPaaS"
             className="w-full h-full object-cover object-center opacity-25"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
@@ -103,7 +103,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="max-w-3xl space-y-6">
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section id="integration-patterns" className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -199,8 +199,8 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80"
                   alt="Digital Network Dispatch and Switching Infrastructure"
                   className="w-full h-full object-cover"
                 />
@@ -215,7 +215,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
           {/* All 5 Canonical Patterns Displayed directly as informative cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+
             {/* Pattern 1 */}
             <div className="p-6 rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all space-y-3">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 text-xs font-mono font-bold border border-blue-200">
@@ -316,7 +316,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -333,8 +333,8 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise Cloud Architecture Engineering"
                   className="w-full h-full object-cover"
                 />
@@ -390,7 +390,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
               <Boxes className="w-3.5 h-3.5" />
@@ -407,14 +407,14 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
           {/* Cards Grid with Images in Blue & White */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {prebuiltAccelerators.map((item) => (
-              <div 
+              <div
                 key={item.id}
                 className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group"
               >
                 <div>
                   <div className="h-44 w-full relative overflow-hidden">
-                    <img 
-                      src={item.image} 
+                    <img
+                      src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -428,7 +428,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
                   </div>
 
                   <div className="p-5 space-y-2.5">
-                    <h3 
+                    <h3
                       className="text-base font-bold text-blue-950 group-hover:text-blue-600 transition-colors"
                       dangerouslySetInnerHTML={{ __html: item.title }}
                     />
@@ -458,7 +458,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-white border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -475,8 +475,8 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise Cyber Defense Network"
                   className="w-full h-full object-cover"
                 />
@@ -532,7 +532,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
           ========================================================================= */}
       <section className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
@@ -549,8 +549,8 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
-                <img 
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
                   alt="Enterprise Modernization Strategy"
                   className="w-full h-full object-cover"
                 />

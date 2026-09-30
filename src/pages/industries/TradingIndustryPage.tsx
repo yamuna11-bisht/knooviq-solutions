@@ -66,7 +66,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       icon: Briefcase,
       metric: 'Real-Time Pricing Formula Sync',
       tech: 'SAP Commodity Deal Capture',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'
+      image: '/images/trading_deal_origination.png',
+      imagePosition: 'center 35%'
     },
     {
       title: 'Credit & FX Exposure Hedging',
@@ -84,7 +85,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       icon: Ship,
       metric: 'Zero Preventable Demurrage Claims',
       tech: 'Automated Laytime Calculator',
-      image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80'
+      image: '/images/trading_charter_maritime.jpg',
+      imagePosition: 'center 35%'
     },
     {
       title: 'Customs & Port Terminal Clearing',
@@ -102,7 +104,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       icon: FileCheck,
       metric: '68% Faster Bank LC Draw-Down',
       tech: 'Documentary Credit AI Matcher',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80'
+      image: '/images/trading_letter_of_credit.png',
+      imagePosition: 'center 40%'
     },
     {
       title: 'Multi-Currency Trade Settlement',
@@ -111,7 +114,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       icon: CreditCard,
       metric: 'Instant Trade-Level Net Margin',
       tech: 'SAP S/4HANA Parallel Currency Ledger',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80'
+      image: '/images/trading_multi_currency_settlement.png',
+      imagePosition: 'center center'
     }
   ];
 
@@ -337,7 +341,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       category: 'COMMERCE',
       categoryLabel: 'Trading Operations',
       description: 'Documentary credit automation matching bills of lading, inspection certificates, and commercial invoices.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/trading_letter_of_credit_governance.jpg',
+      imagePosition: 'center 40%',
       highlights: ['Discrepancy Auto-Detection', 'Electronic LC Tracking', 'Bank Submission Package'],
       icon: FileCheck
     },
@@ -347,7 +352,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Global Logistics',
       description: 'Bulk cargo chartering, container booking, AIS vessel position updates, and laytime event monitoring.',
-      image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
+      image: '/images/trading_vessel_freight_tracking.png',
+      imagePosition: 'center 40%',
       highlights: ['Laytime Log Calculator', 'Vessel Tracking Telemetry', 'Charter Party Compliance'],
       icon: Ship
     },
@@ -367,7 +373,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       category: 'SUPPLY_CHAIN',
       categoryLabel: 'Global Logistics',
       description: 'Automated laytime calculation sheets, demurrage claim validation, and carrier freight invoice audit.',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/trading_demurrage_freight_settlement.jpg',
+      imagePosition: 'center 40%',
       highlights: ['Laytime Statement Engine', 'Demurrage Dispute Mitigation', 'Carrier Freight Matching'],
       icon: Anchor
     },
@@ -387,7 +394,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
       category: 'CUSTOMER',
       categoryLabel: 'Finance & Analytics',
       description: 'Dynamic credit scoring, open order exposure tracking, and collateral guarantee management.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/trading_counterparty_credit_exposure.jpg',
+      imagePosition: 'center 40%',
       highlights: ['Dynamic Exposure Ceiling', 'Collateral Margin Tracking', 'Default Risk Alert Engine'],
       icon: Zap
     },
@@ -531,8 +539,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
         {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=80" 
-            alt="International Maritime Trade and Commercial Terminal" 
+            src="/images/trading_hero.png" 
+            alt="International Multimodal Trade, Aviation, Maritime and Freight Terminal" 
             className="w-full h-full object-cover object-center"
           />
           {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase facility on right */}
@@ -713,7 +721,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].title} 
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: (journeySteps[activeJourneyStep] as any).imagePosition || 'center' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
                 
@@ -1146,7 +1155,8 @@ export const TradingIndustryPage: React.FC<TradingIndustryPageProps> = ({
                     <img 
                       src={item.image} 
                       alt={item.title} 
-                      className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: (item as any).imagePosition || 'center center' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
                     <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-bold">
