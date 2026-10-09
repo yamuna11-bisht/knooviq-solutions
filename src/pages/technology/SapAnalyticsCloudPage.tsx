@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -26,7 +26,9 @@ import {
   Filter,
   RefreshCw,
   SlidersHorizontal,
-  Table
+  Table,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 interface TechnologyPageProps {
@@ -118,30 +120,136 @@ export const SapAnalyticsCloudPage: React.FC<TechnologyPageProps> = ({ onOpenCon
     <div className="min-h-screen bg-slate-50 dark:bg-[#030712] text-slate-900 dark:text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white">
 
       {/* =========================================================================
-          HERO: Interactive Executive BI Cockpit & Financial KPI Modeler
+          SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content)
           ========================================================================= */}
-      <section className="relative pt-28 sm:pt-32 pb-20 overflow-hidden bg-gradient-to-b from-[#0A1B3B] via-[#071329] to-[#040B17] text-white">
-        
-        {/* Subtle grid styling */}
-        <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-blue-950 text-white">
+
+        {/* Background Image with Crisp Brightness and Seamless Gradient Scrim */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/sap_analytics_cloud_widescreen.jpg"
+            alt="SAP Analytics Cloud Augmented BI & xP&A Platform"
+            className="w-full h-full object-cover object-right lg:object-[78%_center] brightness-110 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl space-y-5 text-left">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="space-y-3"
+            >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-900/80 border border-blue-400/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-200 shadow-sm">
+                <BarChart3 className="w-3.5 h-3.5 text-blue-300" />
+                <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; SAP ANALYTICS CLOUD</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+                Unified Executive Cockpits &amp; <br />
+                <span className="text-blue-300">Predictive Extended Planning (xP&amp;A)</span>
+              </h1>
+
+              <p className="text-lg sm:text-xl font-semibold text-blue-100 leading-snug">
+                Bridge the divide between retrospective historical reporting and real-time strategic foresight.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4 max-w-2xl"
+            >
+              <p className="text-sm sm:text-base text-blue-100 font-normal leading-relaxed">
+                SAC brings augmented BI, driver-based financial simulation, and machine learning forecasting directly into the hands of C-suite leaders. Connect live to S/4HANA CDS views without data movement or costly ETL pipelines.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-blue-300" />
+                  <span>Clean Core Financials</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-blue-300" />
+                  <span>Augmented BI Intelligence</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-blue-300" />
+                  <span>Single Source of Truth</span>
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Enterprise Architectural Trust Ribbon - Exactly like SAP BTP */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mt-6 pt-5 border-t border-blue-800/80 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+            >
+              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <BarChart3 className="w-4 h-4 text-blue-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">AUGMENTED BI</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Executive Storytelling</div>
+                <div className="text-xs text-blue-200 mt-0.5">Smart Insights &amp; Search</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <SlidersHorizontal className="w-4 h-4 text-blue-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">xP&amp;A PLANNING</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Predictive Simulations</div>
+                <div className="text-xs text-blue-200 mt-0.5">Value Driver Trees</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Database className="w-4 h-4 text-blue-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">DATA FABRIC</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Live CDS Telemetry</div>
+                <div className="text-xs text-blue-200 mt-0.5">Zero-ETL S/4HANA Connection</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Sparkles className="w-4 h-4 text-blue-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">BUSINESS AI</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Joule Intelligence</div>
+                <div className="text-xs text-blue-200 mt-0.5">Natural Language Reporting</div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 2: LIVE S/4HANA CDS TELEMETRY & FINANCIAL KPI MODELER
+          ========================================================================= */}
+      <section className="py-16 bg-[#040A17] border-b border-white/10 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0]">
-              <BarChart3 className="w-3.5 h-3.5" />
-              <span>SAP ANALYTICS CLOUD (SAC) &bull; AUGMENTED BI & xP&amp;A</span>
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-400/30 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0]">
+              <Database className="w-3.5 h-3.5" />
+              <span>LIVE S/4HANA TELEMETRY COCKPIT</span>
             </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-              Unified Executive Cockpits & <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A3E0] via-cyan-300 to-sky-200">
-                Predictive Extended Planning (xP&amp;A)
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-              Bridge the divide between retrospective historical reporting and real-time strategic foresight. SAC brings augmented BI, driver-based financial simulation, and machine learning forecasting directly into the hands of C-suite leaders.
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Interactive Financial KPI Modeler &amp; Forecast Console
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300">
+              Inspect real-time operating metrics across global business units and simulate driver-based revenue scenarios.
             </p>
           </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -38,7 +38,8 @@ import {
   Check,
   ShieldAlert,
   Scale,
-  Sparkle
+  Sparkle,
+  FileCode
 } from 'lucide-react';
 
 interface TechnologyPageProps {
@@ -129,7 +130,7 @@ const JOULE_SCENARIOS: JouleScenario[] = [
 
 interface ScenarioCatalogItem {
   id: string;
-  domain: 'finance' | 'supply-chain' | 'procurement' | 'hr' | 'cx';
+  domain: 'finance' | 'supply-chain' | 'procurement' | 'hr' | 'cx' | 'clean-core' | 'governance';
   title: string;
   badge: string;
   description: string;
@@ -151,7 +152,7 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'BSEG, BSID, ACDOCA Universal Journal',
     aiMechanism: 'Deep Learning OCR + Semantic Vector Matching',
     businessImpact: '88% reduction in manual cash application labor; same-day ledger clearance.',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_cash_application_remittance.png'
   },
   {
     id: 'sc-2',
@@ -163,7 +164,19 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'RBKP, RSEG, BKPF, LFBK Bank Details',
     aiMechanism: 'Bayesian Anomaly Detection + Pattern Clustering',
     businessImpact: 'Zero unauthorized duplicate payments; 100% audit-proof transaction trail.',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_anomaly_duplicate_invoice_shield.png'
+  },
+  {
+    id: 'sc-finance-treasury',
+    domain: 'finance',
+    title: 'Finance & Treasury Intelligence',
+    badge: 'TREASURY & S/4HANA',
+    description: 'Autonomous cash position forecasting, liquidity curve modeling, and algorithmic FX hedging across global multi-entity bank accounts.',
+    sapModule: 'SAP S/4HANA Advanced Treasury Management',
+    keyTables: 'FQM_FLOW, ACDOCA Universal Ledger, VTBFHA Deals',
+    aiMechanism: 'Deep Liquidity Forecasting + Monte Carlo Simulation',
+    businessImpact: '92% reduction in unhedged FX currency exposure; instant global cash visibility.',
+    image: '/images/sap_business_ai_finance_treasury_intelligence.png'
   },
   {
     id: 'sc-3',
@@ -175,7 +188,7 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'MARC, MARD, MD04, EKET Schedule Lines',
     aiMechanism: 'Time-Series Prophet + Gradient Boosted Ensembles',
     businessImpact: '32% decrease in safety stock buffers while lifting order fulfillment to 99.4%.',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_demand_sensing_lead_time.png'
   },
   {
     id: 'sc-4',
@@ -187,7 +200,7 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'VBBE, LIPS, /SCWM/AQUA Available Quantity',
     aiMechanism: 'Constraint Programming & Priority Optimization',
     businessImpact: 'Protects key SLA penalty clauses; reduces cross-dock transit delays by 40%.',
-    image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_aatp_optimization.png'
   },
   {
     id: 'sc-5',
@@ -199,7 +212,7 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'Ariba Network Master API & LFA1 Supplier Hub',
     aiMechanism: 'Generative AI Hub (Claude 3.5 / GPT-4o on BTP)',
     businessImpact: '4x faster time-to-market for strategic sourcing events and vendor onboarding.',
-    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_generative_sourcing_rfq.png'
   },
   {
     id: 'sc-6',
@@ -211,7 +224,19 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'LFA1, BUT000 Business Partners, Risk Feeds',
     aiMechanism: 'NLP Entity Extraction + Multimodal Sentiment Analysis',
     businessImpact: 'Early warning alert 45-60 days before critical tier-1 component supplier defaults.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_supplier_risk_radar.png'
+  },
+  {
+    id: 'sc-lksg-due-diligence',
+    domain: 'procurement',
+    title: 'Global Supply Chain Due Diligence (LkSG)',
+    badge: 'LKSG & ESG',
+    description: 'Cognitive verification of supplier ethical credentials, child labor prevention, and environmental compliance across multi-echelon global logistics corridors.',
+    sapModule: 'SAP Ariba Supplier Risk & Sustainability Control Tower',
+    keyTables: 'LFA1, BUT000, ESG Due Diligence Records',
+    aiMechanism: 'Multimodal Entity Extraction + LkSG Statutory Rule Guardrails',
+    businessImpact: '100% German LkSG & EU CSDDD regulatory compliance; real-time ethical violation alerts.',
+    image: '/images/sap_genai_supply_chain_due_diligence_lksg.png'
   },
   {
     id: 'sc-7',
@@ -223,7 +248,7 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'SuccessFactors Employee Central & Talent Profiles',
     aiMechanism: 'Graph Neural Networks + Semantic Skill Embeddings',
     businessImpact: '65% higher internal talent retention; 50% savings on external recruitment fees.',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_skills_ontology_mobility.png'
   },
   {
     id: 'sc-8',
@@ -235,7 +260,31 @@ const PREBUILT_SCENARIOS: ScenarioCatalogItem[] = [
     keyTables: 'VBAK, VBAP, CRM Opportunity Objects',
     aiMechanism: 'Contextual Bandit Algorithms & LLM Summarization',
     businessImpact: '28% higher pipeline win rates; eliminates deal stalling in qualification phase.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'
+    image: '/images/sap_business_ai_predictive_sales_win_probability.png'
+  },
+  {
+    id: 'sc-clean-core',
+    domain: 'clean-core',
+    title: 'ERP Modernization & Clean Core Assessment',
+    badge: 'CLEAN CORE & BTP',
+    description: 'Autonomous architectural audit parsing legacy custom ABAP routines, direct table updates, and obsolete dynpros into certified Clean Core RAP business objects.',
+    sapModule: 'SAP BTP ABAP Environment & Custom Code Migration',
+    keyTables: 'TADIR, PROGDIR, CDS View Entities & RAP Interfaces',
+    aiMechanism: 'Generative Code Transpilation & Static AST Semantic Analysis',
+    businessImpact: '70% reduction in upgrade rework; 100% cloud-compliant RAP objects.',
+    image: '/images/sap_genai_erp_modernization_clean_core.png'
+  },
+  {
+    id: 'sc-governance',
+    domain: 'governance',
+    title: 'Zero Data Retention & EU AI Act Guardrails',
+    badge: 'SOVEREIGN CLOUD & TRUST',
+    description: 'Rigorous tenant boundary isolation guaranteeing zero customer ERP telemetry or prompts are ever retained or used to train public foundation models.',
+    sapModule: 'SAP Cloud ALM & Generative AI Hub Prompt Guard',
+    keyTables: 'Audit Trails, Tenant KMS Keys, PII Redaction Logs',
+    aiMechanism: 'Zero Data Retention SLA + Deterministic EU AI Act Guardrails',
+    businessImpact: '100% EU AI Act Article 50 compliance; zero enterprise intellectual property leakage.',
+    image: '/images/sap_business_ai_zero_data_retention_eu_ai_act.png'
   }
 ];
 
@@ -359,7 +408,7 @@ const SAP_AI_FAQS: SapAiFaq[] = [
 
 export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
   const [activeScenarioId, setActiveScenarioId] = useState<string>('finance');
-  const [activeCatalogDomain, setActiveCatalogDomain] = useState<'all' | 'finance' | 'supply-chain' | 'procurement' | 'hr' | 'cx'>('all');
+  const [activeCatalogDomain, setActiveCatalogDomain] = useState<'all' | 'finance' | 'supply-chain' | 'procurement' | 'hr' | 'cx' | 'clean-core' | 'governance'>('all');
   const [activeLobTab, setActiveLobTab] = useState<'finance' | 'supply-chain' | 'procurement' | 'hr'>('finance');
   const [faqCategory, setFaqCategory] = useState<'all' | 'joule' | 'privacy' | 'clean-core' | 'licensing'>('all');
   const [faqSearch, setFaqSearch] = useState<string>('');
@@ -385,7 +434,7 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
     finance: {
       title: 'Finance & Treasury Intelligence',
       badge: 'FINANCIAL ACCURACY',
-      image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/sap_business_ai_finance_treasury_intelligence.png',
       manualPain: 'Accountants spend 18+ hours weekly manually reconciling obscure remittance notices, cross-referencing bank statements, and calculating currency discrepancies across multiple corporate legal entities.',
       aiSolution: 'Intelligent Cash Application and Anomaly Detection parse bank telecommunication files (MT940/CAMT) in real-time, matching 90%+ of line items autonomously into the ACDOCA universal ledger with full audit traceability.',
       kpis: ['88% Reduction in Manual Matching', 'Sub-Second Anomaly Detection', 'Zero Clean Core Contamination']
@@ -393,7 +442,7 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
     'supply-chain': {
       title: 'Autonomous Supply Chain & Demand Sensing',
       badge: 'RESILIENT OPERATIONS',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/sap_business_ai_demand_sensing_lead_time.png',
       manualPain: 'Demand planners rely on backward-looking sales reports and static Excel models, resulting in either catastrophic component stockouts or tens of millions in tied-up working capital across regional depots.',
       aiSolution: 'Machine learning algorithms ingest real-time POS velocity, external shipping weather events, and supplier lead-time variances, continuously updating dynamic safety stocks directly inside SAP IBP and S/4HANA.',
       kpis: ['32% Reduction in Safety Stock Buffer', '99.4% Fulfillment Reliability', 'Continuous Automated Rescheduling']
@@ -401,7 +450,7 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
     procurement: {
       title: 'Cognitive Procurement & Contract Intelligence',
       badge: 'STRATEGIC SPEND',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/sap_business_ai_generative_sourcing_rfq.png',
       manualPain: 'Procurement teams struggle to inspect thousands of line-item bids and supplier sustainability declarations, leaving companies exposed to single-source disruptions and unvetted supplier solvency risks.',
       aiSolution: 'Natural Language Processing scans hundreds of pages of RFP documentation, scoring suppliers against ESG compliance, historical delivery performance, and contractual liability clauses in minutes.',
       kpis: ['4x Faster RFP Bid Synthesis', '100% Contract Clause Compliance', 'Real-Time Vendor Financial Health Alerts']
@@ -409,7 +458,7 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
     hr: {
       title: 'Workforce Agility & Talent Intelligence',
       badge: 'EMPLOYEE EXPERIENCE',
-      image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/sap_business_ai_skills_ontology_mobility.png',
       manualPain: 'Enterprise talent managers lack visibility into true internal employee capabilities, resulting in expensive outside hiring while internal staff disengage due to stagnant career progression pathways.',
       aiSolution: 'Ethical AI models in SAP SuccessFactors continuously map institutional employee skills, automatically surfacing internal project gigs, personalized mentorship opportunities, and targeted career paths.',
       kpis: ['65% Higher Internal Mobility', '3x Faster Project Staffing', 'Zero Unconscious Bias in Candidate Matching']
@@ -422,21 +471,29 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
     <div className="min-h-screen bg-slate-50 dark:bg-[#030712] text-slate-900 dark:text-slate-100 font-sans antialiased selection:bg-[#00A3E0] selection:text-white">
 
       {/* =========================================================================
-          HERO SECTION: Text Cleanly on the Side & Bright High-Visibility Enterprise AI Image
+          HERO SECTION: Full-Screen Bright Enterprise AI Operations Visual (Zero Box)
           ========================================================================= */}
-      <section className="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-10 overflow-hidden bg-gradient-to-b from-[#030914] via-[#051124] to-[#040D1A] text-white">
+      <section className="relative w-full min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-0 overflow-hidden bg-slate-950 text-white border-b border-white/10">
         
-        {/* Soft Ambient Glows in Background */}
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#00A3E0]/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-blue-600/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+        {/* Full-Screen Edge-to-Edge Hero Image Background (Bright & High-Clarity Enterprise AI Operations) */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/sap_business_ai_hero_bright.jpg"
+            alt="Modern SAP Business AI Enterprise Operations Center"
+            className="w-full h-full object-cover object-center lg:object-[78%_center] opacity-100 brightness-110 contrast-105 transition-all duration-700"
+          />
+          {/* Asymmetric Scrim: Confined strictly to the left behind text, leaving the central/right operations center and neural screens 100% bright, pure, and unobstructed */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#030914]/95 via-[#030914]/85 to-transparent lg:w-[58%] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030914]/60 via-transparent to-[#030914]/40 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
+        </div>
 
-        {/* Hero Content: Text on the Side (Left) & Bright Visible Image on the Right */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto w-full py-6">
+        {/* Hero Content: Left Column for Text, Right Column Open for Full-Screen Operations Visual */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto w-full py-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
-            {/* Left Column: Text Cleanly on the Side (6 cols) */}
-            <div className="lg:col-span-6 space-y-6">
+            {/* Left Column: Heading, Proposition, Chips & Action Buttons (7 cols) */}
+            <div className="lg:col-span-7 space-y-6">
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-[#00A3E0]/60 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-md backdrop-blur-md">
                 <Sparkles className="w-4 h-4 text-[#00A3E0] animate-pulse" />
@@ -450,23 +507,23 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
                 Generic external AI chatbots don't understand your universal ledger, supply chain bills of material, or customer hierarchies. <strong className="text-white font-semibold">SAP Business AI</strong> weaves native machine intelligence directly into your core business processes—governed by strict tenant privacy and clean core architecture.
               </p>
 
               {/* Telemetry Chips */}
               <div className="grid grid-cols-3 gap-3 pt-1">
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md shadow-sm">
+                <div className="p-3 rounded-xl bg-[#050D1C]/80 border border-white/10 backdrop-blur-md shadow-sm">
                   <div className="text-xs font-mono text-[#00A3E0] font-bold">COPILOT</div>
                   <div className="text-sm font-bold text-white mt-0.5">Joule AI</div>
                   <div className="text-[11px] text-slate-400">Contextual Assistant</div>
                 </div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md shadow-sm">
+                <div className="p-3 rounded-xl bg-[#050D1C]/80 border border-white/10 backdrop-blur-md shadow-sm">
                   <div className="text-xs font-mono text-emerald-400 font-bold">PRIVACY</div>
                   <div className="text-sm font-bold text-white mt-0.5">Zero Training</div>
                   <div className="text-[11px] text-slate-400">Tenant-Bound Security</div>
                 </div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md shadow-sm">
+                <div className="p-3 rounded-xl bg-[#050D1C]/80 border border-white/10 backdrop-blur-md shadow-sm">
                   <div className="text-xs font-mono text-cyan-300 font-bold">CLEAN CORE</div>
                   <div className="text-sm font-bold text-white mt-0.5">Direct BTP</div>
                   <div className="text-[11px] text-slate-400">Universal Ledger Aware</div>
@@ -477,47 +534,13 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <button
                   onClick={() => onOpenContact('SAP Business AI Advisory')}
-                  className="px-6 py-3.5 rounded-xl font-bold text-sm bg-[#00A3E0] text-white hover:bg-[#008cc0] shadow-xl shadow-[#00A3E0]/30 transition-all flex items-center gap-2 group"
+                  className="px-6 py-3.5 rounded-xl font-bold text-sm bg-[#00A3E0] hover:bg-[#008cc0] text-white shadow-xl shadow-[#00A3E0]/30 transition-all flex items-center gap-2 group cursor-pointer"
                 >
                   <span>Request Live Architecture Demo</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <a
-                  href="#joule-simulator"
-                  className="px-5 py-3.5 rounded-xl font-semibold text-sm text-slate-300 hover:text-white border border-white/20 hover:border-white/40 transition-all flex items-center gap-2 bg-white/5"
-                >
-                  <Bot className="w-4 h-4 text-cyan-400" />
-                  <span>Test Joule Simulator &darr;</span>
-                </a>
               </div>
 
-            </div>
-
-            {/* Right Column: High-Visibility Bright Enterprise AI Operations Visual (6 cols) */}
-            <div className="lg:col-span-6">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-[#00A3E0]/50 shadow-2xl bg-[#08152B] group">
-                <img
-                  src="/images/sap_business_ai_hero_bright.jpg"
-                  alt="Modern SAP Business AI Enterprise Operations Center"
-                  className="w-full h-[380px] sm:h-[460px] lg:h-[500px] object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
-                />
-                
-                {/* Floating Top Telemetry Badge */}
-                <div className="absolute top-4 left-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#050D1C]/90 border border-[#00A3E0]/60 backdrop-blur-md shadow-lg text-xs font-mono text-cyan-300">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>LIVE ENTERPRISE AI OPERATIONS</span>
-                  </div>
-                </div>
-
-                {/* Floating Bottom Telemetry Badge */}
-                <div className="absolute bottom-4 right-4">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#050D1C]/90 border border-white/25 backdrop-blur-md shadow-lg text-xs font-semibold text-white">
-                    <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
-                    <span>Global Analytics &bull; 99.4% Match</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>
@@ -731,11 +754,13 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
           <div className="flex justify-center gap-2 mb-10 overflow-x-auto pb-2">
             {[
               { key: 'all', label: 'All Scenarios', icon: <Boxes className="w-4 h-4" /> },
-              { key: 'finance', label: 'Finance & Cash', icon: <CreditCard className="w-4 h-4" /> },
+              { key: 'finance', label: 'Finance & Treasury', icon: <CreditCard className="w-4 h-4" /> },
               { key: 'supply-chain', label: 'Supply Chain & IBP', icon: <ShoppingBag className="w-4 h-4" /> },
               { key: 'procurement', label: 'Procurement (Ariba)', icon: <Layers className="w-4 h-4" /> },
               { key: 'hr', label: 'SuccessFactors HR', icon: <Users2 className="w-4 h-4" /> },
-              { key: 'cx', label: 'Customer Experience', icon: <BarChart3 className="w-4 h-4" /> }
+              { key: 'cx', label: 'Customer Experience', icon: <BarChart3 className="w-4 h-4" /> },
+              { key: 'clean-core', label: 'Clean Core ERP', icon: <FileCode className="w-4 h-4" /> },
+              { key: 'governance', label: 'Trust & Governance', icon: <ShieldCheck className="w-4 h-4" /> }
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -760,21 +785,21 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
                 className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0B1528] hover:border-[#00A3E0]/50 transition-all flex flex-col justify-between group shadow-sm hover:shadow-xl overflow-hidden"
               >
                 {/* Visual Header Image */}
-                <div className="relative h-44 w-full overflow-hidden bg-slate-800">
+                <div className="relative h-48 w-full overflow-hidden bg-slate-800">
                   <img
                     src={sc.image}
                     alt={sc.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.85] contrast-[1.05]"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-105 contrast-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/40 to-transparent" />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/20 to-transparent" />
+
                   <div className="absolute top-3 left-3">
                     <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-[#00A3E0]/95 text-white backdrop-blur-md shadow-md">
                       {sc.badge}
                     </span>
                   </div>
                   
-                  <div className="absolute top-3 right-3">
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5">
                     <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-black/70 text-cyan-300 border border-white/20 backdrop-blur-md">
                       {sc.sapModule}
                     </span>
@@ -860,13 +885,14 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
           </div>
 
           {/* Visual Showcase Banner for Active Department */}
-          <div className="mb-8 rounded-2xl overflow-hidden relative border border-slate-200 dark:border-white/10 h-52 sm:h-64 shadow-xl">
+          <div className="mb-8 rounded-2xl overflow-hidden relative border border-slate-200 dark:border-white/10 h-56 sm:h-72 shadow-xl group/lob">
             <img
               src={currentLob.image}
               alt={currentLob.title}
-              className="w-full h-full object-cover filter brightness-[0.7] contrast-[1.1]"
+              className="w-full h-full object-cover filter brightness-105 contrast-105 group-hover/lob:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#030914]/95 via-[#030914]/75 to-transparent flex items-center p-6 sm:p-10">
+            {/* Scrim strictly behind text on the left, keeping center and right bright and clear */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#030914]/90 via-[#030914]/60 to-transparent flex items-center p-6 sm:p-10 pointer-events-none">
               <div className="max-w-xl space-y-2">
                 <span className="text-xs font-mono font-bold text-[#00A3E0] uppercase tracking-wider bg-blue-500/20 px-3 py-1 rounded-full border border-[#00A3E0]/40 inline-block backdrop-blur-md">
                   {currentLob.badge} &bull; PROCESS RE-ENGINEERING
@@ -975,13 +1001,14 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
           </div>
 
           {/* Visual Security Banner */}
-          <div className="mb-10 rounded-2xl overflow-hidden relative border border-slate-200 dark:border-white/10 h-56 sm:h-64 shadow-xl">
+          <div className="mb-10 rounded-2xl overflow-hidden relative border border-slate-200 dark:border-white/10 h-64 sm:h-80 shadow-xl group/sec">
             <img
-              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=80"
-              alt="SAP Sovereign Cloud Security Infrastructure"
-              className="w-full h-full object-cover filter brightness-[0.65] contrast-[1.1]"
+              src="/images/sap_business_ai_zero_data_retention_eu_ai_act.png"
+              alt="Zero Data Retention & EU AI Act Guardrails"
+              className="w-full h-full object-cover object-[center_30%] sm:object-cover filter brightness-105 contrast-105 group-hover/sec:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#030914]/95 via-[#030914]/80 to-transparent flex items-center p-6 sm:p-10">
+            {/* Scrim confined strictly to left side so robot judge and EU flag on right remain 100% bright, pure, and vibrant */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#030914]/90 via-[#030914]/55 to-transparent flex items-center p-6 sm:p-10 pointer-events-none">
               <div className="max-w-xl space-y-2">
                 <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-500/40 inline-flex items-center gap-1.5 backdrop-blur-md">
                   <ShieldCheck className="w-3.5 h-3.5" />
@@ -1468,3 +1495,6 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
     </div>
   );
 };
+
+
+

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -259,116 +259,50 @@ export const GenerativeAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact 
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-black">
 
       {/* =========================================================================
-          HERO: Side-by-Side Layout (Text on Left, High-Visibility AI Visual on Right)
+          HERO: Ultra-Clean Full-Screen Enterprise GenAI Command Center
           ========================================================================= */}
-      <section className="relative pt-28 sm:pt-32 pb-16 lg:pb-24 overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0A1A3B] via-[#050C1B] to-[#02060F]">
-        
-        {/* Ambient Glow Effects */}
-        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-r from-blue-600/25 via-cyan-500/20 to-purple-600/20 rounded-full blur-[130px] pointer-events-none" />
+      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/generative_ai_hero.jpg"
+            alt="Knooviq Enterprise Generative AI Command Center"
+            className="w-full h-full object-cover object-right lg:object-[72%_center] brightness-105 contrast-105"
+          />
+        </div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950 via-slate-950/75 via-45% to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
-            {/* Left Column: Enterprise Text Content */}
-            <div className="lg:col-span-6 space-y-6 text-left">
-              
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+          <div className="max-w-3xl space-y-4">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                 <span>KNOOVIQ SOVEREIGN GENERATIVE AI ARCHITECTURE</span>
               </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
-                Grounded Enterprise GenAI <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300">
-                  With Sovereign Data Privacy
-                </span>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                Grounded Enterprise <br />
+                <span className="text-cyan-400">GenAI With Sovereign Privacy</span>
               </h1>
-
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
                 Harness the world's most capable foundation models anchored directly to your internal enterprise documents, SAP ERP databases, and proprietary business knowledge with guaranteed zero data leakage.
               </p>
+            </motion.div>
 
-              {/* Enterprise Feature Highlights */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <span>Real-Time Token Inference</span>
-                </div>
-                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-200">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Zero Public Model Training</span>
-                </div>
-                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-200">
-                  <Database className="w-4 h-4 text-indigo-400 shrink-0" />
-                  <span>SAP HANA Vector Grounding</span>
-                </div>
-                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-200">
-                  <Award className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Verified Citation Provenance</span>
-                </div>
+            {/* Enterprise Trust Indicators (Ultra-Clean, Matching Design Reference) */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Real-Time Token Inference</span>
               </div>
-
-              {/* Enterprise Trust Indicators (No Buttons) */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <span>Zero Hallucination Tolerance</span>
-                </div>
-                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Verified Citation Provenance</span>
-                </div>
-                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
-                  <Database className="w-4 h-4 text-sky-400 shrink-0" />
-                  <span>Air-Gapped Sovereign Hosting</span>
-                </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Zero Public Model Training</span>
               </div>
-
-            </div>
-
-            {/* Right Column: High-Visibility Bright Enterprise AI Visual */}
-            <div className="lg:col-span-6 relative">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-2xl shadow-cyan-500/20 group">
-                <img
-                  src="/images/generative_ai_hero.jpg"
-                  alt="Knooviq Enterprise Generative AI Command Center"
-                  className="w-full h-auto object-cover rounded-2xl transform transition-transform duration-700 group-hover:scale-105"
-                />
-
-                {/* Subtle Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-
-                {/* Top Badge Overlay */}
-                <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-cyan-500/40 text-xs font-semibold text-cyan-300">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Live Grounded AI Gateway</span>
-                </div>
-
-                {/* Bottom Stats Card Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs">
-                  <div>
-                    <span className="text-[10px] font-mono text-slate-400 uppercase font-bold block">
-                      Enterprise Privacy Boundary
-                    </span>
-                    <span className="font-bold text-white text-sm">
-                      Zero External Model Training
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[10px] font-mono text-cyan-400 uppercase font-bold block">
-                      Vector Indexing
-                    </span>
-                    <span className="font-mono font-bold text-emerald-400 text-sm">
-                      Sub-15ms Latency
-                    </span>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
+                <Database className="w-4 h-4 text-sky-400 shrink-0" />
+                <span>SAP HANA Vector Grounding</span>
               </div>
-            </div>
-
+            </motion.div>
           </div>
-
         </div>
       </section>
 
@@ -619,9 +553,22 @@ export const GenerativeAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact 
                 <h3 className="text-2xl font-black text-white mb-3">
                   Legacy ABAP &rarr; Clean Core RAP Transformation
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed font-normal mb-6">
+                <p className="text-sm text-slate-300 leading-relaxed font-normal mb-4">
                   Automatically parse custom legacy ECC 6.0 routines, direct SQL queries, and obsolete dynpros. Generates certified ABAP Cloud RAP (RESTful Application Programming) business objects with automated unit tests and CDS view contracts.
                 </p>
+
+                {/* Visual Clean Core Automation Preview */}
+                <div className="mb-6 rounded-xl overflow-hidden relative border border-cyan-500/30 h-44 sm:h-52 group/card shadow-lg">
+                  <img
+                    src="/images/sap_genai_erp_modernization_clean_core.png"
+                    alt="ERP Modernization & Clean Core Assessment"
+                    className="w-full h-full object-cover filter brightness-105 contrast-105 group-hover/card:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#061021]/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-cyan-400/40 text-[10px] font-mono font-bold text-cyan-300">
+                    RPA CLEAN CORE AUTOMATION
+                  </div>
+                </div>
               </div>
 
               {/* Clean Business Scorecard (No Raw Code) */}
@@ -782,14 +729,24 @@ export const GenerativeAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact 
               {/* Left Column: Visual Document Intelligence Image Card */}
               <div className="lg:col-span-5 relative rounded-2xl overflow-hidden border-2 border-cyan-500/30 shadow-xl group min-h-[260px] sm:min-h-[300px] lg:min-h-full">
                 <img
-                  src="/images/generative_ai_contract_analysis.jpg"
-                  alt="Enterprise Document Intelligence"
-                  className="absolute inset-0 w-full h-full object-cover rounded-xl transform transition-transform duration-500 group-hover:scale-105"
+                  src={
+                    activeDocTab === 'code' 
+                      ? '/images/sap_genai_erp_modernization_clean_core.png' 
+                      : activeDocTab === 'esg'
+                      ? '/images/sap_genai_supply_chain_due_diligence_lksg.png'
+                      : '/images/generative_ai_contract_analysis.jpg'
+                  }
+                  alt={currentDoc.title}
+                  className="absolute inset-0 w-full h-full object-cover rounded-xl transform transition-transform duration-500 group-hover:scale-105 filter brightness-105 contrast-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
                 
                 <div className="absolute top-3 left-3 px-3 py-1 rounded-md bg-black/70 backdrop-blur-md border border-cyan-400/40 text-[11px] font-mono font-bold text-cyan-300 z-10">
-                  Neural OCR & Citation Verified
+                  {activeDocTab === 'code' 
+                    ? 'Clean Core RPA Automated' 
+                    : activeDocTab === 'esg'
+                    ? 'LkSG Supply Chain Verified'
+                    : 'Neural OCR & Citation Verified'}
                 </div>
 
                 <div className="absolute bottom-3 left-3 right-3 z-10">
@@ -967,3 +924,4 @@ export const GenerativeAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact 
     </div>
   );
 };
+

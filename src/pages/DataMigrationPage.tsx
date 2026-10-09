@@ -82,103 +82,71 @@ export const DataMigrationPage: React.FC<DataMigrationPageProps> = ({ onOpenCont
     <div className="min-h-screen bg-white dark:bg-[#050B17] text-slate-900 dark:text-white transition-colors duration-300">
       
       {/* =========================================================================
-          SECTION 1: HERO — DATA MIGRATION
+          SECTION 1: HERO — DATA MIGRATION (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-slate-900 via-[#0B1528] to-[#050B17] text-white">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-tr from-cyan-500/20 via-blue-600/15 to-indigo-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-slate-950 text-white">
+        
+        {/* Full-Bleed Background Visual */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/migration_data_clean.jpg"
+            alt="Secure enterprise data flowing seamlessly from legacy systems into a modern SAP environment"
+            className="w-full h-full object-cover object-right lg:object-[80%_center] brightness-105 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-50% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
-                <Database className="w-3.5 h-3.5 text-cyan-400" />
-                <span>SECURE DATA TRANSFER • 100% INTEGRITY GUARANTEE</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
-                SAP S/4HANA <br />
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-300 bg-clip-text text-transparent">
-                  Data Migration
-                </span>
-              </h1>
-
-              <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed max-w-2xl">
-                Secure enterprise data flowing seamlessly from legacy systems into a modern SAP environment. Transform, cleanse, and reconcile master and transactional data with <strong>100% data validation</strong> and <strong>zero reconciliation variance</strong>.
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                {[
-                  { label: 'Data Integrity', val: '100% Validated', icon: ShieldCheck, color: 'text-emerald-400' },
-                  { label: 'First-Pass Rate', val: '99.8% Success', icon: CheckCircle2, color: 'text-cyan-400' },
-                  { label: 'Ingestion Engine', val: 'Cockpit & ETL', icon: Zap, color: 'text-blue-400' },
-                  { label: 'Reconciliation', val: 'Zero Variance', icon: BarChart3, color: 'text-indigo-400' }
-                ].map((stat, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm space-y-0.5">
-                    <stat.icon className={`w-4 h-4 ${stat.color} mb-1`} />
-                    <div className="text-sm font-black text-white">{stat.val}</div>
-                    <div className="text-[11px] text-slate-400 uppercase font-mono">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 pt-4">
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('SAP Data Migration Strategy & Cockpit Assessment') : null}
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-black text-sm tracking-wide transition-all shadow-xl shadow-cyan-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
-                >
-                  <span>Request Data Migration Audit</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <a
-                  href="#overview"
-                  className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <span>Explore Migration Cockpit</span>
-                </a>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl space-y-5 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+              <Database className="w-3.5 h-3.5 text-cyan-400" />
+              <span>SECURE DATA TRANSFER &bull; 100% INTEGRITY GUARANTEE</span>
             </div>
 
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl bg-[#060D1A] group">
-                <div className="px-5 py-3.5 bg-[#0A1628] border-b border-slate-800 flex items-center justify-between text-xs font-mono">
-                  <div className="flex items-center gap-2 text-cyan-400 font-bold">
-                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-                    <span>DATA MIGRATION COCKPIT</span>
-                  </div>
-                  <span className="text-emerald-400 font-mono text-[11px]">Active ETL Staging</span>
-                </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
+              SAP S/4HANA <br />
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-300 bg-clip-text text-transparent">
+                Data Migration
+              </span>
+            </h1>
 
-                <div className="relative p-3 bg-[#060D1A]">
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 flex items-center justify-center">
-                    <img
-                      src="/images/migration_data_clean.jpg"
-                      alt="Secure enterprise data flowing from legacy systems into a modern SAP environment"
-                      className="w-full h-[340px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+            <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed max-w-2xl">
+              Secure enterprise data flowing seamlessly from legacy systems into a modern SAP environment. Transform, cleanse, and reconcile master and transactional data with <strong>100% data validation</strong> and <strong>zero reconciliation variance</strong>.
+            </p>
 
-                    <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-white space-y-1">
-                      <div className="text-xs font-bold text-cyan-300 flex items-center justify-between">
-                        <span>Automated Staging & Validation</span>
-                        <span className="text-emerald-400 font-mono">100% Validated</span>
-                      </div>
-                      <p className="text-[11px] text-slate-300 leading-relaxed">
-                        Pre-cleansing, deduplicating, and mapping legacy data structures directly into SAP S/4HANA staging tables.
-                      </p>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {[
+                { label: 'Data Integrity', val: '100% Validated', icon: ShieldCheck, color: 'text-emerald-400' },
+                { label: 'First-Pass Rate', val: '99.8% Success', icon: CheckCircle2, color: 'text-cyan-400' },
+                { label: 'Ingestion Engine', val: 'Cockpit & ETL', icon: Zap, color: 'text-blue-400' },
+                { label: 'Reconciliation', val: 'Zero Variance', icon: BarChart3, color: 'text-indigo-400' }
+              ].map((stat, i) => (
+                <div key={i} className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm space-y-0.5">
+                  <stat.icon className={`w-4 h-4 ${stat.color} mb-1`} />
+                  <div className="text-sm font-black text-white">{stat.val}</div>
+                  <div className="text-[11px] text-slate-400 uppercase font-mono">{stat.label}</div>
                 </div>
-
-                <div className="px-5 py-3 bg-[#081220] border-t border-slate-800/80 flex items-center justify-between text-xs">
-                  <span className="text-slate-400 font-mono">Legacy ECC / Non-SAP Data</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-                  <span className="text-cyan-400 font-mono font-bold">SAP S/4HANA Staging Tables</span>
-                </div>
-              </div>
+              ))}
             </div>
 
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <button
+                onClick={() => onOpenContact ? onOpenContact('SAP Data Migration Strategy & Cockpit Assessment') : null}
+                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-black text-sm tracking-wide transition-all shadow-xl shadow-cyan-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Request Data Migration Audit</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href="#overview"
+                className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer backdrop-blur-sm"
+              >
+                <span>Explore Migration Cockpit</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

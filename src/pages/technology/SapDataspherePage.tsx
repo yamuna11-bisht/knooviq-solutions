@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -23,7 +23,10 @@ import {
   HardDrive,
   FileCode,
   Sliders,
-  ChevronRight
+  ChevronRight,
+  Maximize2,
+  Sparkles,
+  X
 } from 'lucide-react';
 
 interface TechnologyPageProps {
@@ -92,30 +95,136 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-black">
 
       {/* =========================================================================
-          HERO: Business Data Fabric Topology & Multi-Source Federation Visualizer
+          SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content)
           ========================================================================= */}
-      <section className="relative pt-28 sm:pt-32 pb-20 overflow-hidden bg-gradient-to-b from-[#061224] via-[#040C1A] to-[#02060F]">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-slate-950 text-white">
         
-        {/* Glowing Network Mesh Overlay */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-cyan-600/15 via-[#00A3E0]/20 to-blue-600/15 rounded-full blur-[100px] pointer-events-none" />
+        {/* Full-Bleed Background Visual: Holographic Data Fabric & Zero-Copy Virtualization */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/sap_datasphere_boardroom_analytics.png"
+            alt="SAP Datasphere - Unify Enterprise Data Without Moving A Single Physical Byte"
+            className="w-full h-full object-cover object-right lg:object-[65%_center] brightness-110 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl space-y-5 text-left">
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="space-y-3"
+            >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-900/80 border border-cyan-400/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-200 shadow-sm">
+                <Database className="w-3.5 h-3.5 text-cyan-300" />
+                <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; SAP DATASPHERE</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+                Unify Enterprise Data Without <br />
+                <span className="text-cyan-300">Moving A Single Physical Byte</span>
+              </h1>
+
+              <p className="text-lg sm:text-xl font-semibold text-cyan-100 leading-snug">
+                Live Zero-Copy Virtualization. Real-Time Business Data Fabric.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4 max-w-2xl"
+            >
+              <p className="text-sm sm:text-base text-cyan-100 font-normal leading-relaxed">
+                Traditional ETL pipelines copy, flatten, and strip context from enterprise data. <strong className="text-white font-semibold">SAP Datasphere</strong> orchestrates a seamless Business Data Fabric—delivering live zero-copy virtualization with intact business semantics.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                  <span>Zero-Copy Virtualization</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                  <span>Intact Business Semantics</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                  <span>Multi-Cloud Federation</span>
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Enterprise Architectural Trust Ribbon */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mt-6 pt-5 border-t border-cyan-800/80 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+            >
+              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Database className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">DATA FABRIC</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Business Semantics</div>
+                <div className="text-xs text-cyan-200 mt-0.5">Zero Context Stripping</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Network className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">FEDERATION</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Zero-Copy Ingestion</div>
+                <div className="text-xs text-cyan-200 mt-0.5">Sub-Second Pushdown</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SECURITY</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Inherited RBAC</div>
+                <div className="text-xs text-cyan-200 mt-0.5">Native SAP S/4HANA ACLs</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Sparkles className="w-4 h-4 text-cyan-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">AI READY</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Vector Fabric</div>
+                <div className="text-xs text-cyan-200 mt-0.5">Clean Grounded Context</div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 2: LIVE FABRIC FEDERATION CONTROLLER & INGESTION TOPOLOGY
+          ========================================================================= */}
+      <section className="py-16 bg-[#040A17] border-b border-white/10 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
-              <Database className="w-3.5 h-3.5 text-cyan-400" />
-              <span>SAP DATASPHERE &bull; THE BUSINESS DATA FABRIC</span>
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
+              <Network className="w-3.5 h-3.5" />
+              <span>LIVE FEDERATION TOPOLOGY</span>
             </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-              Unify Enterprise Data Without <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300">
-                Moving A Single Physical Byte
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-              Traditional ETL pipelines copy, flatten, and strip context from enterprise data. <strong className="text-white font-semibold">SAP Datasphere</strong> orchestrates a seamless Business Data Fabric—delivering live zero-copy virtualization with intact business semantics.
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Interactive Multi-Source Federation Controller
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300">
+              Experience real-time zero-copy querying across hyperscaler data lakes, legacy on-prem systems, and modern SaaS ecosystems.
             </p>
           </div>
 

@@ -33,19 +33,19 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white">
 
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Cinematic Blue & White Silicon Hardware)
+          SECTION 1: HERO SECTION (Full-Screen Widescreen In-Memory Analytics)
           ========================================================================= */}
       <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-blue-950">
 
-        {/* Background Image with Deep Blue Scrim */}
+        {/* Full-Screen Hero Background Image with Crisp Contrast & Scrim */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80"
-            alt="SAP HANA Silicon Hardware"
-            className="w-full h-full object-cover object-center opacity-30"
+            src="/images/sap_hana_in_memory_analytics_hero.png"
+            alt="SAP HANA Silicon In-Memory Analytics Platform"
+            className="w-full h-full object-cover object-right lg:object-[72%_center] brightness-110 contrast-105 saturate-[1.05]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-transparent to-blue-950/50 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -97,6 +97,17 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
                 </span>
               </div>
             </motion.div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                onClick={() => onOpenContact('SAP HANA In-Memory Architecture Advisory')}
+                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 group cursor-pointer"
+              >
+                <span>Request In-Memory Assessment</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
 
             {/* Hardware Telemetry Ribbon */}
             <motion.div
@@ -170,8 +181,8 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md h-64">
                 <img
-                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80"
-                  alt="High Density Enterprise Server Memory Architecture"
+                  src="/images/sap_hana_columnar_in_memory_database.png"
+                  alt="Why Columnar In-Memory Defeats Traditional Disk Databases - SAP HANA Architecture"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -233,7 +244,7 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+                    src="/images/sap_hana_vector_engine.png"
                     alt="SAP HANA Vector Engine for GenAI"
                     className="w-full h-full object-cover"
                   />
@@ -265,7 +276,7 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80"
+                    src="/images/sap_hana_spatial_gis_engine.png"
                     alt="Spatial GIS Engine"
                     className="w-full h-full object-cover"
                   />
@@ -297,7 +308,7 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                    src="/images/sap_hana_property_graph_engine.png"
                     alt="Property Graph Engine"
                     className="w-full h-full object-cover"
                   />
@@ -329,7 +340,7 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                    src="/images/sap_hana_predictive_analysis_pal.png"
                     alt="Predictive Analysis Library PAL"
                     className="w-full h-full object-cover"
                   />
@@ -385,7 +396,7 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md h-64">
                 <img
-                  src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80"
+                  src="/images/sap_hana_memory_sizing_s4hana_workload.png"
                   alt="Enterprise Cloud Datacenter Compute Racks"
                   className="w-full h-full object-cover"
                 />
@@ -466,7 +477,7 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md h-60">
                 <img
-                  src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1000&q=80"
+                  src="/images/sap_hana_property_graph_engine.png"
                   alt="Operations Control & Analytics Center"
                   className="w-full h-full object-cover"
                 />
@@ -519,72 +530,51 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
               Zero-Data-Loss SAP HANA System Replication (HSR) Topology
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
-              Configure Active/Active read-enabled clustering, automatic sub-30-second failover with Pacemaker, and cross-region tertiary disaster recovery for 99.999% availability.
+              High Availability (HA) and Disaster Recovery (DR) models certified for sub-minute RTO and zero RPO enterprise mission-critical workloads.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            {/* Node 1: Primary Active */}
-            <div className="p-6 rounded-2xl bg-white border border-blue-200 shadow-sm space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <div className="flex items-center gap-2">
-                  <Server className="w-5 h-5 text-blue-600" />
-                  <span className="text-xs font-mono font-bold uppercase text-slate-900">Zone A: Primary DC</span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">
-                  ACTIVE (READ/WRITE)
-                </span>
+            <div className="rounded-2xl p-6 border border-blue-200 bg-blue-50/30 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-700 uppercase">MODE 1: SYNCHRONOUS</span>
+                <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">RPO = 0</span>
               </div>
-              <h3 className="text-base font-bold text-slate-900">Primary Production Engine</h3>
+              <h3 className="text-lg font-bold text-slate-900">Sync with Full Sync Safeguard</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Executes all write transactions, updates in-memory tables, and commits synchronously to the Redo Log.
+                Primary node transaction commits only after the secondary node confirms write into redo log. Guarantees zero transaction loss even during instantaneous power failure.
               </p>
-              <div className="space-y-1.5 text-xs text-slate-700 bg-blue-50/50 p-3 rounded-xl border border-blue-100 font-medium">
-                <div><strong>Replication:</strong> SyncMEM to Zone B</div>
-                <div><strong>RPO:</strong> 0 Seconds (Zero Data Loss)</div>
+              <div className="pt-2 border-t border-blue-100 text-[11px] font-mono text-slate-500">
+                Target: Same Datacenter / Low Latency Multi-AZ
               </div>
             </div>
 
-            {/* Node 2: Secondary Active/Active */}
-            <div className="p-6 rounded-2xl bg-white border border-blue-200 shadow-sm space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <div className="flex items-center gap-2">
-                  <Server className="w-5 h-5 text-blue-600" />
-                  <span className="text-xs font-mono font-bold uppercase text-slate-900">Zone B: Secondary DC</span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">
-                  HOT STANDBY (READ)
-                </span>
+            <div className="rounded-2xl p-6 border border-blue-200 bg-blue-50/30 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-700 uppercase">MODE 2: SYNC-MEM</span>
+                <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">Ultra-Low Latency</span>
               </div>
-              <h3 className="text-base font-bold text-slate-900">Active/Active Read Node</h3>
+              <h3 className="text-lg font-bold text-slate-900">Synchronous In-Memory Ack</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Tables preloaded into RAM. Serves offloaded read-heavy SAP Analytics Cloud queries during normal operations.
+                Primary commits as soon as secondary receives log buffer in physical RAM without waiting for disk flush. Near-zero impact on transactional application response times.
               </p>
-              <div className="space-y-1.5 text-xs text-slate-700 bg-blue-50/50 p-3 rounded-xl border border-blue-100 font-medium">
-                <div><strong>Failover SLA:</strong> &lt; 30 Seconds via Pacemaker</div>
-                <div><strong>Preload Status:</strong> 100% In-Memory Ready</div>
+              <div className="pt-2 border-t border-blue-100 text-[11px] font-mono text-slate-500">
+                Target: High-Throughput High-Concurrency OLTP
               </div>
             </div>
 
-            {/* Node 3: Tertiary Cross-Region DR */}
-            <div className="p-6 rounded-2xl bg-white border border-blue-200 shadow-sm space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <div className="flex items-center gap-2">
-                  <Server className="w-5 h-5 text-blue-600" />
-                  <span className="text-xs font-mono font-bold uppercase text-slate-900">Region 2: Disaster Recovery</span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">
-                  ASYNC REPLICATION
-                </span>
+            <div className="rounded-2xl p-6 border border-blue-200 bg-blue-50/30 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-700 uppercase">MODE 3: ASYNCHRONOUS</span>
+                <span className="text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">Geographic DR</span>
               </div>
-              <h3 className="text-base font-bold text-slate-900">Cross-Geographic Standby</h3>
+              <h3 className="text-lg font-bold text-slate-900">Cross-Region Tertiary Replica</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Replicates asynchronously across 500+ miles to protect against catastrophic regional outages or cloud zone failures.
+                Transmits redo log packets continuously across continental distances without stalling primary production operations. Provides full regional catastrophic isolation.
               </p>
-              <div className="space-y-1.5 text-xs text-slate-700 bg-blue-50/50 p-3 rounded-xl border border-blue-100 font-medium">
-                <div><strong>Replication Lag:</strong> &lt; 200 Milliseconds</div>
-                <div><strong>Cost Optimization:</strong> Dev/QA Dual Use Option</div>
+              <div className="pt-2 border-t border-blue-100 text-[11px] font-mono text-slate-500">
+                Target: Cross-Region Secondary Datacenter (&gt; 100km)
               </div>
             </div>
 
@@ -594,57 +584,46 @@ export const SapHanaPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =>
       </section>
 
       {/* =========================================================================
-          SECTION 7: EXECUTIVE IN-MEMORY MODERNIZATION ADVISORY CTA
+          SECTION 7: EXECUTIVE CTA SECTION (Enterprise Blue Theme)
           ========================================================================= */}
-      <section className="py-16 sm:py-20 bg-blue-950 relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900 border border-blue-700 text-xs font-mono font-bold uppercase tracking-wider text-blue-200">
-            <Sparkles className="w-3.5 h-3.5 text-blue-300" />
-            <span>KNOOVIQ TECHNOLOGY PRACTICE ADVISORY</span>
+      <section className="py-16 sm:py-20 bg-blue-950 text-white relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/80 border border-blue-500/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-300">
+            <Cpu className="w-3.5 h-3.5 text-blue-400" />
+            <span>BENCHMARK YOUR WORKLOADS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            Accelerate Your SAP HANA Cloud & In-Memory Roadmap
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+            Unlock Real-Time Enterprise Execution with SAP HANA
           </h2>
 
           <p className="text-sm sm:text-base text-blue-100 max-w-2xl mx-auto leading-relaxed">
-            Whether migrating from legacy databases, rightsizing Native Storage Extension (NSE) warm tiers, or implementing GenAI Vector search, our certified SAP HANA architects deliver verified sub-millisecond execution.
+            Eliminate batch jobs, accelerate financial close from days to minutes, and unlock high-dimensional vector search on your core ERP data.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
-              onClick={() => onOpenContact('SAP HANA Full Architecture Advisory')}
-              className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg transition-all flex items-center gap-2 group"
+              onClick={() => onOpenContact('SAP HANA In-Memory Sizing & Architecture Assessment')}
+              className="px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-xl shadow-blue-600/30 transition-all flex items-center gap-2 cursor-pointer"
             >
               <span>Schedule Architecture Advisory</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4" />
             </button>
 
             <Link
-              to="/technology/sap-fiori"
-              className="px-6 py-3.5 rounded-xl bg-white text-blue-950 font-semibold text-sm hover:bg-blue-50 transition-all border border-blue-200"
+              to="/technology/sap-btp"
+              className="px-6 py-3.5 rounded-xl bg-blue-900/60 hover:bg-blue-900 border border-blue-700/50 text-white font-semibold text-sm transition-all"
             >
-              Explore SAP Fiori UX Studio &rarr;
+              <span>Explore SAP BTP Platform</span>
             </Link>
           </div>
 
-          <div className="pt-8 border-t border-blue-800/80 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-            <div className="p-3 rounded-xl bg-blue-900/40 border border-blue-800">
-              <div className="text-xs font-mono font-bold text-blue-300">Zero Spindle Delay</div>
-              <div className="text-[11px] text-blue-200 mt-0.5">DRAM In-Memory Speed</div>
-            </div>
-            <div className="p-3 rounded-xl bg-blue-900/40 border border-blue-800">
-              <div className="text-xs font-mono font-bold text-blue-300">Zero Code Disruption</div>
-              <div className="text-[11px] text-blue-200 mt-0.5">Seamless S/4HANA Upgrade</div>
-            </div>
-            <div className="p-3 rounded-xl bg-blue-900/40 border border-blue-800">
-              <div className="text-xs font-mono font-bold text-blue-300">Multi-Model Unified</div>
-              <div className="text-[11px] text-blue-200 mt-0.5">Vector + Spatial + Graph</div>
-            </div>
-            <div className="p-3 rounded-xl bg-blue-900/40 border border-blue-800">
-              <div className="text-xs font-mono font-bold text-blue-300">99.999% Availability</div>
-              <div className="text-[11px] text-blue-200 mt-0.5">HSR Zero-Data-Loss Failover</div>
-            </div>
+          <div className="pt-8 border-t border-blue-900/60 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono text-blue-300">
+            <div>&bull; Certified Sizing Audits</div>
+            <div>&bull; Multi-Model Pushdown</div>
+            <div>&bull; Zero-Downtime HSR Failover</div>
+            <div>&bull; Cloud &amp; On-Premise</div>
           </div>
 
         </div>

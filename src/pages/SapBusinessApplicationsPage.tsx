@@ -169,7 +169,7 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         tag: 'TOUCHLESS DATA CONSISTENCY',
         iconBg: 'bg-sky-50 dark:bg-sky-950/60',
         iconColor: 'text-sky-500',
-        image: '/images/sap_app_s4hana_3d.jpg'
+        image: '/images/universal_journal_architecture.png'
       },
       {
         title: 'Embedded Machine Reasoning',
@@ -178,7 +178,7 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         tag: 'CONTINUOUS INTELLIGENCE',
         iconBg: 'bg-cyan-50 dark:bg-cyan-950/60',
         iconColor: 'text-[#00A3E0]',
-        image: '/images/sap_cloud_erp_architecture.png'
+        image: '/images/embedded_machine_reasoning.png'
       },
       {
         title: 'Clean Core Extensibility',
@@ -187,7 +187,7 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         tag: 'DECOUPLED AGILITY',
         iconBg: 'bg-emerald-50 dark:bg-emerald-950/60',
         iconColor: 'text-emerald-500',
-        image: '/images/sap_app_s4hana_3d.jpg'
+        image: '/images/clean_core_extensibility.jpg'
       },
       {
         title: 'Hybrid Cloud Orchestration',
@@ -196,7 +196,7 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         tag: 'MAXIMUM RESILIENCE',
         iconBg: 'bg-indigo-50 dark:bg-indigo-950/60',
         iconColor: 'text-indigo-500',
-        image: '/images/rise_sap_architecture.png'
+        image: '/images/hybrid_cloud_orchestration.jpg'
       }
     ],
 
@@ -954,7 +954,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Localized compliance across hundreds of countries', 'Intuitive self-service employee & manager portals', 'Automated position management and org modeling'],
         tag: 'GLOBAL SYSTEM OF RECORD',
         iconBg: 'bg-emerald-50 dark:bg-emerald-950/60',
-        iconColor: 'text-emerald-500'
+        iconColor: 'text-emerald-500',
+        image: '/images/sap_app_humancapital_3d.jpg'
       },
       {
         title: 'Dynamic Talent & Skills Intelligence',
@@ -962,7 +963,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Automated talent gap identification', 'Internal opportunity marketplace matching', 'Continuous performance dialogue and goal tracking'],
         tag: 'SKILLS-FIRST CULTURE',
         iconBg: 'bg-sky-50 dark:bg-sky-950/60',
-        iconColor: 'text-sky-500'
+        iconColor: 'text-sky-500',
+        image: '/images/sap_business_ai_skills_ontology_mobility.png'
       },
       {
         title: 'Global Employee Payroll Engine',
@@ -970,7 +972,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Automated gross-to-net calculation engine', 'Continuous pre-payroll audit and discrepancy checks', 'Seamless integration with general ledger accounting'],
         tag: 'TOUCHLESS PAYROLL',
         iconBg: 'bg-cyan-50 dark:bg-cyan-950/60',
-        iconColor: 'text-[#00A3E0]'
+        iconColor: 'text-[#00A3E0]',
+        image: '/images/sap_app_humancapital_3d.jpg'
       },
       {
         title: 'Continuous Employee Listening',
@@ -978,7 +981,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Real-time team sentiment telemetry', 'Automated manager action recommendations', 'Attrition risk identification and intervention guidance'],
         tag: 'ACTIONABLE SENTIMENT',
         iconBg: 'bg-purple-50 dark:bg-purple-950/60',
-        iconColor: 'text-purple-500'
+        iconColor: 'text-purple-500',
+        image: '/images/sap_business_ai_skills_ontology_mobility.png'
       }
     ],
 
@@ -1212,7 +1216,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Headless architecture with modern Spartacus storefronts', 'Complex B2B multi-tiered price books and punchout catalogs', 'Real-time available-to-promise inventory confirmation'],
         tag: 'COMPOSABLE COMMERCE',
         iconBg: 'bg-amber-50 dark:bg-amber-950/60',
-        iconColor: 'text-amber-500'
+        iconColor: 'text-amber-500',
+        image: '/images/sap_app_cx_3d.jpg'
       },
       {
         title: 'SAP Customer Data Platform (CDP)',
@@ -1220,7 +1225,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Real-time cross-channel identity resolution', 'Consent-first privacy governance conforming to GDPR and CCPA', 'Dynamic behavioral segmentation and affinity scoring'],
         tag: 'VERIFIED CUSTOMER 360',
         iconBg: 'bg-sky-50 dark:bg-sky-950/60',
-        iconColor: 'text-sky-500'
+        iconColor: 'text-sky-500',
+        image: '/images/sap_business_ai_predictive_sales_win_probability.png'
       },
       {
         title: 'Intelligent Service Cloud',
@@ -1228,7 +1234,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Unified agent workspace spanning voice, chat, and email', 'AI-assisted case summarization and solution recommendations', 'Direct integration with ERP asset warranties and billing'],
         tag: 'TOUCHLESS RESOLUTION',
         iconBg: 'bg-cyan-50 dark:bg-cyan-950/60',
-        iconColor: 'text-[#00A3E0]'
+        iconColor: 'text-[#00A3E0]',
+        image: '/images/sap_app_cx_3d.jpg'
       },
       {
         title: 'Omnichannel Marketing Automation',
@@ -1236,7 +1243,8 @@ const BUSINESS_APPS_DATA: Record<BusinessAppKey, BusinessAppContent> = {
         features: ['Event-driven behavioral trigger journeys', 'AI-optimized delivery timing and channel selection', 'Closed-loop attribution connecting marketing to ERP orders'],
         tag: 'PRECISION ENGAGEMENT',
         iconBg: 'bg-rose-50 dark:bg-rose-950/60',
-        iconColor: 'text-rose-500'
+        iconColor: 'text-rose-500',
+        image: '/images/sap_business_ai_predictive_sales_win_probability.png'
       }
     ],
 

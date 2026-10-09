@@ -523,6 +523,24 @@ export const SapCustomerExperienceSolutionView: React.FC<SapCustomerExperienceSo
             })}
           </div>
 
+          {/* Predictive Customer Intelligence & Commerce Visual Banner */}
+          <div className="rounded-2xl overflow-hidden relative border border-amber-500/30 shadow-xl group h-56 sm:h-72 lg:h-80">
+            <img
+              src="/images/sap_business_ai_predictive_sales_win_probability.png"
+              alt="Predictive Customer Intelligence & Omnichannel Sales Acceleration"
+              className="w-full h-full object-cover object-center filter brightness-105 contrast-105 group-hover:scale-102 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#060D1A]/90 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-amber-400/40 text-xs font-mono font-bold text-amber-300">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>PREDICTIVE SALES INTELLIGENCE • REAL-TIME CUSTOMER 360</span>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-amber-200 bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10">
+              <span>Predictive Sales Cloud // Win Probability &amp; Dynamic Next-Best Action</span>
+              <span className="text-emerald-400 font-bold">Live AI Guidance</span>
+            </div>
+          </div>
+
           {/* Stream Console Box */}
           <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#071326] border border-slate-200 dark:border-white/10 shadow-sm space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-white/5">

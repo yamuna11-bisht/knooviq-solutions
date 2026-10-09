@@ -264,7 +264,7 @@ export const SapSupplyChainSolutionView: React.FC<SapSupplyChainSolutionViewProp
           title="Click to view full screen 3D visual"
         >
           <img 
-            src="/images/sap_app_supplychain_3d.jpg" 
+            src="/images/sap_app_supplychain_3d.png" 
             alt="SAP Autonomous Digital Supply Chain Control Tower" 
             className="w-full h-full object-cover object-center lg:object-[66%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102"
           />
@@ -407,7 +407,7 @@ export const SapSupplyChainSolutionView: React.FC<SapSupplyChainSolutionViewProp
             onClick={(e) => e.stopPropagation()}
           >
             <img 
-              src="/images/sap_app_supplychain_3d.jpg" 
+              src="/images/sap_app_supplychain_3d.png" 
               alt="SAP Autonomous Digital Supply Chain Control Tower" 
               className="max-w-full max-h-[90vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
             />
@@ -563,6 +563,24 @@ export const SapSupplyChainSolutionView: React.FC<SapSupplyChainSolutionViewProp
                 </button>
               );
             })}
+          </div>
+
+          {/* Autonomous Logistics Mesh Visual Banner */}
+          <div className="rounded-2xl overflow-hidden relative border border-cyan-500/30 shadow-xl group h-56 sm:h-72 lg:h-80">
+            <img
+              src="/images/autonomous_cross_dock_logistics_swarm.png"
+              alt="Autonomous Cross-Dock Logistics Swarm & Disruption Mitigation"
+              className="w-full h-full object-cover object-center filter brightness-105 contrast-105 group-hover:scale-102 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#061224]/90 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-cyan-400/40 text-xs font-mono font-bold text-cyan-300">
+              <Compass className="w-3.5 h-3.5 text-cyan-400" />
+              <span>AUTONOMOUS LOGISTICS SWARM • REAL-TIME REROUTING</span>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-cyan-200 bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10">
+              <span>Dynamic Cross-Dock Swarm // Multi-Echelon Buffer Realignment</span>
+              <span className="text-emerald-400 font-bold">Autonomous Reroute Active</span>
+            </div>
           </div>
 
           {/* Disruption Response Console */}

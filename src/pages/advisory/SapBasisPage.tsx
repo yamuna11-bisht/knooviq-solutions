@@ -309,92 +309,72 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
     <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-500 selection:text-white">
 
       {/* =========================================================================
-          HERO SECTION: SAP BASIS ADMINISTRATION (CLEAN WHITE FORMAT)
+          SECTION 1: HERO — SAP BASIS ADMINISTRATION (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200/80">
-        
-        {/* Subtle Background Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, #0F172A 1px, transparent 1px), linear-gradient(to bottom, #0F172A 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-slate-950 text-white">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+        {/* Full-Bleed Background Visual */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/basis/sap-basis-hero.jpg"
+            alt="Enterprise SAP Basis Infrastructure and Cloud Datacenter Management"
+            className="w-full h-full object-cover object-right lg:object-[82%_center] brightness-105 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-50% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+
           {/* Breadcrumb Navigation */}
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-500 font-medium">
-              <li><Link to="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
-              <li className="text-slate-400">/</li>
-              <li><Link to="/advisory-managed-services" className="hover:text-blue-600 transition-colors">Advisory &amp; Managed Services</Link></li>
-              <li className="text-slate-400">/</li>
-              <li className="text-blue-600 font-semibold" aria-current="page">SAP Basis</li>
+            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-400 font-medium">
+              <li><Link to="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
+              <li className="text-slate-600">/</li>
+              <li><Link to="/advisory-managed-services" className="hover:text-blue-400 transition-colors">Advisory &amp; Managed Services</Link></li>
+              <li className="text-slate-600">/</li>
+              <li className="text-blue-400 font-semibold" aria-current="page">SAP Basis</li>
             </ol>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Content Header */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold tracking-wider uppercase">
-                <Server className="w-3.5 h-3.5 text-blue-600" />
-                <span>INFRASTRUCTURE &bull; KERNEL &bull; TECHNICAL OPERATIONS</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                SAP Basis Administration
-              </h1>
-
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 leading-snug">
-                A Reliable Technical Foundation for Your Global SAP Environment
-              </p>
-
-              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-                Maintain continuous technical health, high availability, zero-trust security, and peak performance across your SAP landscape through disciplined Basis administration, HANA operations, transport governance, and proactive tuning.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact && onOpenContact('SAP Basis Administration')}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>Request Basis Consultation</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <a
-                  href="#sysadmin-cadence"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-base transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Explore Operational Cadence</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </a>
-              </div>
+          <div className="max-w-3xl space-y-5 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+              <Server className="w-3.5 h-3.5 text-blue-400" />
+              <span>INFRASTRUCTURE &bull; KERNEL &bull; TECHNICAL OPERATIONS</span>
             </div>
 
-            {/* Right Hero Visual: IMAGE 1 (Kept as user requested: "hero section ko chor ke") */}
-            <div className="lg:col-span-6">
-              <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative group bg-white">
-                <img
-                  src="/images/basis/sap-basis-hero.jpg"
-                  alt="Enterprise SAP Basis Infrastructure and Cloud Datacenter Management"
-                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-between text-slate-900">
-                  <div>
-                    <span className="text-xs font-mono font-bold text-blue-600 block">CERTIFIED BASIS ENGINEERING</span>
-                    <span className="text-sm font-bold text-slate-900">SAP S/4HANA &amp; Suite Infrastructure</span>
-                  </div>
-                  <span className="text-xs font-mono font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                    99.99% Availability
-                  </span>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+              SAP Basis <br />
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+                Administration
+              </span>
+            </h1>
 
+            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
+              A Reliable Technical Foundation for Your Global SAP Environment
+            </p>
+
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
+              Maintain continuous technical health, high availability, zero-trust security, and peak performance across your SAP landscape through disciplined Basis administration, HANA operations, transport governance, and proactive tuning.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-3">
+              <button
+                onClick={() => onOpenContact && onOpenContact('SAP Basis Administration')}
+                className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Request Basis Consultation</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a
+                href="#sysadmin-cadence"
+                className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-base transition-all flex items-center gap-2 shadow-sm backdrop-blur-sm"
+              >
+                <span>Explore Operational Cadence</span>
+                <ChevronDown className="w-4 h-4 text-slate-400" />
+              </a>
+            </div>
           </div>
 
         </div>
@@ -408,7 +388,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section id="sysadmin-cadence" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Technical Operations Cadence
@@ -423,7 +403,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
 
           {/* INTERACTIVE SYSADMIN ANOMALY DETECTION FLOWCHART + COMPACT IMAGE */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-            
+
             {/* Left 8 Cols: Interactive Daily Kernel Sweep Flowchart */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
               <div>
@@ -491,11 +471,10 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
               <button
                 key={cadence}
                 onClick={() => setActiveCadence(cadence)}
-                className={`px-6 py-3 rounded-xl text-xs font-mono font-bold uppercase transition-all cursor-pointer ${
-                  activeCadence === cadence
+                className={`px-6 py-3 rounded-xl text-xs font-mono font-bold uppercase transition-all cursor-pointer ${activeCadence === cadence
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-600/25'
                     : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300'
-                }`}
+                  }`}
               >
                 {basisChecklists[cadence].cadence}
               </button>
@@ -548,7 +527,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Workload Diagnostics &amp; Monitoring
@@ -562,7 +541,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             {/* Monitor Selector Sidebar */}
             <div className="lg:col-span-5 space-y-3">
               {[
@@ -574,11 +553,10 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
                 <button
                   key={mon.id}
                   onClick={() => setSelectedMonitor(mon.id as any)}
-                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                    selectedMonitor === mon.id
+                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${selectedMonitor === mon.id
                       ? 'bg-blue-50 border-blue-500 shadow-sm ring-1 ring-blue-500/30'
                       : 'bg-white border-slate-200 hover:border-slate-300 text-slate-700'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-mono font-bold text-blue-700">{mon.tcode}</span>
@@ -592,7 +570,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
 
             {/* Monitor Detail Card */}
             <div className="lg:col-span-7 p-7 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm space-y-6">
-              
+
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-2">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
@@ -671,7 +649,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               In-Memory Database Engineering
@@ -686,7 +664,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
 
           {/* INTERACTIVE HANA ENGINE ARCHITECTURE FLOWCHART + COMPACT IMAGE */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-            
+
             {/* Left 8 Cols: Interactive HANA Memory & Delta Merge Pipeline */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
               <div>
@@ -708,11 +686,10 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
                     <button
                       key={idx}
                       onClick={() => setActiveHanaStage(idx)}
-                      className={`p-3 rounded-2xl text-left border transition-all cursor-pointer ${
-                        activeHanaStage === idx
+                      className={`p-3 rounded-2xl text-left border transition-all cursor-pointer ${activeHanaStage === idx
                           ? 'bg-blue-50 border-blue-500 shadow-xs ring-1 ring-blue-500/20'
                           : 'bg-slate-50 border-slate-200 hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       <span className="text-[10px] font-mono text-blue-700 font-bold block mb-1">
                         Node {idx + 1}
@@ -744,20 +721,20 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
               </div>
             </div>
 
-            {/* Right 4 Cols: Compact HANA Microprocessor Image */}
+            {/* Right 4 Cols: SAP HANA Cloud Datacenter & Memory Optimization Visual */}
             <div className="lg:col-span-4 rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-white flex flex-col justify-between">
-              <div className="h-52 sm:h-56 relative overflow-hidden group">
+              <div className="h-60 sm:h-64 lg:h-72 relative overflow-hidden group bg-slate-950">
                 <img
-                  src="/images/basis/sap-basis-hana-admin.jpg"
-                  alt="SAP HANA In-Memory Database Architecture and Columnar Performance Tuning"
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  src="/images/basis/sap_hana_datacenter_cloud.png"
+                  alt="SAP HANA Database Administration, Cloud Infrastructure, and Memory Optimization"
+                  className="w-full h-full object-cover object-center brightness-105 contrast-105 transform group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <span className="text-[10px] font-mono text-blue-300 font-bold uppercase block">
-                    HANA IN-MEMORY
+                  <span className="text-[10px] font-mono text-cyan-300 font-bold uppercase block">
+                    SAP HANA INFRASTRUCTURE
                   </span>
-                  <span className="text-sm font-bold">Columnar Compression Engine</span>
+                  <span className="text-sm font-bold">In-Memory Engine &amp; Cloud Datacenter</span>
                 </div>
               </div>
               <div className="p-4 text-xs text-slate-600 flex items-center justify-between">
@@ -805,7 +782,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Transport Management System (STMS)
@@ -820,7 +797,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
 
           {/* INTERACTIVE STMS PIPELINE FLOWCHART + COMPACT VISUAL */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-            
+
             {/* Left 8 Cols: Interactive STMS 3-System Flowchart */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
               <div>
@@ -842,11 +819,10 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
                     <button
                       key={idx}
                       onClick={() => setActiveStmsStage(idx)}
-                      className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                        activeStmsStage === idx
+                      className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${activeStmsStage === idx
                           ? 'bg-blue-50 border-blue-500 shadow-sm ring-2 ring-blue-500/20'
                           : 'bg-white border-slate-200 hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-[10px] font-mono text-blue-600 font-bold uppercase">
@@ -945,7 +921,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Business Continuity &amp; Resiliency
@@ -960,7 +936,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
 
           {/* INTERACTIVE HA/DR REPLICATION FLOWCHART + COMPACT IMAGE */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-            
+
             {/* Left 8 Cols: Interactive Multi-AZ Clustering Flowchart */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
               <div>
@@ -971,21 +947,19 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
                   <div className="flex gap-2">
                     <button
                       onClick={() => setActiveHadrMode('normal')}
-                      className={`px-3 py-1 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${
-                        activeHadrMode === 'normal'
+                      className={`px-3 py-1 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${activeHadrMode === 'normal'
                           ? 'bg-blue-600 text-white shadow-xs'
                           : 'bg-slate-100 text-slate-600'
-                      }`}
+                        }`}
                     >
                       Normal Replication
                     </button>
                     <button
                       onClick={() => setActiveHadrMode('failover')}
-                      className={`px-3 py-1 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${
-                        activeHadrMode === 'failover'
+                      className={`px-3 py-1 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${activeHadrMode === 'failover'
                           ? 'bg-emerald-600 text-white shadow-xs'
                           : 'bg-slate-100 text-slate-600'
-                      }`}
+                        }`}
                     >
                       Failover Simulation
                     </button>
@@ -994,11 +968,10 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
 
                 {/* 3 Topology Nodes */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className={`p-4 rounded-2xl border transition-all ${
-                    activeHadrMode === 'normal'
+                  <div className={`p-4 rounded-2xl border transition-all ${activeHadrMode === 'normal'
                       ? 'bg-blue-50/60 border-blue-400'
                       : 'bg-slate-50 border-slate-200 opacity-60'
-                  }`}>
+                    }`}>
                     <span className="text-[10px] font-mono text-blue-700 font-bold uppercase block mb-1">
                       {activeHadrMode === 'normal' ? 'Active Primary' : 'Failed Node (Isolated)'}
                     </span>
@@ -1008,11 +981,10 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
                     </p>
                   </div>
 
-                  <div className={`p-4 rounded-2xl border transition-all ${
-                    activeHadrMode === 'failover'
+                  <div className={`p-4 rounded-2xl border transition-all ${activeHadrMode === 'failover'
                       ? 'bg-emerald-50 border-emerald-400 ring-2 ring-emerald-400/30'
                       : 'bg-slate-50 border-slate-200'
-                  }`}>
+                    }`}>
                     <span className="text-[10px] font-mono text-emerald-700 font-bold uppercase block mb-1">
                       {activeHadrMode === 'failover' ? 'Promoted Primary' : 'Sync Standby (HSR)'}
                     </span>
@@ -1098,7 +1070,7 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Performance Tuning &amp; Security Hardening
@@ -1112,18 +1084,17 @@ export const SapBasisPage: React.FC<SapBasisPageProps> = ({ onOpenContact }) => 
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             {/* Tuning Domain Selector */}
             <div className="lg:col-span-5 space-y-3">
               {tuningDomains.map((td, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveTuningDomain(idx)}
-                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                    activeTuningDomain === idx
+                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${activeTuningDomain === idx
                       ? 'bg-blue-50 border-blue-500 shadow-sm ring-1 ring-blue-500/30'
                       : 'bg-white border-slate-200 hover:border-slate-300 text-slate-700'
-                  }`}
+                    }`}
                 >
                   <span className="text-xs font-mono font-bold text-blue-700 uppercase block mb-1">
                     FOCUS: {td.domain.split(' ')[0]}

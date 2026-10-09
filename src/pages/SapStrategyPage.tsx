@@ -138,91 +138,71 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
     <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-500 selection:text-white">
 
       {/* =========================================================================
-          HERO SECTION: SAP STRATEGY (CLEAN WHITE FORMAT)
+          SECTION 1: HERO — SAP STRATEGY (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200/80">
-        
-        {/* Subtle Background Grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, #0F172A 1px, transparent 1px), linear-gradient(to bottom, #0F172A 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-slate-950 text-white">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+        {/* Full-Bleed Background Visual */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/strategy/sap-strategy-hero.jpg"
+            alt="Knooviq Executive SAP Strategy Advisory Boardroom"
+            className="w-full h-full object-cover object-right lg:object-[82%_center] brightness-105 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-50% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-500 font-medium">
-              <li><Link to="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
-              <li className="text-slate-400">/</li>
-              <li><Link to="/advisory-managed-services" className="hover:text-blue-600 transition-colors">Advisory &amp; Managed Services</Link></li>
-              <li className="text-slate-400">/</li>
-              <li className="text-blue-600 font-semibold" aria-current="page">SAP Strategy</li>
+            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-400 font-medium">
+              <li><Link to="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
+              <li className="text-slate-600">/</li>
+              <li><Link to="/advisory-managed-services" className="hover:text-blue-400 transition-colors">Advisory &amp; Managed Services</Link></li>
+              <li className="text-slate-600">/</li>
+              <li className="text-blue-400 font-semibold" aria-current="page">SAP Strategy</li>
             </ol>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Content Column */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold tracking-wider uppercase">
-                <Compass className="w-3.5 h-3.5 text-blue-600" />
-                <span>EXECUTIVE ADVISORY &bull; SAP STRATEGY</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                SAP Strategy
-              </h1>
-
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 leading-snug">
-                Shape a Smarter SAP Journey With a Clear Strategic Direction
-              </p>
-
-              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-                Help organizations align business priorities, SAP investments, enterprise architecture and transformation objectives through a clear, actionable, board-ready strategic roadmap.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact && onOpenContact('SAP Strategy Advisory')}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>Engage Strategy Advisors</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <a
-                  href="#alignment-matrix"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-base transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Explore Strategy Pillars</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </a>
-              </div>
+          <div className="max-w-3xl space-y-5 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+              <Compass className="w-3.5 h-3.5 text-blue-400" />
+              <span>EXECUTIVE ADVISORY &bull; SAP STRATEGY</span>
             </div>
 
-            {/* Right Hero Visual: IMAGE 1 - Strategic Boardroom Executive Overview */}
-            <div className="lg:col-span-6">
-              <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative group bg-white">
-                <img
-                  src="/images/strategy/sap-strategy-hero.jpg"
-                  alt="Knooviq Executive SAP Strategy Advisory Boardroom"
-                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-between text-slate-900">
-                  <div>
-                    <span className="text-xs font-mono font-bold text-blue-600 block">GLOBAL ADVISORY PRACTICE</span>
-                    <span className="text-sm font-bold text-slate-900">Boardroom-Grade SAP Strategic Alignment</span>
-                  </div>
-                  <span className="text-xs font-mono font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                    Strategic Alignment
-                  </span>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+              SAP <br />
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+                Strategy
+              </span>
+            </h1>
 
+            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
+              Shape a Smarter SAP Journey With a Clear Strategic Direction
+            </p>
+
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
+              Help organizations align business priorities, SAP investments, enterprise architecture and transformation objectives through a clear, actionable, board-ready strategic roadmap.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-3">
+              <button
+                onClick={() => onOpenContact && onOpenContact('SAP Strategy Advisory')}
+                className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Engage Strategy Advisors</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a
+                href="#alignment-matrix"
+                className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-base transition-all flex items-center gap-2 shadow-sm backdrop-blur-sm"
+              >
+                <span>Explore Strategy Pillars</span>
+                <ChevronDown className="w-4 h-4 text-slate-400" />
+              </a>
+            </div>
           </div>
 
         </div>
@@ -236,7 +216,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           ========================================================================= */}
       <section id="alignment-matrix" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Strategic Business Alignment
@@ -260,7 +240,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
 
           {/* CXO Strategic Priorities Switcher Ribbon */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             <div className="lg:col-span-5 space-y-3">
               <span className="text-xs font-mono text-slate-500 uppercase tracking-wider block mb-1 font-bold">
                 Select Stakeholder Alignment:
@@ -269,11 +249,10 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
                 <button
                   key={idx}
                   onClick={() => setSelectedObjective(idx)}
-                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                    selectedObjective === idx
+                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${selectedObjective === idx
                       ? 'bg-blue-600 text-white border-blue-600 shadow-md'
                       : 'bg-white border-slate-200 hover:border-blue-400 text-slate-700 shadow-xs'
-                  }`}
+                    }`}
                 >
                   <div className={`text-xs font-mono font-bold mb-1 ${selectedObjective === idx ? 'text-white/80' : 'text-blue-600'}`}>
                     {obj.cxo}
@@ -329,7 +308,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Current Landscape Baseline
@@ -343,7 +322,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
+
             {/* Monolithic Legacy State */}
             <div className="p-7 rounded-3xl bg-slate-50 border border-slate-200 space-y-4 shadow-sm">
               <div className="flex items-center justify-between pb-3 border-b border-slate-200">
@@ -412,7 +391,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Transformation Roadmap &amp; Tollgates
@@ -477,7 +456,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Cloud &amp; ERP Modernization
@@ -529,7 +508,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Enterprise Architecture Foundation
@@ -564,7 +543,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Clean Core &amp; Innovation Strategy
@@ -604,7 +583,7 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Strategy Governance &amp; Execution

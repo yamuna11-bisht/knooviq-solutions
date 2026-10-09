@@ -34,7 +34,9 @@ import {
   FileText,
   TrendingUp,
   CheckCheck,
-  Play
+  Play,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 interface SystemConversionPageProps {
@@ -46,6 +48,26 @@ export const SystemConversionPage: React.FC<SystemConversionPageProps> = ({ onOp
     document.title = 'SAP S/4HANA System Conversion | In-Place 1-Step Modernization Factory | KNOOVIQ';
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
+
+  const [isHeroFullScreen, setIsHeroFullScreen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsHeroFullScreen(false);
+      }
+    };
+    if (isHeroFullScreen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isHeroFullScreen]);
 
   // State for Section 1 (Hero): Technical parameter tab
   const [activeHeroTab, setActiveHeroTab] = useState<'architecture' | 'downtime' | 'cvi' | 'finance'>('architecture');
@@ -381,218 +403,111 @@ export const SystemConversionPage: React.FC<SystemConversionPageProps> = ({ onOp
     <div className="min-h-screen bg-white dark:bg-[#050B17] text-slate-900 dark:text-white transition-colors duration-300">
       
       {/* =========================================================================
-          SECTION 1: HERO — SYSTEM CONVERSION WITH RICH TECHNICAL INFOGRAPHIC
+          SECTION 1: HERO — SYSTEM CONVERSION (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden bg-gradient-to-b from-[#0A1628] via-[#0B1A30] to-[#050B17] text-white">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-slate-950 text-white">
         
-        {/* Ambient Glow & Tech Grid Background */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-tr from-amber-500/20 via-sky-600/15 to-cyan-500/15 rounded-full blur-[140px] pointer-events-none" />
-        <div 
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+        {/* Full-Bleed Background Visual */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/system_conversion_hero_widescreen.jpg"
+            alt="SAP ECC to S/4HANA System Conversion showing automated document and ledger transfer from ECC to S/4HANA"
+            className="w-full h-full object-cover object-right lg:object-[82%_center] brightness-105 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-50% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          {/* Top Pill Badges */}
-          <div className="flex flex-wrap items-center gap-2 mb-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-mono font-bold tracking-wider uppercase backdrop-blur-md">
-              <Server className="w-3.5 h-3.5 text-amber-400" />
-              <span>1-STEP IN-PLACE SAP S/4HANA CONVERSION FACTORY</span>
-            </div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-xs font-mono font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>SUM 2.0 DMO Certified • &lt; 18h Downtime</span>
-            </span>
-          </div>
-
-          {/* Hero Grid: Left Content (7 Cols) + Right Visual & Live Card (5 Cols) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl space-y-5 text-left">
             
-            {/* Left Column: Deep Information & Architectural Facts */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.12] text-white">
-                SAP S/4HANA <br />
-                <span className="bg-gradient-to-r from-amber-400 via-sky-300 to-cyan-400 bg-clip-text text-transparent">
-                  System Conversion
-                </span>
-                <span className="block text-xl sm:text-2xl lg:text-3xl font-bold text-slate-300 mt-2 font-sans tracking-normal">
-                  In-Place Technical Transformation with Zero Business Interruption
-                </span>
-              </h1>
-
-              {/* In-Depth Explanation: What is System Conversion & Why It Matters */}
-              <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-                Technically convert your existing <strong>SAP ECC 6.0 instance (EHP 0–8) on AnyDB</strong> (Oracle, SQL Server, IBM DB2) into <strong>SAP S/4HANA in a single coordinated step</strong>. Powered by SAP Software Update Manager (SUM 2.0) with Downtime-Optimized DMO, our conversion factory preserves <strong>100% of your historical general ledgers, customized processes, and transaction history</strong> while compressing production cutover downtime to <strong>under 18 hours</strong> over a planned weekend.
-              </p>
-
-              {/* 4 Architectural Fact Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                {[
-                  { label: 'Ledger Audit Trail', val: '100% Preserved', icon: ShieldCheck, color: 'text-emerald-400', desc: 'No transaction loss' },
-                  { label: 'Production Cutover', val: '< 18 Hours', icon: Clock, color: 'text-cyan-400', desc: 'Downtime-Optimized DMO' },
-                  { label: 'Execution Path', val: '1-Step Combined', icon: RefreshCw, color: 'text-amber-400', desc: 'AnyDB ➔ HANA + S/4' },
-                  { label: 'Master Data Sync', val: 'CVI Automated', icon: FolderSync, color: 'text-blue-400', desc: 'BP harmonization' }
-                ].map((stat, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-slate-900/80 border border-slate-700/70 backdrop-blur-md space-y-1">
-                    <stat.icon className={`w-4 h-4 ${stat.color}`} />
-                    <div className="text-sm font-black text-white">{stat.val}</div>
-                    <div className="text-[10px] text-slate-400 uppercase font-mono tracking-wider">{stat.label}</div>
-                  </div>
-                ))}
+            {/* Top Pill Badges */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-mono font-bold tracking-wider uppercase backdrop-blur-md">
+                <Server className="w-3.5 h-3.5 text-amber-400" />
+                <span>1-STEP IN-PLACE SAP S/4HANA CONVERSION FACTORY</span>
               </div>
-
-              {/* Conversion Pathway Callout */}
-              <div className="p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-transparent border border-amber-400/20 text-xs sm:text-sm text-slate-200 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">
-                    ECC
-                  </div>
-                  <div>
-                    <span className="font-bold text-white">Source: </span>
-                    <span className="text-slate-300">SAP ECC 6.0 (Oracle / SQL / DB2)</span>
-                  </div>
-                </div>
-                <ArrowRight className="w-4 h-4 text-amber-400 shrink-0" />
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-xs shrink-0">
-                    S/4
-                  </div>
-                  <div>
-                    <span className="font-bold text-white">Target: </span>
-                    <span className="text-slate-300">SAP S/4HANA 2023 In-Memory Core</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Primary CTAs */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  type="button"
-                  onClick={() => onOpenContact ? onOpenContact('SAP S/4HANA System Conversion Assessment') : null}
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm tracking-wide transition-all shadow-xl shadow-amber-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
-                >
-                  <span>Request Conversion Readiness Audit</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <a
-                  href="#architecture-mechanics"
-                  className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <span>Explore 1-Step Architecture</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </a>
-              </div>
-
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-mono font-bold backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>SUM 2.0 DMO Certified &bull; &lt; 18h Downtime</span>
+              </span>
             </div>
 
-            {/* Right Column: Hero Visual with System Conversion Information Image + Interactive Parameter Monitor */}
-            <div className="lg:col-span-5 space-y-4">
-              
-              {/* Main Image Frame with Live Status Bar */}
-              <div className="relative rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl bg-[#060D1A] group">
-                <div className="px-5 py-3.5 bg-[#0A1628] border-b border-slate-800 flex items-center justify-between text-xs font-mono">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>SUM 2.0 DMO CONVERSION INFOGRAPHIC</span>
-                  </div>
-                  <span className="text-amber-300 font-mono text-[11px]">AnyDB ➔ HANA In-Place</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.12] text-white">
+              SAP S/4HANA <br />
+              <span className="bg-gradient-to-r from-amber-400 via-sky-300 to-cyan-400 bg-clip-text text-transparent">
+                System Conversion
+              </span>
+              <span className="block text-xl sm:text-2xl lg:text-3xl font-bold text-slate-300 mt-2 font-sans tracking-normal">
+                In-Place Technical Transformation with Zero Business Interruption
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+              Technically convert your existing <strong>SAP ECC 6.0 instance (EHP 0–8) on AnyDB</strong> (Oracle, SQL Server, IBM DB2) into <strong>SAP S/4HANA in a single coordinated step</strong>. Powered by SAP Software Update Manager (SUM 2.0) with Downtime-Optimized DMO, our conversion factory preserves <strong>100% of your historical general ledgers, customized processes, and transaction history</strong> while compressing production cutover downtime to <strong>under 18 hours</strong> over a planned weekend.
+            </p>
+
+            {/* 4 Architectural Fact Badges */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {[
+                { label: 'Ledger Audit Trail', val: '100% Preserved', icon: ShieldCheck, color: 'text-emerald-400' },
+                { label: 'Production Cutover', val: '< 18 Hours', icon: Clock, color: 'text-cyan-400' },
+                { label: 'Execution Path', val: '1-Step Combined', icon: RefreshCw, color: 'text-amber-400' },
+                { label: 'Master Data Sync', val: 'CVI Automated', icon: FolderSync, color: 'text-blue-400' }
+              ].map((stat, i) => (
+                <div key={i} className="p-3 rounded-xl bg-slate-900/80 border border-slate-700/70 backdrop-blur-md space-y-1">
+                  <stat.icon className={`w-4 h-4 ${stat.color}`} />
+                  <div className="text-sm font-black text-white">{stat.val}</div>
+                  <div className="text-[10px] text-slate-400 uppercase font-mono tracking-wider">{stat.label}</div>
                 </div>
+              ))}
+            </div>
 
-                <div className="relative p-2.5 bg-[#060D1A]">
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950">
-                    <img
-                      src="/images/system_conversion_hero_infographic.jpg"
-                      alt="SAP S/4HANA System Conversion architecture infographic showing SAP ECC 6.0 AnyDB migration through 1-Step SUM 2.0 DMO Engine into SAP S/4HANA 2023 with downtime under 18 hours, CVI sync, and ACDOCA consolidation"
-                      className="w-full h-[280px] sm:h-[320px] object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
-
-                    {/* Live Data Badge Floating on Image */}
-                    <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-white space-y-1">
-                      <div className="text-xs font-bold text-cyan-300 flex items-center justify-between">
-                        <span>Direct Parallel Memory Pipes</span>
-                        <span className="text-emerald-400 font-mono">2.5 GB/s Throughput</span>
-                      </div>
-                      <p className="text-[11px] text-slate-300 leading-snug">
-                        Simultaneously upgrading ABAP software and converting BSEG tables to ACDOCA Universal Journal with zero transaction loss.
-                      </p>
-                    </div>
-                  </div>
+            {/* Conversion Pathway Callout */}
+            <div className="p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-transparent border border-amber-400/20 text-xs sm:text-sm text-slate-200 flex items-center justify-between gap-3 backdrop-blur-md">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs shrink-0">
+                  ECC
+                </div>
+                <div>
+                  <span className="font-bold text-white">Source: </span>
+                  <span className="text-slate-300">SAP ECC 6.0 (Oracle / SQL / DB2)</span>
                 </div>
               </div>
-
-              {/* Interactive Hero Technical Parameter Selector */}
-              <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 shadow-lg space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <span className="text-xs font-mono font-bold uppercase text-slate-400 tracking-wider">
-                    TECHNICAL PARAMETER INSPECTOR
-                  </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">
-                    SELECT PARAMETER
-                  </span>
+              <ArrowRight className="w-4 h-4 text-amber-400 shrink-0" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-xs shrink-0">
+                  S/4
                 </div>
-
-                {/* Tab Buttons */}
-                <div className="grid grid-cols-2 gap-1.5">
-                  {heroTabs.map((tab) => {
-                    const isSelected = activeHeroTab === tab.id;
-                    const Icon = tab.icon;
-                    return (
-                      <button
-                        key={tab.id}
-                        type="button"
-                        onClick={() => setActiveHeroTab(tab.id as any)}
-                        className={`px-3 py-2 rounded-lg text-left text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
-                          isSelected
-                            ? 'bg-[#00A3E0] text-white shadow-sm'
-                            : 'bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:text-white'
-                        }`}
-                      >
-                        <Icon className="w-3.5 h-3.5 shrink-0" />
-                        <span className="truncate">{tab.label}</span>
-                      </button>
-                    );
-                  })}
+                <div>
+                  <span className="font-bold text-white">Target: </span>
+                  <span className="text-slate-300">SAP S/4HANA 2023 In-Memory Core</span>
                 </div>
-
-                {/* Tab Dynamic Content */}
-                {(() => {
-                  const current = heroTabs.find(t => t.id === activeHeroTab) || heroTabs[0];
-                  return (
-                    <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-2">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="font-bold text-white">{current.content.title}</span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-cyan-300 font-bold">
-                          {current.badge}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                        {current.content.description}
-                      </p>
-                      <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-800/80">
-                        {current.content.stats.map((s, idx) => (
-                          <div key={idx} className="text-[11px]">
-                            <span className="text-slate-400 block font-mono text-[10px]">{s.label}:</span>
-                            <span className="font-bold text-slate-200">{s.val}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })()}
-
               </div>
+            </div>
 
+            {/* Primary CTAs */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                type="button"
+                onClick={() => onOpenContact ? onOpenContact('SAP S/4HANA System Conversion Assessment') : null}
+                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm tracking-wide transition-all shadow-xl shadow-amber-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Request Conversion Readiness Audit</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href="#architecture-mechanics"
+                className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer backdrop-blur-sm"
+              >
+                <span>Explore 1-Step Architecture</span>
+                <ChevronDown className="w-4 h-4 text-slate-400" />
+              </a>
             </div>
 
           </div>
-
         </div>
 
       </section>
@@ -1298,6 +1213,75 @@ export const SystemConversionPage: React.FC<SystemConversionPageProps> = ({ onOp
         </div>
 
       </section>
+
+      {/* =========================================================================
+          FULL-SCREEN SAP S/4HANA SYSTEM CONVERSION MODAL
+          ========================================================================= */}
+      {isHeroFullScreen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 sm:p-6 transition-all duration-300 animate-in fade-in"
+          onClick={() => setIsHeroFullScreen(false)}
+        >
+          {/* Top Modal Controls Header */}
+          <div 
+            className="w-full max-w-7xl flex items-center justify-between pb-3 border-b border-white/15 z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 shadow-md">
+                <FolderSync className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-white text-base sm:text-lg font-black tracking-tight flex items-center gap-2">
+                  <span>SAP S/4HANA System Conversion</span>
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                    FULL RESOLUTION
+                  </span>
+                </h3>
+                <p className="text-xs text-slate-400 font-mono hidden sm:block">
+                  Automated ECC to S/4HANA Transition &bull; Zero Data Loss &bull; In-Place Modernization Factory
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsHeroFullScreen(false)}
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white hover:text-amber-300 transition-all border border-white/20 shadow-lg flex items-center gap-1.5 cursor-pointer"
+              aria-label="Close full screen view"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="hidden sm:inline text-xs font-mono font-bold pr-1">ESC</span>
+            </button>
+          </div>
+
+          {/* Full Screen Image Presentation Container */}
+          <div 
+            className="relative flex-1 w-full max-w-7xl flex items-center justify-center p-2 sm:p-4 my-auto overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-[#0b1c3a] rounded-2xl p-4 sm:p-8 shadow-2xl border border-blue-500/30 max-h-[82vh] flex items-center justify-center">
+              <img
+                src="/images/sap_s4hana_ecc_conversion_folders.png"
+                alt="SAP S/4HANA System Conversion - ECC to S/4HANA"
+                className="max-w-full max-h-[76vh] w-auto h-auto object-contain rounded-lg"
+              />
+            </div>
+          </div>
+
+          {/* Bottom Info Bar with Telemetry */}
+          <div 
+            className="w-full max-w-7xl pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-slate-300 z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-amber-300">&bull; SAP S/4HANA System Conversion: Automated database and application modernization.</span>
+            </div>
+            <div className="text-slate-400 text-center sm:text-right shrink-0">
+              Press <kbd className="px-2 py-0.5 rounded bg-white/10 text-white border border-white/20 font-bold">ESC</kbd> or click outside to exit full screen
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

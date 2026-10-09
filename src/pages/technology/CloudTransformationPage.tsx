@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -26,155 +26,84 @@ interface TechnologyPageProps {
 }
 
 export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
+
   return (
     <div className="min-h-screen bg-white text-slate-800 selection:bg-blue-600 selection:text-white font-sans antialiased">
 
       {/* =========================================================================
           SECTION 1: MULTI-HYPERSCALER ORBITAL HERO
-          (Blue & White, Pure Information, Certified Hyperscaler Telemetry)
           ========================================================================= */}
-      <section className="relative w-full min-h-[640px] lg:min-h-[700px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-blue-950 border-b border-blue-900">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-blue-950">
 
-        {/* Full-Bleed Enterprise Background Image with Scrim */}
+        {/* Full-Screen Edge-to-Edge Hero Image Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80"
-            alt="SAP Cloud Transformation Hyperscaler Infrastructure"
-            className="w-full h-full object-cover object-center opacity-25"
+            src="/images/sap_cloud_sovereign_hyperscalers_rise_hero.png"
+            alt="SAP Cloud Transformation Sovereign Hyperscalers & RISE 3D Cloud Platform"
+            className="w-full h-full object-cover object-right lg:object-[72%_center] brightness-110 contrast-105 saturate-[1.05]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-transparent to-blue-950/50 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="max-w-3xl space-y-6">
 
-            {/* Left Column: Heading & Value Proposition */}
-            <div className="lg:col-span-6 space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55 }}
-                className="space-y-4"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="space-y-4"
+            >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-900/80 border border-blue-400/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-200 shadow-sm">
+                <Cloud className="w-3.5 h-3.5 text-blue-400" />
+                <span>HYPERSCALER CLOUD ADVISORY &bull; RISE WITH SAP</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+                Navigate Enterprise Cloud with <br />
+                <span className="text-blue-300">
+                  Sovereign Hyperscalers &amp; RISE
+                </span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-blue-100 font-normal leading-relaxed pt-1">
+                Modernize legacy on-premise SAP workloads onto certified Microsoft Azure, AWS, or Google Cloud environments. Minimize cutover downtime, optimize cloud FinOps spend, and implement resilient multi-region architectures.
+              </p>
+            </motion.div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                onClick={() => onOpenContact('SAP Cloud Transformation Advisory')}
+                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 group cursor-pointer"
               >
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-900/60 backdrop-blur-md border border-blue-500/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-300">
-                  <Cloud className="w-3.5 h-3.5 text-blue-400" />
-                  <span>HYPERSCALER CLOUD ADVISORY &bull; RISE WITH SAP</span>
-                </div>
-
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
-                  Navigate Enterprise Cloud with <br />
-                  <span className="text-blue-400">
-                    Sovereign Hyperscalers & RISE
-                  </span>
-                </h1>
-
-                <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed pt-1">
-                  Modernize legacy on-premise SAP workloads onto certified Microsoft Azure, AWS, or Google Cloud environments. Minimize cutover downtime, optimize cloud FinOps spend, and implement resilient multi-region architectures.
-                </p>
-              </motion.div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact('SAP Cloud Transformation Advisory')}
-                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 group"
-                >
-                  <span>Request Migration Roadmap</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="#cutover-benchmarks"
-                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-blue-400/30 text-white font-semibold text-sm backdrop-blur-md transition-all flex items-center gap-2"
-                >
-                  <Clock className="w-4 h-4 text-blue-400" />
-                  <span>View Cutover Benchmarks</span>
-                </a>
-              </div>
-
-              {/* Enterprise Cloud Metric Badges */}
-              <div className="pt-4 grid grid-cols-3 gap-3">
-                <div className="p-3 rounded-xl bg-white/10 border border-blue-400/20 backdrop-blur-md">
-                  <div className="text-lg font-black text-white font-mono">Sub-4h</div>
-                  <div className="text-[11px] text-blue-200">Near-Zero Downtime</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white/10 border border-blue-400/20 backdrop-blur-md">
-                  <div className="text-lg font-black text-blue-400 font-mono">99.99%</div>
-                  <div className="text-[11px] text-blue-200">Multi-Zone SLA</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white/10 border border-blue-400/20 backdrop-blur-md">
-                  <div className="text-lg font-black text-white font-mono">40% Less</div>
-                  <div className="text-[11px] text-blue-200">FinOps Cloud TCO</div>
-                </div>
-              </div>
+                <span>Request Migration Roadmap</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <a
+                href="#cutover-benchmarks"
+                className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-blue-400/30 text-white font-semibold text-sm backdrop-blur-md transition-all flex items-center gap-2"
+              >
+                <Clock className="w-4 h-4 text-blue-400" />
+                <span>View Cutover Benchmarks</span>
+              </a>
             </div>
 
-            {/* Right Column: Multi-Cloud Hyperscaler Telemetry Showcase */}
-            <div className="lg:col-span-6 space-y-4">
-
-              {/* Azure Card */}
-              <div className="rounded-2xl bg-white p-4 sm:p-5 border border-blue-100 shadow-xl space-y-2">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                      <Server className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-blue-950">Microsoft Azure Sovereign Cloud</div>
-                      <div className="text-[10px] text-slate-500">M-Series Compute & ANF Storage</div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-semibold">
-                    10 Gbps ExpressRoute
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Certified up to 24 TB DRAM per node. Redundant ExpressRoute circuits with active-active zone peering and automated Pacemaker cluster failover.
-                </p>
+            {/* Enterprise Cloud Metric Badges */}
+            <div className="pt-4 grid grid-cols-3 gap-3">
+              <div className="p-3.5 rounded-xl bg-blue-950/70 border border-blue-400/30 backdrop-blur-md">
+                <div className="text-lg font-black text-white font-mono">Sub-4h</div>
+                <div className="text-[11px] text-blue-200">Near-Zero Downtime</div>
               </div>
-
-              {/* AWS Card */}
-              <div className="rounded-2xl bg-white p-4 sm:p-5 border border-blue-100 shadow-xl space-y-2">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                      <Cloud className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-blue-950">Amazon Web Services (AWS)</div>
-                      <div className="text-[10px] text-slate-500">High-Memory EC2 (u-6tb1 / u-12tb1)</div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-semibold">
-                    Direct Connect & FSx
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Bare-metal and virtualized certified instances. FSx for NetApp ONTAP delivers multi-AZ shared storage with sub-millisecond database log writes.
-                </p>
+              <div className="p-3.5 rounded-xl bg-blue-950/70 border border-blue-400/30 backdrop-blur-md">
+                <div className="text-lg font-black text-blue-400 font-mono">99.99%</div>
+                <div className="text-[11px] text-blue-200">Multi-Zone SLA</div>
               </div>
-
-              {/* GCP Card */}
-              <div className="rounded-2xl bg-white p-4 sm:p-5 border border-blue-100 shadow-xl space-y-2">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                      <Globe2 className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-blue-950">Google Cloud Platform (GCP)</div>
-                      <div className="text-[10px] text-slate-500">M3 Compute & BigQuery Cortex</div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-semibold">
-                    Dedicated Interconnect
-                  </span>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Real-time data replication from S/4HANA into BigQuery for AI forecasting, with Google Cloud NetApp Volumes for zero-downtime backups.
-                </p>
+              <div className="p-3.5 rounded-xl bg-blue-950/70 border border-blue-400/30 backdrop-blur-md">
+                <div className="text-lg font-black text-white font-mono">40% Less</div>
+                <div className="text-[11px] text-blue-200">FinOps Cloud TCO</div>
               </div>
-
             </div>
 
           </div>
@@ -203,15 +132,15 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"
-                  alt="Executive Strategic Boardroom Planning"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_cloud_rise_vs_grow_vs_iaas.png"
+                  alt="RISE with SAP vs. GROW with SAP vs. Customer-Managed IaaS Governance"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    Sovereign Cloud Governance
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    Sovereign Cloud Governance &amp; Selection
                   </span>
                 </div>
               </div>
@@ -303,8 +232,8 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80"
-                    alt="Microsoft Azure Cloud Architecture"
+                    src="/images/sap_cloud_azure_s4hana_multizone.jpg"
+                    alt="Microsoft Azure S/4HANA Multi-Zone Cloud Architecture"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent" />
@@ -335,8 +264,8 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
-                    alt="Amazon Web Services Cloud Architecture"
+                    src="/images/sap_cloud_aws_highmemory_multiaz.png"
+                    alt="Amazon Web Services High-Memory Multi-AZ Architecture"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent" />
@@ -367,8 +296,8 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
               <div>
                 <div className="h-44 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
-                    alt="Google Cloud Platform Architecture"
+                    src="/images/sap_cloud_gcp_megamemory_cortex.png"
+                    alt="Google Cloud Platform Megamemory & Cortex Architecture"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent" />
@@ -421,15 +350,15 @@ export const CloudTransformationPage: React.FC<TechnologyPageProps> = ({ onOpenC
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80"
-                  alt="Enterprise Cloud Cutover Execution"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_cloud_cutover_downtime_benchmarks.png"
+                  alt="Enterprise Cutover Downtime Benchmark Matrix & Datacenter Execution"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    Sub-4h Near-Zero Downtime Guaranteed
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    Sub-4h Near-Zero Downtime Execution
                   </span>
                 </div>
               </div>

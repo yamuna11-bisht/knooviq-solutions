@@ -21,7 +21,9 @@ import {
   Server,
   Cloud,
   FileCheck2,
-  Globe
+  Globe,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 interface GreenfieldPageProps {
@@ -33,6 +35,26 @@ export const GreenfieldPage: React.FC<GreenfieldPageProps> = ({ onOpenContact })
     document.title = 'SAP S/4HANA Greenfield Implementation | Clean Slate Cloud ERP | KNOOVIQ';
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
+
+  const [isImageFullScreen, setIsImageFullScreen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsImageFullScreen(false);
+      }
+    };
+    if (isImageFullScreen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isImageFullScreen]);
 
   // State for SAP Activate 5-Phase Process
   const [activePhase, setActivePhase] = useState<number>(0);
@@ -84,103 +106,72 @@ export const GreenfieldPage: React.FC<GreenfieldPageProps> = ({ onOpenContact })
     <div className="min-h-screen bg-white dark:bg-[#050B17] text-slate-900 dark:text-white transition-colors duration-300">
       
       {/* =========================================================================
-          SECTION 1: HERO — GREENFIELD IMPLEMENTATION
+      {/* =========================================================================
+          SECTION 1: HERO — GREENFIELD IMPLEMENTATION (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-slate-900 via-[#0B1528] to-[#050B17] text-white">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-tr from-emerald-500/20 via-teal-600/15 to-blue-500/15 rounded-full blur-[140px] pointer-events-none" />
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-slate-950 text-white">
+        
+        {/* Full-Bleed Background Visual */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/greenfield_clean_slate.jpg"
+            alt="Building a completely new S/4HANA environment from scratch"
+            className="w-full h-full object-cover object-right lg:object-[80%_center] brightness-105 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-50% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
-                <Rocket className="w-3.5 h-3.5 text-emerald-400" />
-                <span>CLEAN SLATE CLOUD ERP • 100% BEST PRACTICES</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
-                SAP S/4HANA <br />
-                <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-                  Greenfield Implementation
-                </span>
-              </h1>
-
-              <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed max-w-2xl">
-                Build a modern S/4HANA environment from scratch. Start completely clean with <strong>100% SAP Best Practices</strong>, purge decades of obsolete legacy customizations, and adopt a cloud-native <strong>Clean Core</strong> architecture.
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                {[
-                  { label: 'Technical Debt', val: 'Zero Debt', icon: ShieldCheck, color: 'text-emerald-400' },
-                  { label: 'Best Practices', val: '100% Standard', icon: Sparkles, color: 'text-teal-400' },
-                  { label: 'Cloud Architecture', val: 'Clean Core', icon: Cloud, color: 'text-cyan-400' },
-                  { label: 'Future Upgrades', val: 'Frictionless', icon: Zap, color: 'text-blue-400' }
-                ].map((stat, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm space-y-0.5">
-                    <stat.icon className={`w-4 h-4 ${stat.color} mb-1`} />
-                    <div className="text-sm font-black text-white">{stat.val}</div>
-                    <div className="text-[11px] text-slate-400 uppercase font-mono">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 pt-4">
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('Greenfield S/4HANA Implementation Advisory') : null}
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-black text-sm tracking-wide transition-all shadow-xl shadow-emerald-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
-                >
-                  <span>Design Your Greenfield Architecture</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <a
-                  href="#overview"
-                  className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <span>Explore Clean Slate Blueprint</span>
-                </a>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl space-y-5 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+              <Rocket className="w-3.5 h-3.5 text-emerald-400" />
+              <span>CLEAN SLATE CLOUD ERP &bull; 100% BEST PRACTICES</span>
             </div>
 
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl bg-[#060D1A] group">
-                <div className="px-5 py-3.5 bg-[#0A1628] border-b border-slate-800 flex items-center justify-between text-xs font-mono">
-                  <div className="flex items-center gap-2 text-emerald-400 font-bold">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>GREENFIELD DIGITAL CORE</span>
-                  </div>
-                  <span className="text-teal-300 font-mono text-[11px]">Clean Core Standard</span>
-                </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
+              SAP S/4HANA <br />
+              <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+                Greenfield Implementation
+              </span>
+            </h1>
 
-                <div className="relative p-3 bg-[#060D1A]">
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 flex items-center justify-center">
-                    <img
-                      src="/images/greenfield_clean_slate.jpg"
-                      alt="Building a completely new S/4HANA environment from scratch"
-                      className="w-full h-[340px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+            <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed max-w-2xl">
+              Build a modern S/4HANA environment from scratch. Start completely clean with <strong>100% SAP Best Practices</strong>, purge decades of obsolete legacy customizations, and adopt a cloud-native <strong>Clean Core</strong> architecture.
+            </p>
 
-                    <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-white space-y-1">
-                      <div className="text-xs font-bold text-emerald-300 flex items-center justify-between">
-                        <span>100% Clean Core Standards</span>
-                        <span className="text-cyan-400 font-mono">SAP Best Practices</span>
-                      </div>
-                      <p className="text-[11px] text-slate-300 leading-relaxed">
-                        Re-engineering enterprise workflows around modern cloud standards without carrying forward legacy modifications.
-                      </p>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {[
+                { label: 'Technical Debt', val: 'Zero Debt', icon: ShieldCheck, color: 'text-emerald-400' },
+                { label: 'Best Practices', val: '100% Standard', icon: Sparkles, color: 'text-teal-400' },
+                { label: 'Cloud Architecture', val: 'Clean Core', icon: Cloud, color: 'text-cyan-400' },
+                { label: 'Future Upgrades', val: 'Frictionless', icon: Zap, color: 'text-blue-400' }
+              ].map((stat, i) => (
+                <div key={i} className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm space-y-0.5">
+                  <stat.icon className={`w-4 h-4 ${stat.color} mb-1`} />
+                  <div className="text-sm font-black text-white">{stat.val}</div>
+                  <div className="text-[11px] text-slate-400 uppercase font-mono">{stat.label}</div>
                 </div>
-
-                <div className="px-5 py-3 bg-[#081220] border-t border-slate-800/80 flex items-center justify-between text-xs">
-                  <span className="text-slate-400 font-mono">Zero Legacy Technical Debt</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-                  <span className="text-emerald-400 font-mono font-bold">Cloud-Native S/4HANA</span>
-                </div>
-              </div>
+              ))}
             </div>
 
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <button
+                onClick={() => onOpenContact ? onOpenContact('Greenfield S/4HANA Implementation Advisory') : null}
+                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-black text-sm tracking-wide transition-all shadow-xl shadow-emerald-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Design Your Greenfield Architecture</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href="#overview"
+                className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer backdrop-blur-sm"
+              >
+                <span>Explore Clean Slate Blueprint</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -235,20 +226,43 @@ export const GreenfieldPage: React.FC<GreenfieldPageProps> = ({ onOpenContact })
 
             <div className="lg:col-span-6">
               <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl bg-slate-900 group">
-                <div className="relative">
-                  <img
-                    src="/images/sap_cloud_erp_architecture.png"
-                    alt="Cloud-native SAP S/4HANA Greenfield Architecture"
-                    className="w-full h-80 sm:h-96 lg:h-[440px] object-contain transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold mb-2 inline-block border border-emerald-400/30">
-                      MODERN CLOUD ERP BLUEPRINT
-                    </span>
-                    <h3 className="text-xl font-bold text-white">Clean Core Cloud Architecture</h3>
-                    <p className="text-xs text-slate-300 mt-1 max-w-lg">
-                      Public and Private Cloud editions delivering automated quarterly updates and seamless side-by-side extension on SAP BTP.
+                <div className="px-5 py-3.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between text-xs font-mono">
+                  <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>GREENFIELD ENTERPRISE TRANSFORMATION</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsImageFullScreen(true)}
+                    className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 transition-colors text-[11px] font-mono font-bold cursor-pointer"
+                    title="View Greenfield Enterprise diagram in full screen"
+                  >
+                    <Maximize2 className="w-3 h-3" />
+                    <span>Expand</span>
+                  </button>
+                </div>
+
+                <div 
+                  className="relative p-2.5 bg-slate-950 cursor-pointer"
+                  onClick={() => setIsImageFullScreen(true)}
+                  title="Click to view full screen"
+                >
+                  <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-[#06101E] flex items-center justify-center">
+                    <img
+                      src="/images/sap_greenfield_enterprise_choice.png"
+                      alt="What is Greenfield & Why High-Growth Enterprises Choose It - Strategic Enterprise Architecture"
+                      className="w-full h-80 sm:h-96 lg:h-[400px] object-contain transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Clean Caption Placed Below the Image */}
+                  <div className="mt-2.5 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-white space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-emerald-400">Clean Core Cloud Architecture</span>
+                      <span className="text-[10px] font-mono text-slate-400">Public &amp; Private Editions</span>
+                    </div>
+                    <p className="text-xs text-slate-300 leading-snug">
+                      High-growth enterprises leverage Greenfield to align business leadership, logistics networks, and global cloud intelligence without technical legacy baggage.
                     </p>
                   </div>
                 </div>
@@ -642,6 +656,75 @@ export const GreenfieldPage: React.FC<GreenfieldPageProps> = ({ onOpenContact })
 
         </div>
       </section>
+
+      {/* =========================================================================
+          FULL-SCREEN GREENFIELD ENTERPRISE ARCHITECTURE MODAL
+          ========================================================================= */}
+      {isImageFullScreen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 sm:p-6 transition-all duration-300 animate-in fade-in"
+          onClick={() => setIsImageFullScreen(false)}
+        >
+          {/* Top Modal Controls Header */}
+          <div 
+            className="w-full max-w-7xl flex items-center justify-between pb-3 border-b border-white/15 z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 shadow-md">
+                <Layers className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-white text-base sm:text-lg font-black tracking-tight flex items-center gap-2">
+                  <span>What is Greenfield &amp; Why High-Growth Enterprises Choose It</span>
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                    FULL RESOLUTION
+                  </span>
+                </h3>
+                <p className="text-xs text-slate-400 font-mono hidden sm:block">
+                  Clean-Slate S/4HANA Modernization &bull; Cloud ERP Blueprint &bull; Global Digital Network
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsImageFullScreen(false)}
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white hover:text-emerald-300 transition-all border border-white/20 shadow-lg flex items-center gap-1.5 cursor-pointer"
+              aria-label="Close full screen view"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="hidden sm:inline text-xs font-mono font-bold pr-1">ESC</span>
+            </button>
+          </div>
+
+          {/* Full Screen Image Presentation Container */}
+          <div 
+            className="relative flex-1 w-full max-w-7xl flex items-center justify-center p-2 sm:p-4 my-auto overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-[#050E1D] rounded-2xl p-3 sm:p-6 shadow-2xl border border-emerald-500/30 max-h-[82vh] flex items-center justify-center">
+              <img
+                src="/images/sap_greenfield_enterprise_choice.png"
+                alt="What is Greenfield & Why High-Growth Enterprises Choose It"
+                className="max-w-full max-h-[76vh] w-auto h-auto object-contain rounded-lg"
+              />
+            </div>
+          </div>
+
+          {/* Bottom Info Bar with Telemetry */}
+          <div 
+            className="w-full max-w-7xl pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-slate-300 z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-emerald-300">&bull; Greenfield: Start fresh with standard SAP Best Practices, cloud-native resilience, and zero legacy baggage.</span>
+            </div>
+            <div className="text-slate-400 text-center sm:text-right shrink-0">
+              Press <kbd className="px-2 py-0.5 rounded bg-white/10 text-white border border-white/20 font-bold">ESC</kbd> or click outside to exit full screen
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

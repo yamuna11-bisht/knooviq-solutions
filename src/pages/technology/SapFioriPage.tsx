@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -26,166 +26,74 @@ interface TechnologyPageProps {
 }
 
 export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
+
   return (
     <div className="min-h-screen bg-white text-slate-800 selection:bg-blue-600 selection:text-white font-sans antialiased">
 
       {/* =========================================================================
           SECTION 1: RESPONSIVE MULTI-DEVICE ENTERPRISE HERO
-          (Blue & White, Pure Information, Multi-Device Form Factors Showcase)
+          (Blue & White, Pure Information, Full-Screen Workflow Automation Showcase)
           ========================================================================= */}
-      <section className="relative w-full min-h-[640px] lg:min-h-[700px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-blue-950 border-b border-blue-900">
-
-        {/* Full-Bleed Enterprise Background Image with Blue Scrim */}
+      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-blue-950">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80"
-            alt="SAP Fiori Modern Human-Centered Enterprise Workspace"
-            className="w-full h-full object-cover object-center opacity-25"
+            src="/images/sap_fiori_workflow_automation_hero.png"
+            alt="Consumer-Grade Simplicity for Mission-Critical Workflows"
+            className="w-full h-full object-cover object-right lg:object-[70%_center] brightness-105 contrast-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-transparent to-blue-950/50 pointer-events-none" />
         </div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-blue-950 via-blue-950/75 via-45% to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+          <div className="max-w-3xl space-y-4">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-blue-300 shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+                <span>ENTERPRISE USER EXPERIENCE &bull; SAP FIORI 3 & HORIZON</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                Consumer-Grade <br />
+                <span className="text-blue-400">Simplicity for Mission-Critical Workflows</span>
+              </h1>
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
+                Transform complex SAP GUI transactions into intuitive, role-based, multi-device digital experiences. Empower desktop knowledge workers, tablet field managers, and mobile warehouse operators with consistent Horizon design and context-aware Joule AI.
+              </p>
+            </motion.div>
 
-            {/* Left Column: Heading & Value Proposition */}
-            <div className="lg:col-span-6 space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55 }}
-                className="space-y-4"
+            {/* Action Buttons */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="flex flex-wrap items-center gap-3 pt-1">
+              <button
+                onClick={() => onOpenContact('SAP Fiori Modernization & UX Assessment')}
+                className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 group"
               >
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-900/60 backdrop-blur-md border border-blue-500/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-300">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-                  <span>ENTERPRISE USER EXPERIENCE &bull; SAP FIORI 3 & HORIZON</span>
-                </div>
+                <span>Request UX Assessment</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
-                  Consumer-Grade Simplicity for <br />
-                  <span className="text-blue-400">
-                    Mission-Critical Workflows
-                  </span>
-                </h1>
+              <a
+                href="#floorplan-gallery"
+                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm backdrop-blur-md transition-all flex items-center gap-2"
+              >
+                <Layout className="w-4 h-4 text-blue-400" />
+                <span>Explore 4 Core Floorplans</span>
+              </a>
+            </motion.div>
 
-                <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed pt-1">
-                  Transform complex SAP GUI transactions into intuitive, role-based, multi-device digital experiences. Empower desktop knowledge workers, tablet field managers, and mobile warehouse operators with consistent Horizon design and context-aware Joule AI.
-                </p>
-              </motion.div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact('SAP Fiori Modernization & UX Assessment')}
-                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 group"
-                >
-                  <span>Request UX Modernization Assessment</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <a
-                  href="#floorplan-gallery"
-                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-blue-400/30 text-white font-semibold text-sm backdrop-blur-md transition-all flex items-center gap-2"
-                >
-                  <Layout className="w-4 h-4 text-blue-400" />
-                  <span>Explore 4 Core Floorplans</span>
-                </a>
+            {/* Enterprise Trust Indicators (Ultra-Clean, Matching Design Reference) */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-blue-200">
+                <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
+                <span>80% Less Front-End Code</span>
               </div>
-
-              {/* Enterprise UX Core Metric Badges */}
-              <div className="pt-4 grid grid-cols-3 gap-3">
-                <div className="p-3 rounded-xl bg-white/10 border border-blue-400/20 backdrop-blur-md">
-                  <div className="text-lg font-black text-white font-mono">80% Less</div>
-                  <div className="text-[11px] text-blue-200">Front-End Boilerplate</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white/10 border border-blue-400/20 backdrop-blur-md">
-                  <div className="text-lg font-black text-blue-400 font-mono">100%</div>
-                  <div className="text-[11px] text-blue-200">Upgrade Resilient</div>
-                </div>
-                <div className="p-3 rounded-xl bg-white/10 border border-blue-400/20 backdrop-blur-md">
-                  <div className="text-lg font-black text-white font-mono">WCAG 2.1</div>
-                  <div className="text-[11px] text-blue-200">AA Standard Compliant</div>
-                </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>100% Upgrade Resilient</span>
               </div>
-            </div>
-
-            {/* Right Column: Multi-Device Enterprise Form Factors Showcase */}
-            <div className="lg:col-span-6 space-y-4">
-
-              {/* Desktop Viewport Architecture Card */}
-              <div className="rounded-2xl bg-white p-5 border border-blue-100 shadow-xl space-y-3">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                      <Monitor className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-blue-950">Desktop Horizon Shell (1920px)</div>
-                      <div className="text-[11px] text-slate-500">Global Supply Chain Control Tower</div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1 font-semibold">
-                    <Bot className="w-3 h-3" /> Joule Copilot Attached
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 rounded-lg bg-slate-50 border border-slate-100">
-                    <div className="text-slate-500 text-[11px]">Purchase Requisitions</div>
-                    <div className="text-base font-bold text-blue-950 font-mono">14 Pending Release</div>
-                    <div className="text-[10px] text-blue-600 font-medium mt-0.5">Automated Risk Scoring</div>
-                  </div>
-                  <div className="p-3 rounded-lg bg-slate-50 border border-slate-100">
-                    <div className="text-slate-500 text-[11px]">Stock Transport Orders</div>
-                    <div className="text-base font-bold text-blue-950 font-mono">38 In Transit</div>
-                    <div className="text-[10px] text-blue-600 font-medium mt-0.5">Live GPS Sensor Stream</div>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
+                <span>WCAG 2.1 AA Standard</span>
               </div>
-
-              {/* Tablet & Mobile Architecture Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Tablet Card */}
-                <div className="rounded-2xl bg-white p-4 border border-blue-100 shadow-lg space-y-2">
-                  <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                    <div className="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                      <Tablet className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-blue-950">Tablet Touch Horizon</div>
-                      <div className="text-[10px] text-slate-500">48px Ergonomic Targets</div>
-                    </div>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Designed for shop-floor managers with real-time visual KPI tiles and one-tap mass release actions.
-                  </p>
-                  <div className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50/70 px-2 py-1 rounded">
-                    Plant Utilization: 94.2%
-                  </div>
-                </div>
-
-                {/* Mobile MDK Card */}
-                <div className="rounded-2xl bg-white p-4 border border-blue-100 shadow-lg space-y-2">
-                  <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                    <div className="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                      <Smartphone className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-blue-950">Mobile MDK Scanner</div>
-                      <div className="text-[10px] text-blue-600 font-semibold">Offline SQLite Sync</div>
-                    </div>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Native hardware laser barcode scanning with offline store-and-forward for dead cellular warehouse zones.
-                  </p>
-                  <div className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50/70 px-2 py-1 rounded">
-                    Pallet Bin Verification: Active
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
+            </motion.div>
           </div>
         </div>
       </section>
@@ -194,7 +102,7 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           SECTION 2: THE 4 CORE SAP FIORI ENTERPRISE FLOORPLANS
           (Blue & White, Pure Information, All 4 Floorplans Displayed with Photos)
           ========================================================================= */}
-      <section id="floorplan-gallery" className="py-16 sm:py-20 bg-blue-50/40 border-b border-blue-100">
+      <section id="floorplan-gallery" className="py-16 sm:py-20 bg-blue-50/30 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="max-w-3xl mb-12 space-y-2">
@@ -215,9 +123,9 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             {/* Floorplan 1 */}
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
-                <div className="h-44 w-full relative overflow-hidden">
+                <div className="h-44 w-full relative overflow-hidden bg-slate-950">
                   <img
-                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                    src="/images/sap_fiori_list_report_object_page.jpg"
                     alt="List Report & Object Page Floorplan"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -279,9 +187,9 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             {/* Floorplan 3 */}
             <div className="rounded-2xl bg-white border border-blue-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group">
               <div>
-                <div className="h-44 w-full relative overflow-hidden">
+                <div className="h-44 w-full relative overflow-hidden bg-slate-950">
                   <img
-                    src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80"
+                    src="/images/sap_fiori_overview_page_ovp.png"
                     alt="Overview Page Floorplan"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -367,15 +275,15 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1000&q=80"
-                  alt="Enterprise UX Design Collaboration"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_fiori_elements_vs_freestyle_modules.png"
+                  alt="SAP Functional Modules Governance - Fiori Elements vs Freestyle SAPUI5"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    Fiori Design System Governance
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    Fiori Design System Governance &amp; Modules
                   </span>
                 </div>
               </div>
@@ -470,15 +378,15 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1000&q=80"
-                  alt="Design System Tokens and UI Components"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_fiori_metadata_driven_architecture.png"
+                  alt="Metadata-Driven Architecture & Smart Control Data Models"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    Zero-JavaScript Smart Controls
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    Zero-JavaScript Smart Annotation Compiler
                   </span>
                 </div>
               </div>
@@ -545,15 +453,15 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80"
-                  alt="Warehouse Technician Handheld Barcode Scanning"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_fiori_mdk_offline_sync.png"
+                  alt="SAP Mobile Development Kit (MDK) & Bi-Directional Offline Sync Engine"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    Offline MDK Barcode Integration
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    MDK Local SQLCipher &amp; Delta Sync
                   </span>
                 </div>
               </div>
@@ -601,6 +509,53 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             </div>
           </div>
 
+          {/* Operational Field Form Factors: Tablet & Mobile Architecture Cards */}
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Tablet Card */}
+            <div className="rounded-2xl bg-white p-6 border border-blue-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all space-y-3">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+                  <Tablet className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-blue-950">Tablet Touch Horizon</h4>
+                  <p className="text-xs text-slate-500 font-mono">48px Ergonomic Targets</p>
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Designed for shop-floor managers with real-time visual KPI tiles and one-tap mass release actions across ruggedized industrial tablets.
+              </p>
+              <div className="flex items-center justify-between pt-2">
+                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                  Plant Utilization: 94.2%
+                </span>
+                <span className="text-xs font-semibold text-slate-500">Shop Floor & Yard Operations</span>
+              </div>
+            </div>
+
+            {/* Mobile MDK Card */}
+            <div className="rounded-2xl bg-white p-6 border border-blue-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all space-y-3">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+                  <Smartphone className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-blue-950">Mobile MDK Scanner</h4>
+                  <p className="text-xs text-blue-600 font-semibold font-mono">Offline SQLite Sync</p>
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Native hardware laser barcode scanning with offline store-and-forward for dead cellular warehouse zones and subterranean storage bays.
+              </p>
+              <div className="flex items-center justify-between pt-2">
+                <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                  Pallet Bin Verification: Active
+                </span>
+                <span className="text-xs font-semibold text-slate-500">Warehouse & Logistics Sleds</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -626,15 +581,15 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80"
-                  alt="Enterprise Accessibility & Usability Testing"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_fiori_wcag_accessibility_audit.png"
+                  alt="Enterprise WCAG 2.1 AA & Horizon Design Token Audit Session"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    WCAG 2.1 AA Certified
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    WCAG 2.1 AA Certified Audit Stream
                   </span>
                 </div>
               </div>

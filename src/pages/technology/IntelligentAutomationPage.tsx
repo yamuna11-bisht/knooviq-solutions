@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -24,7 +24,9 @@ import {
   Filter,
   ChevronRight,
   Boxes,
-  Database
+  Database,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 interface TechnologyPageProps {
@@ -83,30 +85,136 @@ export const IntelligentAutomationPage: React.FC<TechnologyPageProps> = ({ onOpe
     <div className="min-h-screen bg-slate-50 dark:bg-[#030712] text-slate-900 dark:text-slate-100 font-sans antialiased selection:bg-purple-600 selection:text-white">
 
       {/* =========================================================================
-          HERO: High-Velocity Automation Pipeline Tracker
+          SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content)
           ========================================================================= */}
-      <section className="relative pt-28 sm:pt-32 pb-20 overflow-hidden bg-gradient-to-b from-[#140826] via-[#0D051A] to-[#040209] text-white">
-        
-        {/* Violet / Purple Glow */}
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-[100px] pointer-events-none" />
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-slate-950 text-white">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Full-Bleed Background Visual: Robotic & Human Modular Workflow Automation */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/workflow_automation_widescreen.jpg"
+            alt="Intelligent Automation - Mine Bottlenecks, Automate Workflows, Accelerate Enterprise Velocity"
+            className="w-full h-full object-cover object-right lg:object-[78%_center] brightness-110 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl space-y-5 text-left">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="space-y-3"
+            >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-900/80 border border-purple-400/30 text-xs font-mono font-bold uppercase tracking-wider text-purple-200 shadow-sm">
+                <Workflow className="w-3.5 h-3.5 text-purple-300" />
+                <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; INTELLIGENT AUTOMATION</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+                Mine Bottlenecks. Automate Workflows. <br />
+                <span className="text-purple-300">Accelerate Enterprise Velocity.</span>
+              </h1>
+
+              <p className="text-lg sm:text-xl font-semibold text-purple-100 leading-snug">
+                Autonomous RPA Bots &amp; Closed-Loop Process Mining Intelligence.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4 max-w-2xl"
+            >
+              <p className="text-sm sm:text-base text-purple-100 font-normal leading-relaxed">
+                Combine data-driven process mining (SAP Signavio) with enterprise robotic process automation (SAP Build Process Automation) to eliminate friction and convert slow manual workflows into touchless operations.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-purple-300" />
+                  <span>SAP Signavio Process Mining</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-purple-300" />
+                  <span>Touchless RPA Execution</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                  <CheckCircle2 className="w-4 h-4 text-purple-300" />
+                  <span>Zero Clean Core Impact</span>
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Enterprise Architectural Trust Ribbon */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mt-6 pt-5 border-t border-purple-800/80 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+            >
+              <div className="p-3.5 rounded-xl bg-purple-950/60 border border-purple-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Workflow className="w-4 h-4 text-purple-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-purple-300 uppercase">DISCOVERY</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Process Mining</div>
+                <div className="text-xs text-purple-200 mt-0.5">ERP Event Log Telemetry</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-purple-950/60 border border-purple-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Bot className="w-4 h-4 text-purple-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-purple-300 uppercase">RPA BOTS</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">Build Automation</div>
+                <div className="text-xs text-purple-200 mt-0.5">Touchless Orchestration</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-purple-950/60 border border-purple-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <Zap className="w-4 h-4 text-purple-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-purple-300 uppercase">VELOCITY</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">-78% Cycle Time</div>
+                <div className="text-xs text-purple-200 mt-0.5">Zero Human Friction</div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-purple-950/60 border border-purple-800">
+                <div className="flex items-center gap-2 mb-1">
+                  <ShieldCheck className="w-4 h-4 text-purple-300 shrink-0" />
+                  <span className="text-xs font-mono font-bold tracking-wider text-purple-300 uppercase">CLEAN CORE</span>
+                </div>
+                <div className="text-sm sm:text-base font-bold text-white">100% Decoupled</div>
+                <div className="text-xs text-purple-200 mt-0.5">BTP Microservice APIs</div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 2: END-TO-END AUTOMATION LIFECYCLE & VALUE CONSOLE
+          ========================================================================= */}
+      <section className="py-16 bg-[#040209] border-b border-white/10 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-400/30 text-xs font-mono font-bold uppercase tracking-wider text-purple-300">
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-400/30 text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
               <Workflow className="w-3.5 h-3.5" />
-              <span>INTELLIGENT AUTOMATION &bull; PROCESS MINING &amp; RPA</span>
+              <span>AUTOMATION LIFECYCLE CONTROLLER</span>
             </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-              Mine Bottlenecks. Automate Workflows. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-300 to-sky-300">
-                Accelerate Enterprise Velocity.
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-              Combine data-driven process mining (SAP Signavio) with enterprise robotic process automation (SAP Build Process Automation) to eliminate friction and convert slow manual workflows into touchless operations.
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Three-Stage Closed-Loop Optimization Pipeline
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300">
+              From event log discovery in SAP Signavio to touchless execution in SAP Build, eliminate friction across high-volume ERP workflows.
             </p>
           </div>
 
@@ -377,7 +485,6 @@ export const IntelligentAutomationPage: React.FC<TechnologyPageProps> = ({ onOpe
           </div>
         </div>
       </section>
-
     </div>
   );
 };

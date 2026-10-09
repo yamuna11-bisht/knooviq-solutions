@@ -84,101 +84,69 @@ export const BrownfieldPage: React.FC<BrownfieldPageProps> = ({ onOpenContact })
       {/* =========================================================================
           SECTION 1: HERO — BROWNFIELD MIGRATION
           ========================================================================= */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-slate-900 via-[#0B1528] to-[#050B17] text-white">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-indigo-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-slate-950 text-white">
+        
+        {/* Full-Bleed Background Visual */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/brownfield_data_migration_2026.jpg"
+            alt="SAP S/4HANA Brownfield Data Migration Architecture"
+            className="w-full h-full object-cover object-right lg:object-[82%_center] brightness-110 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
-                <RefreshCw className="w-3.5 h-3.5 text-blue-400" />
-                <span>IN-PLACE MIGRATION • 100% INVESTMENT PRESERVATION</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
-                SAP S/4HANA <br />
-                <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
-                  Brownfield Migration
-                </span>
-              </h1>
-
-              <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed max-w-2xl">
-                Modernize your existing SAP ECC 6.0 in-place while preserving your investments. Retain <strong>100% of historical transactions, customizations, and configurations</strong> with zero operational disruption and <strong>&lt; 12 hours cutover downtime</strong>.
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                {[
-                  { label: 'Data Retention', val: '100% Preserved', icon: ShieldCheck, color: 'text-emerald-400' },
-                  { label: 'Project Speed', val: '3 – 5 Months', icon: Clock, color: 'text-cyan-400' },
-                  { label: 'Change Burden', val: 'Low Friction', icon: Zap, color: 'text-blue-400' },
-                  { label: 'DB Upgrade', val: '1-Step SUM DMO', icon: Database, color: 'text-indigo-400' }
-                ].map((stat, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm space-y-0.5">
-                    <stat.icon className={`w-4 h-4 ${stat.color} mb-1`} />
-                    <div className="text-sm font-black text-white">{stat.val}</div>
-                    <div className="text-[11px] text-slate-400 uppercase font-mono">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 pt-4">
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('Brownfield S/4HANA Migration Assessment') : null}
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-black text-sm tracking-wide transition-all shadow-xl shadow-blue-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
-                >
-                  <span>Request Brownfield Assessment</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <a
-                  href="#overview"
-                  className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <span>Explore Brownfield Architecture</span>
-                </a>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl space-y-5 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+              <RefreshCw className="w-3.5 h-3.5 text-blue-400" />
+              <span>IN-PLACE MIGRATION • 100% INVESTMENT PRESERVATION</span>
             </div>
 
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-slate-700/80 shadow-2xl bg-[#060D1A] group">
-                <div className="px-5 py-3.5 bg-[#0A1628] border-b border-slate-800 flex items-center justify-between text-xs font-mono">
-                  <div className="flex items-center gap-2 text-cyan-400 font-bold">
-                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-                    <span>BROWNFIELD IN-PLACE ENGINE</span>
-                  </div>
-                  <span className="text-slate-400 text-[11px]">100% History Preserved</span>
-                </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white">
+              SAP S/4HANA <br />
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+                Brownfield Migration
+              </span>
+            </h1>
 
-                <div className="relative p-3 bg-[#060D1A]">
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 flex items-center justify-center">
-                    <img
-                      src="/images/brownfield_system_conversion.jpg"
-                      alt="Existing SAP system and business processes being modernized while preserving existing investments"
-                      className="w-full h-[340px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+            <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed max-w-2xl">
+              Modernize your existing SAP ECC 6.0 in-place while preserving your investments. Retain <strong>100% of historical transactions, customizations, and configurations</strong> with zero operational disruption and <strong>&lt; 12 hours cutover downtime</strong>.
+            </p>
 
-                    <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-white space-y-1">
-                      <div className="text-xs font-bold text-cyan-300 flex items-center justify-between">
-                        <span>Direct 1-Step Database Upgrade</span>
-                        <span className="text-emerald-400 font-mono">SUM 2.0 DMO</span>
-                      </div>
-                      <p className="text-[11px] text-slate-300 leading-relaxed">
-                        Retain all general ledger transactions, custom logic, and proven configurations while upgrading directly to SAP S/4HANA.
-                      </p>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {[
+                { label: 'Data Retention', val: '100% Preserved', icon: ShieldCheck, color: 'text-emerald-400' },
+                { label: 'Project Speed', val: '3 – 5 Months', icon: Clock, color: 'text-cyan-400' },
+                { label: 'Change Burden', val: 'Low Friction', icon: Zap, color: 'text-blue-400' },
+                { label: 'DB Upgrade', val: '1-Step SUM DMO', icon: Database, color: 'text-indigo-400' }
+              ].map((stat, i) => (
+                <div key={i} className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-sm space-y-0.5">
+                  <stat.icon className={`w-4 h-4 ${stat.color} mb-1`} />
+                  <div className="text-sm font-black text-white">{stat.val}</div>
+                  <div className="text-[11px] text-slate-400 uppercase font-mono">{stat.label}</div>
                 </div>
-
-                <div className="px-5 py-3 bg-[#081220] border-t border-slate-800/80 flex items-center justify-between text-xs">
-                  <span className="text-slate-400 font-mono">Preserve Existing Investments</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-                  <span className="text-cyan-400 font-mono font-bold">SAP S/4HANA Modern Core</span>
-                </div>
-              </div>
+              ))}
             </div>
 
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <button
+                onClick={() => onOpenContact ? onOpenContact('Brownfield S/4HANA Migration Assessment') : null}
+                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-black text-sm tracking-wide transition-all shadow-xl shadow-blue-500/25 flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Request Brownfield Assessment</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href="#overview"
+                className="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <span>Explore Brownfield Architecture</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

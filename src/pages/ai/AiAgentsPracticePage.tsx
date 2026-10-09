@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -39,7 +39,9 @@ import {
   Radio,
   GitBranch,
   SlidersHorizontal,
-  CheckSquare
+  CheckSquare,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 interface AiAgentsPracticePageProps {
@@ -49,8 +51,44 @@ interface AiAgentsPracticePageProps {
 export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
   onOpenContact
 }) => {
-  // State for Section 2 Interactive Journey
+  // State for Section 2 Interactive Journey Auto-Play
   const [activeJourneyStep, setActiveJourneyStep] = useState(0);
+  const [isJourneyUserPaused, setIsJourneyUserPaused] = useState(false);
+  const journeyIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const journeyResumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [fullScreenAgentStep, setFullScreenAgentStep] = useState<{
+    label: string;
+    sublabel: string;
+    tech: string;
+    desc: string;
+    image: string;
+  } | null>(null);
+  const [fullScreenAuditDoc, setFullScreenAuditDoc] = useState<{
+    title: string;
+    tabLabel: string;
+    fileInfo: string;
+    image: string;
+    recommendation: string;
+  } | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setFullScreenAgentStep(null);
+        setFullScreenAuditDoc(null);
+      }
+    };
+    if (fullScreenAgentStep || fullScreenAuditDoc) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [fullScreenAgentStep, fullScreenAuditDoc]);
 
   // State for Section 4 Interactive Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -224,7 +262,8 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       sublabel: 'Hierarchical Tasking',
       desc: 'Translating complex high-level business directives into structured sub-tasks with deterministic dependencies and execution milestones.',
       tech: 'Autonomous Meta-Planner',
-      icon: GitBranch
+      icon: GitBranch,
+      image: '/images/ai_agents_goal_decomposition_strategy.png'
     },
     {
       id: 'swarm',
@@ -232,7 +271,8 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       sublabel: 'Role-Based Coordination',
       desc: 'Specialized autonomous agents collaborating concurrently—from procurement verification to credit release—with verified message passing.',
       tech: 'Actor Model Swarm Fabric',
-      icon: Network
+      icon: Network,
+      image: '/images/ai_agents_actor_model_swarm_fabric.jpg'
     },
     {
       id: 'tool-execution',
@@ -240,7 +280,8 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       sublabel: 'Type-Safe BAPI Calls',
       desc: 'Translating model intent into strictly typed JSON RPC parameters, validating against live SAP metadata dictionaries before execution.',
       tech: 'SAP BAPI Gateway',
-      icon: Cpu
+      icon: Cpu,
+      image: '/images/ai_agents_typed_json_rpc_sap_metadata.png'
     },
     {
       id: 'hitl-gate',
@@ -248,7 +289,8 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       sublabel: 'Exception Approvals',
       desc: 'Automatic escalation to corporate stakeholders whenever variance corridors, sovereign budget thresholds, or compliance limits are exceeded.',
       tech: 'Governance Escalation Engine',
-      icon: ShieldCheck
+      icon: ShieldCheck,
+      image: '/images/ai_agents_stakeholder_escalation_variance.png'
     },
     {
       id: 'action-execution',
@@ -256,7 +298,8 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       sublabel: 'Direct ERP Posting',
       desc: 'Committing reconciled financial invoices, reallocating warehouse delivery stock, and issuing formal purchase orders directly into core ERP systems.',
       tech: 'SAP S/4HANA Transaction Engine',
-      icon: Workflow
+      icon: Workflow,
+      image: '/images/ai_agents_reconciled_invoices_erp_action.png'
     },
     {
       id: 'telemetry',
@@ -264,9 +307,51 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       sublabel: 'Trace & Replay',
       desc: 'Complete immutable recording of every intermediate thought step, tool argument, execution result, and user sign-off for corporate compliance.',
       tech: 'Sovereign Telemetry Vault',
-      icon: Lock
+      icon: Lock,
+      image: '/images/ai_agents_immutable_audit_logging.png'
     }
   ];
+
+  // Auto-play effect for Section 2 Architecture Journey (6 parts)
+  useEffect(() => {
+    if (fullScreenAgentStep || isJourneyUserPaused) return;
+
+    journeyIntervalRef.current = setInterval(() => {
+      setActiveJourneyStep((prev) => (prev + 1) % journeySteps.length);
+    }, 3500);
+
+    return () => {
+      if (journeyIntervalRef.current) {
+        clearInterval(journeyIntervalRef.current);
+      }
+    };
+  }, [fullScreenAgentStep, isJourneyUserPaused, journeySteps.length]);
+
+  // Clean up timers on unmount
+  useEffect(() => {
+    return () => {
+      if (journeyIntervalRef.current) clearInterval(journeyIntervalRef.current);
+      if (journeyResumeTimeoutRef.current) clearTimeout(journeyResumeTimeoutRef.current);
+    };
+  }, []);
+
+  // When user clicks on any of the 6 parts or the image:
+  // Immediately shows that step, holds for 1 second, then resumes automatic rotation
+  const handleSelectJourneyStep = (index: number) => {
+    // 1. Immediately switch to the clicked part/image
+    setActiveJourneyStep(index);
+
+    // 2. Pause regular interval
+    setIsJourneyUserPaused(true);
+    if (journeyIntervalRef.current) clearInterval(journeyIntervalRef.current);
+    if (journeyResumeTimeoutRef.current) clearTimeout(journeyResumeTimeoutRef.current);
+
+    // 3. Exactly after 1 second (1000ms), advance to next and resume automatic rotation
+    journeyResumeTimeoutRef.current = setTimeout(() => {
+      setActiveJourneyStep((prev) => (prev + 1) % journeySteps.length);
+      setIsJourneyUserPaused(false);
+    }, 1000);
+  };
 
   // Section 3: AI Agents Challenges
   const agentChallenges = [
@@ -451,6 +536,7 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       fileInfo: 'Target System: SAP S/4HANA Finance &bull; PO Ref: #PO-882194',
       riskLevel: 'VARIANCE CORRIDOR CLEAR',
       riskBadgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+      image: '/images/ai_agents_reconciled_invoices_erp_action.png',
       recommendation: 'Autonomous clearance authorized. Quantity variance within tolerance. Posting executed via BAPI_INCOMINGINVOICE_CREATE.',
       findings: [
         {
@@ -486,6 +572,7 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       fileInfo: 'Target System: SAP EWM / TM &bull; Shipment: #SHP-91028',
       riskLevel: 'DYNAMIC ROUTE OPTIMIZED',
       riskBadgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+      image: '/images/autonomous_cross_dock_logistics_swarm.png',
       recommendation: 'Cross-dock stock transfer order executed. Stock shortfall mitigated without delayed customer commitments.',
       findings: [
         {
@@ -521,6 +608,7 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       fileInfo: 'Target System: SAP BTP / Sovereign Governance Cloud &bull; Policy: #SOX-404',
       riskLevel: 'ACTIVE ENFORCEMENT',
       riskBadgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+      image: '/images/ai_agents_governance_sentinel.png',
       recommendation: 'All autonomous actions validated against enterprise role definitions. Zero segregation of duties violations.',
       findings: [
         {
@@ -564,45 +652,64 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
 
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Image 1 of 4 - Ultra-Clean & Sleek, NO Buttons)
+          SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Clear & Uncut)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-slate-950 text-white">
+        
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Robot, Holograms or Laptop */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/ai_agents_hero.jpg"
-            alt="Autonomous Multi-Agent Enterprise Swarms"
-            className="w-full h-full object-cover object-center opacity-40"
+            src="/images/ai_agents_hero_widescreen.jpg"
+            alt="Autonomous Enterprise AI Agents"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-105"
           />
+          {/* Subtle directional gradient on the left ONLY - keeps the robot, laptop and all holograms on the right 100% bright, crisp and clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-42% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30 pointer-events-none" />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <Bot className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; AUTONOMOUS AI AGENTS</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md border border-cyan-500/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                  <Bot className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; AUTONOMOUS AI AGENTS</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setFullScreenAgentStep(journeySteps[0])}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 hover:bg-cyan-500 hover:text-slate-950 text-white border border-white/20 backdrop-blur-md text-xs font-mono font-bold transition-all shadow-md group cursor-pointer"
+                  title="View AI Agents architecture in full screen"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-cyan-300 group-hover:text-slate-950 transition-colors" />
+                  <span>Full Screen View</span>
+                </button>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+              
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.1] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
                 Autonomous <br />
-                <span className="text-cyan-400">Enterprise AI Agents</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-200">
+                  Enterprise AI Agents
+                </span>
               </h1>
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
+              
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 Multi-agent swarms, deterministic tool calling, and governed closed-loop workflow execution connected directly into SAP ERP with zero hallucination risk.
               </p>
             </motion.div>
 
-            {/* Enterprise Trust Indicators (Strictly No Buttons) */}
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200">
+            {/* Enterprise Trust Indicators */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
                 <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Deterministic Tool Calling</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Governed Human-in-the-Loop</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200 shadow-lg">
                 <Database className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>Closed-Loop S/4HANA Action</span>
               </div>
@@ -680,17 +787,47 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
 
             {/* Right Column: Deep-Dive Visual Card (Image 2 of 4) + Step Switcher */}
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
-                <img
-                  src="/images/ai_agents_hero.jpg"
-                  alt="Knooviq Enterprise Autonomous AI Agents Command Center"
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
-                />
+              <div 
+                className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group cursor-pointer"
+                onClick={() => handleSelectJourneyStep((activeJourneyStep + 1) % journeySteps.length)}
+                title="Click image to advance to next architecture step (or click Full Screen)"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={journeySteps[activeJourneyStep].id}
+                    src={journeySteps[activeJourneyStep].image}
+                    alt={journeySteps[activeJourneyStep].label}
+                    initial={{ opacity: 0.5, scale: 1.02 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0.5 }}
+                    transition={{ duration: 0.45, ease: 'easeOut' }}
+                    className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+                  />
+                </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
-                <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-cyan-400/50 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-1.5">
-                  <Bot className="w-3.5 h-3.5 text-cyan-400" />
+                
+                {/* Active Architecture Badge with live pulsing dot */}
+                <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-cyan-400/50 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shrink-0" />
                   <span>ACTIVE ARCHITECTURE: {journeySteps[activeJourneyStep].label.toUpperCase()}</span>
                 </div>
+
+                {/* Full Screen Button indicator */}
+                <div className="absolute top-3 right-3 z-10">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFullScreenAgentStep(journeySteps[activeJourneyStep]);
+                    }}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/70 hover:bg-[#0070C0] text-white border border-white/20 backdrop-blur-md text-[11px] font-mono font-bold transition-all shadow-md cursor-pointer"
+                    title="View architecture in full screen"
+                  >
+                    <Maximize2 className="w-3 h-3 text-cyan-300" />
+                    <span>Full Screen</span>
+                  </button>
+                </div>
+
                 <div className="absolute bottom-3 left-3 right-3 text-white space-y-1">
                   <div className="text-xs sm:text-sm font-mono font-bold text-cyan-300">{journeySteps[activeJourneyStep].tech}</div>
                   <p className="text-xs sm:text-sm text-slate-100 font-medium line-clamp-2 leading-relaxed">{journeySteps[activeJourneyStep].desc}</p>
@@ -706,8 +843,8 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-3 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
+                      onClick={() => handleSelectJourneyStep(idx)}
+                      className={`p-3 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-md scale-[1.01]'
                           : 'bg-white text-slate-800 border-2 border-slate-200 hover:bg-sky-50 hover:border-[#0070C0]'
@@ -1404,17 +1541,29 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
               
               {/* Left Column: Visual AI Document Scan (Image 4 of 4 - Zero Dead Space Above or Below) */}
-              <div className="lg:col-span-5 relative rounded-xl overflow-hidden border border-cyan-400/40 shadow-lg group min-h-[260px] sm:min-h-[300px] lg:min-h-full">
+              <div 
+                className="lg:col-span-5 relative rounded-xl overflow-hidden border border-cyan-400/40 shadow-lg group min-h-[260px] sm:min-h-[300px] lg:min-h-full cursor-pointer"
+                onClick={() => setFullScreenAuditDoc(auditDocuments[activeDocTab])}
+                title="Click to view image in full screen"
+              >
                 <img
-                  src="/images/ai_agents_sandbox_execution.jpg"
-                  alt="Autonomous Agent Multi-Step Reasoning & Tool Dispatch Console"
-                  className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                  src={auditDocuments[activeDocTab].image || "/images/ai_agents_sandbox_execution.jpg"}
+                  alt={auditDocuments[activeDocTab].title}
+                  className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105 brightness-105 contrast-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
                 
                 <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-10 shadow-sm">
                   <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Autonomous Swarm Execution Console</span>
+                  <span>{auditDocuments[activeDocTab].tabLabel} Execution Console</span>
+                </div>
+
+                {/* Full Screen Button indicator */}
+                <div className="absolute top-2.5 right-2.5 z-10">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/70 hover:bg-[#0070C0] text-white border border-white/20 backdrop-blur-md text-[10px] font-mono font-bold transition-all shadow-md">
+                    <Maximize2 className="w-3 h-3 text-cyan-300" />
+                    <span>Full Screen</span>
+                  </span>
                 </div>
 
                 <div className="absolute bottom-2.5 left-2.5 right-2.5 p-2.5 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 text-white text-left z-10 space-y-0.5">
@@ -1579,6 +1728,128 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
           </div>
         </div>
       </section>
+
+      {/* =========================================================================
+          INTERACTIVE FULL-SCREEN LIGHTBOX MODAL: AGENT ARCHITECTURE STEP
+          ========================================================================= */}
+      {fullScreenAgentStep && (
+        <div 
+          className="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 sm:p-6 lg:p-8 animate-in fade-in duration-200"
+          onClick={() => setFullScreenAgentStep(null)}
+        >
+          {/* Top Bar with Header & Close Button */}
+          <div 
+            className="w-full max-w-7xl flex items-center justify-between border-b border-white/10 pb-4 text-white z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+              <div>
+                <h3 className="text-sm sm:text-base font-bold font-sans tracking-wide">
+                  {fullScreenAgentStep.label} &bull; {fullScreenAgentStep.sublabel}
+                </h3>
+                <p className="text-xs text-cyan-300 font-mono">
+                  {fullScreenAgentStep.tech}
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setFullScreenAgentStep(null)}
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white hover:text-cyan-300 transition-all border border-white/20 shadow-lg flex items-center gap-1.5"
+              aria-label="Close full screen view"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="hidden sm:inline text-xs font-mono font-bold pr-1">ESC</span>
+            </button>
+          </div>
+
+          {/* Full Screen Image Presentation Container */}
+          <div 
+            className="relative flex-1 w-full max-w-7xl flex items-center justify-center p-2 sm:p-4 my-auto overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={fullScreenAgentStep.image}
+              alt={fullScreenAgentStep.label}
+              className="max-w-full max-h-[82vh] w-auto h-auto object-contain rounded-2xl shadow-2xl border border-cyan-500/40 ring-2 ring-cyan-400/30 filter brightness-105 contrast-105"
+            />
+          </div>
+
+          {/* Bottom Info Bar with Telemetry */}
+          <div 
+            className="w-full max-w-7xl pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-slate-300 z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-cyan-300">&bull; {fullScreenAgentStep.desc}</span>
+            </div>
+            <div className="text-slate-400 text-center sm:text-right shrink-0">
+              Press <kbd className="px-2 py-0.5 rounded bg-white/10 text-white border border-white/20 font-bold">ESC</kbd> or click outside to exit full screen
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full-Screen Interactive Lightbox Modal for Section 9 Audit Document */}
+      {fullScreenAuditDoc && (
+        <div 
+          className="fixed inset-0 z-[9999] bg-slate-950/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 sm:p-6 lg:p-8 animate-fadeIn"
+          onClick={() => setFullScreenAuditDoc(null)}
+        >
+          {/* Top Bar with Header & Close Button */}
+          <div 
+            className="w-full max-w-7xl flex items-center justify-between border-b border-white/10 pb-4 text-white z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+              <div>
+                <h3 className="text-sm sm:text-base font-bold font-sans tracking-wide">
+                  {fullScreenAuditDoc.title}
+                </h3>
+                <p className="text-xs text-cyan-300 font-mono">
+                  {fullScreenAuditDoc.tabLabel} &bull; {fullScreenAuditDoc.fileInfo}
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setFullScreenAuditDoc(null)}
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white hover:text-cyan-300 transition-all border border-white/20 shadow-lg flex items-center gap-1.5"
+              aria-label="Close full screen view"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="hidden sm:inline text-xs font-mono font-bold pr-1">ESC</span>
+            </button>
+          </div>
+
+          {/* Full Screen Image Presentation Container */}
+          <div 
+            className="relative flex-1 w-full max-w-7xl flex items-center justify-center p-2 sm:p-4 my-auto overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={fullScreenAuditDoc.image}
+              alt={fullScreenAuditDoc.title}
+              className="max-w-full max-h-[82vh] w-auto h-auto object-contain rounded-2xl shadow-2xl border border-cyan-500/40 ring-2 ring-cyan-400/30 filter brightness-105 contrast-105"
+            />
+          </div>
+
+          {/* Bottom Info Bar with Telemetry */}
+          <div 
+            className="w-full max-w-7xl pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-slate-300 z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-cyan-300">&bull; {fullScreenAuditDoc.recommendation}</span>
+            </div>
+            <div className="text-slate-400 text-center sm:text-right shrink-0">
+              Press <kbd className="px-2 py-0.5 rounded bg-white/10 text-white border border-white/20 font-bold">ESC</kbd> or click outside to exit full screen
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

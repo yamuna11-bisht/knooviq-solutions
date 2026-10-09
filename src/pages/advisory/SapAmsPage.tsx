@@ -290,91 +290,71 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
     <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-500 selection:text-white">
 
       {/* =========================================================================
-          HERO SECTION: SAP AMS (CLEAN WHITE FORMAT)
+          SECTION 1: HERO — SAP AMS (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200/80">
-        
-        {/* Subtle Background Grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, #0F172A 1px, transparent 1px), linear-gradient(to bottom, #0F172A 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-slate-950 text-white">
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+        {/* Full-Bleed Background Visual */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/ams/sap-ams-hero.jpg"
+            alt="Knooviq 24/7 Global SAP Application Management Operations Command Center"
+            className="w-full h-full object-cover object-right lg:object-[82%_center] brightness-105 contrast-105 saturate-[1.05]"
+          />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-50% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-500 font-medium">
-              <li><Link to="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
-              <li className="text-slate-400">/</li>
-              <li><Link to="/advisory-managed-services" className="hover:text-blue-600 transition-colors">Advisory &amp; Managed Services</Link></li>
-              <li className="text-slate-400">/</li>
-              <li className="text-blue-600 font-semibold" aria-current="page">SAP AMS</li>
+            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-400 font-medium">
+              <li><Link to="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
+              <li className="text-slate-600">/</li>
+              <li><Link to="/advisory-managed-services" className="hover:text-blue-400 transition-colors">Advisory &amp; Managed Services</Link></li>
+              <li className="text-slate-600">/</li>
+              <li className="text-blue-400 font-semibold" aria-current="page">SAP AMS</li>
             </ol>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Content Header */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold tracking-wider uppercase">
-                <Gauge className="w-3.5 h-3.5 text-blue-600" />
-                <span>OPERATIONS COMMAND CENTER &bull; 24/7 MANAGED SERVICES</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                SAP AMS
-              </h1>
-
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 leading-snug">
-                Keep Your SAP Environment Stable, Supported, and Continuously Improving
-              </p>
-
-              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-                Transform your SAP operations from reactive firefighting into a proactive, high-velocity engine. We provide 24/7 dedicated application management focused on uptime, rigorous SLA guarantees, performance tuning, and continuous value creation.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact && onOpenContact('SAP AMS Managed Services')}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>Explore AMS Packages</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <a
-                  href="#tiered-support-flowchart"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-base transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>View Support Architecture</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </a>
-              </div>
+          <div className="max-w-3xl space-y-5 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+              <Gauge className="w-3.5 h-3.5 text-blue-400" />
+              <span>OPERATIONS COMMAND CENTER &bull; 24/7 MANAGED SERVICES</span>
             </div>
 
-            {/* Right Hero Visual: IMAGE 1 (Kept as user requested: "hero section ko chor ke") */}
-            <div className="lg:col-span-6">
-              <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative group bg-white">
-                <img
-                  src="/images/ams/sap-ams-hero.jpg"
-                  alt="Knooviq 24/7 Global SAP Application Management Operations Command Center"
-                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-between text-slate-900">
-                  <div>
-                    <span className="text-xs font-mono font-bold text-blue-600 block">GLOBAL OPERATIONS CENTER</span>
-                    <span className="text-sm font-bold text-slate-900">24/7/365 Dedicated SAP Enterprise Monitoring</span>
-                  </div>
-                  <span className="text-xs font-mono font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                    99.85% SLA Target
-                  </span>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+              SAP <br />
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+                AMS
+              </span>
+            </h1>
 
+            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
+              Keep Your SAP Environment Stable, Supported, and Continuously Improving
+            </p>
+
+            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
+              Transform your SAP operations from reactive firefighting into a proactive, high-velocity engine. We provide 24/7 dedicated application management focused on uptime, rigorous SLA guarantees, performance tuning, and continuous value creation.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-3">
+              <button
+                onClick={() => onOpenContact && onOpenContact('SAP AMS Managed Services')}
+                className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
+              >
+                <span>Explore AMS Packages</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a
+                href="#tiered-support-flowchart"
+                className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-base transition-all flex items-center gap-2 shadow-sm backdrop-blur-sm"
+              >
+                <span>View Support Architecture</span>
+                <ChevronDown className="w-4 h-4 text-slate-400" />
+              </a>
+            </div>
           </div>
 
         </div>
@@ -388,7 +368,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
           ========================================================================= */}
       <section id="tiered-support-flowchart" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Tiered Support Architecture
@@ -403,7 +383,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
 
           {/* INTERACTIVE FLOWCHART & COMPACT VISUAL SHOWCASE */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-            
+
             {/* Left 8 Cols: Interactive Multi-Step Escalation Flowchart */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
               <div>
@@ -423,16 +403,14 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
                     <button
                       key={idx}
                       onClick={() => setActiveEscalationStep(idx)}
-                      className={`p-3 rounded-2xl text-left border transition-all cursor-pointer relative ${
-                        activeEscalationStep === idx
+                      className={`p-3 rounded-2xl text-left border transition-all cursor-pointer relative ${activeEscalationStep === idx
                           ? 'bg-blue-50 border-blue-500 shadow-sm ring-2 ring-blue-500/20'
                           : 'bg-slate-50 border-slate-200 hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <span className={`text-[10px] font-mono font-bold uppercase ${
-                          activeEscalationStep === idx ? 'text-blue-700' : 'text-slate-400'
-                        }`}>
+                        <span className={`text-[10px] font-mono font-bold uppercase ${activeEscalationStep === idx ? 'text-blue-700' : 'text-slate-400'
+                          }`}>
                           {st.step}
                         </span>
                         {activeEscalationStep === idx && (
@@ -576,7 +554,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
           ========================================================================= */}
       <section id="telemetry-console" className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Proactive Telemetry &amp; Monitoring
@@ -591,7 +569,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
 
           {/* TELEMETRY FLOWCHART + COMPACT OCC VISUAL (REPLACES GIANT BANNER) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-center">
-            
+
             {/* Left 8 Cols: Automated Detection & Self-Healing Flowchart */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm space-y-5">
               <div className="flex items-center justify-between pb-3 border-b border-slate-200">
@@ -654,7 +632,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
 
           {/* Interactive Stream Selector & Stream Display */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             {/* Left Stream Selector */}
             <div className="lg:col-span-5 space-y-3">
               {[
@@ -666,11 +644,10 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
                 <button
                   key={st.id}
                   onClick={() => setActiveTelemetryStream(st.id as any)}
-                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                    activeTelemetryStream === st.id
+                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${activeTelemetryStream === st.id
                       ? 'bg-blue-50 border-blue-500 shadow-sm ring-1 ring-blue-500/30'
                       : 'bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-700'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <h3 className="text-sm font-bold text-slate-900">{st.name}</h3>
@@ -738,7 +715,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               SLA Commitments
@@ -788,7 +765,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Root-Cause Problem Management
@@ -838,7 +815,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Transport &amp; Release Control
@@ -853,7 +830,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
 
           {/* INTERACTIVE RELEASE PIPELINE FLOWCHART + COMPACT VISUAL */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-            
+
             {/* Left 8 Cols: Interactive Release Flowchart */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
               <div>
@@ -866,11 +843,10 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
                       <button
                         key={i}
                         onClick={() => setActiveReleaseTrack(i)}
-                        className={`px-3 py-1 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${
-                          activeReleaseTrack === i
+                        className={`px-3 py-1 rounded-xl text-xs font-mono font-bold cursor-pointer transition-all ${activeReleaseTrack === i
                             ? 'bg-blue-600 text-white shadow-xs'
                             : 'bg-slate-100 text-slate-600 hover:text-slate-900'
-                        }`}
+                          }`}
                       >
                         {rel.track.split(' ')[0]}
                       </button>
@@ -917,7 +893,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
             <div className="lg:col-span-4 rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-white flex flex-col justify-between">
               <div className="h-52 sm:h-56 relative overflow-hidden group">
                 <img
-                  src="/images/ams/sap-ams-release-governance.jpg"
+                  src="/images/ams/tms_transport_management_system.png"
                   alt="Multi-Speed Release Management Pathways & Cloud Transport Governance"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
@@ -971,7 +947,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Application Performance &amp; Innovation
@@ -986,7 +962,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
 
           {/* INTERACTIVE SHIFT-LEFT VALUE FLOWCHART + COMPACT IMAGE */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-stretch">
-            
+
             {/* Left 8 Cols: Shift-Left Continuous Improvement Cycle */}
             <div className="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
               <div>
@@ -1005,11 +981,10 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
                     <button
                       key={idx}
                       onClick={() => setActiveValuePhase(idx)}
-                      className={`p-3 rounded-2xl text-left border transition-all cursor-pointer ${
-                        activeValuePhase === idx
+                      className={`p-3 rounded-2xl text-left border transition-all cursor-pointer ${activeValuePhase === idx
                           ? 'bg-blue-50 border-blue-500 shadow-xs ring-1 ring-blue-500/20'
                           : 'bg-white border-slate-200 hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       <span className="text-[10px] font-mono text-blue-700 font-bold block mb-1">
                         {vp.phase}
@@ -1082,7 +1057,7 @@ export const SapAmsPage: React.FC<SapAmsPageProps> = ({ onOpenContact }) => {
                   <h3 className="text-lg font-bold text-slate-900 mb-3">
                     {bm.title}
                   </h3>
-                  
+
                   <div className="space-y-2 font-mono text-xs">
                     <div className="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
                       <span className="text-slate-400">BASELINE:</span>

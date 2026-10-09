@@ -512,6 +512,24 @@ export const SapHumanCapitalSolutionView: React.FC<SapHumanCapitalSolutionViewPr
             })}
           </div>
 
+          {/* High-Resolution Skills Ontology & Mobility Architecture Visual */}
+          <div className="rounded-2xl overflow-hidden relative border border-purple-500/30 shadow-xl group h-56 sm:h-72 lg:h-80">
+            <img
+              src="/images/sap_business_ai_skills_ontology_mobility.png"
+              alt="Interactive Talent Intelligence Hub & Career Matrix"
+              className="w-full h-full object-cover object-center filter brightness-105 contrast-105 group-hover:scale-102 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0A21]/90 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-purple-400/40 text-xs font-mono font-bold text-purple-300">
+              <BrainCircuit className="w-3.5 h-3.5 text-purple-400" />
+              <span>DYNAMIC SKILLS ONTOLOGY • OPPORTUNITY MARKETPLACE</span>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-purple-200 bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10">
+              <span>Talent Intelligence Hub // Neural Skill Graph &amp; Career Mobility</span>
+              <span className="text-emerald-400 font-bold">{currentCluster.currentProficiency}</span>
+            </div>
+          </div>
+
           {/* Cluster Details Card */}
           <div className="p-6 sm:p-8 rounded-2xl bg-black/40 border border-white/10 space-y-6">
             <div className="flex items-center justify-between pb-4 border-b border-white/10">

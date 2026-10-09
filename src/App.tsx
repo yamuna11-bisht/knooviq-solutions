@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { ChatbotWidget } from './components/chatbot/ChatbotWidget';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -660,6 +661,7 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <SmoothScroll>
           <AppContent />
         </SmoothScroll>

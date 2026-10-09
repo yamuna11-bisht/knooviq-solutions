@@ -43,7 +43,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
       description: 'Accelerate digital employee experiences and partner portals without writing complex frontend code. Integrates natively with SAP S/4HANA role-based access catalogs.',
       costModel: 'User Subscription & Capacity Units',
       useCase: 'Field inspection mobile apps, supplier onboarding portals, employee self-service hubs.',
-      image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sap_build_apps_work_zone.png',
       cleanCoreRating: 'Tier 1 Clean Core Standard'
     },
     {
@@ -54,7 +54,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
       description: 'Run mission-critical custom business logic in an isolated containerized environment using Cloud Application Programming (CAP) model and modern ABAP Cloud.',
       costModel: 'Memory (GB) & Application Compute Hours',
       useCase: 'Complex algorithmic pricing engines, B2B partner collaboration microservices, billing calculators.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sap_btp_abap_cloud_foundry.png',
       cleanCoreRating: 'Zero ERP Modification Impact'
     },
     {
@@ -65,7 +65,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
       description: 'Seamlessly bridge cloud and on-premise landscapes. Connect SAP to Salesforce, Workday, ServiceNow, and banking gateways with guaranteed persistent message delivery.',
       costModel: 'Tenant Base + Monthly Message Volume Tiers',
       useCase: 'Quote-to-Cash automation, B2B EDI Peppol compliance, event-driven inventory synchronization.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sap_integration_suite_hub.png',
       cleanCoreRating: 'Decoupled API-Only Interfaces'
     },
     {
@@ -76,7 +76,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
       description: 'Unify distributed enterprise data without extraction bottlenecks. Harmonize SAP and third-party data lakes into a live semantic layer with predictive modeling.',
       costModel: 'Capacity Units & User Business Intelligence Licenses',
       useCase: 'Real-time financial consolidation, multi-echelon supply chain visibility, ESG regulatory reporting.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sap_datasphere_analytics_cloud.png',
       cleanCoreRating: 'Zero-Copy Virtualization'
     },
     {
@@ -87,7 +87,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
       description: 'Access leading foundational LLMs (GPT-4o, Claude 3.5, Mistral Large) inside the enterprise security perimeter with grounded SAP business semantics and data isolation.',
       costModel: 'Token Consumption & AI Inference Units',
       useCase: 'Automated invoice dispute resolution, Joule copilot extensions, document summarization.',
-      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+      image: '/images/sap_generative_ai_hub_vector_search.png',
       cleanCoreRating: 'Secure Enterprise AI Boundary'
     }
   ];
@@ -100,15 +100,16 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           ========================================================================= */}
       <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-blue-950">
 
-        {/* Background Image with Deep Blue Scrim */}
+        {/* Background Image with Crisp Brightness and Seamless Gradient Scrim */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80"
-            alt="SAP BTP Enterprise Platform Cloud Architecture"
-            className="w-full h-full object-cover object-center opacity-30"
+            src="/images/sap_btp_hero_team_handshake.png"
+            alt="SAP BTP Enterprise Agility Platform"
+            className="w-full h-full object-cover object-right lg:object-[72%_center] brightness-110 contrast-105 saturate-[1.05]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-transparent to-blue-950/50 pointer-events-none" />
+          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -233,8 +234,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md h-64">
                 <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80"
-                  alt="Enterprise Architecture Planning"
+                  src="/images/sap_btp_architectural_decision_guide.jpg"
+                  alt="Architectural Decision Guide: Where Does Your Custom Logic Belong?"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -414,8 +415,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md h-60">
                 <img
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
-                  alt="Enterprise Modern Corporate Headquarters"
+                  src="/images/sap_btp_clean_core_extensibility_contracts.jpg"
+                  alt="The 4 Architectural Contracts of Clean Core Extensibility"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -485,8 +486,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               <div>
                 <div className="h-48 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
-                    alt="Asynchronous Event Buffer Architecture"
+                    src="/images/sap_btp_async_event_ingestion_buffer.png"
+                    alt="Asynchronous High-Throughput Event Ingestion Buffer"
                     className="w-full h-full object-cover"
                   />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-blue-900 text-[10px] font-mono text-white font-bold">
@@ -524,8 +525,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               <div>
                 <div className="h-48 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
-                    alt="Partner Collaboration SaaS"
+                    src="/images/sap_btp_supplier_collaboration_portal.jpg"
+                    alt="Multi-Tenant Supplier Collaboration Portal"
                     className="w-full h-full object-cover"
                   />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-blue-900 text-[10px] font-mono text-white font-bold">
@@ -563,8 +564,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               <div>
                 <div className="h-48 w-full relative overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
-                    alt="Enterprise RAG AI Architecture"
+                    src="/images/sap_btp_enterprise_rag_generative_ai.png"
+                    alt="Enterprise RAG & Grounded Generative AI"
                     className="w-full h-full object-cover"
                   />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-blue-900 text-[10px] font-mono text-white font-bold">
@@ -627,8 +628,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
               <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-md mt-6 h-60">
                 <img
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
-                  alt="Enterprise Clean Core Audit"
+                  src="/images/sap_btp_clean_core_readiness_standards.png"
+                  alt="Enterprise Clean Core Readiness Standards"
                   className="w-full h-full object-cover"
                 />
               </div>

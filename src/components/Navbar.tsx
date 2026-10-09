@@ -329,8 +329,11 @@ const TRANSFORMATION_MEGA_MENU: TransformationMegaCategory[] = [
   {
     id: 'migration-modernization',
     title: 'Migration & Modernization',
+    badge: 'CLEAN CORE',
     path: '/solutions/sap-migration',
     items: [
+      { name: 'Clean Core Architecture', path: '/solutions/sap-migration' },
+      { name: 'Cloud Modernization', path: '/technology/cloud-transformation' },
       { name: 'ECC → S/4HANA', path: '/solutions/sap-migration' },
       { name: 'System Conversion', path: '/solutions/system-conversion' },
       { name: 'Greenfield', path: '/solutions/greenfield' },
@@ -929,7 +932,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                     <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
                       
                       {/* 6 Category Cards in exact Savic / Enterprise layout */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 pb-6 border-b border-slate-200 dark:border-white/10">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
                         {TRANSFORMATION_MEGA_MENU.map((category) => {
                           const isDataAi = category.id === 'data-analytics-ai';
                           return (
@@ -943,39 +946,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                             >
                               <div>
                                 {isDataAi ? (
-                                  /* EXACT MATCH TO USER'S SCREENSHOT: DATA, ANALYTICS & AI with GEN AI pill badge */
-                                  <div className="flex items-start justify-between gap-1 mb-4 pb-1.5 border-b border-sky-100 dark:border-white/10">
-                                    <Link 
-                                      to={category.path} 
-                                      onClick={() => setActiveMenu(null)}
-                                      className="group block"
-                                    >
-                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight group-hover:text-[#00A3E0] transition-colors">
+                                  /* EXACT MATCH TO USER'S SCREENSHOT: DATA, ANALYTICS & AI with GEN AI pill badge (Non-clickable Header) */
+                                  <div className="flex items-start justify-between gap-1 mb-4 pb-1.5 border-b border-sky-100 dark:border-white/10 select-none cursor-default">
+                                    <div className="block">
+                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight">
                                         DATA,
                                       </span>
-                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight group-hover:text-[#00A3E0] transition-colors">
+                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight">
                                         ANALYTICS & AI
                                       </span>
-                                    </Link>
+                                    </div>
                                     <span className="inline-flex items-center text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-md bg-[#00A3E0] text-white shadow-sm shrink-0">
                                       GEN AI
                                     </span>
                                   </div>
                                 ) : (
-                                  <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] mb-3">
-                                    <Link 
-                                      to={category.path} 
-                                      onClick={() => setActiveMenu(null)} 
-                                      className="hover:underline flex items-center justify-between group"
-                                    >
-                                      <span className="leading-snug">{category.title}</span>
-                                      {category.badge && (
-                                        <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">
-                                          {category.badge}
-                                        </span>
-                                      )}
-                                    </Link>
-                                  </h4>
+                                  /* Non-clickable Category Header in bold black / navy */
+                                  <div className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-white mb-3 min-h-[36px] flex items-center justify-between select-none cursor-default">
+                                    <span className="leading-snug">{category.title}</span>
+                                    {category.badge && (
+                                      <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">
+                                        {category.badge}
+                                      </span>
+                                    )}
+                                  </div>
                                 )}
 
                                 <ul className="space-y-1.5 text-xs">
@@ -999,26 +993,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                             </div>
                           );
                         })}
-                      </div>
-
-                      {/* Bottom Recommended Strip */}
-                      <div className="pt-4 flex items-center justify-between text-xs">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
-                            RECOMMENDED FOR YOU:
-                          </span>
-                          <span className="text-slate-900 dark:text-white font-bold">
-                            Clean Core Architecture & S/4HANA Cloud Modernization
-                          </span>
-                        </div>
-                        <Link 
-                          to="/transformation" 
-                          onClick={() => setActiveMenu(null)} 
-                          className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1"
-                        >
-                          <span>Explore All Transformation Practices</span>
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
                       </div>
 
                     </div>

@@ -529,6 +529,24 @@ export const SapFinanceSolutionView: React.FC<SapFinanceSolutionViewProps> = ({ 
           </p>
         </div>
 
+        {/* Universal Journal Architecture Visual Banner */}
+        <div className="rounded-2xl overflow-hidden relative border border-[#00A3E0]/30 shadow-xl group h-56 sm:h-72 lg:h-80">
+          <img
+            src="/images/universal_journal_architecture.png"
+            alt="Universal Journal ACDOCA & Autonomous Financial Architecture"
+            className="w-full h-full object-cover object-center filter brightness-105 contrast-105 group-hover:scale-102 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#040C1A]/90 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-[#00A3E0]/40 text-xs font-mono font-bold text-cyan-300">
+            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <span>UNIVERSAL JOURNAL ACDOCA • SINGLE TRUTH RECORD</span>
+          </div>
+          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-cyan-200 bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10">
+            <span>High-Density Columnar Ledger // Multi-GAAP Continuous Financial Close</span>
+            <span className="text-emerald-400 font-bold">Sub-Second Reconciliation</span>
+          </div>
+        </div>
+
         {/* Stream Selector Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 border-b border-slate-200 dark:border-white/10">
           {functionalStreams.map((stream, idx) => (
