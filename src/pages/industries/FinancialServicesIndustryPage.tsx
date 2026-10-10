@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -39,9 +40,6 @@ interface FinancialServicesIndustryPageProps {
 export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -180,7 +178,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       sublabel: 'Global Chart of Accounts',
       desc: 'Standardize enterprise operational charts of accounts across global holding companies and offshore subsidiaries on Universal Journal.',
       tech: 'SAP S/4HANA Finance',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/financial-services/stage1_multi_entity_ledger.png',
       icon: Building2
     },
     {
@@ -189,7 +187,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       sublabel: 'Mark-to-Market Pricing',
       desc: 'Capture real-time market data feeds, calculate mark-to-market positions, and post automated unrealized gain/loss accounting entries.',
       tech: 'SAP Treasury & Asset Accounting',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/financial-services/stage2_asset_valuation.png',
       icon: Briefcase
     },
     {
@@ -198,7 +196,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       sublabel: 'Continuous Balance Reconciliation',
       desc: 'Reconcile bilateral intercompany loan agreements, management fee charges, and shared service allocations with automated dispute flags.',
       tech: 'SAP Intercompany Matching & Reconciliation (ICMR)',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/financial-services/stage3_intercompany_matching.jpg',
       icon: RefreshCw
     },
     {
@@ -207,7 +205,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       sublabel: 'Sub-Second Consolidation',
       desc: 'Execute real-time statutory consolidation, minority interest eliminations, and foreign currency revaluations on live ledger data.',
       tech: 'SAP S/4HANA Group Reporting',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/financial-services/stage4_group_reporting.png',
       icon: Layers
     },
     {
@@ -216,7 +214,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       sublabel: 'BEPS Pillar Two & Transfer Pricing',
       desc: 'Compute effective tax rates across low-tax jurisdictions, automate top-up tax provisions, and generate country-by-country reports.',
       tech: 'SAP Tax Compliance & Analytics',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/financial-services/global_tax_governance.png',
       icon: FileText
     },
     {
@@ -225,10 +223,32 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       sublabel: 'Audit Lineage & Sustainable Reporting',
       desc: 'Provide regulatory examiners and internal auditors instant, drill-down traceability from consolidated reports to origin ledger vouchers.',
       tech: 'SAP Audit Management & Sustainability Control Tower',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/financial-services/sol_esg_sustainable.png',
       icon: ShieldCheck
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Financial Services Challenges Data
   const financialChallenges = [
@@ -284,7 +304,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'UNIVERSAL SUB-LEDGER',
       title: 'SAP S/4HANA Finance Universal Journal',
       description: 'Single financial core uniting general ledger, profitability analysis, and asset accounting with instant line-item visibility.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_universal_journal.png',
       icon: Scale,
       highlights: ['In-Memory Universal Journal', 'Multi-GAAP Parallel Ledgers', 'Real-Time Intercompany Matching']
     },
@@ -294,7 +314,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'GROUP REPORTING',
       title: 'SAP S/4HANA Group Reporting Suite',
       description: 'Live corporate financial consolidation running directly on operational accounting data without batch data replication delays.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_group_reporting.png',
       icon: Layers,
       highlights: ['Continuous Accounting Close', 'Automated Bilateral Elimination', 'Multi-Currency Translations']
     },
@@ -304,7 +324,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'TAX COMPLIANCE',
       title: 'BEPS Pillar Two & Global Tax Engine',
       description: 'Automated global minimum tax provisioning, qualified domestic minimum top-up tax calculations, and country-by-country tax reporting.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/global_tax_governance.png',
       icon: FileText,
       highlights: ['OECD Pillar Two Rules Engine', 'Effective Tax Rate (ETR) Modeling', 'Safe Harbor Qualification Tests']
     },
@@ -314,7 +334,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'PORTFOLIO ACCOUNTING',
       title: 'Institutional Asset & Portfolio Sub-Ledger',
       description: 'Comprehensive investment accounting platform managing multi-asset securities, mark-to-market positions, and custodian reconciliations.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_asset_portfolio.jpg',
       icon: Briefcase,
       highlights: ['Multi-Asset Class Support', 'Automated Custodian Ingestion', 'Mark-to-Market GL Postings']
     },
@@ -324,7 +344,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'FUND ADMINISTRATION',
       title: 'Private Equity & VC Waterfall Engine',
       description: 'Automated investor ledger tracking LP commitments, capital call notices, multi-tiered hurdle rates, and carried interest distributions.',
-      image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_pe_waterfall.png',
       icon: Coins,
       highlights: ['Complex Waterfall Allocations', 'Automated Capital Call Notices', 'LP Investor Self-Service Portal']
     },
@@ -334,7 +354,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'WEALTH MANAGEMENT',
       title: 'Family Office & Wealth Consolidation Hub',
       description: 'Consolidated multi-custodian net worth reporting, trust accounting, and automated private asset valuation for family offices.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_family_office.jpg',
       icon: Building2,
       highlights: ['Consolidated Net Worth View', 'Trust & Estate Accounting', 'Direct Asset Mark-to-Model']
     },
@@ -344,7 +364,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'IN-HOUSE BANKING',
       title: 'SAP In-House Banking & Liquidity Pools',
       description: 'Centralized virtual account management, automated cash concentration sweeps, and multilateral intercompany netting.',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_inhouse_banking.png',
       icon: Landmark,
       highlights: ['Virtual Account Pooling', 'Multilateral Netting Rails', 'Zero External Wire Fees']
     },
@@ -354,7 +374,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'SUSTAINABLE FINANCE',
       title: 'ESG & SFDR Sustainable Finance Suite',
       description: 'Integrated sustainability accounting tracking portfolio green asset ratios, Article 8/9 fund disclosures, and carbon intensity.',
-      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_esg_sustainable.png',
       icon: Globe2,
       highlights: ['SFDR Article 8 & 9 Compliance', 'Green Asset Ratio (GAR) Audits', 'Financed Emissions Accounting']
     },
@@ -364,7 +384,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
       tag: 'CONTINUOUS AUDIT',
       title: 'Automated Audit Management & Lineage Hub',
       description: 'Machine learning internal audit system scanning all journal entries for anomalies, unauthorized postings, and segregation of duties.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      image: '/images/financial-services/sol_audit_management.png',
       icon: ShieldCheck,
       highlights: ['Continuous Journal Anomaly Scan', 'Instant Drill-Down Lineage', 'Automated SOX Audit Workflows']
     }
@@ -438,86 +458,88 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Cinematic Full-Bleed Dark Blue Hero Banner)
+          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
           ========================================================================= */}
-      <section className="relative min-h-[620px] lg:min-h-[680px] bg-slate-900 text-white flex flex-col justify-between overflow-hidden">
+      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Background Photo with Dark Gradient Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80" 
-            alt="Financial Services District" 
-            className="w-full h-full object-cover object-center brightness-60"
+        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        {/* Hero Top Content */}
+        {/* Hero Top Content (2-Column Grid) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          {/* Breadcrumb Navigation */}
-          <div className="mb-4 sm:mb-6">
-            <Link 
-              to="/industries" 
-              className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
-            >
-              <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
-              <span>Back to Industries</span>
-            </Link>
-          </div>
-
-          <div className="max-w-3xl space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Practice Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
-              <Building2 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>KNOOVIQ INDUSTRY PRACTICE</span>
+            {/* Left Column (7 cols): Content & Typography */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="mb-4 sm:mb-6">
+                <Link 
+                  to="/industries" 
+                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+                >
+                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                  <span>Back to Industries</span>
+                </Link>
+              </div>
+
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+                <Building2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                Enterprise Financial Services & Asset Architecture
+              </h1>
+
+              {/* Sub-headline */}
+              <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
+                Unify multi-entity financial consolidation, streamline asset management accounting, automate private fund capital waterfalls, and navigate BEPS Pillar Two tax compliance on clean-core SAP architecture.
+              </p>
+
+              {/* Feature Highlight Pills */}
+              <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Multi-GAAP Universal Journal</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Continuous Group Reporting</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Automated Fund Waterfalls</span>
+                </div>
+              </div>
+
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-              Enterprise Financial Services & Asset Architecture
-            </h1>
-
-            {/* Sub-headline */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
-              Unify multi-entity financial consolidation, streamline asset management accounting, automate private fund capital waterfalls, and navigate BEPS Pillar Two tax compliance on clean-core SAP architecture.
-            </p>
-
-            {/* Feature Highlight Pills */}
-            <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Multi-GAAP Universal Journal</span>
+            {/* Right Column (5 cols): Pure Architectural Diagram Showcase (100% Uncut & Crystal Clear) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-900/90 shadow-2xl shadow-black/60 p-2 sm:p-2.5 backdrop-blur-md group hover:border-[#0070C0] transition-colors duration-300">
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center min-h-[300px] sm:min-h-[380px] lg:min-h-[460px]">
+                  <img 
+                    src="/images/financial-services/financial_services_hero.png" 
+                    alt="Financial Services & AI Ledger Architecture" 
+                    className="w-full h-auto max-h-[500px] object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Continuous Group Reporting</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Automated Fund Waterfalls</span>
-              </div>
-            </div>
-
-            {/* Hero CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-              <button
-                type="button"
-                onClick={() => onOpenContact?.('Financial Services & Multi-GAAP Architecture Consultation')}
-                className="px-6 py-3 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-[#0070C0]/30 transition-all flex items-center gap-2 group cursor-pointer"
-              >
-                <span>Consult With Financial Architects</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <Link
-                to="#industry-solutions"
-                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 backdrop-blur-md transition-all flex items-center gap-2"
-              >
-                <span>Explore Solutions</span>
-              </Link>
             </div>
 
           </div>
@@ -651,13 +673,13 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
             <div className="lg:col-span-6 space-y-4">
               
               {/* Dynamic Photo Showcase */}
-              <div className="relative h-60 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md">
+              <div className="relative aspect-[16/9] sm:aspect-[1024/558] w-full min-h-[260px] sm:min-h-[300px] rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-950">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-700"
+                  className="w-full h-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 via-45% to-transparent pointer-events-none" />
                 
                 {/* Overlay Text on Image */}
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -682,7 +704,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between cursor-pointer ${
                         isActive 
                           ? 'border-[#0070C0] bg-sky-50/90 shadow-sm' 
@@ -810,20 +832,27 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -839,7 +868,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -861,7 +890,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -869,20 +898,27 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -898,7 +934,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
                             className="w-full h-full flex items-center justify-center transition-transform duration-300"
                             style={{ 
                               color: seg.color,
-                              transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                              transform: isHighlighted ? 'scale(1.2)' : 'scale(1)'
                             }}
                           >
                             <IconComponent className="w-5 h-5 drop-shadow-md" />
@@ -944,8 +980,8 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
                         FINANCE MATRIX
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
-                        {hoveredWheelIndex !== null 
-                          ? `MODULE 0${hoveredWheelIndex + 1}` 
+                        {(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) !== null 
+                          ? `MODULE 0${(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) + 1}` 
                           : '8 CAPABILITIES'}
                       </div>
                     </div>
@@ -959,20 +995,27 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -980,7 +1023,7 @@ export const FinancialServicesIndustryPage: React.FC<FinancialServicesIndustryPa
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right">

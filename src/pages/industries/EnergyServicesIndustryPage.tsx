@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -37,7 +38,6 @@ interface IndustryPageProps {
 }
 
 export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<string>('ALL');
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
@@ -180,7 +180,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Field Service Delivery',
       desc: 'Digitized time, material, and equipment logsheets completed on rugged tablets at remote wellsite locations, capturing operator signatures with zero paper delay.',
       tech: 'SAP Service & Asset Manager',
-      image: 'https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/energy-services/sap_sam_mobile_wellsite_eticketing.jpg',
       icon: FileText
     },
     {
@@ -189,7 +189,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Subsurface Assets',
       desc: 'Serial number level tracking of rotary steerable systems and MWD pulser units, calculating cumulative rotating hours and downhole shock degradation.',
       tech: 'SAP EAM Equipment Serialization',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/energy-services/downhole_tool_serialization_rul.jpg',
       icon: Gauge
     },
     {
@@ -198,7 +198,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Mobilization Network',
       desc: 'Synchronized coordination of oversize road transport convoys, crane permits, and rig site pad preparation with live satellite tracking.',
       tech: 'SAP Transportation Management',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/energy-services/heavy_rig_move_crane_logistics.jpg',
       icon: Truck
     },
     {
@@ -207,7 +207,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Marine Supply Chain',
       desc: 'Optimized deck manifest planning for platform supply vessels (PSVs), managing subsea ROVs, tubular casing, and offshore weather windows.',
       tech: 'SAP Yard & Port Logistics',
-      image: 'https://images.unsplash.com/photo-1545239351-ef35f43d514b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/energy-services/offshore_supply_vessel_scheduling.png',
       icon: Compass
     },
     {
@@ -216,7 +216,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Workforce Governance',
       desc: 'Automated skill checks preventing uncertified roustabouts or drillers from being dispatched to high-pressure offshore exploration wells.',
       tech: 'SAP SuccessFactors & HSE',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/energy-services/crew_competencies_offshore_hse.jpg',
       icon: ShieldCheck
     },
     {
@@ -225,10 +225,32 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Revenue Recognition',
       desc: 'Instant translation of signed wellsite e-tickets into approved customer invoices based on complex Master Services Agreement (MSA) pricing schedules.',
       tech: 'SAP S/4HANA Sales & Billing',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/energy-services/sap_s4hana_dynamic_rate_cards_invoicing.png',
       icon: RefreshCw
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Operational Challenges
   const challenges = [
@@ -285,7 +307,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'OFS-01',
       title: 'Mobile Wellsite e-Ticketing & Customer Sign-Off',
       description: 'Native mobile app operating offline at remote drilling locations, allowing tool pushers and supervisors to record labor, equipment, and consumables.',
-      image: 'https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=800&q=80',
+      image: '/images/energy-services/mobile_wellsite_eticketing_signoff.jpg',
       highlights: ['Offline Tablet Signature Capture', 'Automated Daily Work Logs', 'Same-Day Invoicing Integration']
     },
     {
@@ -295,7 +317,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'OFS-02',
       title: 'Downhole Motor & MWD Serialization Tracker',
       description: 'End-to-end serialized life tracking for mud motors, rotary steerables, and drill bits, tracking downhole rotating hours and shock telemetry.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/energy-services/downhole_motor_mwd_serialization_tracker.png',
       highlights: ['Rotating Hour Accumulation Logs', 'Magnetic Particle NDT Inspection', 'Fatigue-Based Workshop Teardowns']
     },
     {
@@ -305,7 +327,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'OFS-03',
       title: 'Heavy Rig Move & Heavy Haul Dispatch',
       description: 'Coordinates specialized lowboy trailers, winch trucks, and mobile cranes, ensuring sequenced rig teardowns, route permits, and pad assembly.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/energy-services/heavy_rig_move_heavy_haul_dispatch.jpg',
       highlights: ['Route Clearance & Permit Tracking', 'Crane & Truck Convoys Sequencing', 'Pad Staging Buffer Management']
     },
     {
@@ -315,7 +337,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'OFS-04',
       title: 'Platform Supply Vessel (PSV) Deck Logistics',
       description: 'Digital manifest builder organizing offshore platform supply vessels, tracking chemical bulk tanks, subsea tool baskets, and backhaul scrap.',
-      image: 'https://images.unsplash.com/photo-1545239351-ef35f43d514b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/energy-services/platform_supply_vessel_deck_logistics.jpg',
       highlights: ['Visual Deck Stowage Planning', 'Dangerous Goods Marine Compliance', 'Real-Time Jetty Crane Mobilization']
     },
     {
@@ -325,7 +347,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'OFS-05',
       title: 'Master Service Agreement (MSA) Price Books',
       description: 'Multi-customer price book engine managing rig day-rates, directional drilling hourly charges, mud chemical markups, and standby fees.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/energy-services/sap_s4hana_dynamic_rate_cards_invoicing.png',
       highlights: ['Customer-Specific Contract Rates', 'Automated Standby & NPT Billing', 'Universal Ledger Reconciliation']
     },
     {
@@ -335,7 +357,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'OFS-06',
       title: 'Field Crew Safety Passport & Certification Gate',
       description: 'Automated compliance checkpoint ensuring line crews, divers, and drillers hold valid BOSIET, HUET, and IADC well control certifications before mobilization.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/energy-services/crew_competencies_offshore_hse.jpg',
       highlights: ['Automatic Expiry Alerts', 'Mobilization Block for Non-Compliance', 'OSHA & BSEE Digital Auditing']
     }
   ];
@@ -477,89 +499,105 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden selection:bg-[#0070C0] selection:text-white">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Pure Enterprise Hero - Zero Shading on Image)
+          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?auto=format&fit=crop&w=2000&q=80" 
-            alt="Energy Services Field Operations Enterprise Atmosphere" 
-            className="w-full h-full object-cover object-center"
+        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}
           />
-          {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant field operations on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        {/* Hero Top Content (2-Column Grid) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="space-y-2.5"
-            >
+            {/* Left Column (7 cols): Content & Typography */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="mb-2 sm:mb-4">
+                <Link 
+                  to="/industries" 
+                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+                >
+                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                  <span>Back to Industries</span>
+                </Link>
+              </div>
+
               {/* Practice Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
                 <Truck className="w-3.5 h-3.5 text-cyan-400" />
                 <span>KNOOVIQ INDUSTRY PRACTICE</span>
               </div>
               
-              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              {/* Prominent High-Impact Heading */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
                 Intelligent ERP for <br />
                 <span className="text-cyan-400">Energy & Oilfield Services</span>
               </h1>
 
               {/* Subheading / Value Proposition */}
-              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              <p className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 Empowering Wellsite Dispatch, Mobile e-Ticketing & Downhole Tool Serialization on SAP S/4HANA.
               </p>
-            </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-3 max-w-2xl"
-            >
               {/* Clear Open Typography */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
-                Supercharge field service productivity with integrated{' '}
-                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, offline-capable{' '}
-                <strong className="text-cyan-300 font-semibold">Mobile Wellsite e-Ticketing</strong>, heavy haul rig movement logistics, and{' '}
-                <strong className="text-white font-semibold">predictive downhole tool fatigue tracking</strong>.
+              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed drop-shadow-sm max-w-2xl">
+                Supercharge field service productivity with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, offline-capable <strong className="text-cyan-300 font-semibold">Mobile Wellsite e-Ticketing</strong>, heavy haul rig movement logistics, and <strong className="text-white font-semibold">predictive downhole tool fatigue tracking</strong>.
               </p>
               
               {/* Clean Feature Highlights */}
               <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-cyan-400" />
                   <span>Clean Core Architecture</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>Offline Wellsite e-Ticketing</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-sky-400" />
                   <span>Serialized Tool Telemetry</span>
                 </span>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
-            >
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+            {/* Right Column (5 cols): Pure Visual Showcase (100% Uncut, Crystal Clear & Top Aligned) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/80 bg-slate-900 shadow-2xl shadow-black/80 p-2 sm:p-2.5 group hover:border-[#0070C0] transition-colors duration-300">
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center aspect-[16/9]">
+                  <img 
+                    src="/images/energy-services/energy_services_hero.jpg" 
+                    alt="Intelligent ERP for Energy & Oilfield Services" 
+                    className="w-full h-full object-contain object-top rounded-lg shadow-sm"
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Enterprise Architectural Trust Ribbon (Inside Hero, 4-Column Layout) */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-slate-950/70 backdrop-blur-md py-4 sm:py-5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
@@ -568,7 +606,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                 <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <FileText className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">FIELD OPS</span>
@@ -577,7 +615,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                 <div className="text-xs text-slate-300 mt-0.5">Offline-First Sync</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Activity className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">DOWNHOLE ASSETS</span>
@@ -586,7 +624,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                 <div className="text-xs text-slate-300 mt-0.5">Fatigue Cycles APM</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Truck className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">RIG LOGISTICS</span>
@@ -594,10 +632,8 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                 <div className="text-sm sm:text-base font-bold text-white leading-snug">Heavy Haul Moves</div>
                 <div className="text-xs text-slate-300 mt-0.5">Automated Fleet Routes</div>
               </div>
-            </motion.div>
-
+            </div>
           </div>
-
         </div>
 
       </section>
@@ -671,17 +707,29 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
             </div>
 
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-76 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
-                <img 
-                  src={journeySteps[activeJourneyStep].image} 
-                  alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <div className="text-[11px] font-mono uppercase text-sky-300 font-bold">{journeySteps[activeJourneyStep].tech}</div>
-                  <div className="text-sm sm:text-base font-bold">{journeySteps[activeJourneyStep].label}</div>
-                  <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">{journeySteps[activeJourneyStep].desc}</p>
+              <div className="rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-950">
+                <div className="relative aspect-[16/9] w-full bg-slate-950">
+                  <img 
+                    src={journeySteps[activeJourneyStep].image} 
+                    alt={journeySteps[activeJourneyStep].label} 
+                    className="w-full h-full object-contain object-top"
+                  />
+                </div>
+                <div className="p-3.5 sm:p-4 bg-slate-900 border-t border-slate-800 text-white">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="text-[11px] font-mono uppercase text-cyan-400 font-bold tracking-wider">
+                      STAGE {activeJourneyStep + 1} OF 6 • {journeySteps[activeJourneyStep].tech}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 uppercase">
+                      {journeySteps[activeJourneyStep].sublabel}
+                    </span>
+                  </div>
+                  <div className="text-sm sm:text-base font-bold text-white leading-snug">
+                    {journeySteps[activeJourneyStep].label}
+                  </div>
+                  <p className="text-xs text-slate-300 mt-1 leading-relaxed line-clamp-2">
+                    {journeySteps[activeJourneyStep].desc}
+                  </p>
                 </div>
               </div>
 
@@ -693,7 +741,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2 ${
                         isSelected 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-sm' 
@@ -808,20 +856,27 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -837,7 +892,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -857,7 +912,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                   className="w-full h-full drop-shadow-2xl overflow-visible"
                 >
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -865,19 +920,26 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -890,7 +952,7 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -945,27 +1007,34 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right flex-1">
@@ -1175,16 +1244,16 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                   key={sol.tag}
                   className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                 >
-                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 shrink-0">
                     <img 
                       src={sol.image} 
                       alt={sol.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain object-top"
                       onError={(e) => {
                         (e.target as HTMLElement).style.display = 'none';
                       }}
                     />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] font-bold uppercase tracking-wider">
+                    <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/90 backdrop-blur-md border border-white/20 text-cyan-300 font-mono text-[10px] font-bold uppercase tracking-wider">
                       {sol.tag}
                     </div>
                     <div className="absolute bottom-3 right-3 p-2 rounded-lg bg-white/90 backdrop-blur-md text-[#0070C0] shadow-sm">

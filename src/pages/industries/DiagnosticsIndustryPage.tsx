@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -30,8 +31,6 @@ interface DiagnosticsIndustryPageProps {
 
 export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = ({ onOpenContact }) => {
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<'ALL' | 'LAB' | 'REAGENTS' | 'LOGISTICS'>('ALL');
-  const [activeArchTab, setActiveArchTab] = useState<'clean-core' | 'lims-sync' | 'reagents' | 'compliance'>('clean-core');
-  const [activeJourneyStep, setActiveJourneyStep] = useState<number>(0);
 
   // Section 2: Diagnostics Journey Navigator Data
   const journeySteps = [
@@ -41,7 +40,7 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       description: 'Automated 2D tube barcode scanners match incoming patient vials against electronic test orders in LIMS and billing records in SAP in sub-second cycles.',
       tag: 'PRE-ANALYTICAL INTAKE',
       icon: QrCode,
-      image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/diagnostics/specimen_barcode_accessioning.png'
     },
     {
       label: 'Reagent Management',
@@ -49,7 +48,7 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       description: 'Continuous RFID tracking of consumable reagent packs on high-throughput analyzers prevents testing if calibration curves have expired or lot QC has failed.',
       tag: 'ANALYTICAL CONSUMABLES',
       icon: FlaskConical,
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/diagnostics/reagent_lot_expiry_calibration.png'
     },
     {
       label: 'Analyzer Telemetry',
@@ -57,7 +56,7 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       description: 'Direct IoT telemetry monitoring test throughput, fluidic pressure, laser optical alignment, and preventative consumable depletion on automated lines.',
       tag: 'ANALYTICAL AUTOMATION',
       icon: Microscope,
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/diagnostics/high_throughput_instrument_telemetry.jpg'
     },
     {
       label: 'Specimen Cold Logistics',
@@ -65,9 +64,39 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       description: 'End-to-end GPS and thermal logger telemetry tracking diagnostic specimen pickup routes from regional clinics to centralized core reference laboratories.',
       tag: 'POST-ANALYTICAL LOGISTICS',
       icon: ThermometerSnowflake,
-      image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/diagnostics/biospecimen_cold_chain_courier.jpg'
     }
   ];
+
+  // Section 4: Architecture Tabs Data
+  const archTabs = [
+    { id: 'clean-core', title: 'Standard Clean Core Foundation', sub: 'CLIA & ISO 15189 compliance ready' },
+    { id: 'lims-sync', title: 'LIMS & Analyzer Data Fabric', sub: 'Sub-second charge event broker' },
+    { id: 'reagents', title: 'Automated FEFO Reagent Management', sub: 'Analyzer RFID lot verification' },
+    { id: 'compliance', title: 'Connected Courier & Cold Chain', sub: 'Bio-specimen temperature logs' }
+  ];
+
+  // Section 2: Auto-rotation for Diagnostics Journey (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Architecture Tabs (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeArchIndex,
+    handleSelect: handleArchTabClick
+  } = useAutoRotate({
+    itemCount: archTabs.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  const activeArchTab = archTabs[activeArchIndex]?.id || 'clean-core';
 
   // Section 3: Industry Challenges
   const diagnosticsChallenges = [
@@ -109,7 +138,8 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       category: 'REAGENTS',
       categoryLabel: 'Reagents & Consumables',
       description: 'FEFO (First-Expired, First-Out) automated stock dispatch with real-time barcode validation preventing expired lots from entering analyzers.',
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80',
+      image: '/images/diagnostics/reagent_inventory_lot_expiry.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['FEFO Stock Picking Rules', 'Analyzer RFID Integration', 'Automated Quarantined Lots'],
       icon: FlaskConical
     },
@@ -119,7 +149,8 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       category: 'LAB',
       categoryLabel: 'Lab Operations',
       description: 'Real-time event synchronization capturing accessioned test panels in LIMS and generating automated patient and commercial client invoices in SAP.',
-      image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80',
+      image: '/images/diagnostics/lims_to_sap_billing_bridge.png',
+      imagePosition: 'object-top',
       highlights: ['Automated Test Charge Capture', 'CPT Code Ledger Mapping', 'Multi-Payer Commercial Billing'],
       icon: Microscope
     },
@@ -129,7 +160,8 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       category: 'LOGISTICS',
       categoryLabel: 'Courier Logistics',
       description: 'Integrated GPS courier tracking with connected Bluetooth temperature loggers monitoring specimen transit boxes from outpatient clinics.',
-      image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
+      image: '/images/diagnostics/specimen_courier_cold_chain_hub.jpg',
+      imagePosition: 'object-top',
       highlights: ['Live Specimen Route Telemetry', 'Thermal Excursion Alerts', 'Automated Accessioning Scan'],
       icon: Truck
     },
@@ -139,7 +171,8 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       category: 'LAB',
       categoryLabel: 'Lab Operations',
       description: 'Preventative calibration schedules, optical fluidic telemetry, and automated spare parts replenishment for high-throughput analyzers.',
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/diagnostics/analyzer_maintenance_calibration_eam.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['Runtime Telemetry Triggers', 'CLIA Instrument Logbooks', 'Consumable Auto-Reordering'],
       icon: Activity
     },
@@ -149,7 +182,8 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       category: 'REAGENTS',
       categoryLabel: 'Reagents & Consumables',
       description: 'Automated QC calibration curve tracking, technician proficiency testing logs, and standardized CAPA audit documentation.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/diagnostics/clia_iso_quality_management.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['Quality Control (QC) Tracking', 'Proficiency Testing Records', 'Audit-Ready Digital Dossier'],
       icon: ShieldCheck
     },
@@ -159,7 +193,8 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
       category: 'LOGISTICS',
       categoryLabel: 'Courier Logistics',
       description: 'Ultra-low temperature (-80°C / liquid nitrogen) specimen storage location management with complete chain of custody for research trials.',
-      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80',
+      image: '/images/diagnostics/laboratory_specimen_biorepository.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['Cryogenic Rack Grid Mapping', 'Chain of Custody Timestamping', 'Clinical Trial Kit Fulfillment'],
       icon: Dna
     }
@@ -249,17 +284,18 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
-        {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
+        {/* Full-Bleed Background Image with Crystal-Clear Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=2000&q=80" 
+            src="/images/diagnostics/diagnostics_lab_hero.png" 
             alt="Clinical Diagnostics and Laboratory Facility" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-[center_top] lg:object-[68%_top] filter brightness-[1.03] contrast-[1.04]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          {/* Balanced cinematic scrim: guarantees high contrast on left for typography while keeping center and right clinical lab crystal-clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/55 sm:via-slate-950/25 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-slate-950/15 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -379,20 +415,24 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
             </div>
 
             <div className="lg:col-span-6 space-y-3">
-              <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900">
+              <div className="relative h-72 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-xl bg-slate-900">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-cyan-300 font-bold flex items-center gap-1.5 shadow-md">
+                  <Sparkles className="w-3 h-3 text-cyan-400" />
+                  <span>STEP 0{activeJourneyStep + 1} / 04</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent flex flex-col justify-end p-5 sm:p-6">
                   <span className="text-xs font-mono uppercase tracking-widest text-cyan-300 font-bold mb-1">
                     {journeySteps[activeJourneyStep].tag}
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">
                     {journeySteps[activeJourneyStep].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-xl">
                     {journeySteps[activeJourneyStep].description}
                   </p>
                 </div>
@@ -404,8 +444,9 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
                   return (
                     <button
                       key={idx}
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl text-left border transition-all ${
+                      type="button"
+                      onClick={() => handleJourneyStepClick(idx)}
+                      className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
                         activeJourneyStep === idx
                           ? 'border-[#0070C0] bg-sky-50/80 shadow-xs'
                           : 'border-slate-200 bg-white hover:border-slate-300'
@@ -486,16 +527,12 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-4 space-y-2">
-              {[
-                { id: 'clean-core', title: 'Standard Clean Core Foundation', sub: 'CLIA & ISO 15189 compliance ready' },
-                { id: 'lims-sync', title: 'LIMS & Analyzer Data Fabric', sub: 'Sub-second charge event broker' },
-                { id: 'reagents', title: 'Automated FEFO Reagent Management', sub: 'Analyzer RFID lot verification' },
-                { id: 'compliance', title: 'Connected Courier & Cold Chain', sub: 'Bio-specimen temperature logs' }
-              ].map(tab => (
+              {archTabs.map((tab, idx) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id as any)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all ${
+                  type="button"
+                  onClick={() => handleArchTabClick(idx)}
+                  className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                     activeArchTab === tab.id
                       ? 'border-[#0070C0] bg-sky-50/70 shadow-xs'
                       : 'border-slate-200 bg-white hover:border-slate-300'
@@ -632,14 +669,14 @@ export const DiagnosticsIndustryPage: React.FC<DiagnosticsIndustryPageProps> = (
                   className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
                 >
                   {/* 1. Top Image Portion */}
-                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                  <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-slate-100 shrink-0">
                     <img 
                       src={sol.image} 
                       alt={sol.title} 
                       onError={(e) => {
                         e.currentTarget.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
                       }}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className={`w-full h-full object-cover ${(sol as any).imagePosition || 'object-top'} transition-transform duration-500 group-hover:scale-105`}
                     />
                     <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
                     <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-cyan-300 uppercase">

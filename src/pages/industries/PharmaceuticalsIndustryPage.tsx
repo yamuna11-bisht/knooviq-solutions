@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -30,8 +31,6 @@ interface PharmaceuticalsIndustryPageProps {
 
 export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPageProps> = ({ onOpenContact }) => {
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<'ALL' | 'MANUFACTURING' | 'SERIALIZATION' | 'QUALITY'>('ALL');
-  const [activeArchTab, setActiveArchTab] = useState<'clean-core' | 'ebr' | 'dscsa' | 'gmp'>('clean-core');
-  const [activeJourneyStep, setActiveJourneyStep] = useState<number>(0);
 
   // Section 2: Pharma Journey Navigator Data
   const journeySteps = [
@@ -41,7 +40,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       description: 'Barcode-guided cleanroom dispensary verifies raw API drum lots, potency variance calculations, and dual-signoff tare weights directly in SAP.',
       tag: 'DISPENSARY CONTROL',
       icon: FlaskConical,
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/pharmaceuticals/api_dispensing_traceability.png'
     },
     {
       label: 'Batch Execution (EBR)',
@@ -49,7 +48,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       description: 'Paperless ISA-88 workflow orchestration enforces critical process parameters (CPPs), electronic signatures, and automated deviation flagging.',
       tag: 'MANUFACTURING EXECUTION',
       icon: ClipboardCheck,
-      image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/pharmaceuticals/electronic_batch_records_control.png'
     },
     {
       label: 'Serialization & Pack',
@@ -57,7 +56,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       description: 'High-speed line vision systems print GS1 DataMatrix codes, validating parent-child packaging hierarchies across carton, case, and pallet layers.',
       tag: 'PACKAGING SERIALIZATION',
       icon: QrCode,
-      image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/pharmaceuticals/unit_pallet_aggregation_serialization.png'
     },
     {
       label: 'Cold Chain Logistics',
@@ -65,9 +64,39 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       description: 'Continuous real-time IoT temperature and humidity monitoring tracks in-transit biologics and vaccines with automated excursion quarantine logic.',
       tag: 'DISTRIBUTION INTEGRITY',
       icon: ThermometerSnowflake,
-      image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/pharmaceuticals/cold_chain_environmental_telemetry.png'
     }
   ];
+
+  // Section 4: Architecture Tabs Data
+  const archTabs = [
+    { id: 'clean-core', title: 'Validated Clean Core ERP', sub: 'GAMP 5 qualification ready' },
+    { id: 'ebr', title: 'Electronic Batch Records (EBR)', sub: 'Digital recipe execution' },
+    { id: 'dscsa', title: 'SAP ATTP Serialization Hub', sub: 'GS1 EPCIS 1.2 aggregation' },
+    { id: 'gmp', title: 'cGMP Quality & CAPA Engine', sub: 'Integrated lab disposition' }
+  ];
+
+  // Section 2: Auto-rotation for Pharma Journey (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Architecture Tabs (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeArchIndex,
+    handleSelect: handleArchTabClick
+  } = useAutoRotate({
+    itemCount: archTabs.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  const activeArchTab = archTabs[activeArchIndex]?.id || 'clean-core';
 
   // Section 3: Industry Challenges
   const pharmaChallenges = [
@@ -109,7 +138,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       category: 'MANUFACTURING',
       categoryLabel: 'Batch Manufacturing',
       description: '21 CFR Part 11 compliant digital recipe execution with automated in-process limits, step-by-step instructions, and e-signatures.',
-      image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+      image: '/images/pharmaceuticals/paperless_ebr_records.png',
       highlights: ['21 CFR Part 11 Signatures', 'In-Process Limits Enforcement', 'Exception-Based Review'],
       icon: ClipboardCheck
     },
@@ -119,7 +148,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       category: 'SERIALIZATION',
       categoryLabel: 'Serialization & Packaging',
       description: 'Enterprise serialization repository managing GS1 serial number pools, multi-level aggregation, and regulatory reporting.',
-      image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800&q=80',
+      image: '/images/pharmaceuticals/global_track_trace_attp.png',
       highlights: ['Unit-to-Pallet Aggregation', 'GS1 EPCIS 1.2 Data Exchange', 'FDA DSCSA Direct Reporting'],
       icon: QrCode
     },
@@ -129,7 +158,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       category: 'MANUFACTURING',
       categoryLabel: 'Batch Manufacturing',
       description: 'Precision scale integration with barcoded raw material verification, active potency recalculation, and tare weight verification.',
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80',
+      image: '/images/pharmaceuticals/weighing_dispensing_suite.png',
       highlights: ['Active Potency Recalculation', 'Barcode Material Verification', 'Precision Scale Telemetry'],
       icon: FlaskConical
     },
@@ -139,7 +168,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       category: 'QUALITY',
       categoryLabel: 'Quality & Regulatory',
       description: 'Integrated Corrective and Preventive Action (CAPA) tracking with root cause analysis, change controls, and out-of-specification audits.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/pharmaceuticals/automated_capa_deviations.png',
       highlights: ['Out-of-Specification (OOS) Flow', 'Root Cause Investigation', 'Automated Change Control'],
       icon: ShieldCheck
     },
@@ -149,7 +178,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       category: 'SERIALIZATION',
       categoryLabel: 'Serialization & Packaging',
       description: 'IoT temperature loggers embedded into reefer containers and packaging with real-time excursion alert quarantine rules in SAP.',
-      image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80',
+      image: '/images/pharmaceuticals/coldchain_environmental_monitoring.png',
       highlights: ['Real-Time Excursion Alerts', 'Automated Lot Quarantine', 'Audit-Ready Thermal Log'],
       icon: ThermometerSnowflake
     },
@@ -159,7 +188,7 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
       category: 'QUALITY',
       categoryLabel: 'Quality & Regulatory',
       description: 'Seamless bi-directional integration between external LIMS instruments, stability testing chambers, and SAP batch release status.',
-      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80',
+      image: '/images/pharmaceuticals/stability_qc_lims_integration.png',
       highlights: ['LIMS Bi-Directional Bridge', 'Stability Study Protocols', 'Automated Certificate of Analysis'],
       icon: Microscope
     }
@@ -249,17 +278,18 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
-        {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
+        {/* Full-Bleed Background Image with Crystal-Clear Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=2000&q=80" 
-            alt="Pharmaceutical Manufacturing Facility" 
-            className="w-full h-full object-cover object-center"
+            src="/images/pharmaceuticals/pharma_cleanroom_hero.jpg" 
+            alt="Pharmaceutical & Life Sciences Cleanroom Facility" 
+            className="w-full h-full object-cover object-center lg:object-[72%_center] filter brightness-[1.03] contrast-[1.04]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          {/* Balanced cinematic scrim: guarantees high contrast on left for typography while keeping center and right cleanroom digital HUD graphics crystal-clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 sm:via-slate-950/25 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-slate-950/20 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -379,20 +409,24 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
             </div>
 
             <div className="lg:col-span-6 space-y-3">
-              <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900">
+              <div className="relative h-72 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-xl bg-slate-900">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-cyan-300 font-bold flex items-center gap-1.5 shadow-md">
+                  <Sparkles className="w-3 h-3 text-cyan-400" />
+                  <span>STEP 0{activeJourneyStep + 1} / 04</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent flex flex-col justify-end p-5 sm:p-6">
                   <span className="text-xs font-mono uppercase tracking-widest text-cyan-300 font-bold mb-1">
                     {journeySteps[activeJourneyStep].tag}
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">
                     {journeySteps[activeJourneyStep].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-xl">
                     {journeySteps[activeJourneyStep].description}
                   </p>
                 </div>
@@ -404,8 +438,9 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
                   return (
                     <button
                       key={idx}
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl text-left border transition-all ${
+                      type="button"
+                      onClick={() => handleJourneyStepClick(idx)}
+                      className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
                         activeJourneyStep === idx
                           ? 'border-[#0070C0] bg-sky-50/80 shadow-xs'
                           : 'border-slate-200 bg-white hover:border-slate-300'
@@ -486,16 +521,12 @@ export const PharmaceuticalsIndustryPage: React.FC<PharmaceuticalsIndustryPagePr
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-4 space-y-2">
-              {[
-                { id: 'clean-core', title: 'Validated Clean Core ERP', sub: 'GAMP 5 qualification ready' },
-                { id: 'ebr', title: 'Electronic Batch Records (EBR)', sub: 'Digital recipe execution' },
-                { id: 'dscsa', title: 'SAP ATTP Serialization Hub', sub: 'GS1 EPCIS 1.2 aggregation' },
-                { id: 'gmp', title: 'cGMP Quality & CAPA Engine', sub: 'Integrated lab disposition' }
-              ].map(tab => (
+              {archTabs.map((tab, idx) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id as any)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all ${
+                  type="button"
+                  onClick={() => handleArchTabClick(idx)}
+                  className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                     activeArchTab === tab.id
                       ? 'border-[#0070C0] bg-sky-50/70 shadow-xs'
                       : 'border-slate-200 bg-white hover:border-slate-300'

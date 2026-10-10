@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -44,9 +45,6 @@ interface EntertainmentIndustryPageProps {
 export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -189,7 +187,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       sublabel: 'Contract Ingestion',
       desc: 'Digital capture of complex rights matrices defining territory, language, platform exclusivity, and holdback restrictions in S/4HANA Rights.',
       tech: 'S/4HANA Rights & Royalty',
-      image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/entertainment/ip_rights_windowing_setup.jpg',
       icon: Film
     },
     {
@@ -198,7 +196,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       sublabel: 'Live Set Accounting',
       desc: 'Real-time studio cost accounting, location payroll tracking, and daily hot-cost variance monitoring via SAP Project Systems.',
       tech: 'SAP Project Systems (PS)',
-      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/entertainment/studio_budget_hot_costs.jpg',
       icon: Clapperboard
     },
     {
@@ -207,7 +205,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       sublabel: 'High-Volume Rating',
       desc: 'Scalable cloud ingestion of billions of pay-per-view, SVOD play events, and ad impressions into high-speed SAP BRIM rating queues.',
       tech: 'SAP BRIM Convergent Mediation',
-      image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/entertainment/streaming_usage_ingestion.png',
       icon: Tv
     },
     {
@@ -216,7 +214,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       sublabel: 'Algorithmic Precision',
       desc: 'Automated tiered participant payout calculations complying with SAG-AFTRA, WGA, and international rights collection societies.',
       tech: 'SAP BRIM Convergent Invoicing',
-      image: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/entertainment/guild_residuals_calculation.png',
       icon: Receipt
     },
     {
@@ -225,7 +223,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       sublabel: 'IFRS 15 Recognition',
       desc: 'Programmatic ad impression matching against advertiser insertion orders with automated revenue recognition and agency rebates.',
       tech: 'S/4HANA Revenue Accounting',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/entertainment/multichannel_ad_billing.jpg',
       icon: DollarSign
     },
     {
@@ -234,10 +232,32 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       sublabel: 'Transparent Reporting',
       desc: 'Automated self-service digital portal delivery of transparent net profit statements to creators, actors, and financial co-producers.',
       tech: 'SAP BTP Portal Services',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/entertainment/participant_statement_portal.png',
       icon: FileText
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 7: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
   const industrySolutions = [
@@ -247,7 +267,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'RIGHTS',
       categoryLabel: 'Rights & Licensing',
       description: 'Model complex territorial rights, platform exclusivity, language holdbacks, and distribution windows with automated availability checks.',
-      image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/global_ip_rights_content_windowing.png',
       highlights: ['Territory Matrix', 'Exclusivity Windows', 'Holdback Logic'],
       icon: Film
     },
@@ -257,7 +277,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'RIGHTS',
       categoryLabel: 'Rights & Licensing',
       description: 'Real-time catalog exploitation queries allowing international sales agents to instantly identify and license unexploited content titles.',
-      image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/dynamic_rights_availability_avails_matrix.jpg',
       highlights: ['Instant Avails Query', 'Unexploited Windows', 'Contract Modeling'],
       icon: Video
     },
@@ -267,7 +287,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'RIGHTS',
       categoryLabel: 'Rights & Licensing',
       description: 'Secure, audit-proof digital statement distribution for talent, directors, and financial investors with detailed accounting breakdown.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/self_service_participant_royalty_portal.jpg',
       highlights: ['Net Profit Statements', 'Audit Transparency', 'Talent Self-Service'],
       icon: FileText
     },
@@ -277,7 +297,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'PRODUCTION',
       categoryLabel: 'Production & Studios',
       description: 'Track daily production burn rates against estimated final cost (EFC), generating morning hot-cost sheets for line producers.',
-      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/studio_production_accounting_hot_costs.jpg',
       highlights: ['Daily Hot-Cost Sheets', 'EFC Forecasting', 'Studio Ledger'],
       icon: Clapperboard
     },
@@ -287,7 +307,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'PRODUCTION',
       categoryLabel: 'Production & Studios',
       description: 'Manage crew timesheets, location catering purchase orders, equipment rentals, and state tax credit expenditure tracking.',
-      image: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/location_payroll_production_spend.jpg',
       highlights: ['Location Spend', 'State Tax Credits', 'Crew Timecards'],
       icon: Building2
     },
@@ -297,7 +317,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'PRODUCTION',
       categoryLabel: 'Production & Studios',
       description: 'Harmonize digital master video files, localized subtitles, and promotional artwork directly with enterprise rights availability windows.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/content_supply_chain_asset_metadata_sync.jpg',
       highlights: ['DAM Integration', 'Metadata Catalog', 'Delivery Tracking'],
       icon: PackageCheck
     },
@@ -307,7 +327,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'REVENUE',
       categoryLabel: 'Revenue & Royalties',
       description: 'Ingest and rate billions of subscriber play sessions, SVOD recurring cycles, and transaction-based video on demand (TVOD) events.',
-      image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/streaming_usage_ingestion.png',
       highlights: ['BRIM Rating Engine', 'SVOD Subscriptions', 'Billion-Event Scale'],
       icon: Tv
     },
@@ -317,7 +337,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'REVENUE',
       categoryLabel: 'Revenue & Royalties',
       description: 'Complex calculation rules for SAG-AFTRA, DGA, WGA, and international guild residuals with automated electronic payment dispatch.',
-      image: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/guild_residuals_calculation.png',
       highlights: ['SAG/WGA Rule Engine', 'Residual Waterfall', 'Audit Defense'],
       icon: Receipt
     },
@@ -327,7 +347,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
       category: 'REVENUE',
       categoryLabel: 'Revenue & Royalties',
       description: 'Reconcile broadcast logs and programmatic ad impressions with advertiser contracts, managing make-goods and multi-currency billing.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      image: '/images/entertainment/multichannel_ad_billing.jpg',
       highlights: ['Ad Impression Match', 'Agency Rebates', 'IFRS 15 Compliance'],
       icon: DollarSign
     }
@@ -660,11 +680,12 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
             <div className="lg:col-span-6 space-y-3.5">
               
               {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
-              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
                 <img 
+                  key={journeySteps[activeJourneyStep].id}
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
 
@@ -677,10 +698,10 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
+                      onClick={() => handleJourneyStepClick(idx)}
+                      className={`p-2.5 rounded-xl border text-left transition-colors flex items-center gap-2.5 ${
                         isSelected
-                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
+                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm'
                           : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
                       }`}
                     >
@@ -826,20 +847,27 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -855,7 +883,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -877,7 +905,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -885,20 +913,27 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -912,7 +947,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -969,20 +1004,27 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -990,7 +1032,7 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-left flex-1">
@@ -1203,31 +1245,30 @@ export const EntertainmentIndustryPage: React.FC<EntertainmentIndustryPageProps>
                     key={sol.title}
                     className="h-[400px] rounded-xl bg-white border-2 border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group"
                   >
-                    {/* 1. Top Image Banner - 50% Pure Photo */}
+                    {/* 1. Top Image Banner - 50% Pure Photo (Covers Full Box, 100% Uncut) */}
                     <div className="relative h-1/2 w-full overflow-hidden bg-slate-100 shrink-0">
                       <img 
                         src={sol.image} 
                         alt={sol.title}
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
                       />
-                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
-                      
-                      {/* Floating Tag Pill */}
-                      <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-slate-950/80 border border-white/20 text-[9px] font-mono font-bold text-sky-300 uppercase tracking-wider backdrop-blur-md shadow-xs">
-                        {sol.tag}
-                      </div>
                     </div>
 
                     {/* 2. Card Content Body - 50% Height */}
                     <div className="h-1/2 p-3.5 sm:p-4 flex flex-col justify-between space-y-2.5 overflow-hidden">
                       
                       <div className="space-y-1.5">
-                        {/* Category & Icon Indicator */}
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono font-bold text-[#0070C0] uppercase tracking-wider">
-                            {sol.categoryLabel}
-                          </span>
-                          <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
+                        {/* Category, Tag & Icon Indicator */}
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <span className="text-[10px] font-mono font-bold text-[#0070C0] uppercase tracking-wider truncate">
+                              {sol.categoryLabel}
+                            </span>
+                            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 uppercase tracking-wider shrink-0">
+                              {sol.tag}
+                            </span>
+                          </div>
+                          <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all shrink-0">
                             <IconComponent className="w-3.5 h-3.5" />
                           </div>
                         </div>

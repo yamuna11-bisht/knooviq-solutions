@@ -120,7 +120,7 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
       tag: 'PROC-01',
       title: 'Dynamic Recipe Formulation & Potency Control',
       description: 'Automated recipe management with active potency compensation algorithms that adjust ingredient volumes based on laboratory assay assays.',
-      image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+      image: '/images/process_recipe_formulation_potency.png',
       highlights: ['Active Potency Balancing', 'ISA-88 Batch Execution', 'Yield Optimization']
     },
     {
@@ -130,7 +130,7 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
       tag: 'PROC-02',
       title: 'Paperless Electronic Batch Records (EBR)',
       description: 'Streamlined digital batch execution with barcode-verified raw material additions, automated in-process test results, and e-signatures.',
-      image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
+      image: '/images/process_electronic_batch_records.jpg',
       highlights: ['21 CFR Part 11 Compliant', 'Dual-Witness Verification', 'Instant Exception Review']
     },
     {
@@ -140,7 +140,7 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
       tag: 'PROC-03',
       title: 'Vessel Clean-In-Place (CIP) & Sterilization Log',
       description: 'Automated tracking of CIP wash temperatures, flow rates, and chemical rinse conductivity to certify vessel cleanliness before new batch charging.',
-      image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80',
+      image: '/images/process_vessel_cip_sterilization.png',
       highlights: ['Automated CIP Telemetry', 'Contamination Prevention', 'Vessel History Tracking']
     },
     {
@@ -150,7 +150,7 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
       tag: 'PROC-04',
       title: 'Tank Farm Inventory & Continuous Material Balance',
       description: 'Real-time telemetry from storage silos, cryogenic tanks, and pipeline flowmeters, reconciling physical volumes with book inventory.',
-      image: 'https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?auto=format&fit=crop&w=800&q=80',
+      image: '/images/process_tank_farm_material_balance.png',
       highlights: ['Continuous Level Sensors', 'Pipeline Mass Balance', 'Co-Product Allocation']
     },
     {
@@ -160,7 +160,7 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
       tag: 'PROC-05',
       title: 'Automated Certificate of Analysis (CoA) Engine',
       description: 'Generates multi-language Certificates of Analysis directly from SAP QM inspection lots, automatically attaching them to customer deliveries.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/process_automated_coa_engine.png',
       highlights: ['Auto CoA Generation', 'Batch Release Approval', 'Stability Study Tracking']
     },
     {
@@ -273,18 +273,18 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=2000&q=80" 
-            alt="Process Manufacturing Chemical Plant" 
-            className="w-full h-full object-cover object-center"
+            src="/images/process/process_manufacturing_hero.jpg" 
+            alt="Process Manufacturing Cleanroom Automated Processing & Quality Inspection Team" 
+            className="w-full h-full object-cover object-[center_35%] lg:object-[68%_35%] filter brightness-[1.04] contrast-[1.03]"
           />
-          {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant facility on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          {/* Targeted cinematic gradient scrim: left dark for crisp text readability, right side clear, sharp and bright */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/65 sm:via-slate-950/35 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -405,9 +405,9 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
 
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900 min-h-[320px]">
               <img 
-                src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=1000&q=80" 
-                alt="Process Reactors & Automation" 
-                className="w-full h-full object-cover"
+                src="/images/process_reaction_dynamics_batch_integrity.png" 
+                alt="Mastering Continuous Reaction Dynamics and Stringent Batch Integrity" 
+                className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-6" />
               <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -584,7 +584,7 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
                     className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                   >
                     {/* 1. Top Image Portion */}
-                    <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                    <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-900 shrink-0 border-b border-slate-100">
                       <img 
                         src={sol.image} 
                         alt={sol.title}
@@ -604,9 +604,14 @@ export const ProcessManufacturingIndustryPage: React.FC<ProcessManufacturingIndu
                     <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                       <div className="space-y-2.5">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-mono font-bold text-[#0070C0] uppercase tracking-wider">
-                            {sol.categoryLabel}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-mono font-bold text-cyan-800 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                              {sol.tag}
+                            </span>
+                            <span className="text-xs font-mono font-bold text-[#0070C0] uppercase tracking-wider">
+                              {sol.categoryLabel}
+                            </span>
+                          </div>
                           <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
                             <IconComponent className="w-3.5 h-3.5" />
                           </div>

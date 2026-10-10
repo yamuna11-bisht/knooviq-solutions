@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -41,8 +42,6 @@ interface IndustryPageProps {
 }
 
 export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -214,7 +213,8 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       sublabel: 'Utility Meter Onboarding',
       tech: 'BTP Smart Submetering',
       desc: 'Coordinating architectural fit-out inspections, security deposit collection, and smart electrical/water submeter onboarding.',
-      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/real-estate/btp_smart_submetering_tenant_fitout.png',
+      imagePosition: 'object-[center_top]',
       icon: Key
     },
     {
@@ -245,6 +245,28 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       icon: TrendingUp
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Real Estate Industry Challenges & Bottlenecks Data (6 Cards)
   const industryChallenges = [
@@ -461,19 +483,20 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
       {/* =========================================================================
           SECTION 1: HERO SECTION (Pure Enterprise Real Estate Hero)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
         {/* Full-bleed High Resolution Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/real_estate_hero.png" 
+            src="/images/real-estate/commercial_real_estate_hero.jpg" 
             alt="Modern Commercial Office Park & Retail Complex Real Estate Portfolio"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-[center_25%] lg:object-[68%_25%] filter brightness-[1.03] contrast-[1.04]"
           />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/85 sm:via-slate-950/65 to-transparent pointer-events-none" />
+        {/* Balanced Cinematic Left & Bottom Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/90 via-slate-950/55 sm:via-slate-950/25 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/65 via-transparent to-slate-950/15 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           <div className="max-w-3xl space-y-4">
@@ -634,7 +657,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                   <img 
                     src={journeySteps[activeJourneyStep].image} 
                     alt={journeySteps[activeJourneyStep].label} 
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover ${(journeySteps[activeJourneyStep] as any).imagePosition || 'object-center'}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                   
@@ -667,7 +690,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2 ${
                         isSelected 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-sm' 
@@ -784,20 +807,27 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -813,7 +843,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -835,7 +865,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const pathD = getChevronPath(idx);
                     const coords = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -844,17 +874,24 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                       <g 
                         key={seg.id}
                         className="cursor-pointer transition-all duration-300"
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                       >
                         <path
                           d={pathD}
-                          fill={isHovered ? seg.color : `${seg.color}35`}
+                          fill={isHighlighted ? seg.color : `${seg.color}35`}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? 3.5 : 1.5}
+                          strokeWidth={isHighlighted ? 3.5 : 1.5}
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
+                            filter: isHighlighted ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
                           }}
                         />
                         <foreignObject
@@ -867,7 +904,7 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
                           <div className="w-full h-full flex items-center justify-center">
                             <IconComponent 
                               className={`w-5 h-5 transition-colors duration-200 ${
-                                isHovered ? 'text-white' : 'text-slate-200'
+                                isHighlighted ? 'text-white' : 'text-slate-200'
                               }`} 
                             />
                           </div>
@@ -937,27 +974,34 @@ export const RealEstateIndustryPage: React.FC<IndustryPageProps> = ({ onOpenCont
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right flex-1">

@@ -118,7 +118,7 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
       tag: 'DISC-01',
       title: 'Discrete Shop-Floor Execution & MES Live',
       description: 'Operator touchscreen terminals with digital work instructions, automated tool calibration validation, and instant scrap root-cause capture.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      image: '/images/discrete_shop_floor_execution.jpg',
       highlights: ['Operator Touch Cockpits', 'Live OEE Telemetry', 'Automated Scrap Logging']
     },
     {
@@ -128,7 +128,7 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
       tag: 'DISC-02',
       title: 'Complex Multi-Level BOM & PLM Sync',
       description: 'Bi-directional synchronization between Siemens Teamcenter / PTC Windchill and SAP S/4HANA, eliminating engineering change order lag.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/discrete_plm_sync.png',
       highlights: ['CAD/PLM Bi-Directional Sync', 'Automated ECO Workflows', 'Variant Configuration']
     },
     {
@@ -138,7 +138,7 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
       tag: 'DISC-03',
       title: 'Finite Capacity Scheduling & MRP Live',
       description: 'In-memory detailed scheduling that models machine tooling constraints, setup matrix dependencies, and operator skill matrix availability.',
-      image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
+      image: '/images/discrete_mrp_material_planning.png',
       highlights: ['Machine Setup Matrix', 'Finite Work Center Scheduling', 'Sub-Second MRP Live']
     },
     {
@@ -148,7 +148,8 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
       tag: 'DISC-04',
       title: 'Inline Machine Vision & Defect Containment',
       description: 'AI vision camera integration verifying dimensional tolerances and surface finishes, triggering immediate automated rework routing.',
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+      image: '/images/discrete/inline_machine_vision_defect_containment.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['AI Vision Defect Inspection', 'Automated Rework Routing', 'Statistical Process Control']
     },
     {
@@ -158,7 +159,8 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
       tag: 'DISC-05',
       title: 'Tool Life Management & Predictive Maintenance',
       description: 'Monitors tool cycles, spindle vibration, and bearing heat signatures to replace cutting inserts and dies before mechanical failure.',
-      image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80',
+      image: '/images/discrete/tool_life_management_predictive_maintenance.jpg',
+      imagePosition: 'object-[center_top]',
       highlights: ['Tool Cycle Life Tracking', 'Spindle Vibration Analytics', 'Preventive Calibration']
     },
     {
@@ -271,18 +273,18 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2000&q=80" 
-            alt="Discrete Manufacturing CNC Center" 
-            className="w-full h-full object-cover object-center"
+            src="/images/discrete/discrete_manufacturing_hero.jpg" 
+            alt="Intelligent ERP for Discrete Manufacturing Smart Factory" 
+            className="w-full h-full object-cover object-[center_30%] lg:object-[65%_35%] filter brightness-[1.04] contrast-[1.03]"
           />
           {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant facility on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/65 sm:via-slate-950/35 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -403,8 +405,8 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
 
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900 min-h-[320px]">
               <img 
-                src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1000&q=80" 
-                alt="Discrete Factory Execution" 
+                src="/images/discrete_touch_terminal.png" 
+                alt="Paperless Shop-Floor Execution on Touch Terminals" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-6" />
@@ -576,35 +578,49 @@ export const DiscreteManufacturingIndustryPage: React.FC<DiscreteManufacturingIn
               .filter((sol) => activeSolutionCategory === 'ALL' || sol.category === activeSolutionCategory)
               .map((sol) => {
                 const IconComponent = sol.icon;
+                const isDiagram = sol.tag === 'DISC-02' || sol.tag === 'DISC-03';
                 return (
                   <div
                     key={sol.title}
                     className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                   >
                     {/* 1. Top Image Portion */}
-                    <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                    <div className={`relative h-56 sm:h-60 w-full overflow-hidden shrink-0 flex items-center justify-center border-b border-slate-100 ${isDiagram ? 'bg-white p-3' : 'bg-slate-900'}`}>
                       <img 
                         src={sol.image} 
                         alt={sol.title}
                         onError={(e) => {
                           e.currentTarget.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
                         }}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                        className={`w-full h-full transition-transform duration-500 ${
+                          isDiagram 
+                            ? 'object-contain object-center group-hover:scale-102' 
+                            : `object-cover ${(sol as any).imagePosition || 'object-center'} group-hover:scale-105`
+                        }`} 
                       />
-                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+                      {!isDiagram && (
+                        <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+                      )}
                       
-                      <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-cyan-300 uppercase">
-                        {sol.tag}
-                      </div>
+                      {!isDiagram && (
+                        <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-cyan-300 uppercase">
+                          {sol.tag}
+                        </div>
+                      )}
                     </div>
 
                     {/* 2. Bottom Content Body */}
                     <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                       <div className="space-y-2.5">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-mono font-bold text-[#0070C0] uppercase tracking-wider">
-                            {sol.categoryLabel}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-mono font-bold text-cyan-800 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                              {sol.tag}
+                            </span>
+                            <span className="text-xs font-mono font-bold text-[#0070C0] uppercase tracking-wider">
+                              {sol.categoryLabel}
+                            </span>
+                          </div>
                           <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
                             <IconComponent className="w-3.5 h-3.5" />
                           </div>

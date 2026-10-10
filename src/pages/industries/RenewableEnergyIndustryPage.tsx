@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -36,7 +37,6 @@ interface IndustryPageProps {
 }
 
 export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<string>('ALL');
   const [activeTransformStage, setActiveTransformStage] = useState<number>(0);
@@ -179,7 +179,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Photovoltaic Assets',
       desc: 'Real-time string combiner monitoring, soiling ratio calculations, and automated tracker pitch adjustments maximizing solar yield.',
       tech: 'IoT Edge & SCADA Integration',
-      image: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/renewable-energy/solar_string_central_inverter_predictive_apm_control_room.jpg',
       icon: Activity
     },
     {
@@ -188,7 +188,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Onshore & Offshore Wind',
       desc: 'Predictive main bearing temperature analysis, blade pitch vibration monitoring, and automated offshore technician vessel dispatch.',
       tech: 'SAP APM & Digital Twin',
-      image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/renewable-energy/wind_turbine_aerodynamic_twin.jpg',
       icon: RefreshCw
     },
     {
@@ -197,7 +197,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Energy Storage',
       desc: 'Cell-level state-of-health tracking, depth-of-discharge cycle logging, and warranty compliance monitoring for grid-scale battery systems.',
       tech: 'SAP Clean Core Storage Ledger',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/renewable-energy/bess_battery_storage_system.jpg',
       icon: Zap
     },
     {
@@ -206,7 +206,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Power-to-Gas',
       desc: 'Dynamic PEM and alkaline stack operation matching intermittent renewable power with green hydrogen production schedules.',
       tech: 'SAP Production & Mass Balancing',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/renewable-energy/green_hydrogen_electrolyzers_mass_balancing.jpg',
       icon: Droplet
     },
     {
@@ -215,7 +215,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Energy Commercialization',
       desc: 'Nodal price reconciliation, day-ahead dispatch balancing, and multi-buyer virtual PPA settlement calculation with zero billing discrepancies.',
       tech: 'SAP S/4HANA Financial Settlement',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/renewable-energy/automated_ppa_nodal_market_settlements.jpg',
       icon: FileText
     },
     {
@@ -224,10 +224,32 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Sustainability Ledger',
       desc: 'Tamper-proof generation timestamp certification and seamless issuance into international renewable energy attribute tracking systems.',
       tech: 'SAP Sustainability Control Tower',
-      image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/renewable-energy/rec_provenance_sustainability_control_tower.jpg',
       icon: ShieldCheck
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Operational Challenges
   const challenges = [
@@ -284,7 +306,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'REN-01',
       title: 'Solar String & Central Inverter Predictive APM',
       description: 'Continuous string combiner box telemetry, automated soiling loss estimation, and automated tracker recalibration for maximum solar output.',
-      image: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80',
+      image: '/images/renewable-energy/solar_string_central_inverter_predictive_apm_control_room.jpg',
       highlights: ['Automated String Fault Isolation', 'Solar Irradiance Degradation Curves', 'Tracker Calibration Work Orders']
     },
     {
@@ -294,7 +316,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'REN-02',
       title: 'Wind Turbine Drivetrain Digital Twin & APM',
       description: 'High-frequency vibration monitoring, main bearing oil particle detection, and offshore technician crew vessel dispatching.',
-      image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/renewable-energy/wind_turbine_drivetrain_digital_twin_apm.jpg',
       highlights: ['Gearbox Vibration Telemetry', 'Blade Pitch Fatigue Analytics', 'Offshore Vessel Scheduling']
     },
     {
@@ -304,7 +326,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'REN-03',
       title: 'BESS State-of-Health & Warranty Protection',
       description: 'Module-level thermal runaway monitoring, cycle depth tracking, and automated capacity degradation documentation for EPC warranties.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+      image: '/images/renewable-energy/bess_state_of_health_warranty_protection.jpg',
       highlights: ['Cell-Level State-of-Health', 'Thermal Runaway Early Warning', 'Warranty Dispute Audit Trail']
     },
     {
@@ -314,7 +336,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'REN-04',
       title: 'Green Hydrogen Electrolyzer Mass Balancing',
       description: 'Dynamic power-to-gas synchronization, water deionization tracking, and automated certification of green hydrogen production batches.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/renewable-energy/green_hydrogen_electrolyzer_mass_balance.png',
       highlights: ['Intermittent Electrolyzer Dispatch', 'Stack Degradation Profiling', 'EU Green Hydrogen Compliance']
     },
     {
@@ -324,7 +346,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'REN-05',
       title: 'Automated PPA & Nodal Market Settlements',
       description: 'Automated settlement billing for physical, synthetic, and sleeved power purchase agreements with real-time ISO/RTO nodal price feeds.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/renewable-energy/automated_ppa_nodal_market_settlements.jpg',
       highlights: ['Virtual & Physical PPA Billing', 'Nodal LMP Price Sync', 'Negative Pricing Auto-Curtailment']
     },
     {
@@ -334,7 +356,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'REN-06',
       title: 'REC Provenance & Sustainability Control Tower',
       description: 'Granular hourly renewable energy certificate generation, automated Scope 2 reporting, and retirement governance on international registries.',
-      image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80',
+      image: '/images/renewable-energy/rec_provenance_sustainability_control_tower.jpg',
       highlights: ['24/7 Carbon-Free Energy Matching', 'Automated Registry Submission', 'Auditor-Ready Carbon Ledgers']
     }
   ];
@@ -476,89 +498,105 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden selection:bg-[#0070C0] selection:text-white">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Pure Enterprise Hero - Zero Shading on Image)
+          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=2000&q=80" 
-            alt="Renewable Energy Wind & Solar Clean Tech Enterprise Atmosphere" 
-            className="w-full h-full object-cover object-center"
+        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}
           />
-          {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant clean tech assets on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        {/* Hero Top Content (2-Column Grid) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="space-y-2.5"
-            >
+            {/* Left Column (7 cols): Content & Typography */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="mb-2 sm:mb-4">
+                <Link 
+                  to="/industries" 
+                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+                >
+                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                  <span>Back to Industries</span>
+                </Link>
+              </div>
+
               {/* Practice Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
                 <Zap className="w-3.5 h-3.5 text-cyan-400" />
                 <span>KNOOVIQ INDUSTRY PRACTICE</span>
               </div>
               
-              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              {/* Prominent High-Impact Heading */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
                 Intelligent ERP for <br />
                 <span className="text-cyan-400">Renewable & Clean Energy</span>
               </h1>
 
               {/* Subheading / Value Proposition */}
-              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              <p className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 Maximizing Wind, Solar, Battery Storage & Green Hydrogen Asset Lifecycles on SAP S/4HANA.
               </p>
-            </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-3 max-w-2xl"
-            >
               {/* Clear Open Typography */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
-                Accelerate clean energy profitability with integrated{' '}
-                <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, predictive{' '}
-                <strong className="text-cyan-300 font-semibold">Wind & Solar Digital Twins</strong>, BESS battery degradation models, and{' '}
-                <strong className="text-white font-semibold">automated PPA / REC settlement ledgers</strong> across global generation fleets.
+              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed drop-shadow-sm max-w-2xl">
+                Accelerate clean energy profitability with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, predictive <strong className="text-cyan-300 font-semibold">Wind & Solar Digital Twins</strong>, BESS battery degradation models, and <strong className="text-white font-semibold">automated PPA / REC settlement ledgers</strong> across global generation fleets.
               </p>
               
               {/* Clean Feature Highlights */}
               <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-cyan-400" />
                   <span>Clean Core Architecture</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>Wind & Solar SCADA Twins</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-sky-400" />
                   <span>Automated PPA Settlements</span>
                 </span>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
-            >
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+            {/* Right Column (5 cols): Pure Visual Showcase (100% Uncut, Crystal Clear & Top Aligned) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/80 bg-slate-900 shadow-2xl shadow-black/80 p-2 sm:p-2.5 group hover:border-[#0070C0] transition-colors duration-300">
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center aspect-[16/9]">
+                  <img 
+                    src="/images/renewable-energy/renewable_energy_hero.jpg" 
+                    alt="Intelligent ERP for Renewable & Clean Energy" 
+                    className="w-full h-full object-contain object-top rounded-lg shadow-sm"
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Enterprise Architectural Trust Ribbon (Inside Hero, 4-Column Layout) */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-slate-950/70 backdrop-blur-md py-4 sm:py-5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ARCHITECTURE</span>
@@ -567,7 +605,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                 <div className="text-xs text-slate-300 mt-0.5">Clean Core Ready</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Radio className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">ASSET TWINS</span>
@@ -576,7 +614,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                 <div className="text-xs text-slate-300 mt-0.5">Real-Time Telemetry</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Activity className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">STORAGE</span>
@@ -585,7 +623,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                 <div className="text-xs text-slate-300 mt-0.5">Predictive Health</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
+              <div className="p-3.5 rounded-xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.1] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Workflow className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SETTLEMENTS</span>
@@ -593,10 +631,8 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                 <div className="text-sm sm:text-base font-bold text-white leading-snug">PPA & REC Ledgers</div>
                 <div className="text-xs text-slate-300 mt-0.5">Touchless Reconciliation</div>
               </div>
-            </motion.div>
-
+            </div>
           </div>
-
         </div>
 
       </section>
@@ -670,17 +706,29 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
             </div>
 
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-76 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
-                <img 
-                  src={journeySteps[activeJourneyStep].image} 
-                  alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <div className="text-[11px] font-mono uppercase text-sky-300 font-bold">{journeySteps[activeJourneyStep].tech}</div>
-                  <div className="text-sm sm:text-base font-bold">{journeySteps[activeJourneyStep].label}</div>
-                  <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">{journeySteps[activeJourneyStep].desc}</p>
+              <div className="rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-950">
+                <div className="relative aspect-[16/9] w-full bg-slate-950">
+                  <img 
+                    src={journeySteps[activeJourneyStep].image} 
+                    alt={journeySteps[activeJourneyStep].label} 
+                    className="w-full h-full object-contain object-top"
+                  />
+                </div>
+                <div className="p-3.5 sm:p-4 bg-slate-900 border-t border-slate-800 text-white">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="text-[11px] font-mono uppercase text-sky-400 font-bold tracking-wider">
+                      STAGE {activeJourneyStep + 1} OF 6 • {journeySteps[activeJourneyStep].tech}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 uppercase">
+                      {journeySteps[activeJourneyStep].sublabel}
+                    </span>
+                  </div>
+                  <div className="text-sm sm:text-base font-bold text-white leading-snug">
+                    {journeySteps[activeJourneyStep].label}
+                  </div>
+                  <p className="text-xs text-slate-300 mt-1 leading-relaxed line-clamp-2">
+                    {journeySteps[activeJourneyStep].desc}
+                  </p>
                 </div>
               </div>
 
@@ -692,7 +740,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2 ${
                         isSelected 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-sm' 
@@ -807,20 +855,27 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -836,7 +891,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -856,7 +911,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                   className="w-full h-full drop-shadow-2xl overflow-visible"
                 >
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -864,19 +919,26 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -889,7 +951,7 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -944,27 +1006,34 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right flex-1">
@@ -1174,16 +1243,16 @@ export const RenewableEnergyIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                   key={sol.tag}
                   className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                 >
-                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 shrink-0">
                     <img 
                       src={sol.image} 
                       alt={sol.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain object-top"
                       onError={(e) => {
                         (e.target as HTMLElement).style.display = 'none';
                       }}
                     />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] font-bold uppercase tracking-wider">
+                    <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/90 backdrop-blur-md border border-white/20 text-sky-300 font-mono text-[10px] font-bold uppercase tracking-wider">
                       {sol.tag}
                     </div>
                     <div className="absolute bottom-3 right-3 p-2 rounded-lg bg-white/90 backdrop-blur-md text-[#0070C0] shadow-sm">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -41,8 +42,6 @@ interface IndustryPageProps {
 }
 
 export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -196,7 +195,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Land & Environmental',
       tech: 'GIS & SAP Cadastral Portal',
       desc: 'Mapping land acquisition parcels, environmental permits, and statutory compensation disbursement to WBS milestones.',
-      image: '/images/infra_right_of_way_gis.png',
+      image: '/images/infrastructure/right_of_way_land_cadastral_portal.jpg',
       icon: MapPin
     },
     {
@@ -205,7 +204,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       sublabel: 'Funding & Sovereign Grants',
       tech: 'SAP PS Funds Management',
       desc: 'Locking multilateral development bank tranches and sovereign bond appropriations against multi-year capital expenditure schedules.',
-      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/infrastructure/sap_ps_funds_capital_appropriation.png',
       icon: Landmark
     },
     {
@@ -245,6 +244,28 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       icon: Gauge
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Infrastructure Industry Challenges & Bottlenecks Data (6 Cards)
   const industryChallenges = [
@@ -327,7 +348,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'FUNDS MANAGEMENT',
       title: 'Multi-Year Capital Appropriation Engine',
       description: 'Manages sovereign bond tranches, multilateral development bank funds, and contractor milestone disbursements with strict multi-tier approval rules.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      image: '/images/infrastructure/sap_ps_funds_capital_appropriation.png',
       icon: BarChart3,
       highlights: ['Multi-currency funding pool ledgers', 'Sovereign grant compliance tracking', 'Progressive milestone drawdowns']
     },
@@ -337,7 +358,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       tag: 'GIS & ROW',
       title: 'Right-of-Way & Land Cadastral Portal',
       description: 'Integrates geospatial parcel data with SAP Project Systems to coordinate statutory environmental clearances and compensation disbursements.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/infrastructure/right_of_way_land_cadastral_portal.jpg',
       icon: MapPin,
       highlights: ['Geospatial parcel boundary sync', 'Digital statutory clearance gates', 'Compensation disbursement audits']
     },
@@ -461,19 +482,20 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
       {/* =========================================================================
           SECTION 1: HERO SECTION (Pure Enterprise Infrastructure Hero)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
         {/* Full-bleed High Resolution Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/infrastructure_hero.jpg" 
+            src="/images/infrastructure/infrastructure_megaprojects_hero_hd.jpg" 
             alt="Intelligent ERP for Infrastructure & Megaprojects"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-[center_top] lg:object-[68%_top] filter brightness-[1.06] contrast-[1.05]"
           />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/85 sm:via-slate-950/65 to-transparent pointer-events-none" />
+        {/* Balanced Cinematic Left & Bottom Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/90 via-slate-950/50 sm:via-slate-950/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/10 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           <div className="max-w-3xl space-y-4">
@@ -667,7 +689,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2 ${
                         isSelected 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-sm' 
@@ -784,20 +806,27 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -813,7 +842,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -835,7 +864,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const pathD = getChevronPath(idx);
                     const coords = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -844,17 +873,24 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                       <g 
                         key={seg.id}
                         className="cursor-pointer transition-all duration-300"
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                       >
                         <path
                           d={pathD}
-                          fill={isHovered ? seg.color : `${seg.color}35`}
+                          fill={isHighlighted ? seg.color : `${seg.color}35`}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? 3.5 : 1.5}
+                          strokeWidth={isHighlighted ? 3.5 : 1.5}
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
+                            filter: isHighlighted ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
                           }}
                         />
                         <foreignObject
@@ -867,7 +903,7 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                           <div className="w-full h-full flex items-center justify-center">
                             <IconComponent 
                               className={`w-5 h-5 transition-colors duration-200 ${
-                                isHovered ? 'text-white' : 'text-slate-200'
+                                isHighlighted ? 'text-white' : 'text-slate-200'
                               }`} 
                             />
                           </div>
@@ -937,27 +973,34 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right flex-1">
@@ -1171,11 +1214,11 @@ export const InfrastructureIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
                   key={sol.title}
                   className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                 >
-                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                  <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-100 shrink-0">
                     <img 
                       src={sol.image} 
                       alt={sol.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
                         (e.target as HTMLElement).style.display = 'none';
                       }}

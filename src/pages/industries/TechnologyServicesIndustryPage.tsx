@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -39,8 +40,6 @@ interface TechnologyServicesIndustryPageProps {
 export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -184,7 +183,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       sublabel: 'Requisition & SOW',
       desc: 'Capturing role specifications, bill rate thresholds, and delivery milestones with automated contract approval workflows.',
       tech: 'SAP SuccessFactors & Fieldglass',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/tech_services_staffing_intake.jpg',
       icon: Briefcase
     },
     {
@@ -193,7 +192,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       sublabel: 'Talent Deployment',
       desc: 'Dynamic matching algorithms evaluating consultant skill certifications, regional cost rates, and rolling calendar availability.',
       tech: 'SAP Resource Management',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/tech_services_skill_bench_matching.jpg',
       icon: Users2
     },
     {
@@ -202,7 +201,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       sublabel: 'Daily Field Logging',
       desc: 'Intuitive mobile logging of hours and receipts with policy enforcement, project work breakdown structure (WBS) checks, and manager approval.',
       tech: 'SAP Fiori My Timesheet Apps',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/tech_services_mobile_time_expense.png',
       icon: Clock
     },
     {
@@ -211,7 +210,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       sublabel: 'Invoice Generation',
       desc: 'Digital deliverable acceptance triggering progressive milestone invoices, WIP unbilled clearing, and revenue recognition under ASC 606.',
       tech: 'SAP S/4HANA Project Systems',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/tech_services_deliverable_signoff_billing.png',
       icon: ShieldCheck
     },
     {
@@ -220,7 +219,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       sublabel: 'Cross-Border Ledgers',
       desc: 'Automated intercompany billing generating dual accounting documents, applying transfer pricing markups, and updating local statutory ledgers.',
       tech: 'SAP Advanced Intercompany Billing',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/tech_services_gcc_intercompany_settlement.jpg',
       icon: RefreshCw
     },
     {
@@ -229,10 +228,32 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       sublabel: 'Decision Support',
       desc: 'Executive analytics providing real-time visibility into practice-level realization, unbilled WIP aging, and engagement margin health.',
       tech: 'SAP Analytics Cloud',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/tech_services_practice_profitability_margin.png',
       icon: BarChart3
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Technology Services Challenges
   const serviceChallenges = [
@@ -288,7 +309,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'RESOURCE_MANAGEMENT',
       categoryLabel: 'Talent & Resourcing',
       description: 'Centralized talent allocation matching certified consultant skills, rolling availability, and location rate cards to project demands.',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_global_resource_hub.jpg',
       highlights: ['Dynamic Skill Taxonomies', 'Bench Availability Leveling', 'Automated Requisition Match'],
       icon: Users2
     },
@@ -298,7 +319,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'PROJECT_FINANCIALS',
       categoryLabel: 'Financials & Billing',
       description: 'Intuitive native mobile recording of billable hours, project receipts, and mileage with real-time project WBS policy checks.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_mobile_time_tracking.png',
       highlights: ['Real-Time Project Validation', 'Mobile Receipt Capture', 'Automated Manager Routing'],
       icon: Clock
     },
@@ -308,7 +329,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'PROJECT_FINANCIALS',
       categoryLabel: 'Financials & Billing',
       description: 'Locking progressive client invoices to digital deliverable acceptance sign-offs, preventing unbilled WIP and billing disputes.',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_services_deliverable_signoff_billing.png',
       highlights: ['Stage-Gate Acceptance Sign-Off', 'Automated Billing Triggers', 'ASC 606 Revenue Timing'],
       icon: ShieldCheck
     },
@@ -318,7 +339,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'GOVERNANCE_TAX',
       categoryLabel: 'Governance & Analytics',
       description: 'Standardize third-party staffing agency engagements with clear rate cards, deliverables verification, and automated PO generation.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_contractor_vms_sow.jpg',
       highlights: ['SOW Milestone Deliverable Gates', 'Timesheet PO Cap Validation', 'Agency Spend Benchmarks'],
       icon: UserCheck
     },
@@ -328,7 +349,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'GOVERNANCE_TAX',
       categoryLabel: 'Governance & Analytics',
       description: 'Automated multi-entity chargebacks between onshore business units and offshore Global Capability Centers compliant with tax rules.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_gcc_transfer_pricing.png',
       highlights: ['Dual Booking Document Sync', 'Configured Markup Calculations', 'Statutory Tax Defense Proof'],
       icon: RefreshCw
     },
@@ -338,7 +359,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'PROJECT_FINANCIALS',
       categoryLabel: 'Financials & Billing',
       description: 'Hierarchical Work Breakdown Structure (WBS) budgeting uniting time-and-materials, fixed-price, and retainer contracts into one ledger.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_multimodel_project_accounting.jpg',
       highlights: ['WBS Cost Budget Allocation', 'Live Cost-to-Complete Tracking', 'Multi-Currency Revaluation'],
       icon: FileText
     },
@@ -348,7 +369,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'GOVERNANCE_TAX',
       categoryLabel: 'Governance & Analytics',
       description: 'Real-time visibility into practice-level realization rates, unbilled receivables, and early warning margin drift alerts.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_practice_profitability.jpg',
       highlights: ['Practice Realization Metrics', 'Unbilled WIP Aging Curves', 'Margin Drift Projections'],
       icon: BarChart3
     },
@@ -358,7 +379,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'RESOURCE_MANAGEMENT',
       categoryLabel: 'Talent & Resourcing',
       description: 'Centralized repository verifying cloud certifications, technical proficiencies, security clearances, and client badges.',
-      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_consultant_credentialing.png',
       highlights: ['Certification Expiry Alerts', 'Client Badge Compliance', 'Skills Gap Analysis'],
       icon: Briefcase
     },
@@ -368,7 +389,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
       category: 'RESOURCE_MANAGEMENT',
       categoryLabel: 'Talent & Resourcing',
       description: 'Commercial rate card authoring and margin modeling evaluating consultant blends to protect gross margins before bid submission.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/tech_solution_client_rate_card.jpg',
       highlights: ['Role Blending Margin Simulator', 'Multi-Year Escalation Curves', 'Standard Discount Controls'],
       icon: Sliders
     }
@@ -457,9 +478,9 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
         {/* Full-Bleed Enterprise Technology Services Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" 
-            alt="Technology Services and Professional Staffing Global Workspace" 
-            className="w-full h-full object-cover object-center"
+            src="/images/technology_services_erp_hero.jpg" 
+            alt="Intelligent ERP for Technology Services & Staffing" 
+            className="w-full h-full object-cover object-center lg:object-right"
           />
         </div>
 
@@ -672,7 +693,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
@@ -821,20 +842,27 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -850,7 +878,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -872,7 +900,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -880,20 +908,27 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -907,7 +942,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -964,20 +999,27 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -985,7 +1027,7 @@ export const TechnologyServicesIndustryPage: React.FC<TechnologyServicesIndustry
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-left flex-1">

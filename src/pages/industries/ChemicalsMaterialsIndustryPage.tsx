@@ -119,7 +119,7 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
       tag: 'CHEM-01',
       title: 'Automated Safety Data Sheet (SDS) Engine',
       description: 'Generates multi-jurisdiction, 16-section Safety Data Sheets and GHS shipping labels dynamically from formulation recipes in 35+ languages.',
-      image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=800&q=80',
+      image: '/images/chemicals_automated_sds_engine.jpg',
       highlights: ['Automated 16-Section SDS', '35+ Languages Supported', 'GHS Hazard Pictograms']
     },
     {
@@ -129,7 +129,7 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
       tag: 'CHEM-02',
       title: 'REACH, TSCA & Substance Volume Tracking',
       description: 'Automated tracking of chemical substance volumes across procurement, production, and distribution against statutory import quotas.',
-      image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+      image: '/images/chemicals_reach_tsca_tracking.png',
       highlights: ['Statutory Quota Alerts', 'REACH SVHC Screening', 'Pre-Shipment Compliance Block']
     },
     {
@@ -139,7 +139,7 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
       tag: 'CHEM-03',
       title: 'Dangerous Goods Transport & Segregation Suite',
       description: 'Enforces ADR, IMDG, and DOT dangerous goods rules, verifying vehicle placards, mixed loading segregations, and driver certifications.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/chemicals_dangerous_goods_transport.jpg',
       highlights: ['Dangerous Goods Shipping Papers', 'Tanker Co-Loading Validation', 'Automated Port Placards']
     },
     {
@@ -149,7 +149,7 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
       tag: 'CHEM-04',
       title: 'Hydrocarbon Tank Farm & Silo Management',
       description: 'Continuous volume corrections based on temperature and density API tables, eliminating inventory variance across tank farms.',
-      image: 'https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?auto=format&fit=crop&w=800&q=80',
+      image: '/images/chemicals_tank_farm_silo_management.png',
       highlights: ['API Density Corrections', 'Continuous Pipeline Balancing', 'Tank Strapping Tables']
     },
     {
@@ -159,7 +159,7 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
       tag: 'CHEM-05',
       title: 'Permit to Work & Process Safety Management (PSM)',
       description: 'Digital lock-out/tag-out (LOTO), hot work permit issuance, and automated incident root-cause investigations compliant with OSHA PSM.',
-      image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
+      image: '/images/chemicals_permit_to_work_psm.png',
       highlights: ['Digital LOTO Workflows', 'OSHA 300 Recordkeeping', 'Risk Matrix Assessment']
     },
     {
@@ -169,7 +169,7 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
       tag: 'CHEM-06',
       title: 'Product Carbon Footprint (PCF) & Circularity',
       description: 'Calculates cradle-to-gate Scope 1, 2, and 3 emissions per ton of polymer or chemical blend for corporate ESG reporting.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      image: '/images/chemicals_product_carbon_footprint.jpg',
       highlights: ['Cradle-to-Gate Emission Log', 'Recycled Feedstock Accounting', 'CBAM Export Ready']
     }
   ];
@@ -277,12 +277,12 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
         {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=2000&q=80" 
-            alt="Chemicals & Advanced Materials Plant" 
-            className="w-full h-full object-cover object-center"
+            src="/images/chemicals_materials_hero.png" 
+            alt="Chemicals & Advanced Materials Research & Plant Operations" 
+            className="w-full h-full object-cover object-center brightness-[1.04] contrast-[1.02]"
           />
           {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant facility on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 sm:via-slate-950/50 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
         </div>
 
@@ -402,13 +402,13 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900 min-h-[320px]">
+            <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900 min-h-[340px]">
               <img 
-                src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80" 
-                alt="Chemical Laboratory & EHS Management" 
-                className="w-full h-full object-cover"
+                src="/images/chemicals_secure_plant_operations.png" 
+                alt="Operating Secure Chemical Plants in an Unforgiving Global Regulatory Landscape" 
+                className="w-full h-full object-cover object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-6" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent flex flex-col justify-end p-6" />
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <div className="text-xs font-mono uppercase tracking-widest text-cyan-300 font-bold mb-1">HAZMAT REGULATORY ENGINE</div>
                 <div className="text-lg sm:text-xl font-bold text-white leading-snug">Automated Multi-Jurisdiction GHS & Substance Tracking</div>
@@ -583,7 +583,7 @@ export const ChemicalsMaterialsIndustryPage: React.FC<ChemicalsMaterialsIndustry
                     className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                   >
                     {/* 1. Top Image Portion */}
-                    <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                    <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-900 shrink-0 border-b border-slate-100">
                       <img 
                         src={sol.image} 
                         alt={sol.title}

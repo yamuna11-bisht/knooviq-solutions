@@ -119,7 +119,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-01',
       title: 'Engineer-To-Order (ETO) Project Governance',
       description: 'Milestone billing, multi-level WBS tracking, progress confirmation, and real-time earned value management (EVM) for large capital equipment.',
-      image: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=800&q=80',
+      image: '/images/industrial_eto_project_governance.png',
       highlights: ['SAP Project Systems (PS)', 'Milestone Progress Billing', 'Earned Value Management']
     },
     {
@@ -129,7 +129,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-02',
       title: 'Interactive 3D Exploded Spares Portal',
       description: 'Customer self-service portal featuring interactive 3D exploded machinery assemblies linked directly to SAP S/4HANA spare parts inventory.',
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+      image: '/images/industrial_3d_exploded_spares_portal.png',
       highlights: ['3D Visual Assemblies', 'One-Click Spares Ordering', 'Serial-Specific Catalogs']
     },
     {
@@ -139,7 +139,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-03',
       title: 'Connected Equipment Telematics & Predictive EAM',
       description: 'Real-time vibration, thermal, and hydraulic pressure analytics that trigger automated service work orders before machine failure occurs.',
-      image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
+      image: '/images/industrial_connected_equipment_telematics.png',
       highlights: ['Predictive Anomaly Alerts', 'Automated Service Work Orders', 'Remote Diagnostics']
     },
     {
@@ -149,7 +149,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-04',
       title: 'Mobile Field Service Management & SLA Dispatch',
       description: 'AI-assisted technician scheduling based on route proximity, parts availability in service vans, and required technical certifications.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      image: '/images/industrial_field_service_management.png',
       highlights: ['Dynamic Schedule Board', 'Van Stock Synchronization', 'Digital Customer Sign-Off']
     },
     {
@@ -159,7 +159,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-05',
       title: 'Automated Warranty & Supplier Claims Adjudication',
       description: 'Cross-references equipment telematics logs against contractual warranty clauses, auto-approving valid claims and passing defect costs to Tier-2 suppliers.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/industrial_warranty_claims_adjudication.png',
       highlights: ['Telemetry-Backed Claims', 'Supplier Chargeback Recovery', 'Warranty Reserve Optimization']
     },
     {
@@ -169,7 +169,7 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
       tag: 'PROD-06',
       title: 'As-Built to As-Maintained Digital Twin Hub',
       description: 'Maintains an immutable digital asset ledger recording every field retrofit, software patch, and replaced component over 30-year equipment lifecycles.',
-      image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80',
+      image: '/images/industrial_digital_twin_hub.jpg',
       highlights: ['30-Year Asset Genealogy', 'Retrofit Revision Tracking', 'Equipment Service Passport']
     }
   ];
@@ -277,13 +277,13 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
         {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=2000&q=80" 
-            alt="Heavy Industrial Equipment Engineering" 
-            className="w-full h-full object-cover object-center"
+            src="/images/industrial_products_hero.jpg" 
+            alt="Advanced Industrial Products Facility" 
+            className="w-full h-full object-cover object-center brightness-[1.04] contrast-[1.02]"
           />
-          {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant facility on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          {/* Targeted cinematic gradient scrim: left dark for crisp text readability, right side clear, sharp and bright */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 via-40% to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -404,9 +404,9 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
 
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900 min-h-[320px]">
               <img 
-                src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1000&q=80" 
-                alt="Industrial Equipment Telematics" 
-                className="w-full h-full object-cover"
+                src="/images/industrial_closed_loop_eto_telemetry.png" 
+                alt="Closed-Loop ETO Projects & Remote Equipment Telemetry" 
+                className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-6" />
               <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -577,24 +577,34 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
               .filter((sol) => activeSolutionCategory === 'ALL' || sol.category === activeSolutionCategory)
               .map((sol) => {
                 const IconComponent = sol.icon;
+                const isContain = sol.tag === 'PROD-05';
+                const isWhiteBg = sol.tag === 'PROD-05';
                 return (
                   <div
                     key={sol.title}
                     className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                   >
                     {/* 1. Top Image Portion */}
-                    <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                    <div className={`relative h-56 sm:h-60 w-full overflow-hidden shrink-0 border-b border-slate-100 flex items-center justify-center ${isWhiteBg ? 'bg-white p-3' : 'bg-slate-900'}`}>
                       <img 
                         src={sol.image} 
                         alt={sol.title}
                         onError={(e) => {
                           e.currentTarget.src = 'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=800&q=80';
                         }}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                        className={`w-full h-full transition-transform duration-500 ${
+                          isContain 
+                            ? 'object-contain object-center group-hover:scale-105' 
+                            : sol.tag === 'PROD-02'
+                            ? 'object-cover object-[center_35%] group-hover:scale-105'
+                            : 'object-cover object-top group-hover:scale-105'
+                        }`} 
                       />
-                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+                      {!isContain && (
+                        <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
+                      )}
                       
-                      <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-cyan-300 uppercase">
+                      <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-cyan-300 uppercase shadow-sm">
                         {sol.tag}
                       </div>
                     </div>
@@ -603,9 +613,14 @@ export const IndustrialProductsIndustryPage: React.FC<IndustrialProductsIndustry
                     <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                       <div className="space-y-2.5">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-mono font-bold text-[#0070C0] uppercase tracking-wider">
-                            {sol.categoryLabel}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-mono font-bold text-cyan-800 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                              {sol.tag}
+                            </span>
+                            <span className="text-xs font-mono font-bold text-[#0070C0] uppercase tracking-wider">
+                              {sol.categoryLabel}
+                            </span>
+                          </div>
                           <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
                             <IconComponent className="w-3.5 h-3.5" />
                           </div>

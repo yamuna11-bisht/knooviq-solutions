@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -38,8 +39,6 @@ interface WarehouseEwmIndustryPageProps {
 export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -179,7 +178,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       sublabel: 'ASN & Gate Check-In',
       desc: 'Capture advanced shipping notices (ASN), match inbound bills of lading (BOL), and direct trailers to optimal dock doors based on handling capacity.',
       tech: 'SAP EWM Inbound',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/warehouse_inbound_receiving.png',
       icon: Truck
     },
     {
@@ -188,7 +187,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       sublabel: 'Dynamic AI Slotting',
       desc: 'Continuously re-evaluate storage bin assignments based on seasonal velocity profiles, physical dimensions, and forklift deadhead travel reduction.',
       tech: 'SAP Warehouse Insights',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/warehouse_directed_putaway.png',
       icon: Boxes
     },
     {
@@ -197,7 +196,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       sublabel: 'Workload Balancing',
       desc: 'Group open customer sales orders into balanced picking waves factoring in carrier pickup cutoff times, available staffing, and conveyor capacity.',
       tech: 'SAP EWM Wave Engine',
-      image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/warehouse_wave_planning.png',
       icon: Layers
     },
     {
@@ -206,7 +205,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       sublabel: 'Voice & Wearable RF',
       desc: 'Guide operators hands-free with voice-directed workflows and ergonomic wearable scanners, ensuring interleaved barcode checksum validation.',
       tech: 'SAP Fiori Mobile RF',
-      image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/warehouse_pick_execution.jpg',
       icon: ScanLine
     },
     {
@@ -215,7 +214,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       sublabel: 'PLC Telegram Interlock',
       desc: 'Orchestrate automated storage cranes (AS/RS), autonomous mobile robots (AMRs), and conveyor networks with sub-second direct PLC telegrams.',
       tech: 'SAP EWM-MFS Native',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/warehouse_robotics_mfs.png',
       icon: Cpu
     },
     {
@@ -224,10 +223,32 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       sublabel: '3D Cartonization',
       desc: 'Optimize package fill rates through automated 3D volumetric box selection algorithms, print carrier labels inline, and stage finished pallets.',
       tech: 'SAP EWM Outbound',
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/warehouse_outbound_dispatch.png',
       icon: Warehouse
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Warehouse Challenges & Bottlenecks Data
   const warehouseChallenges = [
@@ -284,7 +305,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: Truck,
       title: 'Inbound Receiving & Cross-Docking',
       description: 'Accelerate dock-to-stock cycle times by pre-allocating inbound supplier pallets directly to outbound customer staging lanes.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_inbound_cross_docking.png',
       highlights: ['Automated ASN Allocation', 'Opportunistic Cross-Dock', 'Pallet Barcode Scan', 'Dock-to-Stock Speed']
     },
     {
@@ -294,7 +315,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: Boxes,
       title: 'Dynamic Velocity Slotting',
       description: 'Continuously reorganize storage bin assignments based on dynamic SKU turn velocity, product dimensions, and operator ergonomics.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_dynamic_velocity_slotting.png',
       highlights: ['ABC Velocity Profiling', 'Deadhead Travel Reduction', 'Volumetric Bin Sizing', 'Automated Replenishment']
     },
     {
@@ -304,7 +325,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: Cpu,
       title: 'High-Bay AS/RS Crane & Shuttle Control',
       description: 'Control multi-shuttle carousels, vertical lift modules, and stacker cranes directly from SAP EWM with sub-second PLC telegrams.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_highbay_asrs_crane.jpg',
       highlights: ['Direct PLC Telegrams', 'Zero Middleware Lag', 'Crane Trajectory Tuning', 'Real-Time Fault Bypass']
     },
     {
@@ -314,7 +335,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: Layers,
       title: 'Multi-Modal Wave Planning',
       description: 'Batch customer sales orders into high-efficiency picking waves synchronized with carrier dispatch cutoff schedules and zone capacity.',
-      image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_multimodal_wave_planning.png',
       highlights: ['Algorithmic Wave Sizing', 'Cluster Multi-Order Carts', 'Zone Workload Balance', 'Priority Override Logic']
     },
     {
@@ -324,7 +345,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: Workflow,
       title: 'AMR Mobile Robot Fleet Coordination',
       description: 'Synchronize collaborative robots following human pickers through aisles or transport heavy pallets autonomously between functional zones.',
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_amr_robot_fleet.png',
       highlights: ['Collaborative Picker Assist', 'Dynamic Task Dispatch', 'Automated Traffic Control', 'Battery-Aware Routing']
     },
     {
@@ -334,7 +355,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: Clock,
       title: 'Yard Logistics & Dock Booking',
       description: 'Eliminate trailer gate congestion through collaborative carrier appointment booking, automated driver kiosks, and digital shunter moves.',
-      image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_yard_logistics_dock.png',
       highlights: ['Carrier Self-Booking', 'Driver Mobile Kiosks', 'Shunter Dispatch Console', 'Zero Detention Fees']
     },
     {
@@ -344,7 +365,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: ScanLine,
       title: 'Voice-Directed Picking & RF Verification',
       description: 'Empower warehouse personnel with hands-free voice guidance and ergonomic wearable scanners, ensuring 99.98% pick accuracy.',
-      image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_rfid_voice_picking.png',
       highlights: ['Voice-Directed Paths', 'Checksum Bin Validation', 'Serial Number Capture', 'Multi-Language Voice']
     },
     {
@@ -354,7 +375,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: Warehouse,
       title: '3D Volumetric Cartonization & Auto-Wrap',
       description: 'Calculate precise 3D box requirements prior to picking, minimizing void filler usage, parcel shipping rates, and packaging waste.',
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_3d_cartonization_wrap.jpg',
       highlights: ['3D Volumetric Sizing', 'Inline Weight Checks', 'Auto Label Applicators', 'Freight Dimension Tuning']
     },
     {
@@ -364,7 +385,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
       icon: ShieldCheck,
       title: 'Cold-Chain & HAZMAT Segregation',
       description: 'Enforce strict chemical compatibility segregation rules, continuous IoT temperature logging, and end-to-end serialized batch traceability.',
-      image: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80',
+      image: '/images/warehouse_coldchain_hazmat.png',
       highlights: ['HAZMAT Segregation', 'IoT Temperature Logs', 'Serialized Lot Tracking', 'Automated GxP Audit']
     }
   ];
@@ -444,8 +465,8 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
         {/* Full-Bleed Enterprise Warehouse Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80" 
-            alt="Automated High-Bay Warehouse & Robotics Operations" 
+            src="/images/warehouse_intelligent_erp_hero.png" 
+            alt="Intelligent ERP for Warehouse & Warehousing" 
             className="w-full h-full object-cover object-center"
           />
         </div>
@@ -659,7 +680,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
@@ -808,20 +829,27 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -837,7 +865,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -859,7 +887,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -867,20 +895,27 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -894,7 +929,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -941,8 +976,8 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
                         EWM LOGISTICS
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
-                        {hoveredWheelIndex !== null 
-                          ? `MODULE 0${hoveredWheelIndex + 1}` 
+                        {(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) !== null 
+                          ? `MODULE 0${(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) + 1}` 
                           : '8 CAPABILITIES'}
                       </div>
                     </div>
@@ -956,20 +991,27 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -977,7 +1019,7 @@ export const WarehouseEwmIndustryPage: React.FC<WarehouseEwmIndustryPageProps> =
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right">

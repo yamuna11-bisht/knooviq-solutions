@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -39,9 +40,6 @@ interface IndustryPageProps {
 }
 
 export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -194,7 +192,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       sublabel: 'Field Production',
       desc: 'Direct wellhead choke sensor streaming and automated custody transfer meter reconciliation across onshore pads and offshore subsea templates.',
       tech: 'IoT Edge & SCADA Integration',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/oil-gas/upstream_wellhead_telemetry.jpg',
+      imagePosition: 'object-[center_top]',
       icon: Droplet
     },
     {
@@ -203,7 +202,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       sublabel: 'Hydrocarbon Ledger',
       desc: 'Algorithmic allocation of crude, wet gas, and natural gas liquids back to multi-partner Division of Interest contracts without manual spreadsheets.',
       tech: 'SAP PRA Clean Core',
-      image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/oil-gas/production_revenue_accounting.png',
+      imagePosition: 'object-[center_top]',
       icon: Compass
     },
     {
@@ -212,7 +212,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       sublabel: 'Bulk Movement',
       desc: 'Automated nomination cycles, batch scheduling, and jetty marine terminal berthing with live custody transfer ticketing and demurrage governance.',
       tech: 'SAP TSW / TM',
-      image: 'https://images.unsplash.com/photo-1545239351-ef35f43d514b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/oil-gas/pipeline_marine_logistics.jpg',
+      imagePosition: 'object-[center_top]',
       icon: Layers
     },
     {
@@ -221,7 +222,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       sublabel: 'Downstream Operations',
       desc: 'Corrosion thickness telemetry, heat exchanger fouling models, and digitized multi-contractor turnaround work packs eliminating schedule overruns.',
       tech: 'SAP APM & S/4HANA EAM',
-      image: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/oil-gas/refinery_asset_integrity_shutdown_governance.jpg',
+      imagePosition: 'object-[center_top]',
       icon: Factory
     },
     {
@@ -230,7 +232,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       sublabel: 'Commercial Delivery',
       desc: 'Dynamic multi-compartment fuel tanker dispatch, electronic bill of lading processing, and real-time underground tank wet-stock monitoring.',
       tech: 'SAP SDM & RFNO',
-      image: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/oil-gas/sap_sdm_rfno_forecourt.jpg',
+      imagePosition: 'object-[center_top]',
       icon: Truck
     },
     {
@@ -239,10 +242,32 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       sublabel: 'Compliance Shield',
       desc: 'Continuous flare stack metering, optical leak detection repair tracking, and automated Scope 1 & 2 carbon ledgers for regulatory reporting.',
       tech: 'SAP Sustainability Control Tower',
-      image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/oil-gas/sap_sustainability_control_tower_esg.jpg',
       icon: ShieldCheck
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Operational Challenges
   const challenges = [
@@ -299,7 +324,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       tag: 'OIL-01',
       title: 'Automated Wellhead Allocation & Production Accounting',
       description: 'End-to-end SAP Production and Revenue Accounting (PRA) automating complex division of interest (DOI) calculations, severance tax, and royalty disbursements.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/oil-gas/automated_wellhead_allocation_production_accounting.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['SAP PRA Volumetric Balancing', 'Automated DOI Royalty Calculations', 'Severance Tax Compliance']
     },
     {
@@ -309,7 +335,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       tag: 'OIL-02',
       title: 'Pipeline Nomination & Terminal Scheduling (TSW)',
       description: 'Synchronizes pipeline batch cycles, marine jetty berthing, and railway tank car nominations with real-time custody transfer documentation.',
-      image: 'https://images.unsplash.com/photo-1545239351-ef35f43d514b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/oil-gas/pipeline_nomination_terminal_scheduling.jpg',
+      imagePosition: 'object-[center_top]',
       highlights: ['Trader & Scheduler Workbench (TSW)', 'Custody Transfer Measurement', 'Marine Tanker Demurrage Control']
     },
     {
@@ -319,7 +346,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       tag: 'OIL-03',
       title: 'Refinery Asset Integrity & Shutdown Governance',
       description: 'Digital turnaround work packs, API 510/570 pressure vessel thickness tracking, and predictive heat exchanger fouling analytics.',
-      image: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/oil-gas/refinery_asset_integrity_shutdown_governance.jpg',
+      imagePosition: 'object-[center_top]',
       highlights: ['Turnaround Milestones & WBS', 'API 570 Corrosion Telemetry', 'Dynamic Heat Exchanger RUL']
     },
     {
@@ -329,7 +357,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       tag: 'OIL-04',
       title: 'Secondary Distribution & Retail Forecourt Sync',
       description: 'Automates multi-drop fuel tanker dispatch, electronic bill of lading (e-BOL) processing, and retail gas station underground tank telemetry.',
-      image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80',
+      image: '/images/oil-gas/retail_forecourt_convenience_sync.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['SAP SDM Trip Optimization', 'Forecourt Wet Stock Monitoring', 'Automated e-BOL Generation']
     },
     {
@@ -339,7 +368,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       tag: 'OIL-05',
       title: 'Permit-to-Work & Offshore Safety Governance',
       description: 'Digital lock-out/tag-out (LOTO), hot work gas testing verification, and risk-ranked SIMOPS (simultaneous operations) conflict prevention.',
-      image: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=800&q=80',
+      image: '/images/oil-gas/permit_to_work_offshore_safety.jpg',
+      imagePosition: 'object-[center_top]',
       highlights: ['Digital Hot Work Permits', 'SIMOPS Visual Clash Detection', 'Regulatory Process Safety Audit']
     },
     {
@@ -349,7 +379,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
       tag: 'OIL-06',
       title: 'Flaring & Fugitive Methane ESG Ledger',
       description: 'Direct IoT sensor integration logging flare stack gas volumes, optical gas imaging (OGI) leak repairs, and Scope 1 & 2 carbon accounting.',
-      image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80',
+      image: '/images/oil-gas/flaring_fugitive_methane_esg_ledger.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['Continuous Flare Metering', 'Fugitive LDAR Repair Tracking', 'Scope 1-3 Carbon Accounting']
     }
   ];
@@ -491,85 +522,103 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden selection:bg-[#0070C0] selection:text-white">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Pure Enterprise Hero - Zero Shading on Image)
+          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Full-Bleed Enterprise Background Image with Seamless Cinematic Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2000&q=80" 
-            alt="Oil & Gas Upstream and Refining Enterprise Atmosphere" 
-            className="w-full h-full object-cover object-center"
+        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}
           />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+        {/* Hero Top Content (2-Column Grid) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          <div className="max-w-3xl space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="space-y-2.5"
-            >
+            {/* Left Column (7 cols): Content & Typography */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="mb-2 sm:mb-4">
+                <Link 
+                  to="/industries" 
+                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+                >
+                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                  <span>Back to Industries</span>
+                </Link>
+              </div>
+
               {/* Practice Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
                 <Flame className="w-3.5 h-3.5 text-cyan-400" />
                 <span>KNOOVIQ INDUSTRY PRACTICE</span>
               </div>
               
-              {/* Prominent High-Impact Heading with Crisp Drop-Shadow */}
+              {/* Prominent High-Impact Heading */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
                 Intelligent ERP for <br />
                 <span className="text-cyan-400">Oil & Gas Energy</span>
               </h1>
 
               {/* Subheading / Value Proposition */}
-              <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              <p className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 Orchestrating Upstream Telemetry, Midstream Logistics & Refinery Reliability on One Unified Core.
               </p>
-            </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-3 max-w-2xl"
-            >
               {/* Clear Open Typography */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed drop-shadow-sm max-w-2xl">
                 Transform energy operations with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, automated <strong className="text-cyan-300 font-semibold">Production Revenue Accounting (PRA)</strong>, predictive turnaround scheduling, and real-time custody transfer tracking.
               </p>
               
               {/* Clean Feature Highlights */}
               <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-cyan-400" />
                   <span>Clean Core Architecture</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>Automated PRA Allocation</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
                   <CheckCircle2 className="w-4 h-4 text-sky-400" />
                   <span>Sub-Second Logistics Tracking</span>
                 </span>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 sm:mt-8 pt-4 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
-            >
+            {/* Right Column (5 cols): Pure Visual Showcase (100% Uncut & Crystal Clear) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-900/90 shadow-2xl shadow-black/60 p-2 sm:p-2.5 backdrop-blur-md group hover:border-[#0070C0] transition-colors duration-300">
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center min-h-[300px] sm:min-h-[360px] lg:min-h-[420px]">
+                  <img 
+                    src="/images/oil-gas/oil_gas_hero.png" 
+                    alt="Oil & Gas Upstream Offshore Drilling Platform and Refining Atmosphere" 
+                    className="w-full h-auto max-h-[500px] object-cover object-top rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Enterprise Architectural Trust Ribbon (Inside Hero, 4-Column Layout) */}
+        <div className="relative z-10 w-full border-t border-white/15 bg-slate-950/70 backdrop-blur-md py-4 sm:py-5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
               <div className="p-3.5 rounded-xl bg-white/[0.08] backdrop-blur-md border border-white/15 hover:border-sky-400/40 hover:bg-white/[0.12] transition-all">
                 <div className="flex items-center gap-2 mb-1">
                   <Cpu className="w-4 h-4 text-cyan-300 shrink-0" />
@@ -605,10 +654,8 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
                 <div className="text-sm sm:text-base font-bold text-white leading-snug">Turnaround Health</div>
                 <div className="text-xs text-slate-300 mt-0.5">Predictive Integrity</div>
               </div>
-            </motion.div>
-
+            </div>
           </div>
-
         </div>
 
       </section>
@@ -685,17 +732,29 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
 
             {/* Right Side: Visual Photography Showcase & Stage Navigator */}
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-76 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
-                <img 
-                  src={journeySteps[activeJourneyStep].image} 
-                  alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <div className="text-[11px] font-mono uppercase text-sky-300 font-bold">{journeySteps[activeJourneyStep].tech}</div>
-                  <div className="text-sm sm:text-base font-bold">{journeySteps[activeJourneyStep].label}</div>
-                  <p className="text-xs text-slate-300 line-clamp-2 mt-0.5">{journeySteps[activeJourneyStep].desc}</p>
+              <div className="rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-950">
+                <div className="relative aspect-[16/9] w-full bg-slate-950">
+                  <img 
+                    src={journeySteps[activeJourneyStep].image} 
+                    alt={journeySteps[activeJourneyStep].label} 
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="p-3.5 sm:p-4 bg-slate-900 border-t border-slate-800 text-white">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="text-[11px] font-mono uppercase text-cyan-400 font-bold tracking-wider">
+                      STAGE {activeJourneyStep + 1} OF 6 • {journeySteps[activeJourneyStep].tech}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 uppercase">
+                      {journeySteps[activeJourneyStep].sublabel}
+                    </span>
+                  </div>
+                  <div className="text-sm sm:text-base font-bold text-white leading-snug">
+                    {journeySteps[activeJourneyStep].label}
+                  </div>
+                  <p className="text-xs text-slate-300 mt-1 leading-relaxed line-clamp-2">
+                    {journeySteps[activeJourneyStep].desc}
+                  </p>
                 </div>
               </div>
 
@@ -708,7 +767,7 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2 ${
                         isSelected 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-sm' 
@@ -827,20 +886,27 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -856,7 +922,7 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -878,7 +944,7 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -886,20 +952,27 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -913,7 +986,7 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -970,27 +1043,34 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right flex-1">
@@ -1204,11 +1284,11 @@ export const OilGasIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact 
                   key={sol.tag}
                   className="rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group h-full"
                 >
-                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                  <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-100 shrink-0">
                     <img 
                       src={sol.image} 
                       alt={sol.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top"
                       onError={(e) => {
                         (e.target as HTMLElement).style.display = 'none';
                       }}

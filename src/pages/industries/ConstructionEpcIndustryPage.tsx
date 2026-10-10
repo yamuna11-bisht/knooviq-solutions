@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -41,9 +42,6 @@ interface IndustryPageProps {
 }
 
 export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -205,7 +203,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Work Award & Scope',
       tech: 'SAP Sourcing & Contracts',
       desc: 'Tendering and awarding specialized trade work packages with automated bill-of-quantities (BOQ) limits and retention withholding terms.',
-      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/epc_subcontract_package.png',
       icon: Workflow
     },
     {
@@ -232,7 +230,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       sublabel: 'Client Progress Claim',
       tech: 'SAP Billing & Revenue (RAR)',
       desc: 'Generating certified AIA G702 / G703 contractor applications with automated retention deductions and percentage-of-completion ledger entries.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/epc_milestone_aia_billing.png',
       icon: BarChart3
     },
     {
@@ -245,6 +243,28 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       icon: Scale
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Construction & EPC Industry Challenges & Bottlenecks Data (6 Cards)
   const industryChallenges = [
@@ -307,7 +327,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'SAP PS & RAR',
       title: 'Progressive AIA G702 / G703 Billing Suite',
       description: 'Automates customer progress applications, schedule of values (SOV) tracking, retention withholding, and IFRS 15 revenue recognition.',
-      image: '/images/epc_aia_billing_suite.png',
+      image: '/images/epc_milestone_aia_billing.png',
       icon: FileCheck,
       highlights: ['Automated Schedule of Values (SOV)', 'Retention deduction calculation', 'IFRS 15 percentage-of-completion']
     },
@@ -327,7 +347,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
       tag: 'SAP SOURCING',
       title: 'Subcontractor Package & JMS Platform',
       description: 'End-to-end subcontract management from RFQ tender to Joint Measurement Sheet (JMS) sign-off, change orders, and back-to-back claims.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      image: '/images/epc_subcontract_package.png',
       icon: Workflow,
       highlights: ['Digital Joint Measurement sign-offs', 'Pay-when-paid retention rules', 'Subcontract variation limits']
     },
@@ -667,7 +687,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2 ${
                         isSelected 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-sm' 
@@ -784,20 +804,27 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -813,7 +840,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -835,7 +862,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const pathD = getChevronPath(idx);
                     const coords = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -844,17 +871,24 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                       <g 
                         key={seg.id}
                         className="cursor-pointer transition-all duration-300"
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                       >
                         <path
                           d={pathD}
-                          fill={isHovered ? seg.color : `${seg.color}35`}
+                          fill={isHighlighted ? seg.color : `${seg.color}35`}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? 3.5 : 1.5}
+                          strokeWidth={isHighlighted ? 3.5 : 1.5}
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
+                            filter: isHighlighted ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
                           }}
                         />
                         <foreignObject
@@ -867,7 +901,7 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
                           <div className="w-full h-full flex items-center justify-center">
                             <IconComponent 
                               className={`w-5 h-5 transition-colors duration-200 ${
-                                isHovered ? 'text-white' : 'text-slate-200'
+                                isHighlighted ? 'text-white' : 'text-slate-200'
                               }`} 
                             />
                           </div>
@@ -937,27 +971,34 @@ export const ConstructionEpcIndustryPage: React.FC<IndustryPageProps> = ({ onOpe
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right flex-1">

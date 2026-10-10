@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -41,8 +42,6 @@ interface IndustryPageProps {
 }
 
 export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOpenContact }) => {
-  // State for Executive Perspective Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -196,7 +195,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       sublabel: 'Continuous IoT Streams',
       tech: 'SAP BTP IoT Gateway',
       desc: 'Streaming real-time temperature, pressure, flow rate, and electrical power metrics from multi-vendor BMS systems.',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/facilities_bms_ingestion_gateway.jpg',
       icon: Radio
     },
     {
@@ -205,7 +204,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       sublabel: 'Vibration & Thermal FFT',
       tech: 'SAP Predictive Maintenance',
       desc: 'Algorithmic pattern recognition detecting bearing wear and refrigerant leaks weeks before physical equipment failure.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/facilities_big_data_sustainability.png',
       icon: Gauge
     },
     {
@@ -214,7 +213,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       sublabel: 'Priority & SLA Tagging',
       tech: 'SAP S/4HANA PM / EAM',
       desc: 'Translating sensor anomaly triggers into formal maintenance orders with pre-populated bill-of-materials and safety procedures.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/asset_autonomous_work_dispatch.png',
       icon: Wrench
     },
     {
@@ -223,7 +222,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       sublabel: 'Field App & Navigation',
       tech: 'SAP Service & Asset Manager',
       desc: 'Field technicians receive step-by-step digital work instructions, electrical schematics, and indoor GPS asset locations on mobile.',
-      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/facilities_sap_asset_manager_mobile.jpg',
       icon: Workflow
     },
     {
@@ -232,7 +231,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       sublabel: 'MRO Store Inventory',
       tech: 'SAP Inventory Management',
       desc: 'Automated reservation and stock issue of replacement impellers, gaskets, and filters directly charged to the maintenance work order.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/facilities_mro_store_optimization.jpg',
       icon: Boxes
     },
     {
@@ -241,10 +240,32 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       sublabel: 'SLA Verification & ESG',
       tech: 'SAP Sustainability Ledger',
       desc: 'Digital supervisor sign-off confirming vibration normalization, restoring baseline energy efficiency and updating ESG carbon metrics.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/facilities_energy_carbon_ledger.jpg',
       icon: ShieldCheck
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Facilities & Assets Industry Challenges & Bottlenecks Data (6 Cards)
   const industryChallenges = [
@@ -307,7 +328,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       tag: 'SAP APM CORE',
       title: 'Predictive Asset Performance Management (APM)',
       description: 'Ingests vibration, acoustic, and thermal telemetry from chillers, cooling towers, and pumps to predict mechanical failures weeks in advance.',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/asset_iiot_acoustic_monitoring.png',
       icon: Gauge,
       highlights: ['FFT vibration spectrum monitoring', 'Automated anomaly threshold triggers', 'Remaining Useful Life (RUL) estimation']
     },
@@ -317,7 +338,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       tag: 'SAP SAM SUITE',
       title: 'SAP Service & Asset Manager (Mobile Field Suite)',
       description: 'Equips facility maintenance technicians with offline-capable mobile tablets for work order execution, barcode scanning, and spare parts booking.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/facilities_sap_asset_manager_mobile.jpg',
       icon: Wrench,
       highlights: ['Offline digital work pack execution', 'Asset barcode & RFID verification', 'Direct labor time & parts charging']
     },
@@ -327,7 +348,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       tag: 'ENERGY OPTIMIZATION',
       title: 'Smart Building Energy & Carbon Ledger',
       description: 'Synchronizes building smart submetering data with SAP Sustainability Footprint Management to track real-time Energy Star performance.',
-      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/facilities_energy_carbon_ledger.jpg',
       icon: Zap,
       highlights: ['Automated Energy Star benchmark sync', 'Real-time Scope 1 & 2 GHG tracking', 'Peak demand shaving notifications']
     },
@@ -337,7 +358,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       tag: 'BMS GATEWAY',
       title: 'Unified Multi-BMS Ingestion Gateway',
       description: 'Normalizes BACnet, Modbus, and OPC-UA sensor streams across Johnson Controls, Honeywell, and Siemens hardware into SAP Clean Core.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      image: '/images/facilities_bms_ingestion_gateway.jpg',
       icon: Radio,
       highlights: ['Universal hardware protocol bridge', 'Edge telemetry data cleansing', 'Direct SAP Asset Central sync']
     },
@@ -347,7 +368,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       tag: 'MRO INVENTORY',
       title: 'MRO Spare Parts & Store Optimization',
       description: 'Automates min-max inventory replenishment for HVAC filters, pump seals, and electrical contactors tied directly to equipment BOMs.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/facilities_mro_store_optimization.jpg',
       icon: Boxes,
       highlights: ['Equipment-to-part BOM relationship', 'Automated purchase reorder points', 'Zero stockout of critical breakdown spares']
     },
@@ -357,7 +378,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       tag: 'IAQ & OCCUPANCY',
       title: 'Dynamic IAQ & Demand-Controlled Ventilation',
       description: 'Coordinates desk occupancy sensors and CO2 air quality probes to dynamically adjust outdoor air CFM intake, cutting cooling loads.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      image: '/images/facilities_iaq_demand_ventilation.png',
       icon: Wind,
       highlights: ['CO2 & VOC sensor integration', 'Occupancy-driven fan speed throttling', 'Enhanced tenant wellness & productivity']
     }
@@ -461,19 +482,20 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
       {/* =========================================================================
           SECTION 1: HERO SECTION (Pure Enterprise Facilities & Assets Hero)
           ========================================================================= */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
         {/* Full-bleed High Resolution Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80" 
-            alt="Modern Corporate Campus Intelligent Facilities Atrium"
-            className="w-full h-full object-cover object-center"
+            src="/images/facilities/facilities_smart_asset_operations_hero.jpg" 
+            alt="Intelligent ERP for Facilities & Smart Asset Operations Command Center"
+            className="w-full h-full object-cover object-[center_25%] lg:object-[65%_25%] filter brightness-[1.04] contrast-[1.03]"
           />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/85 sm:via-slate-950/65 to-transparent pointer-events-none" />
+        {/* Seamless Cinematic Multi-layered Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/92 via-slate-950/65 sm:via-slate-950/35 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           <div className="max-w-3xl space-y-4">
@@ -630,13 +652,13 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
             <div className="lg:col-span-6 space-y-4">
               
               <div className="rounded-2xl border-2 border-slate-200 bg-white p-5 shadow-lg relative overflow-hidden">
-                <div className="relative h-64 sm:h-72 rounded-xl overflow-hidden mb-4">
+                <div className="relative h-64 sm:h-80 rounded-xl overflow-hidden mb-4 bg-slate-950">
                   <img 
                     src={journeySteps[activeJourneyStep].image} 
                     alt={journeySteps[activeJourneyStep].label} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
                     <div>
@@ -667,7 +689,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center gap-2 ${
                         isSelected 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-sm' 
@@ -784,20 +806,27 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -813,7 +842,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -835,7 +864,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const pathD = getChevronPath(idx);
                     const coords = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -844,17 +873,24 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                       <g 
                         key={seg.id}
                         className="cursor-pointer transition-all duration-300"
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                       >
                         <path
                           d={pathD}
-                          fill={isHovered ? seg.color : `${seg.color}35`}
+                          fill={isHighlighted ? seg.color : `${seg.color}35`}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? 3.5 : 1.5}
+                          strokeWidth={isHighlighted ? 3.5 : 1.5}
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
+                            filter: isHighlighted ? `drop-shadow(0 0 14px ${seg.color})` : 'none'
                           }}
                         />
                         <foreignObject
@@ -867,7 +903,7 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
                           <div className="w-full h-full flex items-center justify-center">
                             <IconComponent 
                               className={`w-5 h-5 transition-colors duration-200 ${
-                                isHovered ? 'text-white' : 'text-slate-200'
+                                isHighlighted ? 'text-white' : 'text-slate-200'
                               }`} 
                             />
                           </div>
@@ -937,27 +973,34 @@ export const FacilitiesAssetsIndustryPage: React.FC<IndustryPageProps> = ({ onOp
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right flex-1">

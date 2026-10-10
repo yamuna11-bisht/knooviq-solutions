@@ -525,9 +525,9 @@ export const HighTechElectronicsIndustryPage: React.FC<IndustryPageProps> = ({ o
       <section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-16">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80" 
+            src="/images/electronics_manufacturing_hero.jpg" 
             alt="High-Tech & Electronics Contract Manufacturing" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center lg:object-right"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/60" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
