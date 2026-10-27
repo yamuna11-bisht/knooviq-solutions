@@ -69,16 +69,16 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     iconColor: 'bg-gradient-to-br from-sky-500/20 to-blue-600/15 border-sky-500/30 text-[#00A3E0] dark:text-cyan-300',
     icon: <Workflow className="w-3.5 h-3.5" />,
     items: [
-      { name: 'SAP S/4HANA Transformation', path: '/solutions/sap-s4hana' },
-      { name: 'ERP Transformation', path: '/solutions/sap-s4hana?tab=erp' },
-      { name: 'Digital Transformation', path: '/services' },
-      { name: 'Enterprise Transformation', path: '/solutions/sap-s4hana' },
-      { name: 'Business Process Transformation', path: '/solutions/sap-s4hana' },
-      { name: 'Intelligent Enterprise', path: '/solutions/sap-business-ai' },
-      { name: 'SAP Business Suite Transformation', path: '/solutions/sap-s4hana' },
-      { name: 'RISE with SAP Transformation', path: '/solutions/rise-with-sap' },
-      { name: 'SAP Cloud Transformation', path: '/solutions/grow-with-sap' },
-      { name: 'Transformation Roadmap', path: '/solutions/sap-s4hana' }
+      { name: 'SAP S/4HANA Transformation', path: '/transformation/sap-s4hana' },
+      { name: 'ERP Transformation', path: '/transformation/erp-transformation' },
+      { name: 'Digital Transformation', path: '/transformation/digital-transformation' },
+      { name: 'Enterprise Transformation', path: '/transformation/sap-s4hana' },
+      { name: 'Business Process Transformation', path: '/transformation/sap-s4hana' },
+      { name: 'Intelligent Enterprise', path: '/technology/sap-business-ai' },
+      { name: 'SAP Business Suite Transformation', path: '/transformation/sap-s4hana' },
+      { name: 'RISE with SAP Transformation', path: '/transformation/rise-with-sap' },
+      { name: 'SAP Cloud Transformation', path: '/transformation/cloud-transformation' },
+      { name: 'Transformation Roadmap', path: '/transformation/sap-s4hana' }
     ]
   },
   {
@@ -90,13 +90,13 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     iconColor: 'bg-gradient-to-br from-indigo-500/20 to-purple-600/15 border-indigo-500/30 text-indigo-600 dark:text-indigo-400',
     icon: <Layers className="w-3.5 h-3.5" />,
     items: [
-      { name: 'SAP S/4HANA', path: '/solutions/sap-s4hana' },
-      { name: 'Finance: SAP FI, CO, Treasury', path: '/solutions/sap-datasphere' },
-      { name: 'Supply Chain: MM, SD, PP, EWM, TM', path: '/solutions/sap-supply-chain' },
-      { name: 'Human Capital: SuccessFactors', path: '/solutions/sap-successfactors' },
-      { name: 'Customer Experience: SAP CX, CRM', path: '/solutions/sap-cx' },
+      { name: 'SAP S/4HANA', path: '/transformation/business-applications?app=s4hana' },
+      { name: 'Finance: SAP FI, CO, Treasury', path: '/transformation/business-applications?app=finance' },
+      { name: 'Supply Chain: MM, SD, PP, EWM, TM', path: '/transformation/business-applications?app=supply-chain' },
+      { name: 'Human Capital: SuccessFactors', path: '/transformation/business-applications?app=human-capital' },
+      { name: 'Customer Experience: SAP CX, CRM', path: '/transformation/business-applications?app=cx' },
       { name: 'Asset Management', path: '/solutions/asset-management' },
-      { name: 'Quality Management', path: '/solutions/sap-s4hana' }
+      { name: 'Quality Management', path: '/transformation/sap-s4hana' }
     ]
   },
   {
@@ -171,12 +171,11 @@ const TRANSFORMATION_CATEGORIES_DATA: TransformationCategory[] = [
     iconColor: 'bg-gradient-to-br from-amber-500/20 to-orange-600/15 border-amber-500/30 text-amber-600 dark:text-amber-400',
     icon: <RefreshCw className="w-3.5 h-3.5" />,
     items: [
-      { name: 'ECC → S/4HANA', path: '/solutions/sap-migration' },
-      { name: 'System Conversion', path: '/solutions/system-conversion' },
-      { name: 'Greenfield', path: '/solutions/greenfield' },
-      { name: 'Brownfield', path: '/solutions/brownfield' },
-      { name: 'Data Migration', path: '/solutions/data-migration' },
-      { name: 'Custom Code Migration', path: '/solutions/custom-code-migration' }
+      { name: 'System Conversion', path: '/transformation/system-conversion' },
+      { name: 'Greenfield', path: '/transformation/greenfield' },
+      { name: 'Brownfield', path: '/transformation/brownfield' },
+      { name: 'Data Migration', path: '/transformation/data-migration' },
+      { name: 'Custom Code Migration', path: '/transformation/custom-code-migration' }
     ]
   },
   {
@@ -280,24 +279,24 @@ const TRANSFORMATION_MEGA_MENU: TransformationMegaCategory[] = [
   {
     id: 'business-transformation',
     title: 'Business Transformation',
-    path: '/solutions/sap-s4hana',
+    path: '/transformation/sap-s4hana',
     items: [
-      { name: 'SAP S/4HANA Transformation', path: '/solutions/sap-s4hana' },
-      { name: 'ERP Transformation', path: '/solutions/sap-s4hana?tab=erp' },
-      { name: 'Digital Transformation', path: '/solutions/sap-s4hana?tab=digital' },
-      { name: 'RISE with SAP', path: '/solutions/sap-s4hana?tab=rise' }
+      { name: 'SAP S/4HANA Transformation', path: '/transformation/sap-s4hana' },
+      { name: 'ERP Transformation', path: '/transformation/erp-transformation' },
+      { name: 'Digital Transformation', path: '/transformation/digital-transformation' },
+      { name: 'RISE with SAP', path: '/transformation/rise-with-sap' }
     ]
   },
   {
     id: 'sap-business-applications',
     title: 'SAP Business Applications',
-    path: '/solutions/sap-business-applications',
+    path: '/transformation/business-applications',
     items: [
-      { name: 'SAP S/4HANA', path: '/solutions/sap-business-applications?app=s4hana' },
-      { name: 'Finance', path: '/solutions/sap-business-applications?app=finance' },
-      { name: 'Supply Chain', path: '/solutions/sap-business-applications?app=supply-chain' },
-      { name: 'Human Capital', path: '/solutions/sap-business-applications?app=human-capital' },
-      { name: 'Customer Experience', path: '/solutions/sap-business-applications?app=cx' }
+      { name: 'SAP S/4HANA', path: '/transformation/business-applications?app=s4hana' },
+      { name: 'Finance', path: '/transformation/business-applications?app=finance' },
+      { name: 'Supply Chain', path: '/transformation/business-applications?app=supply-chain' },
+      { name: 'Human Capital', path: '/transformation/business-applications?app=human-capital' },
+      { name: 'Customer Experience', path: '/transformation/business-applications?app=cx' }
     ]
   },
   {
@@ -309,7 +308,7 @@ const TRANSFORMATION_MEGA_MENU: TransformationMegaCategory[] = [
       { name: 'SAP HANA', path: '/technology/sap-hana' },
       { name: 'SAP Fiori', path: '/technology/sap-fiori' },
       { name: 'SAP Integration Suite', path: '/technology/sap-integration-suite' },
-      { name: 'Cloud Transformation', path: '/technology/cloud-transformation' }
+      { name: 'Cloud Transformation', path: '/transformation/cloud-transformation' }
     ]
   },
   {
@@ -329,14 +328,16 @@ const TRANSFORMATION_MEGA_MENU: TransformationMegaCategory[] = [
   {
     id: 'migration-modernization',
     title: 'Migration & Modernization',
-    path: '/solutions/sap-migration',
+    badge: 'CLEAN CORE',
+    path: '/transformation/migration-modernization',
     items: [
-      { name: 'ECC → S/4HANA', path: '/solutions/sap-migration' },
-      { name: 'System Conversion', path: '/solutions/system-conversion' },
-      { name: 'Greenfield', path: '/solutions/greenfield' },
-      { name: 'Brownfield', path: '/solutions/brownfield' },
-      { name: 'Data Migration', path: '/solutions/data-migration' },
-      { name: 'Custom Code Migration', path: '/solutions/custom-code-migration' }
+      { name: 'Clean Core Architecture', path: '/transformation/migration-modernization' },
+      { name: 'Cloud Modernization', path: '/transformation/cloud-transformation' },
+      { name: 'System Conversion', path: '/transformation/system-conversion' },
+      { name: 'Greenfield', path: '/transformation/greenfield' },
+      { name: 'Brownfield', path: '/transformation/brownfield' },
+      { name: 'Data Migration', path: '/transformation/data-migration' },
+      { name: 'Custom Code Migration', path: '/transformation/custom-code-migration' }
     ]
   },
   {
@@ -511,11 +512,44 @@ const INDUSTRY_ROUTE_MAP: Record<string, string> = {
 
 const AI_PRACTICE_ROUTES: Record<string, string> = {
   'Generative AI': '/digital-intelligence/generative-ai',
+  'Data Strategy': '/digital-intelligence/data-strategy',
+  'Data Architecture': '/digital-intelligence/data-architecture',
+  'Data Engineering': '/digital-intelligence/data-engineering',
+  'Data Governance': '/digital-intelligence/data-governance',
+  'Data Quality': '/digital-intelligence/data-quality',
+  'Data Platforms': '/digital-intelligence/data-platforms',
+  'Business Intelligence': '/digital-intelligence/business-intelligence',
+  'Predictive Analytics': '/digital-intelligence/predictive-analytics',
+  'Real-time Analytics': '/digital-intelligence/real-time-analytics',
+  'Real-Time Analytics': '/digital-intelligence/real-time-analytics',
+  'Workflow Automation': '/digital-intelligence/workflow-automation',
+  'RPA': '/digital-intelligence/rpa',
+  'Intelligent Document Processing': '/digital-intelligence/intelligent-document-processing',
+  'IDP': '/digital-intelligence/intelligent-document-processing',
+  'Process Automation': '/digital-intelligence/process-automation',
+  'AI-powered Automation': '/digital-intelligence/ai-powered-automation',
+  'AI-Powered Automation': '/digital-intelligence/ai-powered-automation',
   'AI Agents': '/digital-intelligence/ai-agents',
   'AI Assistants': '/digital-intelligence/ai-assistants',
   'Machine Learning': '/digital-intelligence/machine-learning',
   'Predictive AI': '/digital-intelligence/predictive-ai',
   'Enterprise AI': '/digital-intelligence/enterprise-ai',
+  'Process Discovery': '/digital-intelligence/process-discovery',
+  'Process Mining': '/digital-intelligence/process-mining',
+  'Process Monitoring': '/digital-intelligence/process-monitoring',
+  'Process Optimization': '/digital-intelligence/process-optimization',
+  'Continuous Improvement': '/digital-intelligence/continuous-improvement',
+  'Customer Experience': '/digital-intelligence/customer-experience',
+  'Employee Experience': '/digital-intelligence/employee-experience',
+  'Digital Applications': '/digital-intelligence/digital-applications',
+  'Personalization': '/digital-intelligence/personalization',
+  'Experience Analytics': '/digital-intelligence/experience-analytics',
+  'Decision Support': '/digital-intelligence/decision-support',
+  'Forecasting & Planning': '/digital-intelligence/forecasting-planning',
+  'Forecasting and Planning': '/digital-intelligence/forecasting-planning',
+  'Scenario Analysis': '/digital-intelligence/scenario-analysis',
+  'Risk Intelligence': '/digital-intelligence/risk-intelligence',
+  'Business Performance Insights': '/digital-intelligence/business-performance-insights',
 };
 
 interface DigitalIntelligenceNavCategory {
@@ -807,23 +841,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                             Knooviq Accelerated Solutions
                           </h4>
                           <ul className="space-y-1.5 text-xs">
-                            <li><Link to="/exim" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">EXIM</Link></li>
-                            <li><Link to="/e-invoice" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">E-Invoice</Link></li>
-                            <li><Link to="/eway-bill" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">E-Way Bill</Link></li>
-                            <li><Link to="/products/gst" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">GST</Link></li>
+                            <li><Link to="/exim" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Global Trade & Compliance</Link></li>
+                            <li><Link to="/e-invoice" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">E-Invoicing Solutions</Link></li>
+                            <li><Link to="/eway-bill" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">E-Way Bill Management</Link></li>
+                            <li><Link to="/products/gst" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">GST & Tax Compliance</Link></li>
                           </ul>
                         </div>
 
                         {/* Column 2: Knooviq Enterprise Solutions */}
                         <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
                           <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            <Link 
-                              to="/products" 
-                              onClick={() => setActiveMenu(null)} 
-                              className="hover:underline block"
-                            >
-                              <span>Knooviq Enterprise Solutions</span>
-                            </Link>
+                            Knooviq Enterprise Solutions
                           </h4>
                           <ul className="space-y-1 text-xs">
                             <li><Link to="/products/vendor-management" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Vendor Management</Link></li>
@@ -869,13 +897,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                         {/* Column 5: Knooviq Automation Suite */}
                         <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
                           <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            <Link 
-                              to="/products/automation-suite" 
-                              onClick={() => setActiveMenu(null)} 
-                              className="hover:underline block"
-                            >
-                              <span>Knooviq Automation Suite</span>
-                            </Link>
+                            Knooviq Automation Suite
                           </h4>
                           <ul className="space-y-1.5 text-xs">
                             <li><Link to="/products/automation-studio" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Automation Studio</Link></li>
@@ -927,9 +949,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                     onMouseEnter={() => handleMouseEnter('transformation')}
                   >
                     <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
-                      
-                      {/* 6 Category Cards in exact Savic / Enterprise layout */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 pb-6 border-b border-slate-200 dark:border-white/10">
+                                        {/* 6 Category Cards in exact Savic / Enterprise layout */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
                         {TRANSFORMATION_MEGA_MENU.map((category) => {
                           const isDataAi = category.id === 'data-analytics-ai';
                           return (
@@ -943,39 +964,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                             >
                               <div>
                                 {isDataAi ? (
-                                  /* EXACT MATCH TO USER'S SCREENSHOT: DATA, ANALYTICS & AI with GEN AI pill badge */
-                                  <div className="flex items-start justify-between gap-1 mb-4 pb-1.5 border-b border-sky-100 dark:border-white/10">
-                                    <Link 
-                                      to={category.path} 
-                                      onClick={() => setActiveMenu(null)}
-                                      className="group block"
-                                    >
-                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight group-hover:text-[#00A3E0] transition-colors">
+                                  /* EXACT MATCH TO USER'S SCREENSHOT: DATA, ANALYTICS & AI with GEN AI pill badge (Non-clickable Header) */
+                                  <div className="flex items-start justify-between gap-1 mb-4 pb-1.5 border-b border-sky-100 dark:border-white/10 select-none cursor-default">
+                                    <div className="block">
+                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight">
                                         DATA,
                                       </span>
-                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight group-hover:text-[#00A3E0] transition-colors">
+                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight">
                                         ANALYTICS & AI
                                       </span>
-                                    </Link>
+                                    </div>
                                     <span className="inline-flex items-center text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-md bg-[#00A3E0] text-white shadow-sm shrink-0">
                                       GEN AI
                                     </span>
                                   </div>
                                 ) : (
-                                  <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] mb-3">
-                                    <Link 
-                                      to={category.path} 
-                                      onClick={() => setActiveMenu(null)} 
-                                      className="hover:underline flex items-center justify-between group"
-                                    >
-                                      <span className="leading-snug">{category.title}</span>
-                                      {category.badge && (
-                                        <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">
-                                          {category.badge}
-                                        </span>
-                                      )}
-                                    </Link>
-                                  </h4>
+                                  /* Non-clickable Category Header in bold black / navy */
+                                  <div className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-white mb-3 min-h-[36px] flex items-center justify-between select-none cursor-default">
+                                    <span className="leading-snug">{category.title}</span>
+                                    {category.badge && (
+                                      <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">
+                                        {category.badge}
+                                      </span>
+                                    )}
+                                  </div>
                                 )}
 
                                 <ul className="space-y-1.5 text-xs">
@@ -1001,26 +1013,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                         })}
                       </div>
 
-                      {/* Bottom Recommended Strip */}
-                      <div className="pt-4 flex items-center justify-between text-xs">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
-                            RECOMMENDED FOR YOU:
-                          </span>
-                          <span className="text-slate-900 dark:text-white font-bold">
-                            Clean Core Architecture & S/4HANA Cloud Modernization
-                          </span>
-                        </div>
+                      {/* Transformation Mega Menu Footer Crosslink */}
+                      <div className="mt-5 pt-3.5 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
+                        <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                          Complete End-to-End Enterprise Cloud & S/4HANA Transformation Platform
+                        </span>
                         <Link 
                           to="/transformation" 
                           onClick={() => setActiveMenu(null)} 
-                          className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1"
+                          className="text-xs font-bold text-[#00A3E0] hover:text-[#0082b3] dark:hover:text-cyan-300 flex items-center gap-1.5 transition-colors group"
                         >
                           <span>Explore All Transformation Practices</span>
-                          <ArrowRight className="h-3.5 w-3.5" />
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                         </Link>
                       </div>
-
                     </div>
                   </div>
                 )}
@@ -1356,16 +1362,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               {mobileSubmenu === 'products' && (
                 <div className="pt-2 pl-2 space-y-1.5 border-t border-slate-200 dark:border-white/5 mt-1 text-xs">
                   <p className="font-bold text-[#00A3E0] pt-1">Knooviq Accelerated Solutions</p>
-                  <Link to="/exim" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• EXIM (Export & Import Solutions)</Link>
-                  <Link to="/e-invoice" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• E-Invoice (Automated Compliance)</Link>
-                  <Link to="/eway-bill" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• E-Way Bill (Goods Movement & Compliance)</Link>
-                  <Link to="/products/gst" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• GST Compliance</Link>
+                  <Link to="/exim" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Global Trade & Compliance</Link>
+                  <Link to="/e-invoice" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• E-Invoicing Solutions</Link>
+                  <Link to="/eway-bill" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• E-Way Bill Management</Link>
+                  <Link to="/products/gst" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• GST & Tax Compliance</Link>
                   
-                  <div className="pt-1.5 pb-0.5">
-                    <Link to="/products" onClick={() => setMobileMenuOpen(false)} className="font-bold text-[#00A3E0] hover:underline">
-                      Knooviq Enterprise Solutions
-                    </Link>
-                  </div>
+                  <p className="font-bold text-[#00A3E0] pt-1">Knooviq Enterprise Solutions</p>
                   <Link to="/products/vendor-management" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Vendor Management</Link>
                   <Link to="/products/field-service-management" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Field Service Management</Link>
                   <Link to="/products/real-estate-management" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Real Estate Management</Link>
@@ -1389,11 +1391,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   <Link to="/products/expense-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Expense Intelligence</Link>
                   <Link to="/products/form-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Form Intelligence</Link>
                   
-                  <div className="pt-1.5 pb-0.5">
-                    <Link to="/products/automation-suite" onClick={() => setMobileMenuOpen(false)} className="font-bold text-[#00A3E0] hover:underline">
-                      Knooviq Automation Suite
-                    </Link>
-                  </div>
+                  <p className="font-bold text-[#00A3E0] pt-1">Knooviq Automation Suite</p>
                   <Link to="/products/automation-studio" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Automation Studio</Link>
                   <Link to="/products/automation-evolve" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Automation Evolve</Link>
                   <Link to="/products/automation-manager" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Automation Manager</Link>

@@ -1,338 +1,216 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles, Activity, ShieldCheck, Zap, Cpu, RefreshCw, ChevronRight } from 'lucide-react';
 
-interface LifecycleCard {
+interface PipelineStage {
   step: string;
   name: string;
-  tag: string;
-  caption: string;
-  phase: string;
-  circleBg: string;
-  cardBg: string;
-  dividerColor: string;
-  borderClass: string;
-  tagColor: string;
-  pillClass: string;
-  arrowColor: string;
-  renderVisual: () => React.ReactNode;
+  color: string;
+  titleColorClass: string;
+  description: string;
+  metric: string;
+  renderIcon: () => React.ReactNode;
 }
 
 export const DataToIntelligenceSection: React.FC = () => {
-  const cards: LifecycleCard[] = [
+  const stages: PipelineStage[] = [
     {
       step: '01',
       name: 'Connect',
-      tag: 'Edge Telemetry',
-      caption: 'Global Edge & Sensory Nodes',
-      phase: 'PHASE 1/5',
-      circleBg: 'bg-[#0070C0]',
-      cardBg: 'bg-gradient-to-b from-sky-100/70 via-sky-50/40 to-white',
-      dividerColor: 'border-sky-200/80',
-      borderClass: 'border-2 border-sky-400 hover:border-[#0070C0]',
-      tagColor: 'text-[#0070C0]',
-      pillClass: 'bg-sky-100 text-[#0070C0] border-sky-300 font-semibold',
-      arrowColor: 'text-[#0070C0]',
-      renderVisual: () => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Subtle Ambient Radial Glow */}
-          <div className="absolute w-20 h-20 bg-sky-200/60 rounded-full blur-lg pointer-events-none" />
+      color: '#FACC15',
+      titleColorClass: 'text-[#FACC15]',
+      description: 'Global Edge Telemetry &\nDistributed Sensory\nNetwork Nodes',
+      metric: 'Edge IoT & Telemetry',
+      renderIcon: () => (
+        <g>
+          {/* Central Hub Node */}
+          <circle cx="70" cy="60" r="6.5" stroke="#FACC15" strokeWidth="2.8" fill="none" />
 
-          <svg className="w-24 sm:w-28 h-16 sm:h-18 relative z-10" viewBox="0 0 100 80" fill="none">
-            {/* Connecting Dashed Lines */}
-            <path d="M50 42 L25 22" stroke="#BAE6FD" strokeWidth="1.5" strokeDasharray="3 3" />
-            <path d="M50 42 L75 22" stroke="#BAE6FD" strokeWidth="1.5" strokeDasharray="3 3" />
-            <path d="M50 42 L22 62" stroke="#BAE6FD" strokeWidth="1.5" strokeDasharray="3 3" />
-            <path d="M50 42 L78 62" stroke="#BAE6FD" strokeWidth="1.5" strokeDasharray="3 3" />
+          {/* 5 Spoke Connections & Peripheral Nodes */}
+          {/* Top-Left */}
+          <line x1="65" y1="55" x2="49" y2="46" stroke="#FACC15" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="45" cy="43" r="4.2" stroke="#FACC15" strokeWidth="2.6" fill="none" />
 
-            {/* Pedestal Base */}
-            <ellipse cx="50" cy="58" rx="20" ry="6" fill="#E0F2FE" />
-            <ellipse cx="50" cy="56" rx="16" ry="4" fill="#BAE6FD" />
+          {/* Top-Right */}
+          <line x1="75" y1="55" x2="88" y2="44" stroke="#FACC15" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="92" cy="41" r="4.2" stroke="#FACC15" strokeWidth="2.6" fill="none" />
 
-            {/* Center 3D Globe */}
-            <circle cx="50" cy="40" r="16" fill="url(#globeGrad)" />
-            <ellipse cx="50" cy="40" rx="7" ry="16" stroke="white" strokeWidth="1" strokeOpacity="0.6" fill="none" />
-            <line x1="34" y1="40" x2="66" y2="40" stroke="white" strokeWidth="1" strokeOpacity="0.6" />
-            <path d="M37 32 Q50 36 63 32" stroke="white" strokeWidth="1" strokeOpacity="0.5" fill="none" />
-            <path d="M37 48 Q50 44 63 48" stroke="white" strokeWidth="1" strokeOpacity="0.5" fill="none" />
+          {/* Right */}
+          <line x1="76.5" y1="61" x2="89.5" y2="64" stroke="#FACC15" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="94" cy="65" r="4.2" stroke="#FACC15" strokeWidth="2.6" fill="none" />
 
-            {/* Floating Top-Left Node: Cloud */}
-            <g transform="translate(14, 12)">
-              <rect width="18" height="18" rx="5" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
-              <path d="M6 11 A2.5 2.5 0 0 1 8.5 9 A3.5 3.5 0 0 1 14.5 9 A2.5 2.5 0 0 1 15 11 Z" fill="#00A3E0" />
-            </g>
+          {/* Bottom-Left */}
+          <line x1="65" y1="65" x2="51" y2="74" stroke="#FACC15" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="47" cy="78" r="4.2" stroke="#FACC15" strokeWidth="2.6" fill="none" />
 
-            {/* Floating Top-Right Node: Database */}
-            <g transform="translate(68, 12)">
-              <rect width="18" height="18" rx="5" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
-              <ellipse cx="9" cy="6" rx="5" ry="2" fill="#0070C0" />
-              <path d="M4 6 v3 c0 1.5 2.5 2 5 2 s5 -0.5 5 -2 v-3 Z" fill="#00A3E0" />
-              <path d="M4 10 v3 c0 1.5 2.5 2 5 2 s5 -0.5 5 -2 v-3 Z" fill="#0070C0" />
-            </g>
-
-            {/* Floating Bottom-Left Node: Smartphone */}
-            <g transform="translate(12, 52)">
-              <rect width="18" height="18" rx="5" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
-              <rect x="5.5" y="4" width="7" height="10" rx="1.5" fill="#0070C0" />
-              <circle cx="9" cy="12.5" r="0.8" fill="white" />
-            </g>
-
-            {/* Floating Bottom-Right Node: Wifi */}
-            <g transform="translate(68, 52)">
-              <rect width="18" height="18" rx="5" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
-              <path d="M5 8 A6 6 0 0 1 13 8" stroke="#00A3E0" strokeWidth="1.5" strokeLinecap="round" />
-              <path d="M6.5 10.5 A3.5 3.5 0 0 1 11.5 10.5" stroke="#0070C0" strokeWidth="1.5" strokeLinecap="round" />
-              <circle cx="9" cy="13" r="1" fill="#0070C0" />
-            </g>
-
-            <defs>
-              <linearGradient id="globeGrad" x1="34" y1="24" x2="66" y2="56" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#38BDF8" />
-                <stop offset="0.6" stopColor="#0284C7" />
-                <stop offset="1" stopColor="#0369A1" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+          {/* Bottom-Right */}
+          <line x1="73" y1="66" x2="78" y2="76" stroke="#FACC15" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="80" cy="80" r="4.2" stroke="#FACC15" strokeWidth="2.6" fill="none" />
+        </g>
       )
     },
     {
       step: '02',
       name: 'Collect',
-      tag: 'Data Fabric',
-      caption: 'Unified Real-Time Data Fabrics',
-      phase: 'PHASE 2/5',
-      circleBg: 'bg-[#0070C0]',
-      cardBg: 'bg-gradient-to-b from-blue-100/70 via-blue-50/40 to-white',
-      dividerColor: 'border-blue-200/80',
-      borderClass: 'border-2 border-sky-400 hover:border-[#0070C0]',
-      tagColor: 'text-[#0070C0]',
-      pillClass: 'bg-blue-100 text-[#0070C0] border-blue-300 font-semibold',
-      arrowColor: 'text-[#0070C0]',
-      renderVisual: () => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Subtle Ambient Radial Glow */}
-          <div className="absolute w-20 h-20 bg-blue-200/60 rounded-full blur-lg pointer-events-none" />
+      color: '#FB923C',
+      titleColorClass: 'text-[#FB923C]',
+      description: 'Unified Data Fabrics &\nReal-Time Streaming\nIntegration',
+      metric: 'Unified Data Fabric',
+      renderIcon: () => (
+        <g>
+          {/* 3D Polyhedral Lattice Mesh */}
+          <line x1="70" y1="36" x2="46" y2="55" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="70" y1="36" x2="94" y2="50" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="70" y1="36" x2="68" y2="55" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="46" y1="55" x2="68" y2="55" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="94" y1="50" x2="68" y2="55" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="46" y1="55" x2="48" y2="76" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="48" y1="76" x2="68" y2="82" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="68" y1="82" x2="89" y2="74" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="89" y1="74" x2="94" y2="50" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="68" y1="55" x2="48" y2="76" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="68" y1="55" x2="68" y2="82" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="68" y1="55" x2="89" y2="74" stroke="#FB923C" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="46" y1="55" x2="89" y2="74" stroke="#FB923C" strokeWidth="1.6" strokeLinecap="round" />
+          <line x1="94" y1="50" x2="48" y2="76" stroke="#FB923C" strokeWidth="1.6" strokeLinecap="round" />
 
-          <svg className="w-24 sm:w-28 h-16 sm:h-18 relative z-10" viewBox="0 0 100 80" fill="none">
-            <ellipse cx="50" cy="62" rx="18" ry="5" fill="#E0F2FE" />
-            <path d="M34 46 C34 49 41 52 50 52 C59 52 66 49 66 46 V53 C66 56 59 59 50 59 C41 59 34 56 34 53 Z" fill="url(#dbGrad3)" />
-            <ellipse cx="50" cy="46" rx="16" ry="5" fill="#0284C7" />
-            <path d="M34 37 C34 40 41 43 50 43 C59 43 66 40 66 37 V44 C66 47 59 50 50 50 C41 50 34 47 34 44 Z" fill="url(#dbGrad2)" />
-            <ellipse cx="50" cy="37" rx="16" ry="5" fill="#38BDF8" />
-            <path d="M34 28 C34 31 41 34 50 34 C59 34 66 31 66 28 V35 C66 38 59 41 50 41 C41 41 34 38 34 35 Z" fill="url(#dbGrad1)" />
-            <ellipse cx="50" cy="28" rx="16" ry="5" fill="#7DD3FC" />
-
-            <g transform="translate(18, 30)">
-              <rect width="18" height="18" rx="4" fill="#0284C7" />
-              <rect x="4" y="10" width="2.5" height="5" rx="0.5" fill="white" />
-              <rect x="8" y="7" width="2.5" height="8" rx="0.5" fill="white" />
-              <rect x="12" y="5" width="2.5" height="10" rx="0.5" fill="white" />
-            </g>
-
-            <g transform="translate(64, 42)">
-              <rect width="18" height="18" rx="4" fill="#0284C7" />
-              <rect x="5.5" y="8" width="7" height="6.5" rx="1" fill="white" />
-              <path d="M7 8 V6 A2 2 0 0 1 11 6 V8" stroke="white" strokeWidth="1.4" fill="none" />
-            </g>
-
-            <g transform="translate(68, 16)">
-              <rect width="15" height="18" rx="3" fill="#38BDF8" />
-              <line x1="3.5" y1="5" x2="11.5" y2="5" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-              <line x1="3.5" y1="8.5" x2="11.5" y2="8.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-              <line x1="3.5" y1="12" x2="8.5" y2="12" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-            </g>
-
-            <defs>
-              <linearGradient id="dbGrad1" x1="34" y1="28" x2="66" y2="41" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#38BDF8" />
-                <stop offset="1" stopColor="#0284C7" />
-              </linearGradient>
-              <linearGradient id="dbGrad2" x1="34" y1="37" x2="66" y2="50" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#0284C7" />
-                <stop offset="1" stopColor="#0369A1" />
-              </linearGradient>
-              <linearGradient id="dbGrad3" x1="34" y1="46" x2="66" y2="59" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#0369A1" />
-                <stop offset="1" stopColor="#075985" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+          {/* Vertex Node Points */}
+          {[
+            [70, 36],
+            [46, 55],
+            [94, 50],
+            [68, 55],
+            [48, 76],
+            [89, 74],
+            [68, 82]
+          ].map(([x, y], i) => (
+            <circle key={i} cx={x} cy={y} r="2.8" stroke="#FB923C" strokeWidth="2.2" fill="#111827" />
+          ))}
+        </g>
       )
     },
     {
       step: '03',
       name: 'Analyze',
-      tag: 'Cognitive AI',
-      caption: 'Predictive & Algorithmic AI',
-      phase: 'PHASE 3/5',
-      circleBg: 'bg-[#4F46E5]',
-      cardBg: 'bg-gradient-to-b from-indigo-100/70 via-indigo-50/40 to-white',
-      dividerColor: 'border-indigo-200/80',
-      borderClass: 'border-2 border-indigo-400 hover:border-[#4F46E5]',
-      tagColor: 'text-[#4F46E5]',
-      pillClass: 'bg-indigo-100 text-[#4F46E5] border-indigo-300 font-semibold',
-      arrowColor: 'text-[#4F46E5]',
-      renderVisual: () => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Subtle Ambient Radial Glow */}
-          <div className="absolute w-20 h-20 bg-indigo-200/60 rounded-full blur-lg pointer-events-none" />
+      color: '#F87171',
+      titleColorClass: 'text-[#F87171]',
+      description: 'Cognitive Analytics &\nPredictive Algorithmic\nIntelligence',
+      metric: 'Cognitive & Predictive AI',
+      renderIcon: () => (
+        <g>
+          {/* Neural Brain Hemispheres */}
+          <path
+            d="M 68 40 C 58 39, 46 46, 47 57 C 42 62, 43 71, 51 76 C 56 81, 64 80, 68 78"
+            stroke="#F87171"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          <path
+            d="M 72 40 C 82 39, 94 46, 93 57 C 98 62, 97 71, 89 76 C 84 81, 76 80, 72 78"
+            stroke="#F87171"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
 
-          <svg className="w-24 sm:w-28 h-16 sm:h-18 relative z-10" viewBox="0 0 100 80" fill="none">
-            <path d="M50 20 V10" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="50" cy="8" r="2.5" fill="#6366F1" />
-            <path d="M32 26 L22 18" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="20" cy="16" r="2.5" fill="#6366F1" />
-            <path d="M68 26 L78 18" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="80" cy="16" r="2.5" fill="#6366F1" />
-            <path d="M25 40 H14" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="12" cy="40" r="2.5" fill="#6366F1" />
-            <path d="M75 40 H86" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="88" cy="40" r="2.5" fill="#6366F1" />
-            <path d="M32 54 L22 62" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="20" cy="64" r="2.5" fill="#6366F1" />
-            <path d="M68 54 L78 62" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="80" cy="64" r="2.5" fill="#6366F1" />
-            <path d="M50 60 V70" stroke="#818CF8" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="50" cy="72" r="2.5" fill="#6366F1" />
+          {/* Center Dividing Line */}
+          <line x1="70" y1="41" x2="70" y2="77" stroke="#F87171" strokeWidth="2" strokeLinecap="round" strokeDasharray="3.5 2.5" />
 
-            <ellipse cx="50" cy="62" rx="18" ry="5" fill="#EEF2FF" />
-            <rect x="30" y="22" width="40" height="36" rx="14" fill="url(#brainGrad)" />
+          {/* Left Neural Sulci & Circuit Endpoints */}
+          <path d="M 52 50 C 57 52, 61 48, 65 49" stroke="#F87171" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="52" cy="50" r="2" fill="#F87171" />
+          <path d="M 49 61 C 56 59, 58 65, 65 64" stroke="#F87171" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="49" cy="61" r="2" fill="#F87171" />
+          <path d="M 53 72 C 58 70, 61 73, 65 72" stroke="#F87171" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="53" cy="72" r="2" fill="#F87171" />
 
-            <path d="M43 27 C40 27 36 29 36 33 C36 36 39 37 41 38 C37 39 36 43 37 46 C38 49 42 50 45 49 C45 47 44 44 47 43" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-            <line x1="50" y1="26" x2="50" y2="54" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.8" />
-            <path d="M57 27 C60 27 64 29 64 33 C64 36 61 37 59 38 C63 39 64 43 63 46 C62 49 58 50 55 49 C55 47 56 44 53 43" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-
-            <defs>
-              <linearGradient id="brainGrad" x1="30" y1="22" x2="70" y2="58" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#818CF8" />
-                <stop offset="0.5" stopColor="#6366F1" />
-                <stop offset="1" stopColor="#4F46E5" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+          {/* Right Neural Sulci & Circuit Endpoints */}
+          <path d="M 88 50 C 83 52, 79 48, 75 49" stroke="#F87171" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="88" cy="50" r="2" fill="#F87171" />
+          <path d="M 91 61 C 84 59, 82 65, 75 64" stroke="#F87171" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="91" cy="61" r="2" fill="#F87171" />
+          <path d="M 87 72 C 82 70, 79 73, 75 72" stroke="#F87171" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="87" cy="72" r="2" fill="#F87171" />
+        </g>
       )
     },
     {
       step: '04',
       name: 'Automate',
-      tag: 'Autonomous Action',
-      caption: 'Zero-Touch Workflow Execution',
-      phase: 'PHASE 4/5',
-      circleBg: 'bg-[#8B5CF6]',
-      cardBg: 'bg-gradient-to-b from-purple-100/70 via-purple-50/40 to-white',
-      dividerColor: 'border-purple-200/80',
-      borderClass: 'border-2 border-purple-400 hover:border-[#8B5CF6]',
-      tagColor: 'text-[#8B5CF6]',
-      pillClass: 'bg-purple-100 text-[#8B5CF6] border-purple-300 font-semibold',
-      arrowColor: 'text-[#8B5CF6]',
-      renderVisual: () => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Subtle Ambient Radial Glow */}
-          <div className="absolute w-20 h-20 bg-purple-200/60 rounded-full blur-lg pointer-events-none" />
+      color: '#E879F9',
+      titleColorClass: 'text-[#E879F9]',
+      description: 'Autonomous Orchestration\n& Zero-Touch Workflow\nExecution',
+      metric: 'Agentic RPA Execution',
+      renderIcon: () => (
+        <g>
+          {/* Base Platform */}
+          <line x1="44" y1="82" x2="96" y2="82" stroke="#E879F9" strokeWidth="2.8" strokeLinecap="round" />
+          <path d="M 54 82 L 57 75 L 67 75 L 70 82 Z" stroke="#E879F9" strokeWidth="2.5" strokeLinejoin="round" fill="none" />
 
-          <svg className="w-24 sm:w-28 h-16 sm:h-18 relative z-10" viewBox="0 0 100 80" fill="none">
-            <ellipse cx="50" cy="62" rx="20" ry="5" fill="#FAF5FF" />
-            <path d="M50 14 A24 24 0 0 1 74 38" stroke="#C084FC" strokeWidth="3" strokeLinecap="round" />
-            <polygon points="74,38 78,30 70,32" fill="#8B5CF6" />
-            <path d="M50 62 A24 24 0 0 1 26 38" stroke="#A855F7" strokeWidth="3" strokeLinecap="round" />
-            <polygon points="26,38 22,46 30,44" fill="#7C3AED" />
+          {/* Robotic Arm Segments */}
+          <line x1="62" y1="75" x2="77" y2="57" stroke="#E879F9" strokeWidth="2.8" strokeLinecap="round" />
+          <circle cx="77" cy="57" r="4" stroke="#E879F9" strokeWidth="2.5" fill="#111827" />
+          <line x1="77" y1="57" x2="86" y2="62" stroke="#E879F9" strokeWidth="2.8" strokeLinecap="round" />
 
-            <g transform="translate(50, 38)">
-              <circle cx="0" cy="0" r="14" fill="url(#gearGrad)" />
-              <rect x="-3" y="-18" width="6" height="5" rx="1.5" fill="#8B5CF6" />
-              <rect x="-3" y="13" width="6" height="5" rx="1.5" fill="#6D28D9" />
-              <rect x="-18" y="-3" width="5" height="6" rx="1.5" fill="#7C3AED" />
-              <rect x="13" y="-3" width="5" height="6" rx="1.5" fill="#8B5CF6" />
-              <g transform="rotate(45)">
-                <rect x="-3" y="-18" width="6" height="5" rx="1.5" fill="#8B5CF6" />
-                <rect x="-3" y="13" width="6" height="5" rx="1.5" fill="#6D28D9" />
-                <rect x="-18" y="-3" width="5" height="6" rx="1.5" fill="#7C3AED" />
-                <rect x="13" y="-3" width="5" height="6" rx="1.5" fill="#8B5CF6" />
-              </g>
-              <circle cx="0" cy="0" r="5" fill="white" />
-            </g>
+          {/* Gripper / End Effector */}
+          <path d="M 86 60 C 90 56, 95 56, 97 58" stroke="#E879F9" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          <path d="M 86 64 C 90 68, 95 68, 97 66" stroke="#E879F9" strokeWidth="2.5" strokeLinecap="round" fill="none" />
 
-            <defs>
-              <linearGradient id="gearGrad" x1="-14" y1="-14" x2="14" y2="14" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#A855F7" />
-                <stop offset="0.6" stopColor="#8B5CF6" />
-                <stop offset="1" stopColor="#6D28D9" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+          {/* Telemetry / Signal Wave Arcs */}
+          <path d="M 67 47 A 9 9 0 0 1 79 47" stroke="#E879F9" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <path d="M 62 41 A 16 16 0 0 1 84 41" stroke="#E879F9" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+        </g>
       )
     },
     {
       step: '05',
       name: 'Optimize',
-      tag: 'Continuous Tuning',
-      caption: 'Closed-Loop Operational Agility',
-      phase: 'PHASE 5/5',
-      circleBg: 'bg-[#10B981]',
-      cardBg: 'bg-gradient-to-b from-emerald-100/70 via-emerald-50/40 to-white',
-      dividerColor: 'border-emerald-200/80',
-      borderClass: 'border-2 border-emerald-400 hover:border-[#10B981]',
-      tagColor: 'text-emerald-600',
-      pillClass: 'bg-emerald-100 text-emerald-700 border-emerald-300 font-semibold',
-      arrowColor: 'text-[#10B981]',
-      renderVisual: () => (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Subtle Ambient Radial Glow */}
-          <div className="absolute w-20 h-20 bg-emerald-200/60 rounded-full blur-lg pointer-events-none" />
+      color: '#C084FC',
+      titleColorClass: 'text-[#C084FC]',
+      description: 'Continuous Tuning &\nClosed-Loop Performance\nOptimization',
+      metric: 'Closed-Loop Agility',
+      renderIcon: () => (
+        <g>
+          {/* Central Gear / Cog Body */}
+          <circle cx="70" cy="60" r="5" stroke="#C084FC" strokeWidth="2.5" fill="none" />
+          <path
+            d="M 66 48 L 74 48 L 75 52 L 80 53 L 83 49 L 88 54 L 85 58 L 88 61 L 91 63 L 91 69 L 88 70 L 87 74 L 89 77 L 84 81 L 81 78 L 77 81 L 74 84 L 66 84 L 65 80 L 60 79 L 57 83 L 52 78 L 55 75 L 52 71 L 49 70 L 49 64 L 52 63 L 54 59 L 51 56 L 56 52 L 60 55 L 64 52 Z"
+            stroke="#C084FC"
+            strokeWidth="2.2"
+            strokeLinejoin="round"
+            fill="none"
+          />
 
-          <svg className="w-24 sm:w-28 h-16 sm:h-18 relative z-10" viewBox="0 0 100 80" fill="none">
-            <polygon points="50,42 80,56 50,70 20,56" fill="#D1FAE5" />
-            <polygon points="50,45 76,57 50,68 24,57" fill="#A7F3D0" />
+          {/* Continuous Cycle Dual Loop Arrows */}
+          {/* Top-Right Arrow (Clockwise) */}
+          <path d="M 50 58 A 21 21 0 0 1 89 53" stroke="#C084FC" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          <path d="M 84 48 L 89 53 L 85 58" stroke="#C084FC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
 
-            <g transform="translate(34, 52)">
-              <polygon points="0,-8 5,-5 0,-2 -5,-5" fill="#6EE7B7" />
-              <polygon points="-5,-5 0,-2 0,4 -5,1" fill="#10B981" />
-              <polygon points="0,-2 5,-5 5,1 0,4" fill="#059669" />
-            </g>
-            <g transform="translate(44, 47)">
-              <polygon points="0,-14 5,-11 0,-8 -5,-11" fill="#6EE7B7" />
-              <polygon points="-5,-11 0,-8 0,6 -5,3" fill="#10B981" />
-              <polygon points="0,-8 5,-11 5,3 0,6" fill="#059669" />
-            </g>
-            <g transform="translate(54, 42)">
-              <polygon points="0,-20 5,-17 0,-14 -5,-17" fill="#6EE7B7" />
-              <polygon points="-5,-17 0,-14 0,8 -5,5" fill="#10B981" />
-              <polygon points="0,-14 5,-17 5,5 0,8" fill="#059669" />
-            </g>
-            <g transform="translate(64, 37)">
-              <polygon points="0,-26 5,-23 0,-20 -5,-23" fill="#6EE7B7" />
-              <polygon points="-5,-23 0,-20 0,10 -5,7" fill="#10B981" />
-              <polygon points="0,-20 5,-23 5,7 0,10" fill="#059669" />
-            </g>
-
-            <path d="M30 46 Q46 36 68 18" stroke="#059669" strokeWidth="3.5" strokeLinecap="round" fill="none" />
-            <polygon points="68,14 74,17 68,22" fill="#059669" />
-            <circle cx="68" cy="18" r="6" fill="#10B981" fillOpacity="0.2" />
-          </svg>
-        </div>
+          {/* Bottom-Left Arrow (Clockwise) */}
+          <path d="M 90 63 A 21 21 0 0 1 51 68" stroke="#C084FC" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          <path d="M 56 73 L 51 68 L 55 63" stroke="#C084FC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        </g>
       )
     }
   ];
 
   return (
-    <section 
-      id="data-to-intelligence" 
-      className="relative py-14 sm:py-16 bg-gradient-to-b from-slate-50 via-sky-50/25 to-slate-50 text-slate-900 overflow-hidden select-none border-b border-slate-200/80"
+    <section
+      id="data-to-intelligence"
+      className="relative py-24 sm:py-28 bg-[#0B0F19] text-white overflow-hidden select-none border-y border-slate-800/80"
     >
-      {/* Ambient background glow & subtle grid */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[360px] bg-gradient-to-r from-sky-200/40 via-indigo-200/30 to-emerald-200/30 blur-3xl rounded-full pointer-events-none -z-0 opacity-70" />
-      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
+      {/* Background High-Tech Atmospheric Depth & Cyber Mesh */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[500px] bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-60" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* ========================================================================= */}
         {/* SECTION HEADER                                                            */}
         {/* ========================================================================= */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -340,99 +218,163 @@ export const DataToIntelligenceSection: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             {/* Pill Badge */}
-            <div className="mb-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-300 bg-sky-50 px-3 py-0.5 text-[10.5px] font-bold uppercase tracking-wider text-[#0070C0] shadow-2xs">
-                <Sparkles className="h-3.5 w-3.5 text-[#00A3E0]" />
-                End-to-End Operational Lifecycle
+            <div className="mb-3.5">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-[#38BDF8] shadow-sm backdrop-blur-md">
+                <Sparkles className="h-3.5 w-3.5 text-[#38BDF8]" />
+                END-TO-END OPERATIONAL LIFECYCLE
               </span>
             </div>
 
-            {/* Heading */}
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-[40px] font-extrabold text-[#0A1931] tracking-tight leading-tight">
-              From <span className="bg-gradient-to-r from-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">Data to Intelligence</span>
+            {/* Main Heading */}
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-white tracking-tight leading-tight">
+              From <span className="bg-gradient-to-r from-[#38BDF8] via-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">Data to Intelligence</span>
             </h2>
 
             {/* Subtitle */}
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+            <p className="mt-3 text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto font-normal">
               Connecting global operational data to autonomous decision execution through a proven 5-stage transformation pipeline.
             </p>
           </motion.div>
         </div>
 
         {/* ========================================================================= */}
-        {/* 5 CONNECTED SEQUENCE CARDS (50/50 Partition: Compact Size)                */}
+        {/* 5-STAGE PIPELINE NODES WITH AMBIENT FLOW RAIL                             */}
         {/* ========================================================================= */}
-        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-2.5 lg:gap-1.5 xl:gap-2">
-          {cards.map((card, idx) => (
-            <React.Fragment key={card.step}>
-              
-              {/* The Card - Compact Split 50/50 */}
+        <div className="relative">
+          {/* Animated Connecting Pulse Rail (Desktop) */}
+          <div className="hidden lg:block absolute top-[152px] left-[8%] right-[8%] h-[2px] bg-gradient-to-r from-amber-400/30 via-red-400/30 to-purple-400/30 pointer-events-none z-0">
+            {/* Traveling Laser Pulse Data Packet */}
+            <motion.div
+              animate={{ x: ['0%', '900%'] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'linear' }}
+              className="w-20 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_12px_#38BDF8]"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 relative z-10 items-stretch">
+            {stages.map((stage, idx) => (
               <motion.div
-                initial={{ opacity: 0, y: 15 }}
+                key={stage.name}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: idx * 0.06 }}
-                whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                className={`flex-1 rounded-2xl ${card.cardBg} ${card.borderClass} overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col relative group h-[280px] sm:h-[290px]`}
+                transition={{ duration: 0.45, delay: idx * 0.08 }}
+                className="relative group rounded-2xl bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-950/90 border border-slate-800/80 hover:border-slate-700/90 backdrop-blur-xl p-5 sm:p-6 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_16px_36px_rgba(0,0,0,0.6)] cursor-default overflow-hidden"
               >
-                {/* TOP 50% PARTITION: Badge + Diagram */}
-                <div className="h-1/2 p-2.5 sm:p-3 pb-1 flex flex-col justify-between relative">
-                  {/* Top-Left Circular Number Badge */}
-                  <div className="flex items-center justify-between">
-                    <span className={`h-5.5 w-5.5 rounded-full ${card.circleBg} text-white font-mono text-[10px] font-extrabold flex items-center justify-center shadow-xs`}>
-                      {card.step}
-                    </span>
-                  </div>
+                {/* Top Radiant Highlight Line */}
+                <div
+                  className="absolute top-0 inset-x-4 h-[2px] opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: `linear-gradient(to right, transparent, ${stage.color}, transparent)` }}
+                />
 
-                  {/* Center Custom 3D Illustration - Centered in Top 50% */}
-                  <div className="flex-1 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    {card.renderVisual()}
-                  </div>
+                {/* Card Header with Phase Number & Status Dot */}
+                <div className="flex items-center justify-between w-full mb-3 px-1">
+                  <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-slate-400 group-hover:text-white transition-colors">
+                    PHASE {stage.step}
+                  </span>
+                  <span
+                    className="h-2 w-2 rounded-full"
+                    style={{ backgroundColor: stage.color, boxShadow: `0 0 10px ${stage.color}` }}
+                  />
                 </div>
 
-                {/* 50-50 HORIZONTAL PARTITION DIVIDER */}
-                <div className={`w-full border-t ${card.dividerColor}`} />
+                {/* Ambient Radial Core Behind SVG */}
+                <div
+                  className="absolute top-20 w-28 h-28 rounded-full blur-2xl opacity-15 group-hover:opacity-35 transition-opacity duration-300 pointer-events-none"
+                  style={{ backgroundColor: stage.color }}
+                />
 
-                {/* BOTTOM 50% PARTITION: Title + Subtitle + Caption + Phase Badge */}
-                <div className="h-1/2 p-2.5 sm:p-3 pt-2 flex flex-col justify-between bg-white/75 backdrop-blur-[2px]">
-                  <div>
-                    {/* Title */}
-                    <h3 className="font-display text-base sm:text-lg font-extrabold text-[#0A1931] mb-0.5 leading-tight">
-                      {card.name}
-                    </h3>
+                {/* Circular Icon with Outer White Arc & Downward Arrow */}
+                <div className="w-32 h-36 sm:w-36 sm:h-40 flex items-center justify-center relative mb-3 group-hover:scale-105 transition-transform duration-300">
+                  <svg className="w-full h-full" viewBox="0 0 140 160" fill="none">
+                    <defs>
+                      <filter id={`glow-${stage.step}`} x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="0" stdDeviation="2.2" floodColor={stage.color} floodOpacity="0.4" />
+                      </filter>
+                    </defs>
 
-                    {/* Subtitle Tag */}
-                    <div className={`text-[11px] font-bold ${card.tagColor} mb-1`}>
-                      {card.tag}
-                    </div>
+                    {/* Outer White Arc with Downward Arrow */}
+                    <path
+                      d="M 33.2 96.8 A 52 52 0 1 1 70 112 L 70 144 M 62.5 135.5 L 70 144 L 77.5 135.5"
+                      stroke="#FFFFFF"
+                      strokeWidth="2.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      className="opacity-90 group-hover:opacity-100 transition-opacity"
+                    />
 
-                    {/* Caption */}
-                    <p className="text-[10px] sm:text-[11px] text-slate-500 leading-snug font-medium line-clamp-2">
-                      {card.caption}
-                    </p>
-                  </div>
+                    {/* Inner Colored Circle with Glow Filter */}
+                    <circle
+                      cx="70"
+                      cy="60"
+                      r="42"
+                      stroke={stage.color}
+                      strokeWidth="2.8"
+                      fill="none"
+                      filter={`url(#glow-${stage.step})`}
+                    />
 
-                  {/* Bottom Phase Badge */}
-                  <div className="pt-1 mt-auto">
-                    <span className={`inline-block text-[8.5px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${card.pillClass}`}>
-                      {card.phase}
-                    </span>
-                  </div>
+                    {/* Icon Specific Graphic */}
+                    {stage.renderIcon()}
+                  </svg>
                 </div>
 
+                {/* Stage Title */}
+                <h3 className={`text-xl sm:text-2xl font-bold ${stage.titleColorClass} mb-2 tracking-tight`}>
+                  {stage.name}
+                </h3>
+
+                {/* Stage Description */}
+                <p className="text-slate-300 text-xs sm:text-[13px] leading-relaxed font-normal whitespace-pre-line max-w-[200px] flex-grow">
+                  {stage.description}
+                </p>
+
+                {/* Capability Metric Pill at Card Footer */}
+                <div className="mt-4 pt-3 border-t border-slate-800/80 w-full flex items-center justify-center gap-1.5 text-[11px] font-medium text-slate-400 group-hover:text-slate-200 transition-colors">
+                  <Activity className="h-3 w-3 flex-shrink-0" style={{ color: stage.color }} />
+                  <span className="truncate">{stage.metric}</span>
+                </div>
               </motion.div>
-
-              {/* Connecting Arrow between cards */}
-              {idx < cards.length - 1 && (
-                <div className="hidden lg:flex items-center justify-center flex-shrink-0 px-0.5 self-center">
-                  <ArrowRight className={`h-3.5 w-3.5 xl:h-4 xl:w-4 ${card.arrowColor}`} />
-                </div>
-              )}
-
-            </React.Fragment>
-          ))}
+            ))}
+          </div>
         </div>
 
+        {/* ========================================================================= */}
+        {/* LIVE ENTERPRISE PIPELINE TELEMETRY BAR                                    */}
+        {/* ========================================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-14 max-w-4xl mx-auto rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md px-6 py-3.5 flex flex-wrap items-center justify-between gap-4 text-xs shadow-lg"
+        >
+          <div className="flex items-center gap-3">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+            </span>
+            <span className="font-mono text-slate-300 uppercase tracking-wider font-semibold text-[11px]">
+              Continuous Closed-Loop Orchestration
+            </span>
+          </div>
+
+          <div className="flex items-center gap-6 text-[11px] text-slate-400 font-mono">
+            <div>
+              <span className="text-slate-500">Latency:</span>{' '}
+              <span className="text-sky-400 font-semibold">&lt; 120ms</span>
+            </div>
+            <div>
+              <span className="text-slate-500">Protocol:</span>{' '}
+              <span className="text-emerald-400 font-semibold">OPC-UA / SAP BTP</span>
+            </div>
+            <div>
+              <span className="text-slate-500">Execution:</span>{' '}
+              <span className="text-purple-400 font-semibold">100% Autonomous</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

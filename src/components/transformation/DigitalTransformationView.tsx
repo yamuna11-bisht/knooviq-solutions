@@ -177,10 +177,6 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
           ========================================================================= */}
       <section className="space-y-6">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 mb-2">
@@ -253,10 +249,6 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
           ========================================================================= */}
       <section className="space-y-8">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 border border-sky-500/20 mb-2">
@@ -430,16 +422,6 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
             ))}
           </div>
         </div>
-
-        <div className="pt-2 flex justify-center">
-          <button
-            onClick={() => onOpenContact('Digital Transformation - Architecture Blueprint')}
-            className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-[#040D1A] font-extrabold px-8 py-3.5 text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25 cursor-pointer"
-          >
-            <span>Request Custom Architecture Blueprint</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
       </section>
 
       {/* =========================================================================
@@ -447,10 +429,6 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
           ========================================================================= */}
       <section className="space-y-8">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 border border-purple-500/20 mb-2">
@@ -660,18 +638,9 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
             </div>
           </div>
 
-          <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-200 dark:border-white/10">
-            <div className="flex items-center gap-2 text-xs">
-              <span className="font-bold text-slate-500 dark:text-slate-400">Recommended Next Step:</span>
-              <span className="font-bold text-[#00A3E0]">{maturityStages[activeMaturityStage].recommendedAction}</span>
-            </div>
-            <button
-              onClick={() => onOpenContact(`Digital Maturity Assessment - ${maturityStages[activeMaturityStage].title}`)}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#00A3E0] hover:bg-[#008bc2] text-white font-bold px-6 py-2.5 text-xs transition-all shadow-md shadow-[#00A3E0]/20 cursor-pointer"
-            >
-              <span>Get Detailed Assessment</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+          <div className="pt-4 flex items-center gap-2 text-xs border-t border-slate-200 dark:border-white/10">
+            <span className="font-bold text-slate-500 dark:text-slate-400">Recommended Next Step:</span>
+            <span className="font-bold text-[#00A3E0]">{maturityStages[activeMaturityStage].recommendedAction}</span>
           </div>
         </div>
       </section>
@@ -727,10 +696,6 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
           ========================================================================= */}
       <section className="space-y-8">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 border border-sky-500/20 mb-2">
@@ -818,10 +783,6 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
           ========================================================================= */}
       <section className="space-y-8">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-amber-500 bg-amber-500/10 border border-amber-500/20 mb-2">
@@ -910,76 +871,6 @@ export const DigitalTransformationView: React.FC<DigitalTransformationViewProps>
               <span className="text-xs font-bold text-slate-500 dark:text-slate-400">100% Statutory Compliance</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          9. START YOUR DIGITAL TRANSFORMATION TODAY (Savic's 4 Action Boxes + Centered Button)
-          ========================================================================= */}
-      <section className="bg-gradient-to-br from-[#061224] via-[#091D3A] to-[#040D1A] rounded-3xl border border-cyan-500/20 p-8 sm:p-12 lg:p-14 shadow-2xl text-white space-y-8">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 mb-2">
-            <Target className="w-3.5 h-3.5 text-cyan-400" />
-            <span>START YOUR DIGITAL JOURNEY</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-            Start Your Digital Transformation Today
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-1">
-            Choose the right entry point for your enterprise modernization journey.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4">
-              <PhoneCall className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Talk to a Digital Expert</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Engage with an enterprise digital architect to assess your systems and align on high-impact cloud priorities.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Maturity Diagnostic</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Evaluate your process friction, interface bottlenecks, and readiness for SAP BTP and autonomous AI.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4">
-              <Target className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Co-Innovation Workshop</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              1-day executive working session to map user journeys, design integration flows, and formulate your business case.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-4">
-              <FileText className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Blueprint Portfolio</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Download our comprehensive Digital Transformation architecture blueprints, portal specifications, and case files.
-            </p>
-          </div>
-        </div>
-
-        <div className="pt-2 flex justify-center">
-          <button
-            onClick={() => onOpenContact('Digital Transformation - Start Journey')}
-            className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-[#040D1A] font-extrabold px-8 py-3.5 text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25 cursor-pointer"
-          >
-            <span>Start Your Transformation Today</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
         </div>
       </section>
 

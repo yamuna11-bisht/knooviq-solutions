@@ -157,15 +157,39 @@ export const ServicesPage: React.FC<{ onOpenContact: (topic?: string) => void }>
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {current.items.map((item, sIdx) => {
-                    const aiRouteMap: Record<string, string> = {
+                    const practiceRouteMap: Record<string, string> = {
                       'Generative AI': '/digital-intelligence/generative-ai',
+                      'Data Strategy': '/digital-intelligence/data-strategy',
+                      'Data Architecture': '/digital-intelligence/data-architecture',
+                      'Data Engineering': '/digital-intelligence/data-engineering',
+                      'Data Governance': '/digital-intelligence/data-governance',
+                      'Data Quality': '/digital-intelligence/data-quality',
+                      'Data Platforms': '/digital-intelligence/data-platforms',
+                      'Business Intelligence': '/digital-intelligence/business-intelligence',
+                      'Predictive Analytics': '/digital-intelligence/predictive-analytics',
+                      'Real-time Analytics': '/digital-intelligence/real-time-analytics',
+                      'Real-Time Analytics': '/digital-intelligence/real-time-analytics',
+                      'Workflow Automation': '/digital-intelligence/workflow-automation',
+                      'RPA': '/digital-intelligence/rpa',
+                      'Intelligent Document Processing': '/digital-intelligence/intelligent-document-processing',
+                      'IDP': '/digital-intelligence/intelligent-document-processing',
                       'AI Agents': '/digital-intelligence/ai-agents',
                       'AI Assistants': '/digital-intelligence/ai-assistants',
                       'Machine Learning': '/digital-intelligence/machine-learning',
                       'Predictive AI': '/digital-intelligence/predictive-ai',
-                      'Enterprise AI': '/digital-intelligence/enterprise-ai'
+                      'Enterprise AI': '/digital-intelligence/enterprise-ai',
+                      'Process Discovery': '/digital-intelligence/process-discovery',
+                      'Process Mining': '/digital-intelligence/process-mining',
+                      'Process Monitoring': '/digital-intelligence/process-monitoring',
+                      'Process Optimization': '/digital-intelligence/process-optimization',
+                      'Continuous Improvement': '/digital-intelligence/continuous-improvement',
+                      'Customer Experience': '/digital-intelligence/customer-experience',
+                      'Employee Experience': '/digital-intelligence/employee-experience',
+                      'Digital Applications': '/digital-intelligence/digital-applications',
+                      'Personalization': '/digital-intelligence/personalization',
+                      'Experience Analytics': '/digital-intelligence/experience-analytics'
                     };
-                    const route = current.id === 'artificial-intelligence' ? aiRouteMap[item] : undefined;
+                    const route = practiceRouteMap[item];
 
                     if (route) {
                       return (
