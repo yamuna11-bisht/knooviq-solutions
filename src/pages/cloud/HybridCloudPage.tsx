@@ -9,7 +9,6 @@ import {
   Activity,
   CheckCircle2,
   ArrowRight,
-  ChevronRight,
   Maximize2,
   X,
   Cpu,
@@ -208,18 +207,6 @@ export const HybridCloudPage: React.FC<HybridCloudPageProps> = ({ onOpenContact 
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-16 sm:py-20 lg:py-24 space-y-8">
-          {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="inline-flex items-center space-x-2 text-xs text-slate-400 bg-slate-900/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-800">
-            <Link to="/cloud-operations" className="hover:text-cyan-400 transition-colors">
-              Cloud &amp; Operations
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-            <Link to="/cloud-operations/infrastructure" className="hover:text-cyan-400 transition-colors">
-              Cloud Infrastructure &amp; Platforms
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-            <span className="text-cyan-400 font-medium">Hybrid Cloud</span>
-          </nav>
 
           <div className="max-w-2xl lg:max-w-3xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-400 text-xs font-mono font-semibold tracking-wide uppercase backdrop-blur-md">
