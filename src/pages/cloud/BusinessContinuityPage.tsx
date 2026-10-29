@@ -980,16 +980,6 @@ export const BusinessContinuityPage: React.FC<ChildPageProps> = ({ onOpenContact
                 <span className="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Primary Objective:</span>
                 Restore digital services, servers, data integrity, and network connectivity back to operational status.
               </div>
-
-              <div className="pt-2">
-                <Link
-                  to="/cloud-operations/disaster-recovery"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#00A3E0] hover:underline"
-                >
-                  <span>Explore Dedicated Disaster Recovery Page</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
             </div>
           </div>
 

@@ -971,7 +971,7 @@ export const DisasterRecoveryPage: React.FC<ChildPageProps> = ({ onOpenContact }
           {/* Clean Split Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {/* Box 1: Disaster Recovery */}
-            <div className="p-8 sm:p-10 rounded-2xl bg-white dark:bg-[#0B1528] border-2 border-[#00A3E0]/30 dark:border-[#00A3E0]/30 shadow-md space-y-5">
+            <div className="p-8 sm:p-10 rounded-2xl bg-white dark:bg-[#0B1528] border border-slate-200 dark:border-white/10 shadow-sm space-y-5">
               <div className="flex items-center justify-between">
                 <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[#00A3E0] text-xs font-bold uppercase tracking-wider">
                   TECHNICAL FOCUS
@@ -1027,16 +1027,6 @@ export const DisasterRecoveryPage: React.FC<ChildPageProps> = ({ onOpenContact }
                 <p>
                   <strong>Metric of Success:</strong> Preserving commercial transactions, brand reputation, regulatory compliance, and business viability.
                 </p>
-              </div>
-
-              <div className="pt-2">
-                <Link
-                  to="/cloud-operations/business-continuity"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#00A3E0] hover:underline"
-                >
-                  <span>Explore the Knooviq Business Continuity Page</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
               </div>
             </div>
           </div>
