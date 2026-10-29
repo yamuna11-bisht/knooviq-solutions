@@ -348,12 +348,12 @@ export const DataToIntelligenceSection: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-[40px] font-extrabold text-[#0A1931] tracking-tight leading-tight">
-              From <span className="bg-gradient-to-r from-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">Data to Intelligence</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#0A1931] tracking-tight leading-snug">
+              From <span className="text-[#0070C0] dark:text-[#38BDF8]">Data to Intelligence</span>
             </h2>
 
             {/* Subtitle */}
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+            <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
               Connecting global operational data to autonomous decision execution through a proven 5-stage transformation pipeline.
             </p>
           </motion.div>

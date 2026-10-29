@@ -137,6 +137,37 @@ import { TravelTourismIndustryPage } from './pages/industries/TravelTourismIndus
 import { EntertainmentIndustryPage } from './pages/industries/EntertainmentIndustryPage';
 import { EducationIndustryPage } from './pages/industries/EducationIndustryPage';
 
+// Cloud & Operations Suite (6 Practice Groups, Master 7-Section Architecture)
+import { CloudOperationsPage } from './pages/cloud/CloudOperationsPage';
+import { CloudStrategyPage } from './pages/cloud/CloudStrategyPage';
+import { CloudReadinessPage } from './pages/cloud/CloudReadinessPage';
+import { CloudAdoptionPage } from './pages/cloud/CloudAdoptionPage';
+import { CloudOperatingModelPage } from './pages/cloud/CloudOperatingModelPage';
+import { CloudInfrastructurePage } from './pages/cloud/CloudInfrastructurePage';
+import { PublicCloudPage } from './pages/cloud/PublicCloudPage';
+import { PrivateCloudPage } from './pages/cloud/PrivateCloudPage';
+import { HybridCloudPage } from './pages/cloud/HybridCloudPage';
+import { CloudArchitecturePage } from './pages/cloud/CloudArchitecturePage';
+import { AwsCloudPage } from './pages/cloud/AwsCloudPage';
+import { AzureCloudPage } from './pages/cloud/AzureCloudPage';
+import { GoogleCloudPage } from './pages/cloud/GoogleCloudPage';
+import { ApplicationOperationsPage } from './pages/cloud/ApplicationOperationsPage';
+import { MonitoringObservabilityPage } from './pages/cloud/MonitoringObservabilityPage';
+import { PerformanceManagementPage } from './pages/cloud/PerformanceManagementPage';
+import { AvailabilityReliabilityPage } from './pages/cloud/AvailabilityReliabilityPage';
+import { ManagedOperationsPage } from './pages/cloud/ManagedOperationsPage';
+import { InfrastructureOperationsPage } from './pages/cloud/InfrastructureOperationsPage';
+import { ServiceManagementPage } from './pages/cloud/ServiceManagementPage';
+import { IncidentManagementPage } from './pages/cloud/IncidentManagementPage';
+import { ProblemManagementPage } from './pages/cloud/ProblemManagementPage';
+import { ChangeManagementPage } from './pages/cloud/ChangeManagementPage';
+import { SecurityResiliencePage } from './pages/cloud/SecurityResiliencePage';
+import { CybersecurityPage } from './pages/cloud/CybersecurityPage';
+import { IdentityAccessManagementPage } from './pages/cloud/IdentityAccessManagementPage';
+import { DataProtectionPage } from './pages/cloud/DataProtectionPage';
+import { BusinessContinuityPage } from './pages/cloud/BusinessContinuityPage';
+import { DisasterRecoveryPage } from './pages/cloud/DisasterRecoveryPage';
+
 // Wrapper component to selectively show public layout elements (Navbar, Footer, Chatbot)
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -171,7 +202,7 @@ const AppContent: React.FC = () => {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage onOpenContact={handleOpenContactModal} />} />
-          
+
           {/* Main About Directory Hub */}
           <Route path="/about" element={<AboutPage onOpenContact={handleOpenContactModal} />} />
 
@@ -421,6 +452,137 @@ const AppContent: React.FC = () => {
           <Route path="/solutions/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/cloud-transformation" element={<CloudTransformationPage onOpenContact={handleOpenContactModal} />} />
 
+          {/* Cloud & Operations Suite (6 Capability Practices, 7-Section Architecture) */}
+          {/* Parent Page */}
+          <Route path="/cloud-operations" element={<CloudOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cloud-operations" element={<CloudOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/cloud-operations" element={<CloudOperationsPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Practice 1: Cloud Strategy & Economics */}
+          <Route path="/cloud-operations/strategy" element={<CloudStrategyPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cloud-strategy" element={<CloudStrategyPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-strategy" element={<CloudStrategyPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Cloud Strategy Sub-Practice: Cloud Readiness */}
+          <Route path="/cloud-operations/readiness" element={<CloudReadinessPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/strategy/readiness" element={<CloudReadinessPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-readiness" element={<CloudReadinessPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cloud-readiness" element={<CloudReadinessPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/cloud-readiness" element={<CloudReadinessPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Cloud Strategy Sub-Practice: Cloud Adoption */}
+          <Route path="/cloud-operations/strategy/adoption" element={<CloudAdoptionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/adoption" element={<CloudAdoptionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-adoption" element={<CloudAdoptionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cloud-adoption" element={<CloudAdoptionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/cloud-adoption" element={<CloudAdoptionPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Cloud Strategy Sub-Practice: Cloud Operating Model */}
+          <Route path="/cloud-operations/strategy/operating-model" element={<CloudOperatingModelPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/operating-model" element={<CloudOperatingModelPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operating-model" element={<CloudOperatingModelPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cloud-operating-model" element={<CloudOperatingModelPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/transformation/cloud-operating-model" element={<CloudOperatingModelPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Practice 2: Cloud Infrastructure & Platforms */}
+          <Route path="/cloud-operations/infrastructure" element={<CloudInfrastructurePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cloud-infrastructure" element={<CloudInfrastructurePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-infrastructure" element={<CloudInfrastructurePage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Dedicated Public Cloud Page */}
+          <Route path="/cloud-operations/infrastructure/public-cloud" element={<PublicCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/public-cloud" element={<PublicCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/public-cloud" element={<PublicCloudPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Dedicated Private Cloud Page */}
+          <Route path="/cloud-operations/infrastructure/private-cloud" element={<PrivateCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/private-cloud" element={<PrivateCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/private-cloud" element={<PrivateCloudPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Dedicated Hybrid Cloud Page */}
+          <Route path="/cloud-operations/infrastructure/hybrid-cloud" element={<HybridCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/hybrid-cloud" element={<HybridCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/hybrid-cloud" element={<HybridCloudPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Dedicated Cloud Architecture Page */}
+          <Route path="/cloud-operations/infrastructure/cloud-architecture" element={<CloudArchitecturePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/cloud-architecture" element={<CloudArchitecturePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-architecture" element={<CloudArchitecturePage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Practice 3: Cloud Provider Platforms (AWS, Azure, GCP) */}
+          <Route path="/cloud-operations/aws" element={<AwsCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/aws" element={<AwsCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/aws" element={<AwsCloudPage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/cloud-operations/azure" element={<AzureCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/azure" element={<AzureCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/azure" element={<AzureCloudPage onOpenContact={handleOpenContactModal} />} />
+
+          <Route path="/cloud-operations/gcp" element={<GoogleCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/gcp" element={<GoogleCloudPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/gcp" element={<GoogleCloudPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Practice 4: Application Operations & Observability */}
+          <Route path="/cloud-operations/application-operations" element={<ApplicationOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/application-operations" element={<ApplicationOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/application-operations" element={<ApplicationOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/monitoring-observability" element={<MonitoringObservabilityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/observability" element={<MonitoringObservabilityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/monitoring-observability" element={<MonitoringObservabilityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/monitoring-observability" element={<MonitoringObservabilityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/performance-management" element={<PerformanceManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/performance-management" element={<PerformanceManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/performance-management" element={<PerformanceManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/availability-reliability" element={<AvailabilityReliabilityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/availability-reliability" element={<AvailabilityReliabilityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/availability-reliability" element={<AvailabilityReliabilityPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Practice 5: IT Operations & Managed Operations */}
+          <Route path="/cloud-operations/infrastructure-operations" element={<InfrastructureOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/infrastructure-operations" element={<InfrastructureOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/infrastructure-operations" element={<InfrastructureOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/service-management" element={<ServiceManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/service-management" element={<ServiceManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/service-management" element={<ServiceManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/incident-management" element={<IncidentManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/incident-management" element={<IncidentManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/incident-management" element={<IncidentManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/problem-management" element={<ProblemManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/problem-management" element={<ProblemManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/problem-management" element={<ProblemManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/change-management" element={<ChangeManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/change-management" element={<ChangeManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/change-management" element={<ChangeManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/managed-operations" element={<ManagedOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/managed-operations" element={<ManagedOperationsPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/managed-operations" element={<ManagedOperationsPage onOpenContact={handleOpenContactModal} />} />
+
+          {/* Practice 6: Security & Resilience */}
+          <Route path="/cloud-operations/cybersecurity" element={<CybersecurityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/cybersecurity" element={<CybersecurityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cybersecurity" element={<CybersecurityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/iam" element={<IdentityAccessManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/identity-access-management" element={<IdentityAccessManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/iam" element={<IdentityAccessManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/identity-access-management" element={<IdentityAccessManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/iam" element={<IdentityAccessManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/identity-access-management" element={<IdentityAccessManagementPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/data-protection" element={<DataProtectionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/data-protection" element={<DataProtectionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/data-protection" element={<DataProtectionPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/business-continuity" element={<BusinessContinuityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/bcp" element={<BusinessContinuityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/business-continuity" element={<BusinessContinuityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/business-continuity" element={<BusinessContinuityPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/disaster-recovery" element={<DisasterRecoveryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/dr" element={<DisasterRecoveryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/disaster-recovery" element={<DisasterRecoveryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/disaster-recovery" element={<DisasterRecoveryPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/security" element={<SecurityResiliencePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions/security-resilience" element={<SecurityResiliencePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/cloud-operations/security-resilience" element={<SecurityResiliencePage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/security-resilience" element={<SecurityResiliencePage onOpenContact={handleOpenContactModal} />} />
+
           {/* Dedicated SAP Data, Analytics & AI Suite (SAP BTP Style) */}
           <Route path="/technology/data-analytics-ai" element={<DataAnalyticsAiPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/transformation/data-analytics-ai" element={<DataAnalyticsAiPage onOpenContact={handleOpenContactModal} />} />
@@ -556,7 +718,7 @@ const AppContent: React.FC = () => {
           <Route path="/industries/industrial-products" element={<IndustrialProductsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/chemicals-materials" element={<ChemicalsMaterialsIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/chemicals" element={<ChemicalsMaterialsIndustryPage onOpenContact={handleOpenContactModal} />} />
-          
+
           {/* Health & Life Sciences Dedicated Industry Pages */}
           <Route path="/industries/hospitals-healthcare" element={<HospitalsHealthcareIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/hospitals" element={<HospitalsHealthcareIndustryPage onOpenContact={handleOpenContactModal} />} />
@@ -642,7 +804,7 @@ const AppContent: React.FC = () => {
 
       {/* Global Accessible Contact Consultation Modal */}
       {!isAdminRoute && (
-        <ContactModal 
+        <ContactModal
           isOpen={contactModalOpen}
           onClose={() => setContactModalOpen(false)}
           defaultService={selectedServiceForModal}

@@ -1490,7 +1490,7 @@ interface HeroVisualItem {
 
 const HERO_VISUALS_CONFIG: Record<BusinessAppKey, HeroVisualItem> = {
   's4hana': {
-    image: '/images/sap_app_s4hana_3d.jpg',
+    image: '/images/autonomous_digital_core_hero.png',
     badgeTop: {
       title: 'Universal Journal ACDOCA',
       subtitle: 'Single Source of Financial & Operational Truth',
@@ -1878,7 +1878,7 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between overflow-x-auto no-scrollbar gap-4">
           <div className="hidden sm:flex items-center gap-2 shrink-0">
             <span className="w-2 h-2 rounded-full bg-[#00A3E0]" />
-            <span className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] font-mono">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] font-mono">
               SAP BUSINESS APPLICATIONS
             </span>
           </div>
@@ -1969,13 +1969,13 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
               </span>
             </div>
 
-            {/* Large Hero Title */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-black tracking-tight text-white leading-[1.14] drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
+            {/* Hero Title */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.18]">
               {currentData.heroHeadline}
             </h1>
 
             {/* Subtitle / Strategic Narrative */}
-            <p className="text-xs sm:text-sm lg:text-[14px] font-medium text-slate-100 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-2xl">
+            <p className="text-base sm:text-lg font-normal text-slate-100 leading-relaxed max-w-2xl mt-3">
               {currentData.heroSubheadline}
             </p>
 

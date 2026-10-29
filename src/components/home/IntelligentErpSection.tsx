@@ -178,10 +178,10 @@ export const IntelligentErpSection: React.FC<IntelligentErpSectionProps> = () =>
               <Cpu className="h-3.5 w-3.5 text-[#00A3E0]" />
               Flagship Enterprise Platform
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A1931] tracking-tight leading-tight">
-              Intelligent ERP for <span className="bg-gradient-to-r from-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">Facilities &amp; Smart Asset Operations</span>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#0A1931] tracking-tight leading-snug">
+              Intelligent ERP for <span className="text-[#0070C0] dark:text-[#38BDF8]">Facilities &amp; Smart Asset Operations</span>
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-3.5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
               Connecting physical spaces, industrial machinery, and field workforces directly to the core SAP digital backbone for autonomous operational excellence.
             </p>
           </motion.div>

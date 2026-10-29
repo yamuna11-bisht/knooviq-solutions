@@ -108,10 +108,10 @@ export const FeaturedSolutionsSection: React.FC<{ onOpenContact?: (service?: str
               <Sparkles className="h-3.5 w-3.5 text-[#00A3E0]" />
               Proven Enterprise Blueprints
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0A1931] tracking-tight leading-tight">
-              Featured <span className="bg-gradient-to-r from-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">Solutions &amp; Case Studies</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#0A1931] tracking-tight leading-snug">
+              Featured <span className="text-[#0070C0] dark:text-[#38BDF8]">Solutions &amp; Case Studies</span>
             </h2>
-            <p className="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
               Real-world architectures engineered by KNOOVIQ to solve mission-critical operational challenges for global organizations.
             </p>
           </motion.div>

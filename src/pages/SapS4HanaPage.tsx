@@ -803,13 +803,13 @@ export const SapS4HanaPage: React.FC<SapS4HanaPageProps> = ({
               <span>{currentData.categoryTag}</span>
             </div>
 
-            {/* Large Hero Title */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]">
+            {/* Hero Title */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.18]">
               {currentData.heroTitle}
             </h1>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-200 leading-relaxed max-w-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+            <p className="text-base sm:text-lg font-normal text-slate-200 leading-relaxed max-w-2xl">
               {currentData.heroSubtitle}
             </p>
 

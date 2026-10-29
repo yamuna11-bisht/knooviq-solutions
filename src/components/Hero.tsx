@@ -141,38 +141,38 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-slate-950/80 px-4 py-1.5 backdrop-blur-xl shadow-[0_0_25px_rgba(0,163,224,0.3)] mb-4 pointer-events-auto"
+            className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-slate-950/80 px-3.5 py-1.5 backdrop-blur-xl mb-4 pointer-events-auto"
           >
-            <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse">
+            <span className="flex h-2 w-2 rounded-full bg-cyan-400">
               <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-cyan-400 opacity-75" />
             </span>
-            <span className="text-[11px] sm:text-xs font-bold tracking-wider uppercase font-display bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-200 bg-clip-text text-transparent">
+            <span className="text-xs font-semibold tracking-wide uppercase text-cyan-200">
               Enterprise SAP S/4HANA &amp; AI Cloud Architect
             </span>
-            <span className="text-[9px] font-mono font-black text-emerald-400 bg-emerald-400/15 border border-emerald-400/30 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-400/15 border border-emerald-400/30 px-2 py-0.5 rounded-full">
               LIVE 3D
             </span>
           </motion.div>
 
-          {/* Majestic Hero Headline */}
+          {/* Majestic Hero Headline (Refined Enterprise Scale) */}
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white leading-[1.12] text-left"
+            className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.16] text-left"
           >
             Architecting the Intelligent{' '}
-            <span className="bg-gradient-to-r from-[#00F0FF] via-[#00A3E0] to-[#818CF8] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,163,224,0.45)]">
+            <span className="bg-gradient-to-r from-cyan-300 via-sky-200 to-[#00A3E0] bg-clip-text text-transparent">
               Enterprise Core
             </span>
           </motion.h1>
 
-          {/* Subtitle / Value Proposition */}
+          {/* Subtitle / Value Proposition (Comfortable 16-18px body text) */}
           <motion.p
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="mt-3 sm:mt-4 text-xs sm:text-base lg:text-lg text-slate-300 max-w-xl text-left leading-relaxed font-normal"
+            className="mt-4 text-base sm:text-lg text-slate-300 max-w-xl text-left leading-relaxed font-normal"
           >
             Clean Core migrations, AI-powered SAP BTP cloud integrations, and mission-critical 24/7 AMS engineered with near-zero cutover downtime.
           </motion.p>
@@ -182,11 +182,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-5 sm:mt-6 flex flex-wrap items-center justify-start gap-3 sm:gap-3.5 pointer-events-auto"
+            className="mt-6 flex flex-wrap items-center justify-start gap-3 sm:gap-3.5 pointer-events-auto"
           >
             <button
               onClick={() => onOpenContact('SAP S/4HANA Clean Core Transformation')}
-              className="btn-primary-gradient shimmer-sweep rounded-2xl px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-[0_0_30px_rgba(0,163,224,0.4)] hover:shadow-[0_0_45px_rgba(0,210,255,0.6)] transition-all flex items-center gap-2.5 active:scale-95 font-display"
+              className="btn-primary-gradient shimmer-sweep rounded-xl px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold tracking-wide text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all flex items-center gap-2 cursor-pointer active:scale-95"
             >
               <span>Consult Enterprise Architect</span>
               <ArrowRight className="h-4 w-4" />
@@ -194,9 +194,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) 
 
             <button
               onClick={onExploreServices}
-              className="rounded-2xl border border-cyan-400/40 bg-[#070E1E]/80 hover:bg-cyan-950/40 hover:border-cyan-400 px-5 sm:px-6 py-3 sm:py-3.5 text-xs sm:text-sm font-bold text-cyan-200 hover:text-white backdrop-blur-xl transition-all shadow-lg flex items-center gap-2 active:scale-95 font-display"
+              className="rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-cyan-400/60 px-5 sm:px-6 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white backdrop-blur-xl transition-all shadow-sm flex items-center gap-2 cursor-pointer active:scale-95"
             >
-              <span>Explore Services & Practices</span>
+              <span>Explore Services &amp; Practices</span>
               <ArrowRight className="h-3.5 w-3.5 text-cyan-400" />
             </button>
           </motion.div>

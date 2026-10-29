@@ -49,9 +49,9 @@ export const WhatKnooviqDoesSection: React.FC<WhatKnooviqDoesSectionProps> = ({ 
 
             {/* Bold Heading */}
             <div className="space-y-2">
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-[44px] xl:text-5xl font-extrabold text-[#0A1931] tracking-tight leading-[1.15]">
+              <h2 className="text-3xl sm:text-4xl lg:text-4xl font-semibold text-[#0A1931] tracking-tight leading-[1.2]">
                 Your Strategic Partner for <br />
-                <span className="bg-gradient-to-r from-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">
+                <span className="text-[#0070C0] dark:text-[#38BDF8]">
                   SAP &amp; Digital Transformation
                 </span>
               </h2>

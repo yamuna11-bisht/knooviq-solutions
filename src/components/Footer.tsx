@@ -12,10 +12,10 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative bg-slate-100 dark:bg-[#070E1C] border-t border-slate-200 dark:border-white/10 pt-16 pb-12 text-slate-600 dark:text-slate-400 text-xs transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Top Footer Grid: 5 Enterprise Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-200 dark:border-white/10">
-          
+
           {/* Col 1: Brand & Global Delivery (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
             <KnooviqLogo size="md" />
@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: Enterprise Solutions (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
               Solutions
             </h4>
             <ul className="space-y-2">
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Services & Managed Care (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
               Services
             </h4>
             <ul className="space-y-2">
@@ -149,10 +149,10 @@ export const Footer: React.FC = () => {
           {/* Col 4: Data, Analytics & AI (Exactly as in User's Screenshot) (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <div className="flex items-center gap-2">
-              <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
                 Data, Analytics & AI
               </h4>
-              <span className="text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-[#00A3E0] text-white">
+              <span className="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-[#00A3E0] text-white">
                 GEN AI
               </span>
             </div>
@@ -198,7 +198,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 5: Company & Industries (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
               Company
             </h4>
             <ul className="space-y-2">
@@ -254,7 +254,7 @@ export const Footer: React.FC = () => {
               Enterprise Defense-in-Depth: SAP Clean Core Governance, ISO-Certified Security, Automated Audit Logs, and Zero Core Code Contamination.
             </span>
           </div>
-          
+
           <button
             onClick={scrollToTop}
             className="flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white transition-colors"

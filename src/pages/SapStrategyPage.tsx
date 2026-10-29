@@ -172,14 +172,14 @@ export const SapStrategyPage: React.FC<SapStrategyPageProps> = ({ onOpenContact 
               <span>EXECUTIVE ADVISORY &bull; SAP STRATEGY</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-[1.18]">
               SAP <br />
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+              <span className="text-[#38BDF8]">
                 Strategy
               </span>
             </h1>
 
-            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
+            <p className="text-lg sm:text-xl font-medium text-slate-200 leading-snug">
               Shape a Smarter SAP Journey With a Clear Strategic Direction
             </p>
 

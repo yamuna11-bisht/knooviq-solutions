@@ -1,24 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { 
-  Menu, 
-  X, 
-  ChevronDown, 
-  Sun, 
-  Moon, 
-  Search, 
-  ArrowRight, 
-  Sparkles, 
-  ShieldCheck, 
-  Layers, 
-  Award, 
-  BookOpen, 
-  FileText, 
-  Video, 
-  Newspaper, 
-  Building2, 
-  Users, 
-  Store, 
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Sun,
+  Moon,
+  Search,
+  ArrowRight,
+  Sparkles,
+  ShieldCheck,
+  Layers,
+  Award,
+  BookOpen,
+  FileText,
+  Video,
+  Newspaper,
+  Building2,
+  Users,
+  Store,
   Briefcase,
   Globe2,
   TrendingUp,
@@ -357,6 +357,90 @@ const TRANSFORMATION_MEGA_MENU: TransformationMegaCategory[] = [
   }
 ];
 
+interface CloudOpsMegaCategory {
+  id: string;
+  title: string;
+  badge?: string;
+  path: string;
+  items: { name: string; path: string }[];
+}
+
+const CLOUD_OPS_MEGA_MENU: CloudOpsMegaCategory[] = [
+  {
+    id: 'cloud-strategy',
+    title: 'Cloud Strategy',
+    badge: 'ADVISORY',
+    path: '/cloud-operations/strategy',
+    items: [
+      { name: 'Cloud Readiness', path: '/cloud-operations/readiness' },
+      { name: 'Cloud Strategy', path: '/cloud-operations/strategy' },
+      { name: 'Cloud Adoption', path: '/cloud-operations/adoption' },
+      { name: 'Cloud Operating Model', path: '/cloud-operations/operating-model' }
+    ]
+  },
+  {
+    id: 'cloud-infrastructure-platforms',
+    title: 'Cloud Infrastructure & Platforms',
+    badge: 'PLATFORMS',
+    path: '/cloud-operations/infrastructure',
+    items: [
+      { name: 'Public Cloud', path: '/cloud-operations/infrastructure/public-cloud' },
+      { name: 'Private Cloud', path: '/cloud-operations/infrastructure/private-cloud' },
+      { name: 'Hybrid Cloud', path: '/cloud-operations/infrastructure/hybrid-cloud' },
+      { name: 'Cloud Architecture', path: '/cloud-operations/infrastructure/cloud-architecture' }
+    ]
+  },
+  {
+    id: 'cloud-provider-platforms',
+    title: 'Cloud Provider Platforms',
+    badge: 'HYPERSCALERS',
+    path: '/cloud-operations/aws',
+    items: [
+      { name: 'Amazon Web Services (AWS)', path: '/cloud-operations/aws' },
+      { name: 'Microsoft Azure', path: '/cloud-operations/azure' },
+      { name: 'Google Cloud (GCP)', path: '/cloud-operations/gcp' }
+    ]
+  },
+  {
+    id: 'application-operations',
+    title: 'Application Operations',
+    badge: 'SRE & APM',
+    path: '/cloud-operations/application-operations',
+    items: [
+      { name: 'Application Operations', path: '/cloud-operations/application-operations' },
+      { name: 'Monitoring & Observability', path: '/cloud-operations/monitoring-observability' },
+      { name: 'Performance Management', path: '/cloud-operations/performance-management' },
+      { name: 'Availability & Reliability', path: '/cloud-operations/availability-reliability' }
+    ]
+  },
+  {
+    id: 'it-operations-managed-operations',
+    title: 'IT Operations & Managed Operations',
+    badge: '24×7 NOC',
+    path: '/cloud-operations/managed-operations',
+    items: [
+      { name: 'Infrastructure Operations', path: '/cloud-operations/infrastructure-operations' },
+      { name: 'Service Management', path: '/cloud-operations/service-management' },
+      { name: 'Incident Management', path: '/cloud-operations/incident-management' },
+      { name: 'Problem Management', path: '/cloud-operations/problem-management' },
+      { name: 'Change Management', path: '/cloud-operations/change-management' }
+    ]
+  },
+  {
+    id: 'security-resilience',
+    title: 'Security & Resilience',
+    badge: 'ZERO TRUST',
+    path: '/cloud-operations/security',
+    items: [
+      { name: 'Cybersecurity', path: '/cloud-operations/cybersecurity' },
+      { name: 'Identity & Access Management', path: '/cloud-operations/iam' },
+      { name: 'Data Protection', path: '/cloud-operations/data-protection' },
+      { name: 'Business Continuity', path: '/cloud-operations/business-continuity' },
+      { name: 'Disaster Recovery', path: '/cloud-operations/disaster-recovery' }
+    ]
+  }
+];
+
 interface IndustryNavCategory {
   id: string;
   name: string;
@@ -616,13 +700,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  // Desktop active menu state: 'about' | 'products' | 'transformation' | 'solutions' | 'services' | 'industries' | 'insights'
-  const [activeMenu, setActiveMenu] = useState<'about' | 'products' | 'transformation' | 'solutions' | 'services' | 'industries' | 'insights' | null>(null);
-  
+
+  // Desktop active menu state: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights'
+  const [activeMenu, setActiveMenu] = useState<'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights' | null>(null);
+
   // Mobile accordion state
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
-  
+
   // Search modal state
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -646,7 +730,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     setSearchOpen(false);
   }, [location.pathname]);
 
-  const handleMouseEnter = (menu: 'about' | 'products' | 'transformation' | 'solutions' | 'services' | 'industries' | 'insights') => {
+  const handleMouseEnter = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights') => {
     if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
     setActiveMenu(menu);
   };
@@ -657,7 +741,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     }, 250);
   };
 
-  const handleMenuToggle = (menu: 'about' | 'products' | 'transformation' | 'solutions' | 'services' | 'industries' | 'insights') => {
+  const handleMenuToggle = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights') => {
     if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
     setActiveMenu(prev => prev === menu ? null : menu);
   };
@@ -673,23 +757,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     <>
       {/* Dimmed backdrop scrim to eliminate transparency bleed & highlight mega menus */}
       {activeMenu && (
-        <div 
+        <div
           className="fixed inset-0 top-[68px] bg-slate-950/70 dark:bg-black/85 z-40 backdrop-blur-sm transition-opacity duration-200"
           onClick={() => setActiveMenu(null)}
         />
       )}
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md dark:bg-[#030712] ${
-          isScrolled || activeMenu
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md dark:bg-[#030712] ${isScrolled || activeMenu
             ? 'border-b border-slate-200 dark:border-cyan-500/20 shadow-xl py-3'
             : 'border-b border-slate-200/70 dark:border-white/10 py-3.5'
-        }`}
+          }`}
         onMouseLeave={handleMouseLeave}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            
+
             {/* Brand Logo */}
             <Link
               to="/"
@@ -709,7 +792,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 7. Insights
             */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs xl:text-sm font-semibold">
-              
+
               {/* 1. HOME */}
               <Link
                 to="/"
@@ -720,18 +803,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </Link>
 
               {/* 2. ABOUT (Dropdown) */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter('about')}
               >
                 <button
                   onClick={() => handleMenuToggle('about')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'about' || location.pathname === '/about'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
+                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'about' || location.pathname === '/about'
+                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>About</span>
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'about' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
@@ -739,7 +821,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
                 {/* About Dropdown */}
                 {activeMenu === 'about' && (
-                  <div 
+                  <div
                     className="absolute top-full left-0 w-64 pt-2 transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50"
                     onMouseEnter={() => handleMouseEnter('about')}
                   >
@@ -778,18 +860,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </div>
 
               {/* 3. PRODUCTS (Accely Image 1) */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter('products')}
               >
                 <button
                   onClick={() => handleMenuToggle('products')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'products'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
+                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'products'
+                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>Products</span>
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'products' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
@@ -797,13 +878,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
                 {/* Products Mega Menu Dropdown */}
                 {activeMenu === 'products' && (
-                  <div 
+                  <div
                     className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
                     onMouseEnter={() => handleMouseEnter('products')}
                   >
                     <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
                       <div className="grid grid-cols-5 gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
-                        
+
                         {/* Column 1: Knooviq Accelerated Solutions */}
                         <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
                           <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
@@ -820,9 +901,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                         {/* Column 2: Knooviq Enterprise Solutions */}
                         <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
                           <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            <Link 
-                              to="/products" 
-                              onClick={() => setActiveMenu(null)} 
+                            <Link
+                              to="/products"
+                              onClick={() => setActiveMenu(null)}
                               className="hover:underline block"
                             >
                               <span>Knooviq Enterprise Solutions</span>
@@ -872,9 +953,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                         {/* Column 5: Knooviq Automation Suite */}
                         <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
                           <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            <Link 
-                              to="/products/automation-suite" 
-                              onClick={() => setActiveMenu(null)} 
+                            <Link
+                              to="/products/automation-suite"
+                              onClick={() => setActiveMenu(null)}
                               className="hover:underline block"
                             >
                               <span>Knooviq Automation Suite</span>
@@ -906,18 +987,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </div>
 
               {/* 4. TRANSFORMATION */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter('transformation')}
               >
                 <button
                   onClick={() => handleMenuToggle('transformation')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'transformation' || location.pathname.startsWith('/transformation')
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
+                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'transformation' || location.pathname.startsWith('/transformation')
+                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>Transformation</span>
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'transformation' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
@@ -925,24 +1005,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
                 {/* Transformation Mega Menu Dropdown */}
                 {activeMenu === 'transformation' && (
-                  <div 
+                  <div
                     className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
                     onMouseEnter={() => handleMouseEnter('transformation')}
                   >
                     <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
-                      
+
                       {/* 6 Category Cards in exact Savic / Enterprise layout */}
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
                         {TRANSFORMATION_MEGA_MENU.map((category) => {
                           const isDataAi = category.id === 'data-analytics-ai';
                           return (
-                            <div 
-                              key={category.id} 
-                              className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
-                                isDataAi 
+                            <div
+                              key={category.id}
+                              className={`p-4 rounded-2xl border transition-all flex flex-col justify-between overflow-hidden ${isDataAi
                                   ? 'bg-gradient-to-b from-sky-50/80 via-white to-sky-50/30 dark:from-[#09182E] dark:via-[#070E1C] dark:to-[#070E1C] border-sky-300 dark:border-[#00A3E0]/50 shadow-md ring-1 ring-sky-400/20'
                                   : 'bg-slate-50 dark:bg-[#0B1528] border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15'
-                              }`}
+                                }`}
                             >
                               <div>
                                 {isDataAi ? (
@@ -975,14 +1054,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                                 <ul className="space-y-1.5 text-xs">
                                   {category.items.map((item, idx) => (
                                     <li key={idx}>
-                                      <Link 
-                                        to={item.path} 
-                                        onClick={() => setActiveMenu(null)} 
-                                        className={`px-2.5 py-1.5 rounded-lg block transition-all font-medium leading-snug ${
-                                          isDataAi
+                                      <Link
+                                        to={item.path}
+                                        onClick={() => setActiveMenu(null)}
+                                        className={`px-2.5 py-1.5 rounded-lg block transition-all font-medium leading-snug ${isDataAi
                                             ? 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 hover:shadow-sm font-semibold'
                                             : 'text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10'
-                                        }`}
+                                          }`}
                                       >
                                         {item.name}
                                       </Link>
@@ -1000,19 +1078,122 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 )}
               </div>
 
+              {/* 4.5 CLOUD & OPERATIONS (Exact 6-Column Mega Menu Architecture) */}
+              <div
+                className="relative"
+                onMouseEnter={() => handleMouseEnter('cloud')}
+              >
+                <button
+                  onClick={() => handleMenuToggle('cloud')}
+                  type="button"
+                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
+                    activeMenu === 'cloud' || location.pathname.startsWith('/cloud-operations')
+                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
+                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
+                  }`}
+                >
+                  <span>Cloud & Operations</span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'cloud' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
+                </button>
+
+                {/* Cloud & Operations Mega Menu Dropdown */}
+                {activeMenu === 'cloud' && (
+                  <div
+                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
+                    onMouseEnter={() => handleMouseEnter('cloud')}
+                  >
+                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
+                      
+                      {/* 6 Capability Cards in Single Desktop Row */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
+                        {CLOUD_OPS_MEGA_MENU.map((category) => {
+                          const isCategoryActive = location.pathname === category.path || (category.path !== '/cloud-operations' && location.pathname.startsWith(category.path));
+                          return (
+                          <div
+                            key={category.id}
+                            className={`p-4 rounded-2xl border transition-all flex flex-col justify-between h-full overflow-hidden ${
+                              isCategoryActive
+                                ? 'bg-white dark:bg-[#0E1A34] border-[#00A3E0] shadow-md shadow-[#00A3E0]/15'
+                                : 'bg-slate-50 dark:bg-[#0B1528] border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15'
+                            }`}
+                          >
+                            <div>
+                              {/* Non-clickable Category Header: Badge cleanly placed inside box without overflowing */}
+                              <div className="mb-3 select-none cursor-default pb-2.5 border-b border-slate-200/60 dark:border-white/10">
+                                {category.badge && (
+                                  <div className="mb-1.5 flex items-center justify-start">
+                                    <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow-xs inline-block ${
+                                      isCategoryActive
+                                        ? 'bg-[#00A3E0] text-white'
+                                        : 'bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-300'
+                                    }`}>
+                                      {category.badge}
+                                    </span>
+                                  </div>
+                                )}
+                                <h4 className={`text-xs font-semibold uppercase tracking-wider leading-snug min-h-[36px] ${
+                                  isCategoryActive ? 'text-[#00A3E0] dark:text-cyan-400 font-bold' : 'text-[#0A1931] dark:text-white'
+                                }`}>
+                                  {category.title}
+                                </h4>
+                              </div>
+
+                              <ul className="space-y-1.5 text-xs">
+                                {category.items.map((item, idx) => {
+                                  const isItemActive = location.pathname === item.path || (item.path.includes('?') && location.pathname + location.search === item.path);
+                                  return (
+                                    <li key={idx}>
+                                      <Link
+                                        to={item.path}
+                                        onClick={() => setActiveMenu(null)}
+                                        className={`px-2.5 py-1.5 rounded-lg block transition-all font-medium leading-snug ${
+                                          isItemActive
+                                            ? 'bg-[#00A3E0] text-white font-bold shadow-xs'
+                                            : 'text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10'
+                                        }`}
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                      {/* Bottom Context Strip - Purely readable capability summary */}
+                      <div className="pt-4 mt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                            CLOUD & OPERATIONS CAPABILITY:
+                          </span>
+                          <span className="text-slate-900 dark:text-white font-bold">
+                            Enterprise Architecture, Hyperscaler Modernization & 24/7 Managed Operations
+                          </span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* 5. DIGITAL INTELLIGENCE (Replaces Services, structured identically to Industries) */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter('services')}
               >
                 <button
                   onClick={() => handleMenuToggle('services')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'services' || location.pathname === '/digital-intelligence' || location.pathname === '/services'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
+                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'services' || location.pathname === '/digital-intelligence' || location.pathname === '/services'
+                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>Digital Intelligence</span>
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'services' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
@@ -1020,30 +1201,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
                 {/* Digital Intelligence Mega Menu Dropdown */}
                 {activeMenu === 'services' && (
-                  <div 
+                  <div
                     className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
                     onMouseEnter={() => handleMouseEnter('services')}
                   >
                     <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl space-y-5">
-                      
+
                       {/* 6 Digital Intelligence Practices (3 Columns x 2 Rows) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {DIGITAL_INTELLIGENCE_NAV_CATEGORIES.map((cat) => (
-                          <div 
+                          <div
                             key={cat.id}
                             className="space-y-2 bg-slate-50 dark:bg-[#0B1528] p-3.5 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-sky-300 dark:hover:border-cyan-500/30 hover:shadow-md transition-all flex flex-col justify-start"
                           >
                             <div className="pb-1.5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
-                              <h4 className="font-black text-xs sm:text-sm tracking-wide uppercase text-[#0A1931] dark:text-[#00A3E0] select-none py-0.5">
+                              <h4 className="font-semibold text-xs sm:text-sm tracking-wide uppercase text-[#0A1931] dark:text-[#00A3E0] select-none py-0.5">
                                 {cat.name}
                               </h4>
                             </div>
                             <ul className="space-y-1">
                               {cat.items.map((subItem) => (
                                 <li key={subItem}>
-                                  <Link 
-                                    to={AI_PRACTICE_ROUTES[subItem] || `/digital-intelligence?category=${cat.id}&item=${encodeURIComponent(subItem)}`} 
-                                    onClick={() => setActiveMenu(null)} 
+                                  <Link
+                                    to={AI_PRACTICE_ROUTES[subItem] || `/digital-intelligence?category=${cat.id}&item=${encodeURIComponent(subItem)}`}
+                                    onClick={() => setActiveMenu(null)}
                                     className="industry-category-item px-2 py-1 rounded block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-medium"
                                   >
                                     <span>{subItem}</span>
@@ -1065,9 +1246,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                             Autonomous AI Agents, Unified Data Fabrics & Algorithmic Optimization
                           </span>
                         </div>
-                        <Link 
-                          to="/digital-intelligence" 
-                          onClick={() => setActiveMenu(null)} 
+                        <Link
+                          to="/digital-intelligence"
+                          onClick={() => setActiveMenu(null)}
                           className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1 shrink-0"
                         >
                           <span>Explore All Digital Intelligence Capabilities</span>
@@ -1081,18 +1262,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </div>
 
               {/* 6. INDUSTRIES (Accely Image 4 - 2 Rows x 5 Columns) */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter('industries')}
               >
                 <button
                   onClick={() => handleMenuToggle('industries')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'industries'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
+                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'industries'
+                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>Industries</span>
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'industries' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
@@ -1100,23 +1280,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
                 {/* Industries Mega Menu Dropdown */}
                 {activeMenu === 'industries' && (
-                  <div 
+                  <div
                     className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
                     onMouseEnter={() => handleMouseEnter('industries')}
                   >
                     <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl space-y-5">
-                      
+
                       {/* 8 Industry Vertical Practices (4 Columns x 2 Rows) */}
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {INDUSTRIES_NAV_CATEGORIES.map((cat) => (
-                          <div 
+                          <div
                             key={cat.id}
                             className="space-y-2 bg-slate-50 dark:bg-[#0B1528] p-3.5 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-sky-300 dark:hover:border-cyan-500/30 hover:shadow-md transition-all flex flex-col justify-start"
                           >
                             <div className="pb-1.5 border-b border-slate-200/60 dark:border-white/10">
                               {INDUSTRY_ROUTE_MAP[cat.name] ? (
-                                <Link 
-                                  to={INDUSTRY_ROUTE_MAP[cat.name]} 
+                                <Link
+                                  to={INDUSTRY_ROUTE_MAP[cat.name]}
                                   onClick={() => setActiveMenu(null)}
                                   className="industry-category-title text-[#0A1931] dark:text-[#00A3E0] hover:text-[#0070C0] dark:hover:text-cyan-300 transition-colors flex items-center justify-between group/cat"
                                 >
@@ -1129,24 +1309,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                                 </h4>
                               )}
                             </div>
-                                <ul className="space-y-1">
-                                  {cat.items.map((subItem) => {
-                                    const industryRoute = INDUSTRY_ROUTE_MAP[subItem];
-                                    return (
-                                      <li key={subItem}>
-                                        <Link 
-                                          to={industryRoute || '/industries'} 
-                                          onClick={() => setActiveMenu(null)} 
-                                          className="industry-category-item px-2 py-1 rounded block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10"
-                                        >
-                                          <span>{subItem}</span>
-                                        </Link>
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                            </div>
-                          ))}
+                            <ul className="space-y-1">
+                              {cat.items.map((subItem) => {
+                                const industryRoute = INDUSTRY_ROUTE_MAP[subItem];
+                                return (
+                                  <li key={subItem}>
+                                    <Link
+                                      to={industryRoute || '/industries'}
+                                      onClick={() => setActiveMenu(null)}
+                                      className="industry-category-item px-2 py-1 rounded block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10"
+                                    >
+                                      <span>{subItem}</span>
+                                    </Link>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
 
                     </div>
@@ -1155,18 +1335,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </div>
 
               {/* 7. INSIGHTS (Accely Image 5 Dropdown) */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => handleMouseEnter('insights')}
               >
                 <button
                   onClick={() => handleMenuToggle('insights')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'insights' || location.pathname === '/insights'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25' 
+                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'insights' || location.pathname === '/insights'
+                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
                       : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>Insights</span>
                   <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'insights' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
@@ -1174,7 +1353,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
                 {/* Insights Dropdown */}
                 {activeMenu === 'insights' && (
-                  <div 
+                  <div
                     className="absolute top-full -left-12 w-64 pt-2 transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50"
                     onMouseEnter={() => handleMouseEnter('insights')}
                   >
@@ -1212,7 +1391,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
             {/* Right Action Utilities (Search, Theme Toggle, Contact Us Button) */}
             <div className="hidden lg:flex items-center gap-3">
-              
+
               {/* Search Icon (Accely top right) */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
@@ -1251,11 +1430,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           <div className="border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#070E1C] px-4 py-3 shadow-2xl transition-all">
             <div className="max-w-4xl mx-auto flex items-center gap-3">
               <Search className="h-4 w-4 text-[#00A3E0]" />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search solutions, SAP modules, products, industries, or services..." 
+                placeholder="Search solutions, SAP modules, products, industries, or services..."
                 className="w-full bg-transparent text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none font-medium"
                 autoFocus
                 onKeyDown={(e) => {
@@ -1265,7 +1444,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   }
                 }}
               />
-              <button 
+              <button
                 onClick={() => setSearchOpen(false)}
                 className="text-xs font-bold text-slate-500 hover:text-slate-800 dark:hover:text-white px-2 py-1 bg-slate-100 dark:bg-white/10 rounded"
               >
@@ -1278,7 +1457,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         {/* Mobile Drawer with exact sequence: Home, About, Products, Solutions, Services, Industries, Insights */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-b border-slate-200 dark:border-sky-500/25 bg-white dark:bg-[#070E1C] px-4 pt-3 pb-6 space-y-2 shadow-2xl max-h-[80vh] overflow-y-auto">
-            
+
             {/* 1. Mobile Home */}
             <Link
               to="/"
@@ -1334,7 +1513,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   <Link to="/e-invoice" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• E-Invoice (Automated Compliance)</Link>
                   <Link to="/eway-bill" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• E-Way Bill (Goods Movement & Compliance)</Link>
                   <Link to="/products/gst" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• GST Compliance</Link>
-                  
+
                   <div className="pt-1.5 pb-0.5">
                     <Link to="/products" onClick={() => setMobileMenuOpen(false)} className="font-bold text-[#00A3E0] hover:underline">
                       Knooviq Enterprise Solutions
@@ -1349,12 +1528,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   <Link to="/products/sales-force-automation" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Sales Force Automation</Link>
                   <Link to="/products/dealer-management-system" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Dealer Management System</Link>
                   <Link to="/products/asset-management" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Asset Management</Link>
-                  
+
                   <p className="font-bold text-[#00A3E0] pt-1">Knooviq AI Studio</p>
                   <Link to="/products/knooviq-ai-consultant" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Knooviq AI Consultant</Link>
                   <Link to="/products/knooviq-ai-insights" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Knooviq AI Insights</Link>
                   <Link to="/products/knooviq-ai-engagement" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Knooviq AI Engagement</Link>
-                  
+
                   <p className="font-bold text-[#00A3E0] pt-1">Enterprise AI Products</p>
                   <Link to="/products/bank-statement-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Bank Statement Intelligence</Link>
                   <Link to="/products/supply-chain-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Supply Chain Intelligence</Link>
@@ -1362,7 +1541,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                   <Link to="/products/accounts-payable-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Accounts Payable Intelligence</Link>
                   <Link to="/products/expense-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Expense Intelligence</Link>
                   <Link to="/products/form-intelligence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Form Intelligence</Link>
-                  
+
                   <div className="pt-1.5 pb-0.5">
                     <Link to="/products/automation-suite" onClick={() => setMobileMenuOpen(false)} className="font-bold text-[#00A3E0] hover:underline">
                       Knooviq Automation Suite
@@ -1421,6 +1600,66 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                       className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1"
                     >
                       <span>Explore All Transformation Practices</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 4.5 Mobile Cloud & Operations Accordion */}
+            <div className="border border-slate-200 dark:border-white/10 rounded-2xl p-2 bg-slate-50 dark:bg-[#050B17]">
+              <button
+                onClick={() => setMobileSubmenu(mobileSubmenu === 'cloud' ? null : 'cloud')}
+                className="w-full flex items-center justify-between px-2 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200"
+              >
+                <span className="flex items-center gap-1.5 text-[#00A3E0]">
+                  <Cloud className="h-3.5 w-3.5" />
+                  <span>Cloud & Operations (6 Capabilities)</span>
+                </span>
+                <ChevronDown className={`h-4 w-4 transition-transform ${mobileSubmenu === 'cloud' ? 'rotate-180' : ''}`} />
+              </button>
+
+              {mobileSubmenu === 'cloud' && (
+                <div className="pt-2 pl-2 space-y-2 border-t border-slate-200 dark:border-white/5 mt-1 text-xs max-h-[460px] overflow-y-auto pr-1 custom-scrollbar">
+                  {CLOUD_OPS_MEGA_MENU.map((category) => (
+                    <div key={category.id} className="pt-1">
+                      <p className="font-bold text-[#00A3E0] pt-1 flex items-center justify-between">
+                        <span>{category.title}</span>
+                        {category.badge && (
+                          <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold">
+                            {category.badge}
+                          </span>
+                        )}
+                      </p>
+                      <div className="space-y-0.5 pt-0.5 pl-2">
+                        {category.items.map((item, idx) => {
+                          const isItemActive = location.pathname === item.path || (item.path.includes('?') && location.pathname + location.search === item.path);
+                          return (
+                            <Link
+                              key={idx}
+                              to={item.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={`block py-1 px-2 rounded-lg text-xs font-medium transition-colors ${
+                                isItemActive
+                                  ? 'bg-[#00A3E0] text-white font-bold'
+                                  : 'text-slate-700 dark:text-slate-300 hover:text-[#00A3E0]'
+                              }`}
+                            >
+                              • {item.name}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="pt-2 border-t border-slate-200 dark:border-white/5">
+                    <Link
+                      to="/cloud-operations"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1"
+                    >
+                      <span>Explore All Cloud & Operations Capabilities</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>
@@ -1505,10 +1744,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                     ))}
                   </div>
                   {INDUSTRIES_NAV_CATEGORIES.map((cat) => (
-                    <Link 
+                    <Link
                       key={cat.id}
-                      to="/industries" 
-                      onClick={() => setMobileMenuOpen(false)} 
+                      to="/industries"
+                      onClick={() => setMobileMenuOpen(false)}
                       className="industry-category-item block py-1 px-2 text-slate-700 dark:text-slate-300 hover:text-[#00A3E0]"
                     >
                       • {cat.name}

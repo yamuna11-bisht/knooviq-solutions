@@ -32,9 +32,28 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
-        outfit: ['"Outfit"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        body: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        outfit: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'sans-serif'],
+      },
+      fontWeight: {
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '700', // Harmonized to clean enterprise bold
+        black: '700',     // Restrained from 900 to eliminate bloated AI template aesthetics
+      },
+      letterSpacing: {
+        tighter: '-0.035em',
+        tight: '-0.02em',
+        normal: '0em',
+        wide: '0.02em',
+        wider: '0.04em',
+        widest: '0.065em', // Calibrated for clean corporate eyebrow tags
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

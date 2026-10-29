@@ -280,12 +280,12 @@ export const SapCustomerExperienceSolutionView: React.FC<SapCustomerExperienceSo
             </div>
 
             {/* Headline */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-black tracking-tight text-white leading-[1.14] drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
-              Composable Omnichannel Commerce, Real-Time CDP & Unified Customer Experience
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.18]">
+              Composable Omnichannel Commerce, Real-Time CDP &amp; Unified Customer Experience
             </h1>
 
             {/* Narrative */}
-            <p className="text-xs sm:text-sm lg:text-[14px] font-medium text-slate-200 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-2xl">
+            <p className="text-base sm:text-lg font-normal text-slate-200 leading-relaxed max-w-2xl mt-3">
               Deliver hyper-personalized customer journeys at global scale. Unify headless B2B and B2C commerce, real-time identity resolution on SAP CDP, predictive Emarsys engagement, and sub-second checkout speeds.
             </p>
 

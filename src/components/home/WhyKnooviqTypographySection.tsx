@@ -97,17 +97,17 @@ export const WhyKnooviqTypographySection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-[#0A1931] tracking-tight leading-tight"
+            className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#0A1931] tracking-tight leading-snug"
           >
-            Technology that <span className="bg-gradient-to-r from-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">connects.</span>{' '}
-            Intelligence that <span className="bg-gradient-to-r from-[#0070C0] to-[#6366F1] bg-clip-text text-transparent">transforms.</span>
+            Technology that <span className="text-[#0070C0] dark:text-[#38BDF8]">connects.</span>{' '}
+            Intelligence that <span className="text-[#00A3E0] dark:text-cyan-400">transforms.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-2 text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal"
           >
             Bridging complex ERP systems with cognitive intelligence, delivering scalable enterprise architecture that accelerates business velocity.
           </motion.p>
