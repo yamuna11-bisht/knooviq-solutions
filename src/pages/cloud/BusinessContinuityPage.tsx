@@ -23,7 +23,6 @@ import {
   Compass,
   FileCheck2,
   Network,
-  Server,
   AlertTriangle,
   LifeBuoy,
   Zap,
@@ -887,11 +886,10 @@ export const BusinessContinuityPage: React.FC<ChildPageProps> = ({ onOpenContact
             {/* Column 1: Business Continuity */}
             <div className="p-8 sm:p-10 rounded-2xl bg-slate-50 dark:bg-[#0B1528] border border-slate-200/80 dark:border-white/10 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                <div>
                   <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[#00A3E0] text-xs font-bold uppercase tracking-wider">
                     OPERATIONAL RESILIENCE &amp; PEOPLE
                   </span>
-                  <Building2 className="w-5 h-5 text-[#00A3E0]" />
                 </div>
 
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -936,11 +934,10 @@ export const BusinessContinuityPage: React.FC<ChildPageProps> = ({ onOpenContact
             {/* Column 2: Disaster Recovery */}
             <div className="p-8 sm:p-10 rounded-2xl bg-slate-50 dark:bg-[#0B1528] border border-slate-200/80 dark:border-white/10 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                <div>
                   <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-500 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
                     TECHNICAL INFRASTRUCTURE &amp; DATA
                   </span>
-                  <Server className="w-5 h-5 text-blue-500" />
                 </div>
 
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">

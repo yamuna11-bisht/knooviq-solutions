@@ -22,7 +22,6 @@ import {
   RotateCcw,
   BookOpen,
   FolderTree,
-  Building2,
   ShieldCheck,
   CheckSquare,
   AlertTriangle,
@@ -972,11 +971,10 @@ export const DisasterRecoveryPage: React.FC<ChildPageProps> = ({ onOpenContact }
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {/* Box 1: Disaster Recovery */}
             <div className="p-8 sm:p-10 rounded-2xl bg-white dark:bg-[#0B1528] border border-slate-200 dark:border-white/10 shadow-sm space-y-5">
-              <div className="flex items-center justify-between">
+              <div>
                 <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[#00A3E0] text-xs font-bold uppercase tracking-wider">
                   TECHNICAL FOCUS
                 </span>
-                <Server className="w-5 h-5 text-[#00A3E0]" />
               </div>
 
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -1002,11 +1000,10 @@ export const DisasterRecoveryPage: React.FC<ChildPageProps> = ({ onOpenContact }
 
             {/* Box 2: Business Continuity */}
             <div className="p-8 sm:p-10 rounded-2xl bg-white dark:bg-[#0B1528] border border-slate-200 dark:border-white/10 shadow-sm space-y-5">
-              <div className="flex items-center justify-between">
+              <div>
                 <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-500 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
                   OPERATIONAL FOCUS
                 </span>
-                <Building2 className="w-5 h-5 text-blue-500" />
               </div>
 
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
