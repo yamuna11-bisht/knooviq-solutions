@@ -39,7 +39,6 @@ import {
   FolderGit2,
   Shield,
   Layers2,
-  Maximize2,
   X
 } from 'lucide-react';
 
@@ -935,22 +934,6 @@ export const IdentityAccessManagementPage: React.FC<ChildPageProps> = ({ onOpenC
               {/* Cinematic subtle edge gradient overlays */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/50 via-transparent to-transparent pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/30 via-transparent to-[#030712]/30 pointer-events-none" />
-
-              {/* Top-Right View Full Screen Button */}
-              <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsImageModalOpen(true);
-                  }}
-                  className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/85 hover:bg-[#00A3E0] text-white text-xs font-semibold backdrop-blur-md border border-white/20 shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
-                  title="Open full screen"
-                >
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span>Full Screen</span>
-                </button>
-              </div>
 
               {/* Bottom Subtle Badge Indicating Dual Human & AI Verification */}
               <div className="absolute bottom-4 left-4 sm:left-6 z-20 pointer-events-none">
