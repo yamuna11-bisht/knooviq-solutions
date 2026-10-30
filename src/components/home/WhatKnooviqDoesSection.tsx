@@ -17,8 +17,8 @@ export const WhatKnooviqDoesSection: React.FC<WhatKnooviqDoesSectionProps> = ({ 
   ];
 
   return (
-    <section 
-      id="what-knooviq-does" 
+    <section
+      id="what-knooviq-does"
       className="relative py-20 sm:py-28 lg:py-32 bg-white text-slate-900 overflow-hidden select-none border-b border-slate-200/80"
     >
       {/* Background Subtle Atmospheric Radiance */}
@@ -28,11 +28,11 @@ export const WhatKnooviqDoesSection: React.FC<WhatKnooviqDoesSectionProps> = ({ 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* ========================================================================= */}
           {/* LEFT COLUMN: Clean Editorial Copy & Key Deliverables                     */}
           {/* ========================================================================= */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -97,9 +97,9 @@ export const WhatKnooviqDoesSection: React.FC<WhatKnooviqDoesSectionProps> = ({ 
           </motion.div>
 
           {/* ========================================================================= */}
-          {/* RIGHT COLUMN: High-End Enterprise Image (No numbers, No stats, No boxes)  */}
+          {/* RIGHT COLUMN: Full High-Resolution Strategic Partner Enterprise Photo     */}
           {/* ========================================================================= */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -109,35 +109,14 @@ export const WhatKnooviqDoesSection: React.FC<WhatKnooviqDoesSectionProps> = ({ 
             {/* Ambient Behind-Glow */}
             <div className="absolute -inset-2 bg-gradient-to-tr from-sky-400/20 via-blue-500/15 to-indigo-500/10 rounded-3xl blur-2xl -z-10 opacity-70" />
 
-            {/* Main Showcase Image Frame */}
-            <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-slate-900 group">
-              <img 
-                src="/images/sap_app_s4hana_3d.jpg" 
-                alt="SAP S/4HANA Clean Core Digital Transformation Architecture" 
-                className="w-full h-[380px] sm:h-[460px] lg:h-[500px] object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            {/* Main Showcase Image Frame - Height increased without changing width or cutting */}
+            <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-white">
+              <img
+                src="/images/what_we_do_strategic_partner.jpg"
+                alt="Your Strategic Partner for SAP & Digital Transformation"
+                className="w-full h-[350px] sm:h-[390px] lg:h-[420px] block object-fill"
                 loading="lazy"
               />
-
-              {/* Gradient Overlay for Sleek Depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20 pointer-events-none" />
-
-              {/* Floating Bottom Label (Clean, Elegant, Zero Numbers/Percentages) */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 rounded-xl bg-slate-900/85 backdrop-blur-md border border-white/10 text-white flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#00A3E0] animate-pulse" />
-                  <div>
-                    <div className="text-xs sm:text-sm font-bold text-white tracking-wide">
-                      Clean Core S/4HANA &amp; Multi-Cloud Architecture
-                    </div>
-                    <div className="text-[11px] text-slate-300 font-medium">
-                      Enterprise Modernization &amp; Intelligent Automation
-                    </div>
-                  </div>
-                </div>
-                <span className="hidden sm:inline-block text-[11px] font-mono uppercase tracking-wider text-sky-300/90 font-semibold px-2.5 py-1 rounded bg-sky-950/60 border border-sky-400/30">
-                  SAP Ecosystem
-                </span>
-              </div>
             </div>
           </motion.div>
 

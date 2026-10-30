@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
               KNOOVIQ is a premier enterprise SAP consultancy delivering Digital Core Transformation, Intelligent Supply Chain, Clean Core modernization, and Data & AI solutions across global enterprises.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-sky-500/10 border border-blue-200 dark:border-sky-500/20 text-[#00A3E0] dark:text-cyan-300 font-bold text-[10px] tracking-wide uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-sky-500/10 border border-blue-200 dark:border-sky-500/20 text-[#00A3E0] dark:text-cyan-300 font-bold text-xs tracking-wide">
               <Award className="h-3 w-3" />
               <span>SAP Platinum Partner Standards</span>
             </div>
@@ -53,9 +53,9 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: Enterprise Solutions (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
               Solutions
-            </h4>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/solutions/sap-s4hana" className="hover:text-[#00A3E0] transition-colors">
@@ -103,9 +103,9 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Services & Managed Care (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
               Services
-            </h4>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/services" className="hover:text-[#00A3E0] transition-colors">
@@ -149,9 +149,9 @@ export const Footer: React.FC = () => {
           {/* Col 4: Data, Analytics & AI (Exactly as in User's Screenshot) (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <div className="flex items-center gap-2">
-              <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+              <h3 className="font-display text-xs font-bold tracking-wider text-slate-900 dark:text-white">
                 Data, Analytics & AI
-              </h4>
+              </h3>
               <span className="text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-[#00A3E0] text-white">
                 GEN AI
               </span>
@@ -198,9 +198,9 @@ export const Footer: React.FC = () => {
 
           {/* Col 5: Company & Industries (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
               Company
-            </h4>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/about/the-knooviq-story" className="hover:text-[#00A3E0] transition-colors">
@@ -247,7 +247,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Security & Architecture Disclaimer */}
-        <div className="py-6 border-b border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 dark:text-slate-400">
+        <div className="py-6 border-b border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-[#00A3E0] flex-shrink-0" />
             <span>
@@ -265,7 +265,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 dark:text-slate-400">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
           <p>© {new Date().getFullYear()} KNOOVIQ Enterprise Solutions. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <span>Global Delivery: Navi Mumbai &bull; Dubai &bull; Singapore &bull; USA</span>

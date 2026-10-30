@@ -228,23 +228,6 @@ export const AutomationEvolvePage: React.FC<AutomationEvolvePageProps> = ({ onOp
                 Replace slow manual paper and email routing with responsive enterprise web forms, multi-tiered data steward approvals, and direct automated SAP postings without custom ABAP development.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact?.('Automation Evolve Consultation')}
-                  className="px-7 py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm shadow-md shadow-purple-500/20 hover:shadow-lg hover:shadow-purple-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 group cursor-pointer"
-                >
-                  <span>Request Live Evolve Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="#evolve-architecture"
-                  className="px-6 py-3.5 rounded-xl bg-white dark:bg-[#0B1528] hover:bg-slate-50 dark:hover:bg-[#0E1A33] border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:-translate-y-0.5"
-                >
-                  <span>Explore Workflow Pipeline</span>
-                  <ArrowRight className="w-4 h-4 text-purple-500" />
-                </a>
-              </div>
 
               {/* Executive Capability Highlights */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t-2 border-slate-300 dark:border-slate-700/80 text-left">

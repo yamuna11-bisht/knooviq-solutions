@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -24,6 +24,7 @@ interface TechnologyPageProps {
 }
 
 export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
+
   const prebuiltAccelerators = [
     {
       id: 'acc-1',
@@ -50,7 +51,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
       description: 'Pre-mapped EDI 850 (Purchase Order), 855 (PO Ack), 856 (ASN Ship Notice), and 810 (Invoice) with AS2 cryptographic signing.',
       protocol: 'AS2 / SFTP / EDIFACT',
       certified: 'GS1 Compliant',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80'
+      image: '/images/sap_integration_suite_supply_chain_edifact.png'
     },
     {
       id: 'acc-4',
@@ -59,7 +60,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
       description: 'Legally compliant electronic tax invoice signing, clearance integration with government tax revenue authorities.',
       protocol: 'AS4 / Peppol BIS 3.0',
       certified: 'Government Approved',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80'
+      image: '/images/sap_integration_suite_peppol_einvoicing.png'
     },
     {
       id: 'acc-5',
@@ -68,7 +69,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
       description: 'Auto-sync equipment breakdown tickets, maintenance work orders, and spare parts inventory requisition status.',
       protocol: 'REST / OData v2',
       certified: 'SAP Certified Package',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'
+      image: '/images/sap_integration_suite_servicenow_itsm_sap.png'
     },
     {
       id: 'acc-6',
@@ -86,23 +87,25 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
       {/* =========================================================================
           SECTION 1: HERO SECTION (Global Interconnected API Plexus)
-          (Blue & White, Pure Information, Live Bus Telemetry Cards)
           ========================================================================= */}
-      <section className="relative w-full min-h-[640px] lg:min-h-[700px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-blue-950 border-b border-blue-900">
+      <section className="relative w-full min-h-[540px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black">
 
-        {/* Full-Bleed Enterprise Background Image with Scrim */}
-        <div className="absolute inset-0 z-0">
+        {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=80"
-            alt="SAP Integration Suite Global Interconnected Enterprise iPaaS"
-            className="w-full h-full object-cover object-center opacity-25"
+            src="/images/sap_integration_suite_ipaas_event_mesh.png"
+            alt="SAP Integration Suite Global Interconnected Enterprise iPaaS & Event Mesh"
+            className="w-full h-full object-cover object-[65%_top] select-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-transparent to-blue-950/50 pointer-events-none" />
         </div>
 
+        {/* Top Hairline Accent */}
+        <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-2xl space-y-6 relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box and Zero dark blue shade */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -110,71 +113,58 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
               transition={{ duration: 0.55 }}
               className="space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-900/60 backdrop-blur-md border border-blue-500/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-300">
-                <Network className="w-3.5 h-3.5 text-blue-400" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-md">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <Network className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>ENTERPRISE iPAAS &bull; SAP INTEGRATION SUITE</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
                 Connect Everything to Anything with <br />
-                <span className="text-blue-400">
-                  Enterprise-Grade iPaaS & Event Mesh
+                <span className="text-[#00A3E0] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+                  Enterprise-Grade iPaaS &amp; Event Mesh
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed pt-1">
+              <p className="text-base sm:text-lg text-slate-100 font-medium leading-relaxed pt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 Orchestrate multi-cloud ecosystems, automate B2B supply chains, and modernize legacy SAP PI/PO systems. SAP Integration Suite delivers guaranteed persistent delivery, real-time API management, and pre-packaged enterprise accelerators.
               </p>
             </motion.div>
 
-            {/* Protocol Telemetry Stream (Blue & White) */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-white border border-blue-100 shadow-xl">
-              <div className="p-3 rounded-xl bg-blue-50/50 border border-blue-100">
-                <div className="text-[11px] font-mono uppercase text-blue-700 font-semibold mb-1">Guaranteed Delivery</div>
-                <div className="text-2xl font-black text-blue-950 font-mono">99.999%</div>
-                <div className="text-[10px] text-slate-500">Persistent Event Mesh</div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-blue-50/50 border border-blue-100">
-                <div className="text-[11px] font-mono uppercase text-blue-700 font-semibold mb-1">Pre-Built iFlows</div>
-                <div className="text-2xl font-black text-blue-700 font-mono">3,200+</div>
-                <div className="text-[10px] text-slate-500">SAP Business Accelerator</div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-blue-50/50 border border-blue-100">
-                <div className="text-[11px] font-mono uppercase text-blue-700 font-semibold mb-1">Protocols Supported</div>
-                <div className="text-2xl font-black text-blue-950 font-mono">OData / AS2</div>
-                <div className="text-[10px] text-slate-500">AMQP, REST, Kafka, SOAP</div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-blue-50/50 border border-blue-100">
-                <div className="text-[11px] font-mono uppercase text-blue-700 font-semibold mb-1">Security Standard</div>
-                <div className="text-2xl font-black text-blue-950 font-mono">Zero Trust</div>
-                <div className="text-[10px] text-slate-500">mTLS & OAuth 2.0</div>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                onClick={() => onOpenContact('SAP Integration Suite Architecture Advisory')}
-                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 group"
-              >
-                <span>Request Integration Blueprint</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <a
-                href="#integration-patterns"
-                className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-blue-400/30 text-white font-semibold text-sm backdrop-blur-md transition-all flex items-center gap-2"
-              >
-                <Workflow className="w-4 h-4 text-blue-400" />
-                <span>Explore Enterprise Patterns</span>
-              </a>
-            </div>
-
           </div>
         </div>
       </section>
+
+      {/* Protocol Telemetry Stream - Docked Cleanly Below Hero Banner */}
+      <div className="bg-[#070E1A] border-y border-slate-800/80 py-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="text-[11px] font-mono uppercase text-[#00A3E0] font-semibold mb-1">Guaranteed Delivery</div>
+              <div className="text-2xl font-black text-white font-mono">99.999%</div>
+              <div className="text-[10px] text-slate-400">Persistent Event Mesh</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="text-[11px] font-mono uppercase text-[#00A3E0] font-semibold mb-1">Pre-Built iFlows</div>
+              <div className="text-2xl font-black text-white font-mono">3,200+</div>
+              <div className="text-[10px] text-slate-400">SAP Business Accelerator</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="text-[11px] font-mono uppercase text-[#00A3E0] font-semibold mb-1">Protocols Supported</div>
+              <div className="text-2xl font-black text-white font-mono">OData / AS2</div>
+              <div className="text-[10px] text-slate-400">AMQP, REST, Kafka, SOAP</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="text-[11px] font-mono uppercase text-[#00A3E0] font-semibold mb-1">Security Standard</div>
+              <div className="text-2xl font-black text-white font-mono">Zero Trust</div>
+              <div className="text-[10px] text-slate-400">mTLS &amp; OAuth 2.0</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* =========================================================================
           SECTION 2: ENTERPRISE INTEGRATION PATTERNS (EIP) ARCHITECTURE
@@ -185,11 +175,11 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
-                <Workflow className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase">
+                <Workflow className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>CANONICAL EIP ARCHITECTURE</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-blue-950 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
                 Enterprise Integration Patterns in Action
               </h2>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -198,15 +188,15 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80"
-                  alt="Digital Network Dispatch and Switching Infrastructure"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_integration_suite_enterprise_patterns_action.png"
+                  alt="Enterprise Integration Patterns in Action - Data Integration Strategy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    High-Availability Event Mesh
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    Enterprise Data Integration Strategy
                   </span>
                 </div>
               </div>
@@ -332,15 +322,15 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
-                  alt="Enterprise Cloud Architecture Engineering"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_integration_suite_core_engineering_standards.png"
+                  alt="4 Core Engineering Standards of Enterprise Integration Architecture"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    High-Reliability Enterprise iPaaS
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    4 Core Engineering Standards
                   </span>
                 </div>
               </div>
@@ -548,15 +538,15 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-blue-100 shadow-xl relative h-60">
+              <div className="rounded-2xl overflow-hidden border border-blue-200 shadow-xl relative h-64 sm:h-72 bg-slate-950 group">
                 <img
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
-                  alt="Enterprise Modernization Strategy"
-                  className="w-full h-full object-cover"
+                  src="/images/sap_integration_suite_pipo_migration_framework.png"
+                  alt="SAP PI/PO 7.5 to Integration Suite Migration Framework"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-5">
-                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40">
-                    Automated Migration Assessment
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-xs font-mono text-white bg-blue-950/90 px-3 py-1 rounded border border-blue-400/40 shadow-sm">
+                    Automated Migration Assessment &amp; Modernization
                   </span>
                 </div>
               </div>
@@ -664,3 +654,4 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
     </div>
   );
 };
+

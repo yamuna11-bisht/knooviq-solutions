@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Wrench,
@@ -742,22 +743,6 @@ export const FieldServiceManagementPage: React.FC<FieldServiceManagementPageProp
                 Connect customers, dispatchers, technicians, assets and service operations through one intelligent field service experience.
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-                <button
-                  onClick={() => onOpenContact('Field Service Management Consultation')}
-                  className="btn-primary-gradient px-7 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:shadow-cyan-500/25 transition-all"
-                >
-                  <span>Talk to an Expert</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <a
-                  href="#journey"
-                  className="px-6 py-3.5 rounded-xl border border-slate-300 dark:border-white/20 bg-white/80 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
-                >
-                  Explore the Solution
-                </a>
-              </div>
 
               {/* Live Tactical Fleet Meter Tape */}
               <div className="pt-2 border-t border-slate-200 dark:border-white/10 grid grid-cols-3 gap-2 text-center text-xs font-mono">
@@ -2300,17 +2285,17 @@ export const FieldServiceManagementPage: React.FC<FieldServiceManagementPageProp
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 relative z-10">
               <button
                 onClick={() => onOpenContact('Field Service Management Implementation')}
-                className="btn-primary-gradient px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:shadow-cyan-500/25 transition-all"
+                className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
               >
-                <span>Talk to an Expert</span>
+                <span>Talk to Our Field Service Experts</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
-              <a
-                href="#journey"
-                className="px-7 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-white/80 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all"
+              <Link
+                to="/products/real-estate-management"
+                className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
               >
-                Explore the Solution
-              </a>
+                Explore Real Estate Management
+              </Link>
             </div>
 
           </div>

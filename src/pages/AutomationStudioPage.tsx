@@ -224,23 +224,6 @@ export const AutomationStudioPage: React.FC<AutomationStudioPageProps> = ({ onOp
                 Accelerate high-volume data entry, master data maintenance, and transactional mass updates without programming. Automation Studio connects standard Microsoft Excel workbooks directly to SAP S/4HANA and ECC while upholding complete SAP security and audit controls.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact?.('Automation Studio Consultation')}
-                  className="px-7 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 group cursor-pointer"
-                >
-                  <span>Request Live Studio Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="#studio-architecture"
-                  className="px-6 py-3.5 rounded-xl bg-white dark:bg-[#0B1528] hover:bg-slate-50 dark:hover:bg-[#0E1A33] border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:-translate-y-0.5"
-                >
-                  <span>Explore Architecture</span>
-                  <ArrowRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Executive Capability Highlights */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t-2 border-slate-300 dark:border-slate-700/80 text-left">

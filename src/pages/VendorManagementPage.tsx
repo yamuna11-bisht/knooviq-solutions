@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
@@ -432,27 +433,6 @@ export const VendorManagementPage: React.FC<VendorManagementPageProps> = ({ onOp
                 Accelerated Vendor Management brings supplier intake, statutory tax verification, automated 3-way compliance, and procurement collaboration into an integrated digital workflow—helping businesses eliminate supplier onboarding friction and manage vendor lifecycle processes with greater consistency.
               </motion.p>
 
-              {/* Action CTA Buttons */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8"
-              >
-                <button
-                  onClick={() => onOpenContact('Accelerated Vendor Management Consultation')}
-                  className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
-                >
-                  <span>Talk to an Expert</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <a
-                  href="#journey"
-                  className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-white/80 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
-                >
-                  Explore 6-Stage Journey
-                </a>
-              </motion.div>
 
               {/* Regulatory Trust Metrics */}
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -602,15 +582,8 @@ export const VendorManagementPage: React.FC<VendorManagementPageProps> = ({ onOp
                   ))}
                 </div>
 
-                <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <div className="pt-2 flex items-center text-[11px] font-mono text-slate-400">
                   <span>Standard SAP S/4HANA &amp; ECC Compliant</span>
-                  <button
-                    onClick={() => onOpenContact(`Vendor Lifecycle Consultation: ${journeyStages[activeJourneyIndex].title}`)}
-                    className="inline-flex items-center gap-1 font-bold text-blue-600 dark:text-cyan-400 hover:underline cursor-pointer"
-                  >
-                    <span>Request Technical Runbook</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
                 </div>
               </div>
 
@@ -685,15 +658,8 @@ export const VendorManagementPage: React.FC<VendorManagementPageProps> = ({ onOp
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-xs font-mono text-blue-600 dark:text-cyan-400">
+                  <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/10 flex items-center text-xs font-mono text-blue-600 dark:text-cyan-400">
                     <span className="font-bold">Enterprise Ready</span>
-                    <button
-                      onClick={() => onOpenContact(`Capability Inquiry: ${cap.title}`)}
-                      className="font-bold hover:underline flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>Explore</span>
-                      <ArrowRight className="h-3 w-3" />
-                    </button>
                   </div>
                 </motion.div>
               );
@@ -806,15 +772,8 @@ export const VendorManagementPage: React.FC<VendorManagementPageProps> = ({ onOp
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+                <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center text-xs font-mono">
                   <span className="text-slate-400">Clean Core &amp; BTP Extension Ready</span>
-                  <button
-                    onClick={() => onOpenContact(`SAP Architecture Deep Dive: ${currentArchLayer.title}`)}
-                    className="font-bold text-blue-600 dark:text-cyan-400 hover:underline cursor-pointer flex items-center gap-1"
-                  >
-                    <span>Schedule Technical Deep Dive</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
                 </div>
               </motion.div>
             </div>
@@ -1075,12 +1034,12 @@ export const VendorManagementPage: React.FC<VendorManagementPageProps> = ({ onOp
                   <span>Talk to an Expert</span>
                   <ArrowRight className="h-4 w-4" />
                 </button>
-                <button
-                  onClick={() => onOpenContact('Accelerated Vendor Management Architecture Review')}
-                  className="px-6 py-4 rounded-2xl border border-white/30 hover:bg-white/10 text-white font-display text-xs font-bold uppercase tracking-wider cursor-pointer transition-all"
+                <Link
+                  to="/products/field-service-management"
+                  className="px-6 py-4 rounded-2xl border border-white/30 hover:bg-white/10 text-white font-display text-xs font-bold uppercase tracking-wider cursor-pointer transition-all text-center inline-block"
                 >
-                  <span>Request Architecture Review</span>
-                </button>
+                  <span>Explore Field Service Management</span>
+                </Link>
               </div>
             </div>
           </div>

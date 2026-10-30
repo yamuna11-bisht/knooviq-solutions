@@ -232,98 +232,73 @@ export const ApplicationSupportPage: React.FC<ApplicationSupportPageProps> = ({ 
     <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-500 selection:text-white">
 
       {/* =========================================================================
-          HERO SECTION: APPLICATION SUPPORT (CLEAN WHITE FORMAT)
+      {/* =========================================================================
+          SECTION 1: HERO — APPLICATION SUPPORT (FULL-SCREEN WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200/80">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black text-white border-b border-[#00A3E0]/20">
         
-        {/* Subtle Background Grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, #0F172A 1px, transparent 1px), linear-gradient(to bottom, #0F172A 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+        {/* Decorative Top Hairline */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E0]/40 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-500 font-medium">
-              <li><Link to="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
-              <li className="text-slate-400">/</li>
-              <li><Link to="/advisory-managed-services" className="hover:text-blue-600 transition-colors">Advisory &amp; Managed Services</Link></li>
-              <li className="text-slate-400">/</li>
-              <li className="text-blue-600 font-semibold" aria-current="page">Application Support</li>
-            </ol>
-          </nav>
+        {/* Full-Bleed Background Visual — 100% Clear with Zero Dark Shade */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/application-support/application_support_hero_widescreen.jpg"
+            alt="SAP Enterprise Application Support and Functional Helpdesk"
+            className="w-full h-full object-cover object-top lg:object-[85%_top] brightness-105 contrast-105 select-none"
+          />
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Content Header */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold tracking-wider uppercase">
-                <LifeBuoy className="w-3.5 h-3.5 text-blue-600" />
-                <span>USER RESOLUTION DESK &bull; FUNCTIONAL &amp; TECHNICAL ASSISTANCE</span>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                Application Support
-              </h1>
+          <div className="max-w-3xl space-y-5 text-left relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero dark shade on image */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 leading-snug">
-                Reliable Support for Critical Business Applications
-              </p>
-
-              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-                Empower your business teams to work without interruption. We provide structured SAP functional and technical support that resolves operational issues quickly, maintains business continuity, and eliminates daily transactional friction.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact && onOpenContact('Application Support Services')}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>Request Support Consultation</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <a
-                  href="#department-assistance"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-base transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Explore Support Capabilities</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </a>
-              </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00A3E0] text-xs font-mono font-bold tracking-wider uppercase shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <LifeBuoy className="w-3.5 h-3.5 text-[#00A3E0]" />
+              <span>USER RESOLUTION DESK • FUNCTIONAL &amp; TECHNICAL ASSISTANCE</span>
             </div>
 
-            {/* Right Hero Visual: IMAGE 1 (Kept as user requested: "hero section ko chor ke") */}
-            <div className="lg:col-span-6">
-              <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative group bg-white">
-                <img
-                  src="/images/application-support/app-support-hero.jpg"
-                  alt="Knooviq Enterprise SAP Application Support & Functional Helpdesk Team"
-                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-between text-slate-900">
-                  <div>
-                    <span className="text-xs font-mono font-bold text-blue-600 block">DEDICATED SUPPORT DESK</span>
-                    <span className="text-sm font-bold text-slate-900">Functional &amp; Technical Problem Solving</span>
-                  </div>
-                  <span className="text-xs font-mono font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                    Follow-The-Sun Coverage
-                  </span>
-                </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+              Application <br />
+              <span className="text-[#00A3E0]">
+                Support
+              </span>
+            </h1>
+
+            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
+              Reliable Support for Critical Business Applications
+            </p>
+
+            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
+              Empower your business teams to work without interruption. We provide structured SAP functional and technical support that resolves operational issues quickly, maintains business continuity, and eliminates daily transactional friction.
+            </p>
+
+            {/* SLA & Service Metrics */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+              <div className="p-3 rounded-xl bg-[#0A1E3F]/60 border border-white/10 backdrop-blur-md space-y-0.5">
+                <Clock className="w-4 h-4 text-[#00A3E0] mb-1" />
+                <div className="text-sm font-black text-white">Follow-The-Sun</div>
+                <div className="text-[11px] text-slate-400 uppercase font-mono">24/7 Global SLA</div>
+              </div>
+              <div className="p-3 rounded-xl bg-[#0A1E3F]/60 border border-white/10 backdrop-blur-md space-y-0.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 mb-1" />
+                <div className="text-sm font-black text-white">&lt; 15 Min P1</div>
+                <div className="text-[11px] text-slate-400 uppercase font-mono">Incident Response</div>
+              </div>
+              <div className="p-3 rounded-xl bg-[#0A1E3F]/60 border border-white/10 backdrop-blur-md space-y-0.5">
+                <ShieldCheck className="w-4 h-4 text-blue-400 mb-1" />
+                <div className="text-sm font-black text-white">99.9% Uptime</div>
+                <div className="text-[11px] text-slate-400 uppercase font-mono">Business Continuity</div>
               </div>
             </div>
-
           </div>
 
         </div>
       </section>
 
-      {/* Sticky Service Navigation */}
-      <AdvisoryServiceNav currentServiceId="application-support" />
 
       {/* =========================================================================
           SECTION 1: BUSINESS DEPARTMENT ASSISTANCE & INTERACTIVE DISPATCH FLOWCHART
@@ -332,10 +307,12 @@ export const ApplicationSupportPage: React.FC<ApplicationSupportPageProps> = ({ 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mb-10">
-            <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
-              Business Department Assistance
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/10 border border-blue-200 dark:border-white/20 text-[#00A3E0] text-xs font-mono font-bold uppercase tracking-wider shadow-sm mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span>Business Department Assistance</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0A1E3F] dark:text-white tracking-tight">
               Tailored Support for Every Core Business Department
             </h2>
             <p className="text-slate-600 text-base mt-2 font-sans">

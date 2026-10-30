@@ -231,23 +231,6 @@ export const AutomationManagerPage: React.FC<AutomationManagerPageProps> = ({ on
                 Govern automation scripts across your enterprise with central repository management, role-based execution boundaries, license administration, and automated off-peak batch scheduling.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact?.('Automation Manager Consultation')}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 group cursor-pointer"
-                >
-                  <span>Request Live Manager Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="#manager-architecture"
-                  className="px-6 py-3.5 rounded-xl bg-white dark:bg-[#0B1528] hover:bg-slate-50 dark:hover:bg-[#0E1A33] border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:-translate-y-0.5"
-                >
-                  <span>Explore Governance Engine</span>
-                  <ArrowRight className="w-4 h-4 text-blue-500" />
-                </a>
-              </div>
 
               {/* Executive Capability Highlights */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t-2 border-slate-300 dark:border-slate-700/80 text-left">

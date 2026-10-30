@@ -691,27 +691,6 @@ export const EWayBillPage: React.FC<EWayBillPageProps> = ({ onOpenContact }) => 
                 Transform the way your business manages E-Way Bills with a connected solution that brings invoice data, transportation details and shipment movement together.
               </motion.p>
 
-              {/* Action CTA Buttons */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8"
-              >
-                <a
-                  href="#journey"
-                  className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all text-center"
-                >
-                  <span>Explore the Solution</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <button
-                  onClick={() => onOpenContact('SAP E-Way Bill Solutions')}
-                  className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-white/80 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center cursor-pointer"
-                >
-                  Talk to an Expert
-                </button>
-              </motion.div>
 
               {/* Trust Indicators */}
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -2009,10 +1988,10 @@ export const EWayBillPage: React.FC<EWayBillPageProps> = ({ onOpenContact }) => 
                     <ArrowRight className="h-4 w-4" />
                   </button>
                   <Link
-                    to="/solutions"
+                    to="/products/gst"
                     className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
                   >
-                    Explore All Solutions
+                    Explore GST & Tax Compliance
                   </Link>
                 </div>
 

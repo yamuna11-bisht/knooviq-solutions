@@ -50,15 +50,15 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
   const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
-  const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
-  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(false);
+  const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
 
   // Auto-tour rotation for Section 4
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setHoveredWheelIndex((prev) => (prev === null ? 0 : (prev + 1) % 8));
-    }, 2800);
+    }, 3800);
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
@@ -592,53 +592,123 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
 
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Ultra-Clean & Sleek)
+          SECTION 1: HERO SECTION (Panoramic Full-Bleed Enterprise GenAI Showcase)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-slate-900">
+      {/* =========================================================================
+          SECTION 1: HERO SECTION (Panoramic Full-Bleed Enterprise GenAI Showcase)
+          ========================================================================= */}
+      <section className="relative pt-32 pb-20 lg:pt-36 lg:pb-24 min-h-[580px] lg:h-[660px] lg:min-h-[660px] flex items-center overflow-hidden bg-[#161622]">
+        {/* Full-Screen Panoramic Widescreen Hero Image (100% Uncut Artwork, Zero Overlap, Crystal Clear) */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/sap_business_ai_hero.jpg"
-            alt="Enterprise Generative AI Neural Architecture"
-            className="w-full h-full object-cover object-center opacity-40"
+          <img 
+            src="/images/generative_ai_llm_hero.png" 
+            alt="Enterprise Generative AI & Sovereign LLMs"
+            className="w-full h-full object-cover object-right lg:object-center select-none"
+            style={{ imageRendering: '-webkit-optimize-contrast' }}
           />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; GENERATIVE AI</span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                Enterprise <br />
-                <span className="text-cyan-400">Generative AI & LLMs</span>
-              </h1>
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
-                Private RAG fabrics, domain-grounded foundation models, and deterministic guardrails engineered on SAP HANA Cloud Vector Engine.
-              </p>
+        {/* Subtle mobile-only scrim to ensure contrast on narrow phone screens, transparent on desktop */}
+        <div className="absolute inset-0 z-[1] sm:hidden bg-[#161622]/70 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-xl lg:max-w-2xl">
+            {/* Glowing Pill Badge with Micro-Animation */}
+            <motion.div
+              initial={{ opacity: 0, y: -16, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.02 }}
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-slate-900/90 border border-cyan-400/40 text-cyan-300 mb-5 backdrop-blur-md shadow-lg transition-all cursor-default"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_8px_#00F0FF]"></span>
+              </span>
+              <span className="font-mono uppercase text-xs tracking-wider font-bold">Enterprise Generative AI &amp; Sovereign LLMs</span>
             </motion.div>
 
-            {/* Enterprise Assurance Indicators (No Buttons) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6, delay: 0.15 }} 
-              className="pt-3 flex flex-wrap items-center gap-2.5 sm:gap-3"
+            {/* Main Headline with Clean, Crisp, Professional Enterprise Typography */}
+            <motion.h1 
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] mb-6 drop-shadow-sm"
             >
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Zero Hallucination Tolerance</span>
-              </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Verified Citation Provenance</span>
-              </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
-                <Database className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>Air-Gapped Sovereign Hosting</span>
-              </div>
+              <motion.span
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="inline-block mr-3"
+              >
+                Enterprise
+              </motion.span>
+              <motion.span 
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.25 }}
+                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400"
+              >
+                Generative AI &amp; LLMs
+              </motion.span>
+            </motion.h1>
+
+            {/* Sub-headline with Smooth Fade-Up */}
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-lg lg:text-xl text-slate-200 font-normal leading-relaxed mb-8 max-w-2xl drop-shadow-md"
+            >
+              Private RAG fabrics, domain-grounded foundation models, and deterministic guardrails engineered on SAP HANA Cloud Vector Engine.
+            </motion.p>
+
+            {/* Feature Highlight Pills with Staggered Entrance and Hover Float */}
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.12,
+                    delayChildren: 0.38
+                  }
+                }
+              }}
+              className="flex flex-wrap items-center gap-2.5 sm:gap-3"
+            >
+              {[
+                { label: 'Zero Hallucination Tolerance', icon: CheckCircle2 },
+                { label: 'Verified Citation Provenance', icon: CheckCircle2 },
+                { label: 'Air-Gapped Sovereign Hosting', icon: CheckCircle2 }
+              ].map((pill, idx) => {
+                const Icon = pill.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    variants={{
+                      hidden: { opacity: 0, y: 16, scale: 0.95 },
+                      visible: { 
+                        opacity: 1, 
+                        y: 0, 
+                        scale: 1,
+                        transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } 
+                      }
+                    }}
+                    whileHover={{ 
+                      y: -3, 
+                      scale: 1.03,
+                      boxShadow: '0 12px 28px -4px rgba(0, 240, 255, 0.25)'
+                    }}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/20 hover:border-cyan-400/50 shadow-xl backdrop-blur-md text-xs font-bold text-white transition-all cursor-default group"
+                  >
+                    <Icon className="h-4 w-4 text-emerald-400 group-hover:text-cyan-300 transition-colors drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                    <span>{pill.label}</span>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
@@ -706,7 +776,7 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
             </div>
 
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
+              <div className="relative h-80 sm:h-96 lg:h-[430px] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
                 <img
                   src="/images/generative_ai_hero.jpg"
                   alt="Knooviq Enterprise Generative AI Command Center"
@@ -864,35 +934,11 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
               A synchronized radial platform uniting private vector embeddings, parameter fine-tuning, deterministic guardrails, and multimodal document understanding.
             </p>
 
-            {/* Compact Control Toolbar */}
+            {/* Compact Status Indicator */}
             <div className="pt-1 flex flex-wrap items-center justify-center gap-2">
-              <button
-                type="button"
-                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all border ${
-                  isAutoPlaying 
-                    ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-[0_0_14px_rgba(6,182,212,0.45)]' 
-                    : 'bg-slate-900/80 text-cyan-300 border-cyan-500/40 hover:bg-cyan-950/40 hover:border-cyan-400'
-                }`}
-              >
-                {isAutoPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                <span>{isAutoPlaying ? 'PAUSE AUTO-TOUR' : 'AUTO-TOUR ECOSYSTEM'}</span>
-              </button>
-
-              {hoveredWheelIndex !== null && (
-                <button
-                  type="button"
-                  onClick={() => { setHoveredWheelIndex(null); setIsAutoPlaying(false); }}
-                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900/80 text-slate-300 border border-slate-700 hover:text-white hover:border-slate-500 text-xs font-mono transition-all"
-                >
-                  <RefreshCw className="w-2.5 h-2.5" />
-                  <span>RESET OVERVIEW</span>
-                </button>
-              )}
-
-              <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 text-[11px] font-mono text-slate-400">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 text-[11px] font-mono text-slate-300">
                 <Radio className="w-3 h-3 text-cyan-400 animate-pulse" />
-                <span>{hoveredWheelIndex !== null ? `INSPECTING: ${wheelSegments[hoveredWheelIndex].badge}` : 'HOVER OR SELECT ANY NODE'}</span>
+                <span>{hoveredWheelIndex !== null ? `INSPECTING: ${wheelSegments[hoveredWheelIndex].badge}` : 'SYNCHRONIZED COGNITIVE PLATFORM'}</span>
               </div>
             </div>
           </motion.div>
@@ -909,12 +955,8 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => { if (!isAutoPlaying) setHoveredWheelIndex(segIdx); }}
-                    onMouseLeave={() => { if (!isAutoPlaying) setHoveredWheelIndex(null); }}
-                    onClick={() => {
-                      setIsAutoPlaying(false);
-                      setHoveredWheelIndex(isHovered ? null : segIdx);
-                    }}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
+                    onClick={() => setHoveredWheelIndex(segIdx)}
                     className={`px-3.5 py-2.5 rounded-xl border transition-all duration-200 cursor-pointer relative overflow-hidden group backdrop-blur-md ${
                       isHovered
                         ? 'bg-slate-900/95 -translate-x-1 shadow-lg scale-[1.01]'
@@ -1017,12 +1059,8 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
                     return (
                       <g 
                         key={seg.id} 
-                        onMouseEnter={() => { if (!isAutoPlaying) setHoveredWheelIndex(idx); }} 
-                        onMouseLeave={() => { if (!isAutoPlaying) setHoveredWheelIndex(null); }} 
-                        onClick={() => {
-                          setIsAutoPlaying(false);
-                          setHoveredWheelIndex(isHovered ? null : idx);
-                        }}
+                        onMouseEnter={() => setHoveredWheelIndex(idx)} 
+                        onClick={() => setHoveredWheelIndex(idx)}
                         className="cursor-pointer transition-all duration-300"
                       >
                         <path 
@@ -1183,12 +1221,8 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => { if (!isAutoPlaying) setHoveredWheelIndex(segIdx); }}
-                    onMouseLeave={() => { if (!isAutoPlaying) setHoveredWheelIndex(null); }}
-                    onClick={() => {
-                      setIsAutoPlaying(false);
-                      setHoveredWheelIndex(isHovered ? null : segIdx);
-                    }}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
+                    onClick={() => setHoveredWheelIndex(segIdx)}
                     className={`px-3.5 py-2.5 rounded-xl border transition-all duration-200 cursor-pointer relative overflow-hidden group backdrop-blur-md ${
                       isHovered
                         ? 'bg-slate-900/95 translate-x-1 shadow-lg scale-[1.01]'
@@ -1281,10 +1315,7 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
                   return (
                     <g 
                       key={seg.id} 
-                      onClick={() => {
-                        setIsAutoPlaying(false);
-                        setHoveredWheelIndex(isHovered ? null : idx);
-                      }}
+                      onClick={() => setHoveredWheelIndex(idx)}
                       className="cursor-pointer"
                     >
                       <path 
@@ -1472,38 +1503,101 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
             </p>
           </div>
 
-          {/* Architecture Neural Mesh Visual Card (Image 3 of 4) */}
-          <div className="rounded-3xl overflow-hidden border-2 border-slate-200 bg-slate-950 shadow-xl relative group">
-            <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-              <div className="lg:col-span-7 relative h-72 sm:h-80 lg:h-96 overflow-hidden">
+          {/* Architecture Neural Mesh Visual Card (Multi-Model Knowledge Mesh & Clean Core Gateway) */}
+          <div className="rounded-3xl overflow-hidden border-2 border-cyan-500/30 bg-[#020713] shadow-2xl relative group">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              
+              {/* Left Column: Natural 5G Knowledge Mesh Architecture (Fits Pure Box Seamlessly) */}
+              <div className="lg:col-span-5 relative w-full h-full min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] flex items-center justify-center bg-gradient-to-b from-[#0d3b6d] via-[#09264f] to-[#002b52] overflow-hidden border-b lg:border-b-0 lg:border-r border-cyan-500/20">
                 <img
-                  src="/images/generative_ai_knowledge_mesh.jpg"
-                  alt="Enterprise Knowledge Mesh & Neural Core"
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+                  src="/images/generative_ai_knowledge_mesh_network.png"
+                  alt="Multi-Model Knowledge Mesh & Clean Core Gateway Network"
+                  className="w-full h-full object-contain filter brightness-105 contrast-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-950/90 hidden lg:block pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent lg:hidden pointer-events-none" />
-                <div className="absolute top-4 left-4 px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-cyan-400/40 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-1.5">
-                  <Database className="w-4 h-4 text-cyan-400" />
-                  <span>NEURAL VECTOR MESH BLUEPRINT</span>
+                <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-950/85 backdrop-blur-md border border-cyan-400/50 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-1.5 pointer-events-none">
+                  <Network className="w-4 h-4 text-cyan-400" />
+                  <span>MULTI-MODEL KNOWLEDGE MESH</span>
                 </div>
               </div>
-              <div className="lg:col-span-5 p-6 sm:p-8 space-y-4 text-white">
-                <div className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">
-                  Unified Knowledge Fabric
+
+              {/* Right Column: Architectural Narrative, Technical Capabilities & Live Telemetry */}
+              <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 space-y-5 text-white flex flex-col justify-between">
+                
+                {/* Header Tag & Title */}
+                <div className="space-y-3">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-xs font-mono font-bold text-cyan-300 uppercase tracking-widest">
+                    <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Unified Enterprise Knowledge Fabric</span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">
+                    Multi-Model Knowledge Mesh &amp; Clean Core Gateway
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed font-normal">
+                    Interlinking distributed enterprise document lakes, SAP HANA Cloud Vector Engine, and hyperscaler foundation models through high-throughput, low-latency stateless proxy gateways. Delivers zero PII leakage, deterministic role-based data partitioning, and zero foundational model retraining on confidential corporate intelligence.
+                  </p>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white leading-snug">
-                  Multi-Model Knowledge Mesh & Clean Core Gateway
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                  Interlinking enterprise documents, SAP HANA Cloud Vector Engine, and foundational LLMs via stateless proxy gateways. Zero PII leakage and zero foundational model retraining on sensitive corporate data.
-                </p>
-                <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-cyan-200">
-                  <span className="px-2.5 py-1 rounded-md bg-white/10 border border-white/15">✓ Stateless Inference</span>
-                  <span className="px-2.5 py-1 rounded-md bg-white/10 border border-white/15">✓ Dynamic Prompt Guard</span>
-                  <span className="px-2.5 py-1 rounded-md bg-white/10 border border-white/15">✓ Real-Time Vector Lookups</span>
+
+                {/* 4 Rich Architectural Capability Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-colors space-y-1">
+                    <div className="flex items-center gap-2 text-cyan-300 font-bold text-xs font-mono">
+                      <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>Stateless Zero-Trust Proxy</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 font-normal leading-relaxed">
+                      In-line pseudonymization scrubs corporate PII, salary tables, and supplier pricing before external model tokenization.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-colors space-y-1">
+                    <div className="flex items-center gap-2 text-cyan-300 font-bold text-xs font-mono">
+                      <Database className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>HANA Vector Mesh Grounding</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 font-normal leading-relaxed">
+                      Real-time cosine similarity search executed in-memory directly alongside SAP transactional tables with ACID consistency.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-colors space-y-1">
+                    <div className="flex items-center gap-2 text-cyan-300 font-bold text-xs font-mono">
+                      <Cpu className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>Multi-Model Dynamic Router</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 font-normal leading-relaxed">
+                      Intelligent routing between Claude 3.5, GPT-4o, and private on-prem models with semantic vector caching to slash inference cost.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-colors space-y-1">
+                    <div className="flex items-center gap-2 text-cyan-300 font-bold text-xs font-mono">
+                      <Workflow className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>5G &amp; Clean Core Edge Fabric</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 font-normal leading-relaxed">
+                      Event-driven edge microservices dispatching autonomous actions directly into SAP S/4HANA core via verified RAP business objects.
+                    </p>
+                  </div>
                 </div>
+
+                {/* Performance & Security Benchmarks Ribbon */}
+                <div className="pt-4 border-t border-white/10 grid grid-cols-3 gap-3 text-left">
+                  <div className="space-y-0.5">
+                    <div className="text-base sm:text-lg font-black text-cyan-400 font-mono tracking-tight">&lt;15ms</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400 font-medium leading-tight">Vector Search Latency</div>
+                  </div>
+                  <div className="space-y-0.5">
+                    <div className="text-base sm:text-lg font-black text-emerald-400 font-mono tracking-tight">0%</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400 font-medium leading-tight">Model Data Retention</div>
+                  </div>
+                  <div className="space-y-0.5">
+                    <div className="text-base sm:text-lg font-black text-sky-400 font-mono tracking-tight">68%</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400 font-medium leading-tight">Token Cache Efficiency</div>
+                  </div>
+                </div>
+
               </div>
+
             </div>
           </div>
         </div>
@@ -1733,32 +1827,23 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
             {/* Main Showcase Grid: Visual Image + Structured Extracted Findings */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
               
-              {/* Left Column: Visual AI Document Scan (Image 4 of 4) */}
-              <div className="lg:col-span-5 relative rounded-xl overflow-hidden border border-cyan-400/40 shadow-lg group min-h-[260px] sm:min-h-[300px] lg:min-h-full">
-                <img
-                  src="/images/generative_ai_contract_analysis.jpg"
-                  alt="Autonomous Contract Analysis & Cognitive Engine"
-                  className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
-                
-                <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-10 shadow-sm">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Neural OCR &bull; Citation Verified</span>
-                </div>
-
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 p-2.5 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 text-white text-left z-10 space-y-0.5">
-                  <span className="text-[10px] font-mono font-bold text-cyan-300 uppercase tracking-wider block">
-                    Zero Hallucination Audit
-                  </span>
-                  <div className="text-xs font-bold text-emerald-300">
-                    Deterministic Provenance Backed with Sub-Clause Citations
+              {/* Left Column: Visual Autonomous Contract & Policy Network Showcase (Compact & Balanced) */}
+              <div className="lg:col-span-4 relative rounded-xl overflow-hidden border border-cyan-400/40 bg-[#061124] shadow-xl group flex flex-col items-center justify-center p-2.5 sm:p-3 min-h-[260px] sm:min-h-[300px] lg:min-h-[340px]">
+                <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-lg">
+                  <img
+                    src="/images/generative_ai_contract_policy_analysis.png"
+                    alt="Autonomous Contract & Policy Analysis Across Global Value Chains"
+                    className="w-full h-auto max-h-[320px] sm:max-h-[340px] object-contain rounded-lg drop-shadow-md transform transition-transform duration-700 group-hover:scale-[1.02] filter brightness-105 contrast-105"
+                  />
+                  <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md bg-slate-950/85 backdrop-blur-md border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-10 shadow-sm pointer-events-none">
+                    <Scale className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Global Trade &amp; Policy Matrix</span>
                   </div>
                 </div>
               </div>
 
               {/* Right Column: High-Visibility Extracted Intelligence Cards */}
-              <div className="lg:col-span-7 flex flex-col justify-between space-y-2">
+              <div className="lg:col-span-8 flex flex-col justify-between space-y-2">
                 
                 {/* 3 Compact High-Contrast Findings Boxes */}
                 <div className="space-y-1.5">
@@ -1838,10 +1923,11 @@ export const GenerativeAiPracticePage: React.FC<GenerativeAiPracticePageProps> =
             </button>
 
             <Link
-              to="/digital-intelligence"
-              className="px-8 py-4 rounded-xl bg-transparent hover:bg-white/10 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-white/40 hover:border-white transition-all flex items-center gap-2"
+              to="/digital-intelligence/ai-agents"
+              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2 group"
             >
-              <span>Explore Digital Intelligence</span>
+              <span>Explore AI Agents</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 

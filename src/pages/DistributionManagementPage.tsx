@@ -187,24 +187,6 @@ export const DistributionManagementPage: React.FC<DistributionManagementPageProp
                 logistics routes with sub-second precision.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <a
-                  href="#connected-ecosystem"
-                  className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-semibold text-sm shadow-md transition-all flex items-center gap-2 group cursor-pointer"
-                >
-                  <span>Explore Solutions</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('Distribution Management Consultation') : null}
-                  className="px-6 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-sm font-semibold transition-all flex items-center gap-2 shadow-sm cursor-pointer"
-                >
-                  <span>Talk to an Expert</span>
-                  <ChevronRight className="w-4 h-4 text-[#00A3E0]" />
-                </button>
-              </div>
 
               {/* Real-Time Operational KPI Grid (Zero %, Zero Currency) */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200">
@@ -1016,21 +998,20 @@ export const DistributionManagementPage: React.FC<DistributionManagementPageProp
               benchmark order-to-delivery cycle times, and architect a high-velocity, clean-core SAP distribution platform.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
               <button
                 onClick={() => onOpenContact ? onOpenContact('Enterprise Distribution Management Architecture Session') : null}
-                className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-semibold text-sm shadow-xl transition-all flex items-center gap-2 group cursor-pointer"
+                className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
               >
-                <span>Talk to Our Experts</span>
-                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                <span>Talk to Our Distribution Experts</span>
+                <ArrowRight className="h-4 w-4" />
               </button>
 
               <Link
-                to="/solutions"
-                className="px-6 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm transition-all flex items-center gap-2 shadow-sm backdrop-blur-md"
+                to="/products/digital-retail-solution"
+                className="px-6 py-4 rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center backdrop-blur-md"
               >
-                <span>Explore SAP Solutions</span>
-                <ChevronRight className="w-4 h-4 text-cyan-300" />
+                Explore Digital Retail Solution
               </Link>
             </div>
 

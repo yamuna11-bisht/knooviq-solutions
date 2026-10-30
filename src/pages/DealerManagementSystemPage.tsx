@@ -339,24 +339,6 @@ export const DealerManagementSystemPage: React.FC<DealerManagementSystemPageProp
                 sell-out velocity with zero-latency SAP S/4HANA backbone connectivity.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('Dealer Management System Consultation') : null}
-                  className="px-7 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 transition-all flex items-center gap-2.5 group cursor-pointer"
-                >
-                  <span>Request Live Dealership Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <a
-                  href="#channel-bridge"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:border-slate-300"
-                >
-                  <span>Explore 6-Stage Journey</span>
-                  <ChevronRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Real-Time Telemetry Counters (Professional, Refined Typography) */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200">
@@ -1208,20 +1190,20 @@ export const DealerManagementSystemPage: React.FC<DealerManagementSystemPageProp
                 DMS deployment roadmap.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <button
                   onClick={() => onOpenContact ? onOpenContact('Dealer Management System Architecture Session') : null}
-                  className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-semibold text-sm shadow-md transition-all flex items-center gap-2 group cursor-pointer"
+                  className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
                 >
-                  <span>Schedule Executive Solution Blueprint</span>
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                  <span>Talk to Our DMS Experts</span>
+                  <ArrowRight className="h-4 w-4" />
                 </button>
 
                 <Link
-                  to="/products/field-service-management"
-                  className="px-6 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold text-sm transition-all flex items-center gap-2 shadow-sm"
+                  to="/products/asset-management"
+                  className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
                 >
-                  <span>Explore Field Service Management &rarr;</span>
+                  Explore Asset Management
                 </Link>
               </div>
             </div>

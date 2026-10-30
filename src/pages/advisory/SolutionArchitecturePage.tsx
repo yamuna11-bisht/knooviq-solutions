@@ -209,109 +209,67 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
     <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-500 selection:text-white">
 
       {/* =========================================================================
-          HERO SECTION: SOLUTION ARCHITECTURE BLUEPRINT (CLEAN WHITE FORMAT)
+          SECTION 1: HERO — SOLUTION ARCHITECTURE (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200/80">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black text-white border-b border-[#00A3E0]/20">
         
-        {/* Subtle Architectural Blueprint Grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, #0F172A 1px, transparent 1px), linear-gradient(to bottom, #0F172A 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+        {/* Decorative Top Hairline */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E0]/40 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-500 font-medium">
-              <li><Link to="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
-              <li className="text-slate-400">/</li>
-              <li><Link to="/advisory-managed-services" className="hover:text-blue-600 transition-colors">Advisory &amp; Managed Services</Link></li>
-              <li className="text-slate-400">/</li>
-              <li className="text-blue-600 font-semibold" aria-current="page">Solution Architecture</li>
-            </ol>
-          </nav>
+        {/* Full-Bleed Background Visual — 100% Clear with Zero Dark Shade */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/architecture/solution-architecture-hero.jpg"
+            alt="Enterprise SAP Solution Architecture Blueprint Overview"
+            className="w-full h-full object-cover object-top lg:object-[82%_top] brightness-105 contrast-105 select-none"
+          />
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold tracking-wider uppercase">
-                <Boxes className="w-3.5 h-3.5 text-blue-600" />
-                <span>ENTERPRISE ARCHITECTURE BLUEPRINT &bull; SCALABLE SYSTEMS DESIGN</span>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                Solution Architecture
-              </h1>
+          <div className="max-w-3xl space-y-5 text-left relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero dark shade on image */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 leading-snug">
-                Design Connected, Scalable, and Resilient SAP Enterprise Blueprints
-              </p>
-
-              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-                Translate complex business strategies into robust, modular, and future-proof enterprise architectures. Knooviq designs decoupled SAP solution blueprints uniting cloud ERP cores, real-time integration meshes, intelligent data fabrics, and multi-cloud platforms.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact && onOpenContact('Solution Architecture Design')}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>Request Architecture Consultation</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <a
-                  href="#blueprint-framework"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-base transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Explore Blueprint Framework</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </a>
-              </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00A3E0] text-xs font-mono font-bold tracking-wider uppercase shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <Boxes className="w-3.5 h-3.5 text-[#00A3E0]" />
+              <span>ENTERPRISE ARCHITECTURE BLUEPRINT • SCALABLE SYSTEMS DESIGN</span>
             </div>
 
-            {/* Right Hero Visual: IMAGE 1 - Enterprise Solution Architecture Overview */}
-            <div className="lg:col-span-6">
-              <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative group bg-white">
-                <img
-                  src="/images/architecture/solution-architecture-hero.jpg"
-                  alt="Enterprise SAP Solution Architecture Blueprint Overview"
-                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-between text-slate-900">
-                  <div>
-                    <span className="text-xs font-mono font-bold text-blue-600 block">ARCHITECTURE BLUEPRINT</span>
-                    <span className="text-sm font-bold text-slate-900">Multi-Tier Decoupled Enterprise Framework</span>
-                  </div>
-                  <span className="text-xs font-mono font-extrabold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
-                    Clean Core Standard
-                  </span>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+              Solution <br />
+              <span className="text-[#00A3E0]">
+                Architecture
+              </span>
+            </h1>
 
+            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
+              Design Connected, Scalable, and Resilient SAP Enterprise Blueprints
+            </p>
+
+            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
+              Translate complex business strategies into robust, modular, and future-proof enterprise architectures. Knooviq designs decoupled SAP solution blueprints uniting cloud ERP cores, real-time integration meshes, intelligent data fabrics, and multi-cloud platforms.
+            </p>
           </div>
 
         </div>
       </section>
 
-      {/* Sticky Service Navigation */}
-      <AdvisoryServiceNav currentServiceId="solution-architecture" />
 
       {/* =========================================================================
           SECTION 1: ENTERPRISE SOLUTION BLUEPRINT FRAMEWORK
           ========================================================================= */}
       <section id="blueprint-framework" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
-              Architectural Blueprint &amp; Layered Topology
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/10 border border-blue-200 dark:border-white/20 text-[#00A3E0] text-xs font-mono font-bold uppercase tracking-wider shadow-sm mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span>Architectural Blueprint &amp; Layered Topology</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0A1E3F] dark:text-white tracking-tight">
               End-to-End Enterprise Solution Blueprint Framework
             </h2>
             <p className="text-slate-600 text-base mt-2 font-sans">
@@ -334,11 +292,10 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
               <div
                 key={idx}
                 onClick={() => setActiveBlueprintTier(idx)}
-                className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
-                  activeBlueprintTier === idx
+                className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${activeBlueprintTier === idx
                     ? 'bg-blue-50 border-blue-500 shadow-md ring-1 ring-blue-500/30'
                     : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
-                }`}
+                  }`}
               >
                 <div>
                   <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-3">
@@ -401,7 +358,7 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Capability Mapping &amp; Traceability
@@ -415,18 +372,17 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             {/* Left Selector Column */}
             <div className="lg:col-span-5 space-y-3">
               {traceabilityMatrix.map((item, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedReq(idx)}
-                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${
-                    selectedReq === idx
+                  className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${selectedReq === idx
                       ? 'bg-blue-50 border-blue-500 shadow-sm ring-1 ring-blue-500/30'
                       : 'bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-700'
-                  }`}
+                    }`}
                 >
                   <div className="text-sm font-bold text-slate-900 mb-1">{item.capability}</div>
                   <div className="text-xs text-slate-500 line-clamp-1">{item.driver}</div>
@@ -494,7 +450,7 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Enterprise Integration Architecture
@@ -522,11 +478,10 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
               <button
                 key={key}
                 onClick={() => setActivePattern(key)}
-                className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activePattern === key
+                className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activePattern === key
                     ? 'bg-blue-600 text-white shadow-md'
                     : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200 shadow-sm'
-                }`}
+                  }`}
               >
                 {integrationPatterns[key].title.split(' (')[0]}
               </button>
@@ -585,7 +540,7 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Data Architecture &amp; Unified Fabric
@@ -638,7 +593,7 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Security &amp; Operational Resiliency
@@ -702,7 +657,7 @@ export const SolutionArchitecturePage: React.FC<SolutionArchitecturePageProps> =
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Governance &amp; Architectural Standards

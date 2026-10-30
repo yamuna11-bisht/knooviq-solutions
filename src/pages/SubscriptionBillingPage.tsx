@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
@@ -704,27 +705,6 @@ export const SubscriptionBillingPage: React.FC<SubscriptionBillingPageProps> = (
                 Automate recurring billing. Simplify revenue operations. KNOOVIQ Subscription Billing synchronizes multi-model pricing, real-time usage rating, automated invoicing, multi-gateway payments, and SAP S/4HANA financial ledgers into one connected enterprise workflow.
               </motion.p>
 
-              {/* Action CTA Buttons */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
-              >
-                <button
-                  onClick={() => onOpenContact('Subscription Billing Consultation')}
-                  className="btn-primary-gradient px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
-                >
-                  <span>Talk to an Expert</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <a
-                  href="#journey"
-                  className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-white/80 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
-                >
-                  Explore 6-Stage Journey
-                </a>
-              </motion.div>
 
               {/* Regulatory Trust Metrics */}
               <div className="flex flex-wrap items-center gap-4 pt-4 text-xs font-mono text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-white/10">
@@ -2220,18 +2200,18 @@ export const SubscriptionBillingPage: React.FC<SubscriptionBillingPageProps> = (
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                   <button
                     onClick={() => onOpenContact('Subscription Billing Enterprise Consultation')}
-                    className="btn-primary-gradient px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
+                    className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
                   >
-                    <span>Talk to an Expert</span>
+                    <span>Talk to Our Billing Experts</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
 
-                  <a
-                    href="#journey"
-                    className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-white/80 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
+                  <Link
+                    to="/products/sales-force-automation"
+                    className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
                   >
-                    Explore Architecture
-                  </a>
+                    Explore Sales Force Automation
+                  </Link>
                 </div>
 
                 {/* Security and Certification Badges */}

@@ -432,27 +432,6 @@ export const EInvoicePage: React.FC<EInvoicePageProps> = ({ onOpenContact }) => 
                 Automate your enterprise invoice lifecycle directly inside SAP. Generate government-authorized IRN and signed QR codes in sub-seconds, eliminate manual errors, and maintain frictionless GST compliance.
               </motion.p>
 
-              {/* Action CTA Buttons */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8"
-              >
-                <button
-                  onClick={() => onOpenContact('SAP E-Invoicing Solutions')}
-                  className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
-                >
-                  <span>Talk to an E-Invoicing Expert</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <a
-                  href="#journey"
-                  className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-white/80 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
-                >
-                  Explore 6-Stage Journey
-                </a>
-              </motion.div>
 
               {/* Regulatory Trust Metrics */}
               <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -603,15 +582,8 @@ export const EInvoicePage: React.FC<EInvoicePageProps> = ({ onOpenContact }) => 
                   ))}
                 </div>
 
-                <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <div className="pt-2 flex items-center text-[11px] font-mono text-slate-400">
                   <span>Standard SAP S/4HANA & ECC Compliant</span>
-                  <button
-                    onClick={() => onOpenContact(`E-Invoice Stage Consultation: ${journeyStages[activeJourneyIndex].title}`)}
-                    className="inline-flex items-center gap-1 font-bold text-blue-600 dark:text-cyan-400 hover:underline cursor-pointer"
-                  >
-                    <span>Request Architecture Details</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
                 </div>
               </div>
 
@@ -807,15 +779,8 @@ export const EInvoicePage: React.FC<EInvoicePageProps> = ({ onOpenContact }) => 
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+                <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/10 flex items-center text-xs font-mono">
                   <span className="text-slate-400">Clean Core & BTP Extension Ready</span>
-                  <button
-                    onClick={() => onOpenContact(`SAP E-Invoicing Architecture: ${currentArchLayer.title}`)}
-                    className="font-bold text-blue-600 dark:text-cyan-400 hover:underline cursor-pointer flex items-center gap-1"
-                  >
-                    <span>Schedule Technical Deep Dive</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
                 </div>
               </motion.div>
             </div>
@@ -1076,10 +1041,10 @@ export const EInvoicePage: React.FC<EInvoicePageProps> = ({ onOpenContact }) => 
                     <ArrowRight className="h-4 w-4" />
                   </button>
                   <Link
-                    to="/solutions"
+                    to="/eway-bill"
                     className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
                   >
-                    Explore SAP Solutions
+                    Explore E-Way Bill Management
                   </Link>
                 </div>
 

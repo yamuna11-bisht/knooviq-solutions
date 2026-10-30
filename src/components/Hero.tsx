@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Sparkles, 
-  Globe, 
-  X, 
-  Play, 
-  Pause, 
+import {
+  ArrowRight,
+  Sparkles,
+  Globe,
+  X,
+  Play,
+  Pause,
   RotateCw
 } from 'lucide-react';
 import { Hero3DCanvas, GlobeDisplayMode, GLOBAL_HUBS, GlobalHub } from './3d/Hero3DCanvas';
@@ -38,11 +38,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) 
   };
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="dark relative min-h-[750px] lg:min-h-[860px] xl:h-screen max-h-[1050px] overflow-hidden flex flex-col justify-between bg-gradient-to-b from-[#020617] via-[#050C1F] to-[#030712] text-white select-none transition-colors duration-500"
     >
-      
+
       {/* 1. FULL-BLEED 3D GLOBE CANVAS (Centered, Unobstructed Full Screen Background) */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <Hero3DCanvas
@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) 
 
       {/* 2. TOP 3D HUD CONTROL DECK & MINIMAL BRANDING */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 sm:pt-24 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
-        
+
         {/* Left Status Indicator */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -109,11 +109,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) 
           {/* Orbit Play / Pause Toggle */}
           <button
             onClick={() => setIsRotating(!isRotating)}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
-              isRotating
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${isRotating
                 ? 'bg-cyan-400/20 text-cyan-300 border border-cyan-400/30'
                 : 'bg-white/10 text-slate-400'
-            }`}
+              }`}
             title={isRotating ? 'Pause 3D Rotation' : 'Resume 3D Rotation'}
           >
             {isRotating ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
@@ -134,7 +133,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) 
 
       {/* 3. LEFT-ALIGNED HERO CONTENT (Shifted Upwards) */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-start pt-3 sm:pt-5 lg:pt-6 pb-4 items-start text-left pointer-events-none">
-        
+
         <div className="max-w-xl lg:max-w-2xl xl:max-w-3xl text-left">
           {/* Futuristic Eyebrow Badge */}
           <motion.div

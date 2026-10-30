@@ -634,48 +634,61 @@ export const PredictiveAiPracticePage: React.FC<PredictiveAiPracticePageProps> =
     <div className="w-full bg-white text-slate-900 font-sans selection:bg-[#0070C0] selection:text-white">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Image 1 of 4 - Ultra-Clean & Sleek, NO Buttons)
+          SECTION 1: HERO SECTION (Image 1 of 4 - Ultra-Clean & Sleek 2-Column Showcase, NO Buttons)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-slate-900">
+      {/* =========================================================================
+          SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Aligned with AI Agents)
+          ========================================================================= */}
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-slate-950 text-white">
+
+        {/* Full-Bleed 16:9 Panoramic Image - Optimized Widescreen with Artwork on Right */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/predictive_ai_hero.jpg"
-            alt="Enterprise Predictive AI & Multi-Horizon Demand Sensing"
-            className="w-full h-full object-cover object-center opacity-40"
+          <img 
+            src="/images/predictive_ai_hero_widescreen.png" 
+            alt="Enterprise Predictive AI & Demand Sensing"
+            className="w-full h-full object-cover object-[80%_top] lg:object-[80%_top] brightness-[0.85] contrast-[1.05]"
+            style={{ imageRendering: '-webkit-optimize-contrast', objectPosition: '80% top' }}
           />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <TrendingUp className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; PREDICTIVE & PRESCRIPTIVE AI</span>
+        {/* Directional High-Contrast Scrim for 100% Crystal-Clear Text Readability */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/65 to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-md">
+                  <TrendingUp className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; PREDICTIVE AI &amp; DEMAND SENSING</span>
+                </div>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                Enterprise Predictive AI & Multi-Horizon Demand Sensing
+              <h1 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
+                Enterprise <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400">
+                  Predictive AI &amp; Demand Sensing
+                </span>
               </h1>
 
-              <p className="text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl">
+              <p className="text-base sm:text-lg text-slate-100 leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                 Transition your enterprise from reactive supply chain firefighting to deterministic foresight with neural time-series engines, dynamic safety buffer optimization, and closed-loop SAP execution.
               </p>
             </motion.div>
 
-            {/* 3 Enterprise Trust Badges (Zero CTA Buttons in Hero) */}
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-2 sm:gap-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            {/* Enterprise Trust Indicators */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Probabilistic Demand Sensing</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>SAP IBP Hierarchical Reconciliation</span>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>SAP IBP Reconciliation</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-medium text-slate-200 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-sky-400" />
-                <span>Dynamic Safety Stock Optimization</span>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200 shadow-lg">
+                <Database className="w-4 h-4 text-sky-400 shrink-0" />
+                <span>Dynamic Safety Stock Buffer</span>
               </div>
             </motion.div>
           </div>
@@ -763,7 +776,7 @@ export const PredictiveAiPracticePage: React.FC<PredictiveAiPracticePageProps> =
 
             {/* Right Column: Deep-Dive Visual Card (Image 2 of 4) + Step Switcher */}
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
+              <div className="relative h-80 sm:h-96 lg:h-[430px] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
                 <img
                   src="/images/predictive_ai_hero.jpg"
                   alt="Knooviq Enterprise Predictive AI Command Center"
@@ -885,10 +898,7 @@ export const PredictiveAiPracticePage: React.FC<PredictiveAiPracticePageProps> =
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => {
-                      setActiveWheelIndex(actualIndex);
-                      setIsAutoRotating(false);
-                    }}
+                    onClick={() => setActiveWheelIndex(actualIndex)}
                     onMouseEnter={() => setHoveredWheelIndex(actualIndex)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
                     className={`p-3.5 rounded-xl border transition-all cursor-pointer text-left ${
@@ -928,10 +938,7 @@ export const PredictiveAiPracticePage: React.FC<PredictiveAiPracticePageProps> =
                       <g
                         key={seg.id}
                         className="cursor-pointer transition-all duration-300"
-                        onClick={() => {
-                          setActiveWheelIndex(idx);
-                          setIsAutoRotating(false);
-                        }}
+                        onClick={() => setActiveWheelIndex(idx)}
                         onMouseEnter={() => setHoveredWheelIndex(idx)}
                         onMouseLeave={() => setHoveredWheelIndex(null)}
                       >
@@ -979,27 +986,6 @@ export const PredictiveAiPracticePage: React.FC<PredictiveAiPracticePageProps> =
                   </div>
                 </div>
               </div>
-
-              {/* Pause/Resume Auto-Rotation Toggle */}
-              <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
-                <button
-                  type="button"
-                  onClick={() => setIsAutoRotating(!isAutoRotating)}
-                  className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 font-mono text-[11px] flex items-center gap-1.5"
-                >
-                  {isAutoRotating ? (
-                    <>
-                      <Pause className="w-3 h-3 text-cyan-400" />
-                      <span>PAUSE ROTATION</span>
-                    </>
-                  ) : (
-                    <>
-                      <Play className="w-3 h-3 text-emerald-400" />
-                      <span>RESUME ROTATION</span>
-                    </>
-                  )}
-                </button>
-              </div>
             </div>
 
             {/* Right 4 Capability Cards */}
@@ -1010,10 +996,7 @@ export const PredictiveAiPracticePage: React.FC<PredictiveAiPracticePageProps> =
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => {
-                      setActiveWheelIndex(idx);
-                      setIsAutoRotating(false);
-                    }}
+                    onClick={() => setActiveWheelIndex(idx)}
                     onMouseEnter={() => setHoveredWheelIndex(idx)}
                     onMouseLeave={() => setHoveredWheelIndex(null)}
                     className={`p-3.5 rounded-xl border transition-all cursor-pointer text-left ${
@@ -1475,11 +1458,11 @@ export const PredictiveAiPracticePage: React.FC<PredictiveAiPracticePageProps> =
             </button>
 
             <Link
-              to="/digital-intelligence"
-              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2"
+              to="/digital-intelligence/enterprise-ai"
+              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2 group"
             >
-              <span>Explore Digital Intelligence</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>Explore Autonomous AI</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

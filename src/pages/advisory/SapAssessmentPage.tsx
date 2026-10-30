@@ -135,110 +135,67 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
     <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-500 selection:text-white">
 
       {/* =========================================================================
-          HERO SECTION: SAP ASSESSMENT (CLEAN WHITE FORMAT)
+          SECTION 1: HERO — SAP ASSESSMENT (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200/80">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black text-white border-b border-[#00A3E0]/20">
         
-        {/* Subtle Background Grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, #0F172A 1px, transparent 1px), linear-gradient(to bottom, #0F172A 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+        {/* Decorative Top Hairline */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E0]/40 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-500 font-medium">
-              <li><Link to="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
-              <li className="text-slate-400">/</li>
-              <li><Link to="/advisory-managed-services" className="hover:text-blue-600 transition-colors">Advisory &amp; Managed Services</Link></li>
-              <li className="text-slate-400">/</li>
-              <li className="text-blue-600 font-semibold" aria-current="page">SAP Assessment</li>
-            </ol>
-          </nav>
+        {/* Full-Bleed Background Visual — 100% Clear with Zero Dark Shade */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/assessment/sap-assessment-hero.jpg"
+            alt="Enterprise SAP Landscape Assessment Diagnostic Dashboard"
+            className="w-full h-full object-cover object-top lg:object-[82%_top] brightness-105 contrast-105 select-none"
+          />
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Content Header */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold tracking-wider uppercase">
-                <Search className="w-3.5 h-3.5 text-blue-600" />
-                <span>LANDSCAPE DIAGNOSTIC AUDIT &bull; TECHNICAL HEALTH SCAN</span>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                SAP Assessment
-              </h1>
+          <div className="max-w-3xl space-y-5 text-left relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero dark shade on image */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-              <p className="text-xl sm:text-2xl font-bold text-slate-700 leading-snug">
-                Understand Your SAP Landscape. Identify Opportunities. Plan With Confidence.
-              </p>
-
-              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-                Gain a clear view of your SAP environment through structured assessment of systems, processes, applications, integrations, data and technical dependencies.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact && onOpenContact('SAP Landscape Assessment')}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/25 transition-all flex items-center gap-2.5 cursor-pointer"
-                >
-                  <span>Request SAP Assessment</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <a
-                  href="#landscape-discovery"
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-semibold text-base transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Explore Assessment Scope</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </a>
-              </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00A3E0] text-xs font-mono font-bold tracking-wider uppercase shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <Search className="w-3.5 h-3.5 text-[#00A3E0]" />
+              <span>LANDSCAPE DIAGNOSTIC AUDIT • TECHNICAL HEALTH SCAN</span>
             </div>
 
-            {/* Right Hero Visual: IMAGE 1 - Diagnostic Assessment Dashboard */}
-            <div className="lg:col-span-6">
-              <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative group bg-white">
-                <img
-                  src="/images/assessment/sap-assessment-hero.jpg"
-                  alt="Enterprise SAP Landscape Assessment Diagnostic Dashboard"
-                  className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-between text-slate-900">
-                  <div>
-                    <span className="text-xs font-mono font-bold text-blue-600 block">DIAGNOSTIC AUDIT SCORECARD</span>
-                    <span className="text-sm font-bold text-slate-900">Automated Non-Invasive Read-Only Scans</span>
-                  </div>
-                  <span className="text-xs font-mono font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                    Live Health Radar
-                  </span>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+              SAP <br />
+              <span className="text-[#00A3E0]">
+                Assessment
+              </span>
+            </h1>
 
+            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
+              Understand Your SAP Landscape. Identify Opportunities. Plan With Confidence.
+            </p>
+
+            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
+              Gain a clear view of your SAP environment through structured assessment of systems, processes, applications, integrations, data and technical dependencies.
+            </p>
           </div>
 
         </div>
       </section>
 
-      {/* Sticky Service Navigation */}
-      <AdvisoryServiceNav currentServiceId="sap-assessment" />
 
       {/* =========================================================================
           SECTION 1: SAP LANDSCAPE DISCOVERY
           ========================================================================= */}
       <section id="landscape-discovery" className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
-              Landscape Discovery
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/10 border border-blue-200 dark:border-white/20 text-[#00A3E0] text-xs font-mono font-bold uppercase tracking-wider shadow-sm mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span>Landscape Discovery</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0A1E3F] dark:text-white tracking-tight">
               Comprehensive Discovery of Systems, Modules &amp; Dependencies
             </h2>
             <p className="text-slate-600 text-base mt-2 font-sans">
@@ -288,7 +245,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Business Process Assessment
@@ -318,7 +275,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Application Portfolio &amp; Scope Review
@@ -348,7 +305,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Integration &amp; Interface Assessment
@@ -394,12 +351,11 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
                   </div>
 
                   <div>
-                    <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${
-                      proto.risk === 'Critical' ? 'bg-rose-50 text-rose-700 border-rose-200' :
-                      proto.risk === 'High' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                      proto.risk === 'Medium' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                      'bg-emerald-50 text-emerald-700 border-emerald-200'
-                    }`}>
+                    <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${proto.risk === 'Critical' ? 'bg-rose-50 text-rose-700 border-rose-200' :
+                        proto.risk === 'High' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                          proto.risk === 'Medium' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                            'bg-emerald-50 text-emerald-700 border-emerald-200'
+                      }`}>
                       {proto.risk} Risk
                     </span>
                   </div>
@@ -416,7 +372,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Data Quality &amp; Infrastructure Assessment
@@ -468,7 +424,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-10">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Risk &amp; Gap Analysis
@@ -482,7 +438,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             {/* 2x2 Quadrant Selector */}
             <div className="lg:col-span-5 grid grid-cols-2 gap-3">
               {[
@@ -494,11 +450,10 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
                 <div
                   key={quad.id}
                   onClick={() => setActiveRiskQuadrant(quad.id as any)}
-                  className={`p-4 rounded-2xl border transition-all cursor-pointer ${
-                    activeRiskQuadrant === quad.id
+                  className={`p-4 rounded-2xl border transition-all cursor-pointer ${activeRiskQuadrant === quad.id
                       ? 'bg-blue-600 text-white border-blue-600 shadow-md'
                       : 'bg-slate-50 border-slate-200 hover:border-blue-400 text-slate-700'
-                  }`}
+                    }`}
                 >
                   <div className="text-xs font-bold font-mono mb-1">{quad.title}</div>
                   <div className={`text-[10px] ${activeRiskQuadrant === quad.id ? 'text-white/80' : 'text-slate-500'}`}>
@@ -546,7 +501,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           ========================================================================= */}
       <section className="py-16 sm:py-20 border-b border-slate-200/80 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
               Actionable Recommendations &amp; Roadmap

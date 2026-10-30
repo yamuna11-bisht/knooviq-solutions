@@ -213,23 +213,6 @@ export const FormIntelligencePage: React.FC<FormIntelligencePageProps> = ({ onOp
                 Unlock registration packets, KYC applications, tax declarations, and technical inspection checklists. KnoovIQ combines spatial layout models and neural handwriting recognition to extract fields, validate signatures, and eliminate manual data entry with verifiable enterprise precision.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact?.('Form Intelligence')}
-                  className="px-7 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 transition-all flex items-center gap-2.5 group cursor-pointer"
-                >
-                  <span>Request Live Form Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="#form-friction"
-                  className="px-6 py-3.5 rounded-xl bg-white dark:bg-[#0B1528] hover:bg-slate-50 dark:hover:bg-[#0E1A33] border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-all flex items-center gap-2 shadow-xs"
-                >
-                  <span>Explore Architecture</span>
-                  <ArrowRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Executive Capability Highlights (Professional, Refined Typography) */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t-2 border-slate-300 dark:border-slate-800 text-left">
@@ -954,10 +937,10 @@ export const FormIntelligencePage: React.FC<FormIntelligencePageProps> = ({ onOp
           <div className="pt-2 flex justify-center">
             <button
               onClick={() => onOpenContact?.('Form Intelligence')}
-              className="glow-btn inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white shadow-xl shadow-[#00A3E0]/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="px-8 py-4 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 group cursor-pointer"
             >
               <span>Request a Demo</span>
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>

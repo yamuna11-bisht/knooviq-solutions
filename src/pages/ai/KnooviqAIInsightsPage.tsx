@@ -263,24 +263,6 @@ export const KnooviqAIInsightsPage: React.FC<KnooviqAIInsightsPageProps> = ({ on
                 across systems, and uncover the context behind important questions.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('Knooviq AI Insights Demo') : null}
-                  className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-bold text-sm shadow-md hover:shadow-cyan-500/25 transition-all flex items-center gap-2 group cursor-pointer hover:scale-102"
-                >
-                  <span>Book a Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <a
-                  href="#information-to-understanding"
-                  className="px-6 py-4 rounded-xl bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/15 border-2 border-slate-300 dark:border-cyan-400/40 text-slate-900 dark:text-white text-sm font-bold transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Explore AI Insights</span>
-                  <ChevronRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Core Visual Story: Scattered Information -> Connected Knowledge -> Clear Understanding */}
               <div className="pt-6 border-t border-slate-300 dark:border-white/20">
