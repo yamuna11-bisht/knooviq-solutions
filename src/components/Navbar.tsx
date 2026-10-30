@@ -6,7 +6,6 @@ import {
   ChevronDown,
   Sun,
   Moon,
-  Search,
   ArrowRight,
   Sparkles,
   ShieldCheck,
@@ -735,9 +734,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   // Mobile accordion state
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
 
-  // Search modal state
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -755,7 +751,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   useEffect(() => {
     setActiveMenu(null);
     setMobileMenuOpen(false);
-    setSearchOpen(false);
   }, [location.pathname]);
 
   const handleMouseEnter = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries') => {
@@ -1376,18 +1371,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
             </nav>
 
-            {/* Right Action Utilities (Search, Theme Toggle, Contact Us Button) */}
+            {/* Right Action Utilities (Contact Us Button) */}
             <div className="hidden lg:flex items-center gap-3">
-
-              {/* Search Icon (Accely top right) */}
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                aria-label="Search"
-                className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-700 dark:text-slate-300 hover:text-[#00A3E0] hover:bg-slate-100 dark:hover:bg-white/10 transition-all border border-slate-200 dark:border-white/10"
-              >
-                <Search className="h-4 w-4" />
-              </button>
-
               {/* Premium "Contact us ->" Button with Shimmer */}
               <button
                 onClick={() => onOpenContact ? onOpenContact() : handleNavClick('/contact')}
@@ -1411,36 +1396,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
           </div>
         </div>
-
-        {/* Interactive Search Overlay */}
-        {searchOpen && (
-          <div className="border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#070E1C] px-4 py-3 shadow-2xl transition-all">
-            <div className="max-w-4xl mx-auto flex items-center gap-3">
-              <Search className="h-4 w-4 text-[#00A3E0]" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search solutions, SAP modules, products, industries, or services..."
-                className="w-full bg-transparent text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none font-medium"
-                autoFocus
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && searchQuery.trim()) {
-                    setSearchOpen(false);
-                    navigate(`/solutions?q=${encodeURIComponent(searchQuery)}`);
-                  }
-                }}
-              />
-              <button
-                onClick={() => setSearchOpen(false)}
-                className="text-xs font-bold text-slate-500 hover:text-slate-800 dark:hover:text-white px-2 py-1 bg-slate-100 dark:bg-white/10 rounded"
-              >
-                ESC
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Mobile Drawer with sequence: Home, About, Products, Solutions, Services, Industries */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-b border-slate-200 dark:border-sky-500/25 bg-white dark:bg-[#070E1C] px-4 pt-3 pb-6 space-y-2 shadow-2xl max-h-[80vh] overflow-y-auto">
