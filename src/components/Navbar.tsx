@@ -13,9 +13,6 @@ import {
   Layers,
   Award,
   BookOpen,
-  FileText,
-  Video,
-  Newspaper,
   Building2,
   Users,
   Store,
@@ -732,8 +729,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Desktop active menu state: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights'
-  const [activeMenu, setActiveMenu] = useState<'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights' | null>(null);
+  // Desktop active menu state: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries'
+  const [activeMenu, setActiveMenu] = useState<'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | null>(null);
 
   // Mobile accordion state
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
@@ -761,7 +758,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     setSearchOpen(false);
   }, [location.pathname]);
 
-  const handleMouseEnter = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights') => {
+  const handleMouseEnter = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries') => {
     if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
     setActiveMenu(menu);
   };
@@ -772,7 +769,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     }, 250);
   };
 
-  const handleMenuToggle = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries' | 'insights') => {
+  const handleMenuToggle = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries') => {
     if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
     setActiveMenu(prev => prev === menu ? null : menu);
   };
@@ -813,14 +810,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               <KnooviqLogo size="md" />
             </Link>
 
-            {/* Desktop Navigation Links in EXACT user-requested order:
+            {/* Desktop Navigation Links:
                 1. Home
                 2. About
                 3. Products
                 4. Transformation
                 5. Services
                 6. Industries
-                7. Insights
             */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs xl:text-sm font-semibold">
 
@@ -1378,59 +1374,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 )}
               </div>
 
-              {/* 7. INSIGHTS (Accely Image 5 Dropdown) */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter('insights')}
-              >
-                <button
-                  onClick={() => handleMenuToggle('insights')}
-                  type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'insights' || location.pathname === '/insights'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
-                >
-                  <span>Insights</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'insights' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
-                </button>
-
-                {/* Insights Dropdown */}
-                {activeMenu === 'insights' && (
-                  <div
-                    className="absolute top-full -left-12 w-64 pt-2 transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50"
-                    onMouseEnter={() => handleMouseEnter('insights')}
-                  >
-                    <div className="rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-3 shadow-2xl space-y-1">
-                      <Link to="/insights" onClick={() => setActiveMenu(null)} className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <Award className="h-4 w-4 text-[#00A3E0]" />
-                        <span>Customer Stories</span>
-                      </Link>
-                      <Link to="/insights" onClick={() => setActiveMenu(null)} className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <BookOpen className="h-4 w-4 text-emerald-500" />
-                        <span>Blogs</span>
-                      </Link>
-                      <Link to="/insights" onClick={() => setActiveMenu(null)} className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <Newspaper className="h-4 w-4 text-purple-500" />
-                        <span>Newsroom</span>
-                      </Link>
-                      <Link to="/insights" onClick={() => setActiveMenu(null)} className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <FileText className="h-4 w-4 text-indigo-500" />
-                        <span>White Papers</span>
-                      </Link>
-                      <Link to="/insights" onClick={() => setActiveMenu(null)} className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <Video className="h-4 w-4 text-rose-500" />
-                        <span>Videos</span>
-                      </Link>
-                      <Link to="/insights" onClick={() => setActiveMenu(null)} className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <BookOpen className="h-4 w-4 text-amber-500" />
-                        <span>Brochures</span>
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-
             </nav>
 
             {/* Right Action Utilities (Search, Theme Toggle, Contact Us Button) */}
@@ -1498,7 +1441,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           </div>
         )}
 
-        {/* Mobile Drawer with exact sequence: Home, About, Products, Solutions, Services, Industries, Insights */}
+        {/* Mobile Drawer with sequence: Home, About, Products, Solutions, Services, Industries */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-b border-slate-200 dark:border-sky-500/25 bg-white dark:bg-[#070E1C] px-4 pt-3 pb-6 space-y-2 shadow-2xl max-h-[80vh] overflow-y-auto">
 
@@ -1799,15 +1742,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 </div>
               )}
             </div>
-
-            {/* 7. Mobile Insights */}
-            <Link
-              to="/insights"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl"
-            >
-              Insights & White Papers
-            </Link>
 
             {/* 8. Mobile Contact */}
             <Link
