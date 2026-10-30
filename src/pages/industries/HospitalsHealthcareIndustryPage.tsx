@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -31,8 +32,6 @@ interface HospitalsHealthcareIndustryPageProps {
 
 export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndustryPageProps> = ({ onOpenContact }) => {
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<'ALL' | 'CLINICAL' | 'LOGISTICS' | 'GOVERNANCE'>('ALL');
-  const [activeArchTab, setActiveArchTab] = useState<'clean-core' | 'btp' | 'ehr-sync' | 'compliance'>('clean-core');
-  const [activeJourneyStep, setActiveJourneyStep] = useState<number>(0);
 
   // Section 2: Clinical Journey Navigator Data
   const journeySteps = [
@@ -42,7 +41,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       description: 'Nurses and surgical staff issue automated consumption triggers directly through EHR-connected touchscreens, automating stock depletion from ward carts.',
       tag: 'WARD LEVEL',
       icon: Stethoscope,
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/healthcare/healthcare_cleanroom_devices.png'
     },
     {
       label: 'Sterile Supply Logistics',
@@ -50,7 +49,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       description: 'End-to-end 2D barcode identification on surgical instrument trays ensures validated autoclave sterilization cycles, lot matching, and perioperative kit readiness.',
       tag: 'PERIOPERATIVE',
       icon: Syringe,
-      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/healthcare/cssd_barcode_tracking.png'
     },
     {
       label: 'Dock-to-Bedside Replenishment',
@@ -58,7 +57,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       description: 'Automated warehouse putaway, automated guided vehicle (AGV) internal delivery routing, and RFID two-bin Kanban replenish surgical suites without clinical downtime.',
       tag: 'AUTOMATED INTRALOGISTICS',
       icon: Truck,
-      image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/healthcare/hospital_kanban_surgical_suite.jpg'
     },
     {
       label: 'Biomedical Asset Governance',
@@ -66,9 +65,39 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       description: 'Telemetry monitoring on vital pumps, MRI scanners, and ventilators logs operational runtime, auto-triggers preventative calibration, and prevents unscheduled downtime.',
       tag: 'BIOMEDICAL EAM',
       icon: HeartPulse,
-      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/healthcare/biomedical_equipment_maintenance.png'
     }
   ];
+
+  // Section 4: Architecture Tabs Data
+  const archTabs = [
+    { id: 'clean-core', title: 'Clean Core ERP Foundation', sub: 'Zero core modifications' },
+    { id: 'btp', title: 'BTP Clinical Integrations', sub: 'Side-by-side HL7 & FHIR microservices' },
+    { id: 'ehr-sync', title: 'EHR Real-Time Data Fabric', sub: 'Sub-second consumption ledger' },
+    { id: 'compliance', title: 'Joint Commission & Audit Engine', sub: 'Automated 21 CFR Part 11 records' }
+  ];
+
+  // Section 2: Auto-rotation for Clinical Journey (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Architecture Tabs (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeArchIndex,
+    handleSelect: handleArchTabClick
+  } = useAutoRotate({
+    itemCount: archTabs.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  const activeArchTab = archTabs[activeArchIndex]?.id || 'clean-core';
 
   // Section 3: Hospital & Healthcare Operational Bottlenecks
   const healthcareChallenges = [
@@ -110,7 +139,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       category: 'CLINICAL',
       categoryLabel: 'Clinical Workflows',
       description: 'RFID-enabled smart cabinets and two-bin automated Kanban systems for point-of-use clinical consumable tracking.',
-      image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
+      image: '/images/healthcare/point_of_care_ward_inventory.jpg',
       highlights: ['RFID Smart Cabinet Integration', 'Two-Bin Automated Kanban', 'Point-of-Care Depletion'],
       icon: Boxes
     },
@@ -120,7 +149,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       category: 'GOVERNANCE',
       categoryLabel: 'Enterprise Governance',
       description: 'Bi-directional interoperability connecting Epic and Cerner EHR records directly with SAP S/4HANA material ledger and billing.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/healthcare/ehr_to_sap_hl7_fhir_bridge.png',
       highlights: ['HL7 / FHIR Native Connectors', 'Real-Time Charge Capture', 'Patient Billing Automation'],
       icon: Activity
     },
@@ -130,7 +159,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       category: 'CLINICAL',
       categoryLabel: 'Clinical Workflows',
       description: 'Direct serialization and autoclave cycle logging for multi-piece surgical trays with perioperative schedule synchronization.',
-      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80',
+      image: '/images/healthcare/cssd_surgical_tray_instruments.jpg',
       highlights: ['Autoclave Cycle Telemetry', 'Tray Level Serialization', 'OR Schedule Alignment'],
       icon: Syringe
     },
@@ -140,7 +169,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       category: 'LOGISTICS',
       categoryLabel: 'Supply & Logistics',
       description: 'High-density central hospital warehouse management with automated picking, chilled medication storage, and AGV integration.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/healthcare/hospital_warehouse_intralogistics.jpg',
       highlights: ['Chilled Drug Management', 'Internal AGV Routing', 'Dock-to-Bedside Flow'],
       icon: Truck
     },
@@ -150,7 +179,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       category: 'GOVERNANCE',
       categoryLabel: 'Enterprise Governance',
       description: 'Real-time telemetry and preventative maintenance schedules for MRI scanners, surgical robotics, ventilators, and pumps.',
-      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80',
+      image: '/images/healthcare/biomedical_asset_eam_calibration.png',
       highlights: ['Joint Commission Compliance', 'Calibration Scheduling', 'Telemetry Runtime Logs'],
       icon: HeartPulse
     },
@@ -160,7 +189,7 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       category: 'LOGISTICS',
       categoryLabel: 'Supply & Logistics',
       description: 'Continuous IoT temperature sensors and electronic lot verification protecting vaccines, biologics, and blood products.',
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80',
+      image: '/images/healthcare/pharmacy_coldchain_logistics.jpg',
       highlights: ['IoT Temperature Logging', 'Expiry Quarantine Logic', 'Chain of Custody Proof'],
       icon: ShieldCheck
     }
@@ -252,15 +281,15 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
       {/* SECTION 1: HERO */}
       <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
-        {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
+        {/* Full-Bleed Background Image with Crystal-Clear Visual Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=2000&q=80" 
-            alt="Modern Hospital and Healthcare Facility" 
-            className="w-full h-full object-cover object-center"
+            src="/images/healthcare/hospitals_healthcare_hero.png" 
+            alt="Modern Hospital and Healthcare Facility Ward" 
+            className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 sm:via-slate-950/70 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/50 sm:via-slate-950/30 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/15 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -405,8 +434,9 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
                   return (
                     <button
                       key={idx}
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl text-left border transition-all ${
+                      type="button"
+                      onClick={() => handleJourneyStepClick(idx)}
+                      className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
                         activeJourneyStep === idx
                           ? 'border-[#0070C0] bg-sky-50/80 shadow-xs'
                           : 'border-slate-200 bg-white hover:border-slate-300'
@@ -487,16 +517,12 @@ export const HospitalsHealthcareIndustryPage: React.FC<HospitalsHealthcareIndust
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-4 space-y-2">
-              {[
-                { id: 'clean-core', title: 'Clean Core ERP Foundation', sub: 'Zero core modifications' },
-                { id: 'btp', title: 'BTP Clinical Integrations', sub: 'Side-by-side HL7 & FHIR microservices' },
-                { id: 'ehr-sync', title: 'EHR Real-Time Data Fabric', sub: 'Sub-second consumption ledger' },
-                { id: 'compliance', title: 'Joint Commission & Audit Engine', sub: 'Automated 21 CFR Part 11 records' }
-              ].map(tab => (
+              {archTabs.map((tab, idx) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id as any)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all ${
+                  type="button"
+                  onClick={() => handleArchTabClick(idx)}
+                  className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                     activeArchTab === tab.id
                       ? 'border-[#0070C0] bg-sky-50/70 shadow-xs'
                       : 'border-slate-200 bg-white hover:border-slate-300'

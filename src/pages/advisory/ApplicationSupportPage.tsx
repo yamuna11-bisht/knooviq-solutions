@@ -235,41 +235,35 @@ export const ApplicationSupportPage: React.FC<ApplicationSupportPageProps> = ({ 
       {/* =========================================================================
           SECTION 1: HERO — APPLICATION SUPPORT (FULL-SCREEN WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-slate-950 text-white">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black text-white border-b border-[#00A3E0]/20">
         
-        {/* Full-Bleed Background Visual */}
+        {/* Decorative Top Hairline */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E0]/40 to-transparent pointer-events-none" />
+
+        {/* Full-Bleed Background Visual — 100% Clear with Zero Dark Shade */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/application-support/application_support_hero_widescreen.jpg"
             alt="SAP Enterprise Application Support and Functional Helpdesk"
-            className="w-full h-full object-cover object-right lg:object-[85%_center] brightness-105 contrast-105 saturate-[1.05]"
+            className="w-full h-full object-cover object-top lg:object-[85%_top] brightness-105 contrast-105 select-none"
           />
-          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-50% to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex items-center space-x-2 text-xs md:text-sm text-slate-400 font-medium">
-              <li><Link to="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
-              <li className="text-slate-600">/</li>
-              <li><Link to="/advisory-managed-services" className="hover:text-blue-400 transition-colors">Advisory &amp; Managed Services</Link></li>
-              <li className="text-slate-600">/</li>
-              <li className="text-blue-400 font-semibold" aria-current="page">Application Support</li>
-            </ol>
-          </nav>
 
-          <div className="max-w-3xl space-y-5 text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
-              <LifeBuoy className="w-3.5 h-3.5 text-blue-400" />
-              <span>USER RESOLUTION DESK &bull; FUNCTIONAL &amp; TECHNICAL ASSISTANCE</span>
+          <div className="max-w-3xl space-y-5 text-left relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero dark shade on image */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00A3E0] text-xs font-mono font-bold tracking-wider uppercase shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <LifeBuoy className="w-3.5 h-3.5 text-[#00A3E0]" />
+              <span>USER RESOLUTION DESK • FUNCTIONAL &amp; TECHNICAL ASSISTANCE</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
               Application <br />
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+              <span className="text-[#00A3E0]">
                 Support
               </span>
             </h1>
@@ -278,52 +272,33 @@ export const ApplicationSupportPage: React.FC<ApplicationSupportPageProps> = ({ 
               Reliable Support for Critical Business Applications
             </p>
 
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
               Empower your business teams to work without interruption. We provide structured SAP functional and technical support that resolves operational issues quickly, maintains business continuity, and eliminates daily transactional friction.
             </p>
 
             {/* SLA & Service Metrics */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-              <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-700/60 backdrop-blur-md space-y-0.5">
-                <Clock className="w-4 h-4 text-cyan-400 mb-1" />
+              <div className="p-3 rounded-xl bg-[#0A1E3F]/60 border border-white/10 backdrop-blur-md space-y-0.5">
+                <Clock className="w-4 h-4 text-[#00A3E0] mb-1" />
                 <div className="text-sm font-black text-white">Follow-The-Sun</div>
                 <div className="text-[11px] text-slate-400 uppercase font-mono">24/7 Global SLA</div>
               </div>
-              <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-700/60 backdrop-blur-md space-y-0.5">
+              <div className="p-3 rounded-xl bg-[#0A1E3F]/60 border border-white/10 backdrop-blur-md space-y-0.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 mb-1" />
                 <div className="text-sm font-black text-white">&lt; 15 Min P1</div>
                 <div className="text-[11px] text-slate-400 uppercase font-mono">Incident Response</div>
               </div>
-              <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-700/60 backdrop-blur-md space-y-0.5">
+              <div className="p-3 rounded-xl bg-[#0A1E3F]/60 border border-white/10 backdrop-blur-md space-y-0.5">
                 <ShieldCheck className="w-4 h-4 text-blue-400 mb-1" />
                 <div className="text-sm font-black text-white">99.9% Uptime</div>
                 <div className="text-[11px] text-slate-400 uppercase font-mono">Business Continuity</div>
               </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 pt-3">
-              <button
-                onClick={() => onOpenContact && onOpenContact('Application Support Services')}
-                className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2.5 cursor-pointer transform hover:-translate-y-0.5"
-              >
-                <span>Request Support Consultation</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <a
-                href="#department-assistance"
-                className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-base transition-all flex items-center gap-2 shadow-sm backdrop-blur-sm"
-              >
-                <span>Explore Support Capabilities</span>
-                <ChevronDown className="w-4 h-4 text-slate-400" />
-              </a>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* Sticky Service Navigation */}
-      <AdvisoryServiceNav currentServiceId="application-support" />
 
       {/* =========================================================================
           SECTION 1: BUSINESS DEPARTMENT ASSISTANCE & INTERACTIVE DISPATCH FLOWCHART
@@ -332,10 +307,12 @@ export const ApplicationSupportPage: React.FC<ApplicationSupportPageProps> = ({ 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mb-10">
-            <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-2 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full w-fit">
-              Business Department Assistance
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/10 border border-blue-200 dark:border-white/20 text-[#00A3E0] text-xs font-mono font-bold uppercase tracking-wider shadow-sm mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span>Business Department Assistance</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0A1E3F] dark:text-white tracking-tight">
               Tailored Support for Every Core Business Department
             </h2>
             <p className="text-slate-600 text-base mt-2 font-sans">

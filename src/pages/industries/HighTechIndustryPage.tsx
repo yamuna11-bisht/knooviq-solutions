@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -36,8 +37,6 @@ interface HighTechIndustryPageProps {
 export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -181,7 +180,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       sublabel: 'Design to Foundry',
       desc: 'Synchronizing fabless chip architectures with foundry process design kits (PDKs) and automated tapeout ECO locks.',
       tech: 'SAP PLM & Enterprise BOM',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/hightech_journey_tapeout_silicon_bom.jpg',
       icon: Cpu
     },
     {
@@ -190,7 +189,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       sublabel: 'Front-End Production',
       desc: 'Orchestrating wafer cassette lots across steppers, diffusion furnaces, and ion implanters with real-time particle monitoring.',
       tech: 'SAP Digital Manufacturing',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/hightech_journey_cleanroom_wafer_fab.jpg',
       icon: Factory
     },
     {
@@ -199,7 +198,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       sublabel: 'Parametric Testing',
       desc: 'Automated ingestion of multi-gigabyte probe telemetry files linking parametric test values to spatial die defect maps.',
       tech: 'S/4HANA Quality Core',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/hightech_journey_wafer_probe_sort.jpg',
       icon: Activity
     },
     {
@@ -208,7 +207,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       sublabel: 'Back-End Packaging',
       desc: 'Managing outsourced assembly and test across global OSAT partners with live consignment stock and yield reconciliation.',
       tech: 'SAP BTP Subcontracting Mesh',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/hightech_journey_osat_subcontracting.jpg',
       icon: Layers
     },
     {
@@ -217,7 +216,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       sublabel: 'DHR Verification',
       desc: 'Final stress screening at temperature extremes with laser-etched 2D DataMatrix marking and digital Device History Records.',
       tech: 'SAP Serial & Batch Lineage',
-      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/hightech_journey_burnin_serialization.jpg',
       icon: ShieldCheck
     },
     {
@@ -226,10 +225,32 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       sublabel: 'Machine Learning',
       desc: 'Predictive algorithmic anomaly detection identifying subtle etching and chemical-mechanical planarization drifts.',
       tech: 'SAP Analytics Cloud',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/hightech_journey_parametric_yield.jpg',
       icon: BarChart3
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: High-Tech Challenges & Bottlenecks
   const highTechChallenges = [
@@ -285,7 +306,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'DESIGN_FAB',
       categoryLabel: 'Design & Fab Core',
       description: 'End-to-end genealogical lineage tracking individual wafers, carrier FOUPs, and diced chip assemblies across production stages.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_wafer_lot_genealogy.jpg',
       highlights: ['Slot-Level Tracking', 'Automated Lot Split/Merge', 'Digital DHR Records'],
       icon: Split
     },
@@ -295,7 +316,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'DESIGN_FAB',
       categoryLabel: 'Design & Fab Core',
       description: 'Seamless RosettaNet and REST API thread connecting fabless chip design houses with world-class wafer foundries for live WIP sync.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_fabless_foundry_mesh.png',
       highlights: ['GDSII Release Locks', 'Foundry WIP Telemetry', 'Tapeout ECO Controls'],
       icon: Cpu
     },
@@ -305,7 +326,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'DESIGN_FAB',
       categoryLabel: 'Design & Fab Core',
       description: 'Sub-second machine and air-handling integration locking photolithography steppers automatically upon environmental particle breaches.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_cleanroom_dmc_interlocks.png',
       highlights: ['SECS/GEM Protocols', 'Sub-Second Machine Lockouts', 'Laminar Flow Velocity'],
       icon: Radio
     },
@@ -315,7 +336,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'TEST_PACKAGING',
       categoryLabel: 'Test & Packaging',
       description: 'High-speed automated ingestion of electronic wafer sort files, translating test parameters into spatial defect density heatmaps.',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_wafer_map_ingestion.png',
       highlights: ['Multi-Bin Classification', 'Defect Heatmap Generation', 'Instant Die Pegging'],
       icon: Activity
     },
@@ -325,7 +346,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'TEST_PACKAGING',
       categoryLabel: 'Test & Packaging',
       description: 'Stage-gate validation, wafer consignment tracking, and packaging assembly yield reconciliation across third-party OSAT facilities.',
-      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_osat_subcontracting.jpg',
       highlights: ['Consignment Reconciliation', 'Assembly Yield Accounting', 'Subcontracting Stage-Gates'],
       icon: Factory
     },
@@ -335,7 +356,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'TEST_PACKAGING',
       categoryLabel: 'Test & Packaging',
       description: 'Configurable multi-level semiconductor bill-of-materials managing silicon substrates, micro-bumps, interposers, and resin encapsulation.',
-      image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_multidie_chiplet_packaging.jpg',
       highlights: ['2.5D/3D Multi-Die Modules', 'Interposer Lot Tracking', 'Micro-Bump Verification'],
       icon: Layers
     },
@@ -345,7 +366,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'GOVERNANCE',
       categoryLabel: 'Yield & Compliance',
       description: 'Automated adherence to zero-defect automotive qualification, environmental burn-in logs, and Production Part Approval Process (PPAP).',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_automotive_aec_q100.jpg',
       highlights: ['AEC-Q100 Qualification', 'Zero-Defect Screening', 'Electronic PPAP Workflows'],
       icon: ShieldCheck
     },
@@ -355,7 +376,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'GOVERNANCE',
       categoryLabel: 'Yield & Compliance',
       description: 'Machine learning algorithms running on SAP Analytics Cloud identifying subtle etching, deposition, and test bin distribution shifts.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_parametric_yield_analytics.jpg',
       highlights: ['Process Drift Alerts', 'Scrap Root-Cause Isolation', 'Predictive Yield Modeling'],
       icon: BarChart3
     },
@@ -365,7 +386,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
       category: 'GOVERNANCE',
       categoryLabel: 'Yield & Compliance',
       description: 'Shot count tracking, reticle degradation curves, cleanroom pod maintenance, and automated stepper inspection schedules.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      image: '/images/hightech_solution_photolithography_reticle_assets.jpg',
       highlights: ['Shot Count Accumulation', 'Inspection Triggers', 'Reticle Cleaning Cadence'],
       icon: Workflow
     }
@@ -454,9 +475,9 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
         {/* Full-Bleed Enterprise High-Tech Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80" 
-            alt="Semiconductor and Cleanroom Wafer Manufacturing Atmosphere" 
-            className="w-full h-full object-cover object-center"
+            src="/images/high_tech_semiconductors_erp_hero.jpg" 
+            alt="Intelligent ERP for High-Tech & Semiconductors" 
+            className="w-full h-full object-cover object-center lg:object-right"
           />
         </div>
 
@@ -669,7 +690,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
@@ -818,20 +839,27 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -847,7 +875,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -869,7 +897,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -877,20 +905,27 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -904,7 +939,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -961,20 +996,27 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -982,7 +1024,7 @@ export const HighTechIndustryPage: React.FC<HighTechIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-left flex-1">

@@ -214,23 +214,6 @@ export const DocumentIntelligencePage: React.FC<DocumentIntelligencePageProps> =
                 Transform dark data inside commercial agreements, regulatory filings, and complex technical reports into structured, queryable business intelligence. Layout-aware multimodal AI extracts clauses, cross-references risk entities, and pushes verified JSON payloads directly to enterprise workflows.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact?.('Document Intelligence')}
-                  className="px-7 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 group cursor-pointer"
-                >
-                  <span>Request Live Document Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="#document-friction"
-                  className="px-6 py-3.5 rounded-xl bg-white dark:bg-[#0B1528] hover:bg-slate-50 dark:hover:bg-[#0E1A33] border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:-translate-y-0.5"
-                >
-                  <span>Explore Architecture</span>
-                  <ArrowRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Executive Capability Highlights (No Numbers / Dark Borders / Interactive Animations) */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t-2 border-slate-300 dark:border-slate-700/80 text-left">

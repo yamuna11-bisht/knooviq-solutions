@@ -75,67 +75,8 @@ interface AdvisoryServiceNavProps {
   currentServiceId: 'sap-strategy' | 'sap-assessment' | 'solution-architecture' | 'sap-ams' | 'application-support' | 'sap-basis';
 }
 
-export const AdvisoryServiceNav: React.FC<AdvisoryServiceNavProps> = ({ currentServiceId }) => {
-  const location = useLocation();
-
-  return (
-    <div className="sticky top-20 z-30 w-full bg-white/95 backdrop-blur-md border-y border-slate-200 shadow-sm text-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-2.5 gap-4 overflow-x-auto custom-scrollbar">
-          
-          {/* Label Pillar */}
-          <div className="hidden lg:flex items-center gap-2 pr-4 border-r border-slate-200 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-            <div className="leading-tight">
-              <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-blue-600 block">
-                ADVISORY &amp; MANAGED
-              </span>
-              <span className="text-xs font-bold text-slate-900 tracking-wide">
-                PRACTICE SUITE
-              </span>
-            </div>
-          </div>
-
-          {/* Navigation Links for 6 Services */}
-          <nav className="flex items-center gap-1.5 sm:gap-2 shrink-0 py-1" aria-label="Advisory Services Navigation">
-            {ADVISORY_SERVICES.map((service) => {
-              const Icon = service.icon;
-              const isActive = currentServiceId === service.id || location.pathname === service.path;
-              return (
-                <Link
-                  key={service.id}
-                  to={service.path}
-                  className={`group relative flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                      : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100 border border-slate-200/60'
-                  }`}
-                >
-                  <Icon className={`w-3.5 h-3.5 transition-colors ${isActive ? 'text-white' : 'text-blue-600 group-hover:text-blue-700'}`} />
-                  <span>{service.name}</span>
-                  {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* All Services Dropdown / Overview Quick Link */}
-          <div className="hidden xl:flex items-center shrink-0 pl-4 border-l border-slate-200">
-            <Link
-              to="/advisory-managed-services"
-              className="text-[11px] font-mono text-slate-500 hover:text-blue-600 flex items-center gap-1 transition-colors"
-            >
-              <span>Practice Overview</span>
-              <ChevronRight className="w-3 h-3" />
-            </Link>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  );
+export const AdvisoryServiceNav: React.FC<AdvisoryServiceNavProps> = () => {
+  return null;
 };
 
 export const AdvisorySuiteFooterCrosslinks: React.FC<{ currentServiceId?: string; activeServiceId?: string; onOpenContact?: (topic?: string) => void }> = ({ currentServiceId, activeServiceId, onOpenContact }) => {

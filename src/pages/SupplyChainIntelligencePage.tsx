@@ -215,23 +215,6 @@ export const SupplyChainIntelligencePage: React.FC<SupplyChainIntelligencePagePr
                 Unify fragmented vendor networks, dynamic warehouse inventory, and multi-modal fleet shipments into one predictive digital twin. Automatically anticipate transit delays, optimize route dispatches, and trigger real-time SAP EWM and TM updates.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact?.('Supply Chain Intelligence')}
-                  className="px-7 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 group cursor-pointer"
-                >
-                  <span>Request Live Logistics Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="#supply-chain-friction"
-                  className="px-6 py-3.5 rounded-xl bg-white dark:bg-[#0B1528] hover:bg-slate-50 dark:hover:bg-[#0E1A33] border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:-translate-y-0.5"
-                >
-                  <span>Explore Network Flow</span>
-                  <ArrowRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Executive Capability Highlights (No Numbers / Dark Borders / Interactive Animations) */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t-2 border-slate-300 dark:border-slate-700/80 text-left">

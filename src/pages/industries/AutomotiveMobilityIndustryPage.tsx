@@ -118,7 +118,7 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
       tag: 'AUTO-01',
       title: 'Tier-1 JIT / JIS Broadcast Sequencing',
       description: 'End-to-end EDI 862 processing with automated line-side broadcast sequencing for zero-stop delivery to automotive OEM assembly plants.',
-      image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80',
+      image: '/images/automotive_jit_jis_sequencing.png',
       highlights: ['JIT / JIS Broadcast Sync', 'EDI 850/862 Automation', 'Line-Side Sequencing']
     },
     {
@@ -128,7 +128,7 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
       tag: 'AUTO-02',
       title: 'Connected EV Battery Pack Assembly & Passports',
       description: 'High-voltage safety testing, cell-level traceability, thermal paste dispensing inspection, and automated EU Battery Passport logging.',
-      image: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/automotive_ev_battery_assembly.png',
       highlights: ['Cell-Level Serialization', 'Battery Passport Compliance', 'Thermal Testing Logs']
     },
     {
@@ -138,7 +138,7 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
       tag: 'AUTO-03',
       title: 'Smart Chassis & Powertrain MES Cockpit',
       description: 'Touchscreen operator terminals with interactive 3D assembly models, automated tool calibration, and inline machine vision QA checks.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      image: '/images/automotive_smart_chassis_mes.jpg',
       highlights: ['Digital Work Instructions', 'Torque Gun Telemetry', 'Inline Vision Inspection']
     },
     {
@@ -148,7 +148,7 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
       tag: 'AUTO-04',
       title: 'Automotive Multi-Tier Supplier EDI Hub',
       description: 'Consolidating Tier-2 supplier release schedules, kanban triggers, and electronic advanced shipping notices (ASN 856).',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/automotive_multi_tier_edi_hub.jpg',
       highlights: ['ASN 856 Ingestion', 'Dynamic Supplier Kanban', 'Shortage Early-Warning']
     },
     {
@@ -158,7 +158,7 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
       tag: 'AUTO-05',
       title: 'Zero-Defect Quality & IATF 16949 Audit Suite',
       description: 'Automated Failure Mode and Effects Analysis (FMEA), Production Part Approval Process (PPAP), and statistical process control (SPC).',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/automotive_iatf_audit_suite.jpg',
       highlights: ['IATF 16949 Audit Ready', 'Automated PPAP Submissions', 'Live SPC Trend Alerts']
     },
     {
@@ -168,7 +168,7 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
       tag: 'AUTO-06',
       title: 'Automotive Spares & Warranty Lifecycle',
       description: 'VIN-level component genealogy for expedited recall containment, automated dealer warranty claims, and spare parts allocation.',
-      image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80',
+      image: '/images/automotive_warranty_lifecycle.png',
       highlights: ['VIN Genealogy Recall Lock', 'Warranty Adjudication', 'Dealer Spares Sync']
     }
   ];
@@ -276,8 +276,8 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
         {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=2000&q=80" 
-            alt="Automotive Robotic Assembly Line" 
+            src="/images/automotive_mobility_hero.jpg" 
+            alt="Intelligent ERP for Automotive & Connected Mobility" 
             className="w-full h-full object-cover object-center"
           />
           {/* Multi-layered cinematic gradient scrim: left dark for perfect readability, smooth fade to showcase vibrant facility on right */}
@@ -403,8 +403,8 @@ export const AutomotiveMobilityIndustryPage: React.FC<AutomotiveMobilityIndustry
 
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900 min-h-[320px]">
               <img 
-                src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80" 
-                alt="Automotive Digital Cockpit & MES" 
+                src="/images/automotive_supply_chain_sync.jpg" 
+                alt="Synchronizing High-Speed Automotive Supply Chains" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-6" />

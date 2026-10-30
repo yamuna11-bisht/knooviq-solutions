@@ -274,10 +274,6 @@ export const RiseWithSapView: React.FC<RiseWithSapViewProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="space-y-6">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 mb-2">
@@ -353,10 +349,6 @@ export const RiseWithSapView: React.FC<RiseWithSapViewProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="bg-white dark:bg-[#0B1528] rounded-3xl border border-slate-200/80 dark:border-white/10 p-8 sm:p-12 shadow-sm space-y-8">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 mb-2">
@@ -503,16 +495,6 @@ export const RiseWithSapView: React.FC<RiseWithSapViewProps> = ({ onOpenContact 
             ))}
           </div>
         </div>
-
-        <div className="pt-2 flex justify-center">
-          <button
-            onClick={() => onOpenContact('RISE with SAP - Sizing and Pricing')}
-            className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-[#040D1A] font-extrabold px-8 py-3.5 text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25 cursor-pointer"
-          >
-            <span>Request RISE with SAP Sizing & Pricing</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
       </section>
 
       {/* =========================================================================
@@ -520,10 +502,6 @@ export const RiseWithSapView: React.FC<RiseWithSapViewProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="space-y-8">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 mb-2">
@@ -636,10 +614,6 @@ export const RiseWithSapView: React.FC<RiseWithSapViewProps> = ({ onOpenContact 
           ========================================================================= */}
       <section className="space-y-8">
         <div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="h-0.5 w-6 bg-amber-400 rounded-full" />
-            <span className="h-0.5 w-3 bg-[#00A3E0] rounded-full" />
-          </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-amber-500 bg-amber-500/10 border border-amber-500/20 mb-2">
@@ -728,76 +702,6 @@ export const RiseWithSapView: React.FC<RiseWithSapViewProps> = ({ onOpenContact 
               <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Near-zero cutover variance</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 7: START YOUR RISE JOURNEY TODAY & ADVISORY FAQS
-          ========================================================================= */}
-      <section className="bg-gradient-to-br from-[#061224] via-[#091D3A] to-[#040D1A] rounded-3xl border border-cyan-500/20 p-8 sm:p-12 lg:p-14 shadow-2xl text-white space-y-8">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 mb-2">
-            <Target className="w-3.5 h-3.5 text-cyan-400" />
-            <span>START YOUR CLOUD JOURNEY</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-            Start Your RISE with SAP Journey Today
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-1">
-            Evaluate your cloud readiness and discover the optimal roadmap to SAP S/4HANA Cloud.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4">
-              <PhoneCall className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Talk to a RISE Expert</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Engage directly with an SAP enterprise cloud architect to evaluate your technical and commercial readiness.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Readiness & TCO Audit</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Run an automated SAP Readiness Check to evaluate database sizing, custom code impact, and 5-year cloud TCO.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4">
-              <Target className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Discovery Workshop</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              1-day executive working session to map business requirements, evaluate hyperscalers, and draft your migration roadmap.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-4">
-              <FileText className="w-5 h-5" />
-            </div>
-            <h3 className="text-base font-bold text-white mb-2">Capabilities Brief</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Download our comprehensive RISE with SAP transformation handbook, SLA frameworks, and case studies.
-            </p>
-          </div>
-        </div>
-
-        <div className="pt-2 flex justify-center">
-          <button
-            onClick={() => onOpenContact('RISE with SAP - Start Journey')}
-            className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-[#040D1A] font-extrabold px-8 py-3.5 text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25 cursor-pointer"
-          >
-            <span>Start Your RISE Transformation Today</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
         </div>
       </section>
 

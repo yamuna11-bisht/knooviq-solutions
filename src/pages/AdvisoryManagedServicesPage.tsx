@@ -64,15 +64,18 @@ export const AdvisoryManagedServicesPage: React.FC<AdvisoryManagedServicesPagePr
       {/* =========================================================================
           HERO SECTION: TRANSFORM, MANAGE, AND OPTIMIZE YOUR SAP LANDSCAPE
           ========================================================================= */}
-      <section className="relative pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden bg-gradient-to-b from-[#0A1931] via-[#0D2040] to-[#0A1931] text-white">
+      <section className="relative pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden bg-[#0A1E3F] text-white border-b border-[#00A3E0]/20">
         
+        {/* Decorative Top Hairline */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E0]/40 to-transparent pointer-events-none" />
+
         {/* Subtle Ambient Glow & Architectural Grid */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-gradient-to-tr from-blue-600/15 via-sky-500/10 to-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-gradient-to-tr from-[#00A3E0]/15 via-blue-600/10 to-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
         <div 
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
-            backgroundImage: 'linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)',
+            backgroundSize: '32px 32px'
           }}
         />
 
@@ -80,11 +83,12 @@ export const AdvisoryManagedServicesPage: React.FC<AdvisoryManagedServicesPagePr
           
           {/* Top Pill Badge */}
           <div className="flex flex-wrap items-center gap-2 mb-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-900/40 border border-blue-400/30 text-sky-300 text-xs font-mono font-bold tracking-wider uppercase backdrop-blur-md">
-              <Compass className="w-3.5 h-3.5 text-blue-400" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00A3E0] text-xs font-mono font-bold tracking-wider uppercase shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <Compass className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>PAGE TITLE: ADVISORY & MANAGED SERVICES</span>
             </div>
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/20 text-amber-300 text-xs font-mono font-bold">
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs font-mono font-bold shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
               <span>Enterprise SAP Practice</span>
             </span>
@@ -97,7 +101,7 @@ export const AdvisoryManagedServicesPage: React.FC<AdvisoryManagedServicesPagePr
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] text-white">
                 Transform, Manage, and Optimize <br />
-                <span className="bg-gradient-to-r from-blue-300 via-sky-200 to-amber-200 bg-clip-text text-transparent">
+                <span className="text-[#00A3E0]">
                   Your SAP Landscape
                 </span>
               </h1>
@@ -114,32 +118,12 @@ export const AdvisoryManagedServicesPage: React.FC<AdvisoryManagedServicesPagePr
                   { label: 'SLA Governance', val: '24/7 Managed', icon: ShieldCheck },
                   { label: 'Operations', val: 'Zero Disruption', icon: Activity }
                 ].map((item, idx) => (
-                  <div key={idx} className="p-3 rounded-xl bg-slate-900/70 border border-slate-700/60 backdrop-blur-md space-y-1">
-                    <item.icon className="w-4 h-4 text-blue-400" />
+                  <div key={idx} className="p-3 rounded-xl bg-[#0A1E3F]/60 border border-white/10 backdrop-blur-md space-y-1">
+                    <item.icon className="w-4 h-4 text-[#00A3E0]" />
                     <div className="text-sm font-bold text-white">{item.val}</div>
                     <div className="text-[10px] text-slate-300 uppercase font-mono tracking-wider">{item.label}</div>
                   </div>
                 ))}
-              </div>
-
-              {/* Hero CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-3">
-                <button
-                  type="button"
-                  onClick={() => onOpenContact ? onOpenContact('SAP Advisory & Managed Services Consultation') : null}
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm tracking-wide transition-all shadow-lg shadow-blue-600/30 flex items-center gap-2 cursor-pointer transform hover:-translate-y-0.5"
-                >
-                  <span>Talk to Our Experts</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <a
-                  href="#strategy"
-                  className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm tracking-wide transition-all flex items-center gap-2 cursor-pointer"
-                >
-                  <span>Explore Services</span>
-                  <ChevronRight className="w-4 h-4 text-slate-300" />
-                </a>
               </div>
 
             </div>
@@ -204,11 +188,13 @@ export const AdvisoryManagedServicesPage: React.FC<AdvisoryManagedServicesPagePr
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700/40 text-blue-700 dark:text-blue-300 text-xs font-mono font-bold uppercase tracking-wider">
-              <Compass className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-white/10 border border-blue-200 dark:border-white/20 text-[#00A3E0] text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <Compass className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>SECTION 01 • STRATEGIC ADVISORY</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0A1931] dark:text-white tracking-tight">
+
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0A1E3F] dark:text-white tracking-tight">
               SAP Strategy
             </h2>
             <p className="text-base sm:text-lg font-medium text-blue-700 dark:text-sky-300 leading-snug">

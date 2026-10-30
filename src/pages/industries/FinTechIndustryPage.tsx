@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -39,9 +40,6 @@ interface FinTechIndustryPageProps {
 export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -180,7 +178,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       sublabel: 'Tokenized Card & Pay Ingestion',
       desc: 'Authorize high-velocity payment requests with sub-20ms latency, cryptographic token validation, and instant balance checks.',
       tech: 'SAP BTP & Distributed Cloud Gateway',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/fintech/stage1_subsecond_auth.png',
       icon: Zap
     },
     {
@@ -189,7 +187,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       sublabel: 'Behavioral Anomaly Interception',
       desc: 'Evaluate device fingerprints, IP proxy risk, and transactional velocities to block synthetic identities and bot-driven fraud.',
       tech: 'Machine Learning Risk Engine',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/fintech/stage2_fraud_ai.png',
       icon: Lock
     },
     {
@@ -198,7 +196,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       sublabel: 'Multi-Rail Routing',
       desc: 'Route structured XML payment messages dynamically through the most cost-effective and immediate global clearing corridor.',
       tech: 'SAP Integration Suite & Event Mesh',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/fintech/stage3_iso20022_clearing.png',
       icon: Workflow
     },
     {
@@ -207,7 +205,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       sublabel: 'Multi-Tenant Stored Value',
       desc: 'Update multi-currency virtual wallet balances and calculate interchange revenue splits with zero ledger divergence.',
       tech: 'SAP Financial Services Subledger',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/fintech/stage4_virtual_accounts.png',
       icon: Smartphone
     },
     {
@@ -216,7 +214,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       sublabel: 'Automated Payout Rails',
       desc: 'Reconcile scheme fees, calculate net merchant payouts, manage rolling chargeback reserves, and trigger local clearing wires.',
       tech: 'SAP Collections & Disbursements',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/fintech/stage5_merchant_settlement.png',
       icon: CreditCard
     },
     {
@@ -225,10 +223,32 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       sublabel: 'Clean-Core GL Synchronization',
       desc: 'Batch millions of micro-transactions into compressed, audit-ready summary postings on the SAP S/4HANA Universal Journal.',
       tech: 'SAP S/4HANA Clean-Core Finance',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/fintech/stage6_erp_close.jpg',
       icon: Database
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: FinTech Challenges Data
   const fintechChallenges = [
@@ -284,7 +304,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'INSTANT RAILS',
       title: 'Multi-Rail Real-Time Clearing Gateway',
       description: 'Ultra-low latency payment orchestration routing transactions dynamically across FedNow, RTP, SEPA Instant, and local clearing networks.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/stage3_iso20022_clearing.png',
       icon: Zap,
       highlights: ['Sub-20ms Transaction Routing', 'ISO 20022 Native XML', 'Zero-Downtime Multi-Region Active']
     },
@@ -294,7 +314,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'CARD ISSUING',
       title: 'Virtual Card Issuing & Scheme Reconciliation',
       description: 'Programmatic Mastercard/Visa card provisioning with automated interchange fee calculation and chargeback dispute workflows.',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/stage1_subsecond_auth.png',
       icon: CreditCard,
       highlights: ['Tokenized Virtual Cards', 'Real-Time Interchange Splits', 'Automated Dispute Filing']
     },
@@ -304,7 +324,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'MERCHANT SETTLEMENT',
       title: 'Merchant Payout & Reserve Settlement Engine',
       description: 'High-volume merchant reconciliation calculating gross card sales, net interchange deductions, and rolling risk reserve withholdings.',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/sol_merchant_settlement.png',
       icon: Coins,
       highlights: ['Automated Net Payout Rails', 'Dynamic Risk Reserve Holds', 'Same-Day Wire Clearing']
     },
@@ -314,7 +334,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'VIRTUAL SUB-LEDGER',
       title: 'SAP Financial Products Subledger for FinTech',
       description: 'High-scale multi-currency sub-ledger tracking millions of virtual customer accounts and stored-value digital wallets.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/sol_fpsl_fintech.jpg',
       icon: Layers,
       highlights: ['High-Concurrency Account Pools', 'Continuous Balance Validation', 'Safeguarding Float Auditing']
     },
@@ -324,7 +344,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'EMBEDDED FINANCE',
       title: 'Banking-as-a-Service (BaaS) Orchestration Hub',
       description: 'Turnkey API platform enabling platforms and retailers to embed branded checking accounts, debit cards, and credit lines.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/sol_baas_orchestration.png',
       icon: Building2,
       highlights: ['White-Label Account APIs', 'Instant KYC Verification', 'Partner Deposit Sweeps']
     },
@@ -334,7 +354,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'ERP INTEGRATION',
       title: 'SAP S/4HANA Clean-Core GL Synchronizer',
       description: 'Intelligent compression engine summarizing high-frequency payment batches into audit-proof journal entries on Universal Journal.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/sol_gl_synchronizer.jpg',
       icon: Database,
       highlights: ['High-Volume Data Compression', 'Zero Reconciliation Breaks', 'Statutory Financial Audit Lineage']
     },
@@ -344,7 +364,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'AI FRAUD DEFENSE',
       title: 'Sub-Second Machine Learning Fraud Interceptor',
       description: 'Continuous transactional risk scoring evaluating behavioral anomalies, synthetic identities, and device velocity indicators.',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/stage2_fraud_ai.png',
       icon: Lock,
       highlights: ['Sub-20ms Scoring SLA', 'Behavioral Biometric Pattern AI', 'Automated Step-Up Authentication']
     },
@@ -354,7 +374,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'TRAVEL RULE & AML',
       title: 'Digital AML & Travel Rule Messaging Mesh',
       description: 'Automated compliance framework verifying originator and beneficiary identities across domestic and international payments.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/sol_aml_travel_rule.jpg',
       icon: ShieldCheck,
       highlights: ['Automated Sanctions Screening', 'Encrypted Identity Exchange', 'Regulatory SAR Case Tracking']
     },
@@ -364,7 +384,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
       tag: 'EVENT MESH',
       title: 'Cloud-Native ISO 20022 Financial Event Mesh',
       description: 'High-throughput Kafka and SAP Event Mesh pipelines ensuring guaranteed event delivery and state synchronization.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+      image: '/images/fintech/sol_event_mesh.png',
       icon: Workflow,
       highlights: ['100,000+ TPS Throughput', 'Schema Registry Validation', 'End-to-End Tracing Telemetry']
     }
@@ -438,86 +458,88 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Cinematic Full-Bleed Dark Blue Hero Banner)
+          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
           ========================================================================= */}
-      <section className="relative min-h-[620px] lg:min-h-[680px] bg-slate-900 text-white flex flex-col justify-between overflow-hidden">
+      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Background Photo with Dark Gradient Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=2000&q=80" 
-            alt="FinTech Digital Payments" 
-            className="w-full h-full object-cover object-center brightness-60"
+        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        {/* Hero Top Content */}
+        {/* Hero Top Content (2-Column Grid) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          {/* Breadcrumb Navigation */}
-          <div className="mb-4 sm:mb-6">
-            <Link 
-              to="/industries" 
-              className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
-            >
-              <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
-              <span>Back to Industries</span>
-            </Link>
-          </div>
-
-          <div className="max-w-3xl space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Practice Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
-              <Zap className="w-3.5 h-3.5 text-cyan-400" />
-              <span>KNOOVIQ INDUSTRY PRACTICE</span>
+            {/* Left Column (7 cols): Content & Typography */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="mb-4 sm:mb-6">
+                <Link 
+                  to="/industries" 
+                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+                >
+                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                  <span>Back to Industries</span>
+                </Link>
+              </div>
+
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+                <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                High-Velocity FinTech & Embedded Payments Architecture
+              </h1>
+
+              {/* Sub-headline */}
+              <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
+                Scale sub-second payment settlement pipelines, orchestrate multi-tenant virtual account ledgers, automate interchange fee reconciliations, and protect high-throughput rails with AI fraud defense on clean-core SAP architecture.
+              </p>
+
+              {/* Feature Highlight Pills */}
+              <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Sub-20ms Payment Settlement</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Multi-Currency Virtual Sub-Ledgers</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Automated Scheme Fee Matching</span>
+                </div>
+              </div>
+
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-              High-Velocity FinTech & Embedded Payments Architecture
-            </h1>
-
-            {/* Sub-headline */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
-              Scale sub-second payment settlement pipelines, orchestrate multi-tenant virtual account ledgers, automate interchange fee reconciliations, and protect high-throughput rails with AI fraud defense on clean-core SAP architecture.
-            </p>
-
-            {/* Feature Highlight Pills */}
-            <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Sub-20ms Payment Settlement</span>
+            {/* Right Column (5 cols): Pure Architectural Diagram Showcase (100% Uncut & Crystal Clear) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-900/90 shadow-2xl shadow-black/60 p-2 sm:p-2.5 backdrop-blur-md group hover:border-[#0070C0] transition-colors duration-300">
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center min-h-[300px] sm:min-h-[380px] lg:min-h-[460px]">
+                  <img 
+                    src="/images/fintech/fintech_hero.png" 
+                    alt="FinTech Digital Payments & High-Velocity Rails" 
+                    className="w-full h-auto max-h-[500px] object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Multi-Currency Virtual Sub-Ledgers</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Automated Scheme Fee Matching</span>
-              </div>
-            </div>
-
-            {/* Hero CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-              <button
-                type="button"
-                onClick={() => onOpenContact?.('FinTech & Real-Time Payments Architecture Consultation')}
-                className="px-6 py-3 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-[#0070C0]/30 transition-all flex items-center gap-2 group cursor-pointer"
-              >
-                <span>Consult With FinTech Architects</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <Link
-                to="#industry-solutions"
-                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 backdrop-blur-md transition-all flex items-center gap-2"
-              >
-                <span>Explore Solutions</span>
-              </Link>
             </div>
 
           </div>
@@ -651,13 +673,13 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
             <div className="lg:col-span-6 space-y-4">
               
               {/* Dynamic Photo Showcase */}
-              <div className="relative h-60 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md">
+              <div className="relative aspect-[16/9] sm:aspect-[1024/558] w-full min-h-[260px] sm:min-h-[300px] rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-950">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-700"
+                  className="w-full h-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 via-45% to-transparent pointer-events-none" />
                 
                 {/* Overlay Text on Image */}
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -682,7 +704,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between cursor-pointer ${
                         isActive 
                           ? 'border-[#0070C0] bg-sky-50/90 shadow-sm' 
@@ -810,20 +832,27 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -839,7 +868,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -861,7 +890,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -869,20 +898,27 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -898,7 +934,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
                             className="w-full h-full flex items-center justify-center transition-transform duration-300"
                             style={{ 
                               color: seg.color,
-                              transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                              transform: isHighlighted ? 'scale(1.2)' : 'scale(1)'
                             }}
                           >
                             <IconComponent className="w-5 h-5 drop-shadow-md" />
@@ -944,8 +980,8 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
                         FINTECH MESH
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
-                        {hoveredWheelIndex !== null 
-                          ? `MODULE 0${hoveredWheelIndex + 1}` 
+                        {(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) !== null 
+                          ? `MODULE 0${(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) + 1}` 
                           : '8 CAPABILITIES'}
                       </div>
                     </div>
@@ -959,20 +995,27 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -980,7 +1023,7 @@ export const FinTechIndustryPage: React.FC<FinTechIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right">

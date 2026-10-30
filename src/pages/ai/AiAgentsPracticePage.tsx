@@ -10,6 +10,7 @@ import {
   Workflow,
   CheckCircle2,
   ArrowRight,
+  ArrowLeft,
   ShieldCheck,
   Lock,
   Network,
@@ -654,42 +655,35 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
       {/* =========================================================================
           SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Clear & Uncut)
           ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-slate-950 text-white">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Robot, Holograms or Laptop */}
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Robot, Holograms or Laptop (100% Clear with Zero Dark Blue Shade) */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/ai_agents_hero_widescreen.jpg"
             alt="Autonomous Enterprise AI Agents"
-            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-105"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
-          {/* Subtle directional gradient on the left ONLY - keeps the robot, laptop and all holograms on the right 100% bright, crisp and clear */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-42% to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30 pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-2xl lg:max-w-xl space-y-6">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with Zero Box and Zero dark blue shade */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-4">
               <div className="flex flex-wrap items-center gap-2.5">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md border border-cyan-500/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                  <Bot className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; AUTONOMOUS AI AGENTS</span>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  <Bot className="w-3.5 h-3.5 text-[#00A3E0]" />
+                  <span>KNOOVIQ AI PRACTICE &bull; AUTONOMOUS AI AGENTS</span>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setFullScreenAgentStep(journeySteps[0])}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 hover:bg-cyan-500 hover:text-slate-950 text-white border border-white/20 backdrop-blur-md text-xs font-mono font-bold transition-all shadow-md group cursor-pointer"
-                  title="View AI Agents architecture in full screen"
-                >
-                  <Maximize2 className="w-3.5 h-3.5 text-cyan-300 group-hover:text-slate-950 transition-colors" />
-                  <span>Full Screen View</span>
-                </button>
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.1] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
                 Autonomous <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-200">
+                <span className="text-[#00A3E0]">
                   Enterprise AI Agents
                 </span>
               </h1>
@@ -727,13 +721,14 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
             
             {/* Left Column: Strategic Context & 3 High-Impact Pillars */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
-                <Activity className="w-3.5 h-3.5 text-[#0070C0]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase">
+                <Activity className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>EXECUTIVE ARCHITECTURE PERSPECTIVE</span>
               </div>
+
               
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
-                Architecting Governed <span className="text-[#0070C0]">Autonomous Action</span>
+                Architecting Governed <span className="text-[#00A3E0]">Autonomous Action</span>
               </h2>
 
               <div className="border-l-4 border-[#0070C0] border-y border-r border-slate-300 pl-4 py-2 bg-gradient-to-r from-sky-50/80 via-sky-50/30 to-transparent rounded-r-xl">
@@ -788,9 +783,9 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
             {/* Right Column: Deep-Dive Visual Card (Image 2 of 4) + Step Switcher */}
             <div className="lg:col-span-6 space-y-3.5">
               <div 
-                className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group cursor-pointer"
+                className="relative h-96 sm:h-[440px] lg:h-[490px] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group cursor-pointer"
                 onClick={() => handleSelectJourneyStep((activeJourneyStep + 1) % journeySteps.length)}
-                title="Click image to advance to next architecture step (or click Full Screen)"
+                title="Click image to advance to next architecture step"
               >
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -810,22 +805,6 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
                 <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-cyan-400/50 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shrink-0" />
                   <span>ACTIVE ARCHITECTURE: {journeySteps[activeJourneyStep].label.toUpperCase()}</span>
-                </div>
-
-                {/* Full Screen Button indicator */}
-                <div className="absolute top-3 right-3 z-10">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFullScreenAgentStep(journeySteps[activeJourneyStep]);
-                    }}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/70 hover:bg-[#0070C0] text-white border border-white/20 backdrop-blur-md text-[11px] font-mono font-bold transition-all shadow-md cursor-pointer"
-                    title="View architecture in full screen"
-                  >
-                    <Maximize2 className="w-3 h-3 text-cyan-300" />
-                    <span>Full Screen</span>
-                  </button>
                 </div>
 
                 <div className="absolute bottom-3 left-3 right-3 text-white space-y-1">
@@ -960,7 +939,7 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => { setActiveWheelIndex(globalIndex); setIsAutoRotating(false); }}
+                    onClick={() => setActiveWheelIndex(globalIndex)}
                     className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${
                       isSelected
                         ? 'bg-slate-900/90 border-cyan-400/60 shadow-lg shadow-cyan-500/20 translate-x-1'
@@ -1000,7 +979,7 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
                         className="cursor-pointer transition-all duration-300"
                         onMouseEnter={() => setHoveredWheelIndex(idx)}
                         onMouseLeave={() => setHoveredWheelIndex(null)}
-                        onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
+                        onClick={() => setActiveWheelIndex(idx)}
                       >
                         <path
                           d={pathD}
@@ -1045,18 +1024,6 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
                 </div>
 
               </div>
-
-              {/* Pause / Play Rotation Control */}
-              <div className="mt-3 flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsAutoRotating(!isAutoRotating)}
-                  className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] font-mono text-cyan-300 flex items-center gap-1.5 transition-colors"
-                >
-                  {isAutoRotating ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                  <span>{isAutoRotating ? 'PAUSE ROTATION' : 'RESUME CYCLE'}</span>
-                </button>
-              </div>
             </div>
 
             {/* Right 4 Micro-Pods */}
@@ -1067,7 +1034,7 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
+                    onClick={() => setActiveWheelIndex(idx)}
                     className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${
                       isSelected
                         ? 'bg-slate-900/90 border-cyan-400/60 shadow-lg shadow-cyan-500/20 -translate-x-1'
@@ -1097,7 +1064,7 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
                 <button
                   key={seg.id}
                   type="button"
-                  onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
+                  onClick={() => setActiveWheelIndex(idx)}
                   className={`p-2 rounded-lg border text-left text-xs transition-colors ${
                     isSelected
                       ? 'bg-slate-800 border-cyan-400 text-white'
@@ -1719,11 +1686,11 @@ export const AiAgentsPracticePage: React.FC<AiAgentsPracticePageProps> = ({
             </button>
 
             <Link
-              to="/digital-intelligence"
-              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2"
+              to="/digital-intelligence/ai-assistants"
+              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2 group"
             >
-              <span>Explore Digital Intelligence</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>Explore AI Assistants</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

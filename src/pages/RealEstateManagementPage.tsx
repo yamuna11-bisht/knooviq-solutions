@@ -383,24 +383,6 @@ export const RealEstateManagementPage: React.FC<RealEstateManagementPageProps> =
                 on native SAP S/4HANA clean-core architecture.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('Enterprise Real Estate Management Consultation') : null}
-                  className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-semibold text-sm shadow-md transition-all flex items-center gap-2 group cursor-pointer"
-                >
-                  <span>Schedule Portfolio Diagnostic Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <a
-                  href="#lifecycle-studio"
-                  className="px-6 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-sm font-semibold transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Explore Lifecycle Studio</span>
-                  <ChevronRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Real-Time Commercial Property KPI Grid (Zero %, Zero Currency) */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200">
@@ -1267,20 +1249,20 @@ export const RealEstateManagementPage: React.FC<RealEstateManagementPageProps> =
                 benchmark your lease administration workflows, and architect a modern, clean-core SAP S/4HANA RE-FX roadmap.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <button
                   onClick={() => onOpenContact ? onOpenContact('Enterprise Real Estate Architecture Consultation') : null}
-                  className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-semibold text-sm shadow-md transition-all flex items-center gap-2 group cursor-pointer"
+                  className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
                 >
-                  <span>Schedule Portfolio Assessment</span>
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                  <span>Talk to Our Real Estate Experts</span>
+                  <ArrowRight className="h-4 w-4" />
                 </button>
 
                 <Link
-                  to="/products/asset-management"
-                  className="px-6 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold text-sm transition-all flex items-center gap-2 shadow-sm"
+                  to="/products/distribution-management"
+                  className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
                 >
-                  <span>Explore Asset Management &rarr;</span>
+                  Explore Distribution Management
                 </Link>
               </div>
             </div>

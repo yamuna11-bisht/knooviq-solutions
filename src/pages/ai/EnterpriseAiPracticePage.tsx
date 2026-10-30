@@ -55,15 +55,15 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
   const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
-  const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
-  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(false);
+  const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
 
   // Auto-tour rotation for Section 4
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setHoveredWheelIndex((prev) => (prev === null ? 0 : (prev + 1) % 8));
-    }, 2800);
+    }, 3800);
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
@@ -230,7 +230,7 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
       sublabel: 'Decoupled Extension Hub',
       desc: 'Isolating enterprise AI inference and agentic pipelines in SAP BTP to preserve 100% cloud ERP upgradability with zero ABAP core modifications.',
       tech: 'SAP BTP Extension Suite',
-      image: '/images/enterprise-ai/enterprise-ai-architecture.jpg',
+      image: '/images/enterprise_ai_sovereign_intelligence.png',
       icon: Layers
     },
     {
@@ -239,7 +239,7 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
       sublabel: 'Private Model VPC',
       desc: 'Dedicated high-throughput vLLM and TensorRT-LLM clusters hosted in air-gapped private sovereign tenants with strict zero-data-retention guarantees.',
       tech: 'Private Sovereign LLM Cluster',
-      image: '/images/enterprise-ai/enterprise-ai-transformation.jpg',
+      image: '/images/enterprise_ai_sovereign_intelligence.png',
       icon: Server
     },
     {
@@ -248,7 +248,7 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
       sublabel: 'In-Flight Sanitization',
       desc: 'Dual-pass deep packet inspection stripping PII, financial identifiers, and employee records in sub-5ms before requests reach the inference cluster.',
       tech: 'Dual-Pass Security Proxy',
-      image: '/images/enterprise-ai/enterprise-ai-governance.jpg',
+      image: '/images/enterprise_ai_sovereign_intelligence.png',
       icon: ShieldCheck
     },
     {
@@ -257,7 +257,7 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
       sublabel: 'Transactional Streaming',
       desc: 'Asynchronous event-driven broker ingesting order changes, delivery blocks, and sensor telemetry in real time directly from SAP S/4HANA.',
       tech: 'SAP Advanced Event Mesh',
-      image: '/images/enterprise-ai/enterprise-ai-use-cases.jpg',
+      image: '/images/enterprise_ai_sovereign_intelligence.png',
       icon: Workflow
     },
     {
@@ -266,7 +266,7 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
       sublabel: 'Verifiable Grounding',
       desc: 'Post-generation verification scoring outputs against SAP CDS views and transactional constraints before committing decisions back to core ledgers.',
       tech: 'Semantic Guardrail Core',
-      image: '/images/sap_btp_command_center.jpg',
+      image: '/images/enterprise_ai_sovereign_intelligence.png',
       icon: CheckCircle2
     },
     {
@@ -275,7 +275,7 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
       sublabel: 'Continuous Auditability',
       desc: 'Comprehensive token tracing, drift evaluation, and latency telemetry meeting EU AI Act, SOC2, and ISO 27001 regulatory compliance standards.',
       tech: 'SAP AI Core & Launchpad',
-      image: '/images/advisory_strategy_roadmap.jpg',
+      image: '/images/enterprise_ai_sovereign_intelligence.png',
       icon: Lock
     }
   ];
@@ -599,50 +599,59 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
       {/* =========================================================================
           SECTION 1: HERO SECTION (Ultra-Clean & Sleek)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-slate-900">
+      {/* =========================================================================
+          SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Aligned with AI Agents)
+          ========================================================================= */}
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-slate-950 text-white">
+
+        {/* Full-Bleed 16:9 Panoramic Image - Bright & Balanced Vertical Framing */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/enterprise-ai/enterprise-ai-hero.jpg"
-            alt="Enterprise Autonomous AI Architecture"
-            className="w-full h-full object-cover object-center opacity-40"
+          <img 
+            src="/images/enterprise_ai_autonomous_clean_core_hero.jpg" 
+            alt="Enterprise Autonomous AI & Clean Core Fabric"
+            className="w-full h-full object-cover object-[80%_40%] brightness-[0.98] contrast-[1.02]"
+            style={{ imageRendering: '-webkit-optimize-contrast', objectPosition: '80% 40%' }}
           />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; ENTERPRISE AI</span>
+        {/* Directional Soft Scrim for Clean Text Readability while keeping artwork bright and visible */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-slate-950/65 via-slate-950/25 to-transparent pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-md">
+                  <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; AUTONOMOUS AI &amp; CLEAN CORE</span>
+                </div>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+
+              <h1 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
                 Enterprise <br />
-                <span className="text-cyan-400">Autonomous AI & Clean Core Fabric</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400">
+                  Autonomous AI &amp; Clean Core
+                </span>
               </h1>
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
+
+              <p className="text-base sm:text-lg text-slate-100 leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                 Sovereign foundation models, deterministic Clean Core orchestration, and sub-20ms event mesh fabrics engineered on SAP BTP and private enterprise infrastructure.
               </p>
             </motion.div>
 
-            {/* Enterprise Assurance Indicators (No Buttons) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6, delay: 0.15 }} 
-              className="pt-3 flex flex-wrap items-center gap-2.5 sm:gap-3"
-            >
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200">
+            {/* Enterprise Trust Indicators */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
                 <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>100% Clean Core Upgradability</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Zero-Trust Sovereign Security</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200 shadow-lg">
                 <Database className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>Air-Gapped Private LLM / SLM</span>
+                <span>Sub-20ms Event Mesh</span>
               </div>
             </motion.div>
           </div>
@@ -711,16 +720,16 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
             </div>
 
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
+              <div className="relative h-80 sm:h-96 lg:h-[430px] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
                 <img
-                  src={journeySteps[activeJourneyStep].image}
-                  alt="Knooviq Enterprise AI Architecture Command Center"
+                  src={journeySteps[activeJourneyStep].image || '/images/enterprise_ai_sovereign_intelligence.png'}
+                  alt="Architecting Sovereign Enterprise AI Intelligence"
                   className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
                 <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-cyan-400/50 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>ACTIVE ARCHITECTURE: {journeySteps[activeJourneyStep].label.toUpperCase()}</span>
+                  <span>SOVEREIGN ARCHITECTURE: {journeySteps[activeJourneyStep].label.toUpperCase()}</span>
                 </div>
                 <div className="absolute bottom-3 left-3 right-3 text-white space-y-1">
                   <div className="text-xs sm:text-sm font-mono font-bold text-cyan-300">{journeySteps[activeJourneyStep].tech}</div>
@@ -869,35 +878,11 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
               A synchronized radial platform uniting Clean Core BTP decoupling, air-gapped sovereign models, dual-pass safety firewalls, and sub-20ms event mesh orchestration.
             </p>
 
-            {/* Compact Control Toolbar */}
+            {/* Compact Status Indicator */}
             <div className="pt-1 flex flex-wrap items-center justify-center gap-2">
-              <button
-                type="button"
-                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all border ${
-                  isAutoPlaying 
-                    ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-[0_0_14px_rgba(6,182,212,0.45)]' 
-                    : 'bg-slate-900/80 text-cyan-300 border-cyan-500/40 hover:bg-cyan-950/40 hover:border-cyan-400'
-                }`}
-              >
-                {isAutoPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                <span>{isAutoPlaying ? 'PAUSE AUTO-TOUR' : 'AUTO-TOUR ECOSYSTEM'}</span>
-              </button>
-
-              {hoveredWheelIndex !== null && (
-                <button
-                  type="button"
-                  onClick={() => { setHoveredWheelIndex(null); setIsAutoPlaying(false); }}
-                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900/80 text-slate-300 border border-slate-700 hover:text-white hover:border-slate-500 text-xs font-mono transition-all"
-                >
-                  <RefreshCw className="w-2.5 h-2.5" />
-                  <span>RESET OVERVIEW</span>
-                </button>
-              )}
-
-              <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 text-[11px] font-mono text-slate-400">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 text-[11px] font-mono text-slate-300">
                 <Radio className="w-3 h-3 text-cyan-400 animate-pulse" />
-                <span>{hoveredWheelIndex !== null ? `INSPECTING: ${wheelSegments[hoveredWheelIndex].badge}` : 'HOVER OR SELECT ANY NODE'}</span>
+                <span>{hoveredWheelIndex !== null ? `INSPECTING: ${wheelSegments[hoveredWheelIndex].badge}` : 'SYNCHRONIZED COGNITIVE PLATFORM'}</span>
               </div>
             </div>
           </motion.div>
@@ -914,12 +899,8 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => { if (!isAutoPlaying) setHoveredWheelIndex(segIdx); }}
-                    onMouseLeave={() => { if (!isAutoPlaying) setHoveredWheelIndex(null); }}
-                    onClick={() => {
-                      setIsAutoPlaying(false);
-                      setHoveredWheelIndex(isHovered ? null : segIdx);
-                    }}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
+                    onClick={() => setHoveredWheelIndex(segIdx)}
                     className={`px-3.5 py-2.5 rounded-xl border transition-all duration-200 cursor-pointer relative overflow-hidden group backdrop-blur-md ${
                       isHovered
                         ? 'bg-slate-900/95 -translate-x-1 shadow-lg scale-[1.01]'
@@ -1018,12 +999,8 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
                     return (
                       <g 
                         key={seg.id} 
-                        onMouseEnter={() => { if (!isAutoPlaying) setHoveredWheelIndex(idx); }} 
-                        onMouseLeave={() => { if (!isAutoPlaying) setHoveredWheelIndex(null); }} 
-                        onClick={() => {
-                          setIsAutoPlaying(false);
-                          setHoveredWheelIndex(isHovered ? null : idx);
-                        }}
+                        onMouseEnter={() => setHoveredWheelIndex(idx)} 
+                        onClick={() => setHoveredWheelIndex(idx)}
                         className="cursor-pointer transition-all duration-300"
                       >
                         <path 
@@ -1184,12 +1161,8 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => { if (!isAutoPlaying) setHoveredWheelIndex(segIdx); }}
-                    onMouseLeave={() => { if (!isAutoPlaying) setHoveredWheelIndex(null); }}
-                    onClick={() => {
-                      setIsAutoPlaying(false);
-                      setHoveredWheelIndex(isHovered ? null : segIdx);
-                    }}
+                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
+                    onClick={() => setHoveredWheelIndex(segIdx)}
                     className={`px-3.5 py-2.5 rounded-xl border transition-all duration-200 cursor-pointer relative overflow-hidden group backdrop-blur-md ${
                       isHovered
                         ? 'bg-slate-900/95 translate-x-1 shadow-lg scale-[1.01]'
@@ -1282,10 +1255,7 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
                   return (
                     <g 
                       key={seg.id} 
-                      onClick={() => {
-                        setIsAutoPlaying(false);
-                        setHoveredWheelIndex(isHovered ? null : idx);
-                      }}
+                      onClick={() => setHoveredWheelIndex(idx)}
                       className="cursor-pointer"
                     >
                       <path 
@@ -1478,12 +1448,12 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
             <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
               <div className="lg:col-span-7 relative h-72 sm:h-80 lg:h-96 overflow-hidden">
                 <img
-                  src="/images/enterprise-ai/enterprise-ai-architecture.jpg"
-                  alt="Enterprise AI Clean Core Blueprint & Architecture Mesh"
+                  src="/images/enterprise_ai_clean_core_gateway.png"
+                  alt="Enterprise AI Core & Clean Core Gateway"
                   className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-950/90 hidden lg:block pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent lg:hidden pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-950/80 hidden lg:block pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent lg:hidden pointer-events-none" />
                 <div className="absolute top-4 left-4 px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-cyan-400/40 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-1.5">
                   <Database className="w-4 h-4 text-cyan-400" />
                   <span>CLEAN CORE AI BLUEPRINT</span>
@@ -1737,11 +1707,11 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
               {/* Left Column: Visual AI Document Scan */}
               <div className="lg:col-span-5 relative rounded-xl overflow-hidden border border-cyan-400/40 shadow-lg group min-h-[260px] sm:min-h-[300px] lg:min-h-full">
                 <img
-                  src="/images/enterprise-ai/enterprise-ai-governance.jpg"
-                  alt="Autonomous Enterprise AI Governance & Audit Engine"
+                  src="/images/enterprise_ai_audit_sandbox.png"
+                  alt="Autonomous Intelligence Audit Sandbox"
                   className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
                 
                 <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-10 shadow-sm">
                   <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
@@ -1839,10 +1809,11 @@ export const EnterpriseAiPracticePage: React.FC<EnterpriseAiPracticePageProps> =
             </button>
 
             <Link
-              to="/digital-intelligence"
-              className="px-8 py-4 rounded-xl bg-transparent hover:bg-white/10 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border-2 border-white/40 hover:border-white transition-all flex items-center gap-2"
+              to="/digital-intelligence/generative-ai"
+              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2 group"
             >
-              <span>Explore Digital Intelligence</span>
+              <span>Explore Generative AI</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 

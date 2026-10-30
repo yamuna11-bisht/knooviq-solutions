@@ -34,62 +34,50 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
           SECTION 1: RESPONSIVE MULTI-DEVICE ENTERPRISE HERO
           (Blue & White, Pure Information, Full-Screen Workflow Automation Showcase)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-blue-950">
-        <div className="absolute inset-0 z-0">
+      <section className="relative w-full min-h-[520px] sm:min-h-[560px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black">
+        {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
             src="/images/sap_fiori_workflow_automation_hero.png"
             alt="Consumer-Grade Simplicity for Mission-Critical Workflows"
-            className="w-full h-full object-cover object-right lg:object-[70%_center] brightness-105 contrast-105"
+            className="w-full h-full object-cover object-[70%_top] select-none"
           />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-blue-950 via-blue-950/75 via-45% to-transparent pointer-events-none" />
+
+        {/* Top Hairline Accent */}
+        <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
+          <div className="max-w-2xl space-y-4 relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box and Zero dark blue shade */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/90 via-black/60 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-blue-300 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-                <span>ENTERPRISE USER EXPERIENCE &bull; SAP FIORI 3 & HORIZON</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-md">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
+                <span>ENTERPRISE USER EXPERIENCE &bull; SAP FIORI 3 &amp; HORIZON</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
                 Consumer-Grade <br />
-                <span className="text-blue-400">Simplicity for Mission-Critical Workflows</span>
+                <span className="text-[#00A3E0] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">Simplicity for Mission-Critical Workflows</span>
               </h1>
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
+              <p className="text-base sm:text-lg text-slate-100 leading-relaxed font-medium max-w-xl pt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 Transform complex SAP GUI transactions into intuitive, role-based, multi-device digital experiences. Empower desktop knowledge workers, tablet field managers, and mobile warehouse operators with consistent Horizon design and context-aware Joule AI.
               </p>
             </motion.div>
 
-            {/* Action Buttons */}
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="flex flex-wrap items-center gap-3 pt-1">
-              <button
-                onClick={() => onOpenContact('SAP Fiori Modernization & UX Assessment')}
-                className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 group"
-              >
-                <span>Request UX Assessment</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <a
-                href="#floorplan-gallery"
-                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm backdrop-blur-md transition-all flex items-center gap-2"
-              >
-                <Layout className="w-4 h-4 text-blue-400" />
-                <span>Explore 4 Core Floorplans</span>
-              </a>
-            </motion.div>
-
             {/* Enterprise Trust Indicators (Ultra-Clean, Matching Design Reference) */}
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-blue-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-blue-200 shadow-md">
                 <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>80% Less Front-End Code</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-emerald-200 shadow-md">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>100% Upgrade Resilient</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-sky-200 shadow-md">
                 <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>WCAG 2.1 AA Standard</span>
               </div>
@@ -106,11 +94,11 @@ export const SapFioriPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) =
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="max-w-3xl mb-12 space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-100 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-800">
-              <Grid className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase">
+              <Grid className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>STANDARDIZED USER JOURNEYS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-blue-950 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
               The 4 Core SAP Fiori Enterprise Floorplans
             </h2>
             <p className="text-sm sm:text-base text-slate-600">

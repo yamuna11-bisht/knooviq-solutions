@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -39,8 +40,6 @@ interface SoftwareSaasIndustryPageProps {
 export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -180,7 +179,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       sublabel: 'Idempotent Telemetry',
       desc: 'Stream high-velocity API calls, data throughput, and compute seconds into real-time convergent charging mediation with sub-second latency.',
       tech: 'SAP BTP Event Mesh',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/saas_journey_usage_ingestion.jpg',
       icon: Zap
     },
     {
@@ -189,7 +188,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       sublabel: 'Coterminous Align',
       desc: 'Unify tiered subscriptions, seat licenses, minimum commitments, and add-on upgrades into automated coterminous contract lifecycles.',
       tech: 'SAP Subscription Billing',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/saas_journey_subscription_terms.png',
       icon: FileCheck
     },
     {
@@ -198,7 +197,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       sublabel: 'Unified Billing Core',
       desc: 'Consolidate flat recurring fees, dynamic usage overages, and partner add-ons on a single transparent enterprise billing statement.',
       tech: 'SAP Convergent Invoicing',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/saas_journey_convergent_invoicing.jpg',
       icon: CreditCard
     },
     {
@@ -207,7 +206,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       sublabel: 'ASC 606 / IFRS 15',
       desc: 'Automate standalone selling price (SSP) allocation, contract liability schedules, and cumulative catch-ups for mid-term amendments.',
       tech: 'SAP Revenue Accounting (RAR)',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/saas_journey_revenue_accounting.jpg',
       icon: ShieldCheck
     },
     {
@@ -216,7 +215,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       sublabel: 'ARR Preservation',
       desc: 'Prevent involuntary churn via tokenized card updater sync, smart retry schedules factoring in clearing windows, and self-service portals.',
       tech: 'SAP Billing Dunning Core',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/saas_journey_dunning_churn.jpg',
       icon: RefreshCw
     },
     {
@@ -225,10 +224,32 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       sublabel: 'ARR & NRR Analytics',
       desc: 'Deliver real-time Net Retention Rate, customer lifetime value, and cohort margins reconciled directly against general ledgers.',
       tech: 'SAP Analytics Cloud',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/saas_journey_cohort_telemetry.png',
       icon: BarChart3
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: SaaS Challenges & Bottlenecks Data
   const saasChallenges = [
@@ -285,7 +306,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: CreditCard,
       title: 'Enterprise Subscription Core',
       description: 'Manage complex recurring billing plans, annual advance invoices, coterminous add-ons, and payment gateway collections on Clean Core.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_enterprise_subscription_core.jpg',
       highlights: ['Seat & Tier Plans', 'Coterminous Alignment', 'Consolidated Statements', 'Gateway Auto-Settlement']
     },
     {
@@ -295,7 +316,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: Zap,
       title: 'High-Volume Consumption Rating',
       description: 'Capture cloud application telemetry, API calls, and computational consumption, transforming raw usage records into rated line items.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_high_volume_rating.jpg',
       highlights: ['Idempotent Ingestion', 'Dynamic Volume Tiers', 'Prepaid Drawdowns', 'Real-Time Quota Triggers']
     },
     {
@@ -305,7 +326,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: ShieldCheck,
       title: 'Automated ASC 606 Revenue RAR',
       description: 'Comply effortlessly with statutory revenue recognition standards through automated contract allocation, SSP scheduling, and catch-ups.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_automated_asc606_rar.png',
       highlights: ['Automated SSP Allocations', 'Contract Asset/Liability', 'Cumulative Catch-Ups', 'Audit-Ready Reporting']
     },
     {
@@ -315,7 +336,8 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: FileCheck,
       title: 'Coterminous Renewal Management',
       description: 'Synchronize multi-year contract renewals, mid-quarter seat expansions, and edition upgrades without manual proration spreadsheets.',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas/saas_solution_coterminous_renewals.png',
+      imagePosition: 'object-[center_top]',
       highlights: ['Automated Proration Logic', 'Coterminous Alignment', 'CPQ Contract Sync', 'Early Renewal Incentives']
     },
     {
@@ -325,7 +347,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: Database,
       title: 'Prepaid Commitments & Drawdowns',
       description: 'Manage enterprise prepaid consumption commitments, burndown drawdowns, and use-it-or-lose-it expiration schedules with full transparency.',
-      image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_prepaid_commitments.png',
       highlights: ['Enterprise Burndown', 'Prepaid Balance Ledger', 'Expiration Schedules', 'Self-Service Telemetry']
     },
     {
@@ -335,7 +357,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: Split,
       title: 'Multi-Party Marketplace RevShare',
       description: 'Calculate and distribute developer royalties, agency commissions, and cloud platform revenue splits across multi-sided marketplaces.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_marketplace_revshare.png',
       highlights: ['Developer Royalty Splits', 'Self-Invoicing Portals', 'Tax Withholding Rules', 'Consolidated Ledgers']
     },
     {
@@ -345,7 +367,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: RefreshCw,
       title: 'Smart Dunning & Churn Defense',
       description: 'Defend recurring ARR against card expirations and network declines using intelligent multi-attempt retry schedules and card updaters.',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_smart_dunning_churn.png',
       highlights: ['Tokenized Card Updaters', 'Smart Decline Retries', 'Dunning Email Sequences', 'Card Updater Portal']
     },
     {
@@ -355,7 +377,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: Sliders,
       title: 'Real-Time Usage Alerts & Tiers',
       description: 'Trigger automated customer notifications and in-app upgrade prompts when usage reaches commitment thresholds, driving expansion.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_usage_alerts_tiers.png',
       highlights: ['Real-Time Quota Triggers', 'Automated Tier Step-Ups', 'In-App Upgrade Webhooks', 'Overage Buffer Policies']
     },
     {
@@ -365,7 +387,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
       icon: BarChart3,
       title: 'SaaS Unit Economics & Cockpit',
       description: 'Deliver real-time Net Retention Rate (NRR), customer lifetime value (LTV), and cohort margin visibility directly linked to hosting ledgers.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/saas_solution_unit_economics_cockpit.png',
       highlights: ['Real-Time NRR Tracking', 'Cohort Gross Margins', 'Cloud Cost Attribution', 'Predictive Churn Alerts']
     }
   ];
@@ -445,9 +467,9 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
         {/* Full-Bleed Enterprise SaaS Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80" 
-            alt="Software, SaaS & Subscription Billing Operations" 
-            className="w-full h-full object-cover object-center"
+            src="/images/software_saas_erp_hero.jpg" 
+            alt="Intelligent ERP for Software & SaaS" 
+            className="w-full h-full object-cover object-center lg:object-right"
           />
         </div>
 
@@ -660,7 +682,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
@@ -809,20 +831,27 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -838,7 +867,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -860,7 +889,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -868,20 +897,27 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -895,7 +931,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -942,8 +978,8 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         SAAS REVENUE
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
-                        {hoveredWheelIndex !== null 
-                          ? `MODULE 0${hoveredWheelIndex + 1}` 
+                        {(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) !== null 
+                          ? `MODULE 0${(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) + 1}` 
                           : '8 CAPABILITIES'}
                       </div>
                     </div>
@@ -957,20 +993,27 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -978,7 +1021,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right">
@@ -1196,7 +1239,7 @@ export const SoftwareSaasIndustryPage: React.FC<SoftwareSaasIndustryPageProps> =
                       <img 
                         src={sol.image} 
                         alt={sol.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                        className={`w-full h-full object-cover ${(sol as any).imagePosition || 'object-center'} group-hover:scale-105 transition-transform duration-500`} 
                       />
                       <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
                       

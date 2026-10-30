@@ -92,27 +92,27 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
   const currentSource = DATA_SOURCES.find((s) => s.id === activeSourceId) || DATA_SOURCES[0];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-[#0070C0] selection:text-white">
 
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content)
+          SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content - Dark Theme)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-slate-950 text-white">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed Background Visual: Holographic Data Fabric & Zero-Copy Virtualization */}
+        {/* Full-Bleed Background Visual: Holographic Data Fabric & Zero-Copy Virtualization (100% Clear with Zero Dark Blue Shade) */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/sap_datasphere_boardroom_analytics.png"
             alt="SAP Datasphere - Unify Enterprise Data Without Moving A Single Physical Byte"
             className="w-full h-full object-cover object-right lg:object-[65%_center] brightness-110 contrast-105 saturate-[1.05]"
           />
-          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl space-y-5 text-left">
+          <div className="max-w-3xl space-y-5 text-left relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with Zero Box and Zero dark blue shade */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -120,14 +120,15 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
               transition={{ duration: 0.55 }}
               className="space-y-3"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-900/80 border border-cyan-400/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-200 shadow-sm">
-                <Database className="w-3.5 h-3.5 text-cyan-300" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <Database className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; SAP DATASPHERE</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
                 Unify Enterprise Data Without <br />
-                <span className="text-cyan-300">Moving A Single Physical Byte</span>
+                <span className="text-[#00A3E0]">Moving A Single Physical Byte</span>
               </h1>
 
               <p className="text-lg sm:text-xl font-semibold text-cyan-100 leading-snug">
@@ -166,9 +167,9 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="mt-6 pt-5 border-t border-cyan-800/80 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+              className="mt-6 pt-5 border-t border-cyan-700/40 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
                 <div className="flex items-center gap-2 mb-1">
                   <Database className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">DATA FABRIC</span>
@@ -177,7 +178,7 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
                 <div className="text-xs text-cyan-200 mt-0.5">Zero Context Stripping</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
                 <div className="flex items-center gap-2 mb-1">
                   <Network className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">FEDERATION</span>
@@ -186,7 +187,7 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
                 <div className="text-xs text-cyan-200 mt-0.5">Sub-Second Pushdown</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
                 <div className="flex items-center gap-2 mb-1">
                   <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SECURITY</span>
@@ -195,7 +196,7 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
                 <div className="text-xs text-cyan-200 mt-0.5">Native SAP S/4HANA ACLs</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-cyan-950/60 border border-cyan-800">
+              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
                 <div className="flex items-center gap-2 mb-1">
                   <Sparkles className="w-4 h-4 text-cyan-300 shrink-0" />
                   <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">AI READY</span>
@@ -210,59 +211,63 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
       </section>
 
       {/* =========================================================================
-          SECTION 2: LIVE FABRIC FEDERATION CONTROLLER & INGESTION TOPOLOGY
+          SECTION 2: LIVE FABRIC FEDERATION CONTROLLER & INGESTION TOPOLOGY (Light Theme)
           ========================================================================= */}
-      <section className="py-16 bg-[#040A17] border-b border-white/10 relative">
+      <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200 relative text-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
-              <Network className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase mb-1">
+              <Network className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>LIVE FEDERATION TOPOLOGY</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Interactive Multi-Source Federation Controller
             </h2>
-            <p className="text-sm sm:text-base text-slate-300">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
               Experience real-time zero-copy querying across hyperscaler data lakes, legacy on-prem systems, and modern SaaS ecosystems.
             </p>
           </div>
 
           {/* Interactive Topology Visualizer */}
-          <div className="max-w-5xl mx-auto rounded-2xl border-2 border-cyan-500/40 bg-[#08152B]/95 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+          <div className="max-w-5xl mx-auto rounded-2xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-xl shadow-slate-200/50">
             
-            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
               <div>
-                <span className="text-xs font-mono uppercase text-cyan-400 font-bold block">
+                <span className="text-xs font-mono uppercase text-[#0070C0] font-bold block">
                   FABRIC FEDERATION CONTROLLER
                 </span>
-                <span className="text-sm font-bold text-white">Select Connected Ingestion Source:</span>
+                <span className="text-sm font-bold text-slate-900">Select Connected Ingestion Source:</span>
               </div>
-              <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+              <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-sky-50 text-[#0070C0] border border-sky-200">
                 ZERO-COPY ARCHITECTURE
               </span>
             </div>
 
             {/* Source Node Tabs */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-6">
-              {DATA_SOURCES.map((source) => (
-                <button
-                  key={source.id}
-                  onClick={() => setActiveSourceId(source.id)}
-                  className={`p-3 rounded-xl text-left transition-all border ${
-                    activeSourceId === source.id
-                      ? 'bg-gradient-to-b from-cyan-500/20 to-blue-900/30 border-cyan-400 shadow-md shadow-cyan-500/20'
-                      : 'bg-black/30 border-white/5 hover:border-white/20 text-slate-400'
-                  }`}
-                >
-                  <span className="text-[10px] font-mono text-cyan-400 block font-bold truncate">
-                    {source.category}
-                  </span>
-                  <span className="text-xs sm:text-sm font-bold text-white block mt-0.5 truncate">
-                    {source.name}
-                  </span>
-                </button>
-              ))}
+              {DATA_SOURCES.map((source) => {
+                const isActive = activeSourceId === source.id;
+                return (
+                  <button
+                    key={source.id}
+                    onClick={() => setActiveSourceId(source.id)}
+                    className={`p-3 rounded-xl text-left transition-all border ${
+                      isActive
+                        ? 'bg-sky-50/80 border-2 border-[#0070C0] text-slate-900 shadow-md ring-2 ring-[#0070C0]/20'
+                        : 'bg-slate-50 border-slate-200 hover:bg-slate-100 hover:border-slate-300 text-slate-600'
+                    }`}
+                  >
+                    <span className={`text-[10px] font-mono block font-bold truncate ${isActive ? 'text-[#0070C0]' : 'text-slate-500'}`}>
+                      {source.category}
+                    </span>
+                    <span className={`text-xs sm:text-sm font-bold block mt-0.5 truncate ${isActive ? 'text-slate-900' : 'text-slate-700'}`}>
+                      {source.name}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Selected Node Architecture Deep-Dive */}
@@ -273,50 +278,50 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-6 rounded-xl bg-black/50 border border-white/10"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-6 rounded-xl bg-slate-50 border border-slate-200"
               >
                 <div className="lg:col-span-8 space-y-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-                    <span className="text-xs font-mono font-bold text-cyan-300 uppercase">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-xs font-mono font-bold text-[#0070C0] uppercase">
                       ACTIVE FEDERATION PROTOCOL: {currentSource.protocol}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white">
+                  <h3 className="text-xl font-bold text-slate-900">
                     {currentSource.name}: {currentSource.category}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                     {currentSource.description}
                   </p>
 
                   <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-mono">
-                    <span className="px-3 py-1 rounded bg-black/60 border border-white/10 text-emerald-400">
+                    <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold">
                       Latency: {currentSource.latency}
                     </span>
-                    <span className="px-3 py-1 rounded bg-black/60 border border-white/10 text-cyan-300">
+                    <span className="px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-[#0070C0] font-semibold">
                       Security: SAP Authorization Inherited
                     </span>
                   </div>
                 </div>
 
-                <div className="lg:col-span-4 p-4 rounded-xl bg-[#0C1E3D] border border-cyan-500/30 text-xs space-y-2 text-slate-300">
-                  <span className="text-[10px] font-mono uppercase text-cyan-400 font-bold block">
+                <div className="lg:col-span-4 p-5 rounded-xl bg-white border border-slate-200 shadow-sm text-xs space-y-2.5 text-slate-700">
+                  <span className="text-[10px] font-mono uppercase text-[#0070C0] font-bold block tracking-wider">
                     BUSINESS FABRIC BENEFIT
                   </span>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span>Zero data duplication storage cost</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span className="font-medium text-slate-800">Zero data duplication storage cost</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span>Preserves currency & unit conversion</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span className="font-medium text-slate-800">Preserves currency & unit conversion</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span>Lineage & cataloging out of the box</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span className="font-medium text-slate-800">Lineage & cataloging out of the box</span>
                     </div>
                   </div>
                 </div>
@@ -329,59 +334,59 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
       </section>
 
       {/* =========================================================================
-          SECTION 2: ZERO-COPY VIRTUALIZATION VS TRADITIONAL ETL BENCHMARK
+          SECTION 3: ZERO-COPY VIRTUALIZATION VS TRADITIONAL ETL BENCHMARK (Light Theme)
           ========================================================================= */}
-      <section className="py-20 bg-[#030914] border-y border-white/10">
+      <section className="py-20 bg-white border-b border-slate-200 text-slate-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-xs font-mono font-bold uppercase text-cyan-400 mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-xs font-mono font-bold uppercase text-[#0070C0] mb-3 shadow-sm">
               <HardDrive className="w-3.5 h-3.5" />
               <span>TECHNICAL BENCHMARK</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Zero-Copy Virtualization vs. Legacy ETL Ingestion
             </h2>
-            <p className="text-sm sm:text-base text-slate-400 mt-2">
+            <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
               See why moving enterprise data into brittle, third-party data lakes introduces semantic debt, governance fragmentation, and massive cloud ingress/egress fees.
             </p>
           </div>
 
           {/* Benchmark Comparison Table */}
-          <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-2xl">
+          <div className="overflow-x-auto rounded-2xl border-2 border-slate-200 shadow-xl shadow-slate-200/50">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-[#08152B] border-b border-white/10 text-xs font-mono uppercase text-slate-300">
+              <thead className="bg-slate-50 border-b border-slate-200 text-xs font-mono uppercase text-slate-700">
                 <tr>
                   <th className="p-4 sm:p-5">Architectural Dimension</th>
-                  <th className="p-4 sm:p-5 text-rose-400">Traditional Legacy ETL Pipelines</th>
-                  <th className="p-4 sm:p-5 text-cyan-400 bg-cyan-950/20">SAP Datasphere Business Fabric</th>
+                  <th className="p-4 sm:p-5 text-rose-700 bg-rose-50/50 border-l border-rose-100">Traditional Legacy ETL Pipelines</th>
+                  <th className="p-4 sm:p-5 text-[#0070C0] bg-sky-50 border-l border-sky-200 font-bold">SAP Datasphere Business Fabric</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5 font-normal text-slate-300">
-                <tr>
-                  <td className="p-4 sm:p-5 font-bold text-white font-mono">Data Freshness &amp; Latency</td>
-                  <td className="p-4 sm:p-5 text-rose-300/80">Batch-dependent (6 to 24-hour lag behind ERP transactions)</td>
-                  <td className="p-4 sm:p-5 text-emerald-300 font-semibold bg-cyan-950/10">Instantaneous Sub-Second Pushdown Querying</td>
+              <tbody className="divide-y divide-slate-100 font-normal text-slate-700">
+                <tr className="hover:bg-slate-50/60 transition-colors">
+                  <td className="p-4 sm:p-5 font-bold text-slate-900 font-mono bg-white">Data Freshness &amp; Latency</td>
+                  <td className="p-4 sm:p-5 text-rose-800/90 bg-rose-50/30 border-l border-rose-100">Batch-dependent (6 to 24-hour lag behind ERP transactions)</td>
+                  <td className="p-4 sm:p-5 text-emerald-700 font-semibold bg-sky-50/30 border-l border-sky-200">Instantaneous Sub-Second Pushdown Querying</td>
                 </tr>
-                <tr>
-                  <td className="p-4 sm:p-5 font-bold text-white font-mono">Business Context &amp; Semantics</td>
-                  <td className="p-4 sm:p-5 text-rose-300/80">Context stripped; requires thousands of hours to remodel hierarchies</td>
-                  <td className="p-4 sm:p-5 text-emerald-300 font-semibold bg-cyan-950/10">100% Preserved (Hierarchies, Multi-Currency, Language Keys)</td>
+                <tr className="hover:bg-slate-50/60 transition-colors">
+                  <td className="p-4 sm:p-5 font-bold text-slate-900 font-mono bg-white">Business Context &amp; Semantics</td>
+                  <td className="p-4 sm:p-5 text-rose-800/90 bg-rose-50/30 border-l border-rose-100">Context stripped; requires thousands of hours to remodel hierarchies</td>
+                  <td className="p-4 sm:p-5 text-emerald-700 font-semibold bg-sky-50/30 border-l border-sky-200">100% Preserved (Hierarchies, Multi-Currency, Language Keys)</td>
                 </tr>
-                <tr>
-                  <td className="p-4 sm:p-5 font-bold text-white font-mono">Storage Footprint &amp; Duplication</td>
-                  <td className="p-4 sm:p-5 text-rose-300/80">3x to 5x physical copies across raw, staging, and presentation lakes</td>
-                  <td className="p-4 sm:p-5 text-emerald-300 font-semibold bg-cyan-950/10">Zero Unnecessary Copies (Logical Semantic Layer)</td>
+                <tr className="hover:bg-slate-50/60 transition-colors">
+                  <td className="p-4 sm:p-5 font-bold text-slate-900 font-mono bg-white">Storage Footprint &amp; Duplication</td>
+                  <td className="p-4 sm:p-5 text-rose-800/90 bg-rose-50/30 border-l border-rose-100">3x to 5x physical copies across raw, staging, and presentation lakes</td>
+                  <td className="p-4 sm:p-5 text-emerald-700 font-semibold bg-sky-50/30 border-l border-sky-200">Zero Unnecessary Copies (Logical Semantic Layer)</td>
                 </tr>
-                <tr>
-                  <td className="p-4 sm:p-5 font-bold text-white font-mono">Security &amp; Authorization</td>
-                  <td className="p-4 sm:p-5 text-rose-300/80">Fragmented; manual recreation of complex SAP authorization profiles</td>
-                  <td className="p-4 sm:p-5 text-emerald-300 font-semibold bg-cyan-950/10">Inherited natively from SAP S/4HANA &amp; Cloud Identity</td>
+                <tr className="hover:bg-slate-50/60 transition-colors">
+                  <td className="p-4 sm:p-5 font-bold text-slate-900 font-mono bg-white">Security &amp; Authorization</td>
+                  <td className="p-4 sm:p-5 text-rose-800/90 bg-rose-50/30 border-l border-rose-100">Fragmented; manual recreation of complex SAP authorization profiles</td>
+                  <td className="p-4 sm:p-5 text-emerald-700 font-semibold bg-sky-50/30 border-l border-sky-200">Inherited natively from SAP S/4HANA &amp; Cloud Identity</td>
                 </tr>
-                <tr>
-                  <td className="p-4 sm:p-5 font-bold text-white font-mono">Clean Core Governance</td>
-                  <td className="p-4 sm:p-5 text-rose-300/80">High violation risk due to direct database schema scraping</td>
-                  <td className="p-4 sm:p-5 text-emerald-300 font-semibold bg-cyan-950/10">Certified Clean Core Compliant via Released CDS Views</td>
+                <tr className="hover:bg-slate-50/60 transition-colors">
+                  <td className="p-4 sm:p-5 font-bold text-slate-900 font-mono bg-white">Clean Core Governance</td>
+                  <td className="p-4 sm:p-5 text-rose-800/90 bg-rose-50/30 border-l border-rose-100">High violation risk due to direct database schema scraping</td>
+                  <td className="p-4 sm:p-5 text-emerald-700 font-semibold bg-sky-50/30 border-l border-sky-200">Certified Clean Core Compliant via Released CDS Views</td>
                 </tr>
               </tbody>
             </table>
@@ -391,55 +396,55 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
       </section>
 
       {/* =========================================================================
-          SECTION 3: THREE-TIER MODELING STUDIO (Spaces & Semantic Layer)
+          SECTION 4: THREE-TIER MODELING STUDIO (Spaces & Semantic Layer) (Light Theme)
           ========================================================================= */}
-      <section className="py-20 bg-slate-950">
+      <section className="py-20 bg-slate-50 border-b border-slate-200 text-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/30 text-xs font-mono font-bold uppercase text-blue-400 mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold uppercase text-blue-700 mb-3 shadow-sm">
               <Layers className="w-3.5 h-3.5" />
               <span>COLLABORATIVE MODELING ARCHITECTURE</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Spaces, Data Builder &amp; Business Builder
             </h2>
-            <p className="text-sm sm:text-base text-slate-400 mt-2">
+            <p className="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed max-w-2xl mx-auto">
               Empower business analysts to model KPIs and consumption stories independently while IT retains central control over security, quotas, and underlying tables.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div className="p-6 rounded-2xl bg-[#08152B] border border-white/10 hover:border-cyan-500/40 transition-all space-y-4">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+            <div className="p-7 rounded-2xl bg-white border-2 border-slate-200/80 hover:border-[#0070C0] hover:shadow-xl transition-all space-y-4 shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-sky-50 text-[#0070C0] border border-sky-200 flex items-center justify-center font-bold">
                 <Boxes className="w-5 h-5" />
               </div>
-              <span className="text-xs font-mono text-cyan-400 font-bold uppercase block">TIER 1 &bull; ISOLATION</span>
-              <h3 className="text-xl font-bold text-white">Datasphere Spaces</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <span className="text-xs font-mono text-[#0070C0] font-bold uppercase block tracking-wider">TIER 1 &bull; ISOLATION</span>
+              <h3 className="text-xl font-bold text-slate-900">Datasphere Spaces</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                 Secure, isolated virtual collaborative environments allocated to specific business units (e.g., Global Treasury, Supply Chain, Human Capital) with dedicated compute, storage, and user access quotas.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#08152B] border border-white/10 hover:border-cyan-500/40 transition-all space-y-4">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-[#00A3E0] flex items-center justify-center font-bold">
+            <div className="p-7 rounded-2xl bg-white border-2 border-slate-200/80 hover:border-blue-600 hover:shadow-xl transition-all space-y-4 shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center font-bold">
                 <FileCode className="w-5 h-5" />
               </div>
-              <span className="text-xs font-mono text-[#00A3E0] font-bold uppercase block">TIER 2 &bull; TECHNICAL INTEGRATION</span>
-              <h3 className="text-xl font-bold text-white">Data Builder (IT Layer)</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <span className="text-xs font-mono text-blue-600 font-bold uppercase block tracking-wider">TIER 2 &bull; TECHNICAL INTEGRATION</span>
+              <h3 className="text-xl font-bold text-slate-900">Data Builder (IT Layer)</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                 Empowers data engineers to combine physical and virtual tables, define SQL transformations, build graphical ETL data flows, and establish high-speed caching with HANA in-memory acceleration.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#08152B] border border-white/10 hover:border-cyan-500/40 transition-all space-y-4">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
+            <div className="p-7 rounded-2xl bg-white border-2 border-slate-200/80 hover:border-purple-600 hover:shadow-xl transition-all space-y-4 shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 border border-purple-200 flex items-center justify-center font-bold">
                 <Workflow className="w-5 h-5" />
               </div>
-              <span className="text-xs font-mono text-purple-400 font-bold uppercase block">TIER 3 &bull; BUSINESS SEMANTICS</span>
-              <h3 className="text-xl font-bold text-white">Business Builder (Semantic Layer)</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <span className="text-xs font-mono text-purple-600 font-bold uppercase block tracking-wider">TIER 3 &bull; BUSINESS SEMANTICS</span>
+              <h3 className="text-xl font-bold text-slate-900">Business Builder (Semantic Layer)</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                 Abstracts technical database column names into recognizable business entities, calculated measures (e.g. EBITDA, Net Sales Margin), and multi-level reporting hierarchies ready for SAC or PowerBI.
               </p>
             </div>
@@ -450,7 +455,7 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
       </section>
 
       {/* =========================================================================
-          SECTION 4: CALL TO ACTION
+          SECTION 5: CALL TO ACTION (Dark Theme)
           ========================================================================= */}
       <section className="py-20 bg-gradient-to-br from-[#061224] via-[#0A1A38] to-[#02050E] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">

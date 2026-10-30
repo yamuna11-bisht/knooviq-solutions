@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -39,9 +40,6 @@ interface InsuranceIndustryPageProps {
 export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -180,7 +178,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       sublabel: 'Omnichannel Origination',
       desc: 'Deliver instant multi-quote comparisons across direct and broker channels with dynamic rating engines and automated policy issuance.',
       tech: 'SAP Customer Experience & FS-QUO',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/insurance/stage1_quote_binding.jpg',
       icon: FileCheck2
     },
     {
@@ -189,7 +187,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       sublabel: 'Centralized Contract Lifecycle',
       desc: 'Manage mid-term endorsements, co-insurance splits, and seamless policy renewals on unified multi-line insurance contract repositories.',
       tech: 'SAP for Insurance FS-PM',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/insurance/stage2_policy_administration.png',
       icon: ShieldCheck
     },
     {
@@ -198,7 +196,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       sublabel: 'Automated Adjudication',
       desc: 'Process digital FNOL submissions, assign loss adjusters, detect fraudulent billing anomalies, and trigger instant claims payouts.',
       tech: 'SAP Claims Management FS-CM',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/insurance/stage3_claims_settlement.png',
       icon: HeartHandshake
     },
     {
@@ -207,7 +205,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       sublabel: 'Treaty Allocation & Ceding',
       desc: 'Calculate complex proportional and non-proportional reinsurance cessions with automated billing and retrocession tracking.',
       tech: 'SAP Reinsurance Management FS-RI',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/insurance/stage4_reinsurance_management.jpg',
       icon: Layers
     },
     {
@@ -216,7 +214,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       sublabel: 'Sub-Ledger Payment Rails',
       desc: 'Automate premium payment reconciliation, dunning processes, broker commission disbursements, and co-insurer settlements.',
       tech: 'SAP Collections & Disbursements FS-CD',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/insurance/stage5_collections_billing.png',
       icon: CreditCard
     },
     {
@@ -225,10 +223,32 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       sublabel: 'Actuarial Contractual Margin',
       desc: 'Calculate Contractual Service Margin (CSM) amortization and loss recovery components compliant with IFRS 17 and local solvency audits.',
       tech: 'SAP S/4HANA Financial Products Subledger (FPSL)',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/insurance/stage6_ifrs17_financial_close.png',
       icon: Scale
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Insurance Challenges Data
   const insuranceChallenges = [
@@ -284,7 +304,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'POLICY ENGINE',
       title: 'SAP for Insurance Policy Management (FS-PM)',
       description: 'End-to-end multi-line policy administration platform supporting life, health, and P&C contracts with continuous lifecycle tracking.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_fspm_policy_management.jpg',
       icon: FileCheck2,
       highlights: ['Multi-Line Product Engine', 'Automated Endorsement Processing', 'Continuous Renewal Rules']
     },
@@ -294,7 +314,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'CLAIMS AUTOMATION',
       title: 'Digital Claims Management & FNOL Hub (FS-CM)',
       description: 'Streamlined claims lifecycle management featuring automated triage, fraud heuristic scoring, and instant payment settlement.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_fscm_claims_fnol.jpg',
       icon: HeartHandshake,
       highlights: ['Mobile Digital FNOL', 'Automated Loss Adjuster Triage', 'Fast-Track Payout Gateway']
     },
@@ -304,7 +324,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'PREMIUM BILLING',
       title: 'Collections & Disbursements Suite (FS-CD)',
       description: 'High-volume sub-ledger managing policyholder premium invoicing, direct debit mandates, broker payouts, and co-insurance clearings.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_fscd_collections_billing.jpg',
       icon: CreditCard,
       highlights: ['Automated Direct Debits', 'Broker Commission Engine', 'Real-Time Clearing Reconciliation']
     },
@@ -314,7 +334,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'IFRS 17 ENGINE',
       title: 'SAP S/4HANA Financial Products Subledger (FPSL)',
       description: 'Dedicated financial sub-ledger connecting actuarial cash flow engines with accounting ledgers for complete IFRS 17 and LDTI compliance.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_fpsl_ifrs17_subledger.jpg',
       icon: Scale,
       highlights: ['CSM Calculation & Amortization', 'Building Block Approach (BBA)', 'Multi-GAAP Parallel Posting']
     },
@@ -324,7 +344,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'REINSURANCE HUB',
       title: 'SAP Reinsurance Management Suite (FS-RI)',
       description: 'Comprehensive reinsurance contract administration automating treaty calculations, facultative placements, and reinsurer claims recoveries.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_fsri_reinsurance_suite.jpg',
       icon: ShieldCheck,
       highlights: ['Proportional & Non-Proportional', 'Automated Retrocession Cessions', 'Loss Recovery Claims Tracking']
     },
@@ -334,7 +354,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'SOLVENCY II',
       title: 'Solvency & Capital Adequacy Compliance Suite',
       description: 'Enterprise regulatory modeling evaluating Best Estimate Liabilities (BEL), Risk Margin, and Solvency Capital Requirements (SCR).',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_solvency_capital_adequacy.jpg',
       icon: BarChart3,
       highlights: ['SCR / MCR Dynamic Modeling', 'Pillar 3 Regulatory Reporting', 'Stress & Scenario Simulation']
     },
@@ -344,7 +364,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'AI UNDERWRITING',
       title: 'Algorithmic Risk Underwriting & Rating Engine',
       description: 'Machine learning rating engine scoring applicant risk profiles in seconds with automated integration to telematics and bureau feeds.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_risk_underwriting_engine.jpg',
       icon: Activity,
       highlights: ['Telematics IoT Ingestion', 'Instant Decision Scorecards', 'Dynamic Premium Rating']
     },
@@ -354,7 +374,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'BROKER PORTAL',
       title: 'Agent & Broker Digital Distribution Portal',
       description: 'Cloud-native partner portal enabling brokers to bind coverage, manage policy portfolios, and track commission settlements in real time.',
-      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_agent_broker_portal.png',
       icon: Users,
       highlights: ['Instant Quote-to-Bind API', 'Hierarchy Commission Tracking', 'Real-Time Policy Servicing']
     },
@@ -364,7 +384,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
       tag: 'FRAUD INTERCEPTION',
       title: 'AI Claims Anomaly & Fraud Interception Suite',
       description: 'Real-time claims screening identifying identity fraud, inflated billing patterns, and organized claims staging before payout approval.',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/insurance/solution_ai_claims_fraud_interception.png',
       icon: Lock,
       highlights: ['Social Network Fraud Analysis', 'Medical Bill Padding Detection', 'Automated Special Investigations (SIU)']
     }
@@ -438,86 +458,88 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Cinematic Full-Bleed Dark Blue Hero Banner)
+          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
           ========================================================================= */}
-      <section className="relative min-h-[620px] lg:min-h-[680px] bg-slate-900 text-white flex flex-col justify-between overflow-hidden">
+      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Background Photo with Dark Gradient Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=2000&q=80" 
-            alt="Insurance Enterprise Finance" 
-            className="w-full h-full object-cover object-center brightness-60"
+        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        {/* Hero Top Content */}
+        {/* Hero Top Content (2-Column Grid) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          {/* Breadcrumb Navigation */}
-          <div className="mb-4 sm:mb-6">
-            <Link 
-              to="/industries" 
-              className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
-            >
-              <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
-              <span>Back to Industries</span>
-            </Link>
-          </div>
-
-          <div className="max-w-3xl space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Practice Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-              <span>KNOOVIQ INDUSTRY PRACTICE</span>
+            {/* Left Column (7 cols): Content & Typography */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="mb-4 sm:mb-6">
+                <Link 
+                  to="/industries" 
+                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+                >
+                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                  <span>Back to Industries</span>
+                </Link>
+              </div>
+
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+                <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                Intelligent Insurance & Actuarial Transformation
+              </h1>
+
+              {/* Sub-headline */}
+              <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
+                Modernize multi-line policy administration, streamline IFRS 17 / LDTI actuarial reporting, automate digital claims adjudication, and manage complex reinsurance treaties on clean-core SAP architecture.
+              </p>
+
+              {/* Feature Highlight Pills */}
+              <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Automated IFRS 17 & LDTI</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Touchless Digital Claims</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Dynamic Reinsurance Ceding</span>
+                </div>
+              </div>
+
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-              Intelligent Insurance & Actuarial Transformation
-            </h1>
-
-            {/* Sub-headline */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
-              Modernize multi-line policy administration, streamline IFRS 17 / LDTI actuarial reporting, automate digital claims adjudication, and manage complex reinsurance treaties on clean-core SAP architecture.
-            </p>
-
-            {/* Feature Highlight Pills */}
-            <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Automated IFRS 17 & LDTI</span>
+            {/* Right Column (5 cols): Pure Architectural Diagram Showcase (100% Uncut & Crystal Clear) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-900/90 shadow-2xl shadow-black/60 p-2 sm:p-2.5 backdrop-blur-md group hover:border-[#0070C0] transition-colors duration-300">
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center min-h-[300px] sm:min-h-[380px] lg:min-h-[460px]">
+                  <img 
+                    src="/images/insurance/insurance_hero.png" 
+                    alt="Quantum Insure Intelligent Insurance & Actuarial Transformation" 
+                    className="w-full h-auto max-h-[500px] object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Touchless Digital Claims</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Dynamic Reinsurance Ceding</span>
-              </div>
-            </div>
-
-            {/* Hero CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-              <button
-                type="button"
-                onClick={() => onOpenContact?.('Insurance Practice & IFRS 17 Consultation')}
-                className="px-6 py-3 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-[#0070C0]/30 transition-all flex items-center gap-2 group cursor-pointer"
-              >
-                <span>Consult With Insurance Architects</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <Link
-                to="#industry-solutions"
-                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 backdrop-blur-md transition-all flex items-center gap-2"
-              >
-                <span>Explore Solutions</span>
-              </Link>
             </div>
 
           </div>
@@ -651,13 +673,13 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
             <div className="lg:col-span-6 space-y-4">
               
               {/* Dynamic Photo Showcase */}
-              <div className="relative h-60 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md">
+              <div className="relative aspect-[16/9] sm:aspect-[1024/558] w-full min-h-[260px] sm:min-h-[300px] rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-950">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-700"
+                  className="w-full h-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 via-45% to-transparent pointer-events-none" />
                 
                 {/* Overlay Text on Image */}
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -682,7 +704,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between cursor-pointer ${
                         isActive 
                           ? 'border-[#0070C0] bg-sky-50/90 shadow-sm' 
@@ -805,25 +827,31 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
 
           {/* 3-Column Radial Wheel & Flanking Capabilities Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-            
-            {/* Left Column (4 Capabilities: Top-Left to Bottom-Left) */}
+                        {/* Left Column (4 Capabilities: Top-Left to Bottom-Left) */}
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -839,7 +867,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -861,7 +889,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -869,20 +897,27 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -898,7 +933,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
                             className="w-full h-full flex items-center justify-center transition-transform duration-300"
                             style={{ 
                               color: seg.color,
-                              transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                              transform: isHighlighted ? 'scale(1.2)' : 'scale(1)'
                             }}
                           >
                             <IconComponent className="w-5 h-5 drop-shadow-md" />
@@ -941,11 +976,11 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
                         KNOOVIQ CORE
                       </div>
                       <div className="text-sm sm:text-base font-black text-white leading-tight mt-0.5">
-                        INSURANCE HUB
+                        INSURANCE CORE
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
-                        {hoveredWheelIndex !== null 
-                          ? `MODULE 0${hoveredWheelIndex + 1}` 
+                        {(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) !== null 
+                          ? `MODULE 0${(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) + 1}` 
                           : '8 CAPABILITIES'}
                       </div>
                     </div>
@@ -959,20 +994,27 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -980,7 +1022,7 @@ export const InsuranceIndustryPage: React.FC<InsuranceIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right">

@@ -63,7 +63,7 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<string>('ALL');
 
   // State for Section 9 Interactive Document Sandbox
-  const [activeDocTab, setActiveDocTab] = useState<'executive' | 'procurement' | 'operations'>('executive');
+  const [activeDocTab, setActiveDocTab] = useState<'telemetry' | 'schematics' | 'orders'>('telemetry');
 
   // Section 4: 8-Segment Cybernetic Cockpit Wheel Capabilities
   const wheelSegments = [
@@ -444,86 +444,16 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
     }
   ];
 
-  // Section 9: Interactive Copilot Sandbox Data
+  // Section 9: Shop-Floor Plant Maintenance Voice & Visual Copilot Sandbox Data
   const auditDocuments = {
-    executive: {
-      id: 'executive-brief',
-      title: 'Executive Financial Copilot & Revenue Variance Analysis',
-      tabLabel: 'Financial Copilot',
-      fileInfo: 'Context: SAP S/4HANA Finance &bull; Scope: Global Q3 Operations',
-      riskLevel: 'SOURCE CITATIONS VERIFIED',
-      riskBadgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-      recommendation: 'Copilot synthesized Q3 variance drivers with full drill-down citations into general ledger postings.',
-      findings: [
-        {
-          level: 'RETRIEVED',
-          levelColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
-          borderColor: 'border-cyan-500/40 hover:border-cyan-400',
-          title: 'Regional Revenue Discrepancy Identified',
-          desc: 'EMEA operational revenue variance reconciled against currency fluctuations and delayed logistics delivery schedules.',
-          citation: 'CDS: I_GLAccountLineItem'
-        },
-        {
-          level: 'VERIFIED',
-          levelColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-          borderColor: 'border-emerald-500/40 hover:border-emerald-400',
-          title: 'Cash Flow Projection Grounded',
-          desc: 'Rolling 90-day cash position projected using real-time open accounts receivable and verified payment terms.',
-          citation: 'Model: CashFlowForecasting_v4'
-        },
-        {
-          level: 'ACTIONABLE',
-          levelColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-          borderColor: 'border-purple-500/40 hover:border-purple-400',
-          title: 'Board-Ready Synthesis Prepared',
-          desc: 'Generated three-slide executive summary with interactive data points ready for CFO sign-off.',
-          citation: 'Format: Executive Presentation'
-        }
-      ]
-    },
-    procurement: {
-      id: 'procurement-assistant',
-      title: 'Procurement Negotiation & Vendor Contract Copilot',
-      tabLabel: 'Procurement Copilot',
-      fileInfo: 'Context: SAP Ariba / S/4HANA &bull; Contract Ref: #CNT-2026-991',
-      riskLevel: 'FAVORABLE TERMS IDENTIFIED',
-      riskBadgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
-      recommendation: 'Vendor price escalation matched against benchmark index. Counter-proposal clauses drafted autonomously.',
-      findings: [
-        {
-          level: 'EXTRACTED',
-          levelColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
-          borderColor: 'border-amber-500/40 hover:border-amber-400',
-          title: 'Price Index Clause Variance Flagged',
-          desc: 'Supplier requested raw material increase exceeds contractual producer price index escalation cap.',
-          citation: 'Clause: 14.2 Price Escalation'
-        },
-        {
-          level: 'BENCHMARKED',
-          levelColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
-          borderColor: 'border-cyan-500/40 hover:border-cyan-400',
-          title: 'Cross-Vendor Historical Pricing Queried',
-          desc: 'Retrieved median benchmark pricing across 3 alternative qualified suppliers from enterprise procurement history.',
-          citation: 'Source: SAP Purchasing Info Records'
-        },
-        {
-          level: 'DRAFTED',
-          levelColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-          borderColor: 'border-emerald-500/40 hover:border-emerald-400',
-          title: 'Formal Counter-Proposal Generated',
-          desc: 'Structured response letter generated citing agreement limits and proposing volume-tiered compromise.',
-          citation: 'Ariba: Sourcing Draft #D-8812'
-        }
-      ]
-    },
-    operations: {
-      id: 'operations-assistant',
-      title: 'Shop-Floor Plant Maintenance Voice & Visual Copilot',
-      tabLabel: 'Maintenance Copilot',
+    telemetry: {
+      id: 'telemetry-diagnostics',
+      title: 'Shop-Floor Turbine Telemetry & Voice Diagnostics',
+      tabLabel: 'Vibration & Telemetry',
       fileInfo: 'Context: SAP PM / Asset Intelligence &bull; Asset: Turbine #TB-404',
       riskLevel: 'DIAGNOSTIC PROTOCOL CONFIRMED',
       riskBadgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-      recommendation: 'Multimodal sensor telemetry mapped to technical repair manual. Spare part requisition dispatched.',
+      recommendation: 'Acoustic harmonic spectrogram matched with bearing breakdown signature. Automated technician safety instructions dispatched.',
       findings: [
         {
           level: 'INGESTED',
@@ -534,6 +464,33 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
           citation: 'Telemetry: SCADA_SENSOR_VIB_8'
         },
         {
+          level: 'ACOUSTIC MAP',
+          levelColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+          borderColor: 'border-cyan-500/40 hover:border-cyan-400',
+          title: 'Harmonic Frequency Anomaly Identified',
+          desc: 'Microphone audio feed isolates 2.4 kHz harmonic spikes indicating early fatigue on secondary drive shaft.',
+          citation: 'Audio: FFT_SPECTRUM_CH3'
+        },
+        {
+          level: 'VERIFIED',
+          levelColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+          borderColor: 'border-purple-500/40 hover:border-purple-400',
+          title: 'Operational Run-To-Failure Horizon Calculated',
+          desc: 'Predictive algorithm forecasts 36 operational hours remaining before critical threshold breach.',
+          citation: 'Model: BearingFatiguePredictor_v3'
+        }
+      ]
+    },
+    schematics: {
+      id: 'visual-schematics',
+      title: 'Multimodal Schematic & Safety Protocol Overlay',
+      tabLabel: 'Visual Schematics & OCR',
+      fileInfo: 'Context: Asset Digital Twin &bull; Document: OEM Technical Service Manual',
+      riskLevel: 'LOCK-OUT PROTOCOL ACTIVE',
+      riskBadgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+      recommendation: 'Visual OCR localized exploded assembly view. Step-by-step lock-out tag-out checklist and torque ratings projected.',
+      findings: [
+        {
           level: 'REFERENCED',
           levelColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
           borderColor: 'border-cyan-500/40 hover:border-cyan-400',
@@ -542,12 +499,55 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
           citation: 'Manual: OEM_TB404_SEC_5'
         },
         {
+          level: 'AUGMENTED',
+          levelColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+          borderColor: 'border-emerald-500/40 hover:border-emerald-400',
+          title: 'Exploded Bearing Assembly Illustrated',
+          desc: 'Interactive 3D component breakdown shows exact alignment pin locations and torque sequence order.',
+          citation: 'CAD: TB404_BEARING_EXPLODED_3D'
+        },
+        {
+          level: 'SAFETY AUDIT',
+          levelColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+          borderColor: 'border-amber-500/40 hover:border-amber-400',
+          title: 'High-Voltage Isolation Verification Required',
+          desc: 'Voice copilot requires verbal confirmation of secondary power breaker lockout before cover removal.',
+          citation: 'ISO: 45001_SAFETY_RULE'
+        }
+      ]
+    },
+    orders: {
+      id: 'sap-pm-orders',
+      title: 'Automated SAP PM Maintenance Work Order & Spares',
+      tabLabel: 'SAP PM Order & Spares',
+      fileInfo: 'Context: SAP Plant Maintenance &bull; Scope: Warehouse Stock Reservation',
+      riskLevel: 'PARTS RESERVED IN INVENTORY',
+      riskBadgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+      recommendation: 'SAP PM maintenance order #MO-2026-7731 created with automated warehouse part hold and maintenance team scheduling.',
+      findings: [
+        {
           level: 'DISPATCHED',
           levelColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
           borderColor: 'border-purple-500/40 hover:border-purple-400',
           title: 'Spare Part MRO Reservation Created',
           desc: 'Required replacement bearing kit reserved in central plant warehouse via SAP PM maintenance order.',
           citation: 'SAP PM Order: #MO-2026-7731'
+        },
+        {
+          level: 'ALLOCATED',
+          levelColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+          borderColor: 'border-emerald-500/40 hover:border-emerald-400',
+          title: 'Certified Maintenance Specialist Assigned',
+          desc: 'Senior mechanical technician work roster updated with high-priority maintenance slot.',
+          citation: 'SuccessFactors: Tech_Roster_Shift2'
+        },
+        {
+          level: 'LOGGED',
+          levelColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+          borderColor: 'border-cyan-500/40 hover:border-cyan-400',
+          title: 'ERP Asset Downtime Scheduled',
+          desc: 'Line stoppage window synchronized with MES production schedule to minimize total batch delay.',
+          citation: 'SAP MES: Schedule_Sync_OK'
         }
       ]
     }
@@ -566,47 +566,59 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
 
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Image 1 of 4 - Ultra-Clean & Sleek, NO Buttons)
+          SECTION 1: HERO SECTION (Image 1 of 4 - Ultra-Clean & Sleek 2-Column Showcase, NO Buttons)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-slate-900">
+      {/* =========================================================================
+          SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Aligned with AI Agents)
+          ========================================================================= */}
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-slate-950 text-white">
+
+        {/* Full-Bleed 16:9 Panoramic Image */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/ai_assistants_hero.jpg"
-            alt="Enterprise AI Assistants & Intelligent Copilots"
-            className="w-full h-full object-cover object-center opacity-40"
+          <img 
+            src="/images/ai_assistants_hero.png" 
+            alt="Enterprise AI Assistants & Copilots"
+            className="w-full h-full object-cover object-[75%_top] lg:object-top"
+            style={{ imageRendering: '-webkit-optimize-contrast' }}
           />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; AI ASSISTANTS & COPILOTS</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md border border-cyan-500/30 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                  <Bot className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; ENTERPRISE AI ASSISTANTS</span>
+                </div>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+
+              {/* Main Headline with Clean, Crisp, Professional Enterprise Typography */}
+              <h1 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
                 Enterprise <br />
-                <span className="text-cyan-400">AI Assistants & Copilots</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400">
+                  AI Assistants &amp; Copilots
+                </span>
               </h1>
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
+
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 Context-aware conversational copilots, multimodal enterprise assistants, and seamless SAP Joule orchestration grounded on private corporate knowledge.
               </p>
             </motion.div>
 
-            {/* Enterprise Trust Indicators (Strictly No Buttons) */}
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200">
+            {/* Enterprise Trust Indicators */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
                 <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Context-Aware Grounding</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Multimodal Enterprise Copilots</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200 shadow-lg">
                 <Database className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>SAP Joule & BTP Native</span>
+                <span>SAP Joule &amp; BTP Native</span>
               </div>
             </motion.div>
           </div>
@@ -680,15 +692,15 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
               </div>
             </div>
 
-            {/* Right Column: Deep-Dive Visual Card (Image 2 of 4) + Step Switcher */}
+            {/* Right Column: Deep-Dive Visual Card (2nd Image) + Step Switcher */}
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
+              <div className="relative h-80 sm:h-96 lg:h-[430px] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
                 <img
-                  src="/images/ai_assistants_hero.jpg"
-                  alt="Knooviq Enterprise AI Assistants & Copilots Command Center"
+                  src="/images/ai_assistants_copilots.png"
+                  alt="Architecting Context-Aware Enterprise Copilots"
                   className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
                 <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-cyan-400/50 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-1.5">
                   <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
                   <span>ACTIVE ARCHITECTURE: {journeySteps[activeJourneyStep].label.toUpperCase()}</span>
@@ -825,7 +837,7 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => { setActiveWheelIndex(globalIndex); setIsAutoRotating(false); }}
+                    onClick={() => setActiveWheelIndex(globalIndex)}
                     className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${
                       isSelected
                         ? 'bg-slate-900/90 border-cyan-400/60 shadow-lg shadow-cyan-500/20 translate-x-1'
@@ -865,7 +877,7 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
                         className="cursor-pointer transition-all duration-300"
                         onMouseEnter={() => setHoveredWheelIndex(idx)}
                         onMouseLeave={() => setHoveredWheelIndex(null)}
-                        onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
+                        onClick={() => setActiveWheelIndex(idx)}
                       >
                         <path
                           d={pathD}
@@ -910,18 +922,6 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
                 </div>
 
               </div>
-
-              {/* Pause / Play Rotation Control */}
-              <div className="mt-3 flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsAutoRotating(!isAutoRotating)}
-                  className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] font-mono text-cyan-300 flex items-center gap-1.5 transition-colors"
-                >
-                  {isAutoRotating ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                  <span>{isAutoRotating ? 'PAUSE ROTATION' : 'RESUME CYCLE'}</span>
-                </button>
-              </div>
             </div>
 
             {/* Right 4 Micro-Pods */}
@@ -932,7 +932,7 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
+                    onClick={() => setActiveWheelIndex(idx)}
                     className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${
                       isSelected
                         ? 'bg-slate-900/90 border-cyan-400/60 shadow-lg shadow-cyan-500/20 -translate-x-1'
@@ -962,7 +962,7 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
                 <button
                   key={seg.id}
                   type="button"
-                  onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
+                  onClick={() => setActiveWheelIndex(idx)}
                   className={`p-2 rounded-lg border text-left text-xs transition-colors ${
                     isSelected
                       ? 'bg-slate-800 border-cyan-400 text-white'
@@ -1226,21 +1226,21 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
       </section>
 
       {/* =========================================================================
-          SECTION 9: INTERACTIVE COPILOT COMMAND SANDBOX (Image 4 of 4 - Zero Gap Above/Below)
+          SECTION 9: SHOP-FLOOR PLANT MAINTENANCE VOICE & VISUAL COPILOT SANDBOX (3rd Image)
           ========================================================================= */}
       <section className="py-5 sm:py-7 bg-gradient-to-b from-[#050C18] via-[#09152B] to-[#040A14] border-b border-slate-800 relative overflow-hidden text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="max-w-3xl mx-auto text-center mb-4 sm:mb-5 space-y-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-950/90 border border-cyan-400/50 text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-300">
-              <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
-              <span>COGNITIVE COPILOT EXECUTION SANDBOX</span>
+              <Headphones className="w-3.5 h-3.5 text-cyan-400" />
+              <span>SHOP-FLOOR MULTIMODAL INTELLIGENCE</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-              Interactive Enterprise Assistant & Decision Grounding
+              Shop-Floor Plant Maintenance Voice &amp; Visual Copilot
             </h2>
             <p className="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto font-normal">
-              Observe context-aware copilots ingest user inquiries, retrieve live S/4HANA records, and verify source citations with zero hallucination.
+              Observe multimodal copilots ingest voice telemetry, scan equipment diagnostics, and retrieve SAP Plant Maintenance records with zero latency.
             </p>
           </div>
 
@@ -1252,7 +1252,7 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
               <div className="space-y-1 text-left">
                 {/* Document Tabs Switcher */}
                 <div className="flex flex-wrap gap-1.5">
-                  {(['executive', 'procurement', 'operations'] as const).map((docKey) => {
+                  {(['telemetry', 'schematics', 'orders'] as const).map((docKey) => {
                     const doc = auditDocuments[docKey];
                     const isSelected = activeDocTab === docKey;
                     return (
@@ -1292,35 +1292,26 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
               </div>
             </div>
 
-            {/* Main Showcase Grid: Visual Image (Image 4 of 4) + Structured Extracted Findings */}
+            {/* Main Showcase Grid: Visual Image (Single Fixed Image) + Structured Extracted Findings */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
               
-              {/* Left Column: Visual AI Document Scan (Image 4 of 4 - Zero Dead Space Above or Below) */}
-              <div className="lg:col-span-5 relative rounded-xl overflow-hidden border border-cyan-400/40 shadow-lg group min-h-[260px] sm:min-h-[300px] lg:min-h-full">
-                <img
-                  src="/images/ai_assistants_sandbox_execution.jpg"
-                  alt="Enterprise AI Assistant & Live Interaction Console"
-                  className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
-                
-                <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-10 shadow-sm">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Verified Citation Assistant Core</span>
-                </div>
-
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 p-2.5 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 text-white text-left z-10 space-y-0.5">
-                  <span className="text-[10px] font-mono font-bold text-cyan-300 uppercase tracking-wider block">
-                    Zero Hallucination Grounding
-                  </span>
-                  <div className="text-xs font-bold text-emerald-300">
-                    Live ERP Context Retrieval with Tamper-Proof Audit Proof
+              {/* Left Column: Visual AI Document Scan (Single Fixed 3rd Image - Compact & Balanced Height) */}
+              <div className="lg:col-span-4 relative rounded-xl overflow-hidden border border-cyan-400/40 bg-[#061124] shadow-xl group flex flex-col items-center justify-center p-2.5 sm:p-3 min-h-[240px] sm:min-h-[280px] lg:min-h-[320px]">
+                <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-lg">
+                  <img
+                    src="/images/ai_assistants_shopfloor.jpg"
+                    alt="Shop-Floor Plant Maintenance Voice & Visual Copilot"
+                    className="w-full h-auto max-h-[280px] sm:max-h-[310px] object-contain rounded-lg drop-shadow-md transform transition-transform duration-700 group-hover:scale-[1.02] filter brightness-105 contrast-105"
+                  />
+                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-slate-950/85 backdrop-blur-md border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-10 shadow-sm pointer-events-none">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Shop-Floor Vision Core</span>
                   </div>
                 </div>
               </div>
 
               {/* Right Column: High-Visibility Extracted Intelligence Cards */}
-              <div className="lg:col-span-7 flex flex-col justify-between space-y-2">
+              <div className="lg:col-span-8 flex flex-col justify-between space-y-2">
                 
                 {/* 3 Compact High-Contrast Findings Boxes */}
                 <div className="space-y-1.5">
@@ -1402,11 +1393,11 @@ export const AiAssistantsPracticePage: React.FC<AiAssistantsPracticePageProps> =
             </button>
 
             <Link
-              to="/digital-intelligence"
-              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2"
+              to="/digital-intelligence/machine-learning"
+              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2 group"
             >
-              <span>Explore Digital Intelligence</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>Explore Machine Learning</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

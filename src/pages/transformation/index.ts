@@ -1,0 +1,10 @@
+export { TransformationPage } from './TransformationPage';
+export { SapS4HanaPage } from './SapS4HanaPage';
+export { CloudTransformationPage } from './CloudTransformationPage';
+export { SapBusinessApplicationsPage } from './SapBusinessApplicationsPage';
+export { MigrationModernizationPage } from './MigrationModernizationPage';
+export { GreenfieldPage } from './GreenfieldPage';
+export { BrownfieldPage } from './BrownfieldPage';
+export { SystemConversionPage } from './SystemConversionPage';
+export { DataMigrationPage } from './DataMigrationPage';
+export { CustomCodeMigrationPage } from './CustomCodeMigrationPage';

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -39,8 +40,6 @@ interface TransportationLogisticsIndustryPageProps {
 export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisticsIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -184,7 +183,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       sublabel: 'Dynamic Load Building',
       desc: 'Algorithmic 3D truckload optimization combining sales orders, stock transfers, and purchase orders into full truckload (FTL) and LTL routes.',
       tech: 'SAP TM Freight Unit Builder',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/logistics_solution_multimodal_freight_routing.jpg',
       icon: Navigation
     },
     {
@@ -193,7 +192,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       sublabel: 'Tender Orchestration',
       desc: 'Automated broadcast and waterfall tendering evaluating carrier contract rates, lane allocation quotas, and historical reliability scorecards.',
       tech: 'SAP Business Network for Logistics',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/logistics_carrier_collaboration_network.png',
       icon: Globe2
     },
     {
@@ -202,7 +201,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       sublabel: 'In-Transit Visibility',
       desc: 'Continuous ingestion of OBD-II telematics, GPS coordinates, and real-time highway traffic feeds adjusting arrival ETAs dynamically.',
       tech: 'SAP Event Management & BTP IoT',
-      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/logistics_solution_fleet_telematics_geofencing.png',
       icon: Truck
     },
     {
@@ -211,7 +210,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       sublabel: 'Facility Inbound',
       desc: 'Carrier portal scheduling dock doors, synchronizing gate security scanners, and tracking trailer yard parking spots.',
       tech: 'SAP Yard Logistics (YL)',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/logistics_solution_yard_dock_management.png',
       icon: Boxes
     },
     {
@@ -220,7 +219,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       sublabel: 'Electronic Sign-Off',
       desc: 'Mobile glass signatures, photographic cargo condition captures, and instant geostamped delivery confirmations.',
       tech: 'SAP Fiori Logistics Mobile Apps',
-      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/logistics_solution_digital_proof_of_delivery.png',
       icon: QrCode
     },
     {
@@ -229,10 +228,32 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       sublabel: 'Carrier Billing',
       desc: 'Three-way matching of contracted rate tables, actual GPS mileage/detention hours, and carrier invoices with zero manual disputes.',
       tech: 'SAP S/4HANA Finance (FI-CA)',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/logistics_solution_carrier_freight_audit.png',
       icon: FileCheck
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Transportation Industry Challenges
   const transportationChallenges = [
@@ -288,7 +309,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'FREIGHT_ROUTING',
       categoryLabel: 'Freight & Routing',
       description: 'Algorithmic 3D truckload optimization combining sales orders, stock transfers, and purchase orders into full truckload (FTL) and LTL routes.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_solution_multimodal_freight_routing.jpg',
       highlights: ['Dynamic 3D Load Building', 'Multi-Modal Leg Linking', 'Cost & Transit Time Balance'],
       icon: Navigation
     },
@@ -298,7 +319,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'SETTLEMENT_ESG',
       categoryLabel: 'Settlement & Analytics',
       description: 'Three-way matching reconciling contract rate agreements, bill of ladings, and carrier invoices with automated dispute resolution.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_solution_carrier_freight_audit.png',
       highlights: ['Tariff & Fuel Surcharge Verification', 'Accessorial Detention Audits', 'Touchless Invoice Clearing'],
       icon: FileCheck
     },
@@ -308,7 +329,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'FLEET_OPERATIONS',
       categoryLabel: 'Fleet & Yard Operations',
       description: 'Continuous OBD-II engine diagnostic streaming, driver hours-of-service (HOS) compliance, and automated arrival triggers.',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_solution_fleet_telematics_geofencing.png',
       highlights: ['Sub-Second GPS Tracking', 'ELD Hours-of-Service Alerts', 'Automated Geofence Arrival'],
       icon: Truck
     },
@@ -318,7 +339,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'FLEET_OPERATIONS',
       categoryLabel: 'Fleet & Yard Operations',
       description: 'Carrier portal scheduling dock doors, synchronizing gate security scanners, and tracking trailer yard staging locations.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_solution_yard_dock_management.png',
       highlights: ['Carrier Dock Self-Booking', 'Shunter Task Allocation', 'Trailer Spot Inventory'],
       icon: Boxes
     },
@@ -328,7 +349,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'FLEET_OPERATIONS',
       categoryLabel: 'Fleet & Yard Operations',
       description: 'Mobile driver app capturing glass signatures, photographic damage proof, and instant GPS delivery geostamps.',
-      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_solution_digital_proof_of_delivery.png',
       highlights: ['Sign-on-Glass Capture', 'Cargo Damage Photos', 'Instant Milestone Update'],
       icon: QrCode
     },
@@ -348,7 +369,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'SETTLEMENT_ESG',
       categoryLabel: 'Settlement & Analytics',
       description: 'GLEC framework compliant calculation of per-shipment CO2e emissions across multi-tier subcontracted carriers.',
-      image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_scope3_carbon_accounting.png',
       highlights: ['GLEC Standard Calculations', 'Carrier Carbon Benchmarking', 'Eco-Route Recommendations'],
       icon: ShieldCheck
     },
@@ -358,7 +379,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'FREIGHT_ROUTING',
       categoryLabel: 'Freight & Routing',
       description: 'Automated electronic tendering, lane performance scoring, and spot-bid auction portals for rapid capacity acquisition.',
-      image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_carrier_collaboration_network.png',
       highlights: ['Electronic Tender Broadcasts', 'Carrier OTIF Scorecards', 'Spot Market Reverse Auctions'],
       icon: Globe2
     },
@@ -368,7 +389,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
       category: 'SETTLEMENT_ESG',
       categoryLabel: 'Settlement & Analytics',
       description: 'Automated odometer tracking, preventive tire and brake maintenance schedules, and warranty claim tracking.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      image: '/images/logistics_fleet_preventive_maintenance.png',
       highlights: ['Odometer-Triggered PM Orders', 'Tire & Brake Wear Telemetry', 'Vehicle Asset Depreciation'],
       icon: Sliders
     }
@@ -457,14 +478,15 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
         {/* Full-Bleed Enterprise Transportation Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2000&q=80" 
-            alt="Multi-Modal Transportation and Fleet Logistics Facility Atmosphere" 
-            className="w-full h-full object-cover object-center"
+            src="/images/transportation_logistics_erp_hero.png" 
+            alt="Intelligent ERP for Transportation & Fleet Logistics" 
+            className="w-full h-full object-cover object-center lg:object-right"
           />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+        {/* Seamless Cinematic Left & Vertical Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/50 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           
@@ -672,7 +694,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
@@ -821,20 +843,27 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -850,7 +879,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -872,7 +901,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -880,20 +909,27 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -907,7 +943,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -964,20 +1000,27 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -985,7 +1028,7 @@ export const TransportationLogisticsIndustryPage: React.FC<TransportationLogisti
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-left flex-1">

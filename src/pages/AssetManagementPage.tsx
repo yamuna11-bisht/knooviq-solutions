@@ -302,24 +302,6 @@ export const AssetManagementPage: React.FC<AssetManagementPageProps> = ({ onOpen
                 SAP S/4HANA PM work orders before equipment failure halts production.
               </p>
 
-              {/* Hero CTA Group */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact ? onOpenContact('Enterprise Asset Management Consultation') : null}
-                  className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-semibold text-sm shadow-md transition-all flex items-center gap-2 group cursor-pointer"
-                >
-                  <span>Request Plant Digital Twin Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-
-                <a
-                  href="#diagnostic-chamber"
-                  className="px-6 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-sm font-semibold transition-all flex items-center gap-2 shadow-sm"
-                >
-                  <span>Open Diagnostic Chamber</span>
-                  <ChevronRight className="w-4 h-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Real-Time Industrial KPI Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200">
@@ -1204,20 +1186,20 @@ export const AssetManagementPage: React.FC<AssetManagementPageProps> = ({ onOpen
                 failure history, review current PM maintenance strategies, and design a proof-of-concept IIoT &amp; SAP APM roadmap.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <button
                   onClick={() => onOpenContact ? onOpenContact('Enterprise Asset Management Architecture Session') : null}
-                  className="px-8 py-4 rounded-xl bg-[#0077B6] hover:bg-[#006296] text-white font-semibold text-sm shadow-md transition-all flex items-center gap-2 group cursor-pointer"
+                  className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
                 >
-                  <span>Schedule Reliability Assessment</span>
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                  <span>Talk to Our Asset Experts</span>
+                  <ArrowRight className="h-4 w-4" />
                 </button>
 
                 <Link
-                  to="/products/dealer-management-system"
-                  className="px-6 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold text-sm transition-all flex items-center gap-2 shadow-sm"
+                  to="/products/vendor-management"
+                  className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
                 >
-                  <span>Explore Dealer Management &rarr;</span>
+                  Explore Vendor Management
                 </Link>
               </div>
             </div>

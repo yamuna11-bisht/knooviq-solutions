@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -41,9 +42,6 @@ interface DistributionIndustryPageProps {
 export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -227,6 +225,28 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
       color: '#075985'
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: capabilityPillars.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Helper function to calculate SVG chevron segment paths for Section 4
   const getChevronPath = (index: number, total: number = 8) => {
@@ -720,7 +740,7 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].title} 
-                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                   style={{ objectPosition: (journeySteps[activeJourneyStep] as any).imagePosition || 'center' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
@@ -751,7 +771,7 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                   return (
                     <button
                       key={idx}
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl text-left border transition-all flex flex-col items-center text-center gap-1.5 ${
                         isActive 
                           ? 'bg-[#0070C0] text-white border-[#0070C0] shadow-md shadow-sky-600/30 ring-2 ring-sky-300' 
@@ -879,21 +899,28 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
               {[7, 6, 5, 4].map((idx) => {
                 const item = capabilityPillars[idx];
                 const Icon = item.icon;
-                const isHovered = hoveredWheelIndex === idx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                 return (
                   <div
                     key={idx}
-                    onMouseEnter={() => setHoveredWheelIndex(idx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(idx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(idx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-gradient-to-r from-sky-950/80 to-slate-900 border-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.25)] translate-x-1'
                         : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
                     }`}
                   >
                     <div className="flex items-start gap-3">
                       <div className={`p-2 rounded-lg transition-colors ${
-                        isHovered ? 'bg-[#0070C0] text-white' : 'bg-slate-800 text-slate-300'
+                        isHighlighted ? 'bg-[#0070C0] text-white' : 'bg-slate-800 text-slate-300'
                       }`}>
                         <Icon className="w-4 h-4" />
                       </div>
@@ -902,7 +929,7 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                           <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider">{item.badge}</span>
                           <span className="text-[10px] font-mono text-slate-500">0{idx + 1}</span>
                         </div>
-                        <h4 className={`text-sm font-bold transition-colors ${isHovered ? 'text-white' : 'text-slate-200'}`}>
+                        <h4 className={`text-sm font-bold transition-colors ${isHighlighted ? 'text-white' : 'text-slate-200'}`}>
                           {item.title}
                         </h4>
                         <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed font-normal">
@@ -920,18 +947,24 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
               <div className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] lg:w-[420px] lg:h-[420px]">
                 <svg viewBox="0 0 500 500" className="w-full h-full transform -rotate-90">
                   {capabilityPillars.map((pillar, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const path = getChevronPath(idx);
                     return (
                       <path
                         key={idx}
                         d={path}
-                        onClick={() => setHoveredWheelIndex(idx)}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
-                        fill={isHovered ? '#0070C0' : '#1E293B'}
-                        stroke={isHovered ? '#38BDF8' : '#334155'}
-                        strokeWidth={isHovered ? '2.5' : '1.5'}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
+                        fill={isHighlighted ? '#0070C0' : '#1E293B'}
+                        stroke={isHighlighted ? '#38BDF8' : '#334155'}
+                        strokeWidth={isHighlighted ? '2.5' : '1.5'}
                         className="cursor-pointer transition-all duration-300 hover:brightness-125"
                       />
                     );
@@ -940,7 +973,7 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                   {/* Icon Markers on Chevrons */}
                   {capabilityPillars.map((pillar, idx) => {
                     const coords = getIconCoords(idx);
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     return (
                       <g 
                         key={`icon-${idx}`} 
@@ -951,15 +984,15 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                           cx={coords.x}
                           cy={coords.y}
                           r="15"
-                          fill={isHovered ? '#FFFFFF' : '#0F172A'}
-                          stroke={isHovered ? '#38BDF8' : '#475569'}
+                          fill={isHighlighted ? '#FFFFFF' : '#0F172A'}
+                          stroke={isHighlighted ? '#38BDF8' : '#475569'}
                           strokeWidth="1.5"
                         />
                         <text
                           x={coords.x}
                           y={coords.y + 4}
                           textAnchor="middle"
-                          fill={isHovered ? '#0070C0' : '#94A3B8'}
+                          fill={isHighlighted ? '#0070C0' : '#94A3B8'}
                           fontSize="11"
                           fontWeight="bold"
                           fontFamily="monospace"
@@ -989,21 +1022,28 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
               {[0, 1, 2, 3].map((idx) => {
                 const item = capabilityPillars[idx];
                 const Icon = item.icon;
-                const isHovered = hoveredWheelIndex === idx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                 return (
                   <div
                     key={idx}
-                    onMouseEnter={() => setHoveredWheelIndex(idx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(idx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(idx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-gradient-to-r from-slate-900 to-sky-950/80 border-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.25)] -translate-x-1'
                         : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
                     }`}
                   >
                     <div className="flex items-start gap-3">
                       <div className={`p-2 rounded-lg transition-colors ${
-                        isHovered ? 'bg-[#0070C0] text-white' : 'bg-slate-800 text-slate-300'
+                        isHighlighted ? 'bg-[#0070C0] text-white' : 'bg-slate-800 text-slate-300'
                       }`}>
                         <Icon className="w-4 h-4" />
                       </div>
@@ -1012,7 +1052,7 @@ export const DistributionIndustryPage: React.FC<DistributionIndustryPageProps> =
                           <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider">{item.badge}</span>
                           <span className="text-[10px] font-mono text-slate-500">0{idx + 1}</span>
                         </div>
-                        <h4 className={`text-sm font-bold transition-colors ${isHovered ? 'text-white' : 'text-slate-200'}`}>
+                        <h4 className={`text-sm font-bold transition-colors ${isHighlighted ? 'text-white' : 'text-slate-200'}`}>
                           {item.title}
                         </h4>
                         <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed font-normal">

@@ -473,36 +473,36 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
       {/* =========================================================================
           HERO SECTION: Full-Screen Bright Enterprise AI Operations Visual (Zero Box)
           ========================================================================= */}
-      <section className="relative w-full min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-0 overflow-hidden bg-slate-950 text-white border-b border-white/10">
+      <section className="relative w-full min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-0 overflow-hidden bg-black text-white border-b border-white/10">
         
-        {/* Full-Screen Edge-to-Edge Hero Image Background (Bright & High-Clarity Enterprise AI Operations) */}
+        {/* Full-Screen Edge-to-Edge Hero Image Background (100% Clear with Zero Dark Blue Shade) */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/sap_business_ai_hero_bright.jpg"
             alt="Modern SAP Business AI Enterprise Operations Center"
             className="w-full h-full object-cover object-center lg:object-[78%_center] opacity-100 brightness-110 contrast-105 transition-all duration-700"
           />
-          {/* Asymmetric Scrim: Confined strictly to the left behind text, leaving the central/right operations center and neural screens 100% bright, pure, and unobstructed */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#030914]/95 via-[#030914]/85 to-transparent lg:w-[58%] pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030914]/60 via-transparent to-[#030914]/40 pointer-events-none" />
-          <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         {/* Hero Content: Left Column for Text, Right Column Open for Full-Screen Operations Visual */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto w-full py-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
-            {/* Left Column: Heading, Proposition, Chips & Action Buttons (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
+            {/* Left Column: Heading, Proposition, Chips (7 cols) */}
+            <div className="lg:col-span-7 space-y-6 relative">
+              {/* Seamless Soft Contrast Aura — ensures text is 100% legible with Zero Box and Zero dark blue shade */}
+              <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
               
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-[#00A3E0]/60 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-md backdrop-blur-md">
-                <Sparkles className="w-4 h-4 text-[#00A3E0] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-md">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <Sparkles className="w-4 h-4 text-[#00A3E0]" />
                 <span>SAP BUSINESS AI &bull; PURPOSE-BUILT ENTERPRISE INTELLIGENCE</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black text-white tracking-tight leading-[1.12]">
                 Contextual Intelligence <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A3E0] via-cyan-300 to-sky-200">
+                <span className="text-[#00A3E0]">
                   Embedded In Every SAP Transaction
                 </span>
               </h1>
@@ -528,17 +528,6 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
                   <div className="text-sm font-bold text-white mt-0.5">Direct BTP</div>
                   <div className="text-[11px] text-slate-400">Universal Ledger Aware</div>
                 </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <button
-                  onClick={() => onOpenContact('SAP Business AI Advisory')}
-                  className="px-6 py-3.5 rounded-xl font-bold text-sm bg-[#00A3E0] hover:bg-[#008cc0] text-white shadow-xl shadow-[#00A3E0]/30 transition-all flex items-center gap-2 group cursor-pointer"
-                >
-                  <span>Request Live Architecture Demo</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
               </div>
 
             </div>
@@ -583,10 +572,11 @@ export const SapBusinessAiPage: React.FC<TechnologyPageProps> = ({ onOpenContact
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-[#00A3E0]/40 text-xs font-mono font-bold uppercase text-cyan-300 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase mb-2">
               <Bot className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>INTERACTIVE JOULE COPILOT COMMAND CENTER</span>
             </div>
+
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
               Experience SAP Joule Copilot In Action
             </h2>

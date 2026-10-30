@@ -98,22 +98,24 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
       {/* =========================================================================
           SECTION 1: HERO SECTION (Cinematic Blue & White Enterprise Architecture)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-blue-950">
+      <section className="relative w-full min-h-[540px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black">
 
-        {/* Background Image with Crisp Brightness and Seamless Gradient Scrim */}
-        <div className="absolute inset-0 z-0">
+        {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
             src="/images/sap_btp_hero_team_handshake.png"
             alt="SAP BTP Enterprise Agility Platform"
-            className="w-full h-full object-cover object-right lg:object-[72%_center] brightness-110 contrast-105 saturate-[1.05]"
+            className="w-full h-full object-cover object-[70%_top] select-none"
           />
-          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
         </div>
 
+        {/* Top Hairline Accent */}
+        <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl space-y-5">
+          <div className="max-w-2xl space-y-5 relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box and Zero dark blue shade */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -121,17 +123,18 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               transition={{ duration: 0.55 }}
               className="space-y-3"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-900/80 border border-blue-400/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-200 shadow-sm">
-                <Layers className="w-3.5 h-3.5 text-blue-300" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-md">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <Layers className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; SAP BTP</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
                 Enterprise Agility via <br />
-                <span className="text-blue-300">SAP Business Technology Platform</span>
+                <span className="text-[#00A3E0] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">SAP Business Technology Platform</span>
               </h1>
 
-              <p className="text-lg sm:text-xl font-semibold text-blue-100 leading-snug">
+              <p className="text-lg sm:text-xl font-semibold text-slate-100 leading-snug drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 Build Modern Side-by-Side Extensions. Safeguard Your Clean Core.
               </p>
             </motion.div>
@@ -140,75 +143,74 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4 max-w-2xl"
+              className="space-y-4 max-w-xl"
             >
-              <p className="text-sm sm:text-base text-blue-100 font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 Stop modifying the ERP core. With <strong className="text-white font-semibold">SAP BTP</strong>, Knooviq engineers decouple custom business applications, orchestrate multi-cloud integrations, and accelerate data-driven decisions while keeping your SAP S/4HANA core 100% upgrade-ready.
               </p>
 
               <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-md">
                   <CheckCircle2 className="w-4 h-4 text-blue-300" />
                   <span>Clean Core Architecture</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-md">
                   <CheckCircle2 className="w-4 h-4 text-blue-300" />
                   <span>Decoupled Extensions</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-md">
                   <CheckCircle2 className="w-4 h-4 text-blue-300" />
-                  <span>Universal iPaaS & AI Hub</span>
+                  <span>Universal iPaaS &amp; AI Hub</span>
                 </span>
-              </div>
-            </motion.div>
-
-            {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="mt-6 pt-5 border-t border-blue-800/80 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
-            >
-              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
-                <div className="flex items-center gap-2 mb-1">
-                  <Workflow className="w-4 h-4 text-blue-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">EXTENSION</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">Side-by-Side BTP</div>
-                <div className="text-xs text-blue-200 mt-0.5">Isolated Microservices</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
-                <div className="flex items-center gap-2 mb-1">
-                  <Network className="w-4 h-4 text-blue-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">INTEGRATION</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">Universal iPaaS</div>
-                <div className="text-xs text-blue-200 mt-0.5">3,200+ Standard APIs</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
-                <div className="flex items-center gap-2 mb-1">
-                  <Database className="w-4 h-4 text-blue-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">DATA FABRIC</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">SAP Datasphere</div>
-                <div className="text-xs text-blue-200 mt-0.5">Zero-Copy Virtualization</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-blue-900/50 border border-blue-800">
-                <div className="flex items-center gap-2 mb-1">
-                  <Bot className="w-4 h-4 text-blue-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-blue-300 uppercase">ENTERPRISE AI</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">Generative AI Hub</div>
-                <div className="text-xs text-blue-200 mt-0.5">Grounded LLM Security</div>
               </div>
             </motion.div>
 
           </div>
         </div>
       </section>
+
+      {/* Enterprise Architectural Trust Ribbon - Docked Cleanly Below Hero Banner */}
+      <div className="bg-[#070E1A] border-y border-slate-800/80 py-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="flex items-center gap-2 mb-1">
+                <Workflow className="w-4 h-4 text-[#00A3E0] shrink-0" />
+                <span className="text-xs font-mono font-bold tracking-wider text-[#00A3E0] uppercase">EXTENSION</span>
+              </div>
+              <div className="text-sm sm:text-base font-bold text-white">Side-by-Side BTP</div>
+              <div className="text-xs text-slate-400 mt-0.5">Isolated Microservices</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="flex items-center gap-2 mb-1">
+                <Network className="w-4 h-4 text-[#00A3E0] shrink-0" />
+                <span className="text-xs font-mono font-bold tracking-wider text-[#00A3E0] uppercase">INTEGRATION</span>
+              </div>
+              <div className="text-sm sm:text-base font-bold text-white">Universal iPaaS</div>
+              <div className="text-xs text-slate-400 mt-0.5">3,200+ Standard APIs</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="flex items-center gap-2 mb-1">
+                <Database className="w-4 h-4 text-[#00A3E0] shrink-0" />
+                <span className="text-xs font-mono font-bold tracking-wider text-[#00A3E0] uppercase">DATA FABRIC</span>
+              </div>
+              <div className="text-sm sm:text-base font-bold text-white">SAP Datasphere</div>
+              <div className="text-xs text-slate-400 mt-0.5">Zero-Copy Virtualization</div>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 shadow-md">
+              <div className="flex items-center gap-2 mb-1">
+                <Bot className="w-4 h-4 text-[#00A3E0] shrink-0" />
+                <span className="text-xs font-mono font-bold tracking-wider text-[#00A3E0] uppercase">ENTERPRISE AI</span>
+              </div>
+              <div className="text-sm sm:text-base font-bold text-white">Generative AI Hub</div>
+              <div className="text-xs text-slate-400 mt-0.5">Grounded LLM Security</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* =========================================================================
           SECTION 2: ENTERPRISE DECISION GUIDE (Where Does Custom Development Belong?)
@@ -219,8 +221,8 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
-                <Compass className="w-3.5 h-3.5 text-blue-600" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase">
+                <Compass className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>CLEAN CORE ARCHITECTURAL FRAMEWORK</span>
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
@@ -377,13 +379,6 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
 
                 <div className="p-5 pt-0 mt-4 border-t border-slate-100 flex items-center justify-between">
                   <span className="text-[11px] font-mono text-slate-500">{srv.costModel}</span>
-                  <button
-                    onClick={() => onOpenContact(`Architecture Advisory: ${srv.title}`)}
-                    className="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1"
-                  >
-                    <span>Consult Architects</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
                 </div>
               </div>
             ))}

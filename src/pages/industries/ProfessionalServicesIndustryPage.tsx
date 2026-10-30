@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -40,9 +41,6 @@ interface ProfessionalServicesIndustryPageProps {
 export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -181,7 +179,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       sublabel: 'Skills & Availability Matching',
       desc: 'Identify available practitioners, evaluate seniority tiers, and reserve capacity before proposals are signed.',
       tech: 'SAP Resource Management & S/4HANA',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/professional-services/stage1_engagement_staffing.png',
       icon: Users
     },
     {
@@ -190,7 +188,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       sublabel: 'Mobile Fiori Tracking',
       desc: 'Enable field consultants to log hours, attach travel receipts, and route cross-entity project expenses from any device.',
       tech: 'SAP Fiori My Timesheet & Concur',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/professional-services/stage2_time_expense.png',
       icon: Clock
     },
     {
@@ -199,7 +197,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       sublabel: 'Automated Invoice Generation',
       desc: 'Consolidate approved timesheets, reimbursable expenses, and deliverable signoffs into verified client invoices.',
       tech: 'SAP Project Billing Engine',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/professional-services/stage3_billing_invoicing.png',
       icon: DollarSign
     },
     {
@@ -208,7 +206,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       sublabel: 'IFRS 15 / ASC 606 Standards',
       desc: 'Post automated contractual revenue recognitions based on completion milestones and work-in-progress (WIP) valuations.',
       tech: 'SAP Event-Based Revenue Recognition',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/professional-services/stage4_revenue_recognition.png',
       icon: Scale
     },
     {
@@ -217,7 +215,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       sublabel: 'Real-Time Engagement Profitability',
       desc: 'Track realization rates, direct consultant compensation, and overhead loadings against contract caps in real time.',
       tech: 'SAP Profitability Analysis (CO-PA)',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/professional-services/stage5_margin_intelligence.png',
       icon: PieChart
     },
     {
@@ -226,10 +224,32 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       sublabel: 'Executive Practice Leadership',
       desc: 'Review practice utilization, bench ratios, and pipeline demand forecasts to make informed hiring and partner promotion decisions.',
       tech: 'SAP S/4HANA Cloud Professional Services',
-      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/professional-services/stage6_practice_performance.png',
       icon: BarChart3
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Professional Services Challenges Data
   const servicesChallenges = [
@@ -295,7 +315,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'TIME & EXPENSE',
       title: 'Mobile Timesheet & Expense Capture Hub',
       description: 'Intuitive mobile time entry with OCR receipt scanning, multi-currency conversion, and automated project approval routings.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_mobile_timesheet_expense.png',
       icon: Clock,
       highlights: ['Fiori Mobile Experience', 'Receipt OCR Auto-Extraction', 'Automated Travel Policy Checks']
     },
@@ -305,7 +325,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'SUBCONTRACTORS',
       title: 'External Contractor & SOW Management',
       description: 'Structured freelance partner onboarding, milestone SOW deliverable tracking, and pass-through client expense reconciliation.',
-      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_external_contractor_sow.png',
       icon: Briefcase,
       highlights: ['SOW Milestone Tracking', 'Vendor Timesheet Approvals', 'Tax Compliance Validation']
     },
@@ -315,7 +335,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'PROJECT INVOICING',
       title: 'Flexible Milestone & Retainer Billing',
       description: 'Automated client billing engine supporting fixed fees, capped T&M, recurring retainers, and performance bonuses.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_milestone_retainer_billing.png',
       icon: DollarSign,
       highlights: ['Multi-Rate Card Flexibility', 'Automated Milestone Releases', 'Custom Client Billing Formats']
     },
@@ -325,7 +345,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'IFRS 15 / ASC 606',
       title: 'SAP Event-Based Revenue Recognition',
       description: 'Continuous revenue recognition recognizing earnings upon milestone signoffs without month-end batch calculations.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_event_based_revenue_recognition.png',
       icon: Scale,
       highlights: ['Percentage of Completion (PoC)', 'Real-Time WIP Asset Postings', 'Contract Asset & Liability Ledger']
     },
@@ -335,7 +355,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'MULTI-ENTITY',
       title: 'Intercompany Cross-Charging & Markups',
       description: 'Automated transfer pricing and internal markup calculation when practice members deliver work across subsidiaries.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_intercompany_cross_charging.png',
       icon: Building2,
       highlights: ['Automated Intercompany Invoices', 'Transfer Markup Rules Engine', 'Bilateral Settlement Reconciliation']
     },
@@ -345,7 +365,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'MARGIN INTELLIGENCE',
       title: 'Real-Time Engagement Profitability (CO-PA)',
       description: 'Continuous tracking of realization rates, practitioner direct costs, and overhead loadings against fixed contract price caps.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_realtime_engagement_profitability_copa.png',
       icon: PieChart,
       highlights: ['Real-Time Contribution Margin', 'Billable Realization Analytics', 'Over-Budget Early Warning']
     },
@@ -355,7 +375,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'PRACTICE ANALYTICS',
       title: 'Executive Practice Leadership Dashboards',
       description: 'High-level practice visibility into billable utilization, partner equity metrics, and forward pipeline capacity planning.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_executive_practice_leadership.png',
       icon: BarChart3,
       highlights: ['Practice Utilization Forecasts', 'Partner Realization Benchmarks', 'Recruiting Demand Modeling']
     },
@@ -365,7 +385,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
       tag: 'GOVERNANCE',
       title: 'Engagement Change Order & Governance Hub',
       description: 'Formal digital scope amendment workflows ensuring out-of-scope requests are authorized and billed before delivery.',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
+      image: '/images/professional-services/solution_engagement_change_order_governance.png',
       icon: ShieldCheck,
       highlights: ['Digital Change Order Signoffs', 'Audit-Proof SOW Amendments', 'Zero Unbilled Scope Creep']
     }
@@ -439,86 +459,88 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Cinematic Full-Bleed Dark Blue Hero Banner)
+          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
           ========================================================================= */}
-      <section className="relative min-h-[620px] lg:min-h-[680px] bg-slate-900 text-white flex flex-col justify-between overflow-hidden">
+      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Background Photo with Dark Gradient Scrim */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" 
-            alt="Professional Services Team" 
-            className="w-full h-full object-cover object-center brightness-60"
+        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+          <div 
+            className="absolute inset-0 opacity-15"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
         </div>
 
-        {/* Hero Top Content */}
+        {/* Hero Top Content (2-Column Grid) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
           
-          {/* Breadcrumb Navigation */}
-          <div className="mb-4 sm:mb-6">
-            <Link 
-              to="/industries" 
-              className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
-            >
-              <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
-              <span>Back to Industries</span>
-            </Link>
-          </div>
-
-          <div className="max-w-3xl space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Practice Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
-              <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
-              <span>KNOOVIQ INDUSTRY PRACTICE</span>
+            {/* Left Column (7 cols): Content & Typography */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              
+              {/* Breadcrumb Navigation */}
+              <div className="mb-4 sm:mb-6">
+                <Link 
+                  to="/industries" 
+                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+                >
+                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                  <span>Back to Industries</span>
+                </Link>
+              </div>
+
+              {/* Practice Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+                <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
+                <span>KNOOVIQ INDUSTRY PRACTICE</span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                Intelligent Professional Services & PSA Modernization
+              </h1>
+
+              {/* Sub-headline */}
+              <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
+                Maximize billable consultant utilization, accelerate milestone invoicing, automate IFRS 15 / ASC 606 revenue recognition, and protect engagement margins on clean-core SAP architecture.
+              </p>
+
+              {/* Feature Highlight Pills */}
+              <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Skills-Based Resource Matching</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Event-Based Revenue Recognition</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Real-Time Engagement Margins</span>
+                </div>
+              </div>
+
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-              Intelligent Professional Services & PSA Modernization
-            </h1>
-
-            {/* Sub-headline */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl drop-shadow">
-              Maximize billable consultant utilization, accelerate milestone invoicing, automate IFRS 15 / ASC 606 revenue recognition, and protect engagement margins on clean-core SAP architecture.
-            </p>
-
-            {/* Feature Highlight Pills */}
-            <div className="flex flex-wrap gap-2 sm:gap-3 pt-1">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Skills-Based Resource Matching</span>
+            {/* Right Column (5 cols): Pure Architectural Diagram Showcase (100% Uncut & Crystal Clear) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/60 bg-slate-900/90 shadow-2xl shadow-black/60 p-2 sm:p-2.5 backdrop-blur-md group hover:border-[#0070C0] transition-colors duration-300">
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center min-h-[300px] sm:min-h-[380px] lg:min-h-[460px]">
+                  <img 
+                    src="/images/professional-services/professional_services_hero.png" 
+                    alt="SAP Professional Services Architecture" 
+                    className="w-full h-auto max-h-[500px] object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Event-Based Revenue Recognition</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-white backdrop-blur-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Real-Time Engagement Margins</span>
-              </div>
-            </div>
-
-            {/* Hero CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-              <button
-                type="button"
-                onClick={() => onOpenContact?.('Professional Services & PSA Architecture Consultation')}
-                className="px-6 py-3 rounded-xl bg-[#0070C0] hover:bg-[#005a9e] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-[#0070C0]/30 transition-all flex items-center gap-2 group cursor-pointer"
-              >
-                <span>Consult With Practice Architects</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <Link
-                to="#industry-solutions"
-                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/30 backdrop-blur-md transition-all flex items-center gap-2"
-              >
-                <span>Explore Solutions</span>
-              </Link>
             </div>
 
           </div>
@@ -652,13 +674,13 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
             <div className="lg:col-span-6 space-y-4">
               
               {/* Dynamic Photo Showcase */}
-              <div className="relative h-60 sm:h-72 rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md">
+              <div className="relative aspect-[16/9] sm:aspect-[1024/558] w-full min-h-[260px] sm:min-h-[300px] rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-950">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-700"
+                  className="w-full h-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 via-45% to-transparent pointer-events-none" />
                 
                 {/* Overlay Text on Image */}
                 <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -683,7 +705,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between cursor-pointer ${
                         isActive 
                           ? 'border-[#0070C0] bg-sky-50/90 shadow-sm' 
@@ -811,20 +833,27 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -840,7 +869,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -862,7 +891,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -870,20 +899,27 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -899,7 +935,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
                             className="w-full h-full flex items-center justify-center transition-transform duration-300"
                             style={{ 
                               color: seg.color,
-                              transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                              transform: isHighlighted ? 'scale(1.2)' : 'scale(1)'
                             }}
                           >
                             <IconComponent className="w-5 h-5 drop-shadow-md" />
@@ -945,8 +981,8 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
                         SERVICES PSA
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 tracking-wider uppercase mt-1">
-                        {hoveredWheelIndex !== null 
-                          ? `MODULE 0${hoveredWheelIndex + 1}` 
+                        {(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) !== null 
+                          ? `MODULE 0${(hoveredWheelIndex !== null ? hoveredWheelIndex : activeWheelIndex) + 1}` 
                           : '8 CAPABILITIES'}
                       </div>
                     </div>
@@ -960,20 +996,27 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
             <div className="order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -981,7 +1024,7 @@ export const ProfessionalServicesIndustryPage: React.FC<ProfessionalServicesIndu
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-right">

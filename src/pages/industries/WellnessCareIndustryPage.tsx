@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -30,8 +31,6 @@ interface WellnessCareIndustryPageProps {
 
 export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> = ({ onOpenContact }) => {
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<'ALL' | 'CLINIC' | 'BILLING' | 'FULFILLMENT'>('ALL');
-  const [activeArchTab, setActiveArchTab] = useState<'clean-core' | 'brim' | 'multi-clinic' | 'fulfillment'>('clean-core');
-  const [activeJourneyStep, setActiveJourneyStep] = useState<number>(0);
 
   // Section 2: Wellness Journey Navigator Data
   const journeySteps = [
@@ -41,7 +40,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       description: 'Prospective members enroll through omnichannel portals, setting up recurring wellness plans with automated payment tokenization and care schedule bookings.',
       tag: 'OMNICHANNEL ENGAGEMENT',
       icon: Users,
-      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/wellness/digital_member_onboarding_booking.jpg'
     },
     {
       label: 'Multi-Clinic Supply',
@@ -49,7 +48,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       description: 'Regional clinic networks trigger point-of-use inventory replenishments for specialized therapy consumables, vitamins, and skincare regimens from central distribution.',
       tag: 'CLINICAL INTRALOGISTICS',
       icon: Building,
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/wellness/decentralized_clinic_replenishment.jpg'
     },
     {
       label: 'Home Care Fulfillment',
@@ -57,7 +56,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       description: 'Automated warehouse pick-and-pack dispatches personalized monthly wellness supplements, diagnostic test collection kits, and personalized care packages.',
       tag: 'DIRECT-TO-CONSUMER',
       icon: Package,
-      image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/wellness/direct_to_patient_care_kit_fulfillment.png'
     },
     {
       label: 'Usage Billing & Renewals',
@@ -65,9 +64,39 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       description: 'SAP Billing and Revenue Innovation Management (BRIM) orchestrates tiered subscription plans, bundled therapy credits, and recurring renewals.',
       tag: 'SUBSCRIPTION REVENUE',
       icon: CreditCard,
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/wellness/automated_recurring_billing_upgrades.png'
     }
   ];
+
+  // Section 4: Architecture Tabs Data
+  const archTabs = [
+    { id: 'clean-core', title: 'Standard Clean Core Foundation', sub: 'Unified multi-entity accounting' },
+    { id: 'brim', title: 'SAP BRIM Recurring Revenue', sub: 'Subscription memberships & usage fees' },
+    { id: 'multi-clinic', title: 'Multi-Location Procurement', sub: 'Centralized catalog contracts' },
+    { id: 'fulfillment', title: 'D2C Care Kit Warehouse EWM', sub: 'Personalized kitting automation' }
+  ];
+
+  // Section 2: Auto-rotation for Wellness Journey (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Architecture Tabs (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeArchIndex,
+    handleSelect: handleArchTabClick
+  } = useAutoRotate({
+    itemCount: archTabs.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  const activeArchTab = archTabs[activeArchIndex]?.id || 'clean-core';
 
   // Section 3: Industry Challenges
   const wellnessChallenges = [
@@ -109,7 +138,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       category: 'BILLING',
       categoryLabel: 'Billing & Subscriptions',
       description: 'Automate complex recurring membership plans, usage credits, bundled therapy packages, and integrated payment gateway settlement.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+      image: '/images/wellness/sap_brim_recurring_membership_engine.jpg',
       highlights: ['Tiered Membership Plans', 'Automated Card Tokenization', 'Credit Proration & Upgrades'],
       icon: CreditCard
     },
@@ -119,7 +148,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       category: 'CLINIC',
       categoryLabel: 'Clinic Operations',
       description: 'Centralized catalog purchasing with automated approval matrices, group purchasing contracts, and branch-level budget enforcement.',
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/wellness/multi_location_clinic_procurement.jpg',
       highlights: ['Consolidated Vendor Contracts', 'Branch Budget Controls', 'Punchout Catalog Integration'],
       icon: Building
     },
@@ -129,7 +158,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       category: 'FULFILLMENT',
       categoryLabel: 'Fulfillment & Logistics',
       description: 'High-velocity warehouse pick, pack, and ship automation designed for personalized monthly vitamin boxes, test kits, and care regimens.',
-      image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
+      image: '/images/wellness/personalized_care_kit_fulfillment_hub.png',
       highlights: ['Personalized Regimen Kitting', 'Barcode Verification Flow', 'Carrier Rate Shopping'],
       icon: Package
     },
@@ -139,7 +168,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       category: 'CLINIC',
       categoryLabel: 'Clinic Operations',
       description: 'Seamless integration linking clinic reception POS terminals and retail display shelves directly with SAP S/4HANA material inventory.',
-      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
+      image: '/images/wellness/clinic_floor_inventory_pos.png',
       highlights: ['Real-Time Retail POS Sync', 'Automated Min-Max Reordering', 'Therapy Consumption Tracking'],
       icon: Boxes
     },
@@ -149,7 +178,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       category: 'CLINIC',
       categoryLabel: 'Clinic Operations',
       description: 'Coordinate physical therapy suites, licensed practitioner shifts, and medical wellness equipment utilization across regional centers.',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/wellness/provider_scheduling_resource_optimization.png',
       highlights: ['Room & Asset Scheduling', 'Provider Availability Matrix', 'Capacity Utilization Analytics'],
       icon: Calendar
     },
@@ -159,7 +188,7 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
       category: 'BILLING',
       categoryLabel: 'Billing & Subscriptions',
       description: 'Strict separation of protected health information (PHI) and payment card credentials with audit-ready role-based authorization.',
-      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80',
+      image: '/images/wellness/hipaa_pci_compliance_vault.jpg',
       highlights: ['End-to-End PHI Encryption', 'Tokenized Payment Gateways', 'SOC 2 & HIPAA Ready'],
       icon: ShieldCheck
     }
@@ -249,17 +278,18 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
-        {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
+        {/* Full-Bleed Background Image with Crystal-Clear Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=2000&q=80" 
             alt="Modern Wellness and Care Center" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-[center_top] lg:object-[68%_top] filter brightness-[1.03] contrast-[1.04]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          {/* Balanced cinematic scrim: guarantees high contrast on left for typography while keeping center and right clinical wellness clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/55 sm:via-slate-950/25 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-slate-950/15 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -379,20 +409,24 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
             </div>
 
             <div className="lg:col-span-6 space-y-3">
-              <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900">
+              <div className="relative h-72 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-xl bg-slate-900">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-cyan-300 font-bold flex items-center gap-1.5 shadow-md">
+                  <Sparkles className="w-3 h-3 text-cyan-400" />
+                  <span>STEP 0{activeJourneyStep + 1} / 04</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent flex flex-col justify-end p-5 sm:p-6">
                   <span className="text-xs font-mono uppercase tracking-widest text-cyan-300 font-bold mb-1">
                     {journeySteps[activeJourneyStep].tag}
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">
                     {journeySteps[activeJourneyStep].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-xl">
                     {journeySteps[activeJourneyStep].description}
                   </p>
                 </div>
@@ -404,8 +438,9 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
                   return (
                     <button
                       key={idx}
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl text-left border transition-all ${
+                      type="button"
+                      onClick={() => handleJourneyStepClick(idx)}
+                      className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
                         activeJourneyStep === idx
                           ? 'border-[#0070C0] bg-sky-50/80 shadow-xs'
                           : 'border-slate-200 bg-white hover:border-slate-300'
@@ -486,16 +521,12 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-4 space-y-2">
-              {[
-                { id: 'clean-core', title: 'Standard Clean Core Foundation', sub: 'Unified multi-entity accounting' },
-                { id: 'brim', title: 'SAP BRIM Recurring Revenue', sub: 'Subscription memberships & usage fees' },
-                { id: 'multi-clinic', title: 'Multi-Location Procurement', sub: 'Centralized catalog contracts' },
-                { id: 'fulfillment', title: 'D2C Care Kit Warehouse EWM', sub: 'Personalized kitting automation' }
-              ].map(tab => (
+              {archTabs.map((tab, idx) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id as any)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all ${
+                  type="button"
+                  onClick={() => handleArchTabClick(idx)}
+                  className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                     activeArchTab === tab.id
                       ? 'border-[#0070C0] bg-sky-50/70 shadow-xs'
                       : 'border-slate-200 bg-white hover:border-slate-300'
@@ -632,14 +663,14 @@ export const WellnessCareIndustryPage: React.FC<WellnessCareIndustryPageProps> =
                   className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:border-[#0070C0] hover:shadow-xl transition-all duration-300 flex flex-col h-full group"
                 >
                   {/* 1. Top Image Portion */}
-                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 shrink-0">
+                  <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-slate-100 shrink-0">
                     <img 
                       src={sol.image} 
                       alt={sol.title} 
                       onError={(e) => {
                         e.currentTarget.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80';
                       }}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover object-[center_top] transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
                     <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-cyan-300 uppercase">

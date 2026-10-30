@@ -87,22 +87,22 @@ export const IntelligentAutomationPage: React.FC<TechnologyPageProps> = ({ onOpe
       {/* =========================================================================
           SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-slate-950 text-white">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-black text-white">
 
-        {/* Full-Bleed Background Visual: Robotic & Human Modular Workflow Automation */}
+        {/* Full-Bleed Background Visual: Robotic & Human Modular Workflow Automation (100% Clear with Zero Dark Blue Shade) */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/workflow_automation_widescreen.jpg"
             alt="Intelligent Automation - Mine Bottlenecks, Automate Workflows, Accelerate Enterprise Velocity"
             className="w-full h-full object-cover object-right lg:object-[78%_center] brightness-110 contrast-105 saturate-[1.05]"
           />
-          {/* Dedicated text-readability scrim on left; 100% bright & clear on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/65 via-45% to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl space-y-5 text-left">
+          <div className="max-w-3xl space-y-5 text-left relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with Zero Box and Zero dark blue shade */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -110,14 +110,15 @@ export const IntelligentAutomationPage: React.FC<TechnologyPageProps> = ({ onOpe
               transition={{ duration: 0.55 }}
               className="space-y-3"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-900/80 border border-purple-400/30 text-xs font-mono font-bold uppercase tracking-wider text-purple-200 shadow-sm">
-                <Workflow className="w-3.5 h-3.5 text-purple-300" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <Workflow className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; INTELLIGENT AUTOMATION</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
                 Mine Bottlenecks. Automate Workflows. <br />
-                <span className="text-purple-300">Accelerate Enterprise Velocity.</span>
+                <span className="text-[#00A3E0]">Accelerate Enterprise Velocity.</span>
               </h1>
 
               <p className="text-lg sm:text-xl font-semibold text-purple-100 leading-snug">
@@ -206,10 +207,11 @@ export const IntelligentAutomationPage: React.FC<TechnologyPageProps> = ({ onOpe
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-400/30 text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
-              <Workflow className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase mb-1">
+              <Workflow className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>AUTOMATION LIFECYCLE CONTROLLER</span>
             </div>
+
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
               Three-Stage Closed-Loop Optimization Pipeline
             </h2>

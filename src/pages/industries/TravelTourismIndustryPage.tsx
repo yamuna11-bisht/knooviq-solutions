@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -42,9 +43,6 @@ interface TravelTourismIndustryPageProps {
 export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -187,7 +185,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       sublabel: 'Real-Time Air Cache',
       desc: 'Seamless aggregation across Amadeus, Sabre, and direct NDC airline pipes feeding dynamic package builders without inventory latency.',
       tech: 'SAP Integration Suite',
-      image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/travel-tourism/gds_ndc_distribution_v2.png',
       icon: Plane
     },
     {
@@ -196,7 +194,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       sublabel: 'Automated Bundling',
       desc: 'Automated combining of flight segments, hotel allotments, car rentals, and excursions with margin-protected dynamic markup rules.',
       tech: 'S/4HANA Dynamic Pricing',
-      image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/travel-tourism/dynamic_tour_packaging_allotments_v2.png',
       icon: Luggage
     },
     {
@@ -205,7 +203,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       sublabel: 'Automated FX Hedging',
       desc: 'Instant localized currency charging, split payments, and real-time automated hedge booking in SAP S/4HANA Treasury.',
       tech: 'SAP Treasury & Risk',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/travel-tourism/multicurrency_checkout_v2.jpg',
       icon: DollarSign
     },
     {
@@ -214,7 +212,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       sublabel: 'Instant Digital Passes',
       desc: 'Instant QR code generation, digital boarding pass delivery, and automated confirmation transmission to local ground operators.',
       tech: 'SAP BTP Mobile Services',
-      image: 'https://images.unsplash.com/photo-1517840901100-8179e982acb7?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/travel-tourism/supplier_voucher_dispatch_v2.png',
       icon: Ticket
     },
     {
@@ -223,7 +221,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       sublabel: '3-Way Reconciliation',
       desc: 'Algorithmic reconciliation between ticket sales logs, BSP billing statements, and credit card acquirer settlement files.',
       tech: 'S/4HANA Settlement Engine',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/travel-tourism/iata_bsp_clearing_v2.jpg',
       icon: Receipt
     },
     {
@@ -232,10 +230,32 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       sublabel: 'Automated Re-Ticketing',
       desc: 'Automated re-ticketing, hotel accommodation vouchers, and customer compensation payouts dispatched via event-driven microservices.',
       tech: 'SAP Event Mesh',
-      image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/travel-tourism/autonomous_disruption_reaccommodation.png',
       icon: RefreshCw
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 7: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
   const industrySolutions = [
@@ -245,7 +265,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'BOOKING',
       categoryLabel: 'Booking & Distribution',
       description: 'Streamline multi-source inventory queries across global reservation engines with sub-second response caching and zero seat lockouts.',
-      image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/global_gds_direct_ndc_aggregator.jpg',
       highlights: ['NDC Direct Pipe', 'GDS Aggregation', 'Sub-Second Cache'],
       icon: Plane
     },
@@ -255,7 +275,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'BOOKING',
       categoryLabel: 'Booking & Distribution',
       description: 'Package hotel allotments, flight legs, transfers, and activities into customized branded itineraries with automated margin yields.',
-      image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/dynamic_tour_packaging_allotments_v2.png',
       highlights: ['Dynamic Markups', 'Hotel Allotments', 'Multi-Leg Assembly'],
       icon: Luggage
     },
@@ -265,7 +285,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'BOOKING',
       categoryLabel: 'Booking & Distribution',
       description: 'Algorithmic inventory release and tier markups responding to seasonal booking velocity, holiday surges, and charter load factors.',
-      image: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/seat_cruise_cabin_yield_optimizer_v2.jpg',
       highlights: ['Yield Curves', 'Charter Allocation', 'Load Factor Tuning'],
       icon: Ship
     },
@@ -275,7 +295,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'OPERATIONS',
       categoryLabel: 'Operations & Logistics',
       description: 'Generate multi-provider booking vouchers, mobile boarding passes, and emergency contact details straight to traveler devices.',
-      image: 'https://images.unsplash.com/photo-1517840901100-8179e982acb7?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/automated_voucher_pass_dispatch_v2.png',
       highlights: ['QR Pass Generator', 'Ground Operator Sync', 'Offline Mobile'],
       icon: Ticket
     },
@@ -285,7 +305,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'OPERATIONS',
       categoryLabel: 'Operations & Logistics',
       description: 'Instant flight delay sensing triggering automated alternate bookings, hotel meal vouchers, and passenger compensation credits.',
-      image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/autonomous_disruption_reaccommodation.png',
       highlights: ['Delay Sensing', 'Auto Re-Ticketing', 'Meal Voucher Bot'],
       icon: RefreshCw
     },
@@ -295,7 +315,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'OPERATIONS',
       categoryLabel: 'Operations & Logistics',
       description: 'Enforce enterprise travel spending limits, pre-trip approval routing, and flight carbon emissions tracking for EU ESG disclosures.',
-      image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/corporate_travel_policy_carbon_audit.png',
       highlights: ['Spend Compliance', 'SAF Offsets', 'Corporate Approval'],
       icon: Globe2
     },
@@ -305,7 +325,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'CLEARING',
       categoryLabel: 'Clearing & Finance',
       description: 'Real-time multi-currency settlement protecting tour operator margins from foreign exchange fluctuations on international hotel buys.',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/multicurrency_hedging_fx_gateway_v2.jpg',
       highlights: ['FX Auto-Hedge', 'Cross-Border Clearing', 'Split Settlement'],
       icon: DollarSign
     },
@@ -315,7 +335,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'CLEARING',
       categoryLabel: 'Clearing & Finance',
       description: 'Reconcile airline billing statements against ticketing records and credit card acquirer merchant statements automatically.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/automated_iata_bsp_arc_clearinghouse_v2.jpg',
       highlights: ['IATA BSP Auto-Match', 'ADM/ACM Defense', 'Acquirer Reconcile'],
       icon: Receipt
     },
@@ -325,7 +345,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       category: 'CLEARING',
       categoryLabel: 'Clearing & Finance',
       description: 'Calculate multi-tiered franchise and retail agency commissions, manage incentive overrides, and issue verified payout statements.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      image: '/images/travel-tourism/b2b_travel_agency_commission_settlement_v2.jpg',
       highlights: ['Override Tiers', 'Consortium Statements', 'B2B Commission GL'],
       icon: Users
     }
@@ -458,16 +478,17 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
       <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Enterprise Travel Background Image with Seamless Cinematic Scrim */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-slate-950">
           <img 
             src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2000&q=80" 
             alt="Aviation and Global Travel Enterprise Infrastructure" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-top"
           />
         </div>
 
         {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/90 via-slate-950/70 sm:via-slate-950/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           
@@ -658,7 +679,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
             <div className="lg:col-span-6 space-y-3.5">
               
               {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
-              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100 flex items-center justify-center">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
@@ -675,7 +696,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
@@ -824,20 +845,27 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -853,7 +881,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -875,7 +903,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -883,20 +911,27 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -910,7 +945,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -967,20 +1002,27 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -988,7 +1030,7 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-left flex-1">
@@ -1201,31 +1243,30 @@ export const TravelTourismIndustryPage: React.FC<TravelTourismIndustryPageProps>
                     key={sol.title}
                     className="h-[400px] rounded-xl bg-white border-2 border-slate-300 shadow-xs hover:border-[#0070C0] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group"
                   >
-                    {/* 1. Top Image Banner - 50% Pure Photo */}
+                    {/* 1. Top Image Banner - 50% Pure Photo (Covers Full Box, 100% Uncut) */}
                     <div className="relative h-1/2 w-full overflow-hidden bg-slate-100 shrink-0">
                       <img 
                         src={sol.image} 
                         alt={sol.title}
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
                       />
-                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
-                      
-                      {/* Floating Tag Pill */}
-                      <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-slate-950/80 border border-white/20 text-[9px] font-mono font-bold text-sky-300 uppercase tracking-wider backdrop-blur-md shadow-xs">
-                        {sol.tag}
-                      </div>
                     </div>
 
                     {/* 2. Card Content Body - 50% Height */}
                     <div className="h-1/2 p-3.5 sm:p-4 flex flex-col justify-between space-y-2.5 overflow-hidden">
                       
                       <div className="space-y-1.5">
-                        {/* Category & Icon Indicator */}
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono font-bold text-[#0070C0] uppercase tracking-wider">
-                            {sol.categoryLabel}
-                          </span>
-                          <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all">
+                        {/* Category, Tag & Icon Indicator */}
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <span className="text-[10px] font-mono font-bold text-[#0070C0] uppercase tracking-wider truncate">
+                              {sol.categoryLabel}
+                            </span>
+                            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 uppercase tracking-wider shrink-0">
+                              {sol.tag}
+                            </span>
+                          </div>
+                          <div className="p-1.5 rounded-lg bg-sky-50 text-[#0070C0] border border-slate-200 group-hover:bg-[#0070C0] group-hover:text-white transition-all shrink-0">
                             <IconComponent className="w-3.5 h-3.5" />
                           </div>
                         </div>

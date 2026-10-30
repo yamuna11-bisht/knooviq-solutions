@@ -109,7 +109,7 @@ export const DataAnalyticsAiPage: React.FC<TechnologyPageProps> = ({ onOpenConta
       {/* =========================================================================
           SECTION 1: HERO SECTION (Cinematic Blue & White Enterprise Architecture)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-blue-950">
+      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-[#0A1E3F]">
 
         {/* Background Image with Deep Blue Scrim */}
         <div className="absolute inset-0 z-0">
@@ -118,8 +118,12 @@ export const DataAnalyticsAiPage: React.FC<TechnologyPageProps> = ({ onOpenConta
             alt="SAP Data, Analytics & AI Cloud Architecture"
             className="w-full h-full object-cover object-center opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-blue-900/75 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-transparent to-blue-950/50 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1E3F]/90 via-[#0A1E3F]/70 sm:via-[#0A1E3F]/50 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1E3F] via-transparent to-[#0A1E3F]/40 pointer-events-none" />
+          {/* Subtle cyber mesh overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+          {/* Top Hairline Accent */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -131,14 +135,15 @@ export const DataAnalyticsAiPage: React.FC<TechnologyPageProps> = ({ onOpenConta
               transition={{ duration: 0.55 }}
               className="space-y-3"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-900/80 border border-blue-400/30 text-xs font-mono font-bold uppercase tracking-wider text-blue-200 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-blue-300" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; DATA, ANALYTICS & AI</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
                 Contextual Intelligence via <br />
-                <span className="text-blue-300">Data, Analytics & Enterprise AI</span>
+                <span className="text-[#00A3E0]">Data, Analytics & Enterprise AI</span>
               </h1>
 
               <p className="text-lg sm:text-xl font-semibold text-blue-100 leading-snug">
@@ -229,10 +234,11 @@ export const DataAnalyticsAiPage: React.FC<TechnologyPageProps> = ({ onOpenConta
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold uppercase tracking-wider text-blue-700">
-                <Compass className="w-3.5 h-3.5 text-blue-600" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 tracking-wider uppercase">
+                <Compass className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>ENTERPRISE DATA & AI ARCHITECTURAL FRAMEWORK</span>
               </div>
+
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
                 Architectural Decision Guide: Modernizing Your Enterprise Data Fabric & AI Boundary
               </h2>

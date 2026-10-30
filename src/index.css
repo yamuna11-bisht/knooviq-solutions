@@ -180,6 +180,21 @@
   transform: translateY(-2px);
 }
 
+/* Cerulean Cyan Glow Button */
+.glow-btn {
+  background: linear-gradient(135deg, #00A3E0 0%, #0077B6 100%);
+  box-shadow: 0 4px 14px 0 rgba(0, 163, 224, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.glow-btn:hover {
+  background: linear-gradient(135deg, #00B4F0 0%, #0088CC 100%);
+  box-shadow: 0 6px 20px 0 rgba(0, 163, 224, 0.55);
+  transform: translateY(-1px);
+}
+
+
 /* Shimmer Sweep Animation */
 .shimmer-sweep {
   position: relative;

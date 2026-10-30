@@ -560,48 +560,108 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
 
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Image 1 of 4 - Ultra-Clean & Sleek, NO Buttons)
+          SECTION 1: HERO SECTION (Image 1 of 4 - Ultra-Clean & Sleek 2-Column Showcase, NO Buttons)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-slate-900">
+      {/* =========================================================================
+          SECTION 1: HERO SECTION (Panoramic Full-Bleed Enterprise Showcase)
+          ========================================================================= */}
+      <section className="relative pt-32 pb-20 lg:pt-36 lg:pb-24 min-h-[580px] lg:h-[660px] lg:min-h-[660px] flex items-center overflow-hidden">
+        {/* Full-Screen Static Background Image with Localized Left Scrim (No Image Animation, Uncut from Above & Below) */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/machine_learning_hero.jpg"
-            alt="Enterprise Machine Learning & In-Database Analytics"
-            className="w-full h-full object-cover object-center opacity-40"
+            src="/images/machine_learning_hero.png"
+            alt="Enterprise Machine Learning & MLOps"
+            className="w-full h-full object-cover object-[right_20%] lg:object-[right_20%]"
+            style={{ imageRendering: '-webkit-optimize-contrast' }}
           />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
-                <Brain className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; MACHINE LEARNING & MLOPS</span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                Enterprise <br />
-                <span className="text-cyan-400">Machine Learning & MLOps</span>
-              </h1>
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
-                In-database algorithms on SAP HANA Cloud, automated MLOps pipelines, and real-time model inference powering core enterprise decision intelligence.
-              </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-3xl lg:max-w-4xl">
+            {/* Glowing Pill Badge with Micro-Animation */}
+            <motion.div
+              initial={{ opacity: 0, y: -16, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.02 }}
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-slate-900/90 border border-cyan-400/40 text-cyan-300 mb-5 backdrop-blur-md shadow-2xl transition-all cursor-default"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_8px_#00F0FF]"></span>
+              </span>
+              <span className="font-mono uppercase text-xs tracking-wider font-bold">Enterprise Machine Learning &amp; MLOps</span>
             </motion.div>
 
-            {/* Enterprise Trust Indicators (Strictly No Buttons) */}
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>In-Database SAP HANA APL</span>
-              </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Automated MLOps Pipelines</span>
-              </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200">
-                <Database className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>Zero Data Extraction Latency</span>
-              </div>
+            {/* Main Headline with Clean, Crisp, Professional Enterprise Typography */}
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] mb-6 drop-shadow-sm"
+            >
+              Enterprise <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400">
+                Machine Learning &amp; MLOps
+              </span>
+            </motion.h1>
+
+            {/* Sub-headline with Smooth Fade-Up */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-8 max-w-3xl"
+            >
+              In-database algorithms on SAP HANA Cloud, automated MLOps pipelines, and real-time model inference powering core enterprise decision intelligence.
+            </motion.p>
+
+            {/* Feature Highlight Pills with Staggered Entrance and Hover Float */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.12,
+                    delayChildren: 0.38
+                  }
+                }
+              }}
+              className="flex flex-wrap items-center gap-2.5 sm:gap-3"
+            >
+              {[
+                { label: 'In-Database SAP HANA APL', icon: CheckCircle2 },
+                { label: 'Automated MLOps Pipelines', icon: ShieldCheck },
+                { label: 'Zero Data Extraction Latency', icon: Database }
+              ].map((pill, idx) => {
+                const Icon = pill.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    variants={{
+                      hidden: { opacity: 0, y: 16, scale: 0.95 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
+                      }
+                    }}
+                    whileHover={{
+                      y: -3,
+                      scale: 1.03,
+                      boxShadow: '0 12px 28px -4px rgba(0, 240, 255, 0.25)'
+                    }}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/20 hover:border-cyan-400/50 shadow-xl backdrop-blur-md text-xs font-bold text-white transition-all cursor-default group"
+                  >
+                    <Icon className="h-4 w-4 text-emerald-400 group-hover:text-cyan-300 transition-colors drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                    <span>{pill.label}</span>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
@@ -613,14 +673,14 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
       <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-[#F8FBFE] to-white border-b border-slate-200 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
+
             {/* Left Column: Strategic Context & 3 High-Impact Pillars */}
             <div className="lg:col-span-6 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-300 text-xs font-mono font-bold uppercase tracking-wider text-[#0070C0]">
                 <Activity className="w-3.5 h-3.5 text-[#0070C0]" />
                 <span>EXECUTIVE ARCHITECTURE PERSPECTIVE</span>
               </div>
-              
+
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight leading-tight">
                 Operationalizing In-Database <span className="text-[#0070C0]">Machine Learning</span>
               </h2>
@@ -674,15 +734,15 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
               </div>
             </div>
 
-            {/* Right Column: Deep-Dive Visual Card (Image 2 of 4) + Step Switcher */}
+            {/* Right Column: Deep-Dive Visual Card (2nd Image) + Step Switcher */}
             <div className="lg:col-span-6 space-y-3.5">
-              <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
+              <div className="relative h-80 sm:h-96 lg:h-[430px] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-xl bg-slate-900 group">
                 <img
-                  src="/images/machine_learning_hero.jpg"
-                  alt="Knooviq Enterprise Machine Learning Command Center"
+                  src="/images/machine_learning_indatabase.png"
+                  alt="Operationalizing In-Database Machine Learning"
                   className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
                 <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-cyan-400/50 text-xs font-mono font-bold text-cyan-300 shadow-sm flex items-center gap-1.5">
                   <Brain className="w-3.5 h-3.5 text-cyan-400" />
                   <span>ACTIVE ARCHITECTURE: {journeySteps[activeJourneyStep].label.toUpperCase()}</span>
@@ -703,11 +763,10 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                       key={step.id}
                       type="button"
                       onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-3 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
-                        isSelected
+                      className={`p-3 rounded-xl border text-left transition-all flex items-center gap-2.5 ${isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-md scale-[1.01]'
                           : 'bg-white text-slate-800 border-2 border-slate-200 hover:bg-sky-50 hover:border-[#0070C0]'
-                      }`}
+                        }`}
                     >
                       <StepIcon className={`w-4 h-4 shrink-0 ${isSelected ? 'text-white' : 'text-[#0070C0]'}`} />
                       <div className="min-w-0">
@@ -793,7 +852,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,112,192,0.12)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300">
               <Cpu className="w-3.5 h-3.5 text-cyan-400" />
@@ -809,7 +868,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
 
           {/* Central Radial Interlocking Chevron Visual Cockpit */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            
+
             {/* Left 4 Micro-Pods */}
             <div className="hidden lg:flex lg:col-span-3 flex-col gap-3">
               {wheelSegments.slice(4, 8).map((seg, idx) => {
@@ -819,12 +878,11 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => { setActiveWheelIndex(globalIndex); setIsAutoRotating(false); }}
-                    className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${
-                      isSelected
+                    onClick={() => setActiveWheelIndex(globalIndex)}
+                    className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${isSelected
                         ? 'bg-slate-900/90 border-cyan-400/60 shadow-lg shadow-cyan-500/20 translate-x-1'
                         : 'bg-slate-950/50 border-slate-800/80 hover:bg-slate-900/60'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className={`text-[10px] font-mono font-bold tracking-wider ${seg.textColor}`}>
@@ -842,7 +900,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
             {/* Center Interlocking Chevron SVG Wheel */}
             <div className="lg:col-span-6 flex flex-col items-center justify-center relative">
               <div className="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] max-w-full">
-                
+
                 {/* SVG Radial Wheel */}
                 <svg viewBox="0 0 500 500" className="w-full h-full transform transition-transform duration-700">
                   <circle cx="250" cy="250" r="235" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="4 6" />
@@ -859,7 +917,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                         className="cursor-pointer transition-all duration-300"
                         onMouseEnter={() => setHoveredWheelIndex(idx)}
                         onMouseLeave={() => setHoveredWheelIndex(null)}
-                        onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
+                        onClick={() => setActiveWheelIndex(idx)}
                       >
                         <path
                           d={pathD}
@@ -904,18 +962,6 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                 </div>
 
               </div>
-
-              {/* Pause / Play Rotation Control */}
-              <div className="mt-3 flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsAutoRotating(!isAutoRotating)}
-                  className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] font-mono text-cyan-300 flex items-center gap-1.5 transition-colors"
-                >
-                  {isAutoRotating ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-                  <span>{isAutoRotating ? 'PAUSE ROTATION' : 'RESUME CYCLE'}</span>
-                </button>
-              </div>
             </div>
 
             {/* Right 4 Micro-Pods */}
@@ -926,12 +972,11 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                 return (
                   <div
                     key={seg.id}
-                    onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
-                    className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${
-                      isSelected
+                    onClick={() => setActiveWheelIndex(idx)}
+                    className={`p-3 rounded-xl border transition-all duration-300 cursor-pointer ${isSelected
                         ? 'bg-slate-900/90 border-cyan-400/60 shadow-lg shadow-cyan-500/20 -translate-x-1'
                         : 'bg-slate-950/50 border-slate-800/80 hover:bg-slate-900/60'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className={`text-[10px] font-mono font-bold tracking-wider ${seg.textColor}`}>
@@ -956,12 +1001,11 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                 <button
                   key={seg.id}
                   type="button"
-                  onClick={() => { setActiveWheelIndex(idx); setIsAutoRotating(false); }}
-                  className={`p-2 rounded-lg border text-left text-xs transition-colors ${
-                    isSelected
+                  onClick={() => setActiveWheelIndex(idx)}
+                  className={`p-2 rounded-lg border text-left text-xs transition-colors ${isSelected
                       ? 'bg-slate-800 border-cyan-400 text-white'
                       : 'bg-slate-950/60 border-slate-800 text-slate-400'
-                  }`}
+                    }`}
                 >
                   <div className="font-mono text-[10px] font-bold text-cyan-400">{seg.shortTag}</div>
                   <div className="font-bold truncate text-white">{seg.title}</div>
@@ -1092,11 +1136,10 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveSolutionCategory(cat.id)}
-                className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 text-xs sm:text-sm font-semibold ${
-                  activeSolutionCategory === cat.id
+                className={`industry-category-tab px-4 py-2 rounded-full transition-all duration-300 text-xs sm:text-sm font-semibold ${activeSolutionCategory === cat.id
                     ? 'bg-[#0070C0] text-white shadow-md shadow-[#0070C0]/25 scale-105'
                     : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-300 hover:border-slate-400 shadow-2xs'
-                }`}
+                  }`}
               >
                 {cat.label}
               </button>
@@ -1224,7 +1267,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
           ========================================================================= */}
       <section className="py-5 sm:py-7 bg-gradient-to-b from-[#050C18] via-[#09152B] to-[#040A14] border-b border-slate-800 relative overflow-hidden text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           <div className="max-w-3xl mx-auto text-center mb-4 sm:mb-5 space-y-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-950/90 border border-cyan-400/50 text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-300">
               <Activity className="w-3 h-3 text-cyan-400" />
@@ -1240,7 +1283,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
 
           {/* Interactive Document Analysis Command Pod */}
           <div className="rounded-xl border border-cyan-500/30 bg-slate-900/90 shadow-xl p-3 sm:p-4 backdrop-blur-xl relative overflow-hidden">
-            
+
             {/* Top Header Row: Document Metadata & Live Status */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-2.5 mb-3 gap-2">
               <div className="space-y-1 text-left">
@@ -1254,11 +1297,10 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                         key={doc.id}
                         type="button"
                         onClick={() => setActiveDocTab(docKey)}
-                        className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5 ${
-                          isSelected
+                        className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5 ${isSelected
                             ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-sm shadow-cyan-500/30'
                             : 'bg-white/10 text-slate-300 hover:text-white hover:bg-white/15 border border-white/10'
-                        }`}
+                          }`}
                       >
                         <Brain className="w-3 h-3" />
                         <span>{doc.tabLabel}</span>
@@ -1288,7 +1330,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
 
             {/* Main Showcase Grid: Visual Image (Image 4 of 4) + Structured Extracted Findings */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
-              
+
               {/* Left Column: Visual AI Document Scan (Image 4 of 4 - Zero Dead Space Above or Below) */}
               <div className="lg:col-span-5 relative rounded-xl overflow-hidden border border-cyan-400/40 shadow-lg group min-h-[260px] sm:min-h-[300px] lg:min-h-full">
                 <img
@@ -1297,7 +1339,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
                   className="absolute inset-0 w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
-                
+
                 <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-10 shadow-sm">
                   <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
                   <span>In-Database Real-Time Scoring</span>
@@ -1315,7 +1357,7 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
 
               {/* Right Column: High-Visibility Extracted Intelligence Cards */}
               <div className="lg:col-span-7 flex flex-col justify-between space-y-2">
-                
+
                 {/* 3 Compact High-Contrast Findings Boxes */}
                 <div className="space-y-1.5">
                   {auditDocuments[activeDocTab].findings.map((finding, fIdx) => (
@@ -1394,11 +1436,11 @@ export const MachineLearningPracticePage: React.FC<MachineLearningPracticePagePr
             </button>
 
             <Link
-              to="/digital-intelligence"
-              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2"
+              to="/digital-intelligence/predictive-ai"
+              className="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-md transition-all flex items-center gap-2 group"
             >
-              <span>Explore Digital Intelligence</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>Explore Predictive AI</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

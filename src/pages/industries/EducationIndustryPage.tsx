@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -44,9 +45,6 @@ interface EducationIndustryPageProps {
 export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
-
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
 
@@ -189,7 +187,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       sublabel: 'Student Onboarding',
       desc: 'Seamless digital application ingestion, transcript verification, and automated registration fee clearing in SAP SLcM.',
       tech: 'SAP SLcM Admissions',
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/education/admissions_enrollment.png',
       icon: GraduationCap
     },
     {
@@ -198,7 +196,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       sublabel: 'Bursar Financial Aid',
       desc: 'Automated calculation of credit-hour tuition, laboratory fees, government student loans, and scholarship disbursements.',
       tech: 'S/4HANA Student Billing',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/education/tuition_net_billing.png',
       icon: Receipt
     },
     {
@@ -207,7 +205,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       sublabel: 'Faculty Allocation',
       desc: 'Predictive classroom capacity scheduling aligning faculty teaching loads, degree audit prerequisites, and student elective demand.',
       tech: 'SAP Academic Advising',
-      image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/education/curriculum_workload.png',
       icon: BookOpen
     },
     {
@@ -216,7 +214,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       sublabel: 'Post-Award Compliance',
       desc: 'Rigorous cost-matching for federal and corporate research grants, labor distribution schedules, and automated overhead recovery.',
       tech: 'SAP Grants Management (GM)',
-      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/education/sponsored_research_grants.png',
       icon: Landmark
     },
     {
@@ -225,7 +223,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       sublabel: 'Predictive Campus MRO',
       desc: 'Dormitory, laboratory cleanroom, and lecture hall asset maintenance automated through SAP Plant Maintenance and IoT telemetry.',
       tech: 'SAP Plant Maintenance (PM)',
-      image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/education/smart_campus_facilities.png',
       icon: School
     },
     {
@@ -234,10 +232,32 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       sublabel: 'Restricted Funds',
       desc: 'Perpetual endowment fund accounting, donor restriction compliance, and scholarship payout disbursements on SAP S/4HANA Finance.',
       tech: 'S/4HANA Fund Accounting',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/education/endowment_governance_handshake.jpg',
       icon: Award
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 7: 9 Modular Enterprise Industry Solutions (Symmetrical 3x3 Grid)
   const industrySolutions = [
@@ -247,7 +267,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'STUDENT',
       categoryLabel: 'Student Lifecycle',
       description: 'Streamline the applicant lifecycle from prospect inquiry and transcript evaluation through class enrollment and alumni transition.',
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/admissions_enrollment.png',
       highlights: ['Applicant Portal', 'Transcript Verification', 'Automated Registration'],
       icon: GraduationCap
     },
@@ -257,7 +277,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'STUDENT',
       categoryLabel: 'Student Lifecycle',
       description: 'Single-source bursar engine calculating complex tuition differentials, institutional aid, federal Title IV loans, and payment plans.',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/net_tuition_financial_aid.png',
       highlights: ['Net Fee Calculation', 'Title IV Clearing', 'Payment Schedules'],
       icon: Receipt
     },
@@ -267,7 +287,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'STUDENT',
       categoryLabel: 'Student Lifecycle',
       description: 'AI-assisted degree audit pathfinding alerting academic advisors to prerequisite bottlenecks and student credit milestones.',
-      image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/cognitive_degree_audit.jpg',
       highlights: ['Prerequisite Engine', 'Graduation Pathing', 'Advisor Cockpit'],
       icon: Award
     },
@@ -277,7 +297,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'RESEARCH',
       categoryLabel: 'Research & Grants',
       description: 'Complete lifecycle accounting for federal, state, and foundation awards with real-time budget burn rate validation.',
-      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/sponsored_grant_accounting_boardroom.png',
       highlights: ['Uniform Guidance Audit', 'Post-Award Budget', 'Sub-Award Tracking'],
       icon: Landmark
     },
@@ -287,7 +307,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'RESEARCH',
       categoryLabel: 'Research & Grants',
       description: 'Electronic timecards and faculty payroll distribution certifying direct research labor allocation with strict audit defense.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/research_effort_certification.png',
       highlights: ['Effort Certification', 'Payroll Distribution', 'Audit Defense'],
       icon: Users
     },
@@ -297,7 +317,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'RESEARCH',
       categoryLabel: 'Research & Grants',
       description: 'Automated calculation of facilities and administrative overhead rates across diverse grant sponsors and campus research institutes.',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/indirect_cost_recovery.png',
       highlights: ['F&A Rate Splitting', 'Overhead Recovery', 'Cost Allocation'],
       icon: DollarSign
     },
@@ -307,7 +327,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'CAMPUS',
       categoryLabel: 'Campus Operations',
       description: 'Predictive work order dispatch for research cleanrooms, cryogenic equipment, student dormitories, and campus energy grids.',
-      image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/smart_campus_laboratory_mro.jpg',
       highlights: ['Cleanroom Sensors', 'Dorm Work Orders', 'Predictive Energy'],
       icon: School
     },
@@ -317,7 +337,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'CAMPUS',
       categoryLabel: 'Campus Operations',
       description: 'Algorithmic room assignments and faculty workload balancing aligning lecture hall seat density with course enrollment velocity.',
-      image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/faculty_workload_classroom_capacity.png',
       highlights: ['Workload Balance', 'Seat Density Sync', 'Room Optimization'],
       icon: BookOpen
     },
@@ -327,7 +347,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       category: 'CAMPUS',
       categoryLabel: 'Campus Operations',
       description: 'Multi-tiered fund accounting tracking donor gift covenants, unitized endowment investment pools, and scholarship disbursements.',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
+      image: '/images/education/university_endowment_restricted_funds.jpg',
       highlights: ['Donor Covenants', 'Unitized Pool GL', 'Scholarship Payouts'],
       icon: Building2
     }
@@ -460,16 +480,17 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
       <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
         
         {/* Full-Bleed Enterprise Education Background Image with Seamless Cinematic Scrim */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-slate-950 overflow-hidden">
           <img 
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=80" 
-            alt="University Campus Architecture and Academic Environment" 
-            className="w-full h-full object-cover object-center"
+            src="/images/education/education_hero.jpg" 
+            alt="Intelligent ERP for Higher Education - Campus & Student Lifecycle" 
+            className="w-full h-full object-cover object-center lg:object-right"
           />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+        {/* Seamless Cinematic Left & Vertical Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/90 via-slate-950/70 sm:via-slate-950/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           
@@ -660,11 +681,12 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
             <div className="lg:col-span-6 space-y-3.5">
               
               {/* Pure High-Resolution Photography Showcase with Defined Dark Border */}
-              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
+              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border-2 border-slate-300 shadow-md bg-slate-100">
                 <img 
+                  key={journeySteps[activeJourneyStep].id}
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].label} 
-                  className="w-full h-full object-cover object-center transition-all duration-500"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
 
@@ -677,10 +699,10 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
+                      onClick={() => handleJourneyStepClick(idx)}
+                      className={`p-2.5 rounded-xl border text-left transition-colors flex items-center gap-2.5 ${
                         isSelected
-                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
+                          ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm'
                           : 'bg-white text-slate-700 border border-slate-300 hover:bg-sky-50 hover:border-[#0070C0]'
                       }`}
                     >
@@ -826,20 +848,27 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -855,7 +884,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -877,7 +906,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -885,20 +914,27 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -912,7 +948,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -969,20 +1005,27 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -990,7 +1033,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-left flex-1">
@@ -1208,7 +1251,7 @@ export const EducationIndustryPage: React.FC<EducationIndustryPageProps> = ({
                       <img 
                         src={sol.image} 
                         alt={sol.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                        className="w-full h-full object-cover object-center" 
                       />
                       <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
                       

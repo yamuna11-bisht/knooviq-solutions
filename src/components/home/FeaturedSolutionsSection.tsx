@@ -7,9 +7,11 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Sparkles,
-  ExternalLink
+  Shield,
+  Zap
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { IndustriesGlobe3D } from '../3d/IndustriesGlobe3D';
 
 interface FeaturedCase {
   id: string;
@@ -92,11 +94,13 @@ export const FeaturedSolutionsSection: React.FC<{ onOpenContact?: (service?: str
     <section id="featured-solutions" className="relative py-16 sm:py-20 bg-white text-slate-900 overflow-hidden select-none border-b border-slate-200/80">
       
       {/* Background Soft Radiance */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-gradient-to-r from-sky-100/40 via-blue-100/30 to-indigo-100/30 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-gradient-to-r from-sky-100/40 via-blue-100/30 to-indigo-100/30 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* ========================================================================= */}
+        {/* SECTION HEADER (Preserved Exact Copy & Hierarchy)                         */}
+        {/* ========================================================================= */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -117,12 +121,14 @@ export const FeaturedSolutionsSection: React.FC<{ onOpenContact?: (service?: str
           </motion.div>
         </div>
 
-        {/* 3-Column Modern Blueprint Cards */}
+        {/* ========================================================================= */}
+        {/* 3-COLUMN CASE STUDY BLUEPRINT CARDS (Preserved Exact Cards & Features)    */}
+        {/* ========================================================================= */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
           {solutions.map((item, idx) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: idx * 0.1 }}
@@ -197,12 +203,96 @@ export const FeaturedSolutionsSection: React.FC<{ onOpenContact?: (service?: str
               <div className="h-1 w-full bg-slate-100 overflow-hidden">
                 <div className={`h-full w-12 group-hover:w-full ${item.accentBar} transition-all duration-500 ease-out`} />
               </div>
-
             </motion.div>
           ))}
         </div>
+
+        {/* ========================================================================= */}
+        {/* PREMIUM FULL-WIDTH CTA BANNER (Cinematic Enterprise Website Ending)       */}
+        {/* ========================================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-14 sm:mt-16 lg:mt-20 relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#061224] via-[#0A1931] to-[#003B73] border border-sky-500/25 shadow-2xl shadow-sky-950/40 p-8 sm:p-10 lg:p-14"
+        >
+          {/* Subtle Ambient Background Glows */}
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-sky-500/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:28px_28px] opacity-10 pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12">
+            
+            {/* Left Content Area */}
+            <div className="flex-1 text-center lg:text-left">
+              {/* Eyebrow Tag */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-400/10 border border-sky-400/25 text-sky-300 font-mono text-[11px] font-bold tracking-wider uppercase mb-4 shadow-xs">
+                <Sparkles className="h-3.5 w-3.5 text-[#00A3E0]" />
+                <span>Enterprise Acceleration</span>
+              </div>
+
+              {/* Main CTA Heading (Exact Requested Copy) */}
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                Ready to Transform{' '}
+                <span className="bg-gradient-to-r from-[#38BDF8] via-[#00A3E0] to-white bg-clip-text text-transparent">
+                  Your Enterprise?
+                </span>
+              </h3>
+
+              {/* Supporting Text (Exact Requested Copy) */}
+              <p className="mt-3.5 text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
+                Turn complex business challenges into intelligent, scalable digital solutions with Knooviq.
+              </p>
+
+              {/* Action Buttons: Primary & Secondary */}
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                {/* Primary CTA: Book a Consultation */}
+                <button
+                  onClick={() => onOpenContact ? onOpenContact('Enterprise Consultation') : undefined}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#00A3E0] to-[#0070C0] hover:from-[#0284C7] hover:to-[#0369A1] text-white font-display font-bold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer group"
+                >
+                  <span>Book a Consultation</span>
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                {/* Secondary CTA: Explore Our Services */}
+                <Link
+                  to="/services"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-white/25 bg-white/5 hover:bg-white/10 text-white font-display font-semibold text-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>Explore Our Services</span>
+                </Link>
+              </div>
+
+              {/* Enterprise Trust Highlights */}
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-[11.5px] text-slate-300/90 font-medium">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>Clean Core SAP Strategy</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                  <span>Autonomous AI Orchestration</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  <span>Global High-Availability Resilience</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Visual Area: Interactive 3D Industries Globe */}
+            <div className="w-full lg:w-[460px] xl:w-[500px] h-[380px] sm:h-[420px] lg:h-[440px] flex-shrink-0 flex items-center justify-center relative">
+              <IndustriesGlobe3D />
+            </div>
+
+          </div>
+        </motion.div>
 
       </div>
     </section>
   );
 };
+
+export default FeaturedSolutionsSection;

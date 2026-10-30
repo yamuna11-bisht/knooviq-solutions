@@ -218,78 +218,65 @@ export const SapHumanCapitalSolutionView: React.FC<SapHumanCapitalSolutionViewPr
       {/* =========================================================================
           1. FULL-SCREEN CINEMATIC HERO SECTION (Full-Bleed 3D Visual & Enterprise Content Overlay)
           ========================================================================= */}
-      <section className="relative w-full h-[540px] sm:h-[560px] lg:h-[580px] flex items-center overflow-hidden bg-[#030914] text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl py-6 sm:py-8 lg:py-8">
+      <section className="relative w-full min-h-[540px] sm:min-h-[560px] lg:min-h-[580px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-xl py-10 sm:py-12 lg:py-14">
         
-        {/* Full-Bleed Enterprise 3D Background Image */}
+        {/* Full-Bleed Enterprise 3D Background Image (100% Clear with Zero Dark Blue Shade) */}
         <div 
-          className="absolute inset-0 z-0 group/hero cursor-pointer"
+          className="absolute inset-0 z-0 group/hero cursor-pointer overflow-hidden"
           onClick={() => setIsFullscreenImageOpen(true)}
           title="Click to view full screen 3D visual"
         >
           <img 
-            src="/images/sap_app_humancapital_3d.jpg" 
+            src="/images/sap_app_humancapital_3d_clean.jpg" 
             alt="SAP SuccessFactors Talent Intelligence Hub" 
-            className="w-full h-full object-cover object-center lg:object-[66%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102"
+            className="w-full h-full object-cover object-center lg:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
           />
-          
-          {/* Scrim Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#030914]/90 via-[#0D0924]/75 sm:via-[#0D0924]/50 lg:via-[#0D0924]/30 to-[#030914]/20 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030914]/80 via-transparent to-[#030914]/50 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#030914]/60 via-transparent to-transparent pointer-events-none" />
 
-          {/* Grid overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(#8B5CF6_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
-
-          {/* Click to expand pill */}
-          <div className="absolute bottom-4 right-5 z-10 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono text-purple-300 hover:bg-black/70 hover:text-white transition-all shadow-xl">
-            <Maximize2 className="w-3.5 h-3.5" />
-            <span>Click to View Full Screen Visual</span>
-          </div>
         </div>
 
         {/* Hero Content Overlay */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl space-y-2.5 sm:space-y-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-6 sm:py-10">
+          <div className="max-w-3xl space-y-4 sm:space-y-5">
             
             {/* Badges */}
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-purple-400/30 text-[11px] font-mono font-bold uppercase tracking-wider text-purple-300 shadow-xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-purple-300 shadow-md">
                 <Users className="w-3.5 h-3.5 text-purple-400" />
                 <span>SAP SUCCESSFACTORS HXM SUITE</span>
               </div>
               <span className="text-slate-400 text-xs font-mono hidden sm:inline">/</span>
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-slate-300 uppercase tracking-wider bg-black/30 px-2.5 py-0.5 rounded-full border border-white/10 backdrop-blur-sm shadow-md">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-slate-200 uppercase tracking-wider bg-black/50 px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md shadow-md">
                 <BrainCircuit className="w-3.5 h-3.5 text-cyan-400" />
                 <span>TALENT INTELLIGENCE HUB</span>
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-black tracking-tight text-white leading-[1.14] drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
               Intelligent People Management, Dynamic Skills Ontology & Global Payroll
             </h1>
 
             {/* Narrative */}
-            <p className="text-xs sm:text-sm lg:text-[14px] font-medium text-slate-200 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] max-w-2xl">
+            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-100 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
               Elevate employee experiences from hire to retire. Unify core HR, dynamic skills ontologies, internal gig marketplaces, and automated multi-country payroll on SAP SuccessFactors and SAP Fieldglass.
             </p>
 
             {/* Architectural Checkpoints */}
             <div className="flex flex-wrap items-center gap-2 pt-0.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 shadow-lg">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
                 <BrainCircuit className="w-3.5 h-3.5 text-purple-400" />
                 <span>Talent Intelligence Hub</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 shadow-lg">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
                 <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
                 <span>Opportunity Marketplace</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 shadow-lg">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Employee Central Core</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/15 text-[11px] font-medium text-slate-200 shadow-lg">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
                 <Globe2 className="w-3.5 h-3.5 text-amber-400" />
                 <span>50-Country Global Payroll</span>
               </span>
@@ -370,7 +357,7 @@ export const SapHumanCapitalSolutionView: React.FC<SapHumanCapitalSolutionViewPr
             onClick={(e) => e.stopPropagation()}
           >
             <img 
-              src="/images/sap_app_humancapital_3d.jpg" 
+              src="/images/sap_app_humancapital_3d_clean.jpg" 
               alt="SAP SuccessFactors Talent Intelligence Hub" 
               className="max-w-full max-h-[90vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
             />
@@ -391,13 +378,11 @@ export const SapHumanCapitalSolutionView: React.FC<SapHumanCapitalSolutionViewPr
             ========================================================================= */}
         <section className="space-y-8">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="w-6 h-0.5 bg-purple-500" />
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-purple-500">
-                HUMAN EXPERIENCE MANAGEMENT • HIRE-TO-RETIRE JOURNEY
-              </span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-[#00A3E0] bg-[#00A3E0]/10 border border-[#00A3E0]/20 mb-2">
+              <Users className="w-3.5 h-3.5 text-[#00A3E0]" />
+              <span>HIRE-TO-RETIRE JOURNEY</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0A1931] dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0A1931] dark:text-white tracking-tight">
               Four Stages of the Intelligent Workforce Lifecycle
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-3xl">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -36,8 +37,6 @@ interface ElectronicsIndustryPageProps {
 export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = ({ 
   onOpenContact 
 }) => {
-  // State for Section 2 Interactive Journey
-  const [activeJourneyStep, setActiveJourneyStep] = useState(0);
 
   // State for Section 4 Circular Chevron Wheel
   const [hoveredWheelIndex, setHoveredWheelIndex] = useState<number | null>(null);
@@ -181,7 +180,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       sublabel: 'Preparation & Centroid',
       desc: 'Translating CAD centroid files and gerber designs into optimized SMT feeder charts, nozzle assignments, and pick-up coordinates.',
       tech: 'SAP Engineering Change & PLM',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/electronics_journey_cad_smt_setup.jpg',
       icon: Cpu
     },
     {
@@ -190,7 +189,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       sublabel: 'Moisture Control',
       desc: 'Automated countdown timers monitoring moisture sensitive ICs from dry cabinet removal to reflow exit compliant with J-STD-033.',
       tech: 'SAP Quality Management',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/electronics_journey_msd_governance.png',
       icon: Clock
     },
     {
@@ -199,7 +198,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       sublabel: 'Pick-and-Place Locks',
       desc: '2D barcode scanning matching component reels to feeder positions on the line, locking machine start until 100% verified.',
       tech: 'SAP Digital Manufacturing (DMC)',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/electronics_journey_feeder_barcode_interlocks.png',
       icon: QrCode
     },
     {
@@ -208,7 +207,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       sublabel: 'Defect Containment',
       desc: 'Automated solder paste thickness measurement and optical inspection telemetry immediately halting the line on consecutive defects.',
       tech: 'SAP Quality Issue Management',
-      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/electronics_journey_spi_aoi_inspection.png',
       icon: Activity
     },
     {
@@ -217,7 +216,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       sublabel: 'Electrical Verification',
       desc: 'Bed-of-nails and flying probe telemetry recording component electrical resistance, pin continuity, and functional firmware flash logs.',
       tech: 'SAP Serial & Batch Lineage',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/electronics_journey_incircuit_functional_test.png',
       icon: ShieldCheck
     },
     {
@@ -226,10 +225,32 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       sublabel: 'DPMO Intelligence',
       desc: 'Real-time DPMO tracking and SMT line efficiency analytics providing root-cause diagnostic visibility across global EMS plants.',
       tech: 'SAP Analytics Cloud',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/electronics_first_pass_yield_analytics.png',
       icon: BarChart3
     }
   ];
+
+  // Section 2: Auto-rotation for Showcase Image (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Circular Chevron Wheel (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeWheelIndex,
+    handleSelect: handleWheelClick,
+    handleMouseEnter: handleWheelSectionEnter,
+    handleMouseLeave: handleWheelSectionLeave
+  } = useAutoRotate({
+    itemCount: wheelSegments.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
 
   // Section 3: Electronics Industry Challenges
   const electronicsChallenges = [
@@ -285,27 +306,27 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       category: 'SMT_LINE',
       categoryLabel: 'SMT Floor Execution',
       description: 'Barcode-scanned verification locking pick-and-place lines until every mounted component reel precisely matches the active BOM.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_smt_feeder_barcode_interlocks.png',
       highlights: ['Feeder-to-Slot Matching', 'Machine Start Lockout', 'Real-Time Reel Splice Alerts'],
       icon: Cpu
     },
     {
-      title: 'Moisture Sensitive Device (MSD) Hub',
+      title: 'Moisture Sensitive Device (MSD) Hub in SAP',
       tag: 'J-STD-033 COMPLIANCE',
       category: 'QUALITY_MSD',
       categoryLabel: 'Quality & Lineage',
       description: 'Automated countdown timers monitoring moisture sensitive IC packages from dry storage bags through bake cycles and reflow.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_msd_hub_sap.png',
       highlights: ['Automated Floor-Life Timers', 'Bake Oven Cycle Tracking', 'Dry Cabinet IoT Telemetry'],
       icon: Clock
     },
     {
-      title: 'SPI & AOI Optical Telemetry',
+      title: 'SPI & AOI Optical Telemetry in SAP',
       tag: 'CLOSED-LOOP QUALITY',
       category: 'QUALITY_MSD',
       categoryLabel: 'Quality & Lineage',
       description: 'Real-time ingestion of solder paste thickness and optical inspection images with automated line interlocks on recurring flaws.',
-      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_spi_aoi_telemetry_sap.png',
       highlights: ['Automatic Stencil Offset Sync', 'Consecutive Defect Stops', 'High-Res Image Archiving'],
       icon: Activity
     },
@@ -325,7 +346,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       category: 'SMT_LINE',
       categoryLabel: 'SMT Floor Execution',
       description: 'Continuous logging of thermocouple oven profiles linking peak reflow temperatures and zone cooling curves to individual PCBA serials.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_reflow_thermal_profile_logging.jpg',
       highlights: ['Zone Temperature Ingestion', 'Peak Solder Dwell Verification', 'Lead-Free Profile Audits'],
       icon: Sliders
     },
@@ -335,7 +356,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       category: 'COMPLIANCE',
       categoryLabel: 'Supply & Compliance',
       description: 'Controlled rule-based substitute component allocations triggered during component shortages with automatic customer change validation.',
-      image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_alternate_part_substitution.png',
       highlights: ['Form-Fit-Function Rules', 'Dynamic Line Cutover', 'Client Approval Gates'],
       icon: Layers
     },
@@ -345,7 +366,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       category: 'COMPLIANCE',
       categoryLabel: 'Supply & Compliance',
       description: 'Strict digital inspection checklists and sign-offs for mission-critical electronics in defense, medical devices, and automotive ECUs.',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_ipc_a610_class3_workflows.png',
       highlights: ['Class 3 Solder Criteria', 'Digital Inspector Sign-Off', 'Automated Non-Conformance (NCR)'],
       icon: ShieldCheck
     },
@@ -355,7 +376,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       category: 'QUALITY_MSD',
       categoryLabel: 'Quality & Lineage',
       description: 'Machine learning algorithms isolating recurring SMT nozzle mispicks, solder paste wear, and component feeder calibration errors.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_first_pass_yield_analytics.png',
       highlights: ['DPMO Benchmark Dashboards', 'Nozzle Mispick Telemetry', 'Multi-Plant OEE Comparison'],
       icon: BarChart3
     },
@@ -365,7 +386,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
       category: 'COMPLIANCE',
       categoryLabel: 'Supply & Compliance',
       description: 'Squeegee wear, solder paste pot-life timers, stencil wash cycle counts, and preventive tool maintenance tracking.',
-      image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+      image: '/images/electronics_stencil_tooling_calibration.jpg',
       highlights: ['Stencil Wash Counts', 'Solder Paste Pot-Life Locks', 'Feeder Calibration Schedules'],
       icon: Workflow
     }
@@ -454,14 +475,15 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
         {/* Full-Bleed Enterprise Electronics Background Image with Seamless Cinematic Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2000&q=80" 
-            alt="High-Speed Surface Mount Technology PCBA Manufacturing Atmosphere" 
-            className="w-full h-full object-cover object-center"
+            src="/images/electronics_manufacturing_hero.jpg" 
+            alt="Intelligent ERP for Electronics & Contract Mfg (EMS)" 
+            className="w-full h-full object-cover object-center lg:object-right"
           />
         </div>
 
-        {/* Seamless Cinematic Left Scrim */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
+        {/* Seamless Cinematic Left & Vertical Scrim */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/50 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           
@@ -669,7 +691,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
                     <button
                       key={step.id}
                       type="button"
-                      onClick={() => setActiveJourneyStep(idx)}
+                      onClick={() => handleJourneyStepClick(idx)}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
                         isSelected
                           ? 'bg-[#0070C0] text-white border-2 border-[#0070C0] shadow-sm scale-[1.01]'
@@ -818,20 +840,27 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
             <div className="order-2 lg:order-1 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[7, 6, 5, 4].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl -translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -847,7 +876,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                     </div>
@@ -869,7 +898,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
                 >
                   {/* 8 Interlocking Chevron Segments */}
                   {wheelSegments.map((seg, idx) => {
-                    const isHovered = hoveredWheelIndex === idx;
+                    const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === idx : activeWheelIndex === idx;
                     const d = getChevronPath(idx);
                     const iconPos = getIconCoords(idx);
                     const IconComponent = seg.icon;
@@ -877,20 +906,27 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
                     return (
                       <g
                         key={seg.id}
-                        onMouseEnter={() => setHoveredWheelIndex(idx)}
-                        onMouseLeave={() => setHoveredWheelIndex(null)}
+                        onClick={() => handleWheelClick(idx)}
+                        onMouseEnter={() => {
+                          setHoveredWheelIndex(idx);
+                          handleWheelSectionEnter();
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredWheelIndex(null);
+                          handleWheelSectionLeave();
+                        }}
                         className="cursor-pointer transition-all duration-300"
                       >
                         {/* Chevron Wedge */}
                         <path
                           d={d}
-                          fill={isHovered ? `${seg.color}25` : '#0A0F1D'}
+                          fill={isHighlighted ? `${seg.color}25` : '#0A0F1D'}
                           stroke={seg.color}
-                          strokeWidth={isHovered ? "3.5" : "2.2"}
+                          strokeWidth={isHighlighted ? "3.5" : "2.2"}
                           strokeLinejoin="round"
                           className="transition-all duration-300"
                           style={{
-                            filter: isHovered ? `drop-shadow(0 0 10px ${seg.color})` : undefined
+                            filter: isHighlighted ? `drop-shadow(0 0 10px ${seg.color})` : undefined
                           }}
                         />
 
@@ -904,7 +940,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
                         >
                           <div 
                             className={`w-full h-full flex items-center justify-center transition-transform duration-300 ${
-                              isHovered ? 'scale-125' : ''
+                              isHighlighted ? 'scale-125' : ''
                             }`}
                             style={{ color: seg.color }}
                           >
@@ -961,20 +997,27 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
             <div className="order-3 lg:order-3 lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
               {[0, 1, 2, 3].map((segIdx) => {
                 const item = wheelSegments[segIdx];
-                const isHovered = hoveredWheelIndex === segIdx;
+                const isHighlighted = hoveredWheelIndex !== null ? hoveredWheelIndex === segIdx : activeWheelIndex === segIdx;
                 return (
                   <div
                     key={item.id}
-                    onMouseEnter={() => setHoveredWheelIndex(segIdx)}
-                    onMouseLeave={() => setHoveredWheelIndex(null)}
+                    onClick={() => handleWheelClick(segIdx)}
+                    onMouseEnter={() => {
+                      setHoveredWheelIndex(segIdx);
+                      handleWheelSectionEnter();
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredWheelIndex(null);
+                      handleWheelSectionLeave();
+                    }}
                     className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isHovered
+                      isHighlighted
                         ? 'bg-slate-900/95 border-white/40 shadow-xl translate-x-1'
                         : 'bg-slate-900/40 border-slate-800/90 hover:border-slate-700 hover:bg-slate-900/60'
                     }`}
                     style={{
-                      boxShadow: isHovered ? `0 0 24px ${item.bgGlow}` : undefined,
-                      borderColor: isHovered ? item.color : undefined
+                      boxShadow: isHighlighted ? `0 0 24px ${item.bgGlow}` : undefined,
+                      borderColor: isHighlighted ? item.color : undefined
                     }}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -982,7 +1025,7 @@ export const ElectronicsIndustryPage: React.FC<ElectronicsIndustryPageProps> = (
                         className="w-2 h-7 rounded-full shrink-0 mt-0.5 transition-all duration-300"
                         style={{ 
                           backgroundColor: item.color,
-                          boxShadow: isHovered ? `0 0 12px ${item.color}` : 'none'
+                          boxShadow: isHighlighted ? `0 0 12px ${item.color}` : 'none'
                         }}
                       />
                       <div className="space-y-1 text-left flex-1">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp,
@@ -404,24 +405,6 @@ export const SalesForceAutomationPage: React.FC<SalesForceAutomationPageProps> =
                 geo-fenced beat execution, automated trade promotions, and native SAP S/4HANA order-to-cash synchronization.
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
-                <button
-                  onClick={() => onOpenContact('Sales Force Automation Consultation')}
-                  className="px-7 py-3.5 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
-                >
-                  <span>Request Enterprise SFA Demo</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-
-                <a
-                  href="#route-engine"
-                  className="px-6 py-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold transition-all text-center flex items-center justify-center gap-1.5 shadow-xs hover:border-slate-300"
-                >
-                  <span>Explore Route Engine</span>
-                  <ChevronRight className="h-4 w-4 text-[#00A3E0]" />
-                </a>
-              </div>
 
               {/* Real-time Field Telemetry Status Cards (Professional, Refined Typography) */}
               <div className="grid grid-cols-3 gap-3.5 pt-4 border-t border-slate-200/80">
@@ -1374,20 +1357,20 @@ export const SalesForceAutomationPage: React.FC<SalesForceAutomationPageProps> =
             Schedule an architectural demonstration with KNOOVIQ enterprise sales engineers to see how our SFA platform connects your field reps, trade promotions, and SAP S/4HANA core.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <button
               onClick={() => onOpenContact('Sales Force Automation Consultation')}
-              className="px-8 py-4 rounded-xl bg-[#00A3E0] hover:bg-[#008bc0] text-white font-semibold text-sm shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 transition-all flex items-center gap-2 cursor-pointer active:scale-98"
+              className="btn-primary-gradient shimmer-sweep px-8 py-4 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2.5 cursor-pointer hover:shadow-cyan-500/25 transition-all"
             >
-              <span>Schedule an Enterprise Demo</span>
+              <span>Talk to Our SFA Experts</span>
               <ArrowRight className="h-4 w-4" />
             </button>
-            <a
-              href="#route-engine"
-              className="px-6 py-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold transition-all shadow-xs hover:border-slate-300"
+            <Link
+              to="/products/dealer-management-system"
+              className="px-6 py-4 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-display text-xs font-bold uppercase tracking-wider transition-all text-center"
             >
-              Explore Route Engine
-            </a>
+              Explore Dealer Management System
+            </Link>
           </div>
         </div>
       </section>

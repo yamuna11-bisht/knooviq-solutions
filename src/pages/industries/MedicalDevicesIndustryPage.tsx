@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoRotate } from '../../hooks/useAutoRotate';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -31,8 +32,6 @@ interface MedicalDevicesIndustryPageProps {
 
 export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProps> = ({ onOpenContact }) => {
   const [activeSolutionCategory, setActiveSolutionCategory] = useState<'ALL' | 'COMPLIANCE' | 'MANUFACTURING' | 'SERVICE'>('ALL');
-  const [activeArchTab, setActiveArchTab] = useState<'clean-core' | 'udi' | 'dmr' | 'field-service'>('clean-core');
-  const [activeJourneyStep, setActiveJourneyStep] = useState<number>(0);
 
   // Section 2: Medical Devices Journey Navigator Data
   const journeySteps = [
@@ -42,7 +41,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       description: 'Bi-directional CAD/PLM integration synchronizes design changes, risk management files (ISO 14971), and Device Master Records (DMR) directly with SAP production BOMs.',
       tag: 'DESIGN CONTROLS',
       icon: Layers,
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/medical-devices/dhf_plm_sync_architecture.jpg'
     },
     {
       label: 'Shop Floor & DHR',
@@ -50,7 +49,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       description: 'Cleanroom assembly execution enforces torque telemetry, calibration verification, non-conformance containment, and digital component serialization.',
       tag: 'ASSEMBLY EXECUTION',
       icon: Cpu,
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/medical-devices/dhr_execution_medical_record.png'
     },
     {
       label: 'Global UDI Labeling',
@@ -58,7 +57,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       description: 'Automated Device Identifier (DI) and Production Identifier (PI) assignment publishes validated attributes directly to FDA GUDID and European EUDAMED databases.',
       tag: 'REGULATORY LABELING',
       icon: QrCode,
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/medical-devices/fda_udi_eu_mdr_labeling.png'
     },
     {
       label: 'Field Service & Post-Market',
@@ -66,9 +65,39 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       description: 'IoT telemetry from deployed scanners, surgical robots, and diagnostic analyzers triggers automated preventive maintenance, corrective recalls, and eMDR reporting.',
       tag: 'AFTERMARKET GOVERNANCE',
       icon: Wrench,
-      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80'
+      image: '/images/medical-devices/field_service_post_market_surveillance.jpg'
     }
   ];
+
+  // Section 4: Architecture Tabs Data
+  const archTabs = [
+    { id: 'clean-core', title: 'Standard Clean Core Foundation', sub: 'ISO 13485 & FDA 820 ready' },
+    { id: 'udi', title: 'Global UDI Syndication Engine', sub: 'FDA GUDID & EUDAMED integration' },
+    { id: 'dmr', title: 'Digital eDHR & MES Suite', sub: 'Sub-assembly lot tracking' },
+    { id: 'field-service', title: 'Connected Field Service & EAM', sub: 'Hospital trunk stock & calibration' }
+  ];
+
+  // Section 2: Auto-rotation for Medical Devices Journey (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeJourneyStep,
+    handleSelect: handleJourneyStepClick
+  } = useAutoRotate({
+    itemCount: journeySteps.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  // Section 4: Auto-rotation for Architecture Tabs (1s interval, 5s pause on click)
+  const {
+    currentIndex: activeArchIndex,
+    handleSelect: handleArchTabClick
+  } = useAutoRotate({
+    itemCount: archTabs.length,
+    intervalMs: 1000,
+    pauseOnInteractionMs: 5000
+  });
+
+  const activeArchTab = archTabs[activeArchIndex]?.id || 'clean-core';
 
   // Section 3: Industry Challenges
   const deviceChallenges = [
@@ -110,7 +139,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       category: 'COMPLIANCE',
       categoryLabel: 'Regulatory Compliance',
       description: 'End-to-end management of Device Identifiers (DI) and dynamic Production Identifiers (PI) with direct FDA and EUDAMED API submission.',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+      image: '/images/medical-devices/global_udi_regulatory_labeling.png',
       highlights: ['FDA GUDID Direct Connector', 'EUDAMED Attribute Validation', 'GS1-128 & 2D DataMatrix'],
       icon: QrCode
     },
@@ -120,7 +149,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       category: 'MANUFACTURING',
       categoryLabel: 'Manufacturing Execution',
       description: 'Paperless shop-floor execution tracking every serial component, technician certification, torque measurement, and in-line visual inspection.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      image: '/images/medical-devices/digital_dhr_electronic_health_records.png',
       highlights: ['Sub-Assembly Component Genealogy', 'Tool Calibration Interlocks', 'Electronic Batch Release'],
       icon: Cpu
     },
@@ -130,7 +159,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       category: 'MANUFACTURING',
       categoryLabel: 'Manufacturing Execution',
       description: 'Bi-directional PLM-to-SAP synchronization translating engineering CAD models directly into compliant manufacturing BOMs and routings.',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      image: '/images/medical-devices/dmr_plm_sync_ip_network.png',
       highlights: ['Bi-Directional PLM Integration', 'Engineering Change Order (ECO) Control', 'ISO 13485 DHF Alignment'],
       icon: Layers
     },
@@ -140,7 +169,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       category: 'SERVICE',
       categoryLabel: 'Field Service & Aftermarket',
       description: 'Dispatch medical field engineers with mobile apps for preventative maintenance, automated parts consignment, and FDA 21 CFR 820 compliance.',
-      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80',
+      image: '/images/medical-devices/connected_field_service_eam.png',
       highlights: ['Mobile Field Service Fiori Tools', 'Hospital Consignment Replenishment', 'Preventative Calibration SLA'],
       icon: Wrench
     },
@@ -150,7 +179,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       category: 'COMPLIANCE',
       categoryLabel: 'Regulatory Compliance',
       description: 'Automated adverse event categorization, electronic Medical Device Reporting (eMDR), and rapid targeted lot recall execution.',
-      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80',
+      image: '/images/medical-devices/post_market_surveillance_emdr_wall.jpg',
       highlights: ['FDA eMDR XML Generation', 'Sub-Component Recall Blast Radius', 'Customer Notification Audit'],
       icon: ShieldCheck
     },
@@ -160,7 +189,7 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
       category: 'SERVICE',
       categoryLabel: 'Field Service & Aftermarket',
       description: 'Real-time replenishment and mobile consumption tracking for field sales representatives and hospital consignment lockers.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/medical-devices/consignment_hospital_trunk_stock.png',
       highlights: ['Sales Rep Trunk Stock Audits', 'Bill-Only Hospital Order Flow', 'Consignment Stock Aging Logic'],
       icon: Boxes
     }
@@ -250,17 +279,18 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* SECTION 1: HERO */}
-      <section className="relative w-full min-h-[620px] lg:min-h-[680px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 overflow-hidden bg-slate-900">
+      <section className="relative w-full min-h-[680px] lg:min-h-[760px] flex flex-col justify-center pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 overflow-hidden bg-slate-900">
         
-        {/* Full-Bleed Background Image with Seamless Cinematic Scrim */}
+        {/* Full-Bleed Background Image with Crystal-Clear Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=80" 
-            alt="Medical Devices Precision Engineering" 
-            className="w-full h-full object-cover object-center"
+            src="/images/medical-devices/medical_devices_hero.jpg" 
+            alt="Medical Devices Precision Engineering & Diagnostics" 
+            className="w-full h-full object-cover object-[center_top] lg:object-[68%_top] filter brightness-[1.03] contrast-[1.04]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 sm:via-slate-950/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
+          {/* Balanced cinematic scrim: guarantees high contrast on left for typography while keeping center and right clinical imaging suite crystal-clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/55 sm:via-slate-950/25 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-slate-950/15 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -380,20 +410,24 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
             </div>
 
             <div className="lg:col-span-6 space-y-3">
-              <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-slate-900">
+              <div className="relative h-72 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden border border-slate-300 shadow-xl bg-slate-900">
                 <img 
                   src={journeySteps[activeJourneyStep].image} 
                   alt={journeySteps[activeJourneyStep].title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5">
+                <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-cyan-300 font-bold flex items-center gap-1.5 shadow-md">
+                  <Sparkles className="w-3 h-3 text-cyan-400" />
+                  <span>STEP 0{activeJourneyStep + 1} / 04</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent flex flex-col justify-end p-5 sm:p-6">
                   <span className="text-xs font-mono uppercase tracking-widest text-cyan-300 font-bold mb-1">
                     {journeySteps[activeJourneyStep].tag}
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">
                     {journeySteps[activeJourneyStep].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-xl">
                     {journeySteps[activeJourneyStep].description}
                   </p>
                 </div>
@@ -405,8 +439,9 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
                   return (
                     <button
                       key={idx}
-                      onClick={() => setActiveJourneyStep(idx)}
-                      className={`p-2.5 rounded-xl text-left border transition-all ${
+                      type="button"
+                      onClick={() => handleJourneyStepClick(idx)}
+                      className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
                         activeJourneyStep === idx
                           ? 'border-[#0070C0] bg-sky-50/80 shadow-xs'
                           : 'border-slate-200 bg-white hover:border-slate-300'
@@ -487,16 +522,12 @@ export const MedicalDevicesIndustryPage: React.FC<MedicalDevicesIndustryPageProp
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-4 space-y-2">
-              {[
-                { id: 'clean-core', title: 'Standard Clean Core Foundation', sub: 'ISO 13485 & FDA 820 ready' },
-                { id: 'udi', title: 'Global UDI Syndication Engine', sub: 'FDA GUDID & EUDAMED integration' },
-                { id: 'dmr', title: 'Digital eDHR & MES Suite', sub: 'Sub-assembly lot tracking' },
-                { id: 'field-service', title: 'Connected Field Service & EAM', sub: 'Hospital trunk stock & calibration' }
-              ].map(tab => (
+              {archTabs.map((tab, idx) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveArchTab(tab.id as any)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all ${
+                  type="button"
+                  onClick={() => handleArchTabClick(idx)}
+                  className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                     activeArchTab === tab.id
                       ? 'border-[#0070C0] bg-sky-50/70 shadow-xs'
                       : 'border-slate-200 bg-white hover:border-slate-300'
