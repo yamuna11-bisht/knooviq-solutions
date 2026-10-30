@@ -30,4 +30,4 @@ dist-ssr
 
 # Scratch & temporary workspace files
 scratch/
-
+*.ps1

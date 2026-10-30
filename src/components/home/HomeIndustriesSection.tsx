@@ -122,10 +122,10 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
               <Briefcase className="w-3.5 h-3.5 text-[#0070C0]" />
               <span>ENTERPRISE INDUSTRY CATALOG</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#0A1931] tracking-tight leading-tight">
-              Solutions by <span className="bg-gradient-to-r from-[#00A3E0] to-[#0070C0] bg-clip-text text-transparent">Industry</span>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#0A1931] tracking-tight leading-snug">
+              Solutions by <span className="text-[#0070C0] dark:text-[#38BDF8]">Industry</span>
             </h2>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto font-normal mt-2">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal mt-3">
               Explore specialized enterprise functional modules engineered to modernize execution across global vertical sectors.
             </p>
           </motion.div>
