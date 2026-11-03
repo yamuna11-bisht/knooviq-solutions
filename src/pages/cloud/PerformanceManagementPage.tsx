@@ -802,28 +802,6 @@ export const PerformanceManagementPage: React.FC<ChildPageProps> = ({ onOpenCont
               );
             })}
 
-            {/* Advisory Highlight Card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-[#070E1C] via-[#0B1528] to-[#050B17] text-white border border-cyan-500/30 space-y-3 flex flex-col justify-between">
-              <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 block">
-                  ADVISORY ENGAGEMENT
-                </span>
-                <h3 className="text-base font-bold text-white tracking-tight">
-                  Independent Performance Verification
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed font-normal">
-                  Our performance specialists provide objective analysis of vendor software, custom builds, and cloud migrations before production cutover.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => handleOpenContact('Independent Performance Assessment')}
-                className="text-xs font-bold text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1.5 pt-2 cursor-pointer"
-              >
-                <span>Request Assessment Details</span>
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
           </div>
 
         </div>
