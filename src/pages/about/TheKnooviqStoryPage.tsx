@@ -6,7 +6,8 @@ import {
   Target, 
   Compass, 
   Layers, 
-  CheckCircle2, 
+  CheckCircle2,
+  ArrowRight, 
 
   ShieldCheck, 
   Award,

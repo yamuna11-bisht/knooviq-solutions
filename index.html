@@ -97,6 +97,30 @@
         display: none !important;
       }
     </style>
+    <!-- Fix React DOM reconciliation crash with Google Translate font tags -->
+    <script>
+      (function() {
+        if (typeof Node === 'function' && Node.prototype) {
+          const originalRemoveChild = Node.prototype.removeChild;
+          Node.prototype.removeChild = function(child) {
+            if (child.parentNode !== this) {
+              if (console && console.warn) console.warn('React/GoogleTranslate removeChild mismatch patched', child);
+              return child;
+            }
+            return originalRemoveChild.apply(this, arguments);
+          };
+
+          const originalInsertBefore = Node.prototype.insertBefore;
+          Node.prototype.insertBefore = function(newNode, referenceNode) {
+            if (referenceNode && referenceNode.parentNode !== this) {
+              if (console && console.warn) console.warn('React/GoogleTranslate insertBefore mismatch patched', referenceNode);
+              return originalInsertBefore.call(this, newNode, null);
+            }
+            return originalInsertBefore.apply(this, arguments);
+          };
+        }
+      })();
+    </script>
   </head>
   <body class="bg-white text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-[#00A3E0] selection:text-white">
     <div id="root"></div>
