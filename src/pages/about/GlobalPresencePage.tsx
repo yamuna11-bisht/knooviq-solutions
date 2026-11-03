@@ -514,8 +514,8 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
           {/* Clean Interactive Google Map Card */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 dark:border-slate-800 shadow-xl bg-white dark:bg-slate-900">
             <iframe
-              title="Knooviq Location - Malad West, Mumbai"
-              src="https://maps.google.com/maps?q=Malad+West%2C+Mumbai%2C+Maharashtra&t=m&z=13&ie=UTF8&iwloc=&output=embed"
+              title="Knooviq Location - 1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)"
+              src="https://maps.google.com/maps?q=1210%2C+One+World+by+Sanjar%2C+Bhadran+Nagar%2C+Malad+West%2C+Mumbai+(India)&t=m&z=16&ie=UTF8&iwloc=&output=embed"
               className="w-full h-[380px] sm:h-[460px] lg:h-[500px] border-0 block"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
