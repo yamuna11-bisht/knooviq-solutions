@@ -7,6 +7,7 @@ import { Footer } from './components/Footer';
 import { ClientLogoMarquee } from './components/ClientLogoMarquee';
 import { ContactModal } from './components/ContactModal';
 import { ScrollToTop } from './components/ScrollToTop';
+import { ChatbotWidget } from './components/chatbot/ChatbotWidget';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -996,6 +997,11 @@ const AppContent: React.FC = () => {
 
       {/* Public Footer */}
       {!isAdminRoute && <Footer />}
+
+      {/* Premium Knooviq AI Assistant Chatbot */}
+      {!isAdminRoute && (
+        <ChatbotWidget onOpenContact={handleOpenContactModal} />
+      )}
 
       {/* Global Accessible Contact Consultation Modal */}
       {!isAdminRoute && (
