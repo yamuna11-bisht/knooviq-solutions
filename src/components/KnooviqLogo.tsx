@@ -14,14 +14,14 @@ export const KnooviqLogo: React.FC<KnooviqLogoProps> = ({
 }) => {
   // Height sizing for logo image
   const heightClass = {
-    sm: 'h-9 sm:h-10',
-    md: 'h-12 sm:h-14',
-    lg: 'h-14 sm:h-16',
-    xl: 'h-20 sm:h-24',
+    sm: 'h-8 sm:h-9',
+    md: 'h-11 sm:h-12 lg:h-[50px]',
+    lg: 'h-12 sm:h-14',
+    xl: 'h-16 sm:h-20',
   }[size];
 
   return (
-    <div className={`inline-flex items-center select-none transition-transform duration-200 hover:scale-[1.02] ${className}`}>
+    <div className={`inline-flex items-center justify-center select-none transition-transform duration-200 hover:scale-[1.02] my-auto ${className}`}>
       {forceDark ? (
         <img
           src="/knooviq-logo-darkmode.png"
@@ -33,7 +33,7 @@ export const KnooviqLogo: React.FC<KnooviqLogoProps> = ({
         <>
           {/* Light Mode: Transparent Official Logo */}
           <img
-            src="/knooviq-logo-transparent.png"
+            src="/knooviq-header-logo.png"
             alt="KNOOVIQ INDUSTRIES PVT LTD"
             className={`${heightClass} w-auto object-contain block dark:hidden`}
             loading="eager"

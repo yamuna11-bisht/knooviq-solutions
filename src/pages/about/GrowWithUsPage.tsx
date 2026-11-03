@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import { AboutSubnav } from '../../components/AboutSubnav';
 
-// SECTION 1: Why Grow With KnoovIQ? (Editorial 4 Aspects)
+// SECTION 1: Why Grow With Knooviq? (Editorial 4 Aspects)
 const GROWTH_ASPECTS = [
   {
     id: 'learning',
@@ -160,11 +160,11 @@ const OPPORTUNITY_CATEGORIES = [
   {
     id: 'technology',
     name: 'Technology',
-    shortDesc: 'Software, digital solutions, and technology roles.',
-    longDesc: 'Architect, develop, and engineer modern software and cloud solutions that solve mission-critical challenges for high-velocity enterprises.',
+    shortDesc: 'GCP, AWS, Azure, Full Stack Developer, and digital technology roles.',
+    longDesc: 'Architect, develop, and engineer modern software, hyperscaler cloud solutions across Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure, and end-to-end Full Stack Development for high-velocity enterprises.',
     icon: Code,
-    focusAreas: ['Cloud Architecture', 'Full-Stack Modernization', 'Integration Platforms', 'Systems Reliability'],
-    impact: 'Driving digital resilience and agile microservices architectures across enterprise platforms.'
+    focusAreas: ['GCP', 'AWS', 'AZURE', 'Full Stack Developer', 'Cloud Architecture', 'Systems Reliability'],
+    impact: 'Driving digital resilience, multi-cloud excellence, and agile full-stack microservices architectures across enterprise platforms.'
   },
   {
     id: 'sap',
@@ -200,7 +200,7 @@ const OPPORTUNITY_CATEGORIES = [
     longDesc: 'Empower our people, safeguard organizational integrity, and drive sustainable growth across talent, finance, legal, and brand governance.',
     icon: Building2,
     focusAreas: ['Talent & People Development', 'Strategic Finance', 'Brand & Communications', 'Legal & Governance'],
-    impact: 'Creating a supportive, compliant, and thriving ecosystem for all KnoovIQ professionals.'
+    impact: 'Creating a supportive, compliant, and thriving ecosystem for all Knooviq professionals.'
   }
 ];
 
@@ -327,8 +327,8 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
 
       {/* =========================================================================
           SECTION 1 — WHY GROW WITH KNOOVIQ? (COMPACT 4-COLUMN EDITION)
-          Heading: “Why Grow With KnoovIQ?”
-          Supporting: “Create opportunities to learn, contribute, innovate, and build a meaningful professional journey with KnoovIQ.”
+          Heading: “Why Grow With Knooviq?”
+          Supporting: “Create opportunities to learn, contribute, innovate, and build a meaningful professional journey with Knooviq.”
           Compact, elegant 4-column layout for optimal vertical space
           ========================================================================= */}
       <section className="py-14 sm:py-16 relative bg-white dark:bg-[#030712]">
@@ -354,7 +354,7 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15]"
             >
-              Why Grow With KnoovIQ?
+              Why Grow With Knooviq?
             </motion.h2>
 
             <motion.p
@@ -364,7 +364,7 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed"
             >
-              Create opportunities to learn, contribute, innovate, and build a meaningful professional journey with KnoovIQ.
+              Create opportunities to learn, contribute, innovate, and build a meaningful professional journey with Knooviq.
             </motion.p>
           </div>
 
@@ -711,12 +711,68 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
                       “{selectedCategory.impact}”
                     </p>
                   </div>
+
                 </motion.div>
               </AnimatePresence>
             </div>
 
           </div>
 
+        </div>
+      </section>
+
+      {/* =========================================================================
+          FINAL CTA
+          Same structure, design, font, and style as Digital & SAP Excellence
+          ========================================================================= */}
+      <section className="py-16 sm:py-20 relative overflow-hidden bg-gradient-to-b from-[#0A192F] via-[#0A2540] to-[#071324] text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-sm mb-4 backdrop-blur-md"
+          >
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Next Steps</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
+          >
+            Ready to Build Your Career with Knooviq?
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8"
+          >
+            Join a collaborative culture committed to mentorship, technical mastery, and impactful global transformations across enterprise ecosystems.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center"
+          >
+            <button
+              onClick={() => onOpenContact('Careers & Talent Engagement')}
+              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </motion.div>
         </div>
       </section>
 

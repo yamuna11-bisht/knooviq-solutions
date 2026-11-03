@@ -118,7 +118,7 @@ export const AcceleratedGstPage: React.FC<AcceleratedGstPageProps> = ({ onOpenCo
   }, [startArchAutoCycle]);
 
   // =========================================================================
-  // STATE: Section 5 - Before vs. After KnoovIQ Impact Switcher
+  // STATE: Section 5 - Before vs. After Knooviq Impact Switcher
   // =========================================================================
   const [impactView, setImpactView] = useState<'after' | 'before'>('after');
 
@@ -881,7 +881,7 @@ export const AcceleratedGstPage: React.FC<AcceleratedGstPageProps> = ({ onOpenCo
                   Operational Comparison
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-sans">
-                  Evaluate the stark transformation between manual GST handling and KnoovIQ SAP automation.
+                  Evaluate the stark transformation between manual GST handling and Knooviq SAP automation.
                 </p>
               </div>
 
@@ -1012,7 +1012,7 @@ export const AcceleratedGstPage: React.FC<AcceleratedGstPageProps> = ({ onOpenCo
                   READY FOR ENTERPRISE GST AUTOMATION?
                 </span>
                 <h3 className="font-display text-3xl sm:text-4xl font-black leading-tight">
-                  Accelerate Your GST Compliance With KnoovIQ
+                  Accelerate Your GST Compliance With Knooviq
                 </h3>
                 <p className="text-sm sm:text-base text-blue-100 font-sans leading-relaxed">
                   Join leading enterprises running zero-error, audit-proof GST compliance natively inside SAP. Speak with our certified solution architects today.

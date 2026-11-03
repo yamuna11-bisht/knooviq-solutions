@@ -167,7 +167,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
 
                 <div className="pt-3 border-t border-slate-200 dark:border-white/10 space-y-2.5">
                   <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block font-mono">
-                    KnoovIQ Strategic Advantage:
+                    Knooviq Strategic Advantage:
                   </span>
                   <ul className="space-y-1.5">
                     {activeCategory.knooviqAdvantage.map((adv, aIdx) => (

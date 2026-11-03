@@ -141,7 +141,7 @@ export const SubscriptionBillingPage: React.FC<SubscriptionBillingPageProps> = (
   }, [startArchAutoCycle]);
 
   // =========================================================================
-  // STATE: Section 5 - Before vs. After KnoovIQ Impact Switcher
+  // STATE: Section 5 - Before vs. After Knooviq Impact Switcher
   // =========================================================================
   const [impactView, setImpactView] = useState<'after' | 'before'>('after');
 

@@ -389,7 +389,7 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
       {/* =========================================================================
           4. NEW SECTION 1 — GLOBAL CONNECTIVITY
           Heading: “Connected Across Markets”
-          Supporting: “KnoovIQ brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.”
+          Supporting: “Knooviq brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.”
           3 Premium Cards with visual network connecting lines
           ========================================================================= */}
       <section className="py-20 sm:py-24 relative overflow-hidden bg-[#FAFBFD] dark:bg-[#060D1A] border-y border-slate-200/90 dark:border-white/5">
@@ -426,7 +426,7 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.
+              Knooviq brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.
             </motion.p>
           </div>
 
@@ -821,6 +821,7 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
 
         </div>
       </section>
+
 
 
     </div>

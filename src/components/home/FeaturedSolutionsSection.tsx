@@ -10,7 +10,6 @@ import {
   Shield,
   Zap
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { IndustriesGlobe3D } from '../3d/IndustriesGlobe3D';
 
 interface FeaturedCase {
@@ -170,7 +169,7 @@ export const FeaturedSolutionsSection: React.FC<{ onOpenContact?: (service?: str
                   </p>
 
                   {/* Key Capabilities List */}
-                  <div className="space-y-1.5 mb-5 pb-4 border-b border-slate-100">
+                  <div className="space-y-1.5">
                     {item.deliverables.map((del, dIdx) => (
                       <div key={dIdx} className="flex items-center gap-2 text-[11px] text-slate-700 font-medium">
                         <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 flex-shrink-0" />
@@ -178,24 +177,6 @@ export const FeaturedSolutionsSection: React.FC<{ onOpenContact?: (service?: str
                       </div>
                     ))}
                   </div>
-                </div>
-
-                {/* Card Actions */}
-                <div className="flex items-center justify-between pt-1">
-                  <Link
-                    to={item.link}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-[#0070C0] hover:text-[#00A3E0] transition-colors font-display group/link"
-                  >
-                    <span>Explore Blueprint</span>
-                    <ArrowRight className="h-3.5 w-3.5 group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
-
-                  <button
-                    onClick={() => onOpenContact ? onOpenContact(item.title) : undefined}
-                    className="text-[11px] font-semibold text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-sky-300 hover:bg-sky-50 transition-all cursor-pointer"
-                  >
-                    Consult
-                  </button>
                 </div>
               </div>
 
@@ -255,14 +236,6 @@ export const FeaturedSolutionsSection: React.FC<{ onOpenContact?: (service?: str
                   <span>Book a Consultation</span>
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-
-                {/* Secondary CTA: Explore Our Services */}
-                <Link
-                  to="/services"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-white/25 bg-white/5 hover:bg-white/10 text-white font-display font-semibold text-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
-                >
-                  <span>Explore Our Services</span>
-                </Link>
               </div>
 
               {/* Enterprise Trust Highlights */}

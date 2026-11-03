@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { 
   MapPin, 
   Phone, 
@@ -42,6 +41,7 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       flag: '🇮🇳',
       badge: 'Primary Global HQ',
       address: '1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)',
+      mapQuery: 'One World by Sanjar, Malad West, Mumbai',
       role: 'Corporate Headquarters, Executive Leadership & Strategic Governance',
       phone: '+91-7900073410',
       email: 'admin@knooviq.com',
@@ -63,6 +63,7 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       flag: '🇮🇳',
       badge: 'Core Engineering Hub',
       address: 'Magarpatta Cybercity, Tower 7, Hadapsar, Pune, Maharashtra 411028',
+      mapQuery: 'Magarpatta Cybercity Tower 7, Hadapsar, Pune, Maharashtra 411028',
       role: 'Offshore Development, Automated Regression Testing & Core Engineering',
       phone: '+91-7900073410',
       email: 'admin@knooviq.com',
@@ -84,6 +85,7 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       flag: '🇮🇳',
       badge: 'Cloud Innovation Lab',
       address: 'Outer Ring Road Tech Corridor, Bellandur, Bengaluru, Karnataka 560103',
+      mapQuery: 'Bellandur Outer Ring Road, Bengaluru, Karnataka 560103',
       role: 'SAP BTP Cloud Innovation, Microservices & Event Mesh Lab',
       phone: '+91-7900073410',
       email: 'admin@knooviq.com',
@@ -105,6 +107,7 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       flag: '🇦🇪',
       badge: 'Middle East & EMEA Gateway',
       address: 'Dubai Internet City, Building 3, P.O. Box 500001, Dubai, UAE',
+      mapQuery: 'Dubai Internet City Building 3, Dubai, United Arab Emirates',
       role: 'Middle East & GCC Enterprise Client Delivery & Partner Engagements',
       phone: '+91-7900073410',
       email: 'admin@knooviq.com',
@@ -126,6 +129,7 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       flag: '🇸🇬',
       badge: 'APAC Regional Advisory',
       address: 'Marina Bay Financial Centre, Tower 2, Singapore 018983',
+      mapQuery: 'Marina Bay Financial Centre Tower 2, Singapore 018983',
       role: 'APAC Regional Transformation, Architecture Governance & Advisory',
       phone: '+91-7900073410',
       email: 'admin@knooviq.com',
@@ -144,6 +148,7 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
 
   // State Management
   const [selectedOfficeIndex, setSelectedOfficeIndex] = useState(0);
+  const [mapType, setMapType] = useState<'roadmap' | 'satellite'>('roadmap');
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
   const [activeNetworkNode, setActiveNetworkNode] = useState<'clients' | 'partners' | 'industries' | 'technology' | 'talent' | 'markets'>('clients');
   const [activeIndustryIndex, setActiveIndustryIndex] = useState(0);
@@ -513,102 +518,85 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
           {/* Compact 2-Column Console: Interactive World Map on Left, Rich Location Showcase on Right */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* Left: Interactive Geo-Spatial Footprint Map Console (7 Cols) */}
+            {/* Left: Interactive Real Google Maps Console (7 Cols) */}
             <div className="lg:col-span-7">
-              <div className="relative rounded-3xl p-6 bg-white border border-slate-200 shadow-xl overflow-hidden min-h-[380px] sm:min-h-[430px] flex items-center justify-center">
+              <div className="relative rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col h-full min-h-[460px] sm:min-h-[500px]">
                 
-                {/* SVG Stylized World Map with Glowing Location Hotspots */}
-                <div className="relative w-full max-w-[500px] aspect-[16/10] flex items-center justify-center">
-                  
-                  {/* Subtle Map Coordinate Grid */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:32px_32px] opacity-40 rounded-2xl" />
-
-                  {/* Stylized SVG Continents */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 65" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id="mapBeam" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#0052CC" stopOpacity="0.7" />
-                        <stop offset="100%" stopColor="#00A3E0" stopOpacity="0.3" />
-                      </linearGradient>
-                    </defs>
-
-                    {/* Continents Outlines (Stylized) */}
-                    {/* Americas */}
-                    <path d="M 14,15 Q 22,12 26,20 Q 24,28 18,34 Q 22,46 25,58 Q 20,60 16,48 Q 12,32 14,15 Z" fill="#E0F2FE" stroke="#BAE6FD" strokeWidth="0.5" />
-                    {/* Europe & Africa */}
-                    <path d="M 44,12 Q 52,10 55,18 Q 58,26 56,36 Q 52,48 48,56 Q 42,46 44,30 Q 42,20 44,12 Z" fill="#EFF6FF" stroke="#BFDBFE" strokeWidth="0.5" />
-                    {/* Asia & India */}
-                    <path d="M 58,14 Q 72,12 84,20 Q 86,32 78,40 Q 68,44 62,42 Q 58,36 58,24 Z" fill="#EEF2FF" stroke="#C7D2FE" strokeWidth="0.5" />
-                    {/* Australia */}
-                    <path d="M 76,46 Q 86,44 88,52 Q 86,58 78,58 Q 74,52 76,46 Z" fill="#ECFDF5" stroke="#A7F3D0" strokeWidth="0.5" />
-
-                    {/* Connecting Pulsing Corridors from India Core (62, 34) */}
-                    {/* India to Middle East (52, 28) */}
-                    <line x1="62" y1="34" x2="52" y2="28" stroke="url(#mapBeam)" strokeWidth="1.2" strokeDasharray="1.5 1.5" />
-                    {/* India to Singapore (73, 40) */}
-                    <line x1="62" y1="34" x2="73" y2="40" stroke="url(#mapBeam)" strokeWidth="1.2" strokeDasharray="1.5 1.5" />
-                    {/* India to Europe (48, 18) */}
-                    <line x1="62" y1="34" x2="48" y2="18" stroke="url(#mapBeam)" strokeWidth="1" strokeDasharray="1.5 1.5" />
-                    {/* India to Americas (22, 24) */}
-                    <line x1="62" y1="34" x2="22" y2="24" stroke="url(#mapBeam)" strokeWidth="1" strokeDasharray="1.5 1.5" />
-                    {/* India to Australia (80, 52) */}
-                    <line x1="62" y1="34" x2="80" y2="52" stroke="url(#mapBeam)" strokeWidth="0.8" strokeDasharray="1.5 1.5" />
-                  </svg>
-
-                  {/* Interactive Verified Location Pins */}
-                  {verifiedOffices.map((office, idx) => {
-                    const isSelected = selectedOfficeIndex === idx;
-
-                    return (
-                      <div
-                        key={office.id}
-                        onClick={() => setSelectedOfficeIndex(idx)}
-                        onMouseEnter={() => setSelectedOfficeIndex(idx)}
-                        style={{ left: office.coordinates.x, top: office.coordinates.y }}
-                        className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-20"
-                      >
-                        {/* Glowing Beacon with Ping Effect */}
-                        <div className={`relative rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isSelected
-                            ? 'w-7 h-7 bg-blue-600 shadow-[0_0_16px_rgba(0,82,204,0.6)] scale-110'
-                            : 'w-4 h-4 bg-blue-500 shadow-md hover:scale-125'
-                        }`}>
-                          {isSelected && (
-                            <span className="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-75" />
-                          )}
-                          <span className="text-[10px] font-bold text-white leading-none">
-                            {office.flag}
-                          </span>
-                        </div>
-
-                        {/* Location Label Pill */}
-                        <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-0.5 rounded-md text-[9px] font-mono font-bold whitespace-nowrap shadow-sm transition-all duration-200 pointer-events-none ${
-                          isSelected
-                            ? 'bg-blue-600 text-white scale-105 shadow-md'
-                            : 'bg-white/90 text-slate-700 border border-slate-200 group-hover:bg-blue-50'
-                        }`}>
-                          {office.city.split(' ')[0]}
-                        </div>
+                {/* Header: Hub Identification & Map View Switcher */}
+                <div className="px-5 py-3.5 bg-slate-50/90 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700/60 flex items-center justify-between gap-3 flex-wrap">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-bold text-slate-900 dark:text-white font-display flex items-center gap-1.5">
+                          <span>{activeOffice.flag}</span>
+                          <span>{activeOffice.city}</span>
+                        </span>
+                        <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60">
+                          {activeOffice.timezone}
+                        </span>
                       </div>
-                    );
-                  })}
-
-                  {/* International Corridors (Americas & Europe Labels) */}
-                  <div className="absolute top-[35%] left-[18%] -translate-x-1/2 -translate-y-1/2 px-2 py-0.5 rounded bg-white/80 border border-slate-200 text-[8px] font-mono text-slate-600 font-bold shadow-xs">
-                    Americas Corridor
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                        Official Google Maps Location Telemetry
+                      </p>
+                    </div>
                   </div>
-                  <div className="absolute top-[24%] left-[46%] -translate-x-1/2 -translate-y-1/2 px-2 py-0.5 rounded bg-white/80 border border-slate-200 text-[8px] font-mono text-slate-600 font-bold shadow-xs">
-                    Europe Corridor
+
+                  {/* Street Map vs Satellite View Toggle */}
+                  <div className="flex items-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-0.5 rounded-xl shadow-xs">
+                    <button
+                      onClick={() => setMapType('roadmap')}
+                      className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                        mapType === 'roadmap'
+                          ? 'bg-blue-600 text-white shadow-xs'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      }`}
+                    >
+                      Map
+                    </button>
+                    <button
+                      onClick={() => setMapType('satellite')}
+                      className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                        mapType === 'satellite'
+                          ? 'bg-blue-600 text-white shadow-xs'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      }`}
+                    >
+                      Satellite
+                    </button>
                   </div>
                 </div>
 
-                {/* Bottom Interactive Legend */}
-                <div className="absolute bottom-3 left-6 right-6 flex items-center justify-between text-[10px] font-mono text-slate-500 border-t border-slate-100 pt-2.5">
-                  <span className="flex items-center gap-1.5 text-blue-600 font-bold">
-                    <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-                    ACTIVE GEO-SPATIAL FOOTPRINT
-                  </span>
-                  <span className="text-slate-400 hidden sm:inline">Tap any pin to view physical hub details</span>
+                {/* Google Maps Embed Iframe */}
+                <div className="relative w-full flex-grow min-h-[350px] sm:min-h-[380px] bg-slate-100 dark:bg-slate-950">
+                  <iframe
+                    key={`${activeOffice.id}-${mapType}`}
+                    title={`${activeOffice.city} Live Google Map`}
+                    src={`https://maps.google.com/maps?q=${encodeURIComponent(activeOffice.mapQuery || activeOffice.address)}&t=${mapType === 'satellite' ? 'k' : 'm'}&z=15&ie=UTF8&iwloc=&output=embed`}
+                    className="w-full h-full min-h-[350px] sm:min-h-[380px] border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+
+                {/* Bottom Address & Telemetry Status Bar */}
+                <div className="px-5 py-3 bg-slate-50/90 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700/60 flex items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 truncate">
+                    <MapPin className="h-4 w-4 text-blue-600 shrink-0" />
+                    <span className="font-mono text-[11px] truncate">{activeOffice.address}</span>
+                  </div>
+                  <a
+                    href={activeOffice.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 shrink-0 hover:underline"
+                  >
+                    <span>Full Map</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
                 </div>
 
               </div>
@@ -710,13 +698,6 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
                     <span>Open in Google Maps</span>
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
-
-                  <button
-                    onClick={() => onOpenContact(`${activeOffice.city} Inquiry`)}
-                    className="btn-primary-gradient shimmer-sweep px-4 py-2 rounded-xl text-xs font-display font-bold uppercase tracking-wider text-white shadow-sm cursor-pointer"
-                  >
-                    Contact Hub
-                  </button>
                 </div>
               </motion.div>
 
@@ -858,13 +839,6 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
 
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                     <span className="text-[11px] font-mono text-slate-400">Integrated with KNOOVIQ Core</span>
-                    <button
-                      onClick={() => onOpenContact(`Network Inquiry: ${activeNodeData.label}`)}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
-                    >
-                      <span>Explore Connections</span>
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -990,12 +964,6 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
 
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                     <span className="text-xs font-mono text-slate-400">Tailored Global Runbooks</span>
-                    <button
-                      onClick={() => onOpenContact(`Industry Solutions: ${activeIndustry.name}`)}
-                      className="btn-primary-gradient shimmer-sweep px-4 py-2 rounded-xl text-xs font-display font-bold uppercase tracking-wider text-white shadow-sm cursor-pointer"
-                    >
-                      Consult Industry Lead
-                    </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -1102,77 +1070,57 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       </section>
 
       {/* =========================================================================
-          SECTION 5 — FINAL CTA ("Think Global. Connect Better. Grow Together.")
-          Vibrant Enterprise Gradient Card + Global Office Locations Ticker
+          FINAL CTA
+          Same structure, design, font, and style as Digital & SAP Excellence
           ========================================================================= */}
-      <section className="py-16 sm:py-20 relative overflow-hidden bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <div className="rounded-3xl p-8 sm:p-14 bg-gradient-to-br from-[#0A2540] via-[#0052CC] to-[#00A3E0] shadow-2xl text-white text-center relative overflow-hidden">
-            
-            {/* Ambient glowing rings */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+      <section className="py-16 sm:py-20 relative overflow-hidden bg-gradient-to-b from-[#0A192F] via-[#0A2540] to-[#071324] text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-sm mb-4 backdrop-blur-md"
+          >
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Next Steps</span>
+          </motion.div>
 
-            <div className="relative z-10">
-              {/* Top Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/15 text-cyan-200 border border-white/20 shadow-sm mb-5 backdrop-blur-md">
-                <Sparkles className="h-3.5 w-3.5 text-cyan-300" />
-                <span>Global Partnership Gateway • Worldwide Hubs</span>
-              </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
+          >
+            Think Global. Connect Better. Grow Together.
+          </motion.h2>
 
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
-                Think Global. Connect Better. <span className="text-cyan-200">Grow Together.</span>
-              </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8"
+          >
+            Explore opportunities to connect with Knooviq across our Mumbai headquarters, regional engineering hubs in Pune & Bengaluru, and international partner gateways in Dubai & Singapore.
+          </motion.p>
 
-              <p className="text-sm sm:text-base text-slate-100 font-sans leading-relaxed max-w-2xl mx-auto mb-6">
-                Explore opportunities to connect with KNOOVIQ across our headquarters in Mumbai, regional delivery hubs in Pune & Bengaluru, and international partner gateways in Dubai & Singapore.
-              </p>
-
-              {/* Location Footprint Ticker */}
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 text-xs font-mono font-bold text-white">
-                <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">🇮🇳 Mumbai HQ</span>
-                <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">🇮🇳 Pune Hub</span>
-                <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">🇮🇳 Bengaluru Lab</span>
-                <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">🇦🇪 Dubai Gateway</span>
-                <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">🇸🇬 Singapore Desk</span>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-                <button
-                  onClick={() => onOpenContact('Global Presence Advisory')}
-                  className="w-full sm:w-auto bg-white hover:bg-slate-100 text-blue-900 px-8 py-3.5 rounded-xl font-display text-xs font-extrabold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-colors"
-                >
-                  <span>Connect With Us</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <Link
-                  to="/about/knooviq-connect"
-                  className="w-full sm:w-auto px-7 py-3.5 rounded-xl border border-white/30 hover:border-white bg-white/10 hover:bg-white/20 text-white font-display text-xs font-bold uppercase tracking-wider transition-all duration-200 text-center backdrop-blur-md"
-                >
-                  Explore KnoovIQ Connect
-                </Link>
-              </div>
-
-              {/* Executive Reassurance Trust Bar */}
-              <div className="pt-6 border-t border-white/15 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-cyan-100">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-cyan-300" />
-                  <span>Confidential Mutual NDA</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-emerald-300" />
-                  <span>&lt; 24h Executive Response</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-cyan-300" />
-                  <span>Direct Solution Architect Access</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center"
+          >
+            <button
+              onClick={() => onOpenContact('Global Presence Advisory')}
+              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </motion.div>
         </div>
       </section>
 

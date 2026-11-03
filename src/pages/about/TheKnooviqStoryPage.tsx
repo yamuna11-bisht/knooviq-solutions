@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { 
   BookOpen, 
   Sparkles, 
@@ -8,6 +7,7 @@ import {
   Compass, 
   Layers, 
   CheckCircle2, 
+
   ShieldCheck, 
   Award,
   Zap,
@@ -40,7 +40,7 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-            alt="The KnoovIQ Story Enterprise Architectural Heritage"
+            alt="The Knooviq Story Enterprise Architectural Heritage"
             className="w-full h-full object-cover object-center"
           />
           {/* Mild Contrast Scrim: Building architecture clearly visible with pleasant soft shading */}
@@ -66,7 +66,7 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] leading-[1.15] mb-6"
             >
-              The <span className="hero-gradient-cyan font-black">KnoovIQ Story</span>
+              The <span className="hero-gradient-cyan font-black">Knooviq Story</span>
             </motion.h1>
 
             <motion.p 
@@ -102,7 +102,7 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
       </section>
 
       {/* Shared Sub-Navigation Bar */}
-      <AboutSubnav activeTabTitle="The KnoovIQ Story" />
+      <AboutSubnav activeTabTitle="The Knooviq Story" />
 
       {/* Section 1: WHO WE ARE & Journey Narrative (Established 2006) */}
       <section className="py-20 relative">
@@ -116,16 +116,16 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
                 <span>WHO WE ARE • ESTABLISHED 2006</span>
               </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15]">
                 Empowering Success: <br />
                 <span className="text-gradient-cyan">Knooviq's Journey and Vision</span>
               </h2>
 
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans font-medium">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                 At Knooviq, we’ve been your trusted partner in SAP Consulting and Solutions since our establishment in 2006. With a firm foundation in strong technical skills and unmatched domain expertise, we have consistently delivered excellence in project management, project support, customized application development, manpower outsourcing, and augmentation. Our project implementation exposure across diverse industries, including Retail, Metals & Mining, Oil & Gas, Manufacturing, and more, has solidified our reputation in the market.
               </p>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                 We take pride in our recognized quality of services, on-time delivery, and our expertise in turnkey business solutions. Knooviq is committed to providing strategic guidance to key sectors like Automotive, Manufacturing & Trading, Distribution, Design, and beyond. We are more than just a company; we are your partner in success, ready to empower your organization with innovative strategies and SAP excellence.
               </p>
 
@@ -189,7 +189,7 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
         </div>
       </section>
 
-      {/* Section 2: The Four Pillars of KnoovIQ Delivery Excellence */}
+      {/* Section 2: The Four Pillars of Knooviq Delivery Excellence */}
       <section className="py-20 border-t border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-white/[0.02] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -251,9 +251,6 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
                     <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                       {pillar.desc}
                     </p>
-                  </div>
-                  <div className="pt-4 mt-6 border-t border-slate-200 dark:border-white/10 text-[11px] font-mono text-[#0052CC] font-semibold">
-                    Rigorous SLA Standards
                   </div>
                 </motion.div>
               );
@@ -375,18 +372,11 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
 
             {/* Right Column: Why Choose Us Content & Capability Progress Bars */}
             <div className="lg:col-span-7 space-y-6">
-              <div>
-                <h3 className="font-display text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                  Why Choose Us?
-                </h3>
-                <div className="flex items-center gap-1 mt-2 mb-4">
-                  <span className="h-1 w-6 bg-[#0A2540] rounded-full" />
-                  <span className="h-1 w-3 bg-[#0052CC] rounded-full" />
-                  <span className="h-1 w-1 bg-[#1D4ED8] rounded-full" />
-                </div>
-              </div>
+              <h3 className="font-display text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                Why Choose Us?
+              </h3>
 
-              <p className="text-sm text-slate-700 leading-relaxed font-sans font-medium">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                 Knooviq Industries is a Business Consulting & Outsourcing company, promoted by a team of dedicated, highly experienced professionals with the aim of providing cost effective and high quality technical & professional solutions to its customers. As your single stop for comprehensive Solutions, Software Support and Consulting, Knooviq offers you high quality, objective oriented services to suit your IT budget and needs.
               </p>
 
@@ -491,6 +481,61 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* =========================================================================
+          FINAL CTA
+          Same structure, design, font, and style as Digital & SAP Excellence
+          ========================================================================= */}
+      <section className="py-16 sm:py-20 relative overflow-hidden bg-gradient-to-b from-[#0A192F] via-[#0A2540] to-[#071324] text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-sm mb-4 backdrop-blur-md"
+          >
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Next Steps</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
+          >
+            Ready to Build Your Transformation Journey?
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8"
+          >
+            Discover how Knooviq’s deep functional expertise and proven delivery excellence can empower your organization to innovate, scale, and thrive.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center"
+          >
+            <button
+              onClick={() => onOpenContact('The Knooviq Story: Enterprise Consultation')}
+              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </motion.div>
         </div>
       </section>
 

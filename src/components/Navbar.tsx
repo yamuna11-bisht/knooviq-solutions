@@ -43,6 +43,81 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { KnooviqLogo } from './KnooviqLogo';
+import { LanguageTranslator } from './LanguageTranslator';
+
+
+interface ProductNavCategory {
+  id: string;
+  title: string;
+  path?: string;
+  badge?: string;
+  items: { name: string; path: string }[];
+}
+
+const PRODUCTS_NAV_CATEGORIES: ProductNavCategory[] = [
+  {
+    id: 'accelerated-solutions',
+    title: 'Accelerated Solutions',
+    badge: 'CORE BTP',
+    items: [
+      { name: 'Global Trade & Compliance', path: '/exim' },
+      { name: 'E-Invoicing Solutions', path: '/e-invoice' },
+      { name: 'E-Way Bill Management', path: '/eway-bill' },
+      { name: 'GST & Tax Compliance', path: '/products/gst' }
+    ]
+  },
+  {
+    id: 'enterprise-solutions',
+    title: 'Enterprise Solutions',
+    path: '/products',
+    badge: 'SUITE',
+    items: [
+      { name: 'Vendor Management', path: '/products/vendor-management' },
+      { name: 'Field Service Management', path: '/products/field-service-management' },
+      { name: 'Real Estate Management', path: '/products/real-estate-management' },
+      { name: 'Distribution Management', path: '/products/distribution-management' },
+      { name: 'Digital Retail Solution', path: '/products/digital-retail-solution' },
+      { name: 'Subscription Billing', path: '/products/subscription-billing' },
+      { name: 'Sales Force Automation', path: '/products/sales-force-automation' },
+      { name: 'Dealer Management System', path: '/products/dealer-management-system' },
+      { name: 'Asset Management', path: '/products/asset-management' }
+    ]
+  },
+  {
+    id: 'ai-studio',
+    title: 'Knooviq AI Studio',
+    badge: 'GEN AI',
+    items: [
+      { name: 'Knooviq AI Consultant', path: '/products/knooviq-ai-consultant' },
+      { name: 'Knooviq AI Insights', path: '/products/knooviq-ai-insights' },
+      { name: 'Knooviq AI Engagement', path: '/products/knooviq-ai-engagement' }
+    ]
+  },
+  {
+    id: 'enterprise-ai',
+    title: 'Enterprise AI Products',
+    badge: 'INTELLIGENCE',
+    items: [
+      { name: 'Bank Statement Intelligence', path: '/products/bank-statement-intelligence' },
+      { name: 'Supply Chain Intelligence', path: '/products/supply-chain-intelligence' },
+      { name: 'Document Intelligence', path: '/products/document-intelligence' },
+      { name: 'Accounts Payable Intelligence', path: '/products/accounts-payable-intelligence' },
+      { name: 'Expense Intelligence', path: '/products/expense-intelligence' },
+      { name: 'Form Intelligence', path: '/products/form-intelligence' }
+    ]
+  },
+  {
+    id: 'automation-suite',
+    title: 'Automation Suite',
+    path: '/products/automation-suite',
+    badge: 'RPA / IDP',
+    items: [
+      { name: 'Automation Studio', path: '/products/automation-studio' },
+      { name: 'Automation Evolve', path: '/products/automation-evolve' },
+      { name: 'Automation Manager', path: '/products/automation-manager' }
+    ]
+  }
+];
 
 interface TransformationCategory {
   id: string;
@@ -737,7 +812,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -753,19 +828,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  const handleMouseEnter = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries') => {
-    if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
-    setActiveMenu(menu);
-  };
-
-  const handleMouseLeave = () => {
-    menuTimeoutRef.current = setTimeout(() => {
-      setActiveMenu(null);
-    }, 250);
-  };
+    // Click outside and Escape key to close active mega menu
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setActiveMenu(null);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveMenu(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const handleMenuToggle = (menu: 'about' | 'products' | 'transformation' | 'cloud' | 'solutions' | 'services' | 'industries') => {
-    if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
     setActiveMenu(prev => prev === menu ? null : menu);
   };
 
@@ -775,6 +858,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     navigate(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const isHomePage = location.pathname === '/';
+  const isTransparent = isHomePage && !isScrolled && !activeMenu && !mobileMenuOpen;
+
+  const navLinkClass = (isActive: boolean) =>
+    `flex items-center gap-1 px-3 py-2 rounded-xl transition-all whitespace-nowrap shrink-0 ${
+      isActive
+        ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
+        : isTransparent
+        ? 'text-white hover:text-cyan-300 hover:bg-white/10'
+        : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
+    }`;
+
+  const navChevronClass = (isOpen: boolean) =>
+    `h-3.5 w-3.5 transition-transform duration-200 ${
+      isOpen ? 'rotate-180 text-white' : isTransparent ? 'text-white/70' : 'text-slate-400'
+    }`;
 
   return (
     <>
@@ -787,22 +887,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
       )}
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md dark:bg-[#030712] ${isScrolled || activeMenu
-            ? 'border-b border-slate-200 dark:border-cyan-500/20 shadow-xl py-3'
-            : 'border-b border-slate-200/70 dark:border-white/10 py-3.5'
-          }`}
-        onMouseLeave={handleMouseLeave}
+        ref={headerRef}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isTransparent
+            ? 'bg-transparent border-b border-transparent py-3.5'
+            : 'bg-white/90 dark:bg-[#030712]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-cyan-500/20 shadow-md py-3'
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
 
             {/* Brand Logo */}
             <Link
               to="/"
               onClick={() => { setActiveMenu(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="group flex-shrink-0 mr-4"
+              className="group flex-shrink-0 mr-4 flex items-center justify-center my-auto self-center"
             >
-              <KnooviqLogo size="md" />
+              <KnooviqLogo size="md" forceDark={isTransparent} />
             </Link>
 
             {/* Desktop Navigation Links:
@@ -815,11 +916,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs xl:text-sm font-semibold">
 
-              {/* 1. HOME */}
+              {/* Primary Navigation Links Group: Home to Industries (shifted slightly left via margins, without CSS transforms to preserve position:fixed mega menus) */}
+              <div className="flex items-center gap-1 xl:gap-2 -ml-3 sm:-ml-4 lg:-ml-5 xl:-ml-6 mr-2 sm:mr-3 lg:mr-4 xl:mr-5">
+
+                {/* 1. HOME */}
               <Link
                 to="/"
                 onClick={() => { setActiveMenu(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="px-3 py-2 rounded-xl transition-all text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                className={`px-3 py-2 rounded-xl transition-all ${
+                  isTransparent
+                    ? 'text-white hover:text-cyan-300 hover:bg-white/10'
+                    : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
+                }`}
               >
                 Home
               </Link>
@@ -827,53 +935,41 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               {/* 2. ABOUT (Dropdown) */}
               <div
                 className="relative"
-                onMouseEnter={() => handleMouseEnter('about')}
               >
                 <button
                   onClick={() => handleMenuToggle('about')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'about' || location.pathname === '/about'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
+                  className={navLinkClass(activeMenu === 'about' || location.pathname === '/about')}
                 >
-                  <span>About</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'about' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
+                  <span className="whitespace-nowrap">About</span>
+                  <ChevronDown className={navChevronClass(activeMenu === 'about')} />
                 </button>
 
-                {/* About Dropdown */}
+                {/* About Dropdown - Exact structure with Image 2 (industry-category-item) typography, size, weight & colors */}
                 {activeMenu === 'about' && (
                   <div
                     className="absolute top-full left-0 w-64 pt-2 transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50"
-                    onMouseEnter={() => handleMouseEnter('about')}
                   >
                     <div className="rounded-2xl border border-slate-200 dark:border-cyan-500/30 bg-white dark:bg-[#070E1C] p-2 shadow-2xl space-y-0.5">
-                      <Link to="/about/the-knooviq-story" onClick={() => setActiveMenu(null)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <BookOpen className="h-3.5 w-3.5 text-[#00A3E0] flex-shrink-0" />
-                        <span className="truncate">The KnoovIQ Story</span>
+                      <Link to="/about/the-knooviq-story" onClick={() => setActiveMenu(null)} className="industry-category-item px-2.5 py-1.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10">
+                        <span className="truncate">The Knooviq Story</span>
                       </Link>
-                      <Link to="/about/visionary-leadership" onClick={() => setActiveMenu(null)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <Award className="h-3.5 w-3.5 text-purple-500 flex-shrink-0" />
+                      <Link to="/about/visionary-leadership" onClick={() => setActiveMenu(null)} className="industry-category-item px-2.5 py-1.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10">
                         <span className="truncate">Visionary Leadership</span>
                       </Link>
-                      <Link to="/about/digital-sap-excellence" onClick={() => setActiveMenu(null)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <Sparkles className="h-3.5 w-3.5 text-sky-400 flex-shrink-0" />
+                      <Link to="/about/digital-sap-excellence" onClick={() => setActiveMenu(null)} className="industry-category-item px-2.5 py-1.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10">
                         <span className="truncate">Digital & SAP Excellence</span>
                       </Link>
-                      <Link to="/about/our-global-network" onClick={() => setActiveMenu(null)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <Globe2 className="h-3.5 w-3.5 text-blue-500 flex-shrink-0" />
+                      <Link to="/about/our-global-network" onClick={() => setActiveMenu(null)} className="industry-category-item px-2.5 py-1.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10">
                         <span className="truncate">Our Global Network</span>
                       </Link>
-                      <Link to="/about/grow-with-us" onClick={() => setActiveMenu(null)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <TrendingUp className="h-3.5 w-3.5 text-emerald-500 flex-shrink-0" />
+                      <Link to="/about/grow-with-us" onClick={() => setActiveMenu(null)} className="industry-category-item px-2.5 py-1.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10">
                         <span className="truncate">Grow With Us</span>
                       </Link>
-                      <Link to="/about/knooviq-connect" onClick={() => setActiveMenu(null)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <PhoneCall className="h-3.5 w-3.5 text-cyan-400 flex-shrink-0" />
-                        <span className="truncate">KnoovIQ Connect</span>
+                      <Link to="/about/knooviq-connect" onClick={() => setActiveMenu(null)} className="industry-category-item px-2.5 py-1.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10">
+                        <span className="truncate">Knooviq Connect</span>
                       </Link>
-                      <Link to="/about/global-presence" onClick={() => setActiveMenu(null)} className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
-                        <MapPin className="h-3.5 w-3.5 text-rose-500 flex-shrink-0" />
+                      <Link to="/about/global-presence" onClick={() => setActiveMenu(null)} className="industry-category-item px-2.5 py-1.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10">
                         <span className="truncate">Global Presence</span>
                       </Link>
                     </div>
@@ -881,127 +977,50 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 )}
               </div>
 
-              {/* 3. PRODUCTS (Accely Image 1) */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter('products')}
-              >
+              {/* 3. PRODUCTS */}
+              <div className="relative">
                 <button
                   onClick={() => handleMenuToggle('products')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'products'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
+                  className={navLinkClass(activeMenu === 'products' || location.pathname.startsWith('/products'))}
                 >
-                  <span>Products</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'products' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
+                  <span className="whitespace-nowrap">Products</span>
+                  <ChevronDown className={navChevronClass(activeMenu === 'products')} />
                 </button>
 
                 {/* Products Mega Menu Dropdown */}
                 {activeMenu === 'products' && (
-                  <div
-                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
-                    onMouseEnter={() => handleMouseEnter('products')}
-                  >
-                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
-                      <div className="grid grid-cols-5 gap-6 pb-6 border-b border-slate-200 dark:border-white/10">
-
-                        {/* Column 1: Knooviq Accelerated Solutions */}
-                        <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            Knooviq Accelerated Solutions
-                          </h4>
-                          <ul className="space-y-1.5 text-xs">
-                            <li><Link to="/exim" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Global Trade & Compliance</Link></li>
-                            <li><Link to="/e-invoice" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">E-Invoicing Solutions</Link></li>
-                            <li><Link to="/eway-bill" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">E-Way Bill Management</Link></li>
-                            <li><Link to="/products/gst" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">GST & Tax Compliance</Link></li>
-                          </ul>
-                        </div>
-
-                        {/* Column 2: Knooviq Enterprise Solutions */}
-                        <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            <Link
-                              to="/products"
-                              onClick={() => setActiveMenu(null)}
-                              className="hover:underline block"
-                            >
-                              <span>Knooviq Enterprise Solutions</span>
-                            </Link>
-                          </h4>
-                          <ul className="space-y-1 text-xs">
-                            <li><Link to="/products/vendor-management" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Vendor Management</Link></li>
-                            <li><Link to="/products/field-service-management" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Field Service Management</Link></li>
-                            <li><Link to="/products/real-estate-management" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Real Estate Management</Link></li>
-                            <li><Link to="/products/distribution-management" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Distribution Management</Link></li>
-                            <li><Link to="/products/digital-retail-solution" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Digital Retail Solution</Link></li>
-                            <li><Link to="/products/subscription-billing" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Subscription Billing</Link></li>
-                            <li><Link to="/products/sales-force-automation" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Sales Force Automation</Link></li>
-                            <li><Link to="/products/dealer-management-system" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Dealer Management System</Link></li>
-                            <li><Link to="/products/asset-management" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Asset Management</Link></li>
-                          </ul>
-                        </div>
-
-                        {/* Column 3: Knooviq AI Studio */}
-                        <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0] flex items-center justify-between">
-                            <span>Knooviq AI Studio</span>
-                            <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold">GEN AI</span>
-                          </h4>
-                          <ul className="space-y-1.5 text-xs">
-                            <li><Link to="/products/knooviq-ai-consultant" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Knooviq AI Consultant</Link></li>
-                            <li><Link to="/products/knooviq-ai-insights" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Knooviq AI Insights</Link></li>
-                            <li><Link to="/products/knooviq-ai-engagement" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Knooviq AI Engagement</Link></li>
-                          </ul>
-                        </div>
-
-                        {/* Column 4: Enterprise AI Products */}
-                        <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            Enterprise AI Products
-                          </h4>
-                          <ul className="space-y-1 text-xs">
-                            <li><Link to="/products/bank-statement-intelligence" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Bank Statement Intelligence</Link></li>
-                            <li><Link to="/products/supply-chain-intelligence" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Supply Chain Intelligence</Link></li>
-                            <li><Link to="/products/document-intelligence" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Document Intelligence</Link></li>
-                            <li><Link to="/products/accounts-payable-intelligence" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Accounts Payable Intelligence</Link></li>
-                            <li><Link to="/products/expense-intelligence" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Expense Intelligence</Link></li>
-                            <li><Link to="/products/form-intelligence" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Form Intelligence</Link></li>
-                          </ul>
-                        </div>
-
-                        {/* Column 5: Knooviq Automation Suite */}
-                        <div className="space-y-3 bg-slate-50 dark:bg-[#0B1528] p-4 rounded-xl border border-slate-200/60 dark:border-white/5">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-[#00A3E0]">
-                            <Link
-                              to="/products/automation-suite"
-                              onClick={() => setActiveMenu(null)}
-                              className="hover:underline block"
-                            >
-                              <span>Knooviq Automation Suite</span>
-                            </Link>
-                          </h4>
-                          <ul className="space-y-1.5 text-xs">
-                            <li><Link to="/products/automation-studio" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Automation Studio</Link></li>
-                            <li><Link to="/products/automation-evolve" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Automation Evolve</Link></li>
-                            <li><Link to="/products/automation-manager" onClick={() => setActiveMenu(null)} className="text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 px-2 py-1 rounded-lg block transition-colors font-medium">Automation Manager</Link></li>
-                          </ul>
-                        </div>
-
-                      </div>
-
-                      {/* Bottom Recommended Strip */}
-                      <div className="pt-4 flex items-center justify-between text-xs">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">RECOMMENDED FOR YOU:</span>
-                          <span className="text-slate-900 dark:text-white font-bold">Accelerated EXIM & E-Invoicing BTP Extensions</span>
-                        </div>
-                        <Link to="/solutions" onClick={() => setActiveMenu(null)} className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1">
-                          <span>Explore All Products & Accelerators</span>
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
+                  <div className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4 whitespace-normal">
+                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-4 lg:p-5 shadow-2xl">
+                      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2.5 lg:gap-3">
+                        {PRODUCTS_NAV_CATEGORIES.map((cat) => (
+                          <div
+                            key={cat.id}
+                            className="bg-slate-50 dark:bg-[#0B1528] p-2.5 sm:p-3 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15 hover:shadow-md transition-all flex flex-col justify-start"
+                          >
+                            <div className="pb-1 mb-1.5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+                              <h4
+                                className="font-[800] font-extrabold text-[13px] tracking-wide uppercase text-[#0A1931] dark:text-white select-none py-0.5 leading-snug"
+                                style={{ fontWeight: 800 }}
+                              >
+                                {cat.title}
+                              </h4>
+                            </div>
+                            <ul className="space-y-0.5">
+                              {cat.items.map((item) => (
+                                <li key={item.name}>
+                                  <Link
+                                    to={item.path}
+                                    onClick={() => setActiveMenu(null)}
+                                    className="industry-category-item px-2 py-0.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 text-[11px] font-medium leading-snug"
+                                  >
+                                    <span>{item.name}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -1009,207 +1028,101 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </div>
 
               {/* 4. TRANSFORMATION */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter('transformation')}
-              >
+              <div className="relative">
                 <button
                   onClick={() => handleMenuToggle('transformation')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'transformation' || location.pathname.startsWith('/transformation')
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
+                  className={navLinkClass(activeMenu === 'transformation' || location.pathname.startsWith('/transformation'))}
                 >
-                  <span>Transformation</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'transformation' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
+                  <span className="whitespace-nowrap">Transformation</span>
+                  <ChevronDown className={navChevronClass(activeMenu === 'transformation')} />
                 </button>
 
                 {/* Transformation Mega Menu Dropdown */}
                 {activeMenu === 'transformation' && (
-                  <div
-                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
-                    onMouseEnter={() => handleMouseEnter('transformation')}
-                  >
-                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
-                      {/* 6 Category Cards in exact Savic / Enterprise layout */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
-                        {TRANSFORMATION_MEGA_MENU.map((category) => {
-                          const isDataAi = category.id === 'data-analytics-ai';
-                          return (
-                            <div
-                              key={category.id}
-                              className={`p-4 rounded-2xl border transition-all flex flex-col justify-between overflow-hidden ${isDataAi
-                                  ? 'bg-gradient-to-b from-sky-50/80 via-white to-sky-50/30 dark:from-[#09182E] dark:via-[#070E1C] dark:to-[#070E1C] border-sky-300 dark:border-[#00A3E0]/50 shadow-md ring-1 ring-sky-400/20'
-                                  : 'bg-slate-50 dark:bg-[#0B1528] border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15'
-                                }`}
-                            >
-                              <div>
-                                {isDataAi ? (
-                                  /* EXACT MATCH TO USER'S SCREENSHOT: DATA, ANALYTICS & AI with GEN AI pill badge (Non-clickable Header) */
-                                  <div className="flex items-start justify-between gap-1 mb-4 pb-1.5 border-b border-sky-100 dark:border-white/10 select-none cursor-default">
-                                    <div className="block">
-                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight">
-                                        DATA,
-                                      </span>
-                                      <span className="block text-[13px] font-black uppercase tracking-tight text-[#0A1931] dark:text-white leading-tight">
-                                        ANALYTICS & AI
-                                      </span>
-                                    </div>
-                                    <span className="inline-flex items-center text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-md bg-[#00A3E0] text-white shadow-sm shrink-0">
-                                      GEN AI
-                                    </span>
-                                  </div>
-                                ) : (
-                                  /* Non-clickable Category Header in bold black / navy */
-                                  <div className="text-xs font-black uppercase tracking-wider text-[#0A1931] dark:text-white mb-3 min-h-[36px] flex items-center justify-between select-none cursor-default">
-                                    <span className="leading-snug">{category.title}</span>
-                                    {category.badge && (
-                                      <span className="text-[9px] bg-[#00A3E0] text-white px-1.5 py-0.5 rounded font-bold shrink-0 ml-1">
-                                        {category.badge}
-                                      </span>
-                                    )}
-                                  </div>
-                                )}
-
-                                <ul className="space-y-1.5 text-xs">
-                                  {category.items.map((item, idx) => (
-                                    <li key={idx}>
-                                      <Link
-                                        to={item.path}
-                                        onClick={() => setActiveMenu(null)}
-                                        className={`px-2.5 py-1.5 rounded-lg block transition-all font-medium leading-snug ${isDataAi
-                                            ? 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 hover:shadow-sm font-semibold'
-                                            : 'text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10'
-                                          }`}
-                                      >
-                                        {item.name}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
+                  <div className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4 whitespace-normal">
+                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-4 lg:p-5 shadow-2xl">
+                      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2.5 lg:gap-3">
+                        {TRANSFORMATION_MEGA_MENU.map((category) => (
+                          <div
+                            key={category.id}
+                            className="bg-slate-50 dark:bg-[#0B1528] p-2.5 sm:p-3 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15 hover:shadow-md transition-all flex flex-col justify-start"
+                          >
+                            <div className="pb-1 mb-1.5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+                              <h4
+                                className="font-[800] font-extrabold text-[13px] tracking-wide uppercase text-[#0A1931] dark:text-white select-none py-0.5 leading-snug"
+                                style={{ fontWeight: 800 }}
+                              >
+                                {category.title}
+                              </h4>
                             </div>
-                          );
-                        })}
-                      </div>
-
-                      {/* Transformation Mega Menu Footer Crosslink */}
-                      <div className="mt-5 pt-3.5 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
-                        <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                          Complete End-to-End Enterprise Cloud & S/4HANA Transformation Platform
-                        </span>
-                        <Link 
-                          to="/transformation" 
-                          onClick={() => setActiveMenu(null)} 
-                          className="text-xs font-bold text-[#00A3E0] hover:text-[#0082b3] dark:hover:text-cyan-300 flex items-center gap-1.5 transition-colors group"
-                        >
-                          <span>Explore All Transformation Practices</span>
-                          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                        </Link>
+                            <ul className="space-y-0.5">
+                              {category.items.map((item) => (
+                                <li key={item.name}>
+                                  <Link
+                                    to={item.path}
+                                    onClick={() => setActiveMenu(null)}
+                                    className="industry-category-item px-2 py-0.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 text-[11px] font-medium leading-snug"
+                                  >
+                                    <span>{item.name}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* 4.5 CLOUD & OPERATIONS (Exact 6-Column Mega Menu Architecture) */}
-              <div
-                className="relative"
-                onMouseEnter={() => handleMouseEnter('cloud')}
-              >
+              {/* 4.5 CLOUD & OPERATIONS */}
+              <div className="relative">
                 <button
                   onClick={() => handleMenuToggle('cloud')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    activeMenu === 'cloud' || location.pathname.startsWith('/cloud-operations')
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
+                  className={navLinkClass(activeMenu === 'cloud' || location.pathname.startsWith('/cloud-operations'))}
                 >
-                  <span>Cloud & Operations</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'cloud' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
+                  <span className="whitespace-nowrap">Cloud & Operations</span>
+                  <ChevronDown className={navChevronClass(activeMenu === 'cloud')} />
                 </button>
 
                 {/* Cloud & Operations Mega Menu Dropdown */}
                 {activeMenu === 'cloud' && (
-                  <div
-                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
-                    onMouseEnter={() => handleMouseEnter('cloud')}
-                  >
-                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl">
+                  <div className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4 whitespace-normal">
+                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-4 lg:p-5 shadow-2xl">
                       
-                      {/* 6 Capability Cards in Single Desktop Row */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
-                        {CLOUD_OPS_MEGA_MENU.map((category) => {
-                          const isCategoryActive = location.pathname === category.path || (category.path !== '/cloud-operations' && location.pathname.startsWith(category.path));
-                          return (
+                      {/* 6 Cloud & Operations Capabilities in 1 Row - Identical Structure to Digital Intelligence */}
+                      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2.5 lg:gap-3">
+                        {CLOUD_OPS_MEGA_MENU.map((category) => (
                           <div
                             key={category.id}
-                            className={`p-4 rounded-2xl border transition-all flex flex-col justify-between h-full overflow-hidden ${
-                              isCategoryActive
-                                ? 'bg-white dark:bg-[#0E1A34] border-[#00A3E0] shadow-md shadow-[#00A3E0]/15'
-                                : 'bg-slate-50 dark:bg-[#0B1528] border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15'
-                            }`}
+                            className="bg-slate-50 dark:bg-[#0B1528] p-2.5 sm:p-3 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15 hover:shadow-md transition-all flex flex-col justify-start"
                           >
-                            <div>
-                              {/* Non-clickable Category Header: Badge cleanly placed inside box without overflowing */}
-                              <div className="mb-3 select-none cursor-default pb-2.5 border-b border-slate-200/60 dark:border-white/10">
-                                {category.badge && (
-                                  <div className="mb-1.5 flex items-center justify-start">
-                                    <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow-xs inline-block ${
-                                      isCategoryActive
-                                        ? 'bg-[#00A3E0] text-white'
-                                        : 'bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-300'
-                                    }`}>
-                                      {category.badge}
-                                    </span>
-                                  </div>
-                                )}
-                                <h4 className={`text-xs font-semibold uppercase tracking-wider leading-snug min-h-[36px] ${
-                                  isCategoryActive ? 'text-[#00A3E0] dark:text-cyan-400 font-bold' : 'text-[#0A1931] dark:text-white'
-                                }`}>
-                                  {category.title}
-                                </h4>
-                              </div>
-
-                              <ul className="space-y-1.5 text-xs">
-                                {category.items.map((item, idx) => {
-                                  const isItemActive = location.pathname === item.path || (item.path.includes('?') && location.pathname + location.search === item.path);
-                                  return (
-                                    <li key={idx}>
-                                      <Link
-                                        to={item.path}
-                                        onClick={() => setActiveMenu(null)}
-                                        className={`px-2.5 py-1.5 rounded-lg block transition-all font-medium leading-snug ${
-                                          isItemActive
-                                            ? 'bg-[#00A3E0] text-white font-bold shadow-xs'
-                                            : 'text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10'
-                                        }`}
-                                      >
-                                        {item.name}
-                                      </Link>
-                                    </li>
-                                  );
-                                })}
-                              </ul>
+                            <div className="pb-1 mb-1.5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+                              <h4
+                                className="font-[800] font-extrabold text-[13px] tracking-wide uppercase text-[#0A1931] dark:text-white select-none py-0.5 leading-snug"
+                                style={{ fontWeight: 800 }}
+                              >
+                                {category.title}
+                              </h4>
                             </div>
-
+                            <ul className="space-y-0.5">
+                              {category.items.map((item) => (
+                                <li key={item.name}>
+                                  <Link
+                                    to={item.path}
+                                    onClick={() => setActiveMenu(null)}
+                                    className="industry-category-item px-2 py-0.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 text-[11px] font-medium leading-snug"
+                                  >
+                                    <span>{item.name}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
-                        );
-                      })}
-                    </div>
-
-                      {/* Bottom Context Strip - Purely readable capability summary */}
-                      <div className="pt-4 mt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
-                            CLOUD & OPERATIONS CAPABILITY:
-                          </span>
-                          <span className="text-slate-900 dark:text-white font-bold">
-                            Enterprise Architecture, Hyperscaler Modernization & 24/7 Managed Operations
-                          </span>
-                        </div>
+                        ))}
                       </div>
 
                     </div>
@@ -1220,47 +1133,45 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               {/* 5. DIGITAL INTELLIGENCE (Replaces Services, structured identically to Industries) */}
               <div
                 className="relative"
-                onMouseEnter={() => handleMouseEnter('services')}
               >
                 <button
                   onClick={() => handleMenuToggle('services')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'services' || location.pathname === '/digital-intelligence' || location.pathname === '/services'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
+                  className={navLinkClass(activeMenu === 'services' || location.pathname === '/digital-intelligence' || location.pathname === '/services')}
                 >
-                  <span>Digital Intelligence</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'services' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
+                  <span className="whitespace-nowrap">Digital Intelligence</span>
+                  <ChevronDown className={navChevronClass(activeMenu === 'services')} />
                 </button>
 
                 {/* Digital Intelligence Mega Menu Dropdown */}
                 {activeMenu === 'services' && (
                   <div
-                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
-                    onMouseEnter={() => handleMouseEnter('services')}
+                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4 whitespace-normal"
                   >
-                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl space-y-5">
+                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-4 lg:p-5 shadow-2xl">
 
-                      {/* 6 Digital Intelligence Practices (3 Columns x 2 Rows) */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {/* 6 Digital Intelligence Practices in 1 Row */}
+                      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2.5 lg:gap-3">
                         {DIGITAL_INTELLIGENCE_NAV_CATEGORIES.map((cat) => (
                           <div
                             key={cat.id}
-                            className="space-y-2 bg-slate-50 dark:bg-[#0B1528] p-3.5 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-sky-300 dark:hover:border-cyan-500/30 hover:shadow-md transition-all flex flex-col justify-start"
+                            className="bg-slate-50 dark:bg-[#0B1528] p-2.5 sm:p-3 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/15 hover:shadow-md transition-all flex flex-col justify-start"
                           >
-                            <div className="pb-1.5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
-                              <h4 className="font-semibold text-xs sm:text-sm tracking-wide uppercase text-[#0A1931] dark:text-[#00A3E0] select-none py-0.5">
+                            <div className="pb-1 mb-1.5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+                              <h4
+                                className="font-[800] font-extrabold text-[13px] tracking-wide uppercase text-[#0A1931] dark:text-white select-none py-0.5 leading-snug"
+                                style={{ fontWeight: 800 }}
+                              >
                                 {cat.name}
                               </h4>
                             </div>
-                            <ul className="space-y-1">
+                            <ul className="space-y-0.5">
                               {cat.items.map((subItem) => (
                                 <li key={subItem}>
                                   <Link
                                     to={AI_PRACTICE_ROUTES[subItem] || `/digital-intelligence?category=${cat.id}&item=${encodeURIComponent(subItem)}`}
                                     onClick={() => setActiveMenu(null)}
-                                    className="industry-category-item px-2 py-1 rounded block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-medium"
+                                    className="industry-category-item px-2 py-0.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 text-[11px] font-medium leading-snug"
                                   >
                                     <span>{subItem}</span>
                                   </Link>
@@ -1271,26 +1182,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                         ))}
                       </div>
 
-                      {/* Bottom Banner */}
-                      <div className="pt-3 border-t border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
-                            RECOMMENDED ARCHITECTURE:
-                          </span>
-                          <span className="text-slate-900 dark:text-white font-bold">
-                            Autonomous AI Agents, Unified Data Fabrics & Algorithmic Optimization
-                          </span>
-                        </div>
-                        <Link
-                          to="/digital-intelligence"
-                          onClick={() => setActiveMenu(null)}
-                          className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1 shrink-0"
-                        >
-                          <span>Explore All Digital Intelligence Capabilities</span>
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
-                      </div>
-
                     </div>
                   </div>
                 )}
@@ -1299,52 +1190,51 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               {/* 6. INDUSTRIES (Accely Image 4 - 2 Rows x 5 Columns) */}
               <div
                 className="relative"
-                onMouseEnter={() => handleMouseEnter('industries')}
               >
                 <button
                   onClick={() => handleMenuToggle('industries')}
                   type="button"
-                  className={`flex items-center gap-1 px-3 py-2 rounded-xl transition-all ${activeMenu === 'industries'
-                      ? 'text-white bg-[#00A3E0] font-bold shadow-md shadow-[#00A3E0]/25'
-                      : 'text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-white/5'
-                    }`}
+                  className={navLinkClass(activeMenu === 'industries')}
                 >
-                  <span>Industries</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeMenu === 'industries' ? 'rotate-180 text-white' : 'text-slate-400'}`} />
+                  <span className="whitespace-nowrap">Industries</span>
+                  <ChevronDown className={navChevronClass(activeMenu === 'industries')} />
                 </button>
 
                 {/* Industries Mega Menu Dropdown */}
                 {activeMenu === 'industries' && (
                   <div
-                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4"
-                    onMouseEnter={() => handleMouseEnter('industries')}
+                    className="fixed left-0 right-0 top-[68px] w-full transition-all animate-in fade-in slide-in-from-top-1 duration-150 z-50 px-4 whitespace-normal"
                   >
-                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-7 shadow-2xl space-y-5">
+                    <div className="max-w-7xl mx-auto rounded-2xl border-2 border-slate-200 dark:border-[#00A3E0]/30 bg-white dark:bg-[#070E1C] p-4 lg:p-5 shadow-2xl">
 
                       {/* 8 Industry Vertical Practices (4 Columns x 2 Rows) */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 lg:gap-3">
                         {INDUSTRIES_NAV_CATEGORIES.map((cat) => (
                           <div
                             key={cat.id}
-                            className="space-y-2 bg-slate-50 dark:bg-[#0B1528] p-3.5 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-sky-300 dark:hover:border-cyan-500/30 hover:shadow-md transition-all flex flex-col justify-start"
+                            className="bg-slate-50 dark:bg-[#0B1528] p-2.5 sm:p-3 rounded-xl border border-slate-200/70 dark:border-white/5 hover:border-sky-300 dark:hover:border-cyan-500/30 hover:shadow-md transition-all flex flex-col justify-start"
                           >
-                            <div className="pb-1.5 border-b border-slate-200/60 dark:border-white/10">
+                            <div className="pb-1 mb-1 border-b border-slate-200/60 dark:border-white/10">
                               {INDUSTRY_ROUTE_MAP[cat.name] ? (
                                 <Link
                                   to={INDUSTRY_ROUTE_MAP[cat.name]}
                                   onClick={() => setActiveMenu(null)}
-                                  className="industry-category-title text-[#0A1931] dark:text-[#00A3E0] hover:text-[#0070C0] dark:hover:text-cyan-300 transition-colors flex items-center justify-between group/cat"
+                                  className="industry-category-title text-[#0A1931] dark:text-white hover:text-[#0070C0] dark:hover:text-cyan-300 transition-colors flex items-center justify-between group/cat text-[13px] font-[800] font-extrabold uppercase tracking-wide select-none py-0.5 leading-snug"
+                                  style={{ fontWeight: 800 }}
                                 >
                                   <span>{cat.name}</span>
                                   <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover/cat:opacity-100 group-hover/cat:translate-x-0.5 transition-all shrink-0" />
                                 </Link>
                               ) : (
-                                <h4 className="industry-category-title text-[#0A1931] dark:text-[#00A3E0]">
+                                <h4
+                                  className="industry-category-title text-[#0A1931] dark:text-white text-[13px] font-[800] font-extrabold uppercase tracking-wide select-none py-0.5 leading-snug"
+                                  style={{ fontWeight: 800 }}
+                                >
                                   {cat.name}
                                 </h4>
                               )}
                             </div>
-                            <ul className="space-y-1">
+                            <ul className="space-y-0.5">
                               {cat.items.map((subItem) => {
                                 const industryRoute = INDUSTRY_ROUTE_MAP[subItem];
                                 return (
@@ -1352,7 +1242,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                                     <Link
                                       to={industryRoute || '/industries'}
                                       onClick={() => setActiveMenu(null)}
-                                      className="industry-category-item px-2 py-1 rounded block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-white/10"
+                                      className="industry-category-item px-2 py-0.5 rounded-lg block transition-colors text-slate-700 dark:text-slate-200 hover:text-[#00A3E0] dark:hover:text-cyan-300 hover:bg-white dark:hover:bg-white/10 text-[11px] font-medium leading-snug"
                                     >
                                       <span>{subItem}</span>
                                     </Link>
@@ -1369,25 +1259,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 )}
               </div>
 
-            </nav>
+              </div>
 
-            {/* Right Action Utilities (Contact Us Button) */}
-            <div className="hidden lg:flex items-center gap-3">
-              {/* Premium "Contact us ->" Button with Shimmer */}
+              {/* Language Translator (Between Industries and CONTACT US) */}
+              <LanguageTranslator isTransparentHeader={isTransparent} />
+
+              {/* CONTACT US -> Pill Button (matching user image) */}
               <button
                 onClick={() => onOpenContact ? onOpenContact() : handleNavClick('/contact')}
-                className="btn-primary-gradient shimmer-sweep rounded-2xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all shadow-lg flex items-center gap-2 active:scale-95 font-display"
+                className="btn-primary-gradient shimmer-sweep rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider text-white transition-all shadow-md shadow-blue-500/25 flex items-center gap-2 active:scale-95 font-display ml-1 shrink-0"
               >
-                <span>Contact us</span>
+                <span>CONTACT US</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
-            </div>
+
+            </nav>
 
             {/* Mobile Actions (Hamburger) */}
             <div className="flex items-center gap-2 lg:hidden">
+              <LanguageTranslator isMobile={true} />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 dark:border-sky-500/20 bg-slate-100 dark:bg-[#0B1528] text-slate-800 dark:text-slate-200"
+                className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all ${
+                  isTransparent
+                    ? 'border-white/20 bg-white/10 text-white hover:bg-white/20'
+                    : 'border-slate-300 dark:border-sky-500/20 bg-slate-100 dark:bg-[#0B1528] text-slate-800 dark:text-slate-200'
+                }`}
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -1424,12 +1321,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
               {mobileSubmenu === 'about' && (
                 <div className="pt-2 pl-2 space-y-1.5 border-t border-slate-200 dark:border-white/5 mt-1 text-xs">
-                  <Link to="/about/the-knooviq-story" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• The KnoovIQ Story</Link>
+                  <Link to="/about/the-knooviq-story" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• The Knooviq Story</Link>
                   <Link to="/about/visionary-leadership" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Visionary Leadership</Link>
                   <Link to="/about/digital-sap-excellence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Digital & SAP Excellence</Link>
                   <Link to="/about/our-global-network" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Our Global Network</Link>
                   <Link to="/about/grow-with-us" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Grow With Us</Link>
-                  <Link to="/about/knooviq-connect" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• KnoovIQ Connect</Link>
+                  <Link to="/about/knooviq-connect" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Knooviq Connect</Link>
                   <Link to="/about/global-presence" onClick={() => setMobileMenuOpen(false)} className="block py-0.5 text-slate-700 dark:text-slate-300 font-medium">• Global Presence</Link>
                 </div>
               )}

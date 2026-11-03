@@ -22,26 +22,22 @@ const PHILOSOPHY_CARDS = [
   {
     title: 'Innovation',
     description: 'Embracing new ideas, technologies, and smarter ways of working.',
-    icon: Lightbulb,
-    tenet: 'Progressive Engineering'
+    icon: Lightbulb
   },
   {
     title: 'Integrity',
     description: 'Building trust through transparency, accountability, and ethical decisions.',
-    icon: ShieldCheck,
-    tenet: 'Uncompromising Ethics'
+    icon: ShieldCheck
   },
   {
     title: 'People',
     description: 'Empowering people, encouraging growth, and creating a culture of collaboration.',
-    icon: Users,
-    tenet: 'Human-Centered Growth'
+    icon: Users
   },
   {
     title: 'Excellence',
     description: 'Striving for high standards, continuous improvement, and meaningful results.',
-    icon: Award,
-    tenet: 'Sustained Mastery'
+    icon: Award
   }
 ];
 
@@ -233,7 +229,7 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ’s leadership philosophy is focused on innovation, integrity, excellence, collaboration, people development, and long-term value creation.
+              Knooviq’s leadership philosophy is focused on innovation, integrity, excellence, collaboration, people development, and long-term value creation.
             </motion.p>
           </div>
 
@@ -270,11 +266,6 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans font-normal">
                       {card.description}
                     </p>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[11px] font-mono text-[#0052CC] dark:text-cyan-400 font-semibold">
-                    <span>{card.tenet}</span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   </div>
                 </motion.div>
               );
@@ -493,7 +484,7 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-3.5 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ is driven by a future-focused mindset—embracing innovation, technology, collaboration, and new opportunities to create sustainable growth and meaningful impact.
+              Knooviq is driven by a future-focused mindset—embracing innovation, technology, collaboration, and new opportunities to create sustainable growth and meaningful impact.
             </motion.p>
           </div>
 

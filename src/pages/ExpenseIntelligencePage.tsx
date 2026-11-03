@@ -211,7 +211,7 @@ export const ExpenseIntelligencePage: React.FC<ExpenseIntelligencePageProps> = (
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl font-sans">
-                Stop chasing paper receipts, reconciling corporate cards manually, and resolving expense audit bottlenecks. KnoovIQ extracts line items from any receipt format, audits travel policies in real time, and executes instantaneous reimbursement directly to your core ledger.
+                Stop chasing paper receipts, reconciling corporate cards manually, and resolving expense audit bottlenecks. Knooviq extracts line items from any receipt format, audits travel policies in real time, and executes instantaneous reimbursement directly to your core ledger.
               </p>
 
 

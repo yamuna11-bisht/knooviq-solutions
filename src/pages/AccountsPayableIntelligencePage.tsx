@@ -207,7 +207,7 @@ export const AccountsPayableIntelligencePage: React.FC<AccountsPayableIntelligen
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl font-sans">
-                Eliminate manual keying, duplicate invoices, and lengthy reconciliation cycles. KnoovIQ extracts line items from complex multi-page invoices, performs autonomous 3-way matching, and posts verified accounting entries directly to SAP, Oracle, and NetSuite.
+                Eliminate manual keying, duplicate invoices, and lengthy reconciliation cycles. Knooviq extracts line items from complex multi-page invoices, performs autonomous 3-way matching, and posts verified accounting entries directly to SAP, Oracle, and NetSuite.
               </p>
 
 

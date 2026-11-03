@@ -288,7 +288,7 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
       {/* =========================================================================
           SECTION 1 — DIGITAL & SAP CAPABILITIES
           Heading: “Technology. Expertise. Transformation.”
-          Supporting: “KnoovIQ combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.”
+          Supporting: “Knooviq combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.”
           6 Interactive Capability Cards
           ========================================================================= */}
       <section id="capabilities-section" className="py-20 sm:py-24 relative overflow-hidden bg-white dark:bg-[#030712]">
@@ -325,7 +325,7 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.
+              Knooviq combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.
             </motion.p>
           </div>
 
@@ -675,6 +675,7 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
           </div>
         </div>
       </section>
+
 
 
     </div>

@@ -36,12 +36,12 @@ interface AboutPageProps {
 }
 
 const ABOUT_SECTIONS = [
-  { id: 'story', label: 'The KnoovIQ Story', icon: BookOpen },
+  { id: 'story', label: 'The Knooviq Story', icon: BookOpen },
   { id: 'leadership', label: 'Visionary Leadership', icon: Award },
   { id: 'excellence', label: 'Digital & SAP Excellence', icon: Sparkles },
   { id: 'network', label: 'Our Global Network', icon: Globe2 },
   { id: 'grow-with-us', label: 'Grow With Us', icon: TrendingUp },
-  { id: 'connect', label: 'KnoovIQ Connect', icon: PhoneCall },
+  { id: 'connect', label: 'Knooviq Connect', icon: PhoneCall },
   { id: 'presence', label: 'Global Presence', icon: MapPin },
 ];
 
@@ -828,7 +828,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenContact }) => {
               <span>Section 06</span>
             </div>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-              KnoovIQ Connect
+              Knooviq Connect
             </h2>
             <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
               Connect directly with our enterprise consulting leadership. We provide confidential, zero-obligation architecture assessments.
@@ -897,7 +897,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenContact }) => {
               </div>
               <div className="pt-4 border-t border-slate-200 dark:border-white/10">
                 <button
-                  onClick={() => onOpenContact('KnoovIQ Connect: 30-Min Assessment')}
+                  onClick={() => onOpenContact('Knooviq Connect: 30-Min Assessment')}
                   className="btn-primary-gradient shimmer-sweep w-full rounded-xl py-2.5 text-xs font-bold uppercase tracking-wider text-white font-display"
                 >
                   Schedule Assessment
