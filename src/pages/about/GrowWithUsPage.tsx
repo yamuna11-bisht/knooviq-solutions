@@ -5,7 +5,6 @@ import {
   Award, 
   Users, 
   CheckCircle2, 
-  ArrowRight, 
   Briefcase, 
   Sparkles,
   Compass,
@@ -704,7 +703,7 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
                     </div>
                   </div>
 
-                  <div>
+                  <div className="mb-0">
                     <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
                       ORGANIZATIONAL IMPACT
                     </span>

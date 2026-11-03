@@ -5,10 +5,10 @@ export const COMPANY_INFO = {
   tagline: 'Transforming Businesses Through Intelligent Technology',
   description: 'A premier enterprise technology & SAP consulting partner empowering global businesses with end-to-end digital transformation, SAP S/4HANA migrations, cloud integration, and corporate enablement.',
   headquarters: {
-    address: 'B15, Shree Siddhivinayak Plaza, Opp. City Mall, Off Link Road, Andheri (W)',
+    address: '1210, One World by Sanjar, Bhadran Nagar, Malad West',
     city: 'Mumbai',
     state: 'Maharashtra',
-    postalCode: '400053',
+    postalCode: '400064',
     country: 'India',
   },
   contact: {

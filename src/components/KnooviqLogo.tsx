@@ -51,4 +51,3 @@ export const KnooviqLogo: React.FC<KnooviqLogoProps> = ({
     </div>
   );
 };
-

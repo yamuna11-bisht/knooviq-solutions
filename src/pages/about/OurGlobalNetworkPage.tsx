@@ -6,7 +6,6 @@ import {
   Clock, 
   ShieldCheck, 
   CheckCircle2, 
-  ArrowRight, 
   Sparkles,
   Server,
   Zap,
@@ -823,64 +822,8 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
         </div>
       </section>
 
-      {/* =========================================================================
-          7. FINAL CTA
-          Heading: “Let’s Build Stronger Global Connections.”
-          Supporting: “Connect with Knooviq to explore opportunities for collaboration, technology, and business growth.”
-          Buttons: “Connect With Us” & “Explore Our Solutions”
-          ========================================================================= */}
-      <section className="py-16 sm:py-20 relative overflow-hidden bg-gradient-to-b from-[#071324] via-[#0A2540] to-[#0A192F] text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-sm mb-4 backdrop-blur-md"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-            <span>Global Partnership Initiative</span>
-          </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
-          >
-            Let’s Build Stronger Global Connections.
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8"
-          >
-            Connect with Knooviq to explore opportunities for collaboration, technology, and business growth.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center justify-center"
-          >
-            <button
-              onClick={() => onOpenContact('Global Network Collaboration')}
-              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>Contact Us</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
 
     </div>
   );
 };
-

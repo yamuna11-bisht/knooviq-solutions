@@ -7,7 +7,7 @@ import {
   Compass, 
   Layers, 
   CheckCircle2, 
-  ArrowRight,
+
   ShieldCheck, 
   Award,
   Zap,

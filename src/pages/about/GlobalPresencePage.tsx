@@ -40,8 +40,8 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       country: 'India',
       flag: '🇮🇳',
       badge: 'Primary Global HQ',
-      address: 'B15, Shree Siddhivinayak Plaza, Opp. City Mall, Off Link Road, Andheri (W), Mumbai - 400053, Maharashtra, India',
-      mapQuery: 'Shree Siddhivinayak Plaza, Andheri West, Mumbai, Maharashtra 400053',
+      address: '1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)',
+      mapQuery: 'One World by Sanjar, Malad West, Mumbai',
       role: 'Corporate Headquarters, Executive Leadership & Strategic Governance',
       phone: '+91-7900073410',
       email: 'admin@knooviq.com',
@@ -53,7 +53,7 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       themeGradient: 'from-blue-600 via-indigo-600 to-cyan-500',
       accentBorder: 'border-blue-500',
       pillBg: 'bg-blue-50 text-blue-700 border-blue-200',
-      mapsUrl: 'https://maps.google.com/?q=Shree+Siddhivinayak+Plaza+Andheri+West+Mumbai',
+      mapsUrl: 'https://maps.google.com/?q=One+World+by+Sanjar+Malad+West+Mumbai',
       coordinates: { x: '58%', y: '48%' }
     },
     {
