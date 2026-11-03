@@ -54,6 +54,53 @@ export const LanguageTranslator: React.FC<LanguageTranslatorProps> = ({ isMobile
   }, []);
 
   // Initialize Google Translate Script
+
+  // Active DOM Observer: Continuously prevents Google Translate from shifting body or displaying top banner
+  useEffect(() => {
+    const sanitizeGoogleTranslateDOM = () => {
+      // 1. Force body top to 0px and position to static
+      if (document.body.style.top && document.body.style.top !== '0px') {
+        document.body.style.setProperty('top', '0px', 'important');
+      }
+      if (document.body.style.position && document.body.style.position !== 'static') {
+        document.body.style.setProperty('position', 'static', 'important');
+      }
+      if (document.documentElement.style.top && document.documentElement.style.top !== '0px') {
+        document.documentElement.style.setProperty('top', '0px', 'important');
+      }
+
+      // 2. Hide all Google banner frames and containers
+      const banners = document.querySelectorAll(
+        '.VIpgJd-ZVi9od-ORHb-OEVmcd, iframe.skiptranslate, iframe.goog-te-banner-frame, div[id*=":1.container"], div[id*=":2.container"]'
+      );
+      banners.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        htmlEl.style.setProperty('display', 'none', 'important');
+        htmlEl.style.setProperty('visibility', 'hidden', 'important');
+        htmlEl.style.setProperty('height', '0px', 'important');
+      });
+    };
+
+    sanitizeGoogleTranslateDOM();
+    const observer = new MutationObserver(sanitizeGoogleTranslateDOM);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['style', 'class'],
+      childList: true,
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['style', 'class'],
+    });
+
+    const interval = setInterval(sanitizeGoogleTranslateDOM, 250);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(interval);
+    };
+  }, []);
+
   useEffect(() => {
     const scriptId = 'google-translate-script';
 
