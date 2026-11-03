@@ -921,16 +921,6 @@ export const DataProtectionPage: React.FC<ChildPageProps> = ({ onOpenContact }) 
                       ))}
                     </div>
 
-                    <div className="pt-2">
-                      <button
-                        type="button"
-                        onClick={() => handleOpenContact(`Data Protection: ${cap.title}`)}
-                        className="inline-flex items-center gap-2 text-xs font-bold text-[#00A3E0] dark:text-cyan-400 hover:underline cursor-pointer"
-                      >
-                        <span>Discuss this capability</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
                   </div>
                 </div>
               );
