@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { SmoothScroll } from './components/SmoothScroll';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ClientLogoMarquee } from './components/ClientLogoMarquee';
 import { ContactModal } from './components/ContactModal';
 import { ChatbotWidget } from './components/chatbot/ChatbotWidget';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -990,6 +991,9 @@ const AppContent: React.FC = () => {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+
+      {/* Client Logos Marquee directly above Footer */}
+      {!isAdminRoute && <ClientLogoMarquee />}
 
       {/* Public Footer */}
       {!isAdminRoute && <Footer />}

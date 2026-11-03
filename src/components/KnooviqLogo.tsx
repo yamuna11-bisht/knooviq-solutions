@@ -14,10 +14,10 @@ export const KnooviqLogo: React.FC<KnooviqLogoProps> = ({
 }) => {
   // Height sizing for logo image
   const heightClass = {
-    sm: 'h-8 sm:h-9',
-    md: 'h-10 sm:h-11',
-    lg: 'h-12 sm:h-14',
-    xl: 'h-16 sm:h-20',
+    sm: 'h-9 sm:h-10',
+    md: 'h-12 sm:h-14',
+    lg: 'h-14 sm:h-16',
+    xl: 'h-20 sm:h-24',
   }[size];
 
   return (
@@ -51,4 +51,3 @@ export const KnooviqLogo: React.FC<KnooviqLogoProps> = ({
     </div>
   );
 };
-

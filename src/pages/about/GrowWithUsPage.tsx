@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { 
   TrendingUp, 
   Award, 
   Users, 
   CheckCircle2, 
-  ArrowRight, 
   Briefcase, 
   Sparkles,
   Compass,
@@ -705,7 +703,7 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
                     </div>
                   </div>
 
-                  <div className="mb-8">
+                  <div className="mb-0">
                     <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
                       ORGANIZATIONAL IMPACT
                     </span>
@@ -713,23 +711,6 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
                       “{selectedCategory.impact}”
                     </p>
                   </div>
-
-                  <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-slate-200/80 dark:border-white/10">
-                    <button
-                      onClick={() => onOpenContact(`Career Opportunities: ${selectedCategory.name}`)}
-                      className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-7 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <span>Explore Opportunities</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </button>
-                    <Link
-                      to="/careers"
-                      className="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-slate-300 dark:border-white/20 text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-white/5 font-display text-xs font-bold uppercase tracking-wider text-center transition-colors"
-                    >
-                      View All Open Roles
-                    </Link>
-                  </div>
-
                 </motion.div>
               </AnimatePresence>
             </div>

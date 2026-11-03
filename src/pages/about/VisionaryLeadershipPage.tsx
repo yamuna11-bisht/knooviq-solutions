@@ -13,8 +13,7 @@ import {
   Cpu,
   Globe2,
   Layers,
-  CheckCircle2,
-  ArrowRight
+  CheckCircle2
 } from 'lucide-react';
 import { AboutSubnav } from '../../components/AboutSubnav';
 
@@ -574,35 +573,6 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
               );
             })}
           </div>
-
-          {/* Compact Strategic Forward Action Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mt-10 p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4"
-          >
-            <div>
-              <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider block">
-                EXECUTIVE PARTNERSHIP INITIATIVE
-              </span>
-              <h4 className="font-display text-base sm:text-lg font-bold text-white mt-0.5">
-                Ready to Architect Tomorrow's Enterprise Foundation?
-              </h4>
-              <p className="text-xs text-slate-400 font-sans mt-0.5">
-                Engage directly with our senior advisory board to assess your clean-core & AI readiness.
-              </p>
-            </div>
-
-            <button
-              onClick={() => onOpenContact('Visionary Leadership: Future-Ready Enterprise Strategy')}
-              className="btn-primary-gradient shimmer-sweep rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white font-display inline-flex items-center gap-2 shadow-lg flex-shrink-0 cursor-pointer"
-            >
-              <span>Connect with Advisory Desk</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </button>
-          </motion.div>
         </div>
       </section>
 

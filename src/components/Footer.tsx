@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ShieldCheck, ArrowUp, Lock, Sparkles, Award } from 'lucide-react';
-import { COMPANY_INFO, INDUSTRIES_DATA } from '../data/knooviqData';
+import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { COMPANY_INFO } from '../data/knooviqData';
 import { KnooviqLogo } from './KnooviqLogo';
 
 export const Footer: React.FC = () => {
@@ -10,235 +10,281 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative bg-slate-100 dark:bg-[#070E1C] border-t border-slate-200 dark:border-white/10 pt-16 pb-12 text-slate-600 dark:text-slate-400 text-xs transition-colors duration-300">
+    <footer className="relative bg-[#F4F8FC] dark:bg-[#070E1C] border-t border-slate-200 dark:border-white/10 pt-16 pb-12 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Top Footer Grid: 5 Enterprise Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-200 dark:border-white/10">
-          
-          {/* Col 1: Brand & Global Delivery (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
-            <KnooviqLogo size="md" />
 
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-xs">
-              KNOOVIQ is a premier enterprise SAP consultancy delivering Digital Core Transformation, Intelligent Supply Chain, Clean Core modernization, and Data & AI solutions across global enterprises.
-            </p>
+        {/* Top Row: Brand Logo on Left, Tagline on Right */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-slate-200 dark:border-white/10">
+          <Link to="/" onClick={scrollToTop} className="flex-shrink-0">
+            <KnooviqLogo size="lg" />
+          </Link>
+          <p className="text-[13px] sm:text-sm text-[#334155] dark:text-slate-300 font-medium leading-[1.7]">
+            Enterprise Core Modernization, Cloud Operations &amp; Digital Intelligence
+          </p>
+        </div>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-sky-500/10 border border-blue-200 dark:border-sky-500/20 text-[#00A3E0] dark:text-cyan-300 font-bold text-xs tracking-wide">
-              <Award className="h-3 w-3" />
-              <span>SAP Platinum Partner Standards</span>
-            </div>
+        {/* Navigation Columns: Exact Match to Header Dropdowns (6 Columns) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-8 pb-10">
 
-            <div className="pt-1 space-y-2 text-slate-600 dark:text-slate-400 text-xs">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="h-4 w-4 text-[#00A3E0] flex-shrink-0 mt-0.5" />
-                <span>
-                  {COMPANY_INFO.headquarters.address}, {COMPANY_INFO.headquarters.city} – {COMPANY_INFO.headquarters.postalCode}, India
-                </span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 text-[#00A3E0] flex-shrink-0" />
-                <a href={`mailto:${COMPANY_INFO.contact.email}`} className="hover:text-[#00A3E0] transition-colors">
-                  {COMPANY_INFO.contact.email}
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-[#00A3E0] flex-shrink-0" />
-                <a href={`tel:${COMPANY_INFO.contact.phone}`} className="hover:text-[#00A3E0] transition-colors">
-                  {COMPANY_INFO.contact.phone}
-                </a>
-              </div>
-            </div>
+          {/* Column 1: About */}
+          <div className="space-y-3.5">
+            <h3 className="font-display text-[13px] sm:text-sm font-semibold uppercase tracking-wider text-[#0F172A] dark:text-white">
+              About
+            </h3>
+            <ul className="space-y-2 text-[13px] sm:text-sm leading-[1.7]">
+              <li>
+                <Link to="/about/the-knooviq-story" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  The KnoovIQ Story
+                </Link>
+              </li>
+              <li>
+                <Link to="/about/visionary-leadership" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Visionary Leadership
+                </Link>
+              </li>
+              <li>
+                <Link to="/about/digital-sap-excellence" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Digital &amp; SAP Excellence
+                </Link>
+              </li>
+              <li>
+                <Link to="/about/our-global-network" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Our Global Network
+                </Link>
+              </li>
+              <li>
+                <Link to="/about/grow-with-us" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Grow With Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/about/knooviq-connect" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  KnoovIQ Connect
+                </Link>
+              </li>
+              <li>
+                <Link to="/about/global-presence" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Global Presence
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Col 2: Enterprise Solutions (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
-            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-              Solutions
+          {/* Column 2: Products */}
+          <div className="space-y-3.5">
+            <h3 className="font-display text-[13px] sm:text-sm font-semibold uppercase tracking-wider text-[#0F172A] dark:text-white">
+              Products
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-[13px] sm:text-sm leading-[1.7]">
               <li>
-                <Link to="/solutions/sap-s4hana" className="hover:text-[#00A3E0] transition-colors">
-                  Digital Core (S/4HANA)
+                <Link to="/exim" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Global Trade &amp; EXIM
                 </Link>
               </li>
               <li>
-                <Link to="/solutions/sap-supply-chain" className="hover:text-[#00A3E0] transition-colors">
-                  Intelligent Supply Chain
+                <Link to="/e-invoice" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  E-Invoicing Solutions
                 </Link>
               </li>
               <li>
-                <Link to="/solutions/sap-finance" className="hover:text-[#00A3E0] transition-colors">
-                  Financial Modernization
+                <Link to="/eway-bill" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  E-Way Bill Management
                 </Link>
               </li>
               <li>
-                <Link to="/solutions/asset-management" className="hover:text-[#00A3E0] transition-colors">
-                  Smart Manufacturing
+                <Link to="/products/gst" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  GST &amp; Tax Compliance
                 </Link>
               </li>
               <li>
-                <Link to="/solutions/sap-cx" className="hover:text-[#00A3E0] transition-colors">
-                  Retail Optimization
+                <Link to="/products/knooviq-ai-consultant" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Knooviq AI Consultant
                 </Link>
               </li>
               <li>
-                <Link to="/solutions/rise-with-sap" className="hover:text-[#00A3E0] transition-colors">
+                <Link to="/products/bank-statement-intelligence" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Bank Intelligence
+                </Link>
+              </li>
+              <li>
+                <Link to="/products/automation-suite" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Automation Suite
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Transformation */}
+          <div className="space-y-3.5">
+            <h3 className="font-display text-[13px] sm:text-sm font-semibold uppercase tracking-wider text-[#0F172A] dark:text-white">
+              Transformation
+            </h3>
+            <ul className="space-y-2 text-[13px] sm:text-sm leading-[1.7]">
+              <li>
+                <Link to="/transformation/sap-s4hana" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  SAP S/4HANA
+                </Link>
+              </li>
+              <li>
+                <Link to="/transformation/erp-transformation" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  ERP Transformation
+                </Link>
+              </li>
+              <li>
+                <Link to="/transformation/digital-transformation" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Digital Transformation
+                </Link>
+              </li>
+              <li>
+                <Link to="/transformation/rise-with-sap" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
                   RISE with SAP
                 </Link>
               </li>
               <li>
-                <Link to="/solutions/grow-with-sap" className="hover:text-[#00A3E0] transition-colors">
-                  GROW with SAP
+                <Link to="/transformation/business-applications" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Business Applications
                 </Link>
               </li>
               <li>
-                <Link to="/solutions" className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1 pt-1">
-                  <span>All Solutions</span>
-                  <span>&rarr;</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Services & Managed Care (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
-            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-              Services
-            </h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/services" className="hover:text-[#00A3E0] transition-colors">
-                  S/4HANA Implementation
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-[#00A3E0] transition-colors">
-                  MAXCare AMS (24/7 Support)
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-[#00A3E0] transition-colors">
-                  ECC to S/4HANA Upgrade
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-[#00A3E0] transition-colors">
+                <Link to="/transformation/system-conversion" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
                   Clean Core Architecture
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-[#00A3E0] transition-colors">
-                  Cybersecurity & GRC
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/gst" className="hover:text-[#00A3E0] transition-colors">
-                  India GST & Compliance
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1 pt-1">
-                  <span>Explore Services</span>
-                  <span>&rarr;</span>
+                <Link to="/transformation/greenfield" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Migration &amp; Modernization
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Data, Analytics & AI (Exactly as in User's Screenshot) (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <div className="flex items-center gap-2">
-              <h3 className="font-display text-xs font-bold tracking-wider text-slate-900 dark:text-white">
-                Data, Analytics & AI
-              </h3>
-              <span className="text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-[#00A3E0] text-white">
-                GEN AI
-              </span>
-            </div>
-            <ul className="space-y-2">
+          {/* Column 4: Cloud & Operations */}
+          <div className="space-y-3.5">
+            <h3 className="font-display text-[13px] sm:text-sm font-semibold uppercase tracking-wider text-[#0F172A] dark:text-white">
+              Cloud &amp; Ops
+            </h3>
+            <ul className="space-y-2 text-[13px] sm:text-sm leading-[1.7]">
               <li>
-                <Link to="/technology/sap-business-ai" className="hover:text-[#00A3E0] transition-colors font-medium">
+                <Link to="/cloud-operations/strategy" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Cloud Strategy
+                </Link>
+              </li>
+              <li>
+                <Link to="/cloud-operations/infrastructure" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Cloud Infrastructure
+                </Link>
+              </li>
+              <li>
+                <Link to="/cloud-operations/aws" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Hyperscalers (AWS/Azure/GCP)
+                </Link>
+              </li>
+              <li>
+                <Link to="/cloud-operations/application-operations" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Application Operations
+                </Link>
+              </li>
+              <li>
+                <Link to="/cloud-operations/monitoring-observability" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Monitoring &amp; APM
+                </Link>
+              </li>
+              <li>
+                <Link to="/cloud-operations/managed-operations" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  24×7 Managed Operations
+                </Link>
+              </li>
+              <li>
+                <Link to="/cloud-operations/security" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Security &amp; Resilience
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Digital Intelligence */}
+          <div className="space-y-3.5">
+            <h3 className="font-display text-[13px] sm:text-sm font-semibold uppercase tracking-wider text-[#0F172A] dark:text-white truncate">
+              Digital Intel
+            </h3>
+            <ul className="space-y-2 text-[13px] sm:text-sm leading-[1.7]">
+              <li>
+                <Link to="/technology/sap-business-ai" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
                   SAP Business AI
                 </Link>
               </li>
               <li>
-                <Link to="/technology/generative-ai" className="hover:text-[#00A3E0] transition-colors font-medium">
+                <Link to="/digital-intelligence/generative-ai" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
                   Generative AI
                 </Link>
               </li>
               <li>
-                <Link to="/technology/ai-agents" className="hover:text-[#00A3E0] transition-colors font-medium">
-                  AI Agents
+                <Link to="/digital-intelligence/ai-agents" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Autonomous AI Agents
                 </Link>
               </li>
               <li>
-                <Link to="/technology/sap-analytics-cloud" className="hover:text-[#00A3E0] transition-colors font-medium">
+                <Link to="/technology/sap-analytics-cloud" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
                   SAP Analytics Cloud
                 </Link>
               </li>
               <li>
-                <Link to="/technology/sap-datasphere" className="hover:text-[#00A3E0] transition-colors font-medium">
+                <Link to="/technology/sap-datasphere" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
                   SAP Datasphere
                 </Link>
               </li>
               <li>
-                <Link to="/technology/intelligent-automation" className="hover:text-[#00A3E0] transition-colors font-medium">
+                <Link to="/digital-intelligence/process-automation" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
                   Intelligent Automation
                 </Link>
               </li>
               <li>
-                <Link to="/technology/data-analytics-ai" className="font-bold text-[#00A3E0] hover:underline flex items-center gap-1 pt-1">
-                  <span>Data & AI Practice Hub</span>
-                  <span>&rarr;</span>
+                <Link to="/digital-intelligence/decision-support" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Decision Intelligence
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 5: Company & Industries (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
-            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-              Company
+          {/* Column 6: Industries */}
+          <div className="space-y-3.5">
+            <h3 className="font-display text-[13px] sm:text-sm font-semibold uppercase tracking-wider text-[#0F172A] dark:text-white">
+              Industries
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-[13px] sm:text-sm leading-[1.7]">
               <li>
-                <Link to="/about/the-knooviq-story" className="hover:text-[#00A3E0] transition-colors">
-                  The Story
+                <Link to="/industries/retail-ecommerce" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Retail &amp; Commerce
                 </Link>
               </li>
               <li>
-                <Link to="/about/visionary-leadership" className="hover:text-[#00A3E0] transition-colors">
-                  Leadership
+                <Link to="/industries/discrete-manufacturing" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Manufacturing
                 </Link>
               </li>
               <li>
-                <Link to="/industries" className="hover:text-[#00A3E0] transition-colors">
-                  Industry Practices
+                <Link to="/industries/automotive-mobility" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Automotive &amp; Mobility
                 </Link>
               </li>
               <li>
-                <Link to="/insights" className="hover:text-[#00A3E0] transition-colors">
-                  Case Studies & Insights
+                <Link to="/industries/hospitals-healthcare" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Health &amp; Life Sciences
                 </Link>
               </li>
               <li>
-                <Link to="/careers" className="hover:text-[#00A3E0] transition-colors">
-                  Careers
+                <Link to="/industries/power-utilities" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Energy &amp; Utilities
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-[#00A3E0] transition-colors">
-                  Contact Us
+                <Link to="/industries/transportation-logistics" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Logistics &amp; Transport
                 </Link>
               </li>
-              <li className="pt-2 border-t border-slate-200 dark:border-white/10">
-                <Link
-                  to="/admin/login"
-                  className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 hover:text-[#00A3E0] font-semibold"
-                >
-                  <Lock className="h-3.5 w-3.5 text-[#00A3E0]" />
-                  <span>Admin Security</span>
+              <li>
+                <Link to="/industries/banking" className="text-[#334155] dark:text-slate-300 font-normal sm:font-medium hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors block leading-[1.7]">
+                  Banking &amp; Finance
                 </Link>
               </li>
             </ul>
@@ -246,34 +292,87 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Security & Architecture Disclaimer */}
-        <div className="py-6 border-b border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-[#00A3E0] flex-shrink-0" />
-            <span>
-              Enterprise Defense-in-Depth: SAP Clean Core Governance, ISO-Certified Security, Automated Audit Logs, and Zero Core Code Contamination.
-            </span>
+        {/* Contact Information & Corporate Credentials Strip (3 Cards matching Image 1) */}
+        <div className="pt-8 border-t border-slate-200 dark:border-white/10">
+
+          {/* 3 Contact Cards: CALL US | EMAIL US | HEAD OFFICE */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+            
+            {/* Card 1: CALL US */}
+            <div className="rounded-2xl p-4 sm:p-5 bg-slate-50 dark:bg-[#071322] border border-slate-200 dark:border-cyan-500/20 shadow-xs flex items-center gap-4 transition-all hover:border-sky-300 dark:hover:border-cyan-500/40">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/15 border border-cyan-500/30 text-[#0077CC] dark:text-cyan-400 flex items-center justify-center shrink-0">
+                <Phone className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#334155] dark:text-slate-400 block mb-0.5">
+                  CALL US
+                </span>
+                <div className="text-[13px] sm:text-sm font-semibold text-[#0F172A] dark:text-white leading-[1.7] truncate">
+                  <a href="tel:+917900073410" className="hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors">
+                    +91-7900073410
+                  </a>
+                  <span className="text-slate-400 mx-1">/</span>
+                  <a href="tel:+918976697001" className="hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors">
+                    +91 89766 97001
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: EMAIL US */}
+            <div className="rounded-2xl p-4 sm:p-5 bg-slate-50 dark:bg-[#071322] border border-slate-200 dark:border-cyan-500/20 shadow-xs flex items-center gap-4 transition-all hover:border-sky-300 dark:hover:border-cyan-500/40">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/15 border border-cyan-500/30 text-[#0077CC] dark:text-cyan-400 flex items-center justify-center shrink-0">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#334155] dark:text-slate-400 block mb-0.5">
+                  EMAIL US
+                </span>
+                <div className="text-[13px] sm:text-sm font-semibold text-[#0F172A] dark:text-white leading-[1.7] truncate">
+                  <a href={`mailto:${COMPANY_INFO.contact.email}`} className="hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors">
+                    {COMPANY_INFO.contact.email}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: HEAD OFFICE */}
+            <div className="rounded-2xl p-4 sm:p-5 bg-slate-50 dark:bg-[#071322] border border-slate-200 dark:border-cyan-500/20 shadow-xs flex items-center gap-4 transition-all hover:border-sky-300 dark:hover:border-cyan-500/40">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/15 border border-cyan-500/30 text-[#0077CC] dark:text-cyan-400 flex items-center justify-center shrink-0">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#334155] dark:text-slate-400 block mb-0.5">
+                  HEAD OFFICE
+                </span>
+                <p className="text-[13px] sm:text-sm font-semibold text-[#0F172A] dark:text-white leading-[1.7]">
+                  1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)
+                </p>
+              </div>
+            </div>
+
           </div>
-          
+
+        </div>
+
+        {/* Bottom Bar: Copyright & Back to Top */}
+        <div className="pt-6 mt-6 border-t border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] sm:text-sm leading-[1.7] text-[#334155] dark:text-slate-300">
+          <p className="text-[#334155] dark:text-slate-300">
+            &copy; {new Date().getFullYear()} <strong className="font-bold text-[#334155] dark:text-slate-300">Knooviq Industries Pvt Ltd</strong>. All rights reserved.
+          </p>
+
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 hover:text-slate-900 dark:hover:text-white transition-colors"
+            className="flex items-center gap-1.5 text-[#334155] dark:text-slate-300 hover:text-[#0077CC] dark:hover:text-cyan-400 transition-colors font-medium cursor-pointer"
+            aria-label="Back to top"
           >
             <span>Back to top</span>
             <ArrowUp className="h-3.5 w-3.5" />
           </button>
         </div>
 
-        {/* Bottom Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <p>© {new Date().getFullYear()} KNOOVIQ Enterprise Solutions. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <span>Global Delivery: Navi Mumbai &bull; Dubai &bull; Singapore &bull; USA</span>
-            <span>Enterprise SAP Consulting</span>
-          </div>
-        </div>
-
       </div>
+
     </footer>
   );
 };

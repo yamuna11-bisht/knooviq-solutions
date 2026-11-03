@@ -347,10 +347,28 @@
   will-change: transform;
 }
 
+.animate-rotate-ltr-all {
+  display: flex;
+  width: max-content;
+  animation: rotateLeftToRight 175s linear infinite;
+  will-change: transform;
+}
+
 .animate-rotate-ltr:hover,
 .animate-rotate-ltr-slow:hover,
-.animate-rotate-ltr-slower:hover {
+.animate-rotate-ltr-slower:hover,
+.animate-rotate-ltr-all:hover {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rotate-ltr,
+  .animate-rotate-ltr-slow,
+  .animate-rotate-ltr-slower,
+  .animate-rotate-ltr-all {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Single-Pass Left-to-Right Floating Motion (No Duplicate Text) */

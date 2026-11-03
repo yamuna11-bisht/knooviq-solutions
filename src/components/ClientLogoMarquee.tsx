@@ -501,6 +501,9 @@ const CLIENTS_LIST_ROW_2: ClientLogoItem[] = [
   }
 ];
 
+// Combined comprehensive list of all enterprise clients in a single continuous track
+const ALL_CLIENTS: ClientLogoItem[] = [...CLIENTS_LIST_ROW_1, ...CLIENTS_LIST_ROW_2];
+
 export const ClientLogoMarquee: React.FC<{
   title?: string;
   subtitle?: string;
@@ -511,138 +514,107 @@ export const ClientLogoMarquee: React.FC<{
   sectorsList?: string[];
   className?: string;
 }> = ({
-  title = "Trusted by Leading Enterprises & Industry Titans",
-  subtitle = "CLIENT PORTFOLIO & TRACK RECORD",
-  description = "Over 18+ years, KNOOVIQ has delivered standard-compliant SAP implementations, digital migrations, and mission-critical managed services for India's largest conglomerates and multinational giants.",
-  badge1 = "38+ Marquee Conglomerates",
-  badge2 = "100% Milestone Delivery Record",
-  badge3 = "Established 2006 Continuous Trust",
-  sectorsList = [
-    'Automotive & Assembly',
-    'Metals & Mining',
-    'FMCG & Beverages',
-    'Global Pharma',
-    'Energy & Power',
-    'Infrastructure & Smart Cities',
-    'Industrial Tech'
-  ],
   className = ""
 }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [isClickPaused, setIsClickPaused] = React.useState(false);
+  const clickTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Pause on click for exactly 2 seconds (2000ms), then automatically resume scrolling
+  // If another client is clicked during the pause, cleanly restart the 2-second pause timer
+  const handleLogoClick = (e: React.MouseEvent, client: ClientLogoItem) => {
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+      clickTimeoutRef.current = null;
+    }
+
+    setIsClickPaused(true);
+
+    clickTimeoutRef.current = setTimeout(() => {
+      setIsClickPaused(false);
+      clickTimeoutRef.current = null;
+    }, 2000);
+  };
+
+  // Keyboard accessibility (Enter / Space)
+  const handleLogoKeyDown = (e: React.KeyboardEvent, client: ClientLogoItem) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleLogoClick(e as unknown as React.MouseEvent, client);
+    }
+  };
+
+  // Cleanup active timer on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Combined pause state: active while mouse hovers OR while 2-second click-pause is running
+  const isPaused = isHovered || isClickPaused;
+
+  const renderClientCard = (client: ClientLogoItem, key: string, isDuplicate = false) => {
+    return (
+      <div
+        key={key}
+        role="button"
+        tabIndex={0}
+        aria-label={`${client.name} - ${client.category}`}
+        aria-hidden={isDuplicate ? undefined : undefined}
+        onClick={(e) => handleLogoClick(e, client)}
+        onKeyDown={(e) => handleLogoKeyDown(e, client)}
+        className="bg-white border border-slate-100 hover:border-slate-300 rounded-2xl px-6 py-3.5 flex flex-col items-center justify-between min-w-[240px] sm:min-w-[260px] h-[96px] flex-shrink-0 transition-colors duration-200 shadow-[0_4px_16px_-2px_rgba(0,0,0,0.25)] hover:shadow-xl group/card relative overflow-hidden cursor-pointer select-none outline-none focus:outline-none focus:ring-0 focus-visible:outline-none ring-0"
+      >
+        <div className="h-11 flex items-center justify-center w-full px-2 pointer-events-none">
+          {client.renderLogo()}
+        </div>
+
+        {/* Clean Category Label */}
+        <div className="flex items-center justify-center w-full pt-1.5 border-t border-slate-100 pointer-events-none">
+          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-tight truncate text-center">
+            {client.category}
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <section className={`py-24 relative overflow-hidden bg-[#FAFBFD] border-b border-slate-200/90 ${className}`}>
-      {/* Background Architectural Dot Matrix Grid Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
+    <section className={`py-6 sm:py-8 relative overflow-hidden bg-gradient-to-r from-[#061224] via-[#0A1931] to-[#002B5B] border-t border-b border-sky-500/20 ${className}`}>
+      {/* Background Architectural Dot Matrix Grid Pattern (Image 1 Color Match) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
 
       {/* Dual Soft Ambient Colored Spotlights */}
-      <div className="absolute -top-24 left-1/4 w-[500px] h-[350px] bg-blue-100/70 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute -bottom-24 right-1/4 w-[500px] h-[350px] bg-indigo-100/60 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -top-24 left-1/4 w-[500px] h-[350px] bg-sky-500/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-24 right-1/4 w-[500px] h-[350px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-14 text-center">
-        {/* Live Status Chip */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white text-[#0A2540] border border-slate-200/90 shadow-sm mb-4 backdrop-blur-md">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span className="tracking-wider">{subtitle}</span>
-        </div>
+      {/* Single Unified Continuous Horizontal Rotating Track: All Clients in One Part */}
+      <div
+        className="relative w-full overflow-hidden py-3"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Crisp Edge Soft Fade (Matching the Deep Dark Navy Blue Background) */}
+        <div className="absolute top-0 left-0 bottom-0 w-6 sm:w-12 bg-gradient-to-r from-[#061224] to-transparent z-20 pointer-events-none" />
+        <div className="absolute top-0 right-0 bottom-0 w-6 sm:w-12 bg-gradient-to-l from-[#002B5B] to-transparent z-20 pointer-events-none" />
 
-        <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
-          {title}
-        </h3>
-
-        <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-3xl mx-auto font-sans leading-relaxed">
-          {description}
-        </p>
-
-        {/* Highlight Metrics */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-slate-700 font-display">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200/90 shadow-xs">
-            <Building2 className="h-4 w-4 text-[#0A2540]" />
-            <span>{badge1}</span>
-          </div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200/90 shadow-xs">
-            <ShieldCheck className="h-4 w-4 text-emerald-600" />
-            <span>{badge2}</span>
-          </div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200/90 shadow-xs">
-            <Award className="h-4 w-4 text-[#0052CC]" />
-            <span>{badge3}</span>
-          </div>
-        </div>
-
-        {/* Sectors Breakdown Bar */}
-        {sectorsList && sectorsList.length > 0 && (
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-            {sectorsList.map((sec, i) => (
-              <span key={i} className="text-[11px] font-mono font-medium px-3 py-1 rounded-lg bg-slate-100/90 text-slate-600 border border-slate-200/60">
-                {sec}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Left-to-Right Continuous Rotating Marquee Ticker Track (Slower & Smoother) */}
-      <div className="relative w-full overflow-hidden py-4 space-y-6">
-        
-        {/* Crisp Edge Soft Fade (Ultra-thin to prevent blurring the cards) */}
-        <div className="absolute top-0 left-0 bottom-0 w-4 sm:w-6 bg-gradient-to-r from-white/60 dark:from-[#030712]/60 to-transparent z-20 pointer-events-none" />
-        <div className="absolute top-0 right-0 bottom-0 w-4 sm:w-6 bg-gradient-to-l from-white/60 dark:from-[#030712]/60 to-transparent z-20 pointer-events-none" />
-
-        {/* Row 1: Rotating Left to Right (Slow Pace ~75s) */}
-        <div className="flex overflow-hidden group">
-          <div className="animate-rotate-ltr-slow flex items-center gap-6 pr-6 group-hover:[animation-play-state:paused]">
-            {[...CLIENTS_LIST_ROW_1, ...CLIENTS_LIST_ROW_1].map((client, idx) => (
-              <div
-                key={`r1-${client.id}-${idx}`}
-                className="bg-white/95 backdrop-blur-xs border border-slate-200/90 hover:border-[#0A2540] rounded-2xl px-6 py-3.5 flex flex-col items-center justify-between min-w-[240px] sm:min-w-[260px] h-[96px] flex-shrink-0 transition-all duration-300 transform hover:-translate-y-1.5 shadow-[0_4px_16px_-4px_rgba(10,37,64,0.06)] hover:shadow-[0_16px_32px_-8px_rgba(10,37,64,0.16)] group/card relative overflow-hidden"
-              >
-                {/* Top Subtle Glowing Accent on Hover */}
-                <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#0052CC] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
-
-                <div className="h-11 flex items-center justify-center w-full px-2">
-                  {client.renderLogo()}
-                </div>
-                
-                <div className="flex items-center justify-between w-full pt-1.5 border-t border-slate-100">
-                  <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-tight truncate max-w-[170px]">
-                    {client.category}
-                  </span>
-                  <span className="text-[10px] font-mono text-[#0052CC] font-bold opacity-0 group-hover/card:opacity-100 transition-opacity">
-                    Partner ✓
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2: Rotating Left to Right (Calm Slower Pace ~88s) */}
-        <div className="flex overflow-hidden group">
-          <div className="animate-rotate-ltr-slower flex items-center gap-6 pr-6 group-hover:[animation-play-state:paused]">
-            {[...CLIENTS_LIST_ROW_2, ...CLIENTS_LIST_ROW_2].map((client, idx) => (
-              <div
-                key={`r2-${client.id}-${idx}`}
-                className="bg-white/95 backdrop-blur-xs border border-slate-200/90 hover:border-[#0052CC] rounded-2xl px-6 py-3.5 flex flex-col items-center justify-between min-w-[240px] sm:min-w-[260px] h-[96px] flex-shrink-0 transition-all duration-300 transform hover:-translate-y-1.5 shadow-[0_4px_16px_-4px_rgba(10,37,64,0.06)] hover:shadow-[0_16px_32px_-8px_rgba(0,82,204,0.16)] group/card relative overflow-hidden"
-              >
-                {/* Top Subtle Glowing Accent on Hover */}
-                <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#0A2540] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
-
-                <div className="h-11 flex items-center justify-center w-full px-2">
-                  {client.renderLogo()}
-                </div>
-                
-                <div className="flex items-center justify-between w-full pt-1.5 border-t border-slate-100">
-                  <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-tight truncate max-w-[170px]">
-                    {client.category}
-                  </span>
-                  <span className="text-[10px] font-mono text-[#0A2540] font-bold opacity-0 group-hover/card:opacity-100 transition-opacity">
-                    Partner ✓
-                  </span>
-                </div>
-              </div>
-            ))}
+        {/* Single Seamless Row: Every Client Scrolling in One Smooth Continuous Loop */}
+        <div className="flex overflow-hidden py-2">
+          <div
+            className="animate-rotate-ltr-all flex items-center will-change-transform"
+            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+          >
+            {/* Primary Track with all 38 clients */}
+            <div className="flex items-center gap-6 pr-6 flex-shrink-0">
+              {ALL_CLIENTS.map((client, idx) => renderClientCard(client, `primary-${client.id}-${idx}`))}
+            </div>
+            {/* Seamless Infinite Loop Duplicate Track with all 38 clients */}
+            <div className="flex items-center gap-6 pr-6 flex-shrink-0" aria-hidden="true">
+              {ALL_CLIENTS.map((client, idx) => renderClientCard(client, `duplicate-${client.id}-${idx}`, true))}
+            </div>
           </div>
         </div>
 

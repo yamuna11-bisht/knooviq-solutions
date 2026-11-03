@@ -8,7 +8,6 @@ import {
   Compass, 
   Layers, 
   CheckCircle2, 
-  ArrowRight, 
   ShieldCheck, 
   Award,
   Zap,
@@ -268,25 +267,16 @@ export const TheKnooviqStoryPage: React.FC<{ onOpenContact: (topic?: string) => 
       <section className="py-20 border-t border-slate-200 dark:border-white/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-            <div className="max-w-2xl">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A2540]">
-                Multi-Sector Domain Expertise
-              </span>
-              <h3 className="font-display text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-2">
-                Proven Exposure Across Diverse Global Industries
-              </h3>
-              <p className="mt-3 text-sm text-slate-600 font-sans">
-                Turnkey SAP implementations engineered to tackle specific regulatory, supply chain, and asset lifecycle challenges.
-              </p>
-            </div>
-            <button
-              onClick={() => onOpenContact('Industry Solutions')}
-              className="btn-primary-gradient shimmer-sweep rounded-2xl px-6 py-3 text-xs font-bold uppercase tracking-wider text-white font-display inline-flex items-center gap-2 self-start md:self-auto shadow-md"
-            >
-              <span>Consult an Industry Expert</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
+          <div className="max-w-2xl mb-14">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A2540]">
+              Multi-Sector Domain Expertise
+            </span>
+            <h3 className="font-display text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-2">
+              Proven Exposure Across Diverse Global Industries
+            </h3>
+            <p className="mt-3 text-sm text-slate-600 font-sans">
+              Turnkey SAP implementations engineered to tackle specific regulatory, supply chain, and asset lifecycle challenges.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
