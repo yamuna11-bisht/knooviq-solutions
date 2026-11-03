@@ -6,7 +6,6 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ClientLogoMarquee } from './components/ClientLogoMarquee';
 import { ContactModal } from './components/ContactModal';
-import { ChatbotWidget } from './components/chatbot/ChatbotWidget';
 import { ScrollToTop } from './components/ScrollToTop';
 
 // Pages
@@ -1007,10 +1006,6 @@ const AppContent: React.FC = () => {
         />
       )}
 
-      {/* Interactive 3D AI Chatbot Assistant on Public Pages */}
-      {!isAdminRoute && (
-        <ChatbotWidget onOpenContact={handleOpenContactModal} />
-      )}
     </div>
   );
 };
