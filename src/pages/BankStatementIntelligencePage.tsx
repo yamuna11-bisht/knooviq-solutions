@@ -246,7 +246,7 @@ export const BankStatementIntelligencePage: React.FC<BankStatementIntelligencePa
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl font-sans">
-                Eliminate manual transcription friction and reconciliation delays. KnoovIQ parses multi-page PDFs, scans, and encrypted statements across global financial institutions, validating opening-to-closing balances with mathematical precision and direct ERP ledger sync.
+                Eliminate manual transcription friction and reconciliation delays. Knooviq parses multi-page PDFs, scans, and encrypted statements across global financial institutions, validating opening-to-closing balances with mathematical precision and direct ERP ledger sync.
               </p>
 
 

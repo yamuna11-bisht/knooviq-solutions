@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { CheckCircle2, Sparkles } from 'lucide-react';
+
 
 interface WhatKnooviqDoesSectionProps {
   onOpenContact?: (service?: string) => void;
@@ -72,27 +72,6 @@ export const WhatKnooviqDoesSection: React.FC<WhatKnooviqDoesSectionProps> = ({ 
                   </span>
                 </div>
               ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
-              <Link
-                to="/solutions"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#0A1931] hover:bg-[#0070C0] text-white font-semibold text-sm sm:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:gap-3.5"
-              >
-                <span>View All Services</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-
-              {onOpenContact && (
-                <button
-                  type="button"
-                  onClick={() => onOpenContact('Enterprise SAP Transformation')}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 hover:border-sky-300 bg-white hover:bg-slate-50 text-slate-700 hover:text-[#0070C0] font-semibold text-sm sm:text-base transition-all duration-200"
-                >
-                  <span>Talk to an Architect</span>
-                </button>
-              )}
             </div>
           </motion.div>
 

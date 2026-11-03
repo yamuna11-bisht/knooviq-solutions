@@ -23,26 +23,22 @@ const PHILOSOPHY_CARDS = [
   {
     title: 'Innovation',
     description: 'Embracing new ideas, technologies, and smarter ways of working.',
-    icon: Lightbulb,
-    tenet: 'Progressive Engineering'
+    icon: Lightbulb
   },
   {
     title: 'Integrity',
     description: 'Building trust through transparency, accountability, and ethical decisions.',
-    icon: ShieldCheck,
-    tenet: 'Uncompromising Ethics'
+    icon: ShieldCheck
   },
   {
     title: 'People',
     description: 'Empowering people, encouraging growth, and creating a culture of collaboration.',
-    icon: Users,
-    tenet: 'Human-Centered Growth'
+    icon: Users
   },
   {
     title: 'Excellence',
     description: 'Striving for high standards, continuous improvement, and meaningful results.',
-    icon: Award,
-    tenet: 'Sustained Mastery'
+    icon: Award
   }
 ];
 
@@ -234,7 +230,7 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ’s leadership philosophy is focused on innovation, integrity, excellence, collaboration, people development, and long-term value creation.
+              Knooviq’s leadership philosophy is focused on innovation, integrity, excellence, collaboration, people development, and long-term value creation.
             </motion.p>
           </div>
 
@@ -271,11 +267,6 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans font-normal">
                       {card.description}
                     </p>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[11px] font-mono text-[#0052CC] dark:text-cyan-400 font-semibold">
-                    <span>{card.tenet}</span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   </div>
                 </motion.div>
               );
@@ -494,7 +485,7 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-3.5 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ is driven by a future-focused mindset—embracing innovation, technology, collaboration, and new opportunities to create sustainable growth and meaningful impact.
+              Knooviq is driven by a future-focused mindset—embracing innovation, technology, collaboration, and new opportunities to create sustainable growth and meaningful impact.
             </motion.p>
           </div>
 
@@ -574,33 +565,59 @@ export const VisionaryLeadershipPage: React.FC<{ onOpenContact: (topic?: string)
               );
             })}
           </div>
+        </div>
+      </section>
 
-          {/* Compact Strategic Forward Action Banner */}
+      {/* =========================================================================
+          FINAL CTA
+          Same structure, design, font, and style as Digital & SAP Excellence
+          ========================================================================= */}
+      <section className="py-16 sm:py-20 relative overflow-hidden bg-gradient-to-b from-[#0A192F] via-[#0A2540] to-[#071324] text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mt-10 p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4"
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-sm mb-4 backdrop-blur-md"
           >
-            <div>
-              <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider block">
-                EXECUTIVE PARTNERSHIP INITIATIVE
-              </span>
-              <h4 className="font-display text-base sm:text-lg font-bold text-white mt-0.5">
-                Ready to Architect Tomorrow's Enterprise Foundation?
-              </h4>
-              <p className="text-xs text-slate-400 font-sans mt-0.5">
-                Engage directly with our senior advisory board to assess your clean-core & AI readiness.
-              </p>
-            </div>
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Next Steps</span>
+          </motion.div>
 
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
+          >
+            Ready to Lead with Vision and Purpose?
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8"
+          >
+            Engage directly with our strategic consulting leadership to explore transformative pathways, clean core architecture, and sustainable value creation.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center"
+          >
             <button
-              onClick={() => onOpenContact('Visionary Leadership: Future-Ready Enterprise Strategy')}
-              className="btn-primary-gradient shimmer-sweep rounded-xl px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white font-display inline-flex items-center gap-2 shadow-lg flex-shrink-0 cursor-pointer"
+              onClick={() => onOpenContact('Visionary Leadership: Executive Consultation')}
+              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Connect with Advisory Desk</span>
-              <ArrowRight className="h-3.5 w-3.5" />
+              <span>Contact Us</span>
+              <ArrowRight className="h-4 w-4" />
             </button>
           </motion.div>
         </div>

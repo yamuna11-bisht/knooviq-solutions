@@ -295,7 +295,7 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
       {/* =========================================================================
           SECTION 1 — DIGITAL & SAP CAPABILITIES
           Heading: “Technology. Expertise. Transformation.”
-          Supporting: “KnoovIQ combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.”
+          Supporting: “Knooviq combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.”
           6 Interactive Capability Cards
           ========================================================================= */}
       <section id="capabilities-section" className="py-20 sm:py-24 relative overflow-hidden bg-white dark:bg-[#030712]">
@@ -332,7 +332,7 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.
+              Knooviq combines SAP expertise, technical capabilities, and industry knowledge to help organizations simplify operations, improve efficiency, and accelerate digital transformation.
             </motion.p>
           </div>
 
@@ -727,17 +727,11 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex items-center justify-center"
           >
             <button
-              onClick={scrollToCapabilities}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-xl border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-display text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer backdrop-blur-md"
-            >
-              Explore Our Solutions
-            </button>
-            <button
               onClick={() => onOpenContact('Digital & SAP Excellence Consultation')}
-              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-7 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Contact Us</span>
               <ArrowRight className="h-4 w-4" />

@@ -125,7 +125,7 @@ export const VendorManagementPage: React.FC<VendorManagementPageProps> = ({ onOp
   }, [startArchAutoCycle]);
 
   // =========================================================================
-  // STATE: Section 5 - Before vs. After KnoovIQ Impact Switcher
+  // STATE: Section 5 - Before vs. After Knooviq Impact Switcher
   // =========================================================================
   const [impactView, setImpactView] = useState<'after' | 'before'>('after');
 
@@ -1019,7 +1019,7 @@ export const VendorManagementPage: React.FC<VendorManagementPageProps> = ({ onOp
                   READY FOR ENTERPRISE VENDOR AUTOMATION?
                 </span>
                 <h3 className="font-display text-3xl sm:text-4xl font-black leading-tight">
-                  Accelerate Your Vendor Governance With KnoovIQ
+                  Accelerate Your Vendor Governance With Knooviq
                 </h3>
                 <p className="text-sm sm:text-base text-blue-100 font-sans leading-relaxed">
                   Join leading enterprises running zero-delay, audit-proof vendor management natively inside SAP. Speak with our certified solution architects today.

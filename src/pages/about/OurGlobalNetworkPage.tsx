@@ -390,7 +390,7 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
       {/* =========================================================================
           4. NEW SECTION 1 — GLOBAL CONNECTIVITY
           Heading: “Connected Across Markets”
-          Supporting: “KnoovIQ brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.”
+          Supporting: “Knooviq brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.”
           3 Premium Cards with visual network connecting lines
           ========================================================================= */}
       <section className="py-20 sm:py-24 relative overflow-hidden bg-[#FAFBFD] dark:bg-[#060D1A] border-y border-slate-200/90 dark:border-white/5">
@@ -427,7 +427,7 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto"
             >
-              KnoovIQ brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.
+              Knooviq brings together expertise, technology, and business relationships to create meaningful connections across markets and industries.
             </motion.p>
           </div>
 
@@ -826,7 +826,7 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
       {/* =========================================================================
           7. FINAL CTA
           Heading: “Let’s Build Stronger Global Connections.”
-          Supporting: “Connect with KnoovIQ to explore opportunities for collaboration, technology, and business growth.”
+          Supporting: “Connect with Knooviq to explore opportunities for collaboration, technology, and business growth.”
           Buttons: “Connect With Us” & “Explore Our Solutions”
           ========================================================================= */}
       <section className="py-16 sm:py-20 relative overflow-hidden bg-gradient-to-b from-[#071324] via-[#0A2540] to-[#0A192F] text-white">
@@ -859,7 +859,7 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8"
           >
-            Connect with KnoovIQ to explore opportunities for collaboration, technology, and business growth.
+            Connect with Knooviq to explore opportunities for collaboration, technology, and business growth.
           </motion.p>
 
           <motion.div
@@ -867,20 +867,14 @@ export const OurGlobalNetworkPage: React.FC<{ onOpenContact: (topic?: string) =>
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex items-center justify-center"
           >
             <button
               onClick={() => onOpenContact('Global Network Collaboration')}
-              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-7 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Connect With Us</span>
+              <span>Contact Us</span>
               <ArrowRight className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => onOpenContact('Global Network: Explore Solutions')}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-xl border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-display text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer backdrop-blur-md"
-            >
-              Explore Our Solutions
             </button>
           </motion.div>
         </div>

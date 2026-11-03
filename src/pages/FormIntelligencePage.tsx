@@ -210,7 +210,7 @@ export const FormIntelligencePage: React.FC<FormIntelligencePageProps> = ({ onOp
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl font-sans">
-                Unlock registration packets, KYC applications, tax declarations, and technical inspection checklists. KnoovIQ combines spatial layout models and neural handwriting recognition to extract fields, validate signatures, and eliminate manual data entry with verifiable enterprise precision.
+                Unlock registration packets, KYC applications, tax declarations, and technical inspection checklists. Knooviq combines spatial layout models and neural handwriting recognition to extract fields, validate signatures, and eliminate manual data entry with verifiable enterprise precision.
               </p>
 
 

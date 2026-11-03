@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { 
   PhoneCall, 
   Phone, 
@@ -42,7 +41,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop" 
-            alt="KnoovIQ Connect Executive Communication"
+            alt="Knooviq Connect Executive Communication"
             className="w-full h-full object-cover object-center"
           />
           {/* Mild Contrast Scrim: Clear modern workspace photo with soft text shading */}
@@ -68,7 +67,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] leading-[1.15] mb-6"
             >
-              KnoovIQ <span className="hero-gradient-cyan font-black">Connect</span>
+              Knooviq <span className="hero-gradient-cyan font-black">Connect</span>
             </motion.h1>
 
             <motion.p 
@@ -104,7 +103,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
       </section>
 
       {/* Shared Sub-Navigation Bar */}
-      <AboutSubnav activeTabTitle="KnoovIQ Connect" />
+      <AboutSubnav activeTabTitle="Knooviq Connect" />
 
       {/* =========================================================================
           SECTION 1 — CONNECT WITH KNOOVIQ (INTERACTIVE 3D CONNECTION HUB)
@@ -136,7 +135,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
             >
-              Connect With KnoovIQ
+              Connect With Knooviq
             </motion.h2>
 
             <motion.p
@@ -158,8 +157,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               {/* 01: Business Enquiries */}
               <motion.div
                 whileHover={{ y: -4, scale: 1.015 }}
-                onClick={() => onOpenContact('Business Enquiries')}
-                className="rounded-2xl p-5 bg-slate-900/90 border border-cyan-400/30 hover:border-cyan-400 hover:shadow-[0_10px_25px_rgba(0,240,255,0.2)] backdrop-blur-xl transition-all duration-300 cursor-pointer group"
+                className="rounded-2xl p-5 bg-slate-900/90 border border-cyan-400/30 hover:border-cyan-400 hover:shadow-[0_10px_25px_rgba(0,240,255,0.2)] backdrop-blur-xl transition-all duration-300 cursor-default group"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-9 w-9 rounded-xl bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center shrink-0 shadow-sm">
@@ -182,8 +180,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               {/* 03: Partnerships & Alliances */}
               <motion.div
                 whileHover={{ y: -4, scale: 1.015 }}
-                onClick={() => onOpenContact('Partnerships & Alliances')}
-                className="rounded-2xl p-5 bg-slate-900/90 border border-violet-400/30 hover:border-violet-400 hover:shadow-[0_10px_25px_rgba(139,92,246,0.2)] backdrop-blur-xl transition-all duration-300 cursor-pointer group"
+                className="rounded-2xl p-5 bg-slate-900/90 border border-violet-400/30 hover:border-violet-400 hover:shadow-[0_10px_25px_rgba(139,92,246,0.2)] backdrop-blur-xl transition-all duration-300 cursor-default group"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-9 w-9 rounded-xl bg-violet-500/20 border border-violet-400/30 text-violet-300 flex items-center justify-center shrink-0 shadow-sm">
@@ -241,8 +238,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               {/* 02: SAP & Digital Solutions */}
               <motion.div
                 whileHover={{ y: -4, scale: 1.015 }}
-                onClick={() => onOpenContact('SAP & Digital Solutions')}
-                className="rounded-2xl p-5 bg-slate-900/90 border border-sky-400/30 hover:border-sky-400 hover:shadow-[0_10px_25px_rgba(0,163,224,0.2)] backdrop-blur-xl transition-all duration-300 cursor-pointer group"
+                className="rounded-2xl p-5 bg-slate-900/90 border border-sky-400/30 hover:border-sky-400 hover:shadow-[0_10px_25px_rgba(0,163,224,0.2)] backdrop-blur-xl transition-all duration-300 cursor-default group"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-9 w-9 rounded-xl bg-sky-500/20 border border-sky-400/30 text-sky-300 flex items-center justify-center shrink-0 shadow-sm">
@@ -265,8 +261,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               {/* 04: Career & Talent */}
               <motion.div
                 whileHover={{ y: -4, scale: 1.015 }}
-                onClick={() => onOpenContact('Career & Talent')}
-                className="rounded-2xl p-5 bg-slate-900/90 border border-emerald-400/30 hover:border-emerald-400 hover:shadow-[0_10px_25px_rgba(16,185,129,0.2)] backdrop-blur-xl transition-all duration-300 cursor-pointer group"
+                className="rounded-2xl p-5 bg-slate-900/90 border border-emerald-400/30 hover:border-emerald-400 hover:shadow-[0_10px_25px_rgba(16,185,129,0.2)] backdrop-blur-xl transition-all duration-300 cursor-default group"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-9 w-9 rounded-xl bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 flex items-center justify-center shrink-0 shadow-sm">
@@ -379,8 +374,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
                   whileHover={{ y: -6, scale: 1.015 }}
-                  onClick={() => onOpenContact(`Partner Ecosystem: ${node.title}`)}
-                  className="rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between group h-full"
+                  className="rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-default flex flex-col justify-between group h-full"
                 >
                   <div>
                     {/* Visual Image Banner with Clean Gradient Scrim */}
@@ -416,11 +410,6 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         {node.desc}
                       </p>
                     </div>
-                  </div>
-
-                  <div className="px-5 pb-5 pt-2 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs font-mono font-bold text-[#0052CC] dark:text-cyan-400">
-                    <span>Explore Pathway</span>
-                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1.5 transition-transform" />
                   </div>
                 </motion.div>
               );
@@ -546,11 +535,6 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         {stage.desc}
                       </p>
                     </div>
-
-                    <div className="pt-4 mt-5 border-t border-slate-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono font-bold text-[#0052CC] dark:text-cyan-400">
-                      <span>Milestone {stage.step}</span>
-                      <span className="group-hover:translate-x-1.5 transition-transform">→</span>
-                    </div>
                   </motion.div>
                 );
               })}
@@ -672,8 +656,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
                   whileHover={{ y: -6, scale: 1.015 }}
-                  onClick={() => onOpenContact(`Expertise Consultation: ${item.domain}`)}
-                  className={`rounded-3xl border border-white/10 ${item.border} bg-slate-900/90 overflow-hidden shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between group h-full`}
+                  className={`rounded-3xl border border-white/10 ${item.border} bg-slate-900/90 overflow-hidden shadow-lg transition-all duration-300 cursor-default flex flex-col justify-between group h-full`}
                 >
                   <div>
                     {/* Visual Image Header */}
@@ -708,11 +691,6 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         {item.desc}
                       </p>
                     </div>
-                  </div>
-
-                  <div className="px-5 pb-4 pt-2 border-t border-white/10 flex items-center justify-between text-xs font-mono font-bold text-cyan-400">
-                    <span>Connect With Lead</span>
-                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1.5 transition-transform" />
                   </div>
                 </motion.div>
               );
@@ -820,6 +798,61 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
         </div>
       </section>
 
+      {/* =========================================================================
+          FINAL CTA
+          Same structure, design, font, and style as Digital & SAP Excellence
+          ========================================================================= */}
+      <section className="py-16 sm:py-20 relative overflow-hidden bg-gradient-to-b from-[#0A192F] via-[#0A2540] to-[#071324] text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-sm mb-4 backdrop-blur-md"
+          >
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Next Steps</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]"
+          >
+            Ready to Connect with Our Leadership?
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8"
+          >
+            Schedule a confidential dialogue with our enterprise consulting partners to discuss strategic technology roadmap, S/4HANA migrations, or specialized project teams.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center"
+          >
+            <button
+              onClick={() => onOpenContact('Knooviq Connect: Leadership Consultation')}
+              className="w-full sm:w-auto btn-primary-gradient shimmer-sweep px-8 py-3.5 rounded-xl text-white font-display text-xs font-bold uppercase tracking-wider shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
     </div>
   );
 };
@@ -869,7 +902,7 @@ const ConnectFormSection: React.FC = () => {
         email: formData.workEmail,
         phone: formData.phoneNumber || '+91 Not Provided',
         service: formData.enquiryType,
-        subject: `KnoovIQ Connect: ${formData.enquiryType}`,
+        subject: `Knooviq Connect: ${formData.enquiryType}`,
         message: formData.message
       });
 

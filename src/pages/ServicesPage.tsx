@@ -270,7 +270,7 @@ export const ServicesPage: React.FC<{ onOpenContact: (topic?: string) => void }>
               <div className="rounded-2xl bg-slate-50 dark:bg-[#050B17]/90 p-6 border border-slate-200 dark:border-sky-500/20 space-y-3">
                 <h4 className="industry-category-title text-[#00A3E0] dark:text-cyan-300 flex items-center gap-2 font-mono">
                   <Sparkles className="h-4 w-4" />
-                  <span>KnoovIQ Strategic Architecture</span>
+                  <span>Knooviq Strategic Architecture</span>
                 </h4>
                 <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
                   {current.knooviqAdvantage.map((adv, aIdx) => (

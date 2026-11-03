@@ -13,12 +13,12 @@ import {
 } from 'lucide-react';
 
 export const ABOUT_TABS = [
-  { path: '/about/the-knooviq-story', altPath: '/about/story', label: 'The KnoovIQ Story', icon: BookOpen },
+  { path: '/about/the-knooviq-story', altPath: '/about/story', label: 'The Knooviq Story', icon: BookOpen },
   { path: '/about/visionary-leadership', altPath: '/about/leadership', label: 'Visionary Leadership', icon: Award },
   { path: '/about/digital-sap-excellence', altPath: '/about/excellence', label: 'Digital & SAP Excellence', icon: Sparkles },
   { path: '/about/our-global-network', altPath: '/about/network', label: 'Our Global Network', icon: Globe2 },
   { path: '/about/grow-with-us', altPath: '/about/grow', label: 'Grow With Us', icon: TrendingUp },
-  { path: '/about/knooviq-connect', altPath: '/about/connect', label: 'KnoovIQ Connect', icon: PhoneCall },
+  { path: '/about/knooviq-connect', altPath: '/about/connect', label: 'Knooviq Connect', icon: PhoneCall },
   { path: '/about/global-presence', altPath: '/about/presence', label: 'Global Presence', icon: MapPin },
 ];
 

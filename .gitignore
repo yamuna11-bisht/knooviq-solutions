@@ -31,3 +31,6 @@ dist-ssr
 # Scratch & temporary workspace files
 scratch/
 *.ps1
+
+# Raw video uploads
+*.MOV

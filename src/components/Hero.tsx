@@ -1,319 +1,191 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  ArrowRight,
-  Sparkles,
-  Globe,
-  X,
-  Play,
-  Pause,
-  RotateCw
-} from 'lucide-react';
-import { Hero3DCanvas, GlobeDisplayMode, GLOBAL_HUBS, GlobalHub } from './3d/Hero3DCanvas';
+import { Zap, Layers, Brain, Globe2, Sparkles } from 'lucide-react';
 
 interface HeroProps {
-  onOpenContact: (service?: string) => void;
-  onExploreServices: () => void;
+  onOpenContact?: (service?: string) => void;
+  onExploreServices?: () => void;
 }
 
-const TICKER_ITEMS = [
-  '⚡ SAP S/4HANA Clean Core Migration',
-  '🛡️ SLA-Governed Managed AMS Services',
-  '🌐 SAP BTP Cloud & CPI Enterprise Integration',
-  '🚀 Near-Zero Downtime Cutover Framework',
-  '💎 Certified SAP Functional & Technical Architects',
-  '🔒 Strict Enterprise Security & Non-Disclosure Governance',
-  '📍 Global Delivery Footprint',
+const dynamicPhrases = [
+  { text: 'Intelligent Technology', gradient: 'from-[#00F0FF] via-[#00A3E0] to-[#818CF8]' },
+  { text: 'Clean Core SAP Systems', gradient: 'from-[#38BDF8] via-[#00A3E0] to-[#6366F1]' },
+  { text: 'Autonomous AI Ecosystems', gradient: 'from-[#22D3EE] via-[#0284C7] to-[#A855F7]' },
+  { text: 'Next-Gen Cloud Architecture', gradient: 'from-[#67E8F9] via-[#0284C7] to-[#3B82F6]' },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onOpenContact, onExploreServices }) => {
-  const [globeMode, setGlobeMode] = useState<GlobeDisplayMode>('global');
-  const [selectedHub, setSelectedHub] = useState<GlobalHub | null>(null);
-  const [isRotating, setIsRotating] = useState(true);
+const highlights = [
+  {
+    icon: Zap,
+    title: 'Near-Zero Cutover',
+    desc: 'Risk-Resilient Deployment',
+    color: 'text-amber-400',
+    border: 'hover:border-amber-400/40',
+  },
+  {
+    icon: Layers,
+    title: 'Clean Core Architecture',
+    desc: 'SAP S/4HANA & BTP Governance',
+    color: 'text-cyan-400',
+    border: 'hover:border-cyan-400/40',
+  },
+  {
+    icon: Brain,
+    title: 'Autonomous AI Workflows',
+    desc: 'Intelligent Enterprise Automation',
+    color: 'text-indigo-400',
+    border: 'hover:border-indigo-400/40',
+  },
+  {
+    icon: Globe2,
+    title: 'Global Delivery Mesh',
+    desc: 'High-Availability Cloud Scaling',
+    color: 'text-emerald-400',
+    border: 'hover:border-emerald-400/40',
+  },
+];
 
-  const handleResetView = () => {
-    setSelectedHub(null);
-    setIsRotating(true);
-    setGlobeMode('global');
-  };
+export const Hero: React.FC<HeroProps> = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  // Rotating dynamic heading timer (changes smoothly every 3.2s)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPhraseIndex((prev) => (prev + 1) % dynamicPhrases.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Video autoplay
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        console.warn('Autoplay waiting for user gesture or loading:', err);
+      }
+    };
+
+    playVideo();
+  }, []);
 
   return (
     <section
       id="hero"
-      className="dark relative min-h-[750px] lg:min-h-[860px] xl:h-screen max-h-[1050px] overflow-hidden flex flex-col justify-between bg-gradient-to-b from-[#020617] via-[#050C1F] to-[#030712] text-white select-none transition-colors duration-500"
+      className="relative w-full overflow-hidden bg-[#020617] flex items-center justify-center select-none pt-[72px] sm:pt-[80px] lg:pt-[84px] min-h-[600px] sm:min-h-[660px] lg:h-screen lg:min-h-[680px] lg:max-h-[1080px]"
     >
+      {/* 100% Screen Cover Background Video (Seamless 60fps Loop) */}
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover object-top"
+        style={{
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+        }}
+      >
+        <source src="/videos/hero-video.mp4?v=20261102" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-      {/* 1. FULL-BLEED 3D GLOBE CANVAS (Centered, Unobstructed Full Screen Background) */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <Hero3DCanvas
-          globeMode={globeMode}
-          onGlobeModeChange={setGlobeMode}
-          selectedHub={selectedHub}
-          onSelectHub={setSelectedHub}
-          isRotating={isRotating}
-        />
-      </div>
+      {/* Multi-layered Translucent Dark Blue Shade with Ambient Cyan Glow (Lightened for video clarity) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#020b22]/50 via-[#041538]/20 to-[#020a1c]/35 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_45%,rgba(0,163,224,0.15),transparent_65%)] z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/60 via-transparent to-[#020617]/15 z-10 pointer-events-none" />
 
-      {/* Cybernetic Dot Grid Mesh & Aurora Radiance Overlays (Futuristic Atmospheric Depth) */}
-      <div className="absolute inset-0 bg-[radial-gradient(#00A3E018_1.2px,transparent_1.2px)] [background-size:32px_32px] pointer-events-none opacity-40 z-[1]" />
-      <div className="aurora-sphere-1 top-10 left-1/4 bg-[#00F0FF]/15 pointer-events-none z-[1] blur-3xl" />
-      <div className="aurora-sphere-2 top-1/3 right-1/4 bg-[#8B5CF6]/20 pointer-events-none z-[1] blur-3xl" />
-      <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#030712]/20 to-[#030712]/70 pointer-events-none z-[1]" />
+      {/* Subtle Optical Scanline Grid for depth without obscuring video clarity */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-15 z-10"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
 
-      {/* 2. TOP 3D HUD CONTROL DECK & MINIMAL BRANDING */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 sm:pt-24 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
-
-        {/* Left Status Indicator */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="pointer-events-auto flex items-center gap-2 rounded-full border border-cyan-500/30 bg-[#070E1C]/85 px-3.5 py-1.5 backdrop-blur-xl shadow-[0_0_20px_rgba(0,163,224,0.2)]"
-        >
+      {/* Hero Foreground Content: Dynamic Heading, Subtitle & Interactive Telemetry Highlights */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-10 sm:py-14 lg:py-16 flex flex-col justify-center items-start text-left">
+        
+        {/* Live Status Pill with Pulsing Indicator */}
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/70 border border-cyan-400/35 text-cyan-300 text-xs font-semibold tracking-wide backdrop-blur-md mb-4 sm:mb-6 shadow-[0_0_20px_rgba(0,163,224,0.25)]">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
           </span>
-          <span className="text-xs font-bold text-slate-200 font-display">
-            Global Enterprise Delivery Network
+          <span className="font-mono uppercase tracking-wider text-[10px] sm:text-[11px] text-cyan-200">
+            Active Enterprise Platform
           </span>
-          <span className="text-[9px] font-mono font-extrabold uppercase tracking-wider text-cyan-300 bg-cyan-400/20 px-2 py-0.5 rounded-full border border-cyan-400/30">
-            3D Globe
+          <span className="text-white/30">•</span>
+          <Sparkles className="w-3 h-3 text-cyan-400" />
+          <span className="font-mono text-[10px] sm:text-[11px] text-slate-300 hidden sm:inline">
+            Real-Time Intelligence
           </span>
-        </motion.div>
+        </div>
 
-        {/* Center Minimal Branding Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-[#070E1C]/60 px-4 py-1 backdrop-blur-md"
-        >
-          <span className="text-xs font-extrabold tracking-widest text-cyan-200 font-display uppercase">
-            KNOOVIQ Industries
+        {/* Dynamic Changing Headline: Transforms Smoothly Between Core Domains */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display tracking-tight text-white leading-[1.22] sm:leading-[1.18] pb-1 sm:pb-2 max-w-5xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] overflow-visible">
+          Transforming Enterprises Through{' '}
+          <span className="inline-block relative min-h-[1.25em] overflow-visible pb-1">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={phraseIndex}
+                initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, y: -18, filter: 'blur(6px)' }}
+                transition={{ duration: 0.45, ease: 'easeInOut' }}
+                className={`inline-block pb-2.5 sm:pb-3.5 -mb-2.5 sm:-mb-3.5 pr-2 overflow-visible bg-gradient-to-r ${dynamicPhrases[phraseIndex].gradient} bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(0,163,224,0.65)]`}
+              >
+                {dynamicPhrases[phraseIndex].text}
+              </motion.span>
+            </AnimatePresence>
           </span>
-          <span className="text-slate-600">•</span>
-          <span className="text-xs font-semibold text-slate-300 font-display">
-            Enterprise Architecture
-          </span>
-        </motion.div>
+        </h1>
 
-        {/* Right 3D Controls HUD */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 rounded-2xl border border-cyan-500/30 bg-[#070E1C]/90 p-1.5 backdrop-blur-2xl shadow-xl shadow-cyan-950/50"
-        >
+        {/* Supporting Subheading */}
+        <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+          Empowering global businesses through SAP solutions, enterprise transformation, intelligent automation and next-generation digital technologies to accelerate innovation and sustainable growth.
+        </p>
 
-          {/* Orbit Play / Pause Toggle */}
-          <button
-            onClick={() => setIsRotating(!isRotating)}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${isRotating
-                ? 'bg-cyan-400/20 text-cyan-300 border border-cyan-400/30'
-                : 'bg-white/10 text-slate-400'
-              }`}
-            title={isRotating ? 'Pause 3D Rotation' : 'Resume 3D Rotation'}
-          >
-            {isRotating ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
-            <span className="hidden md:inline">{isRotating ? 'Orbit Active' : 'Paused'}</span>
-          </button>
-
-          {/* Reset View Button */}
-          <button
-            onClick={handleResetView}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-            title="Reset Perspective"
-          >
-            <RotateCw className="h-3.5 w-3.5" />
-          </button>
-        </motion.div>
-
-      </div>
-
-      {/* 3. LEFT-ALIGNED HERO CONTENT (Shifted Upwards) */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-start pt-3 sm:pt-5 lg:pt-6 pb-4 items-start text-left pointer-events-none">
-
-        <div className="max-w-xl lg:max-w-2xl xl:max-w-3xl text-left">
-          {/* Futuristic Eyebrow Badge */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-slate-950/80 px-3.5 py-1.5 backdrop-blur-xl mb-4 pointer-events-auto"
-          >
-            <span className="flex h-2 w-2 rounded-full bg-cyan-400">
-              <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-cyan-400 opacity-75" />
-            </span>
-            <span className="text-xs font-semibold tracking-wide uppercase text-cyan-200">
-              Enterprise SAP S/4HANA &amp; AI Cloud Architect
-            </span>
-            <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-400/15 border border-emerald-400/30 px-2 py-0.5 rounded-full">
-              LIVE 3D
-            </span>
-          </motion.div>
-
-          {/* Majestic Hero Headline (Refined Enterprise Scale) */}
-          <motion.h1
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.16] text-left"
-          >
-            Architecting the Intelligent{' '}
-            <span className="bg-gradient-to-r from-cyan-300 via-sky-200 to-[#00A3E0] bg-clip-text text-transparent">
-              Enterprise Core
-            </span>
-          </motion.h1>
-
-          {/* Subtitle / Value Proposition (Comfortable 16-18px body text) */}
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="mt-4 text-base sm:text-lg text-slate-300 max-w-xl text-left leading-relaxed font-normal"
-          >
-            Clean Core migrations, AI-powered SAP BTP cloud integrations, and mission-critical 24/7 AMS engineered with near-zero cutover downtime.
-          </motion.p>
-
-          {/* Hero CTAs */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-6 flex flex-wrap items-center justify-start gap-3 sm:gap-3.5 pointer-events-auto"
-          >
-            <button
-              onClick={() => onOpenContact('SAP S/4HANA Clean Core Transformation')}
-              className="btn-primary-gradient shimmer-sweep rounded-xl px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold tracking-wide text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all flex items-center gap-2 cursor-pointer active:scale-95"
-            >
-              <span>Consult Enterprise Architect</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-
-            <button
-              onClick={onExploreServices}
-              className="rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-cyan-400/60 px-5 sm:px-6 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white backdrop-blur-xl transition-all shadow-sm flex items-center gap-2 cursor-pointer active:scale-95"
-            >
-              <span>Explore Services &amp; Practices</span>
-              <ArrowRight className="h-3.5 w-3.5 text-cyan-400" />
-            </button>
-          </motion.div>
-
-          {/* Quick Capability Chips */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.45 }}
-            className="mt-5 hidden sm:flex flex-wrap items-center justify-start gap-2 sm:gap-2.5 pointer-events-auto"
-          >
-            {[
-              { label: 'Clean Core Architecture', icon: '💎' },
-              { label: 'Near-Zero Cutover Downtime', icon: '⚡' },
-              { label: 'SAP Joule & GenAI Ready', icon: '🤖' },
-              { label: '24/7 SLA-Governed AMS', icon: '🛡️' },
-            ].map((chip, idx) => (
+        {/* Floating Enterprise Telemetry Highlights Strip (Fills Space with High-Credibility Architecture Metrics) */}
+        <div className="mt-8 sm:mt-12 w-full grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 pointer-events-auto">
+          {highlights.map((item, idx) => {
+            const Icon = item.icon;
+            return (
               <div
                 key={idx}
-                className="flex items-center gap-1.5 rounded-xl border border-cyan-500/20 bg-[#070E1E]/70 px-3 py-1.5 backdrop-blur-md text-[11px] font-semibold text-slate-300 shadow-sm hover:border-cyan-400/50 hover:text-cyan-200 transition-colors cursor-default"
+                className={`group flex items-center gap-3 p-2.5 sm:p-3.5 rounded-2xl bg-slate-950/45 hover:bg-slate-900/65 backdrop-blur-md border border-white/10 ${item.border} transition-all duration-300 shadow-xl hover:shadow-cyan-950/40 hover:-translate-y-0.5 cursor-default`}
               >
-                <span>{chip.icon}</span>
-                <span>{chip.label}</span>
-              </div>
-            ))}
-          </motion.div>
-
-        </div>
-
-        {/* Floating Subtle Interaction Hint */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="pointer-events-auto rounded-full border border-cyan-400/30 bg-[#070E1E]/85 px-4 py-1.5 backdrop-blur-xl shadow-2xl flex items-center gap-2 mt-5 self-start text-left"
-        >
-          <Globe className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
-          <span className="text-xs font-semibold text-slate-200 font-display">
-            Move cursor to tilt 3D perspective • Click any regional delivery hub on the globe to explore
-          </span>
-        </motion.div>
-
-        {/* 4. INTERACTIVE GLOBAL HUB INSPECTOR (Number-Free & Clean) */}
-        <AnimatePresence>
-          {selectedHub && (
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 30, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="pointer-events-auto fixed bottom-16 right-4 sm:right-8 z-50 max-w-sm sm:max-w-md w-[calc(100%-2rem)] rounded-3xl border border-sky-400/50 bg-[#070E1E]/95 p-6 backdrop-blur-2xl shadow-[0_0_50px_rgba(0,163,224,0.4)] text-white"
-            >
-              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3.5">
-                <div className="flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full animate-ping" style={{ backgroundColor: selectedHub.color }} />
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-sky-300">
-                    Global Delivery Footprint
-                  </span>
+                <div className={`p-2 rounded-xl bg-white/5 border border-white/10 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-                <button
-                  onClick={() => setSelectedHub(null)}
-                  className="rounded-full p-1 text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-                  aria-label="Close Inspector"
-                >
-                  <X className="h-4 w-4" />
-                </button>
+                <div className="min-w-0">
+                  <h4 className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-display">
+                    {item.title}
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-slate-400 truncate font-mono">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
-
-              <h3 className="font-display text-lg sm:text-xl font-bold text-white mb-1">
-                {selectedHub.name}
-              </h3>
-              <p className="text-xs text-sky-300 mb-3 font-semibold">{selectedHub.region}</p>
-
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-400/20 text-emerald-200 border border-emerald-400/30 font-semibold">
-                  Active Operations
-                </span>
-                <span className="text-xs font-semibold text-slate-200">
-                  {selectedHub.metric}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => {
-                    onOpenContact(selectedHub.name);
-                    setSelectedHub(null);
-                  }}
-                  className="flex-1 btn-primary-gradient rounded-xl py-2.5 px-4 text-xs font-bold text-white tracking-wider flex items-center justify-center gap-2 font-display"
-                >
-                  <span>Connect With Regional Team</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </button>
-                <button
-                  onClick={() => setSelectedHub(null)}
-                  className="rounded-xl border border-white/20 bg-white/10 py-2.5 px-3 text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/20 transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-      </div>
-
-      {/* 5. INFINITE ANIMATED MARQUEE TICKER (Ultra-Sleek Cybernetic Anchor) */}
-      <div className="py-3.5 border-t border-cyan-500/20 bg-[#020617]/90 backdrop-blur-xl overflow-hidden relative z-10 shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
-        <div className="marquee-content gap-8">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
-            <div key={idx} className="flex items-center gap-3 whitespace-nowrap text-xs sm:text-sm font-bold text-cyan-300 font-display">
-              <span>{item}</span>
-              <span className="text-cyan-400/40">•</span>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
       </div>
 
+      {/* Subtle bottom edge gradient so video flows cleanly into page */}
+      <div className="absolute inset-x-0 bottom-0 h-10 sm:h-16 pointer-events-none bg-gradient-to-t from-[#020617] to-transparent z-10" />
     </section>
   );
 };

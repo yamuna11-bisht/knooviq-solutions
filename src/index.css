@@ -575,6 +575,9 @@
   line-height: 1.45;
   font-weight: 600;
   letter-spacing: -0.01em;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
 }
 
 @media (min-width: 640px) {
@@ -599,3 +602,34 @@
     line-height: 1.4;
   }
 }
+
+
+/* ==========================================================================
+   Google Translate Seamless Enterprise Overrides
+   ========================================================================== */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}
+
