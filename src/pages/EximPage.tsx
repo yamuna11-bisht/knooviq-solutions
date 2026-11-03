@@ -1191,13 +1191,6 @@ export const EximPage: React.FC<EximPageProps> = ({ onOpenContact }) => {
 
                   <div className="pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
                     <span className="text-[11px] font-mono text-slate-400">SAP Standard API Compliant</span>
-                    <button
-                      onClick={() => onOpenContact(`EXIM SAP Integration: ${activeSapData.label}`)}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-blue-600 dark:text-cyan-300 hover:underline cursor-pointer"
-                    >
-                      <span>Discuss Architecture</span>
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
