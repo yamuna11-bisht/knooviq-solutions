@@ -13,14 +13,104 @@ export const Footer: React.FC = () => {
     <footer className="relative bg-[#F4F8FC] dark:bg-[#070E1C] border-t border-slate-200 dark:border-white/10 pt-16 pb-12 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Top Row: Brand Logo on Left, Tagline on Right */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-slate-200 dark:border-white/10">
+        {/* Top Row: Brand Logo on Left, Tagline in Center, Social Media Strip on Right */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/10">
           <Link to="/" onClick={scrollToTop} className="flex-shrink-0">
             <KnooviqLogo size="lg" />
           </Link>
-          <p className="text-[13px] sm:text-sm text-[#334155] dark:text-slate-300 font-medium leading-[1.7]">
+
+          <p className="text-[13px] sm:text-sm text-[#334155] dark:text-slate-300 font-medium leading-[1.7] max-w-xl">
             Enterprise Core Modernization, Cloud Operations &amp; Digital Intelligence
           </p>
+
+          {/* Official Brand Social Icons Suite: Instagram, Facebook, YouTube, LinkedIn, X (Twitter) */}
+          <div className="flex items-center gap-2.5 shrink-0" aria-label="Official social media profiles">
+            {/* 1. Official Instagram App Icon */}
+            <a
+              href="https://www.instagram.com/knooviq_industries_pvt.ltd?exln=YWMza3g1eGlhMTJi&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              title="Instagram (@knooviq_industries_pvt.ltd)"
+              className="group inline-flex items-center justify-center transition-transform hover:scale-108 active:scale-95"
+            >
+              <svg className="w-9 h-9 rounded-xl shadow-xs transition-shadow duration-200 group-hover:shadow-md" viewBox="0 0 36 36" fill="none">
+                <defs>
+                  <linearGradient id="ig-official-full-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#FFDC80" />
+                    <stop offset="25%" stopColor="#F77737" />
+                    <stop offset="50%" stopColor="#FD1D1D" />
+                    <stop offset="75%" stopColor="#C13584" />
+                    <stop offset="100%" stopColor="#833AB4" />
+                  </linearGradient>
+                </defs>
+                <rect width="36" height="36" rx="9" fill="url(#ig-official-full-grad)" />
+                <rect x="8.5" y="8.5" width="19" height="19" rx="5.5" stroke="#FFFFFF" strokeWidth="2.2" fill="none" />
+                <circle cx="18" cy="18" r="4.8" stroke="#FFFFFF" strokeWidth="2.2" fill="none" />
+                <circle cx="23.2" cy="12.8" r="1.3" fill="#FFFFFF" />
+              </svg>
+            </a>
+
+            {/* 2. Official Facebook Icon */}
+            <a
+              href="https://www.facebook.com/profile.php?id=61596080467082"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              title="Facebook (@Knooviq)"
+              className="group inline-flex items-center justify-center transition-transform hover:scale-108 active:scale-95"
+            >
+              <svg className="w-9 h-9 rounded-xl shadow-xs transition-shadow duration-200 group-hover:shadow-md" viewBox="0 0 36 36" fill="none">
+                <rect width="36" height="36" rx="9" fill="#1877F2" />
+                <path d="M23.5 18.5h-3.6v13.5h-5.6V18.5H11.5v-4.8h2.8v-3.1c0-3.8 2.3-5.8 5.7-5.8 1.6 0 3.1.1 3.5.2v4h-2.3c-1.8 0-2.2.9-2.2 2.2v2.5h4.4l-.6 4.8z" fill="#FFFFFF" />
+              </svg>
+            </a>
+
+            {/* 3. Official YouTube Icon */}
+            <a
+              href="https://www.youtube.com/@KnooviqConnect"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              title="YouTube (@KnooviqConnect)"
+              className="group inline-flex items-center justify-center transition-transform hover:scale-108 active:scale-95"
+            >
+              <svg className="w-9 h-9 rounded-xl shadow-xs transition-shadow duration-200 group-hover:shadow-md" viewBox="0 0 36 36" fill="none">
+                <rect width="36" height="36" rx="9" fill="#FF0000" />
+                <path d="M14.5 12l9 6-9 6V12z" fill="#FFFFFF" />
+              </svg>
+            </a>
+
+            {/* 4. Official LinkedIn Icon */}
+            <a
+              href="https://www.linkedin.com/company/knooviq-industries/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              title="LinkedIn (@knooviq-industries)"
+              className="group inline-flex items-center justify-center transition-transform hover:scale-108 active:scale-95"
+            >
+              <svg className="w-9 h-9 rounded-xl shadow-xs transition-shadow duration-200 group-hover:shadow-md" viewBox="0 0 36 36" fill="none">
+                <rect width="36" height="36" rx="9" fill="#0A66C2" />
+                <path d="M11.5 14h3.6v11h-3.6V14zm1.8-5.8c1.2 0 2.1.9 2.1 2.1s-.9 2.1-2.1 2.1c-1.2 0-2.1-.9-2.1-2.1s.9-2.1 2.1-2.1zM17.5 14h3.4v1.5h.1c.5-.9 1.6-1.8 3.3-1.8 3.5 0 4.2 2.3 4.2 5.3V25h-3.6v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V25h-3.6V14z" fill="#FFFFFF" />
+              </svg>
+            </a>
+
+            {/* 5. Official X / Twitter Icon */}
+            <a
+              href="https://x.com/Knooviqindust"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X (Twitter)"
+              title="X / Twitter (@Knooviqindust)"
+              className="group inline-flex items-center justify-center transition-transform hover:scale-108 active:scale-95"
+            >
+              <svg className="w-9 h-9 rounded-xl shadow-xs transition-shadow duration-200 group-hover:shadow-md" viewBox="0 0 36 36" fill="none">
+                <rect width="36" height="36" rx="9" fill="#000000" />
+                <path d="M22.5 9h2.8l-6.1 7 7.2 9.5h-5.6l-4.4-5.8-5 5.8H8.5l6.6-7.5L8.5 9h5.8l4 5.3L22.5 9zm-1 14.8h1.6L14 10.6h-1.7l9.2 13.2z" fill="#FFFFFF" />
+              </svg>
+            </a>
+          </div>
         </div>
 
         {/* Navigation Columns: Exact Match to Header Dropdowns (6 Columns) */}
