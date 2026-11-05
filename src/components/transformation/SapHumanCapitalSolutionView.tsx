@@ -228,7 +228,7 @@ export const SapHumanCapitalSolutionView: React.FC<SapHumanCapitalSolutionViewPr
         >
           <img 
             src="/images/sap_app_humancapital_3d_clean.jpg" 
-            alt="SAP SuccessFactors Talent Intelligence Hub" 
+            alt="Intelligent People Management, Dynamic Skills Ontology & Global Payroll" 
             className="w-full h-full object-cover object-center lg:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
           />
 
@@ -358,12 +358,12 @@ export const SapHumanCapitalSolutionView: React.FC<SapHumanCapitalSolutionViewPr
           >
             <img 
               src="/images/sap_app_humancapital_3d_clean.jpg" 
-              alt="SAP SuccessFactors Talent Intelligence Hub" 
+              alt="Intelligent People Management, Dynamic Skills Ontology & Global Payroll" 
               className="max-w-full max-h-[90vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
             />
             <div className="absolute bottom-4 left-4 right-4 text-center">
               <span className="px-4 py-2 rounded-full bg-black/80 border border-white/20 text-xs font-mono font-bold text-purple-300 backdrop-blur-md shadow-xl">
-                SAP SuccessFactors // Talent Intelligence Hub & Skills Graph (3D)
+                SAP SuccessFactors // Intelligent People Management, Dynamic Skills Ontology & Global Payroll
               </span>
             </div>
           </div>

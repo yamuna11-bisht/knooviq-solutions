@@ -1873,7 +1873,7 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
         >
           <img 
             src={heroVisual.image} 
-            alt={currentData.appTitle} 
+            alt={currentData.heroHeadline} 
             className="w-full h-full object-cover object-center lg:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
           />
 
@@ -1974,7 +1974,7 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
           >
             <img 
               src={heroVisual.image} 
-              alt={currentData.appTitle}
+              alt={currentData.heroHeadline}
               className="max-w-full max-h-[90vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
             />
             <div className="absolute bottom-4 left-4 right-4 text-center">
