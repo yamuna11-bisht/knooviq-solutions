@@ -326,7 +326,7 @@ export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact 
           <img 
             src="/images/cloud/public_cloud_hero.jpg" 
             alt="Build and Run Your Business on Public Cloud - Reference Architecture showing connected devices, enterprise services, and cloud compute" 
-            className="w-full h-full object-cover object-center md:object-[82%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 filter brightness-[0.9] contrast-105"
+            className="w-full h-full object-cover object-center md:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
             loading="eager"
           />
           {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}

@@ -227,8 +227,8 @@ export const CloudAdoptionPage: React.FC<CloudAdoptionPageProps> = ({ onOpenCont
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img 
             src="/images/cloud/cloud_adoption_hero.jpg" 
-            alt="Enterprise Cloud Architecture visualization showing connected business applications, hybrid infrastructure, and secure data movement" 
-            className="w-full h-full object-cover object-right sm:object-right md:object-[80%_center]"
+            alt="Move to the Cloud with Confidence - Execution-Led Migration, Modernization, and Hybrid Operations" 
+            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
           />
           {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#040B17]/95 via-[#040B17]/80 sm:via-[#040B17]/60 md:via-[#040B17]/45 to-transparent pointer-events-none" />
