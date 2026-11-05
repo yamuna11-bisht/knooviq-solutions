@@ -242,7 +242,7 @@ export const SapCustomerExperienceSolutionView: React.FC<SapCustomerExperienceSo
         >
           <img 
             src="/images/sap_app_cx_3d_clean.jpg" 
-            alt="SAP Omnichannel Commerce Command Center" 
+            alt="Composable Omnichannel Commerce, Real-Time CDP & Unified Customer Experience" 
             className="w-full h-full object-cover object-center lg:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
           />
 
@@ -372,12 +372,12 @@ export const SapCustomerExperienceSolutionView: React.FC<SapCustomerExperienceSo
           >
             <img 
               src="/images/sap_app_cx_3d_clean.jpg" 
-              alt="SAP Omnichannel Commerce Command Center" 
+              alt="Composable Omnichannel Commerce, Real-Time CDP & Unified Customer Experience" 
               className="max-w-full max-h-[90vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
             />
             <div className="absolute bottom-4 left-4 right-4 text-center">
               <span className="px-4 py-2 rounded-full bg-black/80 border border-white/20 text-xs font-mono font-bold text-amber-300 backdrop-blur-md shadow-xl">
-                SAP Commerce Cloud // Omnichannel Journey & CDP Command Center (3D)
+                SAP Customer Experience // Composable Omnichannel Commerce, Real-Time CDP & Unified Customer Experience
               </span>
             </div>
           </div>

@@ -104,7 +104,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
             src="/images/sap_btp_hero_team_handshake.png"
-            alt="SAP BTP Enterprise Agility Platform"
+            alt="Enterprise Agility via SAP Business Technology Platform"
             className="w-full h-full object-cover object-[70%_top] select-none"
           />
         </div>
