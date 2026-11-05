@@ -22,8 +22,7 @@ import {
   TrendingUp,
   Users,
   Factory,
-  Cpu,
-  ArrowRight
+  Cpu
 } from 'lucide-react';
 import { AboutSubnav } from '../../components/AboutSubnav';
 import { COMPANY_INFO } from '../../data/knooviqData';

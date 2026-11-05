@@ -19,8 +19,7 @@ import {
   Database,
   Building2,
   ChevronRight,
-  Clock,
-  ArrowRight
+  Clock
 } from 'lucide-react';
 import { AboutSubnav } from '../../components/AboutSubnav';
 
