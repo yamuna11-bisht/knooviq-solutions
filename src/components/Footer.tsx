@@ -53,11 +53,12 @@ export const Footer: React.FC = () => {
 
             {/* 2. Official Facebook Icon */}
             <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href="https://www.facebook.com/profile.php?id=61596080467082"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
-              title="Facebook (Link coming soon)"
-              className="group inline-flex items-center justify-center transition-transform hover:scale-108 active:scale-95 cursor-pointer"
+              title="Facebook (@Knooviq)"
+              className="group inline-flex items-center justify-center transition-transform hover:scale-108 active:scale-95"
             >
               <svg className="w-9 h-9 rounded-xl shadow-xs transition-shadow duration-200 group-hover:shadow-md" viewBox="0 0 36 36" fill="none">
                 <rect width="36" height="36" rx="9" fill="#1877F2" />
