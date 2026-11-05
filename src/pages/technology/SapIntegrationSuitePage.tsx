@@ -95,7 +95,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
           <img
             src="/images/sap_integration_suite_ipaas_event_mesh.png"
             alt="SAP Integration Suite Global Interconnected Enterprise iPaaS & Event Mesh"
-            className="w-full h-full object-cover object-[65%_top] select-none"
+            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
           />
         </div>
 

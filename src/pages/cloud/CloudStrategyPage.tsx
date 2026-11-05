@@ -343,7 +343,7 @@ export const CloudStrategyPage: React.FC<ChildPageProps> = ({ onOpenContact }) =
           <img 
             src="/images/cloud/strategy_hero.jpg" 
             alt="Enterprise Cloud Strategy Infrastructure Overview and Architecture Review in Modern Data Center" 
-            className="w-full h-full object-cover object-right sm:object-right md:object-[80%_center]"
+            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
           />
           {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#040B17]/95 via-[#040B17]/80 sm:via-[#040B17]/60 md:via-[#040B17]/45 to-transparent pointer-events-none" />

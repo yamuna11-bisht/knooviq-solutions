@@ -104,7 +104,7 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
           <img
             src="/images/sap_datasphere_boardroom_analytics.png"
             alt="SAP Datasphere - Unify Enterprise Data Without Moving A Single Physical Byte"
-            className="w-full h-full object-cover object-right lg:object-[65%_center] brightness-110 contrast-105 saturate-[1.05]"
+            className="w-full h-full object-cover object-right lg:object-[68%_center] select-none"
           />
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>

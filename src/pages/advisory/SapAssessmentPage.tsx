@@ -147,7 +147,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           <img
             src="/images/assessment/sap-assessment-hero.jpg"
             alt="Enterprise SAP Landscape Assessment Diagnostic Dashboard"
-            className="w-full h-full object-cover object-top lg:object-[82%_top] brightness-105 contrast-105 select-none"
+            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
           />
         </div>
 
