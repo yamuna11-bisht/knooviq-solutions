@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -13,8 +13,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   Gauge,
-  Cpu,
-  X
+  Cpu
+
 } from 'lucide-react';
 
 interface PipelineStage {
@@ -38,7 +38,22 @@ interface PipelineStage {
 export const DataToIntelligenceSection: React.FC = () => {
   const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Manual click on any stage: immediately switch and pause auto-cycle for 10 seconds
+  const handleStageClick = (idx: number) => {
+    setActiveStageIndex(idx);
+    setIsPaused(true);
+
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 10000);
+  };
+
 
   const stages: PipelineStage[] = [
     {
@@ -231,14 +246,23 @@ export const DataToIntelligenceSection: React.FC = () => {
     }
   ];
 
-  // Auto-cycle through the 5 stages every 5 seconds unless hovered/interacted
+  // Auto-cycle through the 5 stages every 2 seconds when not paused
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
       setActiveStageIndex(prev => (prev + 1) % stages.length);
-    }, 5500);
+    }, 2000);
     return () => clearInterval(interval);
   }, [isPaused, stages.length]);
+
+  // Clean up 10-second pause timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const currentStage = stages[activeStageIndex];
 
@@ -250,8 +274,8 @@ export const DataToIntelligenceSection: React.FC = () => {
     <section
       id="data-to-intelligence"
       className="relative py-24 sm:py-32 bg-[#060A14] text-white overflow-hidden select-none border-y border-slate-800/80"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+
+
     >
       {/* Self-Contained Keyframes for Living Wave Laser Beam */}
       <style>{`
@@ -428,7 +452,7 @@ export const DataToIntelligenceSection: React.FC = () => {
               return (
                 <div
                   key={stage.name}
-                  onClick={() => setActiveStageIndex(idx)}
+                  onClick={() => handleStageClick(idx)}
                   className="flex flex-col items-center text-center cursor-pointer group transition-all duration-300"
                 >
                   {/* Floating Nodal Portal (No Card Box, Just Atmospheric Orb) */}
@@ -608,8 +632,8 @@ export const DataToIntelligenceSection: React.FC = () => {
               {/* Right Column: Clean High-Resolution Stage Architecture Visualization */}
               <div className="lg:col-span-6 flex flex-col items-center justify-center">
                 <div
-                  onClick={() => setPreviewImage(currentStage.image)}
-                  className="relative w-full rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 shadow-[0_0_40px_rgba(0,0,0,0.6)] cursor-pointer group"
+
+                  className="relative w-full rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 shadow-[0_0_40px_rgba(0,0,0,0.6)] group"
                 >
                   {/* Top Ambient Laser Edge */}
                   <div
@@ -635,36 +659,7 @@ export const DataToIntelligenceSection: React.FC = () => {
 
       </div>
 
-      {/* Fullscreen Lightbox Modal for Architecture Inspection */}
-      <AnimatePresence>
-        {previewImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-md"
-            onClick={() => setPreviewImage(null)}
-          >
-            <div
-              className="relative max-w-6xl w-full rounded-2xl overflow-hidden border border-slate-700 bg-slate-950 shadow-2xl"
-              onClick={e => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setPreviewImage(null)}
-                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-900/80 text-white hover:bg-slate-800 border border-slate-700 transition-colors"
-                aria-label="Close Preview"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <img
-                src={previewImage}
-                alt="Architecture Diagram Full View"
-                className="w-full h-auto max-h-[85vh] object-contain mx-auto"
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </section>
   );
 };

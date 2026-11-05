@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Building2, 
-  Factory, 
-  HardHat, 
-  HeartPulse, 
-  Truck, 
-  Store, 
+import {
+  Building2,
+  Factory,
+  HardHat,
+  HeartPulse,
+  Truck,
+  Store,
   Briefcase
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
 
 interface IndustryCardItem {
   id: string;
@@ -18,6 +18,7 @@ interface IndustryCardItem {
   categoryLabel: string;
   description: string;
   image: string;
+  imagePosition?: string;
   highlights: string[];
   icon: React.ComponentType<{ className?: string }>;
   link: string;
@@ -35,7 +36,7 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
       tag: 'INDUSTRY 4.0',
       categoryLabel: 'Manufacturing & Auto',
       description: 'Synchronizing real-time shop-floor MES telemetry with SAP S/4HANA for predictive asset uptime, automated MRP, and zero-defect quality control.',
-      image: '/images/manufacturing_industry.jpg',
+      image: '/images/home_industrial_manufacturing.jpg',
       highlights: ['MES Integration', 'Predictive Maintenance', 'MRP Live Optimization'],
       icon: Factory,
       link: '/industries/industrial-manufacturing'
@@ -46,7 +47,7 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
       tag: 'CONNECTED YARD',
       categoryLabel: 'Logistics & Transportation',
       description: 'End-to-end yard execution, multi-modal route sequencing, and voice-assisted RF wave picking with zero latency.',
-      image: '/images/distribution_hero_3d.jpg',
+      image: '/images/home_supply_chain_logistics.jpg',
       highlights: ['SAP TM & EWM', 'Dynamic Route Dispatch', 'Yard Telemetry'],
       icon: Truck,
       link: '/industries/distribution'
@@ -57,7 +58,7 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
       tag: 'GxP & FDA',
       categoryLabel: 'Life Sciences & Pharma',
       description: 'Cold-chain telemetry monitoring, serialization track-and-trace, and automated FDA/GMP regulatory audit trails.',
-      image: '/images/healthcare_industry.jpg',
+      image: '/images/home_healthcare_life_sciences.jpg',
       highlights: ['Serialization Vault', 'Regulatory Audit Logs', 'Hospital Inventory'],
       icon: HeartPulse,
       link: '/industries/hospitals-healthcare'
@@ -68,7 +69,7 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
       tag: 'STORE OPERATIONS',
       categoryLabel: 'Stores & Channels',
       description: 'Unified management of retail stores, franchise networks, registers, and localized branch stock replenishment.',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+      image: '/images/home_retail_store_operations.jpg',
       highlights: ['Master Data Sync', 'Store Register Control', 'Store Manager Hub'],
       icon: Store,
       link: '/industries/retail-ecommerce'
@@ -79,7 +80,7 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
       tag: 'ASSET INTELLIGENCE',
       categoryLabel: 'Capital Projects & Assets',
       description: 'Full lifecycle governance across capital engineering projects, contractor SLAs, and heavy equipment IoT telemetry.',
-      image: '/images/real_estate_smart_twin.jpg',
+      image: '/images/home_infrastructure_utilities.jpg',
       highlights: ['BIM & EPC Systems', 'Fleet Telemetry', 'Contractor SLA Audit'],
       icon: HardHat,
       link: '/industries/oil-gas'
@@ -90,7 +91,8 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
       tag: 'FINANCIAL CORE',
       categoryLabel: 'Financial Operations',
       description: 'Universal journal financial ledger consolidation, automated multi-GAAP reconciliations, and statutory EXIM reporting.',
-      image: '/images/sap_app_finance_3d.jpg',
+      image: '/images/home_banking_financial_services.jpg',
+      imagePosition: 'object-top',
       highlights: ['Universal Journal', 'Multi-GAAP Consolidation', 'Statutory Compliance'],
       icon: Building2,
       link: '/industries/financial-services'
@@ -98,8 +100,8 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
   ];
 
   return (
-    <section 
-      id="industries" 
+    <section
+      id="industries"
       className="relative py-16 sm:py-20 lg:py-24 bg-[#F8FAFC] text-slate-900 overflow-hidden select-none border-b border-slate-200"
     >
       {/* Background Soft Gradients */}
@@ -107,7 +109,7 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-100/30 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ========================================================================= */}
         {/* SECTION HEADER                                                            */}
         {/* ========================================================================= */}
@@ -148,14 +150,14 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
               >
                 {/* 1. TOP IMAGE BANNER - 50% Pure Photo */}
                 <div className="relative h-1/2 w-full overflow-hidden bg-slate-100 shrink-0">
-                  <img 
-                    src={sol.image} 
+                  <img
+                    src={sol.image}
                     alt={sol.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" 
+                    className={`w-full h-full object-cover ${sol.imagePosition || 'object-center'} group-hover:scale-105 transition-transform duration-500`}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors pointer-events-none" />
-                  
+
                   {/* Floating Tag Pill (Top-Right Dark Badge) */}
                   <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-md bg-slate-950/80 border border-white/20 text-[9px] font-mono font-bold text-sky-300 uppercase tracking-wider backdrop-blur-md shadow-xs">
                     {sol.tag}
@@ -164,7 +166,7 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
 
                 {/* 2. CARD CONTENT BODY - 50% Height */}
                 <div className="h-1/2 p-3.5 sm:p-4 flex flex-col justify-between space-y-2.5 overflow-hidden">
-                  
+
                   <div className="space-y-1.5">
                     {/* Category Label & Icon Indicator */}
                     <div className="flex items-center justify-between">
@@ -177,11 +179,11 @@ export const HomeIndustriesSection: React.FC<HomeIndustriesSectionProps> = () =>
                     </div>
 
                     {/* Title - Bold & Compact */}
-                    <Link to={sol.link}>
-                      <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors leading-snug">
-                        {sol.title}
-                      </h3>
-                    </Link>
+
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0070C0] transition-colors leading-snug">
+                      {sol.title}
+                    </h3>
+
 
                     {/* Description - Snug & Concise */}
                     <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">

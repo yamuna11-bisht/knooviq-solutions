@@ -238,7 +238,7 @@ export const KnooviqAIConsultantPage: React.FC<KnooviqAIConsultantPageProps> = (
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-slate-300/80 dark:border-cyan-500/40 bg-slate-950 group">
                 <img
-                  src="/images/ai_consultant_core.jpg"
+                  src="/images/ai_consultant_hero.jpg"
                   alt="3D abstract intelligence core sculpture with crystalline glass facets and luminous orbital rings"
                   className="w-full h-[450px] sm:h-[510px] object-cover object-center select-none group-hover:scale-103 transition-transform duration-700"
                 />

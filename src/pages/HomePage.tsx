@@ -45,7 +45,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContact }) => {
       {/* 6. Why KNOOVIQ: Bold Typographic Statement & 4 Pillars (Innovation, Intelligence, Scalability, Reliability) */}
       <WhyKnooviqTypographySection />
 
-      {/* 7. Case Studies / Featured Solutions: Smart Facilities, Cloud Infrastructure, Enterprise Automation */}
+      {/* 7. Enterprise CTA Banner */}
       <FeaturedSolutionsSection onOpenContact={onOpenContact} />
     </div>
   );

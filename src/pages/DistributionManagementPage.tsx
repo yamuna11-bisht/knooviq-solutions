@@ -221,7 +221,7 @@ export const DistributionManagementPage: React.FC<DistributionManagementPageProp
             <div className="lg:col-span-5 relative">
               <div className="relative h-[380px] sm:h-[460px] lg:h-[520px] rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-950 group">
                 <img
-                  src="/images/distribution_hero_3d.jpg"
+                  src="/images/distribution_management_hero.jpg"
                   alt="3D Digital Distribution Network with Autonomous Warehouses and Fleet Connectivity"
                   className="w-full h-full object-cover object-center select-none group-hover:scale-105 transition-transform duration-700"
                 />

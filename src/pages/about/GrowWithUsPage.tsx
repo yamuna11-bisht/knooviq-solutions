@@ -170,10 +170,10 @@ const OPPORTUNITY_CATEGORIES = [
   {
     id: 'sap',
     name: 'SAP',
-    shortDesc: 'SAP consulting, implementation, support, and related opportunities.',
-    longDesc: 'Lead high-stakes SAP transformations including S/4HANA migration, Clean Core implementations, BTP microservices, and 24/7 mission-critical AMS.',
+    shortDesc: 'ABAP, S/4HANA, BTP, Clean Core development, and SAP consulting.',
+    longDesc: 'Lead high-stakes SAP transformations including ABAP on HANA, Cloud ABAP development, S/4HANA migrations, Clean Core extensibility, BTP microservices, and 24/7 mission-critical AMS.',
     icon: Database,
-    focusAreas: ['S/4HANA Advisory', 'SAP BTP Development', 'Functional Specialization', 'AMS & Operational Support'],
+    focusAreas: ['ABAP & Cloud ABAP', 'ABAP on HANA (RAP / CAP)', 'S/4HANA Advisory & Migration', 'SAP BTP & Clean Core', 'Functional Specialization (FICO / MM / SD)', 'SAP Fiori & Modern UI5', 'AMS & Operational Support'],
     impact: 'Enabling seamless ERP operations for Fortune-tier multi-entity corporations.'
   },
   {
@@ -220,7 +220,7 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
         const nextIdx = (currentIdx + 1) % OPPORTUNITY_CATEGORIES.length;
         return OPPORTUNITY_CATEGORIES[nextIdx];
       });
-    }, 1000);
+    }, 3500);
   }, []);
 
   const handleCategoryClick = (cat: typeof OPPORTUNITY_CATEGORIES[0]) => {
@@ -234,7 +234,7 @@ export const GrowWithUsPage: React.FC<{ onOpenContact: (topic?: string) => void 
     }
     categoryPauseTimerRef.current = setTimeout(() => {
       startCategoryAutoCycle();
-    }, 5000);
+    }, 15000);
   };
 
   useEffect(() => {

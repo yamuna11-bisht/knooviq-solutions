@@ -123,7 +123,7 @@ export interface EnquirySubmission {
   full_name: string;
   company: string;
   email: string;
-  phone: string;
+  phone?: string;
   service: string;
   industry?: string;
   country?: string;
@@ -138,7 +138,7 @@ export interface ContactSubmission {
   id?: string;
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   company: string;
   service: string;
   subject?: string;
@@ -153,7 +153,7 @@ export interface JobApplicationSubmission {
   job_id?: string;
   full_name: string;
   email: string;
-  phone: string;
+  phone?: string;
   position: string;
   experience: string;
   education?: string;

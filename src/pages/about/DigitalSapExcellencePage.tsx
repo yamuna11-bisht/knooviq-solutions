@@ -208,8 +208,8 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
     <div className="pb-0 bg-[#F8FAFC] dark:bg-[#030712] text-slate-900 dark:text-white transition-colors duration-500 overflow-hidden">
       
       {/* Dynamic Background Aurora Blobs */}
-      <div className="aurora-sphere-1 top-20 left-1/4 bg-[#00A3E0]/15 dark:bg-[#00F0FF]/15 pointer-events-none" />
-      <div className="aurora-sphere-2 top-96 right-10 bg-[#6366F1]/15 dark:bg-[#8B5CF6]/20 pointer-events-none" />
+      <div className="aurora-sphere-1 top-[680px] left-1/4 bg-[#00A3E0]/15 dark:bg-[#00F0FF]/15 pointer-events-none" />
+      <div className="aurora-sphere-2 top-[980px] right-10 bg-[#6366F1]/15 dark:bg-[#8B5CF6]/20 pointer-events-none" />
 
       {/* =========================================================================
           HERO HEADER
@@ -220,13 +220,13 @@ export const DigitalSapExcellencePage: React.FC<{ onOpenContact: (topic?: string
         {/* Clean Background Image with Mild Left Contrast Scrim */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/digital_excellence_hero.jpg" 
+            src="/images/digital_sap_excellence_hero.jpg" 
             alt="Digital and SAP Excellence Enterprise Network"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center lg:object-right"
           />
           {/* Mild Contrast Scrim: Infrastructure clearly visible with soft text shading */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-950/35 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+
+
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
