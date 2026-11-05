@@ -221,18 +221,18 @@ export const CloudAdoptionPage: React.FC<CloudAdoptionPageProps> = ({ onOpenCont
           adoption through a structured, secure, and business-aligned approach.
           CTA buttons: Explore Our Approach | Talk to Our Experts
           ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[580px] lg:min-h-[620px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
         
         {/* Full-Bleed Enterprise Background Image */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img 
             src="/images/cloud/cloud_adoption_hero.jpg" 
             alt="Move to the Cloud with Confidence - Execution-Led Migration, Modernization, and Hybrid Operations" 
-            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
           />
-          {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#040B17]/95 via-[#040B17]/80 sm:via-[#040B17]/60 md:via-[#040B17]/45 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#040B17] to-transparent pointer-events-none" />
+
+
+
 
           {/* Top Hairline Accent */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent" />
@@ -242,7 +242,8 @@ export const CloudAdoptionPage: React.FC<CloudAdoptionPageProps> = ({ onOpenCont
           
 
 
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             
             {/* Practice Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md">

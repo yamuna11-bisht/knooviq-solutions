@@ -1863,7 +1863,7 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
           {/* =========================================================================
               2. FULL-SCREEN HERO SECTION (Full Bleed Background with Deep Enterprise Atmosphere)
               ========================================================================= */}
-          <section className="relative w-full min-h-[540px] sm:min-h-[560px] lg:min-h-[580px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-xl py-10 sm:py-12 lg:py-14">
+          <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-xl py-10 sm:py-12 lg:py-14">
         
         {/* Full-Bleed Enterprise Background Image (100% Clear with Zero Dark Blue Shade) */}
         <div 
@@ -1874,7 +1874,7 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
           <img 
             src={heroVisual.image} 
             alt={currentData.heroHeadline} 
-            className="w-full h-full object-cover object-center lg:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
           />
 
           {/* Top Hairline Accent */}
@@ -1882,7 +1882,8 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-6 sm:py-10">
-          <div className="max-w-3xl space-y-4 sm:space-y-5">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             
             {/* Category Dash & Tag */}
             <div className="flex flex-wrap items-center gap-2">

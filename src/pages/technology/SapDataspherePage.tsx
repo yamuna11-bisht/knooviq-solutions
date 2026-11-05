@@ -97,20 +97,20 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
       {/* =========================================================================
           SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content - Dark Theme)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-black text-white">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
         {/* Full-Bleed Background Visual: Holographic Data Fabric & Zero-Copy Virtualization (100% Clear with Zero Dark Blue Shade) */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/sap_datasphere_boardroom_analytics.png"
             alt="SAP Datasphere - Unify Enterprise Data Without Moving A Single Physical Byte"
-            className="w-full h-full object-cover object-right lg:object-[68%_center] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
           />
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl space-y-5 text-left relative">
+          <div className="max-w-2xl lg:max-w-xl space-y-5 text-left relative">
             {/* Seamless Soft Contrast Aura — ensures text is 100% legible with Zero Box and Zero dark blue shade */}
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             

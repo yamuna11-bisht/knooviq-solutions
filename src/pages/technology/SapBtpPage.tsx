@@ -105,7 +105,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
           <img
             src="/images/sap_btp_hero_team_handshake.png"
             alt="Enterprise Agility via SAP Business Technology Platform"
-            className="w-full h-full object-cover object-[70%_top] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
           />
         </div>
 
@@ -113,7 +113,7 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
         <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-2xl space-y-5 relative">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
             {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box and Zero dark blue shade */}
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 

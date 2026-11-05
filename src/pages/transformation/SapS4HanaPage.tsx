@@ -793,13 +793,13 @@ export const SapS4HanaPage: React.FC<SapS4HanaPageProps> = ({
       {/* =========================================================================
           SECTION 1: FULL-SCREEN BACKGROUND ENTERPRISE HERO (SAP FIORI STYLE)
           ========================================================================= */}
-      <section className="relative w-full min-h-[500px] sm:min-h-[540px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black">
         {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img 
             src={currentData.heroImage || '/images/sap_s4hana_transformation_hero.png'} 
             alt={currentData.heroTitle}
-            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
           />
         </div>
 
@@ -808,7 +808,8 @@ export const SapS4HanaPage: React.FC<SapS4HanaPageProps> = ({
 
         {/* Foreground Content (Without Buttons) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-2xl lg:max-w-3xl space-y-4">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />

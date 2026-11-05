@@ -319,20 +319,20 @@ export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact 
           HERO SECTION — BUILD AND RUN YOUR BUSINESS ON PUBLIC CLOUD
           (Cinematic Full-Bleed Enterprise Hero with Full-Screen Background Image)
          ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-slate-800 shadow-2xl py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-black text-white border-b border-slate-800 shadow-2xl py-16 sm:py-20 lg:py-24">
         
         {/* Full-Bleed Enterprise Background Image */}
         <div className="absolute inset-0 z-0 group/hero pointer-events-none">
           <img 
             src="/images/cloud/public_cloud_hero.jpg" 
             alt="Build and Run Your Business on Public Cloud - Reference Architecture showing connected devices, enterprise services, and cloud compute" 
-            className="w-full h-full object-cover object-center md:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
             loading="eager"
           />
-          {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#040B17]/95 via-[#040B17]/85 sm:via-[#040B17]/70 md:via-[#040B17]/45 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#040B17] via-[#040B17]/60 to-transparent pointer-events-none" />
-          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#040B17]/80 to-transparent pointer-events-none" />
+
+
+
+
 
           {/* Top Hairline Accent */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent" />
@@ -340,7 +340,8 @@ export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact 
 
         {/* Hero Content Layer */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-xs font-mono font-semibold uppercase tracking-wider backdrop-blur-md">
               <Cloud className="w-3.5 h-3.5 text-[#00A3E0]" />

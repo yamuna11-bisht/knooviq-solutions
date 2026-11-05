@@ -137,7 +137,7 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
       {/* =========================================================================
           SECTION 1: HERO — SAP ASSESSMENT (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black text-white border-b border-[#00A3E0]/20">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white border-b border-[#00A3E0]/20">
         
         {/* Decorative Top Hairline */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E0]/40 to-transparent pointer-events-none" />
@@ -147,13 +147,13 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
           <img
             src="/images/assessment/sap-assessment-hero.jpg"
             alt="Enterprise SAP Landscape Assessment Diagnostic Dashboard"
-            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
           />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
 
-          <div className="max-w-3xl space-y-5 text-left relative">
+          <div className="max-w-2xl lg:max-w-xl space-y-5 text-left relative">
             {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero dark shade on image */}
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 

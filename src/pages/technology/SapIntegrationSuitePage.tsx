@@ -88,14 +88,14 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
       {/* =========================================================================
           SECTION 1: HERO SECTION (Global Interconnected API Plexus)
           ========================================================================= */}
-      <section className="relative w-full min-h-[540px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black">
 
         {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
             src="/images/sap_integration_suite_ipaas_event_mesh.png"
             alt="SAP Integration Suite Global Interconnected Enterprise iPaaS & Event Mesh"
-            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
           />
         </div>
 
@@ -103,7 +103,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
         <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-2xl space-y-6 relative">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
             {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box and Zero dark blue shade */}
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 

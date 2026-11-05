@@ -1247,23 +1247,24 @@ export const TransformationPage: React.FC<{ onOpenContact: (service?: string) =>
       {/* =========================================================================
           SECTION 1: RESPONSIVE MULTI-DEVICE ENTERPRISE HERO (SAP FIORI STYLE)
           ========================================================================= */}
-      <section className="relative w-full min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden bg-[#0A1E3F]">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black">
         <div className="absolute inset-0 z-0">
           <img 
             src="/images/sap_s4hana_transformation_hero.png" 
             alt="Enterprise SAP Transformation Practices" 
-            className="w-full h-full object-cover object-right lg:object-[70%_center] brightness-105 contrast-105"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
           />
         </div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0A1E3F]/90 via-[#0A1E3F]/70 sm:via-[#0A1E3F]/50 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0A1E3F] via-transparent to-[#0A1E3F]/40 pointer-events-none" />
-        {/* Subtle cyber mesh overlay */}
-        <div className="absolute inset-0 z-10 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+
+
+
+
         {/* Top Hairline Accent */}
         <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-3xl space-y-4">
+          <div className="max-w-2xl lg:max-w-xl space-y-4 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
