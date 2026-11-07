@@ -125,3 +125,4 @@ const newSection = `<section className="relative w-full min-h-[580px] sm:min-h-[
 content = content.replace(oldSection, newSection);
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('Successfully replaced SapS4HanaPage.tsx hero section!');
+

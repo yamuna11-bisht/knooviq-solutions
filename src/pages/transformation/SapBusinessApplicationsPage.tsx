@@ -1863,88 +1863,55 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
           {/* =========================================================================
               2. FULL-SCREEN HERO SECTION (Full Bleed Background with Deep Enterprise Atmosphere)
               ========================================================================= */}
-          <section className="relative w-full min-h-[580px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-white/10 py-10 sm:py-12 lg:py-14">
+          <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Ambient Atmospheric Backdrop */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-32 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-10" />
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={heroVisual.image} 
+            alt={currentData.heroHeadline} 
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
+          />
           <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${APP_HERO_THEMES[activeApp].topLine}`} />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-6 sm:py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             
-            {/* Left Column: Headline & Narrative (col-span-12 lg:col-span-7) */}
-            <div className="lg:col-span-7 space-y-6">
-              
-              {/* Category Dash & Tag */}
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 shadow-md">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  <span>{currentData.categoryTag}</span>
-                </div>
-                <span className="text-slate-400 text-xs font-mono">/</span>
-                <span className="text-[11px] font-mono font-bold text-slate-200 uppercase tracking-wider bg-black/50 px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md shadow-md">
-                  {currentData.heroBadge}
-                </span>
+            {/* Category Dash & Tag */}
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 shadow-md">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <span>{currentData.categoryTag}</span>
               </div>
-
-              {/* Large Hero Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-[1.14] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
-                {currentData.heroHeadline}
-              </h1>
-
-              {/* Subtitle / Strategic Narrative */}
-              <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-200 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-                {currentData.heroSubheadline}
-              </p>
-
-              {/* Architectural Feature Checkpoints */}
-              <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Clean Core Certified</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                  <Zap className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Sub-Second Telemetry</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                  <Database className="w-3.5 h-3.5 text-[#00A3E0]" />
-                  <span>Single Source of Truth</span>
-                </span>
-              </div>
-
+              <span className="text-slate-400 text-xs font-mono">/</span>
+              <span className="text-[11px] font-mono font-bold text-slate-200 uppercase tracking-wider bg-black/50 px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md shadow-md">
+                {currentData.heroBadge}
+              </span>
             </div>
 
-            {/* Right Column: Complete Uncropped Image Showcase (col-span-12 lg:col-span-5) */}
-            <div className="lg:col-span-5 flex items-center justify-center">
-              <div 
-                className="relative w-full max-w-md lg:max-w-none group cursor-pointer"
-                onClick={() => setIsFullscreenImageOpen(true)}
-                title="Click to view full screen"
-              >
-                {/* Subtle glow halo */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400/25 to-blue-600/20 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+            {/* Large Hero Title */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-[1.14] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+              {currentData.heroHeadline}
+            </h1>
 
-                <div className="relative rounded-2xl overflow-hidden border border-white/20 bg-black/60 backdrop-blur-md shadow-2xl p-2 sm:p-3 transition-transform duration-300 group-hover:scale-[1.02]">
-                  <img
-                    src={heroVisual.image}
-                    alt={currentData.heroHeadline}
-                    className="w-full h-auto max-h-[380px] sm:max-h-[440px] lg:max-h-[480px] object-contain rounded-xl select-none mx-auto drop-shadow-xl"
-                  />
-                  
-                  {/* Full Screen Badge in corner */}
-                  <div className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-cyan-300 shadow-xl opacity-85 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span>View Full Screen</span>
-                  </div>
-                </div>
+            {/* Subtitle / Strategic Narrative */}
+            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-200 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+              {currentData.heroSubheadline}
+            </p>
+
+            {/* Architectural Feature Checkpoints */}
+            <div className="flex flex-wrap items-center gap-2 pt-1 font-mono">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Clean Core Certified</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-amber-200 shadow-lg">
+                <Zap className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>Sub-Second Telemetry</span>
               </div>
             </div>
-
           </div>
         </div>
       </section>
