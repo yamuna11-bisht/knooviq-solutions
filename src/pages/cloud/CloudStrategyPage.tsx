@@ -36,6 +36,23 @@ interface ChildPageProps {
 }
 
 export const CloudStrategyPage: React.FC<ChildPageProps> = ({ onOpenContact }) => {
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -336,84 +353,52 @@ export const CloudStrategyPage: React.FC<ChildPageProps> = ({ onOpenContact }) =
           SECTION 1: CLOUD STRATEGY HERO (Cinematic Full-Bleed Enterprise Hero)
           Includes breadcrumb: Home → Cloud & Operations → Cloud Strategy
          ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[580px] lg:min-h-[620px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed Enterprise Background Image */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img 
-            src="/images/cloud/strategy_hero.jpg" 
-            alt="Enterprise Cloud Strategy Infrastructure Overview and Architecture Review in Modern Data Center" 
-            className="w-full h-full object-cover object-right sm:object-right md:object-[80%_center]"
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/cloud/strategy_hero.png"
+            alt="Plan Smarter. Build Stronger. Scale Faster."
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
-          {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#040B17]/95 via-[#040B17]/80 sm:via-[#040B17]/60 md:via-[#040B17]/45 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#040B17] to-transparent pointer-events-none" />
-
-          {/* Top Hairline Accent */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-
-
-          <div className="max-w-3xl space-y-6">
-            
-            {/* Practice Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md">
               <Compass className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>CLOUD STRATEGY &amp; ADVISORY</span>
             </div>
 
-            {/* Headings */}
             <div className="space-y-3">
               <span className="block text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider text-[#00A3E0]">
                 Cloud Strategy
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-[1.18]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
                 Plan Smarter. Build Stronger. Scale Faster.
               </h1>
             </div>
 
-            {/* Description */}
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
-              Help enterprises establish a clear cloud direction that aligns technology decisions with business priorities, security requirements, architecture, and long-term modernization goals.
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
+              Establish an enterprise cloud strategy aligned to business velocity, resilient architecture, CapEx-to-OpEx economics, and regulatory compliance across public, private, and hybrid estates.
             </p>
 
-            {/* Value Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 max-w-2xl">
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 font-medium">
+            {/* Badges */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
                 <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Business-Driven Cloud Placement</span>
+                <span>Target Operating Model</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>7 R’s Workload Rationalization</span>
-              </div>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>FinOps 3-Year TCO Modeling</span>
-              </div>
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Hyperscaler-Neutral Advisory</span>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>3-Year TCO FinOps Matrix</span>
               </div>
             </div>
-
-
-
-            {/* Live Status Footnote / Badge */}
-            <div className="pt-2 flex items-center gap-3 text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
-                <Activity className="w-4 h-4 animate-pulse text-[#00A3E0]" />
-                Enterprise Architecture Strategy
-              </span>
-              <span>&bull;</span>
-              <span>Validated Hyperscaler Placement</span>
-            </div>
-
           </div>
-
         </div>
       </section>
 

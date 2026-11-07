@@ -131,7 +131,7 @@ const TRANSFORMATION_DATA: Record<TransformationDomainKey, TransformationContent
     id: 'sap-s4hana',
     tabLabel: 'SAP S/4HANA Transformation',
     categoryTag: 'BUSINESS TRANSFORMATION',
-    heroTitle: 'SAP S/4HANA Transformation',
+    heroTitle: 'SAP S/4HANA Enterprise Transformation',
     heroSubtitle: 'Transform your business with intelligent, scalable and future-ready SAP solutions.',
     heroImage: '/images/sap_s4hana_transformation_hero.png',
     ctaText: 'Talk to an Expert',
@@ -249,7 +249,7 @@ const TRANSFORMATION_DATA: Record<TransformationDomainKey, TransformationContent
     id: 'erp',
     tabLabel: 'ERP Transformation',
     categoryTag: 'SAP PLATINUM PARTNER ECOSYSTEM • RISE & GROW METHODOLOGY',
-    heroTitle: 'ERP Transformation',
+    heroTitle: 'Next-Generation ERP Transformation',
     heroSubtitle: 'Modernize to an agile, clean-core digital backbone across modern deployment editions with pre-built industry accelerators, zero core modifications, and One Piece Flow delivery.',
     heroImage: '/images/erp_transformation_hero.png',
     ctaText: 'Talk to an SAP Expert',
@@ -708,6 +708,23 @@ export const SapS4HanaPage: React.FC<SapS4HanaPageProps> = ({
 
   const [activeDomain, setActiveDomain] = useState<TransformationDomainKey>(getInitialDomain());
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
 
   useEffect(() => {
     const tabParam = searchParams.get('tab');
@@ -793,24 +810,25 @@ export const SapS4HanaPage: React.FC<SapS4HanaPageProps> = ({
       {/* =========================================================================
           SECTION 1: FULL-SCREEN BACKGROUND ENTERPRISE HERO (SAP FIORI STYLE)
           ========================================================================= */}
-      <section className="relative w-full min-h-[500px] sm:min-h-[540px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black">
-        {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <img 
-            src={currentData.heroImage || '/images/sap_s4hana_transformation_hero.png'} 
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
+        
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={currentData.heroImage || '/images/sap_s4hana_transformation_hero.png'}
             alt={currentData.heroTitle}
-            className="w-full h-full object-cover object-center lg:object-[68%_center] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        {/* Top Hairline Accent */}
-        <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-        {/* Foreground Content (Without Buttons) */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-2xl lg:max-w-3xl space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>{currentData.categoryTag}</span>
@@ -818,15 +836,15 @@ export const SapS4HanaPage: React.FC<SapS4HanaPageProps> = ({
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
                 {renderHeroHeadline()}
               </h1>
-              <p className="text-base sm:text-lg text-slate-100 leading-relaxed font-medium max-w-2xl pt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 {currentData.heroSubtitle}
               </p>
             </motion.div>
 
             {/* Enterprise Trust Indicators */}
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-2 flex flex-wrap items-center gap-3">
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
               {domainTrustIndicators[activeDomain].map((indicator, idx) => (
-                <div key={idx} className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono font-bold ${indicator.textClass} shadow-md`}>
+                <div key={idx} className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold ${indicator.textClass} shadow-lg`}>
                   {indicator.icon}
                   <span>{indicator.label}</span>
                 </div>

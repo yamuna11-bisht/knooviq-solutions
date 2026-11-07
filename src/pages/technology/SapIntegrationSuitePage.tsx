@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
+  Maximize2,
+  X,
   Network,
   Workflow,
   ShieldCheck,
@@ -24,6 +26,23 @@ interface TechnologyPageProps {
 }
 
 export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
 
   const prebuiltAccelerators = [
     {
@@ -88,23 +107,20 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
       {/* =========================================================================
           SECTION 1: HERO SECTION (Global Interconnected API Plexus)
           ========================================================================= */}
-      <section className="relative w-full min-h-[540px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black">
-
-        {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
+        
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
           <img
             src="/images/sap_integration_suite_ipaas_event_mesh.png"
             alt="SAP Integration Suite Global Interconnected Enterprise iPaaS & Event Mesh"
-            className="w-full h-full object-cover object-[65%_top] select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        {/* Top Hairline Accent */}
-        <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-2xl space-y-6 relative">
-            {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box and Zero dark blue shade */}
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
             <motion.div
@@ -113,7 +129,7 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
               transition={{ duration: 0.55 }}
               className="space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-md">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 <Network className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>ENTERPRISE iPAAS &bull; SAP INTEGRATION SUITE</span>
@@ -126,11 +142,22 @@ export const SapIntegrationSuitePage: React.FC<TechnologyPageProps> = ({ onOpenC
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-100 font-medium leading-relaxed pt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 Orchestrate multi-cloud ecosystems, automate B2B supply chains, and modernize legacy SAP PI/PO systems. SAP Integration Suite delivers guaranteed persistent delivery, real-time API management, and pre-packaged enterprise accelerators.
               </p>
             </motion.div>
 
+            {/* Badges */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>3,500+ Pre-Built Integrations</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Sub-Millisecond Event Mesh</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

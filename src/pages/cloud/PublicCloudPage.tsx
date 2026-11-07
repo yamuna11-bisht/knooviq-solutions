@@ -40,6 +40,23 @@ interface LightboxState {
 }
 
 export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact }) => {
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
   const [lightboxImage, setLightboxImage] = useState<LightboxState | null>(null);
 
   useEffect(() => {
@@ -319,47 +336,38 @@ export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact 
           HERO SECTION — BUILD AND RUN YOUR BUSINESS ON PUBLIC CLOUD
           (Cinematic Full-Bleed Enterprise Hero with Full-Screen Background Image)
          ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-slate-800 shadow-2xl py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed Enterprise Background Image */}
-        <div className="absolute inset-0 z-0 group/hero pointer-events-none">
-          <img 
-            src="/images/cloud/public_cloud_hero.jpg" 
-            alt="Build and Run Your Business on Public Cloud - Reference Architecture showing connected devices, enterprise services, and cloud compute" 
-            className="w-full h-full object-cover object-center md:object-[82%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 filter brightness-[0.9] contrast-105"
-            loading="eager"
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/cloud/public_cloud_hero.png"
+            alt="Build and Run Your Business on Public Cloud"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
-          {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#040B17]/95 via-[#040B17]/85 sm:via-[#040B17]/70 md:via-[#040B17]/45 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#040B17] via-[#040B17]/60 to-transparent pointer-events-none" />
-          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#040B17]/80 to-transparent pointer-events-none" />
-
-          {/* Top Hairline Accent */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        {/* Hero Content Layer */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
-            
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-xs font-mono font-semibold uppercase tracking-wider backdrop-blur-md">
               <Cloud className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>CLOUD INFRASTRUCTURE &amp; PLATFORMS</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.16] text-white drop-shadow-md">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] text-white drop-shadow-md">
               Build and Run Your Business on{' '}
               <span className="text-[#00A3E0]">Public Cloud</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed drop-shadow-sm max-w-2xl">
+            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl pt-1">
               Public cloud provides access to computing, storage, networking, databases, and managed services without requiring organizations to own and maintain all the underlying infrastructure. Knooviq supports the design of cloud environments around application requirements, security policies, infrastructure needs, and long-term technology plans.
             </p>
 
-
-
             {/* Key Architecture Badges */}
-            <div className="pt-6 border-t border-white/15 grid grid-cols-3 gap-4 text-xs max-w-xl backdrop-blur-[2px]">
+            <div className="pt-4 border-t border-white/15 grid grid-cols-3 gap-4 text-xs max-w-xl">
               <div>
                 <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">Multi-AZ</span>
                 <span className="text-slate-300 mt-0.5 block">High Availability</span>
@@ -370,10 +378,9 @@ export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact 
               </div>
               <div>
                 <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">FinOps</span>
-                <span className="text-slate-300 mt-0.5 block">Cost Optimization</span>
+                <span className="text-slate-300 mt-0.5 block">Automated Cost Control</span>
               </div>
             </div>
-
           </div>
         </div>
       </section>

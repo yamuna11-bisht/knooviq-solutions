@@ -1863,30 +1863,25 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
           {/* =========================================================================
               2. FULL-SCREEN HERO SECTION (Full Bleed Background with Deep Enterprise Atmosphere)
               ========================================================================= */}
-          <section className="relative w-full min-h-[540px] sm:min-h-[560px] lg:min-h-[580px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-xl py-10 sm:py-12 lg:py-14">
+          <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed Enterprise Background Image (100% Clear with Zero Dark Blue Shade) */}
-        <div 
-          className="absolute inset-0 z-0 group/hero cursor-pointer overflow-hidden"
-          onClick={() => setIsFullscreenImageOpen(true)}
-          title="Click to view full screen visual"
-        >
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
           <img 
             src={heroVisual.image} 
-            alt={currentData.appTitle} 
-            className="w-full h-full object-cover object-center lg:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
+            alt={currentData.heroHeadline} 
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
-
-          {/* Top Hairline Accent */}
           <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${APP_HERO_THEMES[activeApp].topLine}`} />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-6 sm:py-10">
-          <div className="max-w-3xl space-y-4 sm:space-y-5">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             
             {/* Category Dash & Tag */}
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 shadow-md">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 shadow-md">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 <span>{currentData.categoryTag}</span>
               </div>
@@ -1897,60 +1892,26 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
             </div>
 
             {/* Large Hero Title */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-[1.14] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
               {currentData.heroHeadline}
             </h1>
 
             {/* Subtitle / Strategic Narrative */}
-            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-100 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-200 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
               {currentData.heroSubheadline}
             </p>
 
             {/* Architectural Feature Checkpoints */}
-            <div className="flex flex-wrap items-center gap-2 pt-0.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="flex flex-wrap items-center gap-2 pt-1 font-mono">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Clean Core Certified</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Zap className="w-3.5 h-3.5 text-amber-400" />
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-amber-200 shadow-lg">
+                <Zap className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Sub-Second Telemetry</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Database className="w-3.5 h-3.5 text-[#00A3E0]" />
-                <span>Single Source of Truth</span>
-              </span>
-            </div>
-
-            {/* Strategic Content Blocks (Pure Information - Zero Clutter) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10.5px] font-mono font-bold uppercase text-white">
-                    {heroVisual.badgeTop.title}
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-300 leading-snug font-normal">
-                  {heroVisual.badgeTop.subtitle}
-                </p>
-              </div>
-
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <Activity className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="text-[10.5px] font-mono font-bold uppercase text-white">
-                    {heroVisual.badgeBottom.title}
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-300 leading-snug font-normal">
-                  {heroVisual.badgeBottom.subtitle}
-                </p>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </section>
@@ -1974,7 +1935,7 @@ export const SapBusinessApplicationsPage: React.FC<SapBusinessApplicationsPagePr
           >
             <img 
               src={heroVisual.image} 
-              alt={currentData.appTitle}
+              alt={currentData.heroHeadline}
               className="max-w-full max-h-[90vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
             />
             <div className="absolute bottom-4 left-4 right-4 text-center">

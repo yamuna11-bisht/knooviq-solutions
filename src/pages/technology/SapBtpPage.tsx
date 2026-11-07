@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
+  Maximize2,
+  X,
   Layers,
   Cpu,
   Activity,
@@ -34,6 +36,23 @@ interface TechnologyPageProps {
 }
 
 export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
   const servicesCatalog = [
     {
       id: 'srv-1',
@@ -98,32 +117,29 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
       {/* =========================================================================
           SECTION 1: HERO SECTION (Cinematic Blue & White Enterprise Architecture)
           ========================================================================= */}
-      <section className="relative w-full min-h-[540px] lg:min-h-[600px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black">
-
-        {/* Full-Box Background Image — 100% Clear with Zero Dark Blue Shade */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
+        
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
           <img
             src="/images/sap_btp_hero_team_handshake.png"
-            alt="SAP BTP Enterprise Agility Platform"
-            className="w-full h-full object-cover object-[70%_top] select-none"
+            alt="Enterprise Agility via SAP Business Technology Platform"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        {/* Top Hairline Accent */}
-        <div className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-2xl space-y-5 relative">
-            {/* Seamless Soft Contrast Aura — ensures text is 100% legible against the background image with Zero Box and Zero dark blue shade */}
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="space-y-3"
+              className="space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-md">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 <Layers className="w-3.5 h-3.5 text-[#00A3E0]" />
                 <span>KNOOVIQ TECHNOLOGY PRACTICE &bull; SAP BTP</span>
@@ -134,37 +150,26 @@ export const SapBtpPage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => 
                 <span className="text-[#00A3E0] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">SAP Business Technology Platform</span>
               </h1>
 
-              <p className="text-lg sm:text-xl font-semibold text-slate-100 leading-snug drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-                Build Modern Side-by-Side Extensions. Safeguard Your Clean Core.
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+                Build Modern Side-by-Side Extensions. Safeguard Your Clean Core. Decouple business logic with cloud-native microservices, unified event streaming, and enterprise AI boundaries.
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4 max-w-xl"
-            >
-              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-                Stop modifying the ERP core. With <strong className="text-white font-semibold">SAP BTP</strong>, Knooviq engineers decouple custom business applications, orchestrate multi-cloud integrations, and accelerate data-driven decisions while keeping your SAP S/4HANA core 100% upgrade-ready.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-md">
-                  <CheckCircle2 className="w-4 h-4 text-blue-300" />
-                  <span>Clean Core Architecture</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-md">
-                  <CheckCircle2 className="w-4 h-4 text-blue-300" />
-                  <span>Decoupled Extensions</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-md">
-                  <CheckCircle2 className="w-4 h-4 text-blue-300" />
-                  <span>Universal iPaaS &amp; AI Hub</span>
-                </span>
+            {/* Badges */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Clean Core Extension</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Zero Modification Debt</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-sky-200 shadow-lg">
+                <Zap className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>Event-Driven Fabric</span>
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>

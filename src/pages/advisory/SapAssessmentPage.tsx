@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
+  Maximize2,
+  X,
+  ShieldCheck,
   Search,
   ArrowRight,
   ChevronDown,
@@ -90,6 +93,24 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
   ];
 
   // Risk Matrix 2x2 Quadrant Data
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
+
   const [activeRiskQuadrant, setActiveRiskQuadrant] = useState<'critical' | 'strategic' | 'operational' | 'hygiene'>('critical');
   const riskQuadrants = {
     critical: {
@@ -137,48 +158,49 @@ export const SapAssessmentPage: React.FC<SapAssessmentPageProps> = ({ onOpenCont
       {/* =========================================================================
           SECTION 1: HERO — SAP ASSESSMENT (FULL-BLEED WIDESCREEN HERO)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 overflow-hidden bg-black text-white border-b border-[#00A3E0]/20">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Decorative Top Hairline */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00A3E0]/40 to-transparent pointer-events-none" />
-
-        {/* Full-Bleed Background Visual — 100% Clear with Zero Dark Shade */}
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/assessment/sap-assessment-hero.jpg"
+            src="/images/assessment/sap-assessment-hero.png"
             alt="Enterprise SAP Landscape Assessment Diagnostic Dashboard"
-            className="w-full h-full object-cover object-top lg:object-[82%_top] brightness-105 contrast-105 select-none"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-
-          <div className="max-w-3xl space-y-5 text-left relative">
-            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero dark shade on image */}
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00A3E0] text-xs font-mono font-bold tracking-wider uppercase shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
               <Search className="w-3.5 h-3.5 text-[#00A3E0]" />
-              <span>LANDSCAPE DIAGNOSTIC AUDIT • TECHNICAL HEALTH SCAN</span>
+              <span>LANDSCAPE DIAGNOSTIC AUDIT &bull; TECHNICAL HEALTH SCAN</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
               SAP <br />
-              <span className="text-[#00A3E0]">
-                Assessment
-              </span>
+              <span className="text-[#00A3E0]">Assessment</span>
             </h1>
 
-            <p className="text-xl sm:text-2xl font-bold text-slate-200 leading-snug">
-              Understand Your SAP Landscape. Identify Opportunities. Plan With Confidence.
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl">
+              A rigorous, data-driven diagnostic evaluation of your current SAP landscape to eliminate migration blindspots, evaluate custom code complexity, and determine your optimal path to SAP S/4HANA.
             </p>
 
-            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
-              Gain a clear view of your SAP environment through structured assessment of systems, processes, applications, integrations, data and technical dependencies.
-            </p>
+            {/* Badges */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Readiness &amp; Code Scans</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Clean Core Roadmap</span>
+              </div>
+            </div>
           </div>
-
         </div>
       </section>
 

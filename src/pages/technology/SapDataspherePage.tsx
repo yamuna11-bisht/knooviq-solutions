@@ -86,6 +86,24 @@ const DATA_SOURCES: SourceNode[] = [
 ];
 
 export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact }) => {
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
+
   const [activeSourceId, setActiveSourceId] = useState<string>('s4hana');
   const [modelLayerTab, setModelLayerTab] = useState<'spaces' | 'data-builder' | 'business-builder'>('business-builder');
 
@@ -97,28 +115,27 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
       {/* =========================================================================
           SECTION 1: HERO SECTION (Cinematic Full-Screen Panoramic Background, Left Content - Dark Theme)
           ========================================================================= */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-14 overflow-hidden bg-black text-white">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed Background Visual: Holographic Data Fabric & Zero-Copy Virtualization (100% Clear with Zero Dark Blue Shade) */}
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/sap_datasphere_boardroom_analytics.png"
             alt="SAP Datasphere - Unify Enterprise Data Without Moving A Single Physical Byte"
-            className="w-full h-full object-cover object-right lg:object-[65%_center] brightness-110 contrast-105 saturate-[1.05]"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-3xl space-y-5 text-left relative">
-            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with Zero Box and Zero dark blue shade */}
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="space-y-3"
+              className="space-y-4"
             >
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-[#00A3E0] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
@@ -131,81 +148,22 @@ export const SapDataspherePage: React.FC<TechnologyPageProps> = ({ onOpenContact
                 <span className="text-[#00A3E0]">Moving A Single Physical Byte</span>
               </h1>
 
-              <p className="text-lg sm:text-xl font-semibold text-cyan-100 leading-snug">
-                Live Zero-Copy Virtualization. Real-Time Business Data Fabric.
+              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed pt-1">
+                SAP Datasphere is the next generation of SAP Data Warehouse Cloud. A unified data fabric that harmonizes mission-critical SAP business semantics with non-SAP hyperscaler data lakes in real time.
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4 max-w-2xl"
-            >
-              <p className="text-sm sm:text-base text-cyan-100 font-normal leading-relaxed">
-                Traditional ETL pipelines copy, flatten, and strip context from enterprise data. <strong className="text-white font-semibold">SAP Datasphere</strong> orchestrates a seamless Business Data Fabric—delivering live zero-copy virtualization with intact business semantics.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
-                  <span>Zero-Copy Virtualization</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
-                  <span>Intact Business Semantics</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-semibold text-white">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
-                  <span>Multi-Cloud Federation</span>
-                </span>
+            {/* Badges */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Zero-Copy Virtualization</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Native Business Semantics</span>
               </div>
             </motion.div>
-
-            {/* Enterprise Architectural Trust Ribbon */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="mt-6 pt-5 border-t border-cyan-700/40 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
-            >
-              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <Database className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">DATA FABRIC</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">Business Semantics</div>
-                <div className="text-xs text-cyan-200 mt-0.5">Zero Context Stripping</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <Network className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">FEDERATION</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">Zero-Copy Ingestion</div>
-                <div className="text-xs text-cyan-200 mt-0.5">Sub-Second Pushdown</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">SECURITY</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">Inherited RBAC</div>
-                <div className="text-xs text-cyan-200 mt-0.5">Native SAP S/4HANA ACLs</div>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-700/50 backdrop-blur-sm shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <Sparkles className="w-4 h-4 text-cyan-300 shrink-0" />
-                  <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 uppercase">AI READY</span>
-                </div>
-                <div className="text-sm sm:text-base font-bold text-white">Vector Fabric</div>
-                <div className="text-xs text-cyan-200 mt-0.5">Clean Grounded Context</div>
-              </div>
-            </motion.div>
-
           </div>
         </div>
       </section>

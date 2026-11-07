@@ -121,38 +121,29 @@ export const CloudOperatingModelPage: React.FC<CloudOperatingModelPageProps> = (
           Primary CTA: Discuss Your Cloud Operating Model
           Secondary CTA: Explore Our Capabilities
           ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[580px] lg:min-h-[620px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed Enterprise Background Image */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img 
-            src="/images/cloud/cloud_op_model_hero.jpg" 
-            alt="Design a Cloud Operating Model Built for Enterprise Scale - Global cloud connectivity, digital network governance, and enterprise platform ecosystem" 
-            className="w-full h-full object-cover object-right sm:object-right md:object-[80%_center]"
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/cloud/cloud_op_model_hero.png"
+            alt="Design a Cloud Operating Model Built for Enterprise Scale"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
-          {/* Smooth gradient overlay on left for razor-sharp typography readability while letting the visual shine on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#040B17]/95 via-[#040B17]/80 sm:via-[#040B17]/60 md:via-[#040B17]/45 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#040B17] to-transparent pointer-events-none" />
-
-          {/* Top Hairline Accent */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-8">
-          
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
 
-
-          <div className="max-w-3xl space-y-6">
-            
-            {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md">
               <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
               <span>CLOUD &amp; OPERATIONS</span>
             </div>
 
-            {/* Main Heading */}
             <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-[1.18]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
                 Design a Cloud Operating Model Built for Enterprise Scale
               </h1>
               <p className="text-base sm:text-lg font-medium text-cyan-300 tracking-normal">
@@ -160,15 +151,12 @@ export const CloudOperatingModelPage: React.FC<CloudOperatingModelPageProps> = (
               </p>
             </div>
 
-            {/* Required Exact Narrative */}
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
               Establish the people, processes, governance, and technology practices required to manage cloud services effectively. Knooviq helps organizations define cloud responsibilities, structure cross-functional teams, establish decision-making frameworks, and align cloud delivery with enterprise priorities.
             </p>
 
-
-
             {/* Operating Model Pillars Anchor */}
-            <div className="pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
+            <div className="pt-4 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
               <div>
                 <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">Structure</span>
                 <span className="text-sm font-bold text-white">CCoE &amp; Platform Teams</span>
@@ -182,24 +170,7 @@ export const CloudOperatingModelPage: React.FC<CloudOperatingModelPageProps> = (
                 <span className="text-sm font-bold text-white">Self-Service Platforms</span>
               </div>
             </div>
-
-            {/* Floating Annotation Footnote */}
-            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-300">
-              <span className="flex items-center gap-1.5 text-cyan-300 font-bold">
-                <Radio className="w-3.5 h-3.5 text-[#00A3E0] animate-pulse" />
-                Operating Ecosystem
-              </span>
-              <span>&bull;</span>
-              <span className="flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-[#00A3E0]" />
-                Cross-Functional Alignment (Platform &bull; Apps &bull; CISO)
-              </span>
-              <span>&bull;</span>
-              <span className="text-slate-400">Autonomous Delivery &bull; Guardrails</span>
-            </div>
-
           </div>
-
         </div>
       </section>
 

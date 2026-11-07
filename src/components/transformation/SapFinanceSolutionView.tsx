@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Lock,
   Wallet,
   TrendingUp,
   BarChart3,
@@ -276,33 +277,27 @@ export const SapFinanceSolutionView: React.FC<SapFinanceSolutionViewProps> = ({ 
       {/* =========================================================================
           1. FULL-SCREEN CINEMATIC HERO SECTION (Full-Bleed 3D Visual & Enterprise Content Overlay)
           ========================================================================= */}
-      <section className="relative w-full min-h-[540px] sm:min-h-[560px] lg:min-h-[580px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-xl py-10 sm:py-12 lg:py-14">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
         
-        {/* Full-Bleed Enterprise 3D Background Image (100% Clear with Zero Dark Blue Shade) */}
-        <div 
-          className="absolute inset-0 z-0 group/hero cursor-pointer overflow-hidden"
-          onClick={() => setIsFullscreenImageOpen(true)}
-          title="Click to view full screen 3D visual"
-        >
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Subject */}
+        <div className="absolute inset-0 z-0">
           <img 
             src="/images/sap_app_finance_3d_clean.jpg" 
-            alt="SAP Autonomous Finance Control Center" 
-            className="w-full h-full object-cover object-center lg:object-[68%_center] transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
+            alt="Autonomous Financial Management & In-Memory Universal Ledger" 
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center brightness-105 contrast-[1.02]"
           />
-
-          {/* Top Hairline Accent */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
         </div>
 
-        {/* Hero Content Overlay */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-6 sm:py-10">
-          <div className="max-w-3xl space-y-4 sm:space-y-5">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
             
             {/* Category Badges */}
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 shadow-md">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-300 shadow-md">
                 <Wallet className="w-3.5 h-3.5 text-cyan-400" />
-                <span>SAP S/4HANA FINANCE & CENTRAL FINANCE</span>
+                <span>SAP S/4HANA FINANCE &amp; CENTRAL FINANCE</span>
               </div>
               <span className="text-slate-400 text-xs font-mono hidden sm:inline">/</span>
               <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-slate-200 uppercase tracking-wider bg-black/50 px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md shadow-md">
@@ -312,88 +307,30 @@ export const SapFinanceSolutionView: React.FC<SapFinanceSolutionViewProps> = ({ 
             </div>
 
             {/* Large Hero Title */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
-              Autonomous Financial Management & In-Memory Universal Ledger
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+              Autonomous Financial Management &amp; In-Memory Universal Ledger
             </h1>
 
             {/* Subtitle / Strategic Narrative */}
-            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-100 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-200 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
               Transform corporate finance into an agile growth engine. Consolidate financial accounting and controlling on the Universal Journal (ACDOCA), automate invoice dispute resolution with AI agents, and achieve touchless continuous close across 25+ statutory tax jurisdictions.
             </p>
 
             {/* Architectural Feature Checkpoints */}
-            <div className="flex flex-wrap items-center gap-2 pt-0.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="flex flex-wrap items-center gap-2 pt-1 font-mono">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-cyan-200 shadow-lg">
+                <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Universal Journal (ACDOCA)</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Globe2 className="w-3.5 h-3.5 text-emerald-400" />
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-emerald-200 shadow-lg">
+                <Globe2 className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>SAP DRC (25+ Regimes)</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Zap className="w-3.5 h-3.5 text-amber-400" />
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 text-xs font-mono font-bold text-amber-200 shadow-lg">
+                <Zap className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Real-Time SWIFT Mesh</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
-                <span>SAC Integrated FP&A</span>
-              </span>
-            </div>
-
-            {/* Strategic Content Blocks (Pure Information - Zero Clutter) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <Database className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10.5px] font-mono font-bold uppercase text-white">
-                    Touchless Record-to-Report
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-300 leading-snug font-normal">
-                  Zero manual intercompany journal vouchers with real-time ICMR auto-matching.
-                </p>
-              </div>
-
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <Wallet className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="text-[10.5px] font-mono font-bold uppercase text-white">
-                    Predictive Liquidity & Cash Mesh
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-300 leading-snug font-normal">
-                  Direct host-to-host banking integration (MT940/CAMT.053) for sub-second cash positioning.
-                </p>
               </div>
             </div>
-
-
-
-            {/* KPI Highlights Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono">
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-cyan-300 uppercase font-bold tracking-wider">Close Speedup</p>
-                <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">70% Faster</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">Continuous Soft Close</p>
-              </div>
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-cyan-300 uppercase font-bold tracking-wider">DRC Compliance</p>
-                <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">99.8%</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">25+ Regimes</p>
-              </div>
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-cyan-300 uppercase font-bold tracking-wider">Cash Visibility</p>
-                <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">100%</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">Real-Time Banking</p>
-              </div>
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-cyan-300 uppercase font-bold tracking-wider">Spreadsheets</p>
-                <p className="text-base sm:text-lg font-black text-emerald-400 mt-0.5 leading-none">Zero</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">SAC Integrated</p>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
@@ -417,12 +354,12 @@ export const SapFinanceSolutionView: React.FC<SapFinanceSolutionViewProps> = ({ 
           >
             <img 
               src="/images/sap_app_finance_3d_clean.jpg" 
-              alt="SAP Autonomous Finance Control Center" 
+              alt="Autonomous Financial Management & In-Memory Universal Ledger" 
               className="max-w-full max-h-[90vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
             />
             <div className="absolute bottom-4 left-4 right-4 text-center">
               <span className="px-4 py-2 rounded-full bg-black/80 border border-white/20 text-xs font-mono font-bold text-cyan-300 backdrop-blur-md shadow-xl">
-                SAP S/4HANA Finance // Autonomous Finance Control Center (3D)
+                SAP S/4HANA Finance // Autonomous Financial Management & In-Memory Universal Ledger
               </span>
             </div>
           </div>
