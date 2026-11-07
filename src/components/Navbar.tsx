@@ -1266,7 +1266,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
               {/* CONTACT US -> Pill Button (matching user image) */}
               <button
-                onClick={() => onOpenContact ? onOpenContact() : handleNavClick('/contact')}
+                onClick={() => onOpenContact && onOpenContact()}
                 className="btn-primary-gradient shimmer-sweep rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider text-white transition-all shadow-md shadow-blue-500/25 flex items-center gap-2 active:scale-95 font-display ml-1 shrink-0"
               >
                 <span>CONTACT US</span>
@@ -1596,13 +1596,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             </div>
 
             {/* 8. Mobile Contact */}
-            <Link
-              to="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onOpenContact) onOpenContact();
+              }}
+              className="w-full text-left block px-3 py-2 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-[#00A3E0] hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl"
             >
               Contact Us
-            </Link>
+            </button>
 
             {/* Drawer Footer CTA */}
             <div className="pt-3 border-t border-slate-200 dark:border-white/10 space-y-2">
@@ -1610,7 +1612,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 onClick={() => {
                   setMobileMenuOpen(false);
                   if (onOpenContact) onOpenContact();
-                  else handleNavClick('/contact');
                 }}
                 className="w-full justify-center inline-flex items-center gap-2 rounded-xl bg-[#E05A47] hover:bg-[#C94735] py-3 text-xs font-black uppercase tracking-wider text-white shadow-lg"
               >

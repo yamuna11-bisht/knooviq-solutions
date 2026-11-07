@@ -777,7 +777,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenContact }) => {
 
                 <div className="pt-2 flex flex-wrap gap-4">
                   <Link
-                    to="/careers"
+                    to="/about/grow-with-us"
                     className="btn-primary-gradient shimmer-sweep rounded-2xl px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white font-display inline-flex items-center gap-2"
                   >
                     <span>Explore Open Positions</span>
@@ -805,7 +805,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenContact }) => {
                   Now hiring Senior S/4HANA Consultants, ABAP on HANA Developers, and BTP Integration Leads in Mumbai.
                 </p>
                 <Link
-                  to="/careers"
+                  to="/about/grow-with-us"
                   className="text-xs font-bold text-[#00A3E0] dark:text-cyan-400 hover:underline font-display"
                 >
                   View Talent Openings →

@@ -105,8 +105,7 @@ const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     response: () => ({
       text: `**How KNOOVIQ Empowers Your Enterprise**\n\nWe partner with industry leaders to maximize operational efficiency, eliminate technical debt, and ensure seamless statutory compliance:\n\n• **Risk-Mitigated ERP Modernization:** Upgrade from legacy ECC to S/4HANA with zero disruption to daily sales, finance, and plant operations.\n• **Cost Optimization & Clean Core:** Decouple custom code onto SAP BTP to lower your long-term Total Cost of Ownership (TCO).\n• **100% Tax & Trade Compliance:** Millisecond automated statutory filing with Indian IRP and ICEGATE portals for E-Invoicing, E-Way Bills, and EXIM incentives.\n• **Hyperautomation & AI:** Automate 85%+ of repetitive invoice processing and vendor coordination using intelligent bots.\n• **Dedicated SLA Support:** 24/7 proactive monitoring by certified consultants with strict response and resolution SLAs.`,
       navLinks: [
-        { label: 'Explore Transformation Roadmaps', path: '/transformation', primary: true },
-        { label: 'Connect with a Solution Architect', path: '/contact' }
+        { label: 'Explore Transformation Roadmaps', path: '/transformation', primary: true }
       ],
       followUps: [
         "Tell me about KNOOVIQ's services",
@@ -140,7 +139,7 @@ const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     response: () => ({
       text: `**Careers at KNOOVIQ Industries**\n\nWe are actively hiring passionate consultants and engineers at our **Mumbai Corporate Headquarters** (Hybrid model):\n\n• **Senior SAP S/4HANA Consultants** (FICO, MM, SD, PP, EWM)\n• **SAP BTP & ABAP on HANA Developers** (3–7 Yrs)\n• **Enterprise AI & Full-Stack Engineers** (React, TypeScript, Python, LLMs)\n• **Cloud & Basis Infrastructure Specialists**\n\nWe provide competitive compensation, global certification sponsorship, and leadership opportunities in high-impact enterprise digital transformations.`,
       navLinks: [
-        { label: 'View Open Roles & Apply', path: '/careers', primary: true },
+        { label: 'View Open Roles & Apply', path: '/about/grow-with-us', primary: true },
         { label: 'Learn About Our Story', path: '/about/the-knooviq-story' }
       ],
       followUps: [
@@ -179,8 +178,7 @@ const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       showEnquiryForm: true,
       defaultService: 'SAP S/4HANA & Enterprise Transformation',
       navLinks: [
-        { label: 'Official Contact Page', path: '/contact', primary: true },
-        { label: 'View Mumbai HQ Location', path: '/about/global-presence' }
+        { label: 'View Mumbai HQ Location', path: '/about/global-presence', primary: true }
       ],
       followUps: [
         "Tell me about KNOOVIQ's services",
@@ -307,8 +305,7 @@ const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     response: () => ({
       text: `**KNOOVIQ Industries Private Limited — Corporate Headquarters**\n\n📍 **Registered Office & Tech Center:**\n1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)\n\n📧 **Corporate Inquiries:** contact@knooviq.com\n📞 **Direct Phone:** +91 99877 52646\n🕒 **Operating Hours:** Monday – Friday, 9:30 AM – 6:30 PM IST\n\nOur office is situated in the western corporate hub of Mumbai with direct access via Link Road and Western Express Highway.`,
       navLinks: [
-        { label: 'Official Contact Page', path: '/contact', primary: true },
-        { label: 'View Location Map', path: '/about/global-presence' }
+        { label: 'View Location Map', path: '/about/global-presence', primary: true }
       ],
       followUps: [
         'Schedule an in-person meeting at Mumbai HQ',
@@ -381,8 +378,8 @@ export function generateBotResponse(userInput: string): BotResponse {
   return {
     text: `Thank you for your question. As KNOOVIQ's enterprise AI assistant, I provide verified information on our **SAP S/4HANA transitions**, **Digital Intelligence & AI Studio**, **Enterprise Products (EXIM, E-Invoicing, GST)**, and **Mumbai Headquarters**.\n\nWhile I don't have a verified answer for that specific query in my knowledge base, our solution architects will be glad to assist you directly with exact technical blueprints.`,
     navLinks: [
-      { label: 'Request an Architecture Consultation', path: '/contact', primary: true },
-      { label: 'Explore Solutions Overview', path: '/solutions' }
+      { label: 'Explore Products & Solutions', path: '/products', primary: true },
+      { label: 'View Mumbai Headquarters', path: '/about/global-presence' }
     ],
     showEnquiryForm: false,
     followUps: [

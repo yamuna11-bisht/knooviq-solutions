@@ -236,7 +236,7 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
     if (isOpen) {
       scrollToBottom();
       if (window.innerWidth > 768) {
-        setTimeout(() => inputRef.current?.focus(), 250);
+        setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 250);
       }
     }
   }, [isOpen, messages, isTyping, scrollToBottom]);
@@ -487,89 +487,34 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 select-none print:hidden">
-      
+    <>
       {/* -------------------------------------------------------------------- */}
-      {/* Vibration & Pulse Keyframes (Matching Dais World Widget Animation)   */}
-      {/* -------------------------------------------------------------------- */}
-      <style>{`
-        @keyframes daisworld-vibrate {
-          0% {
-            transform: scale(1) rotate(0deg);
-          }
-          4% {
-            transform: scale(1.08) rotate(-14deg);
-          }
-          8% {
-            transform: scale(1.08) rotate(14deg);
-          }
-          12% {
-            transform: scale(1.08) rotate(-14deg);
-          }
-          16% {
-            transform: scale(1.08) rotate(14deg);
-          }
-          20% {
-            transform: scale(1.04) rotate(-8deg);
-          }
-          24% {
-            transform: scale(1.04) rotate(8deg);
-          }
-          28% {
-            transform: scale(1) rotate(0deg);
-          }
-          100% {
-            transform: scale(1) rotate(0deg);
-          }
-        }
-        @keyframes daisworld-pulse {
-          0% {
-            box-shadow: 0 0 0 0 rgba(0, 112, 192, 0.6), 0 4px 14px rgba(0, 43, 102, 0.4);
-          }
-          65% {
-            box-shadow: 0 0 0 16px rgba(0, 112, 192, 0), 0 4px 14px rgba(0, 43, 102, 0.4);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(0, 112, 192, 0), 0 4px 14px rgba(0, 43, 102, 0.4);
-          }
-        }
-        .animate-daisworld {
-          animation: daisworld-vibrate 2.4s infinite ease-in-out, daisworld-pulse 2.4s infinite ease-in-out;
-        }
-        .animate-daisworld:hover {
-          animation-play-state: paused;
-          transform: scale(1.08);
-        }
-      `}</style>
-
-      {/* -------------------------------------------------------------------- */}
-      {/* 1. SOLID STATIC LAUNCHER TRIGGER (DAISWORLD STYLE VIBRATION & GLOW)  */}
+      {/* 1. SOLID STATIC LAUNCHER TRIGGER (LOCKED FIXED POSITION, NO MOVEMENT) */}
       {/* -------------------------------------------------------------------- */}
       {!isOpen && (
-        <div className="relative flex items-center justify-center">
-          <button
-            onClick={handleOpen}
-            aria-label="Open KNOOVIQ AI Assistant"
-            className="animate-daisworld relative flex items-center justify-center w-14 h-14 rounded-full bg-[#002B66] hover:bg-[#003882] text-white border-2 border-white/20 transition-all duration-200 cursor-pointer"
+        <button
+          type="button"
+          onClick={handleOpen}
+          aria-label="Open KNOOVIQ AI Assistant"
+          className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#002B66] hover:bg-[#003882] text-white shadow-xl shadow-blue-950/40 border-2 border-white/20 transition-colors duration-200 cursor-pointer select-none print:hidden"
+        >
+          {/* White Outline Chat Speech Bubble Icon */}
+          <svg
+            className="w-7 h-7 text-white pointer-events-none"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            {/* White Outline Chat Speech Bubble Icon matching Image 1 */}
-            <svg
-              className="w-7 h-7 text-white pointer-events-none"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 21a9 9 0 1 0-9-9c0 1.5.38 2.92 1.05 4.15L3 21l4.9-1.02c1.2.66 2.58 1.02 4.1 1.02z" />
-            </svg>
-          </button>
-        </div>
+            <path d="M12 21a9 9 0 1 0-9-9c0 1.5.38 2.92 1.05 4.15L3 21l4.9-1.02c1.2.66 2.58 1.02 4.1 1.02z" />
+          </svg>
+        </button>
       )}
 
       {/* -------------------------------------------------------------------- */}
-      {/* 2. OPEN CHATBOT WINDOW (STATIONARY FIXED POSITION - MATCHING IMAGE 2) */}
+      {/* 2. OPEN CHATBOT WINDOW (STATIONARY FIXED POSITION - LOCKED AT BOTTOM-6 RIGHT-6) */}
       {/* -------------------------------------------------------------------- */}
       <AnimatePresence>
         {isOpen && (
@@ -579,7 +524,7 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
             data-lenis-prevent="true"
-            className="relative flex flex-col w-[calc(100vw-2.5rem)] sm:w-[390px] md:w-[410px] h-[84vh] max-h-[660px] rounded-3xl border border-slate-200/90 bg-[#F8FAFC] shadow-2xl shadow-blue-950/30 overflow-hidden text-slate-900"
+            className="fixed bottom-6 right-6 z-50 flex flex-col w-[calc(100vw-2.5rem)] sm:w-[390px] md:w-[410px] h-[84vh] max-h-[660px] rounded-3xl border border-slate-200/90 bg-[#F8FAFC] shadow-2xl shadow-blue-950/30 overflow-hidden text-slate-900 select-none print:hidden"
             role="dialog"
             aria-label="KNOOVIQ AI Assistant"
           >
@@ -1029,7 +974,6 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
           </motion.div>
         )}
       </AnimatePresence>
-
-    </div>
+    </>
   );
 };

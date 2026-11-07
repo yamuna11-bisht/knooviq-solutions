@@ -12,13 +12,8 @@ import { ChatbotWidget } from './components/chatbot/ChatbotWidget';
 // Pages
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
-import { SolutionsPage } from './pages/SolutionsPage';
-import { SolutionDetailPage } from './pages/SolutionDetailPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { IndustriesPage } from './pages/IndustriesPage';
-import { InsightsPage } from './pages/InsightsPage';
-import { CareersPage } from './pages/CareersPage';
-import { ContactPage } from './pages/ContactPage';
 import { AdminLoginPage } from './pages/AdminLoginPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 
@@ -671,8 +666,8 @@ const AppContent: React.FC = () => {
           <Route path="/transformation" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/transformation/:slug" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/solutions/transformation" element={<TransformationPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/solutions" element={<SolutionsPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/solutions/:slug" element={<SolutionDetailPage onOpenContact={handleOpenContactModal} />} />
+          <Route path="/solutions" element={<Navigate to="/products" replace />} />
+          <Route path="/solutions/:slug" element={<Navigate to="/products" replace />} />
           <Route path="/digital-intelligence" element={<ServicesPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/digital-intelligence/artificial-intelligence" element={<Navigate to="/digital-intelligence" replace />} />
           <Route path="/technology/artificial-intelligence" element={<ArtificialIntelligencePage onOpenContact={handleOpenContactModal} />} />
@@ -979,9 +974,9 @@ const AppContent: React.FC = () => {
           <Route path="/industries/education" element={<EducationIndustryPage onOpenContact={handleOpenContactModal} />} />
           <Route path="/industries/higher-education" element={<EducationIndustryPage onOpenContact={handleOpenContactModal} />} />
 
-          <Route path="/insights" element={<InsightsPage onOpenContact={handleOpenContactModal} />} />
-          <Route path="/careers" element={<CareersPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/insights" element={<Navigate to="/products/knooviq-ai-insights" replace />} />
+          <Route path="/careers" element={<Navigate to="/about/grow-with-us" replace />} />
+          <Route path="/contact" element={<Navigate to="/about/global-presence" replace />} />
 
           {/* Private Admin Platform */}
           <Route path="/admin/login" element={<AdminLoginPage />} />
