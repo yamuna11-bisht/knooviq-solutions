@@ -40,6 +40,23 @@ interface LightboxState {
 }
 
 export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact }) => {
+  const [isFullscreenImageOpen, setIsFullscreenImageOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsFullscreenImageOpen(false);
+    };
+    if (isFullscreenImageOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreenImageOpen]);
   const [lightboxImage, setLightboxImage] = useState<LightboxState | null>(null);
 
   useEffect(() => {
@@ -319,64 +336,111 @@ export const PublicCloudPage: React.FC<PublicCloudPageProps> = ({ onOpenContact 
           HERO SECTION — BUILD AND RUN YOUR BUSINESS ON PUBLIC CLOUD
           (Cinematic Full-Bleed Enterprise Hero with Full-Screen Background Image)
          ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-black text-white border-b border-slate-800 shadow-2xl py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full min-h-[580px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-[#040B17] text-white border-b border-white/10">
         
-        {/* Full-Bleed Enterprise Background Image */}
-        <div className="absolute inset-0 z-0 group/hero pointer-events-none">
-          <img 
-            src="/images/cloud/public_cloud_hero.jpg" 
-            alt="Build and Run Your Business on Public Cloud - Reference Architecture showing connected devices, enterprise services, and cloud compute" 
-            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
-            loading="eager"
-          />
-
-
-
-
-
-          {/* Top Hairline Accent */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent" />
+        {/* Ambient Atmospheric Backdrop */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute -top-32 right-0 w-[600px] h-[600px] bg-[#00A3E0]/15 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-10" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        {/* Hero Content Layer */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
-            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-xs font-mono font-semibold uppercase tracking-wider backdrop-blur-md">
-              <Cloud className="w-3.5 h-3.5 text-[#00A3E0]" />
-              <span>CLOUD INFRASTRUCTURE &amp; PLATFORMS</span>
+            {/* Left Column: Headline & Narrative */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00A3E0]/20 border border-[#00A3E0]/40 text-[#00A3E0] text-xs font-mono font-semibold uppercase tracking-wider backdrop-blur-md">
+                <Cloud className="w-3.5 h-3.5 text-[#00A3E0]" />
+                <span>CLOUD INFRASTRUCTURE &amp; PLATFORMS</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] text-white drop-shadow-md">
+                Build and Run Your Business on{' '}
+                <span className="text-[#00A3E0]">Public Cloud</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl pt-1">
+                Public cloud provides access to computing, storage, networking, databases, and managed services without requiring organizations to own and maintain all the underlying infrastructure. Knooviq supports the design of cloud environments around application requirements, security policies, infrastructure needs, and long-term technology plans.
+              </p>
+
+              {/* Key Architecture Badges */}
+              <div className="pt-4 border-t border-white/15 grid grid-cols-3 gap-4 text-xs max-w-xl">
+                <div>
+                  <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">Multi-AZ</span>
+                  <span className="text-slate-300 mt-0.5 block">High Availability</span>
+                </div>
+                <div>
+                  <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">Zero-Trust</span>
+                  <span className="text-slate-300 mt-0.5 block">Security Baseline</span>
+                </div>
+                <div>
+                  <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">FinOps</span>
+                  <span className="text-slate-300 mt-0.5 block">Automated Cost Control</span>
+                </div>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.16] text-white drop-shadow-md">
-              Build and Run Your Business on{' '}
-              <span className="text-[#00A3E0]">Public Cloud</span>
-            </h1>
+            {/* Right Column: Complete Uncropped Image Showcase */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div 
+                className="relative w-full max-w-md lg:max-w-none group cursor-pointer"
+                onClick={() => setIsFullscreenImageOpen(true)}
+                title="Click to view full screen"
+              >
+                {/* Subtle glow halo */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#00A3E0]/25 to-blue-600/20 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
 
-            <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed drop-shadow-sm max-w-2xl">
-              Public cloud provides access to computing, storage, networking, databases, and managed services without requiring organizations to own and maintain all the underlying infrastructure. Knooviq supports the design of cloud environments around application requirements, security policies, infrastructure needs, and long-term technology plans.
-            </p>
-
-
-
-            {/* Key Architecture Badges */}
-            <div className="pt-6 border-t border-white/15 grid grid-cols-3 gap-4 text-xs max-w-xl backdrop-blur-[2px]">
-              <div>
-                <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">Multi-AZ</span>
-                <span className="text-slate-300 mt-0.5 block">High Availability</span>
-              </div>
-              <div>
-                <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">Zero-Trust</span>
-                <span className="text-slate-300 mt-0.5 block">Security Baseline</span>
-              </div>
-              <div>
-                <span className="font-mono text-[#00A3E0] font-bold block text-sm sm:text-base">FinOps</span>
-                <span className="text-slate-300 mt-0.5 block">Cost Optimization</span>
+                <div className="relative rounded-2xl overflow-hidden border border-white/20 bg-black/60 backdrop-blur-md shadow-2xl p-2 sm:p-3 transition-transform duration-300 group-hover:scale-[1.02]">
+                  <img
+                    src="/images/cloud/public_cloud_hero.png"
+                    alt="Build and Run Your Business on Public Cloud"
+                    className="w-full h-auto max-h-[380px] sm:max-h-[440px] lg:max-h-[480px] object-contain rounded-xl select-none mx-auto drop-shadow-xl"
+                  />
+                  
+                  {/* Full Screen Badge in corner */}
+                  <div className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-cyan-300 shadow-xl opacity-85 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span>View Full Screen</span>
+                  </div>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
+
+        {/* Full-Screen Lightbox Modal */}
+        {isFullscreenImageOpen && (
+          <div 
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
+            onClick={() => setIsFullscreenImageOpen(false)}
+          >
+            <button
+              onClick={() => setIsFullscreenImageOpen(false)}
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200 z-50 cursor-pointer"
+              aria-label="Close full screen"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <div 
+              className="relative max-w-7xl w-full max-h-[92vh] flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img 
+                src="/images/cloud/public_cloud_hero.png" 
+                alt="Build and Run Your Business on Public Cloud" 
+                className="max-w-full max-h-[88vh] object-contain rounded-2xl border border-white/20 shadow-2xl"
+              />
+              <div className="absolute bottom-4 left-4 right-4 text-center">
+                <span className="px-4 py-2 rounded-full bg-black/85 border border-white/20 text-xs font-mono font-bold text-cyan-300 backdrop-blur-md shadow-xl">
+                  Public Cloud &bull; Full Screen View (Press ESC or click to close)
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* =========================================================================

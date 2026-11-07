@@ -121,86 +121,83 @@ export const CloudOperatingModelPage: React.FC<CloudOperatingModelPageProps> = (
           Primary CTA: Discuss Your Cloud Operating Model
           Secondary CTA: Explore Our Capabilities
           ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-2xl pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
+      <section className="relative w-full min-h-[580px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-[#040B17] text-white border-b border-white/10">
         
-        {/* Full-Bleed Enterprise Background Image */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img 
-            src="/images/cloud/cloud_op_model_hero.jpg" 
-            alt="Design a Cloud Operating Model Built for Enterprise Scale - Global cloud connectivity, digital network governance, and enterprise platform ecosystem" 
-            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
-          />
-
-
-
-
-          {/* Top Hairline Accent */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0] to-transparent" />
+        {/* Ambient Atmospheric Backdrop */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute -top-32 right-0 w-[600px] h-[600px] bg-[#00A3E0]/15 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-10" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-8">
-          
-
-
-          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
-            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
-              <span>CLOUD &amp; OPERATIONS</span>
-            </div>
+            {/* Left Column: Headline & Narrative */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md">
+                <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
+                <span>CLOUD &amp; OPERATIONS</span>
+              </div>
 
-            {/* Main Heading */}
-            <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-[1.18]">
-                Design a Cloud Operating Model Built for Enterprise Scale
-              </h1>
-              <p className="text-base sm:text-lg font-medium text-cyan-300 tracking-normal">
-                Align People, Governance, Platform Capabilities, and Commercial Outcomes
+              <div className="space-y-3">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
+                  Design a Cloud Operating Model Built for Enterprise Scale
+                </h1>
+                <p className="text-base sm:text-lg font-medium text-cyan-300 tracking-normal">
+                  Align People, Governance, Platform Capabilities, and Commercial Outcomes
+                </p>
+              </div>
+
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl pt-1">
+                Establish the people, processes, governance, and technology practices required to manage cloud services effectively. Knooviq helps organizations define cloud responsibilities, structure cross-functional teams, establish decision-making frameworks, and align cloud delivery with enterprise priorities.
               </p>
-            </div>
 
-            {/* Required Exact Narrative */}
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl">
-              Establish the people, processes, governance, and technology practices required to manage cloud services effectively. Knooviq helps organizations define cloud responsibilities, structure cross-functional teams, establish decision-making frameworks, and align cloud delivery with enterprise priorities.
-            </p>
-
-
-
-            {/* Operating Model Pillars Anchor */}
-            <div className="pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
-              <div>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">Structure</span>
-                <span className="text-sm font-bold text-white">CCoE &amp; Platform Teams</span>
-              </div>
-              <div>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">Governance</span>
-                <span className="text-sm font-bold text-white">Decision Rights &amp; Policy</span>
-              </div>
-              <div>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">Delivery</span>
-                <span className="text-sm font-bold text-white">Self-Service Platforms</span>
+              {/* Operating Model Pillars Anchor */}
+              <div className="pt-4 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
+                <div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">Structure</span>
+                  <span className="text-sm font-bold text-white">CCoE &amp; Platform Teams</span>
+                </div>
+                <div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">Governance</span>
+                  <span className="text-sm font-bold text-white">Decision Rights &amp; Policy</span>
+                </div>
+                <div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">Delivery</span>
+                  <span className="text-sm font-bold text-white">Self-Service Platforms</span>
+                </div>
               </div>
             </div>
 
-            {/* Floating Annotation Footnote */}
-            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-300">
-              <span className="flex items-center gap-1.5 text-cyan-300 font-bold">
-                <Radio className="w-3.5 h-3.5 text-[#00A3E0] animate-pulse" />
-                Operating Ecosystem
-              </span>
-              <span>&bull;</span>
-              <span className="flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-[#00A3E0]" />
-                Cross-Functional Alignment (Platform &bull; Apps &bull; CISO)
-              </span>
-              <span>&bull;</span>
-              <span className="text-slate-400">Autonomous Delivery &bull; Guardrails</span>
+            {/* Right Column: Complete Uncropped Image Showcase */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div 
+                className="relative w-full max-w-md lg:max-w-none group cursor-pointer"
+                onClick={() => setLightboxImage({ src: '/images/cloud/cloud_op_model_hero.png', caption: 'Design a Cloud Operating Model Built for Enterprise Scale' })}
+                title="Click to view full screen"
+              >
+                {/* Subtle glow halo */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#00A3E0]/25 to-blue-600/20 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+
+                <div className="relative rounded-2xl overflow-hidden border border-white/20 bg-black/60 backdrop-blur-md shadow-2xl p-2 sm:p-3 transition-transform duration-300 group-hover:scale-[1.02]">
+                  <img
+                    src="/images/cloud/cloud_op_model_hero.png"
+                    alt="Design a Cloud Operating Model Built for Enterprise Scale"
+                    className="w-full h-auto max-h-[380px] sm:max-h-[440px] lg:max-h-[480px] object-contain rounded-xl select-none mx-auto drop-shadow-xl"
+                  />
+                  
+                  {/* Full Screen Badge in corner */}
+                  <div className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-cyan-300 shadow-xl opacity-85 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span>View Full Screen</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
-
         </div>
       </section>
 

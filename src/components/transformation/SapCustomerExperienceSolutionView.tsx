@@ -232,121 +232,141 @@ export const SapCustomerExperienceSolutionView: React.FC<SapCustomerExperienceSo
       {/* =========================================================================
           1. FULL-SCREEN CINEMATIC HERO SECTION (Full-Bleed 3D Visual & Enterprise Content Overlay)
           ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-black text-white border-b border-slate-200/20 dark:border-white/10 shadow-xl py-10 sm:py-12 lg:py-14">
+      <section className="relative w-full min-h-[580px] sm:min-h-[620px] lg:min-h-[660px] flex items-center overflow-hidden bg-[#040B17] text-white border-b border-white/10 py-10 sm:py-12 lg:py-14">
         
-        {/* Full-Bleed Enterprise 3D Background Image (100% Clear with Zero Dark Blue Shade) */}
-        <div 
-          className="absolute inset-0 z-0 group/hero cursor-pointer overflow-hidden"
-          onClick={() => setIsFullscreenImageOpen(true)}
-          title="Click to view full screen 3D visual"
-        >
-          <img 
-            src="/images/sap_app_cx_3d_clean.jpg" 
-            alt="Composable Omnichannel Commerce, Real-Time CDP & Unified Customer Experience" 
-            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center transition-transform duration-1000 ease-out group-hover/hero:scale-102 select-none"
-          />
-
+        {/* Ambient Atmospheric Backdrop */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute -top-32 right-0 w-[600px] h-[600px] bg-amber-400/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(#00A3E0_1px,transparent_1px)] [background-size:32px_32px] opacity-10" />
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
         </div>
 
-        {/* Hero Content Overlay */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-6 sm:py-10">
-          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
-            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/85 via-black/50 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             
-            {/* Badges */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-amber-300 shadow-md">
-                <ShoppingBag className="w-3.5 h-3.5 text-amber-400" />
-                <span>SAP COMMERCE CLOUD & COMPOSABLE CX</span>
-              </div>
-              <span className="text-slate-400 text-xs font-mono hidden sm:inline">/</span>
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-slate-200 uppercase tracking-wider bg-black/50 px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md shadow-md">
-                <Target className="w-3.5 h-3.5 text-cyan-400" />
-                <span>REAL-TIME IDENTITY RESOLUTION</span>
-              </span>
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
-              Composable Omnichannel Commerce, Real-Time CDP & Unified Customer Experience
-            </h1>
-
-            {/* Narrative */}
-            <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-100 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-              Deliver hyper-personalized customer journeys at global scale. Unify headless B2B and B2C commerce, real-time identity resolution on SAP CDP, predictive Emarsys engagement, and sub-second checkout speeds.
-            </p>
-
-            {/* Architectural Checkpoints */}
-            <div className="flex flex-wrap items-center gap-2 pt-0.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Store className="w-3.5 h-3.5 text-amber-400" />
-                <span>Composable Commerce Cloud</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Target className="w-3.5 h-3.5 text-cyan-400" />
-                <span>SAP Customer Data Platform</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Zap className="w-3.5 h-3.5 text-purple-400" />
-                <span>Emarsys Omnichannel AI</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
-                <Sliders className="w-3.5 h-3.5 text-emerald-400" />
-                <span>SAP CPQ Complex Bundles</span>
-              </span>
-            </div>
-
-            {/* Strategic Content Blocks */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <Layers className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="text-[10.5px] font-mono font-bold uppercase text-white">
-                    Composable Headless Mesh
-                  </span>
+            {/* Left Column: Headline & CX Narrative (col-span-12 lg:col-span-7) */}
+            <div className="lg:col-span-7 space-y-6">
+              
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-widest text-amber-300 shadow-md">
+                  <ShoppingBag className="w-3.5 h-3.5 text-amber-400" />
+                  <span>SAP COMMERCE CLOUD &amp; COMPOSABLE CX</span>
                 </div>
-                <p className="text-[11px] text-slate-300 leading-snug font-normal">
-                  Decoupled MACH architecture separating frontend UX from core transactional order processing for sub-second speeds.
-                </p>
-              </div>
-
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <div className="flex items-center gap-1.5 mb-0.5">
+                <span className="text-slate-400 text-xs font-mono hidden sm:inline">/</span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-slate-200 uppercase tracking-wider bg-black/50 px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-md shadow-md">
                   <Target className="w-3.5 h-3.5 text-cyan-400" />
-                  <span className="text-[10.5px] font-mono font-bold uppercase text-white">
-                    Real-Time Customer Data Platform
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-300 leading-snug font-normal">
-                  Deterministic identity stitching reconciling anonymous clicks, authenticated apps, and in-store POS receipts.
-                </p>
+                  <span>REAL-TIME IDENTITY RESOLUTION</span>
+                </span>
               </div>
+
+              {/* Headline */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-[1.14] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+                Composable Omnichannel Commerce, Real-Time CDP &amp; Unified Customer Experience
+              </h1>
+
+              {/* Narrative */}
+              <p className="text-sm sm:text-base lg:text-lg font-medium text-slate-200 leading-relaxed max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+                Deliver hyper-personalized customer journeys at global scale. Unify headless B2B and B2C commerce, real-time identity resolution on SAP CDP, predictive Emarsys engagement, and sub-second checkout speeds.
+              </p>
+
+              {/* Architectural Checkpoints */}
+              <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
+                  <Store className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Composable Commerce Cloud</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
+                  <Target className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>SAP Customer Data Platform</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
+                  <Zap className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Emarsys Omnichannel AI</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-slate-200 shadow-md">
+                  <Sliders className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>SAP CPQ Complex Bundles</span>
+                </span>
+              </div>
+
+              {/* Strategic Content Blocks */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
+                <div className="px-3 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/15 shadow-md">
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <Layers className="w-3.5 h-3.5 text-amber-400" />
+                    <span className="text-[10.5px] font-mono font-bold uppercase text-white">
+                      Composable Headless Mesh
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-snug font-normal">
+                    Decoupled MACH architecture separating frontend UX from core transactional order processing.
+                  </p>
+                </div>
+
+                <div className="px-3 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/15 shadow-md">
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <Target className="w-3.5 h-3.5 text-cyan-400" />
+                    <span className="text-[10.5px] font-mono font-bold uppercase text-white">
+                      Real-Time Customer Data Platform
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-snug font-normal">
+                    Deterministic identity stitching reconciling clicks, apps, and in-store POS receipts.
+                  </p>
+                </div>
+              </div>
+
+              {/* KPI Highlights Bar */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono">
+                <div className="px-3 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/15 shadow-md">
+                  <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">Conversion Lift</p>
+                  <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">+28%</p>
+                  <p className="text-[8.5px] text-slate-400 mt-0.5">Cart Checkout</p>
+                </div>
+                <div className="px-3 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/15 shadow-md">
+                  <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">P95 Latency</p>
+                  <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">&lt; 120ms</p>
+                  <p className="text-[8.5px] text-slate-400 mt-0.5">Sub-Second</p>
+                </div>
+                <div className="px-3 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/15 shadow-md">
+                  <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">Customer LTV</p>
+                  <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">+34%</p>
+                  <p className="text-[8.5px] text-slate-400 mt-0.5">Retention</p>
+                </div>
+                <div className="px-3 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/15 shadow-md">
+                  <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">B2B Reorder</p>
+                  <p className="text-base sm:text-lg font-black text-emerald-400 mt-0.5 leading-none">3.2x</p>
+                  <p className="text-[8.5px] text-slate-400 mt-0.5">Multiplier</p>
+                </div>
+              </div>
+
             </div>
 
+            {/* Right Column: Complete Uncropped Image Showcase (col-span-12 lg:col-span-5) */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div 
+                className="relative w-full max-w-md lg:max-w-none group cursor-pointer"
+                onClick={() => setIsFullscreenImageOpen(true)}
+                title="Click to view full screen"
+              >
+                {/* Subtle glow halo */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-amber-400/25 to-cyan-500/20 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
 
-
-            {/* KPI Highlights Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono">
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">Conversion Lift</p>
-                <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">+28%</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">Cart Checkout Rate</p>
-              </div>
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">P95 Latency</p>
-                <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">&lt; 120ms</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">Sub-Second Storefront</p>
-              </div>
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">Customer LTV</p>
-                <p className="text-base sm:text-lg font-black text-white mt-0.5 leading-none">+34%</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">Emarsys Retention</p>
-              </div>
-              <div className="px-3 py-2 rounded-xl bg-black/35 backdrop-blur-md border border-white/15 shadow-md">
-                <p className="text-[9px] text-amber-300 uppercase font-bold tracking-wider">B2B Reorder</p>
-                <p className="text-base sm:text-lg font-black text-emerald-400 mt-0.5 leading-none">3.2x</p>
-                <p className="text-[8.5px] text-slate-400 mt-0.5">Velocity Multiplier</p>
+                <div className="relative rounded-2xl overflow-hidden border border-white/20 bg-black/60 backdrop-blur-md shadow-2xl p-2 sm:p-3 transition-transform duration-300 group-hover:scale-[1.02]">
+                  <img
+                    src="/images/sap_app_cx_3d_clean.jpg"
+                    alt="Composable Omnichannel Commerce, Real-Time CDP & Unified Customer Experience"
+                    className="w-full h-auto max-h-[380px] sm:max-h-[440px] lg:max-h-[480px] object-contain rounded-xl select-none mx-auto drop-shadow-xl"
+                  />
+                  
+                  {/* Full Screen Badge in corner */}
+                  <div className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-amber-300 shadow-xl opacity-85 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span>View Full Screen</span>
+                  </div>
+                </div>
               </div>
             </div>
 
