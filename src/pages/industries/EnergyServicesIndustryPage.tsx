@@ -499,98 +499,77 @@ export const EnergyServicesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden selection:bg-[#0070C0] selection:text-white">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Cinematic 2-Column Enterprise Hero Showcase)
+          SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Aligned with AI Agents Reference)
           ========================================================================= */}
-      <section className="relative min-h-[660px] lg:min-h-[720px] bg-slate-950 text-white flex flex-col justify-between overflow-hidden">
+      <section className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] bg-black text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Ambient Subtle Cyber Grid & Atmospheric Glow */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
-          <div 
-            className="absolute inset-0 opacity-15"
-            style={{
-              backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
-              backgroundSize: '40px 40px'
-            }}
+        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/energy-services/energy_services_hero.jpg"
+            alt="Intelligent ERP for Energy & Oilfield Services"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
+            style={{ imageRendering: '-webkit-optimize-contrast' }}
           />
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        {/* Hero Top Content (2-Column Grid) */}
+        {/* Hero Top Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 relative z-10 w-full">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="max-w-2xl lg:max-w-xl space-y-4 sm:space-y-6 relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero box and unhindered right-side image */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/90 via-black/55 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
+            {/* Breadcrumb Navigation */}
+            <div className="mb-2 sm:mb-4">
+              <Link 
+                to="/industries" 
+                className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
+              >
+                <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
+                <span>Back to Industries</span>
+              </Link>
+            </div>
+
+            {/* Practice Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <Truck className="w-3.5 h-3.5 text-cyan-400" />
+              <span>KNOOVIQ INDUSTRY PRACTICE</span>
+            </div>
             
-            {/* Left Column (7 cols): Content & Typography */}
-            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
-              
-              {/* Breadcrumb Navigation */}
-              <div className="mb-2 sm:mb-4">
-                <Link 
-                  to="/industries" 
-                  className="inline-flex items-center text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider"
-                >
-                  <ArrowRight className="w-3 h-3 mr-1 rotate-180" />
-                  <span>Back to Industries</span>
-                </Link>
-              </div>
+            {/* Prominent High-Impact Heading */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+              Intelligent ERP for <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400">Energy & Oilfield Services</span>
+            </h1>
 
-              {/* Practice Pill Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 backdrop-blur-md">
-                <Truck className="w-3.5 h-3.5 text-cyan-400" />
-                <span>KNOOVIQ INDUSTRY PRACTICE</span>
-              </div>
-              
-              {/* Prominent High-Impact Heading */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                Intelligent ERP for <br />
-                <span className="text-cyan-400">Energy & Oilfield Services</span>
-              </h1>
+            {/* Subheading / Value Proposition */}
+            <p className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              Empowering Wellsite Dispatch, Mobile e-Ticketing & Downhole Tool Serialization on SAP S/4HANA.
+            </p>
 
-              {/* Subheading / Value Proposition */}
-              <p className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Empowering Wellsite Dispatch, Mobile e-Ticketing & Downhole Tool Serialization on SAP S/4HANA.
-              </p>
-
-              {/* Clear Open Typography */}
-              <p className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed drop-shadow-sm max-w-2xl">
-                Supercharge field service productivity with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, offline-capable <strong className="text-cyan-300 font-semibold">Mobile Wellsite e-Ticketing</strong>, heavy haul rig movement logistics, and <strong className="text-white font-semibold">predictive downhole tool fatigue tracking</strong>.
-              </p>
-              
-              {/* Clean Feature Highlights */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                  <span>Clean Core Architecture</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Offline Wellsite e-Ticketing</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                  <span>Serialized Tool Telemetry</span>
-                </span>
-              </div>
+            {/* Clear Open Typography */}
+            <p className="text-sm sm:text-base text-slate-100 font-normal leading-relaxed drop-shadow-sm max-w-2xl">
+              Supercharge field service productivity with integrated <strong className="text-white font-semibold">SAP S/4HANA Clean Core</strong>, offline-capable <strong className="text-cyan-300 font-semibold">Mobile Wellsite e-Ticketing</strong>, heavy haul rig movement logistics, and <strong className="text-white font-semibold">predictive downhole tool fatigue tracking</strong>.
+            </p>
+            
+            {/* Clean Feature Highlights */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-1">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                <span>Clean Core Architecture</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Offline Wellsite e-Ticketing</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-white shadow-sm">
+                <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                <span>Serialized Tool Telemetry</span>
+              </span>
             </div>
-
-            {/* Right Column (5 cols): Pure Visual Showcase (100% Uncut, Crystal Clear & Top Aligned) */}
-            <div className="lg:col-span-5 flex items-center justify-center">
-              <div className="relative w-full max-w-[560px] rounded-2xl overflow-hidden border-2 border-slate-700/80 bg-slate-900 shadow-2xl shadow-black/80 p-2 sm:p-2.5 group hover:border-[#0070C0] transition-colors duration-300">
-                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center aspect-[16/9]">
-                  <img 
-                    src="/images/energy-services/energy_services_hero.jpg" 
-                    alt="Intelligent ERP for Energy & Oilfield Services" 
-                    className="w-full h-full object-contain object-top rounded-lg shadow-sm"
-                    loading="eager"
-                  />
-                </div>
-              </div>
-            </div>
-
           </div>
-
         </div>
 
         {/* Enterprise Architectural Trust Ribbon (Inside Hero, 4-Column Layout) */}
