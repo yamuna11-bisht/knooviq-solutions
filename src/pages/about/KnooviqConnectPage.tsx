@@ -1048,20 +1048,34 @@ const ConnectFormSection: React.FC = () => {
           <option value="Technology Collaboration" className="text-slate-900 dark:bg-slate-900 dark:text-white">Technology Collaboration</option>
           <option value="Career Opportunity" className="text-slate-900 dark:bg-slate-900 dark:text-white">Career Opportunity</option>
           <option value="General Enquiry" className="text-slate-900 dark:bg-slate-900 dark:text-white">General Enquiry</option>
+          <option value="Other" className="text-slate-900 dark:bg-slate-900 dark:text-white">Other</option>
         </select>
       </div>
 
       {/* Message */}
       <div>
-        <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300 mb-1.5">
-          Requirement Details *
-        </label>
+        <div className="flex items-center justify-between mb-1.5">
+          <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300">
+            Requirement Details
+          </label>
+          <span className="text-[11px] font-mono text-slate-400">
+            {formData.message.trim() ? formData.message.trim().split(/\s+/).filter(Boolean).length : 0} / 500 words
+          </span>
+        </div>
         <textarea
-          required
           rows={4}
           value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          placeholder="Briefly describe your project scope, ERP environment, or collaboration goals..."
+          onChange={(e) => {
+            const val = e.target.value;
+            const words = val.trim() ? val.trim().split(/\s+/).filter(Boolean) : [];
+            if (words.length > 500) {
+              const truncated = val.trim().split(/\s+/).slice(0, 500).join(' ');
+              setFormData({ ...formData, message: truncated });
+            } else {
+              setFormData({ ...formData, message: val });
+            }
+          }}
+          placeholder="Briefly describe your project scope, ERP environment, or collaboration goals (optional, max 500 words)..."
           className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors resize-none"
         />
       </div>

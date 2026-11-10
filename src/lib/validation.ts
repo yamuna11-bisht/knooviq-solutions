@@ -44,8 +44,15 @@ export const EnquiryFormSchema = z.object({
     .transform(sanitizeInput),
   message: z
     .string()
-    .min(10, { message: 'Please provide at least 10 characters describing your requirement' })
-    .max(3000, { message: 'Message cannot exceed 3000 characters' })
+    .max(5000, { message: 'Requirement details cannot exceed 500 words' })
+    .refine((val) => {
+      if (!val || !val.trim()) return true;
+      const wordCount = val.trim().split(/\s+/).filter(Boolean).length;
+      return wordCount <= 500;
+    }, { message: 'Requirement details cannot exceed 500 words' })
+    .optional()
+    .or(z.literal(''))
+    .default('')
     .transform(sanitizeInput),
   honeypot: z.string().max(0, { message: 'Bot submission detected' }).optional(),
 });

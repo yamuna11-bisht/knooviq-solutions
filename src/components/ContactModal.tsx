@@ -24,6 +24,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
   });
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [otherServiceText, setOtherServiceText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -36,6 +37,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
 
   if (!isOpen) return null;
 
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    const words = val.trim() ? val.trim().split(/\s+/).filter(Boolean) : [];
+    if (words.length > 500) {
+      const truncated = val.trim().split(/\s+/).slice(0, 500).join(' ');
+      setFormData((prev) => ({ ...prev, message: truncated }));
+    } else {
+      setFormData((prev) => ({ ...prev, message: val }));
+    }
+  };
+
+  const wordCount = formData.message.trim() ? formData.message.trim().split(/\s+/).filter(Boolean).length : 0;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormErrors({});
@@ -47,7 +61,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
       return;
     }
 
-    const validationResult = EnquiryFormSchema.safeParse(formData);
+    const effectiveService = formData.service === 'Other' && otherServiceText.trim()
+      ? `Other: ${otherServiceText.trim()}`
+      : formData.service;
+
+    const validationResult = EnquiryFormSchema.safeParse({
+      ...formData,
+      service: effectiveService,
+    });
     if (!validationResult.success) {
       const fieldErrors: Record<string, string> = {};
       validationResult.error.errors.forEach((err) => {
@@ -71,7 +92,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
         email: validationResult.data.email,
         phone: validationResult.data.phone,
         service: validationResult.data.service,
-        message: validationResult.data.message,
+        message: validationResult.data.message || '',
       });
 
       if (res.success) {
@@ -104,6 +125,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
       message: '',
       honeypot: '',
     });
+    setOtherServiceText('');
     setFormErrors({});
     setErrorMessage(null);
     onClose();
@@ -249,19 +271,36 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
                   <option value="SAP Mobility & Fiori UX">SAP Mobility & Fiori UX</option>
                   <option value="SAP Corporate Training">SAP Corporate Training</option>
                   <option value="General Enterprise Consultation">General Enterprise Consultation</option>
+                  <option value="Other">Other</option>
                 </select>
+
+                {formData.service === 'Other' && (
+                  <div className="mt-2">
+                    <input
+                      type="text"
+                      value={otherServiceText}
+                      onChange={(e) => setOtherServiceText(e.target.value)}
+                      placeholder="Please specify your other requirement..."
+                      className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none text-xs"
+                    />
+                  </div>
+                )}
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  Requirement Details <span className="text-rose-500">*</span>
-                </label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block font-bold text-slate-700 dark:text-slate-300">
+                    Requirement Details
+                  </label>
+                  <span className={`text-[11px] font-mono ${wordCount >= 490 ? 'text-amber-500 font-bold' : 'text-slate-400 dark:text-slate-500'}`}>
+                    {wordCount} / 500 words
+                  </span>
+                </div>
                 <textarea
-                  required
                   rows={3}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Describe your current ERP systems and objectives..."
+                  onChange={handleMessageChange}
+                  placeholder="Describe your current ERP systems and objectives (optional, max 500 words)..."
                   className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
                 />
                 {formErrors.message && <p className="text-rose-500 text-[11px] mt-1">{formErrors.message}</p>}
