@@ -405,29 +405,31 @@ export const DataEngineeringPage: React.FC<DataEngineeringPageProps> = ({
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#0070C0] selection:text-white font-sans antialiased overflow-x-hidden">
       
       {/* =========================================================================
-          SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Aligned with AI Agents)
+          SECTION 1: HERO SECTION (Full-Screen Panoramic Background - Aligned with AI Agents Reference)
           ========================================================================= */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-slate-950 text-white">
+      <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[660px] flex items-center pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 overflow-hidden bg-black text-white">
 
         {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping on Data Engineering & Streaming Pipelines */}
         <div className="absolute inset-0 z-0">
           <img
             src="/images/data-engineering/data_engineering_ai_hero.jpg"
             alt="Enterprise Data Engineering AI Control Center"
-            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none contrast-[1.02]"
+            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
             style={{ imageRendering: '-webkit-optimize-contrast' }}
           />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
-        {/* Lighter Directional Scrim for Maximum Visual Clarity & Text Contrast */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-slate-950/70 via-slate-950/30 to-transparent pointer-events-none" />
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-2xl lg:max-w-xl space-y-6">
+          <div className="max-w-2xl lg:max-w-xl space-y-6 relative">
+            {/* Seamless Soft Contrast Aura — ensures text is 100% legible with zero box and unhindered right-side image */}
+            <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-black/90 via-black/55 to-transparent rounded-3xl blur-2xl -z-10 pointer-events-none" />
+
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="space-y-4">
               {/* Practice Pill Badge */}
               <div className="flex flex-wrap items-center gap-2.5">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-cyan-500/40 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-md">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
                   <Database className="w-3.5 h-3.5 text-cyan-400" />
                   <span>KNOOVIQ DIGITAL INTELLIGENCE &bull; DATA ENGINEERING</span>
                 </div>
