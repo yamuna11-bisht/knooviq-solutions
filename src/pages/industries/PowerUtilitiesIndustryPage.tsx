@@ -501,14 +501,16 @@ export const PowerUtilitiesIndustryPage: React.FC<IndustryPageProps> = ({ onOpen
           ========================================================================= */}
       <section className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] bg-black text-white flex flex-col justify-between overflow-hidden">
         
-        {/* Full-Bleed 16:9 Panoramic Image - Zero Cropping */}
-        <div className="absolute inset-0 z-0">
+        {/* Full-Bleed Panoramic Background - Zero Cropping (Never cut from top, bottom, left or right) */}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
           <img
             src="/images/power-utilities/power_utilities_hero.jpg"
             alt="Intelligent ERP for Power & Utilities"
-            className="w-full h-full object-cover object-right sm:object-[78%_center] lg:object-center select-none brightness-105 contrast-[1.02]"
+            className="w-full h-full object-contain object-right select-none brightness-105 contrast-[1.02]"
             style={{ imageRendering: '-webkit-optimize-contrast' }}
           />
+          {/* Subtle Left Feather Gradient — seamlessly blends image into the dark text column */}
+          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none" />
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00A3E0]/80 to-transparent" />
         </div>
 
