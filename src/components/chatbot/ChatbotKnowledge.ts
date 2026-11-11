@@ -176,7 +176,7 @@ const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     response: () => ({
       text: `We would be delighted to arrange a direct technical consultation with our enterprise solution architects.\n\nPlease share your details below and our team will get back to you with a customized architecture scope and proposal:`,
       showEnquiryForm: true,
-      defaultService: 'SAP S/4HANA & Enterprise Transformation',
+      defaultService: 'SAP S/4HANA Migration & Upgrades',
       navLinks: [
         { label: 'View Mumbai HQ Location', path: '/about/global-presence', primary: true }
       ],

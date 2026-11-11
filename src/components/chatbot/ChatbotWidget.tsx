@@ -21,7 +21,9 @@ import {
   Mic,
   Bot,
   User,
-  Loader2
+  Loader2,
+  CheckCircle2,
+  Maximize2
 } from 'lucide-react';
 import {
   generateBotResponse,
@@ -761,201 +763,245 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
               {/* -------------------------------------------------------------- */}
               {/* In-Chat Consultation Form (Exact Match to ContactModal)         */}
               {/* -------------------------------------------------------------- */}
-              {activeEnquiryForm && !enquirySubmittedSuccess && (
+              {activeEnquiryForm && (
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="relative p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B1528] border border-slate-200 dark:border-sky-500/30 shadow-xl space-y-4 text-slate-900 dark:text-white"
+                  className="relative p-5 sm:p-7 rounded-3xl bg-white dark:bg-[#0B1528] border border-slate-200 dark:border-sky-500/30 shadow-2xl space-y-4 text-slate-900 dark:text-white"
                 >
-                  {/* Top-Right Circular Close Button */}
-                  <button
-                    type="button"
-                    onClick={() => setActiveEnquiryForm(false)}
-                    aria-label="Close consultation form"
-                    className="absolute top-4 right-4 sm:top-5 sm:right-5 flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-
-                  {/* Header */}
-                  <div className="pr-8">
-                    <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider font-mono">
-                      TALK TO OUR EXPERTS
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#0A1931] dark:text-white mt-1">
-                      Enterprise Consultation
-                    </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">
-                      Connect with KNOOVIQ's certified SAP leadership team.
-                    </p>
+                  {/* Top-Right Circular Action Buttons (Expand & Close) */}
+                  <div className="absolute top-5 right-5 flex items-center gap-1.5 z-10">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveEnquiryForm(false);
+                        onOpenContact(enquiryData.service);
+                      }}
+                      title="Open in full screen modal"
+                      aria-label="Open full consultation modal"
+                      className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition cursor-pointer"
+                    >
+                      <Maximize2 className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveEnquiryForm(false);
+                        setEnquirySubmittedSuccess(null);
+                      }}
+                      aria-label="Close consultation form"
+                      className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition cursor-pointer"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
                   </div>
 
-                  {enquirySubmitError && (
-                    <div className="rounded-xl bg-rose-500/10 border border-rose-500/30 p-2.5 text-xs text-rose-600 dark:text-rose-300 flex items-center gap-2">
-                      <AlertCircle className="h-4 w-4 flex-shrink-0" />
-                      <span>{enquirySubmitError}</span>
-                    </div>
-                  )}
-
-                  <form onSubmit={handleEnquirySubmit} className="space-y-3.5 text-xs">
-                    {/* Row 1: Full Name & Company */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                          Full Name <span className="text-rose-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={enquiryData.fullName}
-                          onChange={(e) => setEnquiryData({ ...enquiryData, fullName: e.target.value })}
-                          placeholder="Your Name"
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
-                        />
-                        {formErrors.fullName && (
-                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.fullName}</p>
-                        )}
+                  {enquirySubmittedSuccess ? (
+                    <div className="text-center py-6">
+                      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-500 dark:text-emerald-400 mb-3">
+                        <CheckCircle2 className="h-8 w-8" />
                       </div>
-
-                      <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                          Company <span className="text-rose-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={enquiryData.company}
-                          onChange={(e) => setEnquiryData({ ...enquiryData, company: e.target.value })}
-                          placeholder="Company Name"
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
-                        />
-                        {formErrors.company && (
-                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.company}</p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Row 2: Email Address & Phone Number */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                          Email Address <span className="text-rose-500">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={enquiryData.email}
-                          onChange={(e) => setEnquiryData({ ...enquiryData, email: e.target.value })}
-                          placeholder="name@company.com"
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
-                        />
-                        {formErrors.email && (
-                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.email}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                          Phone Number <span className="text-rose-500">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={enquiryData.phone}
-                          onChange={(e) => setEnquiryData({ ...enquiryData, phone: e.target.value })}
-                          placeholder="+91 98000 00000"
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
-                        />
-                        {formErrors.phone && (
-                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.phone}</p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Row 3: Service Requirement Dropdown */}
-                    <div>
-                      <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                        Service Requirement <span className="text-rose-500">*</span>
-                      </label>
-                      <select
-                        required
-                        value={enquiryData.service}
-                        onChange={(e) => setEnquiryData({ ...enquiryData, service: e.target.value })}
-                        className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white focus:border-[#00A3E0] focus:outline-none font-medium cursor-pointer"
-                      >
-                        {SERVICE_OPTIONS.map((srv, idx) => (
-                          <option key={idx} value={srv}>
-                            {srv}
-                          </option>
-                        ))}
-                      </select>
-
-                      {enquiryData.service === 'Other' && (
-                        <div className="mt-2">
-                          <input
-                            type="text"
-                            value={otherServiceText}
-                            onChange={(e) => setOtherServiceText(e.target.value)}
-                            placeholder="Please specify your other requirement..."
-                            className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none text-xs"
-                          />
-                          {formErrors.service && (
-                            <p className="text-rose-500 text-[11px] mt-1">{formErrors.service}</p>
-                          )}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Row 4: Requirement Details (Optional, max 500 words, NO asterisk) */}
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="block font-bold text-slate-700 dark:text-slate-300">
-                          Requirement Details
-                        </label>
-                        <span className={`text-[11px] font-mono ${wordCount >= 490 ? 'text-amber-500 font-bold' : 'text-slate-400 dark:text-slate-500'}`}>
-                          {wordCount} / 500 words
-                        </span>
-                      </div>
-                      <textarea
-                        rows={3}
-                        value={enquiryData.message}
-                        onChange={handleMessageChange}
-                        placeholder="Describe your current ERP systems and objectives (optional, max 500 words)..."
-                        className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none resize-none"
-                      />
-                      {formErrors.message && (
-                        <p className="text-rose-500 text-[11px] mt-1">{formErrors.message}</p>
-                      )}
-                    </div>
-
-                    {/* Footer buttons: Cancel & Submit Inquiry */}
-                    <div className="mt-4 flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-sky-500/15">
+                      <h3 className="text-xl font-bold text-[#0A1931] dark:text-white mb-2">Inquiry Submitted!</h3>
+                      <p className="text-xs text-slate-600 dark:text-slate-300 max-w-sm mx-auto leading-relaxed mb-1">
+                        Our enterprise solution experts will review your request and get in touch with you shortly.
+                      </p>
+                      <p className="text-xs text-slate-400 font-mono mb-5">
+                        Ref: <span className="font-bold text-[#00A3E0]">{enquirySubmittedSuccess}</span>
+                      </p>
                       <button
                         type="button"
-                        onClick={() => setActiveEnquiryForm(false)}
-                        className="px-3.5 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition"
+                        onClick={() => {
+                          setActiveEnquiryForm(false);
+                          setEnquirySubmittedSuccess(null);
+                        }}
+                        className="glow-btn rounded-xl px-6 py-2.5 text-xs font-bold text-white cursor-pointer"
                       >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={isSubmittingEnquiry}
-                        className="glow-btn inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-white disabled:opacity-50 cursor-pointer shadow-md"
-                      >
-                        {isSubmittingEnquiry ? (
-                          <>
-                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                            <span>Sending...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Send className="h-3.5 w-3.5" />
-                            <span>Submit Inquiry</span>
-                          </>
-                        )}
+                        Done
                       </button>
                     </div>
-                  </form>
+                  ) : (
+                    <>
+                      {/* Header */}
+                      <div className="pr-16">
+                        <span className="text-xs font-bold text-[#00A3E0] uppercase tracking-wider font-mono">
+                          Talk to Our Experts
+                        </span>
+                        <h3 className="text-xl font-bold text-[#0A1931] dark:text-white mt-1">
+                          Enterprise Consultation
+                        </h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">
+                          Connect with KNOOVIQ's certified SAP leadership team.
+                        </p>
+                      </div>
+
+                      {enquirySubmitError && (
+                        <div className="rounded-xl bg-rose-500/10 border border-rose-500/30 p-2.5 text-xs text-rose-600 dark:text-rose-300 flex items-center gap-2">
+                          <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                          <span>{enquirySubmitError}</span>
+                        </div>
+                      )}
+
+                      <form onSubmit={handleEnquirySubmit} className="space-y-3.5 text-xs">
+                        {/* Row 1: Full Name & Company */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                              Full Name <span className="text-rose-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              value={enquiryData.fullName}
+                              onChange={(e) => setEnquiryData({ ...enquiryData, fullName: e.target.value })}
+                              placeholder="Your Name"
+                              className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                            />
+                            {formErrors.fullName && (
+                              <p className="text-rose-500 text-[11px] mt-1">{formErrors.fullName}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                              Company <span className="text-rose-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              value={enquiryData.company}
+                              onChange={(e) => setEnquiryData({ ...enquiryData, company: e.target.value })}
+                              placeholder="Company Name"
+                              className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                            />
+                            {formErrors.company && (
+                              <p className="text-rose-500 text-[11px] mt-1">{formErrors.company}</p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Row 2: Email Address & Phone Number */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                              Email Address <span className="text-rose-500">*</span>
+                            </label>
+                            <input
+                              type="email"
+                              required
+                              value={enquiryData.email}
+                              onChange={(e) => setEnquiryData({ ...enquiryData, email: e.target.value })}
+                              placeholder="name@company.com"
+                              className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                            />
+                            {formErrors.email && (
+                              <p className="text-rose-500 text-[11px] mt-1">{formErrors.email}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                              Phone Number <span className="text-rose-500">*</span>
+                            </label>
+                            <input
+                              type="tel"
+                              required
+                              value={enquiryData.phone}
+                              onChange={(e) => setEnquiryData({ ...enquiryData, phone: e.target.value })}
+                              placeholder="+91 98000 00000"
+                              className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                            />
+                            {formErrors.phone && (
+                              <p className="text-rose-500 text-[11px] mt-1">{formErrors.phone}</p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Row 3: Service Requirement Dropdown */}
+                        <div>
+                          <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                            Service Requirement <span className="text-rose-500">*</span>
+                          </label>
+                          <select
+                            required
+                            value={enquiryData.service}
+                            onChange={(e) => setEnquiryData({ ...enquiryData, service: e.target.value })}
+                            className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white focus:border-[#00A3E0] focus:outline-none font-medium cursor-pointer"
+                          >
+                            {SERVICE_OPTIONS.map((srv, idx) => (
+                              <option key={idx} value={srv}>
+                                {srv}
+                              </option>
+                            ))}
+                          </select>
+
+                          {enquiryData.service === 'Other' && (
+                            <div className="mt-2">
+                              <input
+                                type="text"
+                                value={otherServiceText}
+                                onChange={(e) => setOtherServiceText(e.target.value)}
+                                placeholder="Please specify your other requirement..."
+                                className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none text-xs"
+                              />
+                              {formErrors.service && (
+                                <p className="text-rose-500 text-[11px] mt-1">{formErrors.service}</p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Row 4: Requirement Details (Optional, max 500 words, NO asterisk) */}
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <label className="block font-bold text-slate-700 dark:text-slate-300">
+                              Requirement Details
+                            </label>
+                            <span className={`text-[11px] font-mono ${wordCount >= 490 ? 'text-amber-500 font-bold' : 'text-slate-400 dark:text-slate-500'}`}>
+                              {wordCount} / 500 words
+                            </span>
+                          </div>
+                          <textarea
+                            rows={3}
+                            value={enquiryData.message}
+                            onChange={handleMessageChange}
+                            placeholder="Describe your current ERP systems and objectives (optional, max 500 words)..."
+                            className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none resize-none"
+                          />
+                          {formErrors.message && (
+                            <p className="text-rose-500 text-[11px] mt-1">{formErrors.message}</p>
+                          )}
+                        </div>
+
+                        {/* Footer buttons: Cancel & Submit Inquiry */}
+                        <div className="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-slate-100 dark:border-sky-500/15">
+                          <button
+                            type="button"
+                            onClick={() => setActiveEnquiryForm(false)}
+                            className="px-4 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="submit"
+                            disabled={isSubmittingEnquiry}
+                            className="glow-btn inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-xs font-bold text-white disabled:opacity-50 cursor-pointer shadow-md"
+                          >
+                            {isSubmittingEnquiry ? (
+                              <>
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                                <span>Sending...</span>
+                              </>
+                            ) : (
+                              <>
+                                <Send className="h-3.5 w-3.5" />
+                                <span>Submit Inquiry</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </form>
+                    </>
+                  )}
                 </motion.div>
               )}
 
