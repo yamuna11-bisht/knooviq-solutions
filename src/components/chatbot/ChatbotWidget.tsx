@@ -31,6 +31,7 @@ import {
   SUGGESTED_QUESTIONS,
   NavLink
 } from './ChatbotKnowledge';
+import confetti from 'canvas-confetti';
 import { submitEnquiry } from '../../lib/supabase';
 
 interface ChatbotWidgetProps {
@@ -67,14 +68,15 @@ const PROMINENT_ACTION_CARDS = [
 ];
 
 const SERVICE_OPTIONS = [
-  'SAP S/4HANA & Enterprise Transformation',
+  'SAP Consulting & Outsourcing',
+  'SAP S/4HANA Migration & Upgrades',
   'SAP Application Management (AMS)',
-  'Digital Intelligence & AI Studio',
-  'Global Trade & Compliance (EXIM)',
-  'E-Invoicing & E-Way Bill Solutions',
-  'Accelerated GST & Tax Solutions',
-  'Cloud Infrastructure & Cybersecurity',
-  'General Corporate Consultation'
+  'SAP Support Services',
+  'SAP Integration & BTP Solutions',
+  'SAP Mobility & Fiori UX',
+  'SAP Corporate Training',
+  'General Enterprise Consultation',
+  'Other'
 ];
 
 /**
@@ -180,16 +182,30 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
   const [activeEnquiryForm, setActiveEnquiryForm] = useState<boolean>(false);
   const [enquiryData, setEnquiryData] = useState({
     fullName: '',
-    email: '',
     company: '',
+    email: '',
     phone: '',
     service: SERVICE_OPTIONS[0],
     message: ''
   });
+  const [otherServiceText, setOtherServiceText] = useState('');
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [isSubmittingEnquiry, setIsSubmittingEnquiry] = useState(false);
   const [enquirySubmittedSuccess, setEnquirySubmittedSuccess] = useState<string | null>(null);
   const [enquirySubmitError, setEnquirySubmitError] = useState<string | null>(null);
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    const words = val.trim() ? val.trim().split(/\s+/).filter(Boolean) : [];
+    if (words.length > 500) {
+      const truncated = val.trim().split(/\s+/).slice(0, 500).join(' ');
+      setEnquiryData((prev) => ({ ...prev, message: truncated }));
+    } else {
+      setEnquiryData((prev) => ({ ...prev, message: val }));
+    }
+  };
+
+  const wordCount = enquiryData.message.trim() ? enquiryData.message.trim().split(/\s+/).filter(Boolean).length : 0;
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -267,6 +283,16 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
     setActiveEnquiryForm(false);
     setEnquirySubmittedSuccess(null);
     setEnquirySubmitError(null);
+    setEnquiryData({
+      fullName: '',
+      company: '',
+      email: '',
+      phone: '',
+      service: SERVICE_OPTIONS[0],
+      message: ''
+    });
+    setOtherServiceText('');
+    setFormErrors({});
     sessionStorage.removeItem(STORAGE_KEY);
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
@@ -420,13 +446,20 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
   const validateForm = () => {
     const errors: Record<string, string> = {};
     if (!enquiryData.fullName.trim()) errors.fullName = 'Please enter your full name';
-    if (!enquiryData.email.trim()) {
-      errors.email = 'Business email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enquiryData.email.trim())) {
-      errors.email = 'Please provide a valid business email';
-    }
     if (!enquiryData.company.trim()) errors.company = 'Company name is required';
-    if (!enquiryData.message.trim()) errors.message = 'Please briefly outline your requirements';
+    if (!enquiryData.email.trim()) {
+      errors.email = 'Email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enquiryData.email.trim())) {
+      errors.email = 'Please provide a valid email address';
+    }
+    if (!enquiryData.phone.trim()) {
+      errors.phone = 'Phone number is required';
+    } else if (!/^\+?[0-9\s\-()]{7,20}$/.test(enquiryData.phone.trim())) {
+      errors.phone = 'Please enter a valid phone number';
+    }
+    if (enquiryData.service === 'Other' && !otherServiceText.trim()) {
+      errors.service = 'Please specify your other requirement';
+    }
     return errors;
   };
 
@@ -442,20 +475,34 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
     setIsSubmittingEnquiry(true);
     setEnquirySubmitError(null);
 
+    const effectiveService = enquiryData.service === 'Other' && otherServiceText.trim()
+      ? `Other: ${otherServiceText.trim()}`
+      : enquiryData.service;
+
     try {
       const result = await submitEnquiry({
         full_name: enquiryData.fullName.trim(),
         email: enquiryData.email.trim(),
         company: enquiryData.company.trim(),
-        phone: enquiryData.phone.trim() || undefined,
-        service: enquiryData.service,
+        phone: enquiryData.phone.trim(),
+        service: effectiveService,
         industry: 'Enterprise Technology',
         country: 'India',
-        message: enquiryData.message.trim(),
+        message: enquiryData.message.trim() || '',
         source: 'CHATBOT_AI_ASSISTANT'
       });
 
       if (result.success) {
+        try {
+          confetti({
+            particleCount: 60,
+            spread: 55,
+            origin: { y: 0.6 }
+          });
+        } catch {
+          // confetti safe
+        }
+
         const refId = `KNV-${Math.floor(100000 + Math.random() * 900000)}`;
         setEnquirySubmittedSuccess(refId);
         setActiveEnquiryForm(false);
@@ -463,7 +510,7 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
         const confirmationMsg: ChatMessage = {
           id: `bot-conf-${Date.now()}`,
           sender: 'bot',
-          text: `Thank you, **${enquiryData.fullName}**! Your consultation enquiry has been registered under reference **${refId}**.\n\nOur enterprise architecture team will review your requirements for **${enquiryData.service}** and contact you at **${enquiryData.email}** within one business day.\n\nHow else can I assist you today?`,
+          text: `Thank you, **${enquiryData.fullName}**! Your inquiry has been registered under reference **${refId}**.\n\nOur enterprise solution experts will review your request for **${effectiveService}** and get in touch with you at **${enquiryData.email}** shortly.\n\nHow else can I assist you today?`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           navLinks: [
             { label: 'Explore SAP S/4HANA', path: '/transformation/sap-s4hana', primary: true },
@@ -477,7 +524,7 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
         };
         setMessages((prev) => [...prev, confirmationMsg]);
       } else {
-        setEnquirySubmitError(result.error || 'Failed to submit enquiry. Please try again.');
+        setEnquirySubmitError(result.error || 'Failed to submit inquiry. Please try again.');
       }
     } catch {
       setEnquirySubmitError('Network or server error. Please try again or email contact@knooviq.com.');
@@ -712,152 +759,198 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
               })}
 
               {/* -------------------------------------------------------------- */}
-              {/* In-Chat Consultation Form                                       */}
+              {/* In-Chat Consultation Form (Exact Match to ContactModal)         */}
               {/* -------------------------------------------------------------- */}
               {activeEnquiryForm && !enquirySubmittedSuccess && (
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-2xl bg-white border border-[#002B66]/30 shadow-md space-y-3"
+                  className="relative p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B1528] border border-slate-200 dark:border-sky-500/30 shadow-xl space-y-4 text-slate-900 dark:text-white"
                 >
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-200">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-[#002B66]" />
-                      <span className="text-xs font-bold text-slate-900">
-                        Connect with KNOOVIQ Expert
-                      </span>
-                    </div>
-                    <span className="text-[10px] text-slate-400">Consultation Scope</span>
+                  {/* Top-Right Circular Close Button */}
+                  <button
+                    type="button"
+                    onClick={() => setActiveEnquiryForm(false)}
+                    aria-label="Close consultation form"
+                    className="absolute top-4 right-4 sm:top-5 sm:right-5 flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+
+                  {/* Header */}
+                  <div className="pr-8">
+                    <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider font-mono">
+                      TALK TO OUR EXPERTS
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#0A1931] dark:text-white mt-1">
+                      Enterprise Consultation
+                    </h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">
+                      Connect with KNOOVIQ's certified SAP leadership team.
+                    </p>
                   </div>
 
-                  <form onSubmit={handleEnquirySubmit} className="space-y-2.5">
-                    <div>
-                      <label className="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-0.5">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        value={enquiryData.fullName}
-                        onChange={(e) => setEnquiryData({ ...enquiryData, fullName: e.target.value })}
-                        placeholder="e.g. Rajesh Sharma"
-                        className="w-full px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#002B66]"
-                      />
-                      {formErrors.fullName && (
-                        <p className="text-[10px] text-rose-500 mt-0.5">{formErrors.fullName}</p>
-                      )}
+                  {enquirySubmitError && (
+                    <div className="rounded-xl bg-rose-500/10 border border-rose-500/30 p-2.5 text-xs text-rose-600 dark:text-rose-300 flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                      <span>{enquirySubmitError}</span>
                     </div>
+                  )}
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <form onSubmit={handleEnquirySubmit} className="space-y-3.5 text-xs">
+                    {/* Row 1: Full Name & Company */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-0.5">
-                          Business Email *
-                        </label>
-                        <input
-                          type="email"
-                          value={enquiryData.email}
-                          onChange={(e) => setEnquiryData({ ...enquiryData, email: e.target.value })}
-                          placeholder="r.sharma@enterprise.com"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#002B66]"
-                        />
-                        {formErrors.email && (
-                          <p className="text-[10px] text-rose-500 mt-0.5">{formErrors.email}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label className="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-0.5">
-                          Company Name *
+                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                          Full Name <span className="text-rose-500">*</span>
                         </label>
                         <input
                           type="text"
+                          required
+                          value={enquiryData.fullName}
+                          onChange={(e) => setEnquiryData({ ...enquiryData, fullName: e.target.value })}
+                          placeholder="Your Name"
+                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                        />
+                        {formErrors.fullName && (
+                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.fullName}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                          Company <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          required
                           value={enquiryData.company}
                           onChange={(e) => setEnquiryData({ ...enquiryData, company: e.target.value })}
-                          placeholder="Enterprise Ltd"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#002B66]"
+                          placeholder="Company Name"
+                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
                         />
                         {formErrors.company && (
-                          <p className="text-[10px] text-rose-500 mt-0.5">{formErrors.company}</p>
+                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.company}</p>
                         )}
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {/* Row 2: Email Address & Phone Number */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-0.5">
-                          Phone Number (Optional)
+                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                          Email Address <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={enquiryData.email}
+                          onChange={(e) => setEnquiryData({ ...enquiryData, email: e.target.value })}
+                          placeholder="name@company.com"
+                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                        />
+                        {formErrors.email && (
+                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.email}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                          Phone Number <span className="text-rose-500">*</span>
                         </label>
                         <input
                           type="tel"
+                          required
                           value={enquiryData.phone}
                           onChange={(e) => setEnquiryData({ ...enquiryData, phone: e.target.value })}
-                          placeholder="+91 98765 43210"
-                          className="w-full px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#002B66]"
+                          placeholder="+91 98000 00000"
+                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
                         />
-                      </div>
-
-                      <div>
-                        <label className="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-0.5">
-                          Area of Interest
-                        </label>
-                        <select
-                          value={enquiryData.service}
-                          onChange={(e) => setEnquiryData({ ...enquiryData, service: e.target.value })}
-                          className="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 focus:outline-none focus:border-[#002B66]"
-                        >
-                          {SERVICE_OPTIONS.map((srv, idx) => (
-                            <option key={idx} value={srv}>
-                              {srv}
-                            </option>
-                          ))}
-                        </select>
+                        {formErrors.phone && (
+                          <p className="text-rose-500 text-[11px] mt-1">{formErrors.phone}</p>
+                        )}
                       </div>
                     </div>
 
+                    {/* Row 3: Service Requirement Dropdown */}
                     <div>
-                      <label className="block text-[10px] font-semibold text-slate-600 uppercase tracking-wider mb-0.5">
-                        Requirements Scope *
+                      <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                        Service Requirement <span className="text-rose-500">*</span>
                       </label>
-                      <textarea
-                        rows={2}
-                        value={enquiryData.message}
-                        onChange={(e) => setEnquiryData({ ...enquiryData, message: e.target.value })}
-                        placeholder="Briefly describe your ERP landscape or objectives..."
-                        className="w-full px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#002B66] resize-none"
-                      />
-                      {formErrors.message && (
-                        <p className="text-[10px] text-rose-500 mt-0.5">{formErrors.message}</p>
+                      <select
+                        required
+                        value={enquiryData.service}
+                        onChange={(e) => setEnquiryData({ ...enquiryData, service: e.target.value })}
+                        className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white focus:border-[#00A3E0] focus:outline-none font-medium cursor-pointer"
+                      >
+                        {SERVICE_OPTIONS.map((srv, idx) => (
+                          <option key={idx} value={srv}>
+                            {srv}
+                          </option>
+                        ))}
+                      </select>
+
+                      {enquiryData.service === 'Other' && (
+                        <div className="mt-2">
+                          <input
+                            type="text"
+                            value={otherServiceText}
+                            onChange={(e) => setOtherServiceText(e.target.value)}
+                            placeholder="Please specify your other requirement..."
+                            className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none text-xs"
+                          />
+                          {formErrors.service && (
+                            <p className="text-rose-500 text-[11px] mt-1">{formErrors.service}</p>
+                          )}
+                        </div>
                       )}
                     </div>
 
-                    {enquirySubmitError && (
-                      <div className="flex items-center gap-2 p-2 rounded-lg bg-rose-50 text-rose-600 text-[11px]">
-                        <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
-                        <span>{enquirySubmitError}</span>
+                    {/* Row 4: Requirement Details (Optional, max 500 words, NO asterisk) */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="block font-bold text-slate-700 dark:text-slate-300">
+                          Requirement Details
+                        </label>
+                        <span className={`text-[11px] font-mono ${wordCount >= 490 ? 'text-amber-500 font-bold' : 'text-slate-400 dark:text-slate-500'}`}>
+                          {wordCount} / 500 words
+                        </span>
                       </div>
-                    )}
+                      <textarea
+                        rows={3}
+                        value={enquiryData.message}
+                        onChange={handleMessageChange}
+                        placeholder="Describe your current ERP systems and objectives (optional, max 500 words)..."
+                        className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none resize-none"
+                      />
+                      {formErrors.message && (
+                        <p className="text-rose-500 text-[11px] mt-1">{formErrors.message}</p>
+                      )}
+                    </div>
 
-                    <div className="flex items-center justify-end gap-2 pt-1">
+                    {/* Footer buttons: Cancel & Submit Inquiry */}
+                    <div className="mt-4 flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-sky-500/15">
                       <button
                         type="button"
                         onClick={() => setActiveEnquiryForm(false)}
-                        className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-600 hover:bg-slate-100 transition"
+                        className="px-3.5 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         disabled={isSubmittingEnquiry}
-                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-[#002B66] hover:bg-[#003882] text-white text-xs font-semibold shadow-sm transition disabled:opacity-50"
+                        className="glow-btn inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-white disabled:opacity-50 cursor-pointer shadow-md"
                       >
                         {isSubmittingEnquiry ? (
                           <>
-                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            <span>Submitting...</span>
+                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                            <span>Sending...</span>
                           </>
                         ) : (
                           <>
-                            <Send className="w-3.5 h-3.5" />
-                            <span>Submit Request</span>
+                            <Send className="h-3.5 w-3.5" />
+                            <span>Submit Inquiry</span>
                           </>
                         )}
                       </button>
