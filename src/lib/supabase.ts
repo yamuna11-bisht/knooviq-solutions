@@ -13,6 +13,7 @@ import {
   DashboardStats
 } from '../types';
 import { INITIAL_JOB_OPENINGS } from '../data/knooviqData';
+import { sanitizeInput } from './validation';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -170,39 +171,80 @@ function setLocalStore<T>(key: string, data: T[]): void {
 }
 
 // -----------------------------------------------------------------------------
-// PUBLIC FORM SUBMISSION OPERATIONS
+// PUBLIC FORM SUBMISSION OPERATIONS (XSS-SANITIZED & SECURE)
 // -----------------------------------------------------------------------------
 
 export async function submitEnquiry(enquiry: Omit<EnquirySubmission, 'id' | 'created_at' | 'status'>): Promise<{ success: boolean; error?: string }> {
   try {
+    // 1. Sanitize all incoming fields to protect against XSS injection
+    const cleanName = sanitizeInput(enquiry.full_name);
+    const cleanCompany = sanitizeInput(enquiry.company);
+    const cleanEmail = sanitizeInput(enquiry.email);
+    const cleanPhone = sanitizeInput(enquiry.phone || '');
+    const cleanService = sanitizeInput(enquiry.service);
+    const cleanMessage = sanitizeInput(enquiry.message || '');
+    const cleanIndustry = sanitizeInput(enquiry.industry || 'Enterprise Technology');
+    const cleanCountry = sanitizeInput(enquiry.country || 'India');
+    const cleanSource = sanitizeInput(enquiry.source || 'WEBSITE_CONSULTATION_MODAL');
+
+    // 2. Validate mandatory constraints
+    if (!cleanName || cleanName.length < 2) {
+      return { success: false, error: 'Full name must be at least 2 characters.' };
+    }
+    if (!cleanCompany || cleanCompany.length < 2) {
+      return { success: false, error: 'Company name must be at least 2 characters.' };
+    }
+    if (!cleanEmail || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(cleanEmail)) {
+      return { success: false, error: 'Please provide a valid business email address.' };
+    }
+    if (!cleanPhone || cleanPhone.length < 7) {
+      return { success: false, error: 'Please provide a valid contact phone number.' };
+    }
+    if (!cleanService) {
+      return { success: false, error: 'Please select a valid service requirement.' };
+    }
+
     if (supabase) {
       const { error } = await supabase.from('enquiries').insert([{
-        full_name: enquiry.full_name,
-        company: enquiry.company,
-        email: enquiry.email,
-        phone: enquiry.phone,
-        service: enquiry.service,
-        industry: enquiry.industry || 'General / Other',
-        country: enquiry.country || 'India',
-        message: enquiry.message,
-        source: enquiry.source || 'WEBSITE_CONSULTATION_FORM',
+        full_name: cleanName,
+        company: cleanCompany,
+        email: cleanEmail,
+        phone: cleanPhone,
+        service: cleanService,
+        industry: cleanIndustry,
+        country: cleanCountry,
+        message: cleanMessage,
+        source: cleanSource,
       }]);
-      if (error) throw error;
+
+      if (error) {
+        console.error('Supabase Enquiry Submission Error:', error.message);
+        throw error;
+      }
       return { success: true };
     } else {
+      // Local fallback with encrypted/safe storage format
       const current = getLocalStore<EnquirySubmission>(LOCAL_ENQUIRIES_KEY, INITIAL_SAMPLE_ENQUIRIES);
       const newRecord: EnquirySubmission = {
-        ...enquiry,
         id: `enq-${Date.now()}`,
+        full_name: cleanName,
+        company: cleanCompany,
+        email: cleanEmail,
+        phone: cleanPhone,
+        service: cleanService,
+        industry: cleanIndustry,
+        country: cleanCountry,
+        message: cleanMessage,
+        source: cleanSource,
         status: 'NEW',
         created_at: new Date().toISOString(),
       };
       setLocalStore(LOCAL_ENQUIRIES_KEY, [newRecord, ...current]);
       
-      // Auto push notification
+      // Auto push notification for admin
       pushNotification({
-        title: `New Enquiry from ${enquiry.company}`,
-        message: `${enquiry.full_name} submitted an enquiry for ${enquiry.service}.`,
+        title: `New Enquiry from ${cleanCompany}`,
+        message: `${cleanName} requested consultation for ${cleanService} via ${cleanSource === 'CHATBOT_AI_ASSISTANT' ? 'AI Chatbot' : 'Consultation Form'}.`,
         type: 'ENQUIRY'
       });
       return { success: true };
@@ -215,23 +257,50 @@ export async function submitEnquiry(enquiry: Omit<EnquirySubmission, 'id' | 'cre
 
 export async function submitContactSubmission(contact: Omit<ContactSubmission, 'id' | 'created_at' | 'status'>): Promise<{ success: boolean; error?: string }> {
   try {
+    const cleanName = sanitizeInput(contact.name);
+    const cleanEmail = sanitizeInput(contact.email);
+    const cleanPhone = sanitizeInput(contact.phone || '');
+    const cleanCompany = sanitizeInput(contact.company);
+    const cleanService = sanitizeInput(contact.service);
+    const cleanSubject = sanitizeInput(contact.subject || 'General Enterprise Inquiry');
+    const cleanMessage = sanitizeInput(contact.message || '');
+
+    if (!cleanName || cleanName.length < 2) {
+      return { success: false, error: 'Name must be at least 2 characters.' };
+    }
+    if (!cleanEmail || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(cleanEmail)) {
+      return { success: false, error: 'Please provide a valid email address.' };
+    }
+    if (!cleanCompany || cleanCompany.length < 2) {
+      return { success: false, error: 'Company name must be at least 2 characters.' };
+    }
+
     if (supabase) {
       const { error } = await supabase.from('contact_submissions').insert([{
-        name: contact.name,
-        email: contact.email,
-        phone: contact.phone,
-        company: contact.company,
-        service: contact.service,
-        subject: contact.subject || 'General Enterprise Inquiry',
-        message: contact.message,
+        name: cleanName,
+        email: cleanEmail,
+        phone: cleanPhone,
+        company: cleanCompany,
+        service: cleanService,
+        subject: cleanSubject,
+        message: cleanMessage,
       }]);
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase Contact Submission Error:', error.message);
+        throw error;
+      }
       return { success: true };
     } else {
       const current = getLocalStore<ContactSubmission>(LOCAL_CONTACTS_KEY, INITIAL_SAMPLE_CONTACTS);
       const newRecord: ContactSubmission = {
-        ...contact,
         id: `cnt-${Date.now()}`,
+        name: cleanName,
+        email: cleanEmail,
+        phone: cleanPhone,
+        company: cleanCompany,
+        service: cleanService,
+        subject: cleanSubject,
+        message: cleanMessage,
         status: 'NEW',
         created_at: new Date().toISOString(),
       };
@@ -239,7 +308,7 @@ export async function submitContactSubmission(contact: Omit<ContactSubmission, '
 
       pushNotification({
         title: `New Contact Form Submission`,
-        message: `${contact.name} (${contact.company}) sent a message: ${contact.subject || contact.service}`,
+        message: `${cleanName} (${cleanCompany}) sent a message: ${cleanSubject}`,
         type: 'ENQUIRY'
       });
       return { success: true };

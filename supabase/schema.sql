@@ -1,17 +1,21 @@
 -- ==============================================================================
 -- KNOOVIQ INDUSTRIES PRIVATE LIMITED - SUPABASE ENTERPRISE DATABASE SCHEMA
--- Production-Grade PostgreSQL Schema with Normalized Tables & Strict RLS
+-- Enterprise PostgreSQL Architecture with Zero-Trust Security, Strict RLS,
+-- Input Constraints, Tamper-Proof Audit Logging & Automatic Timestamp Triggers
 -- ==============================================================================
 
--- Enable UUID extension
+-- 1. EXTENSIONS
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- ==============================================================================
--- 1. ADMIN PROFILES & ROLE ACCESS CONTROL
+-- 2. ADMIN PROFILES & ROLE-BASED ACCESS CONTROL (RBAC)
 -- ==============================================================================
+-- Stores verified corporate staff accounts authorized to review and respond
+-- to client leads and enterprise consultation requests.
 CREATE TABLE IF NOT EXISTS public.admin_profiles (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID UNIQUE, -- Can link to auth.users(id)
+    user_id UUID UNIQUE, -- Foreign key referencing auth.users(id) in Supabase Auth
     email TEXT NOT NULL UNIQUE CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
     full_name TEXT NOT NULL CHECK (char_length(full_name) BETWEEN 2 AND 100),
     role TEXT NOT NULL DEFAULT 'editor' CHECK (role IN ('super_admin', 'admin', 'editor')),
@@ -21,46 +25,69 @@ CREATE TABLE IF NOT EXISTS public.admin_profiles (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
 );
 
--- Index for fast role & email lookups
 CREATE INDEX IF NOT EXISTS idx_admin_profiles_email ON public.admin_profiles(email);
 CREATE INDEX IF NOT EXISTS idx_admin_profiles_user_id ON public.admin_profiles(user_id);
 
 -- ==============================================================================
--- 2. ENQUIRIES (Enterprise Service Consultations)
+-- 3. ENQUIRIES TABLE (Chatbot & Consultation Modal Leads)
 -- ==============================================================================
+-- Primary enterprise table capturing all prospective customer inquiries originating
+-- from the AI Chatbot Assistant and the Website Enterprise Consultation Form.
+--
+-- Security Controls:
+-- 1. Full name & company minimum lengths to prevent empty junk submissions.
+-- 2. Strict RFC email format regex check.
+-- 3. Phone number length validation (7 to 25 chars) accommodating country codes.
+-- 4. Requirement Details / message is OPTIONAL (up to 500 words / 5,000 characters).
+-- 5. Source tracking ('CHATBOT_AI_ASSISTANT' vs 'WEBSITE_CONSULTATION_MODAL').
+-- 6. RLS enabled: Public users can only INSERT; only verified Admins can read/update.
 CREATE TABLE IF NOT EXISTS public.enquiries (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     full_name TEXT NOT NULL CHECK (char_length(full_name) BETWEEN 2 AND 100),
     company TEXT NOT NULL CHECK (char_length(company) BETWEEN 2 AND 150),
     email TEXT NOT NULL CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
-    phone TEXT NOT NULL CHECK (char_length(phone) BETWEEN 7 AND 20),
+    phone TEXT NOT NULL CHECK (char_length(phone) BETWEEN 7 AND 25),
     service TEXT NOT NULL,
-    industry TEXT DEFAULT 'General / Other',
+    industry TEXT DEFAULT 'Enterprise Technology',
     country TEXT DEFAULT 'India',
-    message TEXT NOT NULL CHECK (char_length(message) BETWEEN 10 AND 3000),
+    message TEXT DEFAULT '' CHECK (message IS NULL OR char_length(message) <= 5000),
     status TEXT NOT NULL DEFAULT 'NEW' CHECK (status IN ('NEW', 'IN_REVIEW', 'CONTACTED', 'RESOLVED')),
-    source TEXT DEFAULT 'WEBSITE_CONSULTATION_FORM',
+    source TEXT NOT NULL DEFAULT 'WEBSITE_CONSULTATION_MODAL',
     internal_notes TEXT,
     ip_hash TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
 );
 
+-- Migration helpers for existing database installations
+ALTER TABLE public.enquiries DROP CONSTRAINT IF EXISTS enquiries_message_check;
+ALTER TABLE public.enquiries ALTER COLUMN message DROP NOT NULL;
+ALTER TABLE public.enquiries ALTER COLUMN message SET DEFAULT '';
+ALTER TABLE public.enquiries ADD CONSTRAINT enquiries_message_check CHECK (message IS NULL OR char_length(message) <= 5000);
+
+ALTER TABLE public.enquiries DROP CONSTRAINT IF EXISTS enquiries_phone_check;
+ALTER TABLE public.enquiries ADD CONSTRAINT enquiries_phone_check CHECK (char_length(phone) BETWEEN 7 AND 25);
+
+ALTER TABLE public.enquiries ADD COLUMN IF NOT EXISTS source TEXT DEFAULT 'WEBSITE_CONSULTATION_MODAL';
+
+-- Optimized Indexes for Executive Cockpit & Telemetry
 CREATE INDEX IF NOT EXISTS idx_enquiries_status ON public.enquiries(status);
+CREATE INDEX IF NOT EXISTS idx_enquiries_source ON public.enquiries(source);
 CREATE INDEX IF NOT EXISTS idx_enquiries_created_at ON public.enquiries(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_enquiries_email ON public.enquiries(email);
 
 -- ==============================================================================
--- 3. CONTACT SUBMISSIONS (General & Direct Contact Form)
+-- 4. CONTACT SUBMISSIONS (General Inquiries & Direct Connect Page)
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.contact_submissions (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL CHECK (char_length(name) BETWEEN 2 AND 100),
     email TEXT NOT NULL CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
-    phone TEXT NOT NULL CHECK (char_length(phone) BETWEEN 7 AND 20),
+    phone TEXT NOT NULL CHECK (char_length(phone) BETWEEN 7 AND 25),
     company TEXT NOT NULL CHECK (char_length(company) BETWEEN 2 AND 150),
     service TEXT NOT NULL,
     subject TEXT NOT NULL DEFAULT 'General Enterprise Inquiry',
-    message TEXT NOT NULL CHECK (char_length(message) BETWEEN 10 AND 3000),
+    message TEXT DEFAULT '' CHECK (message IS NULL OR char_length(message) <= 5000),
     status TEXT NOT NULL DEFAULT 'NEW' CHECK (status IN ('NEW', 'IN_REVIEW', 'CONTACTED', 'RESOLVED', 'ARCHIVED')),
     internal_notes TEXT,
     ip_hash TEXT,
@@ -68,11 +95,19 @@ CREATE TABLE IF NOT EXISTS public.contact_submissions (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
 );
 
+ALTER TABLE public.contact_submissions DROP CONSTRAINT IF EXISTS contact_submissions_message_check;
+ALTER TABLE public.contact_submissions ALTER COLUMN message DROP NOT NULL;
+ALTER TABLE public.contact_submissions ALTER COLUMN message SET DEFAULT '';
+ALTER TABLE public.contact_submissions ADD CONSTRAINT contact_submissions_message_check CHECK (message IS NULL OR char_length(message) <= 5000);
+
+ALTER TABLE public.contact_submissions DROP CONSTRAINT IF EXISTS contact_submissions_phone_check;
+ALTER TABLE public.contact_submissions ADD CONSTRAINT contact_submissions_phone_check CHECK (char_length(phone) BETWEEN 7 AND 25);
+
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_status ON public.contact_submissions(status);
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_created_at ON public.contact_submissions(created_at DESC);
 
 -- ==============================================================================
--- 4. JOB OPENINGS (Active Careers Directory)
+-- 5. JOB OPENINGS (Active Careers Directory)
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.job_openings (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -91,14 +126,14 @@ CREATE TABLE IF NOT EXISTS public.job_openings (
 CREATE INDEX IF NOT EXISTS idx_job_openings_active ON public.job_openings(is_active);
 
 -- ==============================================================================
--- 5. CAREER APPLICATIONS (Resumes & Applicant Pipeline)
+-- 6. CAREER APPLICATIONS (Resumes & Applicant Pipeline)
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.career_applications (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     job_id UUID REFERENCES public.job_openings(id) ON DELETE SET NULL,
     full_name TEXT NOT NULL CHECK (char_length(full_name) BETWEEN 2 AND 100),
     email TEXT NOT NULL CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
-    phone TEXT NOT NULL CHECK (char_length(phone) BETWEEN 7 AND 20),
+    phone TEXT NOT NULL CHECK (char_length(phone) BETWEEN 7 AND 25),
     position TEXT NOT NULL,
     experience TEXT NOT NULL,
     education TEXT DEFAULT 'Bachelor Degree / Professional Certifications',
@@ -116,7 +151,7 @@ CREATE INDEX IF NOT EXISTS idx_career_applications_status ON public.career_appli
 CREATE INDEX IF NOT EXISTS idx_career_applications_created_at ON public.career_applications(created_at DESC);
 
 -- ==============================================================================
--- 6. NEWSLETTER SUBSCRIBERS
+-- 7. NEWSLETTER SUBSCRIBERS
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.newsletter_subscribers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -130,11 +165,11 @@ CREATE TABLE IF NOT EXISTS public.newsletter_subscribers (
 CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_email ON public.newsletter_subscribers(email);
 
 -- ==============================================================================
--- 7. FORM SUBMISSIONS (Audit Log of Raw Form Events)
+-- 8. RAW FORM SUBMISSION AUDIT TRAIL
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.form_submissions (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    form_type TEXT NOT NULL,
+    form_type TEXT NOT NULL, -- e.g. 'ENQUIRY_CHATBOT', 'ENQUIRY_MODAL', 'CONTACT_PAGE'
     submission_id UUID,
     submitter_email TEXT,
     ip_hash TEXT,
@@ -145,7 +180,7 @@ CREATE TABLE IF NOT EXISTS public.form_submissions (
 CREATE INDEX IF NOT EXISTS idx_form_submissions_created_at ON public.form_submissions(created_at DESC);
 
 -- ==============================================================================
--- 8. ADMIN NOTIFICATIONS
+-- 9. ADMIN NOTIFICATIONS
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.admin_notifications (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -160,7 +195,7 @@ CREATE TABLE IF NOT EXISTS public.admin_notifications (
 CREATE INDEX IF NOT EXISTS idx_admin_notifications_is_read ON public.admin_notifications(is_read);
 
 -- ==============================================================================
--- 9. ACTIVITY & AUDIT LOGS (Tamper-Proof Compliance)
+-- 10. ACTIVITY & AUDIT LOGS (Tamper-Proof Compliance Ledger)
 -- ==============================================================================
 CREATE TABLE IF NOT EXISTS public.activity_logs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -190,10 +225,37 @@ CREATE INDEX IF NOT EXISTS idx_activity_logs_created_at ON public.activity_logs(
 CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON public.audit_logs(created_at DESC);
 
 -- ==============================================================================
--- ROW LEVEL SECURITY (RLS) POLICIES
+-- 11. AUTOMATIC TIMESTAMP TRIGGERS
 -- ==============================================================================
+CREATE OR REPLACE FUNCTION public.handle_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = timezone('utc'::text, now());
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
--- Enable RLS on all tables
+DROP TRIGGER IF EXISTS trg_enquiries_updated_at ON public.enquiries;
+CREATE TRIGGER trg_enquiries_updated_at
+BEFORE UPDATE ON public.enquiries
+FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
+
+DROP TRIGGER IF EXISTS trg_contact_submissions_updated_at ON public.contact_submissions;
+CREATE TRIGGER trg_contact_submissions_updated_at
+BEFORE UPDATE ON public.contact_submissions
+FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
+
+DROP TRIGGER IF EXISTS trg_admin_profiles_updated_at ON public.admin_profiles;
+CREATE TRIGGER trg_admin_profiles_updated_at
+BEFORE UPDATE ON public.admin_profiles
+FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
+
+-- ==============================================================================
+-- 12. ROW LEVEL SECURITY (RLS) ZERO-TRUST ARCHITECTURE
+-- ==============================================================================
+-- In Supabase, RLS ensures that public anonymous visitors CANNOT read, steal,
+-- update, or delete customer inquiries or phone numbers.
+
 ALTER TABLE public.admin_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.enquiries ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.contact_submissions ENABLE ROW LEVEL SECURITY;
@@ -205,7 +267,7 @@ ALTER TABLE public.admin_notifications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.activity_logs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.audit_logs ENABLE ROW LEVEL SECURITY;
 
--- Helper function to check if current user is an active admin
+-- Security helper functions
 CREATE OR REPLACE FUNCTION public.is_admin()
 RETURNS BOOLEAN AS $$
 BEGIN
@@ -217,7 +279,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Helper function to get admin role
 CREATE OR REPLACE FUNCTION public.get_admin_role()
 RETURNS TEXT AS $$
 DECLARE
@@ -231,41 +292,35 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- -----------------------------------------------------------------------------
--- 1. Admin Profiles RLS Policies
+-- Policies for: public.enquiries
 -- -----------------------------------------------------------------------------
-DROP POLICY IF EXISTS "Admins can view profiles" ON public.admin_profiles;
-CREATE POLICY "Admins can view profiles"
-ON public.admin_profiles FOR SELECT
-TO authenticated
-USING (public.is_admin() OR auth.uid() = user_id);
-
-DROP POLICY IF EXISTS "Super Admins can manage profiles" ON public.admin_profiles;
-CREATE POLICY "Super Admins can manage profiles"
-ON public.admin_profiles FOR ALL
-TO authenticated
-USING (public.get_admin_role() = 'super_admin');
-
--- -----------------------------------------------------------------------------
--- 2. Enquiries RLS Policies
--- -----------------------------------------------------------------------------
+-- 1. Public can submit new leads (INSERT only)
 DROP POLICY IF EXISTS "Public can submit enquiries" ON public.enquiries;
 CREATE POLICY "Public can submit enquiries"
 ON public.enquiries FOR INSERT
 TO anon, authenticated
-WITH CHECK (true);
+WITH CHECK (
+    char_length(full_name) BETWEEN 2 AND 100 AND
+    char_length(company) BETWEEN 2 AND 150 AND
+    email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' AND
+    char_length(phone) BETWEEN 7 AND 25
+);
 
+-- 2. ONLY authenticated internal admins can view leads (NO public reading)
 DROP POLICY IF EXISTS "Admins can view enquiries" ON public.enquiries;
 CREATE POLICY "Admins can view enquiries"
 ON public.enquiries FOR SELECT
 TO authenticated
 USING (public.is_admin());
 
+-- 3. ONLY admins can update status or notes
 DROP POLICY IF EXISTS "Admins can update enquiries" ON public.enquiries;
 CREATE POLICY "Admins can update enquiries"
 ON public.enquiries FOR UPDATE
 TO authenticated
 USING (public.is_admin());
 
+-- 4. ONLY Super Admins can delete
 DROP POLICY IF EXISTS "Super Admins can delete enquiries" ON public.enquiries;
 CREATE POLICY "Super Admins can delete enquiries"
 ON public.enquiries FOR DELETE
@@ -273,13 +328,18 @@ TO authenticated
 USING (public.get_admin_role() = 'super_admin');
 
 -- -----------------------------------------------------------------------------
--- 3. Contact Submissions RLS Policies
+-- Policies for: public.contact_submissions
 -- -----------------------------------------------------------------------------
 DROP POLICY IF EXISTS "Public can submit contact" ON public.contact_submissions;
 CREATE POLICY "Public can submit contact"
 ON public.contact_submissions FOR INSERT
 TO anon, authenticated
-WITH CHECK (true);
+WITH CHECK (
+    char_length(name) BETWEEN 2 AND 100 AND
+    char_length(company) BETWEEN 2 AND 150 AND
+    email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' AND
+    char_length(phone) BETWEEN 7 AND 25
+);
 
 DROP POLICY IF EXISTS "Admins can view contact submissions" ON public.contact_submissions;
 CREATE POLICY "Admins can view contact submissions"
@@ -300,7 +360,22 @@ TO authenticated
 USING (public.get_admin_role() = 'super_admin');
 
 -- -----------------------------------------------------------------------------
--- 4. Job Openings RLS Policies
+-- Policies for: public.admin_profiles
+-- -----------------------------------------------------------------------------
+DROP POLICY IF EXISTS "Admins can view profiles" ON public.admin_profiles;
+CREATE POLICY "Admins can view profiles"
+ON public.admin_profiles FOR SELECT
+TO authenticated
+USING (public.is_admin() OR auth.uid() = user_id);
+
+DROP POLICY IF EXISTS "Super Admins can manage profiles" ON public.admin_profiles;
+CREATE POLICY "Super Admins can manage profiles"
+ON public.admin_profiles FOR ALL
+TO authenticated
+USING (public.get_admin_role() = 'super_admin');
+
+-- -----------------------------------------------------------------------------
+-- Policies for: public.job_openings
 -- -----------------------------------------------------------------------------
 DROP POLICY IF EXISTS "Public can view active job listings" ON public.job_openings;
 CREATE POLICY "Public can view active job listings"
@@ -315,7 +390,7 @@ TO authenticated
 USING (public.is_admin());
 
 -- -----------------------------------------------------------------------------
--- 5. Career Applications RLS Policies
+-- Policies for: public.career_applications
 -- -----------------------------------------------------------------------------
 DROP POLICY IF EXISTS "Public can submit job applications" ON public.career_applications;
 CREATE POLICY "Public can submit job applications"
@@ -342,7 +417,7 @@ TO authenticated
 USING (public.get_admin_role() = 'super_admin');
 
 -- -----------------------------------------------------------------------------
--- 6. Newsletter Subscribers RLS Policies
+-- Policies for: public.newsletter_subscribers
 -- -----------------------------------------------------------------------------
 DROP POLICY IF EXISTS "Public can subscribe to newsletter" ON public.newsletter_subscribers;
 CREATE POLICY "Public can subscribe to newsletter"
@@ -363,7 +438,7 @@ TO authenticated
 USING (public.is_admin());
 
 -- -----------------------------------------------------------------------------
--- 7. Admin Notifications RLS Policies
+-- Policies for: public.admin_notifications
 -- -----------------------------------------------------------------------------
 DROP POLICY IF EXISTS "Admins can view and update notifications" ON public.admin_notifications;
 CREATE POLICY "Admins can view and update notifications"
@@ -372,7 +447,7 @@ TO authenticated
 USING (public.is_admin());
 
 -- -----------------------------------------------------------------------------
--- 8. Activity & Audit Logs RLS Policies (Immutable)
+-- Policies for: public.activity_logs & public.audit_logs (Immutable Audit Trail)
 -- -----------------------------------------------------------------------------
 DROP POLICY IF EXISTS "Admins can insert activity logs" ON public.activity_logs;
 CREATE POLICY "Admins can insert activity logs"
@@ -393,55 +468,4 @@ TO authenticated
 USING (public.is_admin());
 
 -- Notice: NO UPDATE OR DELETE POLICIES are defined on activity_logs or audit_logs,
--- guaranteeing that audit history cannot be tampered with or erased.
-
--- ==============================================================================
--- INITIAL SEED DATA FOR PRODUCTION READINESS
--- ==============================================================================
-
--- Seed Verified Job Openings
-INSERT INTO public.job_openings (title, department, location, employment_type, experience_level, description, requirements)
-VALUES 
-(
-    'Senior SAP S/4HANA Finance (FICO) Consultant',
-    'SAP Consulting',
-    'Mumbai, India (Hybrid)',
-    'Full-time',
-    '5 - 8 Years',
-    'Lead enterprise financial transformations, configure General Ledger, AP/AR, Asset Accounting, and CO-PA for Fortune 500 clients.',
-    ARRAY['5+ years in SAP FICO with at least 2 full-lifecycle S/4HANA implementations', 'Strong understanding of Universal Journal (ACDOCA) and Central Finance', 'Excellent stakeholder management and solution design skills']
-),
-(
-    'SAP ABAP on HANA & Cloud Integration Developer',
-    'Technical Services',
-    'Mumbai, India (Hybrid)',
-    'Full-time',
-    '3 - 6 Years',
-    'Design and build scalable custom extensions, CDS Views, AMDP, OData services, and SAP BTP integrations.',
-    ARRAY['Strong hands-on experience in ABAP on HANA, CDS Views & OData APIs', 'Experience with SAP BTP Integration Suite / CPI is a plus', 'Proficient in debugging and code optimization']
-),
-(
-    'SAP Supply Chain (MM/SD/PP) Solutions Architect',
-    'Supply Chain & Operations',
-    'Mumbai, India (Hybrid)',
-    'Full-time',
-    '6 - 10 Years',
-    'Architect integrated supply chain solutions across procurement, inventory, production planning, and sales distribution.',
-    ARRAY['Deep expertise in SAP MM/SD with S/4HANA Enterprise Management', 'Proven experience in FMCG or Manufacturing domain', 'Strong analytical, blueprinting, and client communication skills']
-),
-(
-    'SAP Basis & Cloud Migration Specialist',
-    'Infrastructure & Cloud',
-    'Mumbai, India',
-    'Full-time',
-    '4 - 7 Years',
-    'Manage enterprise SAP landscapes, high availability, OS/DB migrations, and cloud deployments on AWS/Azure.',
-    ARRAY['Hands-on experience in SAP HANA DB administration, upgrades, and system refreshes', 'Expertise in Greenfield & Brownfield S/4HANA migration pathways', 'Solid knowledge of Linux, backup strategies, and security hardening']
-)
-ON CONFLICT DO NOTHING;
-
--- Seed Default Notification
-INSERT INTO public.admin_notifications (title, message, type)
-VALUES 
-('System Initialized', 'KNOOVIQ Enterprise Platform & Security Controls initialized successfully.', 'SYSTEM')
-ON CONFLICT DO NOTHING;
+-- ensuring compliance logs cannot be modified or destroyed by anyone.

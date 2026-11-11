@@ -129,9 +129,11 @@ export interface EnquirySubmission {
   country?: string;
   message: string;
   status?: 'NEW' | 'IN_REVIEW' | 'CONTACTED' | 'RESOLVED';
-  source?: string;
+  source?: 'CHATBOT_AI_ASSISTANT' | 'WEBSITE_CONSULTATION_MODAL' | 'WEBSITE_CONSULTATION_FORM' | 'DIRECT_CONTACT' | string;
   internal_notes?: string;
+  ip_hash?: string;
   created_at?: string;
+  updated_at?: string;
 }
 
 export interface ContactSubmission {

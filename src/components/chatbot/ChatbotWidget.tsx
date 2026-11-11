@@ -35,6 +35,7 @@ import {
 } from './ChatbotKnowledge';
 import confetti from 'canvas-confetti';
 import { submitEnquiry } from '../../lib/supabase';
+import { RateLimiter } from '../../lib/rateLimiter';
 
 interface ChatbotWidgetProps {
   onOpenContact: (defaultService?: string) => void;
@@ -195,6 +196,7 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
   const [isSubmittingEnquiry, setIsSubmittingEnquiry] = useState(false);
   const [enquirySubmittedSuccess, setEnquirySubmittedSuccess] = useState<string | null>(null);
   const [enquirySubmitError, setEnquirySubmitError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState('');
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = e.target.value;
@@ -294,6 +296,7 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
       message: ''
     });
     setOtherServiceText('');
+    setHoneypot('');
     setFormErrors({});
     sessionStorage.removeItem(STORAGE_KEY);
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -467,6 +470,21 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
 
   const handleEnquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setEnquirySubmitError(null);
+
+    // Rate Limit Security Check
+    const rateCheck = RateLimiter.checkRateLimit('chatbot_enquiry', { maxAttempts: 4, windowMs: 60000 });
+    if (!rateCheck.allowed) {
+      setEnquirySubmitError(`Please wait ${rateCheck.remainingWaitSec}s before submitting again.`);
+      return;
+    }
+
+    // Anti-Bot Honeypot Defense
+    if (honeypot && honeypot.length > 0) {
+      setEnquirySubmitError('Bot submission detected.');
+      return;
+    }
+
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
@@ -475,7 +493,6 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
 
     setFormErrors({});
     setIsSubmittingEnquiry(true);
-    setEnquirySubmitError(null);
 
     const effectiveService = enquiryData.service === 'Other' && otherServiceText.trim()
       ? `Other: ${otherServiceText.trim()}`
@@ -842,6 +859,18 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
                       )}
 
                       <form onSubmit={handleEnquirySubmit} className="space-y-3.5 text-xs">
+                        {/* Honeypot Bot Trap */}
+                        <div className="hidden" aria-hidden="true">
+                          <input
+                            type="text"
+                            name="cb_enq_hp"
+                            tabIndex={-1}
+                            value={honeypot}
+                            onChange={(e) => setHoneypot(e.target.value)}
+                            autoComplete="off"
+                          />
+                        </div>
+
                         {/* Row 1: Full Name & Company */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <div>

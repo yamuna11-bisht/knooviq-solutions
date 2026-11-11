@@ -54,10 +54,56 @@ export const EnquiryFormSchema = z.object({
     .or(z.literal(''))
     .default('')
     .transform(sanitizeInput),
+  source: z.string().optional().default('WEBSITE_CONSULTATION_MODAL').transform(sanitizeInput),
   honeypot: z.string().max(0, { message: 'Bot submission detected' }).optional(),
 });
 
 export type EnquiryFormData = z.infer<typeof EnquiryFormSchema>;
+
+export const ContactSubmissionSchema = z.object({
+  name: z
+    .string()
+    .min(2, { message: 'Name must be at least 2 characters' })
+    .max(100, { message: 'Name cannot exceed 100 characters' })
+    .transform(sanitizeInput),
+  company: z
+    .string()
+    .min(2, { message: 'Company name must be at least 2 characters' })
+    .max(150, { message: 'Company name cannot exceed 150 characters' })
+    .transform(sanitizeInput),
+  email: z
+    .string()
+    .email({ message: 'Please enter a valid email address' })
+    .regex(EMAIL_REGEX, { message: 'Email address contains invalid characters' })
+    .max(120, { message: 'Email cannot exceed 120 characters' })
+    .transform(sanitizeInput),
+  phone: z
+    .string()
+    .min(7, { message: 'Please enter a valid phone number (min 7 digits)' })
+    .max(25, { message: 'Phone number cannot exceed 25 characters' })
+    .regex(PHONE_REGEX, { message: 'Phone number format is invalid' })
+    .transform(sanitizeInput),
+  service: z
+    .string()
+    .min(1, { message: 'Please select or specify a service' })
+    .transform(sanitizeInput),
+  subject: z
+    .string()
+    .max(200, { message: 'Subject cannot exceed 200 characters' })
+    .optional()
+    .default('General Enterprise Inquiry')
+    .transform(sanitizeInput),
+  message: z
+    .string()
+    .max(5000, { message: 'Message cannot exceed 500 words' })
+    .optional()
+    .or(z.literal(''))
+    .default('')
+    .transform(sanitizeInput),
+  honeypot: z.string().max(0, { message: 'Bot submission detected' }).optional(),
+});
+
+export type ContactSubmissionData = z.infer<typeof ContactSubmissionSchema>;
 
 export const JobApplicationSchema = z.object({
   jobId: z.string().optional(),

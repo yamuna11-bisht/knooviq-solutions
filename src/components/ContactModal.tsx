@@ -93,6 +93,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
         phone: validationResult.data.phone,
         service: validationResult.data.service,
         message: validationResult.data.message || '',
+        source: 'WEBSITE_CONSULTATION_MODAL',
       });
 
       if (res.success) {
