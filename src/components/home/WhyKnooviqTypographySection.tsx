@@ -558,8 +558,8 @@ export const WhyKnooviqTypographySection: React.FC = () => {
                       <h4 className="font-serif text-base font-bold text-[#0A1931] group-hover:text-[#0070C0] transition-colors leading-tight">
                         KNOOVIQ
                       </h4>
-                      <p className="text-[10px] font-bold text-sky-700 uppercase tracking-widest mt-0.5">
-                        Solutions
+                      <p className="text-[10px] font-bold text-sky-700 uppercase tracking-wider mt-0.5">
+                        Industries
                       </p>
                     </div>
                   </div>
@@ -788,7 +788,7 @@ export const WhyKnooviqTypographySection: React.FC = () => {
                     KNOOVIQ
                   </span>
                   <span className="text-[9.5px] font-bold text-sky-700 uppercase tracking-wider block">
-                    Solutions
+                    Industries
                   </span>
                 </div>
               </div>
