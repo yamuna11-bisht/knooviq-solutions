@@ -23,9 +23,11 @@ import {
   TrendingUp,
   Compass,
   MessageSquare,
-  Send
+  Send,
+  ChevronDown
 } from 'lucide-react';
 import { AboutSubnav } from '../../components/AboutSubnav';
+import { PhoneInput } from '../../components/PhoneInput';
 import { validateEmail, validatePhone, sanitizePhoneInput } from '../../lib/validation';
 
 export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => void }> = ({ onOpenContact }) => {
@@ -874,6 +876,7 @@ const ConnectFormSection: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -888,12 +891,11 @@ const ConnectFormSection: React.FC = () => {
       setErrorMsg(emailErr);
       return;
     }
-    if (formData.phoneNumber.trim()) {
-      const phoneErr = validatePhone(formData.phoneNumber);
-      if (phoneErr) {
-        setErrorMsg(phoneErr);
-        return;
-      }
+    const phoneErr = validatePhone(formData.phoneNumber);
+    if (phoneErr) {
+      setPhoneError(phoneErr);
+      setErrorMsg(phoneErr);
+      return;
     }
     if (!formData.message.trim()) {
       setErrorMsg('Please describe your requirement or inquiry.');
@@ -909,7 +911,7 @@ const ConnectFormSection: React.FC = () => {
         name: formData.fullName,
         company: formData.companyName || 'Enterprise Partner',
         email: formData.workEmail,
-        phone: formData.phoneNumber || '+91 Not Provided',
+        phone: formData.phoneNumber,
         service: formData.enquiryType,
         subject: `Knooviq Connect: ${formData.enquiryType}`,
         message: formData.message
@@ -942,6 +944,7 @@ const ConnectFormSection: React.FC = () => {
         <button
           onClick={() => {
             setSubmitted(false);
+            setPhoneError(null);
             setFormData({
               fullName: '',
               companyName: '',
@@ -984,7 +987,7 @@ const ConnectFormSection: React.FC = () => {
         {/* Full Name */}
         <div>
           <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
-            Full Name *
+            Full Name <span className="text-rose-500 font-bold ml-0.5">*</span>
           </label>
           <input
             type="text"
@@ -1015,7 +1018,7 @@ const ConnectFormSection: React.FC = () => {
         {/* Work Email */}
         <div>
           <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
-            Work Email *
+            Work Email <span className="text-rose-500 font-bold ml-0.5">*</span>
           </label>
           <input
             type="email"
@@ -1029,16 +1032,24 @@ const ConnectFormSection: React.FC = () => {
 
         {/* Phone Number */}
         <div>
-          <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
-            Phone Number
+          <label htmlFor="knooviq-connect-phone" className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
+            Phone Number <span className="text-rose-500 font-bold ml-0.5">*</span>
           </label>
-          <input
-            type="tel"
-            maxLength={20}
+          <PhoneInput
+            id="knooviq-connect-phone"
+            name="phoneNumber"
+            required
             value={formData.phoneNumber}
-            onChange={(e) => setFormData({ ...formData, phoneNumber: sanitizePhoneInput(e.target.value) })}
-            placeholder="+91 98000 00000"
-            className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 text-sm font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
+            onChange={(fullNumber) => {
+              setFormData({ ...formData, phoneNumber: fullNumber });
+              const err = validatePhone(fullNumber);
+              setPhoneError(err);
+            }}
+            onBlur={() => {
+              const err = validatePhone(formData.phoneNumber);
+              setPhoneError(err);
+            }}
+            error={phoneError}
           />
         </div>
       </div>
@@ -1046,21 +1057,24 @@ const ConnectFormSection: React.FC = () => {
       {/* Enquiry Type */}
       <div>
         <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
-          Enquiry Type *
+          Enquiry Type <span className="text-rose-500 font-bold ml-0.5">*</span>
         </label>
-        <select
-          value={formData.enquiryType}
-          onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-sm font-sans font-medium focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors cursor-pointer"
-        >
-          <option value="Business Enquiry" className="text-slate-900 dark:bg-slate-900 dark:text-white">Business Enquiry</option>
-          <option value="SAP & Digital Solutions" className="text-slate-900 dark:bg-slate-900 dark:text-white">SAP & Digital Solutions</option>
-          <option value="Partnership & Alliance" className="text-slate-900 dark:bg-slate-900 dark:text-white">Partnership & Alliance</option>
-          <option value="Technology Collaboration" className="text-slate-900 dark:bg-slate-900 dark:text-white">Technology Collaboration</option>
-          <option value="Career Opportunity" className="text-slate-900 dark:bg-slate-900 dark:text-white">Career Opportunity</option>
-          <option value="General Enquiry" className="text-slate-900 dark:bg-slate-900 dark:text-white">General Enquiry</option>
-          <option value="Other" className="text-slate-900 dark:bg-slate-900 dark:text-white">Other</option>
-        </select>
+        <div className="relative">
+          <select
+            value={formData.enquiryType}
+            onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value })}
+            className="w-full appearance-none px-4 py-3 pr-10 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-sm font-sans font-medium focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors cursor-pointer"
+          >
+            <option value="Business Enquiry" className="text-slate-900 dark:bg-slate-900 dark:text-white">Business Enquiry</option>
+            <option value="SAP & Digital Solutions" className="text-slate-900 dark:bg-slate-900 dark:text-white">SAP & Digital Solutions</option>
+            <option value="Partnership & Alliance" className="text-slate-900 dark:bg-slate-900 dark:text-white">Partnership & Alliance</option>
+            <option value="Technology Collaboration" className="text-slate-900 dark:bg-slate-900 dark:text-white">Technology Collaboration</option>
+            <option value="Career Opportunity" className="text-slate-900 dark:bg-slate-900 dark:text-white">Career Opportunity</option>
+            <option value="General Enquiry" className="text-slate-900 dark:bg-slate-900 dark:text-white">General Enquiry</option>
+            <option value="Other" className="text-slate-900 dark:bg-slate-900 dark:text-white">Other</option>
+          </select>
+          <ChevronDown className="w-4 h-4 text-slate-500 dark:text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+        </div>
       </div>
 
       {/* Message */}

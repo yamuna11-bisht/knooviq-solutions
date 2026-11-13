@@ -8,11 +8,13 @@ import {
   AlertCircle, 
   X, 
   Send,
-  Loader2 
+  Loader2,
+  ChevronDown 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { fetchJobOpenings, submitJobApplication } from '../lib/supabase';
-import { validateResumeFile, JobApplicationSchema } from '../lib/validation';
+import { validateResumeFile, JobApplicationSchema, validatePhone } from '../lib/validation';
+import { PhoneInput } from './PhoneInput';
 import { RateLimiter } from '../lib/rateLimiter';
 import { JobOpening } from '../types';
 
@@ -307,11 +309,11 @@ export const CareersSection: React.FC = () => {
                     />
                   </div>
 
-                  <div className="space-y-4 text-xs">
+                  <div className="space-y-4 text-xs sm:text-sm">
                     {/* Full Name */}
                     <div>
-                      <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                        Full Name <span className="text-rose-500">*</span>
+                      <label className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
+                        Full Name <span className="text-rose-500 font-bold">*</span>
                       </label>
                       <input
                         type="text"
@@ -319,16 +321,25 @@ export const CareersSection: React.FC = () => {
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="e.g. Anand Deshmukh"
-                        className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                        className={`w-full rounded-xl border ${
+                          formErrors.fullName
+                            ? 'border-rose-500 ring-1 ring-rose-500/50 bg-rose-500/[0.02]'
+                            : 'border-slate-300 dark:border-white/20 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#0052CC] dark:focus:border-cyan-400 focus:ring-2 focus:ring-[#0052CC]/15 dark:focus:ring-cyan-400/20'
+                        } bg-white dark:bg-[#050B17] px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-hidden transition-all font-medium`}
                       />
-                      {formErrors.fullName && <p className="text-rose-500 text-[11px] mt-1">{formErrors.fullName}</p>}
+                      {formErrors.fullName && (
+                        <p className="text-rose-500 text-xs mt-1.5 flex items-center gap-1 font-medium font-sans">
+                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                          <span>{formErrors.fullName}</span>
+                        </p>
+                      )}
                     </div>
 
                     {/* Email & Phone */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                          Email Address <span className="text-rose-500">*</span>
+                        <label className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
+                          Email Address <span className="text-rose-500 font-bold">*</span>
                         </label>
                         <input
                           type="email"
@@ -336,50 +347,84 @@ export const CareersSection: React.FC = () => {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="anand@example.com"
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                          className={`w-full rounded-xl border ${
+                            formErrors.email
+                              ? 'border-rose-500 ring-1 ring-rose-500/50 bg-rose-500/[0.02]'
+                              : 'border-slate-300 dark:border-white/20 hover:border-slate-400 dark:hover:border-white/30 focus:border-[#0052CC] dark:focus:border-cyan-400 focus:ring-2 focus:ring-[#0052CC]/15 dark:focus:ring-cyan-400/20'
+                          } bg-white dark:bg-[#050B17] px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-hidden transition-all font-medium`}
                         />
-                        {formErrors.email && <p className="text-rose-500 text-[11px] mt-1">{formErrors.email}</p>}
+                        {formErrors.email && (
+                          <p className="text-rose-500 text-xs mt-1.5 flex items-center gap-1 font-medium font-sans">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            <span>{formErrors.email}</span>
+                          </p>
+                        )}
                       </div>
 
                       <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                          Phone Number <span className="text-rose-500">*</span>
+                        <label htmlFor="career-application-phone" className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
+                          Phone Number <span className="text-rose-500 font-bold">*</span>
                         </label>
-                        <input
-                          type="tel"
+                        <PhoneInput
+                          id="career-application-phone"
+                          name="phone"
                           required
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="+91 98765 43210"
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                          onChange={(fullNumber) => {
+                            setFormData({ ...formData, phone: fullNumber });
+                            const err = validatePhone(fullNumber);
+                            setFormErrors((prev) => {
+                              const next = { ...prev };
+                              if (err) next.phone = err;
+                              else delete next.phone;
+                              return next;
+                            });
+                          }}
+                          onBlur={() => {
+                            const err = validatePhone(formData.phone);
+                            setFormErrors((prev) => {
+                              const next = { ...prev };
+                              if (err) next.phone = err;
+                              else delete next.phone;
+                              return next;
+                            });
+                          }}
+                          error={formErrors.phone}
                         />
-                        {formErrors.phone && <p className="text-rose-500 text-[11px] mt-1">{formErrors.phone}</p>}
                       </div>
                     </div>
 
                     {/* Experience & LinkedIn */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-                          Relevant Experience <span className="text-rose-500">*</span>
+                        <label className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
+                          Relevant Experience <span className="text-rose-500 font-bold">*</span>
                         </label>
-                        <select
-                          required
-                          value={formData.experience}
-                          onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white focus:border-[#00A3E0] focus:outline-none"
-                        >
-                          <option value="">Select experience</option>
-                          <option value="1-3 Years">1 - 3 Years</option>
-                          <option value="3-5 Years">3 - 5 Years</option>
-                          <option value="5-8 Years">5 - 8 Years</option>
-                          <option value="8+ Years">8+ Years</option>
-                        </select>
-                        {formErrors.experience && <p className="text-rose-500 text-[11px] mt-1">{formErrors.experience}</p>}
+                        <div className="relative">
+                          <select
+                            required
+                            value={formData.experience}
+                            onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                            className="w-full appearance-none rounded-xl border border-slate-300 dark:border-white/20 hover:border-slate-400 dark:hover:border-white/30 bg-white dark:bg-[#050B17] px-3.5 py-2.5 pr-10 text-xs sm:text-sm text-slate-900 dark:text-white focus:border-[#0052CC] dark:focus:border-cyan-400 focus:ring-2 focus:ring-[#0052CC]/15 dark:focus:ring-cyan-400/20 focus:outline-hidden font-medium cursor-pointer transition-all"
+                          >
+                            <option value="">Select experience</option>
+                            <option value="1-3 Years">1 - 3 Years</option>
+                            <option value="3-5 Years">3 - 5 Years</option>
+                            <option value="5-8 Years">5 - 8 Years</option>
+                            <option value="8+ Years">8+ Years</option>
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-500 dark:text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                        {formErrors.experience && (
+                          <p className="text-rose-500 text-xs mt-1.5 flex items-center gap-1 font-medium font-sans">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            <span>{formErrors.experience}</span>
+                          </p>
+                        )}
                       </div>
 
                       <div>
-                        <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                        <label className="block text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5">
                           LinkedIn / Portfolio URL
                         </label>
                         <input
@@ -387,7 +432,7 @@ export const CareersSection: React.FC = () => {
                           value={formData.portfolioLinkedin}
                           onChange={(e) => setFormData({ ...formData, portfolioLinkedin: e.target.value })}
                           placeholder="https://linkedin.com/in/..."
-                          className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                          className="w-full rounded-xl border border-slate-300 dark:border-white/20 hover:border-slate-400 dark:hover:border-white/30 bg-white dark:bg-[#050B17] px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#0052CC] dark:focus:border-cyan-400 focus:ring-2 focus:ring-[#0052CC]/15 dark:focus:ring-cyan-400/20 focus:outline-hidden font-medium transition-all"
                         />
                       </div>
                     </div>
