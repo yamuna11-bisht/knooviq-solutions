@@ -55,8 +55,7 @@ const latLonToVector3 = (lat: number, lon: number, radius: number): THREE.Vector
 const HolographicIndustriesGlobe: React.FC<{
   selectedIndustry: IndustryNode | null;
   onSelectIndustry: (ind: IndustryNode | null) => void;
-  hasClicked: boolean;
-}> = ({ selectedIndustry, onSelectIndustry, hasClicked }) => {
+}> = ({ selectedIndustry, onSelectIndustry }) => {
   const globeGroupRef = useRef<THREE.Group>(null);
   const atmosphereRef = useRef<THREE.Mesh>(null);
   const ring1Ref = useRef<THREE.Mesh>(null);
@@ -228,53 +227,28 @@ const HolographicIndustriesGlobe: React.FC<{
               <meshBasicMaterial color={ind.color} transparent opacity={0.6} side={THREE.DoubleSide} />
             </mesh>
 
-            {/* 3D Floating Industry Badge with Hand Indicator */}
+            {/* 3D Floating Industry Badge */}
             <Html distanceFactor={7.8} center position={[0, 0.22, 0]} style={{ pointerEvents: 'auto' }}>
-              <div className="relative">
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onSelectIndustry(isSelected ? null : ind);
-                  }}
-                  onMouseEnter={() => {
-                    document.body.style.cursor = 'pointer';
-                  }}
-                  onMouseLeave={() => {
-                    document.body.style.cursor = 'auto';
-                  }}
-                  style={{ cursor: 'pointer' }}
-                  className={`group cursor-pointer transition-all duration-300 rounded-lg px-2.5 py-1.5 border text-[10px] font-bold tracking-wide whitespace-nowrap shadow-xl flex items-center gap-1.5 select-none ${
-                    isSelected
-                      ? 'bg-slate-950/95 border-cyan-400 text-white shadow-[0_0_20px_rgba(0,210,255,0.7)] scale-110 z-50 ring-2 ring-cyan-400/50'
-                      : 'bg-[#071329]/90 hover:bg-[#0A1931] border-sky-400/40 text-sky-200 hover:text-white hover:border-cyan-300 hover:scale-105 backdrop-blur-md shadow-lg shadow-sky-950/60'
-                  }`}
-                >
-                  <span className="h-2 w-2 rounded-full animate-ping flex-shrink-0" style={{ backgroundColor: ind.color }} />
-                  <span>{ind.name}</span>
-
-                  {/* Hand indicator showing Click Here until user clicks */}
-                  {!hasClicked ? (
-                    <span className="inline-flex items-center gap-0.5 text-[8.5px] font-bold text-cyan-200 bg-cyan-500/25 border border-cyan-300/50 px-1.5 py-0.5 rounded-full shadow-sm animate-pulse ml-0.5">
-                      <Pointer className="w-3 h-3 text-cyan-300 animate-bounce -rotate-12" />
-                      <span className="uppercase tracking-tight text-[8px]">Click</span>
-                    </span>
-                  ) : (
-                    <span className="text-[9px] text-cyan-300/70 group-hover:text-cyan-200 transition-colors ml-0.5 flex items-center opacity-70 group-hover:opacity-100">
-                      <Pointer className="w-2.5 h-2.5 -rotate-12" />
-                    </span>
-                  )}
-                </div>
-
-                {/* On opposite anchor nodes (idx === 0 and idx === 5), floating tutorial hand callout */}
-                {!hasClicked && (idx === 0 || idx === 5) && (
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 pointer-events-none flex flex-col items-center z-50 animate-bounce">
-                    <div className="flex items-center gap-1 bg-cyan-950/95 border border-cyan-400/90 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-[0_0_15px_rgba(0,210,255,0.85)] whitespace-nowrap">
-                      <Pointer className="w-2.5 h-2.5 text-cyan-300 -rotate-12" />
-                      <span>Click Here!</span>
-                    </div>
-                    <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-cyan-400 -mt-[1px]" />
-                  </div>
-                )}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectIndustry(isSelected ? null : ind);
+                }}
+                onMouseEnter={() => {
+                  document.body.style.cursor = 'pointer';
+                }}
+                onMouseLeave={() => {
+                  document.body.style.cursor = 'auto';
+                }}
+                style={{ cursor: 'pointer' }}
+                className={`group cursor-pointer transition-all duration-300 rounded-lg px-2.5 py-1.5 border text-[10px] font-bold tracking-wide whitespace-nowrap shadow-xl flex items-center gap-1.5 select-none ${
+                  isSelected
+                    ? 'bg-slate-950/95 border-cyan-400 text-white shadow-[0_0_20px_rgba(0,210,255,0.7)] scale-110 z-50 ring-2 ring-cyan-400/50'
+                    : 'bg-[#071329]/90 hover:bg-[#0A1931] border-sky-400/40 text-sky-200 hover:text-white hover:border-cyan-300 hover:scale-105 backdrop-blur-md shadow-lg shadow-sky-950/60'
+                }`}
+              >
+                <span className="h-2 w-2 rounded-full animate-ping flex-shrink-0" style={{ backgroundColor: ind.color }} />
+                <span>{ind.name}</span>
               </div>
             </Html>
           </group>
@@ -288,8 +262,7 @@ const HolographicIndustriesGlobe: React.FC<{
 const IndustriesGlobe2DFallback: React.FC<{
   selectedIndustry?: IndustryNode | null;
   onSelectIndustry?: (ind: IndustryNode | null) => void;
-  hasClicked?: boolean;
-}> = ({ selectedIndustry, onSelectIndustry, hasClicked = false }) => {
+}> = ({ selectedIndustry, onSelectIndustry }) => {
   return (
     <div className="relative w-full h-full flex items-center justify-center p-4 select-none">
       <div className="relative w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] flex items-center justify-center rounded-full border border-sky-400/25 bg-[#061224]/80 shadow-[0_0_50px_rgba(0,163,224,0.25)]">
@@ -305,7 +278,7 @@ const IndustriesGlobe2DFallback: React.FC<{
           <span className="text-[9px] font-bold text-cyan-300">3D Globe</span>
         </div>
 
-        {/* Floating Industry Pills with Pointer */}
+        {/* Floating Clean Industry Pills */}
         {[
           { ind: CTA_INDUSTRIES[0], pos: '-top-2' },
           { ind: CTA_INDUSTRIES[1], pos: 'top-14 -left-3' },
@@ -328,14 +301,6 @@ const IndustriesGlobe2DFallback: React.FC<{
             >
               <span className="h-2 w-2 rounded-full" style={{ backgroundColor: ind.color }} />
               <span>{ind.name}</span>
-              {!hasClicked ? (
-                <span className="inline-flex items-center gap-0.5 text-[8.5px] font-bold text-cyan-200 bg-cyan-500/30 border border-cyan-300/40 px-1 py-0.2 rounded-full animate-pulse">
-                  <Pointer className="w-2.5 h-2.5 text-cyan-300 animate-bounce -rotate-12" />
-                  <span className="uppercase text-[7.5px]">Click</span>
-                </span>
-              ) : (
-                <Pointer className="w-2.5 h-2.5 text-cyan-400 -rotate-12 opacity-70" />
-              )}
             </button>
           );
         })}
@@ -348,12 +313,9 @@ const IndustriesGlobe2DFallback: React.FC<{
 export const IndustriesGlobe3D: React.FC = () => {
   const [hasWebGL, setHasWebGL] = useState(true);
   const [selectedIndustry, setSelectedIndustry] = useState<IndustryNode | null>(null);
-  const [hasClicked, setHasClicked] = useState(false);
+  const [isGlobeHovered, setIsGlobeHovered] = useState(false);
 
   const handleSelectIndustry = (ind: IndustryNode | null) => {
-    if (ind) {
-      setHasClicked(true);
-    }
     setSelectedIndustry(ind);
   };
 
@@ -372,7 +334,6 @@ export const IndustriesGlobe3D: React.FC = () => {
       <IndustriesGlobe2DFallback
         selectedIndustry={selectedIndustry}
         onSelectIndustry={handleSelectIndustry}
-        hasClicked={hasClicked}
       />
     );
   }
@@ -380,6 +341,8 @@ export const IndustriesGlobe3D: React.FC = () => {
   return (
     <div
       style={{ cursor: 'pointer' }}
+      onMouseEnter={() => setIsGlobeHovered(true)}
+      onMouseLeave={() => setIsGlobeHovered(false)}
       className="relative w-full h-full min-h-[350px] sm:min-h-[400px] flex items-center justify-center select-none cursor-pointer"
     >
       {/* 3D WebGL Canvas */}
@@ -387,7 +350,6 @@ export const IndustriesGlobe3D: React.FC = () => {
         <IndustriesGlobe2DFallback
           selectedIndustry={selectedIndustry}
           onSelectIndustry={handleSelectIndustry}
-          hasClicked={hasClicked}
         />
       }>
         <Canvas
@@ -409,35 +371,43 @@ export const IndustriesGlobe3D: React.FC = () => {
           <HolographicIndustriesGlobe
             selectedIndustry={selectedIndustry}
             onSelectIndustry={handleSelectIndustry}
-            hasClicked={hasClicked}
           />
         </Canvas>
       </Suspense>
 
-      {/* Animated Tutorial Hand Pointer Guide ("Yaha click karo yese") - Stays active until user clicks */}
-      {!hasClicked && !selectedIndustry && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center animate-in fade-in slide-in-from-bottom-2 duration-300">
-          <div className="relative flex items-center gap-2.5 bg-slate-950/95 border border-cyan-400/80 rounded-full pl-2 pr-3.5 py-1.5 shadow-[0_0_25px_rgba(0,210,255,0.6)] backdrop-blur-md">
-            {/* Tapping Hand Icon with Pulsing Click Wave */}
-            <div className="relative flex items-center justify-center w-7 h-7 rounded-full bg-cyan-500/25 border border-cyan-400/50">
-              <span className="absolute inset-0 rounded-full bg-cyan-400/40 animate-ping" />
-              <Pointer className="w-4 h-4 text-cyan-300 animate-bounce -rotate-12" />
+      {/* Single Attractive Floating "Click Here" Hand Guide */}
+      {!selectedIndustry && (
+        <div 
+          onClick={() => handleSelectIndustry(CTA_INDUSTRIES[5])}
+          className={`absolute bottom-4 left-1/2 -translate-x-1/2 z-30 cursor-pointer transition-all duration-300 select-none ${
+            isGlobeHovered ? 'scale-105' : 'scale-100'
+          }`}
+        >
+          <div className="relative flex items-center gap-2.5 bg-gradient-to-r from-[#071329]/95 via-slate-950/95 to-[#071329]/95 hover:from-[#0A1931] hover:to-[#0A1931] border border-cyan-400/70 hover:border-cyan-300 rounded-full pl-2.5 pr-4 py-2 shadow-[0_0_30px_rgba(0,210,255,0.45)] hover:shadow-[0_0_45px_rgba(0,210,255,0.75)] backdrop-blur-xl transition-all">
+            
+            {/* Animated Glowing Hand Pointer */}
+            <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500/30 to-blue-600/30 border border-cyan-400/70 shadow-inner">
+              <span className="absolute inset-0 rounded-full bg-cyan-400/40 animate-ping opacity-60" />
+              <Pointer className="w-4 h-4 text-cyan-200 animate-bounce -rotate-12" />
             </div>
 
-            {/* Explanatory Text */}
+            {/* Typographic Cue */}
             <div className="flex flex-col text-left">
               <div className="flex items-center gap-1.5">
-                <span className="text-[11px] font-black text-white tracking-wide">
+                <span className="text-xs font-black text-white tracking-wide">
                   Click Here
                 </span>
                 <span className="text-[10px] text-cyan-300 font-semibold">
                   to explore
                 </span>
               </div>
-              <span className="text-[9px] text-slate-300 font-medium">
-                Tap any industry label on the globe
+              <span className="text-[9.5px] text-slate-300/90 font-medium">
+                Tap any industry on the globe
               </span>
             </div>
+
+            {/* Sparkle Accent */}
+            <Sparkles className="w-3.5 h-3.5 text-cyan-300 ml-1 animate-pulse" />
           </div>
         </div>
       )}
@@ -476,9 +446,8 @@ export const IndustriesGlobe3D: React.FC = () => {
 
       {/* Top Right 3D Globe Pill */}
       <div className="absolute top-2 right-2 pointer-events-none">
-        <span className="text-[9px] font-mono uppercase tracking-wider text-cyan-300/90 bg-sky-950/80 border border-cyan-400/30 px-2.5 py-0.5 rounded-full backdrop-blur-sm flex items-center gap-1.5 shadow-sm">
-          <Pointer className="w-2.5 h-2.5 text-cyan-400 -rotate-12 animate-pulse" />
-          <span>Interactive 3D Globe</span>
+        <span className="text-[9px] font-mono uppercase tracking-wider text-cyan-300/80 bg-sky-950/70 border border-sky-400/25 px-2.5 py-0.5 rounded-full backdrop-blur-sm">
+          Interactive 3D Globe
         </span>
       </div>
 
