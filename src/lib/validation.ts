@@ -6,17 +6,58 @@ import DOMPurify from 'dompurify';
  */
 export function sanitizeInput(input: string): string {
   if (!input) return '';
-  return DOMPurify.sanitize(input.trim(), { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+  if (typeof DOMPurify?.sanitize === 'function') {
+    return DOMPurify.sanitize(input.trim(), { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+  }
+  return input.trim().replace(/<[^>]*>?/gm, '');
 }
 
 // Strict regex for business/standard email validation (no consecutive dots, valid domain + TLD)
 const EMAIL_REGEX = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
 
+export interface CountryCodeOption {
+  code: string;
+  iso: string;
+  country: string;
+  flag: string;
+  placeholder: string;
+  digits: number;
+}
+
+export const COUNTRY_CODES: CountryCodeOption[] = [
+  { code: '+91', iso: 'IN', country: 'India', flag: '🇮🇳', placeholder: '10-digit number', digits: 10 },
+  { code: '+1', iso: 'US', country: 'USA / Canada', flag: '🇺🇸', placeholder: '10-digit number', digits: 10 },
+  { code: '+44', iso: 'GB', country: 'United Kingdom', flag: '🇬🇧', placeholder: '10-digit number', digits: 10 },
+  { code: '+971', iso: 'AE', country: 'UAE', flag: '🇦🇪', placeholder: '9-digit number', digits: 9 },
+  { code: '+65', iso: 'SG', country: 'Singapore', flag: '🇸🇬', placeholder: '8-digit number', digits: 8 },
+  { code: '+61', iso: 'AU', country: 'Australia', flag: '🇦🇺', placeholder: '9-digit number', digits: 9 },
+  { code: '+49', iso: 'DE', country: 'Germany', flag: '🇩🇪', placeholder: '10-digit number', digits: 10 },
+  { code: '+966', iso: 'SA', country: 'Saudi Arabia', flag: '🇸🇦', placeholder: '9-digit number', digits: 9 },
+  { code: '+974', iso: 'QA', country: 'Qatar', flag: '🇶🇦', placeholder: '8-digit number', digits: 8 },
+  { code: '+33', iso: 'FR', country: 'France', flag: '🇫🇷', placeholder: '9-digit number', digits: 9 },
+  { code: '+81', iso: 'JP', country: 'Japan', flag: '🇯🇵', placeholder: '10-digit number', digits: 10 },
+];
+
+/**
+ * Sanitize phone input to only allow numeric digits and optional leading plus sign.
+ */
 export function sanitizePhoneInput(input: string): string {
   if (!input) return '';
-  const hasLeadingPlus = input.startsWith('+');
-  const cleaned = input.replace(/[^0-9\s\-()]/g, '');
-  return hasLeadingPlus ? `+${cleaned}` : cleaned;
+  const trimmed = input.trim();
+  const hasLeadingPlus = trimmed.startsWith('+');
+  const digitsOnly = trimmed.replace(/\D/g, '');
+  if (hasLeadingPlus) {
+    return `+${digitsOnly}`;
+  }
+  return digitsOnly;
+}
+
+/**
+ * Extract only numeric digits from input, up to optional maxDigits.
+ */
+export function sanitizePhoneDigits(input: string, maxDigits: number = 10): string {
+  if (!input) return '';
+  return input.replace(/\D/g, '').slice(0, maxDigits);
 }
 
 export function validateEmail(email: string): string | null {
@@ -33,29 +74,73 @@ export function validateEmail(email: string): string | null {
   return null;
 }
 
-export function validatePhone(phone: string): string | null {
+/**
+ * Validates phone numbers with strict Indian mobile rules:
+ * - Empty: "Phone number is required."
+ * - India (+91): exactly 10 digits starting with 6, 7, 8, or 9
+ * - Error Messages:
+ *   - Empty: "Phone number is required."
+ *   - Invalid start: "Enter a valid Indian mobile number starting with 6, 7, 8, or 9."
+ *   - Invalid length: "Phone number must contain exactly 10 digits."
+ * - International: 7-15 digits
+ */
+export function validatePhone(phone: string, countryCode: string = '+91'): string | null {
   const trimmed = (phone || '').trim();
   if (!trimmed) {
     return 'Phone number is required.';
   }
-  if (!/^\+?[0-9\s\-()]+$/.test(trimmed)) {
-    return 'Phone number can only contain digits, +, spaces, hyphens, and parentheses.';
+
+  // Determine effective country code
+  let effectiveCountry = countryCode || '+91';
+  let rawNumber = trimmed;
+
+  if (trimmed.startsWith('+')) {
+    const matched = COUNTRY_CODES.find((c) => trimmed.startsWith(c.code));
+    if (matched) {
+      effectiveCountry = matched.code;
+      rawNumber = trimmed.slice(matched.code.length).trim();
+    } else {
+      const match = trimmed.match(/^(\+\d{1,4})\s*(.*)$/);
+      if (match) {
+        effectiveCountry = match[1];
+        rawNumber = match[2].trim();
+      }
+    }
   }
-  const digits = trimmed.replace(/\D/g, '');
-  if (digits.length < 10) {
-    return 'Phone number must be at least 10 digits.';
+
+  // Extract only digits
+  let digits = rawNumber.replace(/\D/g, '');
+
+  if (effectiveCountry === '+91') {
+    // If someone entered 11 digits starting with trunk 0, strip leading 0
+    if (digits.length === 11 && digits.startsWith('0')) {
+      digits = digits.slice(1);
+    }
+
+    if (!digits) {
+      return 'Phone number is required.';
+    }
+
+    const firstDigit = digits.charAt(0);
+    if (!['6', '7', '8', '9'].includes(firstDigit)) {
+      return 'Enter a valid Indian mobile number starting with 6, 7, 8, or 9.';
+    }
+
+    if (digits.length !== 10) {
+      return 'Phone number must contain exactly 10 digits.';
+    }
+
+    return null;
+  } else {
+    // International numbers
+    if (!digits) {
+      return 'Phone number is required.';
+    }
+    if (digits.length < 7 || digits.length > 15) {
+      return 'Phone number must be between 7 and 15 digits.';
+    }
+    return null;
   }
-  if (digits.length > 15) {
-    return 'Phone number cannot exceed 15 digits.';
-  }
-  const subscriberDigits = trimmed.startsWith('+91') && digits.length === 12 ? digits.slice(2) : digits;
-  if (/^(\d)\1+$/.test(digits) || /^(\d)\1+$/.test(subscriberDigits)) {
-    return 'Please enter a valid phone number.';
-  }
-  if (trimmed.startsWith('+91') && digits.length !== 12) {
-    return 'Indian phone numbers with +91 must contain 10 digits after +91.';
-  }
-  return null;
 }
 
 export const EnquiryFormSchema = z.object({
@@ -66,8 +151,10 @@ export const EnquiryFormSchema = z.object({
     .transform(sanitizeInput),
   company: z
     .string()
-    .min(2, { message: 'Company name must be at least 2 characters' })
     .max(150, { message: 'Company name cannot exceed 150 characters' })
+    .optional()
+    .or(z.literal(''))
+    .default('')
     .transform(sanitizeInput),
   email: z
     .string()
@@ -78,9 +165,10 @@ export const EnquiryFormSchema = z.object({
     .transform(sanitizeInput),
   phone: z
     .string()
-    .max(20, { message: 'Phone number cannot exceed 20 characters' })
+    .min(1, { message: 'Phone number is required.' })
+    .max(30, { message: 'Phone number cannot exceed 30 characters' })
     .refine((val) => validatePhone(val) === null, (val) => ({
-      message: validatePhone(val) || 'Please enter a valid phone number',
+      message: validatePhone(val) || 'Enter a valid Indian mobile number starting with 6, 7, 8, or 9.',
     }))
     .transform(sanitizeInput),
   service: z
@@ -113,8 +201,10 @@ export const ContactSubmissionSchema = z.object({
     .transform(sanitizeInput),
   company: z
     .string()
-    .min(2, { message: 'Company name must be at least 2 characters' })
     .max(150, { message: 'Company name cannot exceed 150 characters' })
+    .optional()
+    .or(z.literal(''))
+    .default('')
     .transform(sanitizeInput),
   email: z
     .string()
@@ -125,9 +215,10 @@ export const ContactSubmissionSchema = z.object({
     .transform(sanitizeInput),
   phone: z
     .string()
-    .max(25, { message: 'Phone number cannot exceed 25 characters' })
+    .min(1, { message: 'Phone number is required.' })
+    .max(30, { message: 'Phone number cannot exceed 30 characters' })
     .refine((val) => validatePhone(val) === null, (val) => ({
-      message: validatePhone(val) || 'Please enter a valid phone number',
+      message: validatePhone(val) || 'Enter a valid Indian mobile number starting with 6, 7, 8, or 9.',
     }))
     .transform(sanitizeInput),
   service: z
@@ -168,9 +259,10 @@ export const JobApplicationSchema = z.object({
     .transform(sanitizeInput),
   phone: z
     .string()
-    .max(20, { message: 'Phone number cannot exceed 20 characters' })
+    .min(1, { message: 'Phone number is required.' })
+    .max(30, { message: 'Phone number cannot exceed 30 characters' })
     .refine((val) => validatePhone(val) === null, (val) => ({
-      message: validatePhone(val) || 'Please enter a valid phone number',
+      message: validatePhone(val) || 'Enter a valid Indian mobile number starting with 6, 7, 8, or 9.',
     }))
     .transform(sanitizeInput),
   position: z

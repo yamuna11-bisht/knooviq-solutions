@@ -13,7 +13,7 @@ import {
   DashboardStats
 } from '../types';
 import { INITIAL_JOB_OPENINGS } from '../data/knooviqData';
-import { sanitizeInput, validateEmail, validatePhone } from './validation';
+import { sanitizeInput, validateEmail, validatePhone, sanitizePhoneInput } from './validation';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -184,9 +184,9 @@ export async function submitEnquiry(enquiry: Omit<EnquirySubmission, 'id' | 'cre
   try {
     // 1. Sanitize all incoming fields to protect against XSS injection
     const cleanName = sanitizeInput(enquiry.full_name);
-    const cleanCompany = sanitizeInput(enquiry.company);
+    const cleanCompany = sanitizeInput(enquiry.company || 'Enterprise Partner');
     const cleanEmail = sanitizeInput(enquiry.email);
-    const cleanPhone = sanitizeInput(enquiry.phone || '');
+    const cleanPhone = sanitizePhoneInput(enquiry.phone || '');
     const cleanService = sanitizeInput(enquiry.service);
     const cleanMessage = sanitizeInput(enquiry.message || '');
     const cleanIndustry = sanitizeInput(enquiry.industry || 'Enterprise Technology');
@@ -196,9 +196,6 @@ export async function submitEnquiry(enquiry: Omit<EnquirySubmission, 'id' | 'cre
     // 2. Validate mandatory constraints
     if (!cleanName || cleanName.length < 2) {
       return { success: false, error: 'Full name must be at least 2 characters.' };
-    }
-    if (!cleanCompany || cleanCompany.length < 2) {
-      return { success: false, error: 'Company name must be at least 2 characters.' };
     }
     const emailErr = validateEmail(cleanEmail);
     if (emailErr) {
@@ -267,8 +264,8 @@ export async function submitContactSubmission(contact: Omit<ContactSubmission, '
   try {
     const cleanName = sanitizeInput(contact.name);
     const cleanEmail = sanitizeInput(contact.email);
-    const cleanPhone = sanitizeInput(contact.phone || '');
-    const cleanCompany = sanitizeInput(contact.company);
+    const cleanPhone = sanitizePhoneInput(contact.phone || '');
+    const cleanCompany = sanitizeInput(contact.company || 'Enterprise Partner');
     const cleanService = sanitizeInput(contact.service);
     const cleanSubject = sanitizeInput(contact.subject || 'General Enterprise Inquiry');
     const cleanMessage = sanitizeInput(contact.message || '');
@@ -280,14 +277,9 @@ export async function submitContactSubmission(contact: Omit<ContactSubmission, '
     if (emailErr) {
       return { success: false, error: emailErr };
     }
-    if (cleanPhone && cleanPhone !== '+91 Not Provided') {
-      const phoneErr = validatePhone(cleanPhone);
-      if (phoneErr) {
-        return { success: false, error: phoneErr };
-      }
-    }
-    if (!cleanCompany || cleanCompany.length < 2) {
-      return { success: false, error: 'Company name must be at least 2 characters.' };
+    const phoneErr = validatePhone(cleanPhone);
+    if (phoneErr) {
+      return { success: false, error: phoneErr };
     }
 
     if (supabase) {
@@ -339,6 +331,27 @@ export async function submitJobApplication(
   resumeFile?: File
 ): Promise<{ success: boolean; error?: string }> {
   try {
+    const cleanName = sanitizeInput(application.full_name);
+    const cleanEmail = sanitizeInput(application.email);
+    const cleanPhone = sanitizePhoneInput(application.phone || '');
+    const cleanPosition = sanitizeInput(application.position);
+    const cleanExperience = sanitizeInput(application.experience);
+
+    if (!cleanName || cleanName.length < 2) {
+      return { success: false, error: 'Full name must be at least 2 characters.' };
+    }
+    const emailErr = validateEmail(cleanEmail);
+    if (emailErr) {
+      return { success: false, error: emailErr };
+    }
+    const phoneErr = validatePhone(cleanPhone);
+    if (phoneErr) {
+      return { success: false, error: phoneErr };
+    }
+    if (!cleanPosition) {
+      return { success: false, error: 'Position is required.' };
+    }
+
     // Validate File
     if (resumeFile) {
       const allowedExts = ['pdf', 'doc', 'docx'];
@@ -370,11 +383,11 @@ export async function submitJobApplication(
 
       const { error: dbError } = await supabase.from('career_applications').insert([{
         job_id: application.job_id || null,
-        full_name: application.full_name,
-        email: application.email,
-        phone: application.phone,
-        position: application.position,
-        experience: application.experience,
+        full_name: cleanName,
+        email: cleanEmail,
+        phone: cleanPhone,
+        position: cleanPosition,
+        experience: cleanExperience,
         education: application.education || 'Bachelor Degree or Equivalent',
         location: application.location || 'Mumbai, India',
         resume_storage_path: resumePath,
@@ -388,6 +401,11 @@ export async function submitJobApplication(
       const current = getLocalStore<JobApplicationSubmission>(LOCAL_APPLICATIONS_KEY, []);
       const newRecord: JobApplicationSubmission = {
         ...application,
+        full_name: cleanName,
+        email: cleanEmail,
+        phone: cleanPhone,
+        position: cleanPosition,
+        experience: cleanExperience,
         id: `app-${Date.now()}`,
         resume_storage_path: resumeFile ? `career-resumes/${resumeFile.name}` : 'career-resumes/candidate_resume.pdf',
         status: 'PENDING',

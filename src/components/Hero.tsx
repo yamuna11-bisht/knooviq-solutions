@@ -96,7 +96,8 @@ export const Hero: React.FC<HeroProps> = () => {
           WebkitBackfaceVisibility: 'hidden',
         }}
       >
-        <source src="/videos/hero-video.mp4?v=20261102" type="video/mp4" />
+        <source src="/videos/hero-video.mp4?v=20261113_DEE9CB08" type="video/mp4" />
+        <source src="/videos/Hero-section-video.MOV?v=20261113_DEE9CB08" type="video/quicktime" />
         Your browser does not support the video tag.
       </video>
 
