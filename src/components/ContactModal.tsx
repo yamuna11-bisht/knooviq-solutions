@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { X, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { submitEnquiry } from '../lib/supabase';
-import { EnquiryFormSchema } from '../lib/validation';
+import {
+  EnquiryFormSchema,
+  validateEmail,
+  validatePhone,
+  sanitizePhoneInput
+} from '../lib/validation';
 import { RateLimiter } from '../lib/rateLimiter';
 
 interface ContactModalProps {
@@ -164,7 +169,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             <div className="mb-6">
               <span className="text-xs font-bold text-[#00A3E0] uppercase tracking-wider font-mono">Talk to Our Experts</span>
               <h3 className="text-xl font-bold text-[#0A1931] dark:text-white mt-1">Enterprise Consultation</h3>
@@ -231,9 +236,34 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setFormData({ ...formData, email: val });
+                      if (formErrors.email) {
+                        const err = validateEmail(val);
+                        setFormErrors((prev) => {
+                          const next = { ...prev };
+                          if (err) next.email = err;
+                          else delete next.email;
+                          return next;
+                        });
+                      }
+                    }}
+                    onBlur={() => {
+                      const err = validateEmail(formData.email);
+                      setFormErrors((prev) => {
+                        const next = { ...prev };
+                        if (err) next.email = err;
+                        else delete next.email;
+                        return next;
+                      });
+                    }}
                     placeholder="name@company.com"
-                    className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                    className={`w-full rounded-xl border ${
+                      formErrors.email
+                        ? 'border-rose-500 focus:border-rose-500'
+                        : 'border-slate-200 dark:border-sky-500/25 focus:border-[#00A3E0]'
+                    } bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none`}
                   />
                   {formErrors.email && <p className="text-rose-500 text-[11px] mt-1">{formErrors.email}</p>}
                 </div>
@@ -245,10 +275,36 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
                   <input
                     type="tel"
                     required
+                    maxLength={20}
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => {
+                      const sanitized = sanitizePhoneInput(e.target.value);
+                      setFormData({ ...formData, phone: sanitized });
+                      if (formErrors.phone) {
+                        const err = validatePhone(sanitized);
+                        setFormErrors((prev) => {
+                          const next = { ...prev };
+                          if (err) next.phone = err;
+                          else delete next.phone;
+                          return next;
+                        });
+                      }
+                    }}
+                    onBlur={() => {
+                      const err = validatePhone(formData.phone);
+                      setFormErrors((prev) => {
+                        const next = { ...prev };
+                        if (err) next.phone = err;
+                        else delete next.phone;
+                        return next;
+                      });
+                    }}
                     placeholder="+91 98000 00000"
-                    className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                    className={`w-full rounded-xl border ${
+                      formErrors.phone
+                        ? 'border-rose-500 focus:border-rose-500'
+                        : 'border-slate-200 dark:border-sky-500/25 focus:border-[#00A3E0]'
+                    } bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none`}
                   />
                   {formErrors.phone && <p className="text-rose-500 text-[11px] mt-1">{formErrors.phone}</p>}
                 </div>

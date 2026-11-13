@@ -26,6 +26,7 @@ import {
   Send
 } from 'lucide-react';
 import { AboutSubnav } from '../../components/AboutSubnav';
+import { validateEmail, validatePhone, sanitizePhoneInput } from '../../lib/validation';
 
 export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => void }> = ({ onOpenContact }) => {
   return (
@@ -58,7 +59,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-slate-900/90 border border-cyan-400/40 text-cyan-300 mb-5 backdrop-blur-md shadow-2xl"
             >
               <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#00F0FF]" />
-              <span className="font-mono uppercase text-xs tracking-wider font-bold">Direct Executive Advisory Desk</span>
+              <span className="font-sans uppercase text-xs tracking-wider font-bold">Direct Executive Advisory Desk</span>
             </motion.div>
 
             <motion.h1 
@@ -122,7 +123,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-xs mb-3 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-bold tracking-wider uppercase bg-white/10 text-cyan-200 border border-white/25 shadow-xs mb-3 backdrop-blur-md"
             >
               <Network className="h-3.5 w-3.5 text-cyan-400" />
               <span>Digital Connection System</span>
@@ -164,7 +165,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     <Briefcase className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] font-bold text-cyan-400 uppercase tracking-wider block">
+                    <span className="font-sans text-[11px] font-bold text-cyan-300 uppercase tracking-wider block">
                       01 • BUSINESS
                     </span>
                     <h4 className="font-display text-base font-bold text-white group-hover:text-cyan-300 transition-colors">
@@ -172,7 +173,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     </h4>
                   </div>
                 </div>
-                <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                <p className="text-xs text-slate-200 font-sans leading-relaxed">
                   Enterprise consultations, RFPs, and strategic transformation initiatives.
                 </p>
               </motion.div>
@@ -187,7 +188,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     <Handshake className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] font-bold text-violet-400 uppercase tracking-wider block">
+                    <span className="font-sans text-[11px] font-bold text-violet-300 uppercase tracking-wider block">
                       03 • PARTNERS
                     </span>
                     <h4 className="font-display text-base font-bold text-white group-hover:text-violet-300 transition-colors">
@@ -195,7 +196,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     </h4>
                   </div>
                 </div>
-                <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                <p className="text-xs text-slate-200 font-sans leading-relaxed">
                   Global systems integrators, co-innovation, and technology alliances.
                 </p>
               </motion.div>
@@ -219,13 +220,13 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                   className="relative z-10 w-44 h-44 sm:w-48 sm:h-48 rounded-full bg-gradient-to-b from-[#0A2540] to-[#040C18] border-2 border-cyan-400/60 shadow-[0_0_35px_rgba(0,163,224,0.35)] flex flex-col items-center justify-center p-5 text-center backdrop-blur-xl group cursor-default"
                 >
                   <Sparkles className="h-6 w-6 text-cyan-400 mb-1.5 animate-pulse" />
-                  <span className="font-mono text-[9px] font-bold tracking-widest text-cyan-300 uppercase block">
+                  <span className="font-sans text-[10px] font-bold tracking-widest text-cyan-300 uppercase block">
                     CORE GATEWAY
                   </span>
                   <h3 className="font-display text-lg sm:text-xl font-black text-white tracking-tight leading-tight mt-0.5">
                     KNOOVIQ<br />CONNECT
                   </h3>
-                  <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-[9px] font-mono text-emerald-300 shadow-xs">
+                  <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-[10px] font-sans font-bold tracking-wider text-emerald-300 shadow-xs">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span>ONLINE 24/7</span>
                   </div>
@@ -245,7 +246,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     <Database className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] font-bold text-sky-400 uppercase tracking-wider block">
+                    <span className="font-sans text-[11px] font-bold text-sky-300 uppercase tracking-wider block">
                       02 • EXPERTS
                     </span>
                     <h4 className="font-display text-base font-bold text-white group-hover:text-sky-300 transition-colors">
@@ -253,7 +254,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     </h4>
                   </div>
                 </div>
-                <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                <p className="text-xs text-slate-200 font-sans leading-relaxed">
                   S/4HANA migrations, Clean Core advisory, BTP, and 24/7 AMS.
                 </p>
               </motion.div>
@@ -268,7 +269,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     <Users className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] font-bold text-emerald-400 uppercase tracking-wider block">
+                    <span className="font-sans text-[11px] font-bold text-emerald-300 uppercase tracking-wider block">
                       04 • TALENT
                     </span>
                     <h4 className="font-display text-base font-bold text-white group-hover:text-emerald-300 transition-colors">
@@ -276,7 +277,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     </h4>
                   </div>
                 </div>
-                <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                <p className="text-xs text-slate-200 font-sans leading-relaxed">
                   Joining our high-velocity enterprise engineering and architecture teams.
                 </p>
               </motion.div>
@@ -302,7 +303,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-slate-100 dark:bg-white/10 text-[#0A2540] dark:text-cyan-300 border border-slate-200 dark:border-white/10 shadow-xs mb-3"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-bold tracking-wider uppercase bg-slate-100 dark:bg-white/10 text-[#0A2540] dark:text-cyan-300 border border-slate-200 dark:border-white/15 shadow-xs mb-3"
             >
               <Share2 className="h-3.5 w-3.5 text-[#0052CC] dark:text-cyan-400" />
               <span>Partner Ecosystem</span>
@@ -394,7 +395,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         >
                           <IconComp className="h-4 w-4" />
                         </div>
-                        <span className="font-mono text-[9px] font-bold tracking-wider text-white uppercase bg-black/60 px-2 py-0.5 rounded-md border border-white/20 shadow-xs">
+                        <span className="font-sans text-[10px] font-bold tracking-wider text-white uppercase bg-slate-950/75 px-2.5 py-0.5 rounded-md border border-white/25 shadow-xs">
                           {node.badge}
                         </span>
                       </div>
@@ -406,7 +407,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         {node.title}
                       </h3>
 
-                      <p className="text-xs text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
+                      <p className="text-xs text-slate-700 dark:text-slate-200 font-sans leading-relaxed">
                         {node.desc}
                       </p>
                     </div>
@@ -433,7 +434,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-slate-100 dark:bg-white/10 text-[#0A2540] dark:text-cyan-300 border border-slate-200 dark:border-white/10 shadow-xs mb-3"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-bold tracking-wider uppercase bg-slate-100 dark:bg-white/10 text-[#0A2540] dark:text-cyan-300 border border-slate-200 dark:border-white/15 shadow-xs mb-3"
             >
               <Compass className="h-3.5 w-3.5 text-[#0052CC] dark:text-cyan-400" />
               <span>Engagement Methodology</span>
@@ -522,7 +523,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         <div className="h-11 w-11 rounded-2xl bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 text-[#0052CC] dark:text-cyan-400 flex items-center justify-center shadow-xs group-hover:bg-[#0052CC] group-hover:text-white transition-colors duration-300">
                           <IconComp className="h-5 w-5" />
                         </div>
-                        <span className="font-mono text-xs font-bold text-slate-400 dark:text-slate-500 bg-white dark:bg-white/5 border border-slate-200/80 dark:border-white/10 px-2.5 py-0.5 rounded-full shadow-xs">
+                        <span className="font-sans text-[11px] font-bold tracking-wider text-slate-700 dark:text-slate-200 bg-white dark:bg-white/10 border border-slate-300/80 dark:border-white/15 px-2.5 py-0.5 rounded-full shadow-xs">
                           STAGE {stage.step}
                         </span>
                       </div>
@@ -531,7 +532,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         {stage.name}
                       </h3>
 
-                      <p className="text-xs text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
+                      <p className="text-xs text-slate-700 dark:text-slate-200 font-sans leading-relaxed">
                         {stage.desc}
                       </p>
                     </div>
@@ -562,7 +563,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-xs mb-3 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-bold tracking-wider uppercase bg-white/10 text-cyan-200 border border-white/25 shadow-xs mb-3 backdrop-blur-md"
             >
               <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
               <span>Multi-Disciplinary Advisory</span>
@@ -672,7 +673,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         <div className="h-9 w-9 rounded-xl bg-slate-900/90 border border-white/20 flex items-center justify-center backdrop-blur-md shadow-xs">
                           <IconComp className={`h-5 w-5 ${item.color}`} />
                         </div>
-                        <span className="font-mono text-[9px] font-bold text-slate-300 uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded-md border border-white/15">
+                        <span className="font-sans text-[10px] font-bold text-slate-100 uppercase tracking-wider bg-slate-950/75 px-2.5 py-0.5 rounded-md border border-white/25">
                           PRACTICE
                         </span>
                       </div>
@@ -683,11 +684,11 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                         {item.domain}
                       </h3>
 
-                      <p className="font-mono text-[11px] text-cyan-400 font-semibold mb-2">
+                      <p className="font-sans text-xs text-cyan-300 font-semibold mb-2">
                         {item.focus}
                       </p>
 
-                      <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                      <p className="text-xs text-slate-200 font-sans leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -713,7 +714,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
             {/* LEFT SIDE: Clean Visual Telemetry & Executive Assurances */}
             <div className="lg:col-span-5 space-y-6">
               <div>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-slate-100 dark:bg-white/10 text-[#0A2540] dark:text-cyan-300 border border-slate-200 dark:border-white/10 shadow-xs mb-3">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-bold tracking-wider uppercase bg-slate-100 dark:bg-white/10 text-[#0A2540] dark:text-cyan-300 border border-slate-200 dark:border-white/15 shadow-xs mb-3">
                   <Mail className="h-3.5 w-3.5 text-[#0052CC] dark:text-cyan-400" />
                   <span>Direct Communication Desk</span>
                 </span>
@@ -722,7 +723,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                   Let's Start a Conversation
                 </h2>
 
-                <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
+                <p className="mt-3 text-sm sm:text-base text-slate-700 dark:text-slate-200 font-sans leading-relaxed">
                   Connect directly with our senior leadership and principal solutions architects. Whether evaluating a Greenfield transition or exploring alliance synergies, we are ready.
                 </p>
               </div>
@@ -731,7 +732,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
               <div className="rounded-3xl p-6 bg-[#0A192F] text-white border border-cyan-500/30 shadow-xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl pointer-events-none" />
 
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-cyan-300 block mb-3">
+                <span className="font-sans text-xs font-bold uppercase tracking-wider text-cyan-300 block mb-3">
                   TELEMETRY CONNECTION PIPELINE
                 </span>
 
@@ -743,14 +744,14 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                     { step: '04', title: 'Active Collaboration', desc: 'High-velocity execution and SLA-driven delivery.' }
                   ].map((p) => (
                     <div key={p.step} className="flex items-start gap-3">
-                      <div className="h-7 w-7 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 shadow-xs">
+                      <div className="h-7 w-7 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 font-sans text-xs font-bold flex items-center justify-center shrink-0 shadow-xs">
                         {p.step}
                       </div>
                       <div>
-                        <h4 className="font-display text-xs font-bold text-white">
+                        <h4 className="font-display text-xs sm:text-sm font-bold text-white">
                           {p.title}
                         </h4>
-                        <p className="text-[11px] text-slate-300 font-sans">
+                        <p className="text-xs text-slate-200 font-sans leading-relaxed">
                           {p.desc}
                         </p>
                       </div>
@@ -758,7 +759,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
                   ))}
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-white/10 flex items-center gap-4 text-xs font-mono text-cyan-300">
+                <div className="mt-5 pt-4 border-t border-white/15 flex items-center gap-4 text-xs font-sans font-semibold text-cyan-200">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                     <span>24h SLA</span>
@@ -772,15 +773,15 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
 
               {/* Direct Reach Contacts */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 hover:border-cyan-400/40 transition-colors shadow-xs">
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase block">Phone Hotline</span>
-                  <a href="tel:+917900073410" className="text-xs font-bold text-[#0A2540] dark:text-cyan-300 font-mono hover:underline">
+                <div className="p-4 rounded-2xl bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/15 hover:border-cyan-400/50 transition-colors shadow-xs">
+                  <span className="text-[11px] font-sans font-bold tracking-wider text-slate-600 dark:text-slate-300 uppercase block mb-0.5">Phone Hotline</span>
+                  <a href="tel:+917900073410" className="text-sm font-bold text-[#0A2540] dark:text-cyan-300 font-sans hover:underline">
                     +91-7900073410
                   </a>
                 </div>
-                <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 hover:border-cyan-400/40 transition-colors shadow-xs">
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase block">Official Email</span>
-                  <a href="mailto:admin@knooviq.com" className="text-xs font-bold text-[#0A2540] dark:text-cyan-300 font-mono hover:underline">
+                <div className="p-4 rounded-2xl bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/15 hover:border-cyan-400/50 transition-colors shadow-xs">
+                  <span className="text-[11px] font-sans font-bold tracking-wider text-slate-600 dark:text-slate-300 uppercase block mb-0.5">Official Email</span>
+                  <a href="mailto:admin@knooviq.com" className="text-sm font-bold text-[#0A2540] dark:text-cyan-300 font-sans hover:underline">
                     admin@knooviq.com
                   </a>
                 </div>
@@ -809,7 +810,7 @@ export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => v
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase bg-white/10 text-cyan-300 border border-white/20 shadow-sm mb-4 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-bold tracking-wider uppercase bg-white/10 text-cyan-200 border border-white/25 shadow-sm mb-4 backdrop-blur-md"
           >
             <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
             <span>Next Steps</span>
@@ -882,9 +883,17 @@ const ConnectFormSection: React.FC = () => {
       setErrorMsg('Please enter your full name.');
       return;
     }
-    if (!formData.workEmail.trim() || !formData.workEmail.includes('@')) {
-      setErrorMsg('Please enter a valid work email address.');
+    const emailErr = validateEmail(formData.workEmail);
+    if (emailErr) {
+      setErrorMsg(emailErr);
       return;
+    }
+    if (formData.phoneNumber.trim()) {
+      const phoneErr = validatePhone(formData.phoneNumber);
+      if (phoneErr) {
+        setErrorMsg(phoneErr);
+        return;
+      }
     }
     if (!formData.message.trim()) {
       setErrorMsg('Please describe your requirement or inquiry.');
@@ -953,13 +962,14 @@ const ConnectFormSection: React.FC = () => {
   return (
     <form 
       onSubmit={handleSubmit}
+      noValidate
       className="rounded-3xl p-8 sm:p-10 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-white/10 shadow-2xl space-y-5"
     >
-      <div className="border-b border-slate-200 dark:border-white/10 pb-4 mb-5">
+      <div className="border-b border-slate-200 dark:border-white/15 pb-4 mb-5">
         <h3 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
           Executive Inquiry Form
         </h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 font-sans mt-1">
+        <p className="text-sm text-slate-600 dark:text-slate-300 font-sans mt-1">
           Confidential transmission governed by standard enterprise NDA.
         </p>
       </div>
@@ -973,7 +983,7 @@ const ConnectFormSection: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Full Name */}
         <div>
-          <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
             Full Name *
           </label>
           <input
@@ -982,13 +992,13 @@ const ConnectFormSection: React.FC = () => {
             value={formData.fullName}
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
             placeholder="e.g. Anand Mahindra"
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 text-sm font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
           />
         </div>
 
         {/* Company Name */}
         <div>
-          <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
             Company Name
           </label>
           <input
@@ -996,7 +1006,7 @@ const ConnectFormSection: React.FC = () => {
             value={formData.companyName}
             onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
             placeholder="e.g. Enterprise Global Ltd"
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 text-sm font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
           />
         </div>
       </div>
@@ -1004,7 +1014,7 @@ const ConnectFormSection: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Work Email */}
         <div>
-          <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
             Work Email *
           </label>
           <input
@@ -1013,34 +1023,35 @@ const ConnectFormSection: React.FC = () => {
             value={formData.workEmail}
             onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
             placeholder="name@company.com"
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 text-sm font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
           />
         </div>
 
         {/* Phone Number */}
         <div>
-          <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
             Phone Number
           </label>
           <input
             type="tel"
+            maxLength={20}
             value={formData.phoneNumber}
-            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+            onChange={(e) => setFormData({ ...formData, phoneNumber: sanitizePhoneInput(e.target.value) })}
             placeholder="+91 98000 00000"
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 text-sm font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors"
           />
         </div>
       </div>
 
       {/* Enquiry Type */}
       <div>
-        <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300 mb-1.5">
+        <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200 mb-1.5">
           Enquiry Type *
         </label>
         <select
           value={formData.enquiryType}
           onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors cursor-pointer"
+          className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-sm font-sans font-medium focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors cursor-pointer"
         >
           <option value="Business Enquiry" className="text-slate-900 dark:bg-slate-900 dark:text-white">Business Enquiry</option>
           <option value="SAP & Digital Solutions" className="text-slate-900 dark:bg-slate-900 dark:text-white">SAP & Digital Solutions</option>
@@ -1055,10 +1066,10 @@ const ConnectFormSection: React.FC = () => {
       {/* Message */}
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <label className="block text-xs font-mono font-bold uppercase text-slate-600 dark:text-slate-300">
+          <label className="block text-xs font-sans font-bold text-slate-800 dark:text-slate-200">
             Requirement Details
           </label>
-          <span className="text-[11px] font-mono text-slate-400">
+          <span className="text-xs font-sans font-medium text-slate-600 dark:text-slate-300">
             {formData.message.trim() ? formData.message.trim().split(/\s+/).filter(Boolean).length : 0} / 500 words
           </span>
         </div>
@@ -1076,7 +1087,7 @@ const ConnectFormSection: React.FC = () => {
             }
           }}
           placeholder="Briefly describe your project scope, ERP environment, or collaboration goals (optional, max 500 words)..."
-          className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors resize-none"
+          className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 text-sm font-sans focus:outline-hidden focus:border-[#0052CC] dark:focus:border-cyan-400 transition-colors resize-none"
         />
       </div>
 

@@ -35,6 +35,7 @@ import {
 } from './ChatbotKnowledge';
 import confetti from 'canvas-confetti';
 import { submitEnquiry } from '../../lib/supabase';
+import { validateEmail, validatePhone, sanitizePhoneInput } from '../../lib/validation';
 import { RateLimiter } from '../../lib/rateLimiter';
 
 interface ChatbotWidgetProps {
@@ -452,16 +453,10 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
     const errors: Record<string, string> = {};
     if (!enquiryData.fullName.trim()) errors.fullName = 'Please enter your full name';
     if (!enquiryData.company.trim()) errors.company = 'Company name is required';
-    if (!enquiryData.email.trim()) {
-      errors.email = 'Email address is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enquiryData.email.trim())) {
-      errors.email = 'Please provide a valid email address';
-    }
-    if (!enquiryData.phone.trim()) {
-      errors.phone = 'Phone number is required';
-    } else if (!/^\+?[0-9\s\-()]{7,20}$/.test(enquiryData.phone.trim())) {
-      errors.phone = 'Please enter a valid phone number';
-    }
+    const emailErr = validateEmail(enquiryData.email);
+    if (emailErr) errors.email = emailErr;
+    const phoneErr = validatePhone(enquiryData.phone);
+    if (phoneErr) errors.phone = phoneErr;
     if (enquiryData.service === 'Other' && !otherServiceText.trim()) {
       errors.service = 'Please specify your other requirement';
     }
@@ -858,7 +853,7 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
                         </div>
                       )}
 
-                      <form onSubmit={handleEnquirySubmit} className="space-y-3.5 text-xs">
+                      <form onSubmit={handleEnquirySubmit} noValidate className="space-y-3.5 text-xs">
                         {/* Honeypot Bot Trap */}
                         <div className="hidden" aria-hidden="true">
                           <input
@@ -918,9 +913,34 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
                               type="email"
                               required
                               value={enquiryData.email}
-                              onChange={(e) => setEnquiryData({ ...enquiryData, email: e.target.value })}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                setEnquiryData({ ...enquiryData, email: val });
+                                if (formErrors.email) {
+                                  const err = validateEmail(val);
+                                  setFormErrors((prev) => {
+                                    const next = { ...prev };
+                                    if (err) next.email = err;
+                                    else delete next.email;
+                                    return next;
+                                  });
+                                }
+                              }}
+                              onBlur={() => {
+                                const err = validateEmail(enquiryData.email);
+                                setFormErrors((prev) => {
+                                  const next = { ...prev };
+                                  if (err) next.email = err;
+                                  else delete next.email;
+                                  return next;
+                                });
+                              }}
                               placeholder="name@company.com"
-                              className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                              className={`w-full rounded-xl border ${
+                                formErrors.email
+                                  ? 'border-rose-500 focus:border-rose-500'
+                                  : 'border-slate-200 dark:border-sky-500/25 focus:border-[#00A3E0]'
+                              } bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none`}
                             />
                             {formErrors.email && (
                               <p className="text-rose-500 text-[11px] mt-1">{formErrors.email}</p>
@@ -934,10 +954,36 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
                             <input
                               type="tel"
                               required
+                              maxLength={20}
                               value={enquiryData.phone}
-                              onChange={(e) => setEnquiryData({ ...enquiryData, phone: e.target.value })}
+                              onChange={(e) => {
+                                const sanitized = sanitizePhoneInput(e.target.value);
+                                setEnquiryData({ ...enquiryData, phone: sanitized });
+                                if (formErrors.phone) {
+                                  const err = validatePhone(sanitized);
+                                  setFormErrors((prev) => {
+                                    const next = { ...prev };
+                                    if (err) next.phone = err;
+                                    else delete next.phone;
+                                    return next;
+                                  });
+                                }
+                              }}
+                              onBlur={() => {
+                                const err = validatePhone(enquiryData.phone);
+                                setFormErrors((prev) => {
+                                  const next = { ...prev };
+                                  if (err) next.phone = err;
+                                  else delete next.phone;
+                                  return next;
+                                });
+                              }}
                               placeholder="+91 98000 00000"
-                              className="w-full rounded-xl border border-slate-200 dark:border-sky-500/25 bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:border-[#00A3E0] focus:outline-none"
+                              className={`w-full rounded-xl border ${
+                                formErrors.phone
+                                  ? 'border-rose-500 focus:border-rose-500'
+                                  : 'border-slate-200 dark:border-sky-500/25 focus:border-[#00A3E0]'
+                              } bg-slate-50 dark:bg-[#050B17] px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none`}
                             />
                             {formErrors.phone && (
                               <p className="text-rose-500 text-[11px] mt-1">{formErrors.phone}</p>

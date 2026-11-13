@@ -9,11 +9,54 @@ export function sanitizeInput(input: string): string {
   return DOMPurify.sanitize(input.trim(), { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
 }
 
-// Regex for international & Indian phone numbers (7 to 15 digits, optional leading +)
-const PHONE_REGEX = /^\+?[0-9\s\-()]{7,20}$/;
+// Strict regex for business/standard email validation (no consecutive dots, valid domain + TLD)
+const EMAIL_REGEX = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
 
-// Regex for business/standard email validation
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export function sanitizePhoneInput(input: string): string {
+  if (!input) return '';
+  const hasLeadingPlus = input.startsWith('+');
+  const cleaned = input.replace(/[^0-9\s\-()]/g, '');
+  return hasLeadingPlus ? `+${cleaned}` : cleaned;
+}
+
+export function validateEmail(email: string): string | null {
+  const trimmed = (email || '').trim();
+  if (!trimmed) {
+    return 'Email address is required.';
+  }
+  if (trimmed.length > 120) {
+    return 'Email cannot exceed 120 characters.';
+  }
+  if (trimmed.includes('..') || !EMAIL_REGEX.test(trimmed)) {
+    return 'Please enter a valid email address (e.g. name@company.com).';
+  }
+  return null;
+}
+
+export function validatePhone(phone: string): string | null {
+  const trimmed = (phone || '').trim();
+  if (!trimmed) {
+    return 'Phone number is required.';
+  }
+  if (!/^\+?[0-9\s\-()]+$/.test(trimmed)) {
+    return 'Phone number can only contain digits, +, spaces, hyphens, and parentheses.';
+  }
+  const digits = trimmed.replace(/\D/g, '');
+  if (digits.length < 10) {
+    return 'Phone number must be at least 10 digits.';
+  }
+  if (digits.length > 15) {
+    return 'Phone number cannot exceed 15 digits.';
+  }
+  const subscriberDigits = trimmed.startsWith('+91') && digits.length === 12 ? digits.slice(2) : digits;
+  if (/^(\d)\1+$/.test(digits) || /^(\d)\1+$/.test(subscriberDigits)) {
+    return 'Please enter a valid phone number.';
+  }
+  if (trimmed.startsWith('+91') && digits.length !== 12) {
+    return 'Indian phone numbers with +91 must contain 10 digits after +91.';
+  }
+  return null;
+}
 
 export const EnquiryFormSchema = z.object({
   fullName: z
@@ -28,15 +71,17 @@ export const EnquiryFormSchema = z.object({
     .transform(sanitizeInput),
   email: z
     .string()
-    .email({ message: 'Please enter a valid email address' })
-    .regex(EMAIL_REGEX, { message: 'Email address contains invalid characters' })
     .max(120, { message: 'Email cannot exceed 120 characters' })
+    .refine((val) => validateEmail(val) === null, (val) => ({
+      message: validateEmail(val) || 'Please enter a valid email address',
+    }))
     .transform(sanitizeInput),
   phone: z
     .string()
-    .min(7, { message: 'Please enter a valid phone number (min 7 digits)' })
     .max(20, { message: 'Phone number cannot exceed 20 characters' })
-    .regex(PHONE_REGEX, { message: 'Phone number format is invalid' })
+    .refine((val) => validatePhone(val) === null, (val) => ({
+      message: validatePhone(val) || 'Please enter a valid phone number',
+    }))
     .transform(sanitizeInput),
   service: z
     .string()
@@ -73,15 +118,17 @@ export const ContactSubmissionSchema = z.object({
     .transform(sanitizeInput),
   email: z
     .string()
-    .email({ message: 'Please enter a valid email address' })
-    .regex(EMAIL_REGEX, { message: 'Email address contains invalid characters' })
     .max(120, { message: 'Email cannot exceed 120 characters' })
+    .refine((val) => validateEmail(val) === null, (val) => ({
+      message: validateEmail(val) || 'Please enter a valid email address',
+    }))
     .transform(sanitizeInput),
   phone: z
     .string()
-    .min(7, { message: 'Please enter a valid phone number (min 7 digits)' })
     .max(25, { message: 'Phone number cannot exceed 25 characters' })
-    .regex(PHONE_REGEX, { message: 'Phone number format is invalid' })
+    .refine((val) => validatePhone(val) === null, (val) => ({
+      message: validatePhone(val) || 'Please enter a valid phone number',
+    }))
     .transform(sanitizeInput),
   service: z
     .string()
@@ -114,15 +161,17 @@ export const JobApplicationSchema = z.object({
     .transform(sanitizeInput),
   email: z
     .string()
-    .email({ message: 'Please enter a valid email address' })
-    .regex(EMAIL_REGEX, { message: 'Email address contains invalid characters' })
     .max(120, { message: 'Email cannot exceed 120 characters' })
+    .refine((val) => validateEmail(val) === null, (val) => ({
+      message: validateEmail(val) || 'Please enter a valid email address',
+    }))
     .transform(sanitizeInput),
   phone: z
     .string()
-    .min(7, { message: 'Please enter a valid phone number' })
     .max(20, { message: 'Phone number cannot exceed 20 characters' })
-    .regex(PHONE_REGEX, { message: 'Phone number format is invalid' })
+    .refine((val) => validatePhone(val) === null, (val) => ({
+      message: validatePhone(val) || 'Please enter a valid phone number',
+    }))
     .transform(sanitizeInput),
   position: z
     .string()
