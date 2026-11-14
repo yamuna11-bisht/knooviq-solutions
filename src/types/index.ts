@@ -202,7 +202,7 @@ export interface AdminNotification {
   id: string;
   title: string;
   message: string;
-  type: 'ENQUIRY' | 'CAREER' | 'SECURITY' | 'SYSTEM';
+  type: 'ENTERPRISE' | 'EXECUTIVE' | 'ENQUIRY' | 'CAREER' | 'SECURITY' | 'SYSTEM';
   is_read: boolean;
   link?: string;
   created_at: string;
@@ -250,10 +250,11 @@ export interface DashboardStats {
   totalInquiries: number;
   enterpriseConsultations: number;
   executiveInquiries: number;
+  careerApplications: number;
+  totalSubmissions?: number;
   totalEnquiries: number;
   newEnquiries: number;
   contactSubmissions: number;
-  careerApplications: number;
   newsletterSubscribers: number;
   unreadNotifications: number;
 }

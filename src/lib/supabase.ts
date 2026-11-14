@@ -115,6 +115,21 @@ const INITIAL_SAMPLE_CLIENT_INQUIRIES: ClientInquiry[] = [
     status: 'Pending',
     created_at: new Date(Date.now() - 3600000 * 5).toISOString(),
     updated_at: new Date(Date.now() - 3600000 * 5).toISOString(),
+  },
+  {
+    id: 'ci-005',
+    form_type: 'Executive Inquiry',
+    full_name: 'Vikramaditya Roy',
+    company_name: 'Tata Steel Processing Systems',
+    email: 'v.roy@tatasteel.com',
+    country_code: '+91',
+    phone_number: '9822334455',
+    service_requirement: null,
+    enquiry_type: 'SAP Transformation',
+    requirement_details: 'Requesting direct executive briefing with cutover director regarding Greenfield SAP S/4HANA migration across 4 blast furnace processing centers.',
+    status: 'In Review',
+    created_at: new Date(Date.now() - 3600000 * 18).toISOString(),
+    updated_at: new Date(Date.now() - 3600000 * 18).toISOString(),
   }
 ];
 
@@ -178,6 +193,57 @@ const INITIAL_SAMPLE_CONTACTS: ContactSubmission[] = [
   }
 ];
 
+const INITIAL_SAMPLE_APPLICATIONS: JobApplicationSubmission[] = [
+  {
+    id: 'app-001',
+    full_name: 'Aditi Sharma',
+    email: 'aditi.sharma@example.com',
+    phone: '+91 98765 43210',
+    position: 'SAP FICO Consultant — 4 Years Exp.',
+    experience: '4 - 6 Years',
+    education: 'B.Tech / MCA (Information Technology)',
+    location: 'Mumbai, India',
+    portfolio_linkedin: 'https://linkedin.com/in/aditi-sharma-sap',
+    cover_letter: 'Experience Level: Experienced\nNotice Period: 30 Days\n\nCover Letter / Message:\nExperienced SAP FICO consultant with 4+ years hands-on experience in S/4HANA migration, GL/AP/AR configurations, and asset accounting across manufacturing clients.',
+    cover_note: 'Experience Level: Experienced\nNotice Period: 30 Days\n\nCover Letter / Message:\nExperienced SAP FICO consultant with 4+ years hands-on experience in S/4HANA migration, GL/AP/AR configurations, and asset accounting across manufacturing clients.',
+    resume_storage_path: 'resumes/aditi-sharma-cv.pdf',
+    status: 'PENDING',
+    created_at: new Date(Date.now() - 3600000 * 6).toISOString(),
+  },
+  {
+    id: 'app-002',
+    full_name: 'Rohan Verma',
+    email: 'rohan.verma@example.com',
+    phone: '+91 91234 56789',
+    position: 'SAP BTP Solution Architect',
+    experience: '6 - 8 Years',
+    education: 'M.Tech Software Engineering',
+    location: 'Bengaluru, India',
+    portfolio_linkedin: 'https://linkedin.com/in/rohan-verma-btp',
+    cover_letter: 'Experience Level: Experienced\nNotice Period: 15 Days\n\nCover Letter / Message:\nLead BTP architect specializing in SAP Integration Suite, Event Mesh, and CAP applications.',
+    cover_note: 'Experience Level: Experienced\nNotice Period: 15 Days\n\nCover Letter / Message:\nLead BTP architect specializing in SAP Integration Suite, Event Mesh, and CAP applications.',
+    resume_storage_path: 'resumes/rohan-verma-cv.pdf',
+    status: 'REVIEWED',
+    created_at: new Date(Date.now() - 3600000 * 28).toISOString(),
+  },
+  {
+    id: 'app-003',
+    full_name: 'Sneha Patel',
+    email: 'sneha.patel@example.com',
+    phone: '+91 98111 22334',
+    position: 'Associate SAP ABAP Developer',
+    experience: 'Fresher (0 - 1 Year)',
+    education: 'B.Tech Computer Science (2025 Graduate)',
+    location: 'Pune, India',
+    portfolio_linkedin: 'https://linkedin.com/in/sneha-patel-abap',
+    cover_letter: 'Experience Level: Fresher\nNotice Period: Immediate Joiner\n\nCover Letter / Message:\nCertified in SAP ABAP on HANA core modules. Completed 6-month enterprise capstone project on CDS views and AMDP procedures.',
+    cover_note: 'Experience Level: Fresher\nNotice Period: Immediate Joiner\n\nCover Letter / Message:\nCertified in SAP ABAP on HANA core modules. Completed 6-month enterprise capstone project on CDS views and AMDP procedures.',
+    resume_storage_path: 'resumes/sneha-patel-cv.pdf',
+    status: 'INTERVIEW_SCHEDULED',
+    created_at: new Date(Date.now() - 3600000 * 52).toISOString(),
+  }
+];
+
 const INITIAL_ADMIN_PROFILES: AdminProfile[] = [
   {
     id: 'adm-01',
@@ -208,22 +274,30 @@ const INITIAL_ADMIN_PROFILES: AdminProfile[] = [
 const INITIAL_NOTIFICATIONS: AdminNotification[] = [
   {
     id: 'notif-1',
-    title: 'New S/4HANA Enterprise Enquiry',
-    message: 'Apex Global FMCG requested an assessment for 12 manufacturing units.',
-    type: 'ENQUIRY',
+    title: 'New Enterprise Consultation',
+    message: 'Apex Global FMCG submitted a consultation request for SAP S/4HANA Solutions.',
+    type: 'ENTERPRISE',
     is_read: false,
     created_at: new Date(Date.now() - 3600000 * 3).toISOString(),
   },
   {
     id: 'notif-2',
-    title: 'New Job Application Submitted',
-    message: 'Senior SAP FICO Consultant application received.',
+    title: 'New Career Application',
+    message: 'Aditi Sharma submitted application for SAP FICO Consultant (4-6 Years Exp).',
     type: 'CAREER',
     is_read: false,
-    created_at: new Date(Date.now() - 3600000 * 8).toISOString(),
+    created_at: new Date(Date.now() - 3600000 * 6).toISOString(),
   },
   {
     id: 'notif-3',
+    title: 'New Executive Inquiry',
+    message: 'Anand Mahindra (Mahindra Logistics Ltd) submitted an Executive Inquiry for Business Enquiry.',
+    type: 'EXECUTIVE',
+    is_read: false,
+    created_at: new Date(Date.now() - 3600000 * 5).toISOString(),
+  },
+  {
+    id: 'notif-4',
     title: 'Security Compliance Health Check',
     message: 'All Row Level Security (RLS) policies verified active on Supabase.',
     type: 'SECURITY',
@@ -350,7 +424,7 @@ export async function submitClientInquiry(inquiry: {
       pushNotification({
         title: `New ${cleanFormType} Submission`,
         message: `${cleanFullName}${cleanCompanyName ? ` (${cleanCompanyName})` : ''} submitted an inquiry for ${cleanServiceRequirement || cleanEnquiryType || 'Consultation'}.`,
-        type: 'ENQUIRY',
+        type: cleanFormType === 'Enterprise Consultation' ? 'ENTERPRISE' : 'EXECUTIVE',
       });
 
       return { success: true, id: data?.id || newRecordId };
@@ -362,7 +436,7 @@ export async function submitClientInquiry(inquiry: {
       pushNotification({
         title: `New ${cleanFormType} Submission`,
         message: `${cleanFullName}${cleanCompanyName ? ` (${cleanCompanyName})` : ''} submitted an inquiry for ${cleanServiceRequirement || cleanEnquiryType || 'Consultation'}.`,
-        type: 'ENQUIRY',
+        type: cleanFormType === 'Enterprise Consultation' ? 'ENTERPRISE' : 'EXECUTIVE',
       });
 
       return { success: true, id: newRecordId };
@@ -721,10 +795,10 @@ export async function fetchJobApplications(): Promise<JobApplicationSubmission[]
       if (error) throw error;
       return data || [];
     } else {
-      return getLocalStore<JobApplicationSubmission>(LOCAL_APPLICATIONS_KEY, []);
+      return getLocalStore<JobApplicationSubmission>(LOCAL_APPLICATIONS_KEY, INITIAL_SAMPLE_APPLICATIONS);
     }
   } catch {
-    return getLocalStore<JobApplicationSubmission>(LOCAL_APPLICATIONS_KEY, []);
+    return getLocalStore<JobApplicationSubmission>(LOCAL_APPLICATIONS_KEY, INITIAL_SAMPLE_APPLICATIONS);
   }
 }
 
@@ -1249,31 +1323,35 @@ export async function updateAdminProfileRole(id: string, newRole: AdminRole, isA
 // -----------------------------------------------------------------------------
 
 export async function getDashboardStats(): Promise<DashboardStats> {
-  const [clientInquiries, enquiries, contacts, apps, newsletter, notifs] = await Promise.all([
+  const [clientInquiries, apps, notifs] = await Promise.all([
     fetchClientInquiries(),
-    fetchEnquiries(),
-    fetchContactSubmissions(),
     fetchJobApplications(),
-    fetchNewsletterSubscribers(),
     fetchAdminNotifications()
   ]);
 
   const totalInquiries = clientInquiries.length;
   const enterpriseConsultations = clientInquiries.filter(i => i.form_type === 'Enterprise Consultation').length;
   const executiveInquiries = clientInquiries.filter(i => i.form_type === 'Executive Inquiry').length;
-  const pendingCount = clientInquiries.filter(i => i.status === 'Pending').length;
-  const newEnqCount = pendingCount + enquiries.filter(e => e.status === 'NEW').length + contacts.filter(c => c.status === 'NEW').length;
+  const careerApplications = apps.length;
+  const totalSubmissions = enterpriseConsultations + executiveInquiries + careerApplications;
+
+  const pendingEnterprise = clientInquiries.filter(i => i.form_type === 'Enterprise Consultation' && (i.status === 'Pending' || i.status === 'NEW')).length;
+  const pendingExecutive = clientInquiries.filter(i => i.form_type === 'Executive Inquiry' && (i.status === 'Pending' || i.status === 'NEW')).length;
+  const pendingCareers = apps.filter(a => a.status === 'PENDING').length;
+  const newEnqCount = pendingEnterprise + pendingExecutive + pendingCareers;
+
   const unreadNotifsCount = notifs.filter(n => !n.is_read).length;
 
   return {
     totalInquiries,
     enterpriseConsultations,
     executiveInquiries,
-    totalEnquiries: totalInquiries + enquiries.length + contacts.length,
+    careerApplications,
+    totalSubmissions,
+    totalEnquiries: totalSubmissions,
     newEnquiries: newEnqCount,
-    contactSubmissions: contacts.length,
-    careerApplications: apps.length,
-    newsletterSubscribers: newsletter.length,
+    contactSubmissions: 0,
+    newsletterSubscribers: 0,
     unreadNotifications: unreadNotifsCount,
   };
 }
