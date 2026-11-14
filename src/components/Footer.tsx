@@ -436,7 +436,7 @@ export const Footer: React.FC = () => {
                   HEAD OFFICE
                 </span>
                 <p className="text-[13px] sm:text-sm font-semibold text-[#0F172A] dark:text-white leading-[1.7]">
-                  1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)
+                  1210, One World by Sanjar, Near NL College, SV Road, Malad West, Mumbai 400065
                 </p>
               </div>
             </div>

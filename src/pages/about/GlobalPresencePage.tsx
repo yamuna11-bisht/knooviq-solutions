@@ -40,8 +40,8 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
       country: 'India',
       flag: '🇮🇳',
       badge: 'Primary Global HQ',
-      address: '1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)',
-      mapQuery: 'One World by Sanjar, Malad West, Mumbai',
+      address: '1210, One World by Sanjar, Near NL College, SV Road, Malad West, Mumbai 400065',
+      mapQuery: 'One World by Sanjar, SV Road, Malad West, Mumbai 400065',
       role: 'Corporate Headquarters, Executive Leadership & Strategic Governance',
       phone: '+91-7900073410',
       email: 'admin@knooviq.com',
@@ -507,15 +507,15 @@ export const GlobalPresencePage: React.FC<{ onOpenContact: (topic?: string) => v
             </h2>
             <div className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300">
               <MapPin className="h-4 w-4 text-[#0070C0] dark:text-cyan-400 shrink-0" />
-              <span>1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)</span>
+              <span>1210, One World by Sanjar, Near NL College, SV Road, Malad West, Mumbai 400065</span>
             </div>
           </div>
 
           {/* Clean Interactive Google Map Card */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 dark:border-slate-800 shadow-xl bg-white dark:bg-slate-900">
             <iframe
-              title="Knooviq Location - 1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)"
-              src="https://maps.google.com/maps?q=1210%2C+One+World+by+Sanjar%2C+Bhadran+Nagar%2C+Malad+West%2C+Mumbai+(India)&t=m&z=16&ie=UTF8&iwloc=&output=embed"
+              title="Knooviq Location - 1210, One World by Sanjar, Near NL College, SV Road, Malad West, Mumbai 400065"
+              src="https://maps.google.com/maps?q=1210%2C+One+World+by+Sanjar%2C+Near+NL+College%2C+SV+Road%2C+Malad+West%2C+Mumbai+400065&t=m&z=16&ie=UTF8&iwloc=&output=embed"
               className="w-full h-[380px] sm:h-[460px] lg:h-[500px] border-0 block"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

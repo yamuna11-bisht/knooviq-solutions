@@ -5,10 +5,10 @@ export const COMPANY_INFO = {
   tagline: 'Transforming Businesses Through Intelligent Technology',
   description: 'A premier enterprise technology & SAP consulting partner empowering global businesses with end-to-end digital transformation, SAP S/4HANA migrations, cloud integration, and corporate enablement.',
   headquarters: {
-    address: '1210, One World by Sanjar, Bhadran Nagar, Malad West',
+    address: '1210, One World by Sanjar, Near NL College, SV Road, Malad West',
     city: 'Mumbai',
     state: 'Maharashtra',
-    postalCode: '400064',
+    postalCode: '400065',
     country: 'India',
   },
   contact: {

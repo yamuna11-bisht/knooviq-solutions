@@ -29,7 +29,7 @@ export interface BotResponse {
 
 export const COMPANY_HEADQUARTERS = {
   name: 'Knooviq Industries Pvt. Ltd.',
-  address: '1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)',
+  address: '1210, One World by Sanjar, Near NL College, SV Road, Malad West, Mumbai 400065',
   email: 'contact@knooviq.com',
   phone: '+91 99877 52646',
   hours: 'Monday – Friday, 9:30 AM – 6:30 PM IST',
@@ -303,7 +303,7 @@ const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     keywords: ['contact', 'address', 'location', 'where', 'office', 'headquarters', 'hq', 'mumbai', 'malad', 'phone', 'email', 'map', 'reach'],
     intents: ['contact_location'],
     response: () => ({
-      text: `**KNOOVIQ Industries Private Limited — Corporate Headquarters**\n\n📍 **Registered Office & Tech Center:**\n1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)\n\n📧 **Corporate Inquiries:** contact@knooviq.com\n📞 **Direct Phone:** +91 99877 52646\n🕒 **Operating Hours:** Monday – Friday, 9:30 AM – 6:30 PM IST\n\nOur office is situated in the western corporate hub of Mumbai with direct access via Link Road and Western Express Highway.`,
+      text: `**KNOOVIQ Industries Private Limited — Corporate Headquarters**\n\n📍 **Registered Office & Tech Center:**\n1210, One World by Sanjar, Near NL College, SV Road, Malad West, Mumbai 400065\n\n📧 **Corporate Inquiries:** contact@knooviq.com\n📞 **Direct Phone:** +91 99877 52646\n🕒 **Operating Hours:** Monday – Friday, 9:30 AM – 6:30 PM IST\n\nOur office is situated in the western corporate hub of Mumbai with direct access via Link Road and Western Express Highway.`,
       navLinks: [
         { label: 'View Location Map', path: '/about/global-presence', primary: true }
       ],

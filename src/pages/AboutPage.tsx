@@ -954,7 +954,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenContact }) => {
                   <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300 font-sans mb-6">
                     <div className="flex items-start gap-2.5">
                       <MapPin className="h-4 w-4 text-[#00A3E0] dark:text-cyan-400 flex-shrink-0 mt-0.5" />
-                      <span>1210, One World by Sanjar, Bhadran Nagar, Malad West, Mumbai (India)</span>
+                      <span>1210, One World by Sanjar, Near NL College, SV Road, Malad West, Mumbai 400065</span>
                     </div>
                     <div className="flex items-center gap-2.5">
                       <Phone className="h-4 w-4 text-[#00A3E0] dark:text-cyan-400 flex-shrink-0" />
