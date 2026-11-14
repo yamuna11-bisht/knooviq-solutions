@@ -570,9 +570,10 @@ export async function submitJobApplication(
           upsert: false,
         });
 
-      if (!uploadError) {
-        resumePath = filePath;
+      if (uploadError) {
+        return { success: false, error: `Resume upload failed: ${uploadError.message}` };
       }
+      resumePath = filePath;
 
       const { error: dbError } = await supabase.from('career_applications').insert([{
         job_id: application.job_id || null,
