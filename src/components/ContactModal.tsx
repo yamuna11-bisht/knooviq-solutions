@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Send, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { submitEnquiry } from '../lib/supabase';
+import { submitClientInquiry, submitEnquiry } from '../lib/supabase';
 import {
   EnquiryFormSchema,
   validateEmail,
   validatePhone,
-  sanitizePhoneInput
+  sanitizePhoneInput,
+  parsePhoneAndCountryCode
 } from '../lib/validation';
 import { PhoneInput } from './PhoneInput';
 import { RateLimiter } from '../lib/rateLimiter';
@@ -92,14 +93,17 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
     setIsSubmitting(true);
 
     try {
-      const res = await submitEnquiry({
+      const { countryCode, phoneNumber } = parsePhoneAndCountryCode(validationResult.data.phone);
+
+      const res = await submitClientInquiry({
+        form_type: 'Enterprise Consultation',
         full_name: validationResult.data.fullName,
-        company: validationResult.data.company,
+        company_name: validationResult.data.company || null,
         email: validationResult.data.email,
-        phone: validationResult.data.phone,
-        service: validationResult.data.service,
-        message: validationResult.data.message || '',
-        source: 'WEBSITE_CONSULTATION_MODAL',
+        country_code: countryCode,
+        phone_number: phoneNumber,
+        service_requirement: validationResult.data.service,
+        requirement_details: validationResult.data.message || null,
       });
 
       if (res.success) {

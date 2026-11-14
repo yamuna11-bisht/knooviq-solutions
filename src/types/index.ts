@@ -118,6 +118,27 @@ export interface JobOpening {
   is_active?: boolean;
 }
 
+export type InquiryFormType = 'Enterprise Consultation' | 'Executive Inquiry';
+export type InquiryStatus = 'Pending' | 'In Review' | 'Contacted' | 'Resolved' | 'Archived';
+
+export interface ClientInquiry {
+  id: string;
+  form_type: InquiryFormType | string;
+  full_name: string;
+  company_name?: string | null;
+  email: string;
+  country_code: string;
+  phone_number: string;
+  service_requirement?: string | null;
+  enquiry_type?: string | null;
+  requirement_details?: string | null;
+  status: InquiryStatus | string;
+  internal_notes?: string | null;
+  ip_hash?: string | null;
+  created_at: string;
+  updated_at?: string;
+}
+
 export interface EnquirySubmission {
   id?: string;
   full_name: string;
@@ -226,6 +247,9 @@ export interface InsightArticle {
 }
 
 export interface DashboardStats {
+  totalInquiries: number;
+  enterpriseConsultations: number;
+  executiveInquiries: number;
   totalEnquiries: number;
   newEnquiries: number;
   contactSubmissions: number;

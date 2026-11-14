@@ -28,7 +28,8 @@ import {
 } from 'lucide-react';
 import { AboutSubnav } from '../../components/AboutSubnav';
 import { PhoneInput } from '../../components/PhoneInput';
-import { validateEmail, validatePhone, sanitizePhoneInput } from '../../lib/validation';
+import { validateEmail, validatePhone, sanitizePhoneInput, parsePhoneAndCountryCode } from '../../lib/validation';
+import { submitClientInquiry } from '../../lib/supabase';
 
 export const KnooviqConnectPage: React.FC<{ onOpenContact: (topic?: string) => void }> = ({ onOpenContact }) => {
   return (
@@ -897,24 +898,27 @@ const ConnectFormSection: React.FC = () => {
       setErrorMsg(phoneErr);
       return;
     }
-    if (!formData.message.trim()) {
-      setErrorMsg('Please describe your requirement or inquiry.');
-      return;
+    if (formData.message.trim()) {
+      const words = formData.message.trim().split(/\s+/).filter(Boolean);
+      if (words.length > 500) {
+        setErrorMsg('Requirement details cannot exceed 500 words.');
+        return;
+      }
     }
 
     setLoading(true);
 
     try {
-      // Dynamic import to avoid circular dependencies
-      const { submitContactSubmission } = await import('../../lib/supabase');
-      const res = await submitContactSubmission({
-        name: formData.fullName,
-        company: formData.companyName || 'Enterprise Partner',
-        email: formData.workEmail,
-        phone: formData.phoneNumber,
-        service: formData.enquiryType,
-        subject: `Knooviq Connect: ${formData.enquiryType}`,
-        message: formData.message
+      const { countryCode, phoneNumber } = parsePhoneAndCountryCode(formData.phoneNumber);
+      const res = await submitClientInquiry({
+        form_type: 'Executive Inquiry',
+        full_name: formData.fullName.trim(),
+        company_name: formData.companyName.trim() || null,
+        email: formData.workEmail.trim(),
+        country_code: countryCode,
+        phone_number: phoneNumber,
+        enquiry_type: formData.enquiryType,
+        requirement_details: formData.message.trim() || null
       });
 
       if (res.success) {

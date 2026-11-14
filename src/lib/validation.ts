@@ -60,6 +60,47 @@ export function sanitizePhoneDigits(input: string, maxDigits: number = 10): stri
   return input.replace(/\D/g, '').slice(0, maxDigits);
 }
 
+/**
+ * Parse a phone string into its country code, local digits, and full formatted string.
+ */
+export function parsePhoneAndCountryCode(
+  phone: string,
+  defaultCode: string = '+91'
+): { countryCode: string; phoneNumber: string; fullNumber: string } {
+  const trimmed = (phone || '').trim();
+  if (!trimmed) {
+    return { countryCode: defaultCode, phoneNumber: '', fullNumber: '' };
+  }
+
+  if (trimmed.startsWith('+')) {
+    const matched = COUNTRY_CODES.find((c) => trimmed.startsWith(c.code));
+    if (matched) {
+      const remainingDigits = trimmed.slice(matched.code.length).replace(/\D/g, '');
+      return {
+        countryCode: matched.code,
+        phoneNumber: remainingDigits,
+        fullNumber: `${matched.code} ${remainingDigits}`.trim(),
+      };
+    }
+    const match = trimmed.match(/^(\+\d{1,4})\s*(.*)$/);
+    if (match) {
+      const remainingDigits = match[2].replace(/\D/g, '');
+      return {
+        countryCode: match[1],
+        phoneNumber: remainingDigits,
+        fullNumber: `${match[1]} ${remainingDigits}`.trim(),
+      };
+    }
+  }
+
+  const rawDigits = trimmed.replace(/\D/g, '');
+  return {
+    countryCode: defaultCode,
+    phoneNumber: rawDigits,
+    fullNumber: `${defaultCode} ${rawDigits}`.trim(),
+  };
+}
+
 export function validateEmail(email: string): string | null {
   const trimmed = (email || '').trim();
   if (!trimmed) {
@@ -192,6 +233,76 @@ export const EnquiryFormSchema = z.object({
 });
 
 export type EnquiryFormData = z.infer<typeof EnquiryFormSchema>;
+
+export const ClientInquirySchema = z.object({
+  form_type: z
+    .enum(['Enterprise Consultation', 'Executive Inquiry'])
+    .or(z.string().min(1, 'Form type is required'))
+    .transform(sanitizeInput),
+  full_name: z
+    .string()
+    .min(2, { message: 'Full name must be at least 2 characters' })
+    .max(100, { message: 'Full name cannot exceed 100 characters' })
+    .transform(sanitizeInput),
+  company_name: z
+    .string()
+    .max(150, { message: 'Company name cannot exceed 150 characters' })
+    .optional()
+    .or(z.literal(''))
+    .default('')
+    .transform(sanitizeInput),
+  email: z
+    .string()
+    .max(120, { message: 'Email cannot exceed 120 characters' })
+    .refine((val) => validateEmail(val) === null, (val) => ({
+      message: validateEmail(val) || 'Please enter a valid email address',
+    }))
+    .transform(sanitizeInput),
+  phone: z
+    .string()
+    .min(1, { message: 'Phone number is required.' })
+    .max(35, { message: 'Phone number cannot exceed 35 characters' })
+    .refine((val) => validatePhone(val) === null, (val) => ({
+      message: validatePhone(val) || 'Enter a valid mobile phone number.',
+    }))
+    .transform(sanitizeInput),
+  country_code: z.string().optional().default('+91').transform(sanitizeInput),
+  phone_number: z.string().optional().default('').transform(sanitizeInput),
+  service_requirement: z
+    .string()
+    .max(150)
+    .optional()
+    .or(z.literal(''))
+    .default('')
+    .transform(sanitizeInput),
+  enquiry_type: z
+    .string()
+    .max(150)
+    .optional()
+    .or(z.literal(''))
+    .default('')
+    .transform(sanitizeInput),
+  requirement_details: z
+    .string()
+    .max(5000, { message: 'Requirement details cannot exceed 500 words' })
+    .refine((val) => {
+      if (!val || !val.trim()) return true;
+      const wordCount = val.trim().split(/\s+/).filter(Boolean).length;
+      return wordCount <= 500;
+    }, { message: 'Requirement details cannot exceed 500 words' })
+    .optional()
+    .or(z.literal(''))
+    .default('')
+    .transform(sanitizeInput),
+  status: z
+    .enum(['Pending', 'In Review', 'Contacted', 'Resolved', 'Archived'])
+    .or(z.string())
+    .optional()
+    .default('Pending'),
+  honeypot: z.string().max(0, { message: 'Bot submission detected' }).optional(),
+});
+
+export type ClientInquiryFormData = z.infer<typeof ClientInquirySchema>;
 
 export const ContactSubmissionSchema = z.object({
   name: z

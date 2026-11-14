@@ -34,8 +34,8 @@ import {
     NavLink
 } from './ChatbotKnowledge';
 import confetti from 'canvas-confetti';
-import { submitEnquiry } from '../../lib/supabase';
-import { validateEmail, validatePhone, sanitizePhoneInput } from '../../lib/validation';
+import { submitClientInquiry, submitEnquiry } from '../../lib/supabase';
+import { validateEmail, validatePhone, sanitizePhoneInput, parsePhoneAndCountryCode } from '../../lib/validation';
 import { PhoneInput } from '../PhoneInput';
 import { RateLimiter } from '../../lib/rateLimiter';
 
@@ -452,13 +452,18 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
     const validateForm = () => {
         const errors: Record<string, string> = {};
         if (!enquiryData.fullName.trim()) errors.fullName = 'Please enter your full name';
-        if (!enquiryData.company.trim()) errors.company = 'Company name is required';
         const emailErr = validateEmail(enquiryData.email);
         if (emailErr) errors.email = emailErr;
         const phoneErr = validatePhone(enquiryData.phone);
         if (phoneErr) errors.phone = phoneErr;
         if (enquiryData.service === 'Other' && !otherServiceText.trim()) {
             errors.service = 'Please specify your other requirement';
+        }
+        if (enquiryData.message.trim()) {
+            const words = enquiryData.message.trim().split(/\s+/).filter(Boolean);
+            if (words.length > 500) {
+                errors.message = 'Requirement details cannot exceed 500 words';
+            }
         }
         return errors;
     };
@@ -494,16 +499,16 @@ export const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ onOpenContact }) =
             : enquiryData.service;
 
         try {
-            const result = await submitEnquiry({
+            const { countryCode, phoneNumber } = parsePhoneAndCountryCode(enquiryData.phone);
+            const result = await submitClientInquiry({
+                form_type: 'Enterprise Consultation',
                 full_name: enquiryData.fullName.trim(),
+                company_name: enquiryData.company.trim() || null,
                 email: enquiryData.email.trim(),
-                company: enquiryData.company.trim(),
-                phone: enquiryData.phone.trim(),
-                service: effectiveService,
-                industry: 'Enterprise Technology',
-                country: 'India',
-                message: enquiryData.message.trim() || '',
-                source: 'CHATBOT_AI_ASSISTANT'
+                country_code: countryCode,
+                phone_number: phoneNumber,
+                service_requirement: effectiveService,
+                requirement_details: enquiryData.message.trim() || null
             });
 
             if (result.success) {

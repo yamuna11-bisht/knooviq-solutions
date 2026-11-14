@@ -45,18 +45,22 @@ import {
 } from 'lucide-react';
 import { 
   AdminProfile,
+  ClientInquiry,
+  InquiryFormType,
+  InquiryStatus,
   EnquirySubmission, 
   ContactSubmission, 
   JobApplicationSubmission, 
   NewsletterSubscriber, 
   AdminNotification, 
-  ActivityLog,
+  ActivityLog, 
   DashboardStats,
   AdminRole
 } from '../types';
 import { 
   getAdminSession, 
   adminLogout, 
+  fetchClientInquiries,
   fetchEnquiries, 
   fetchContactSubmissions, 
   fetchJobApplications, 
@@ -64,6 +68,8 @@ import {
   fetchAdminNotifications, 
   markNotificationRead, 
   fetchActivityLogs, 
+  updateClientInquiryStatus,
+  deleteClientInquiry,
   updateEnquiryStatus, 
   updateContactStatus, 
   updateJobApplicationStatus, 
@@ -82,6 +88,9 @@ export const AdminDashboardPage: React.FC = () => {
 
   // Telemetry data
   const [stats, setStats] = useState<DashboardStats>({
+    totalInquiries: 0,
+    enterpriseConsultations: 0,
+    executiveInquiries: 0,
     totalEnquiries: 0,
     newEnquiries: 0,
     contactSubmissions: 0,
@@ -91,6 +100,7 @@ export const AdminDashboardPage: React.FC = () => {
   });
 
   // Table records
+  const [clientInquiries, setClientInquiries] = useState<ClientInquiry[]>([]);
   const [enquiries, setEnquiries] = useState<EnquirySubmission[]>([]);
   const [contacts, setContacts] = useState<ContactSubmission[]>([]);
   const [applications, setApplications] = useState<JobApplicationSubmission[]>([]);
@@ -102,14 +112,18 @@ export const AdminDashboardPage: React.FC = () => {
   // UI states
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
+  const [formTypeFilter, setFormTypeFilter] = useState<'ALL' | 'Enterprise Consultation' | 'Executive Inquiry'>('ALL');
   const [loading, setLoading] = useState(false);
   const [notificationMenuOpen, setNotificationMenuOpen] = useState(false);
 
+  // Inquiry Full Details Modal
+  const [inquiryDetailsModal, setInquiryDetailsModal] = useState<ClientInquiry | null>(null);
+
   // Note Modal
-  const [noteModal, setNoteModal] = useState<{ isOpen: boolean; id: string; type: 'enquiry' | 'contact' | 'career'; currentNote: string }>({
+  const [noteModal, setNoteModal] = useState<{ isOpen: boolean; id: string; type: 'client_inquiry' | 'enquiry' | 'contact' | 'career'; currentNote: string }>({
     isOpen: false,
     id: '',
-    type: 'enquiry',
+    type: 'client_inquiry',
     currentNote: '',
   });
 
@@ -136,6 +150,7 @@ export const AdminDashboardPage: React.FC = () => {
     setLoading(true);
     const [
       dashboardStats,
+      clientInqData,
       enqData,
       cntData,
       appData,
@@ -145,6 +160,7 @@ export const AdminDashboardPage: React.FC = () => {
       teamData
     ] = await Promise.all([
       getDashboardStats(),
+      fetchClientInquiries(),
       fetchEnquiries(),
       fetchContactSubmissions(),
       fetchJobApplications(),
@@ -155,6 +171,7 @@ export const AdminDashboardPage: React.FC = () => {
     ]);
 
     setStats(dashboardStats);
+    setClientInquiries(clientInqData);
     setEnquiries(enqData);
     setContacts(cntData);
     setApplications(appData);
@@ -177,6 +194,29 @@ export const AdminDashboardPage: React.FC = () => {
   };
 
   // Status Handlers
+  const handleClientInquiryStatus = async (id: string, status: InquiryStatus | string) => {
+    await updateClientInquiryStatus(id, status);
+    setClientInquiries(prev => prev.map(e => e.id === id ? { ...e, status } : e));
+    if (inquiryDetailsModal?.id === id) {
+      setInquiryDetailsModal(prev => prev ? { ...prev, status } : null);
+    }
+    loadAllData();
+  };
+
+  const handleDeleteClientInquiry = async (id: string) => {
+    if (admin?.role !== 'super_admin') {
+      alert('Only Super Administrators have permissions to delete records.');
+      return;
+    }
+    if (window.confirm('Are you sure you want to permanently delete this client inquiry?')) {
+      await deleteClientInquiry(id);
+      if (inquiryDetailsModal?.id === id) {
+        setInquiryDetailsModal(null);
+      }
+      loadAllData();
+    }
+  };
+
   const handleEnquiryStatus = async (id: string, status: EnquirySubmission['status']) => {
     await updateEnquiryStatus(id, status);
     setEnquiries(prev => prev.map(e => e.id === id ? { ...e, status } : e));
@@ -196,7 +236,10 @@ export const AdminDashboardPage: React.FC = () => {
   };
 
   const handleSaveNote = async () => {
-    if (noteModal.type === 'enquiry') {
+    if (noteModal.type === 'client_inquiry') {
+      const inq = clientInquiries.find(i => i.id === noteModal.id);
+      if (inq) await updateClientInquiryStatus(noteModal.id, inq.status, noteModal.currentNote);
+    } else if (noteModal.type === 'enquiry') {
       const enq = enquiries.find(e => e.id === noteModal.id);
       if (enq) await updateEnquiryStatus(noteModal.id, enq.status, noteModal.currentNote);
     } else if (noteModal.type === 'contact') {
@@ -206,7 +249,7 @@ export const AdminDashboardPage: React.FC = () => {
       const app = applications.find(a => a.id === noteModal.id);
       if (app) await updateJobApplicationStatus(noteModal.id, app.status, noteModal.currentNote);
     }
-    setNoteModal({ isOpen: false, id: '', type: 'enquiry', currentNote: '' });
+    setNoteModal({ isOpen: false, id: '', type: 'client_inquiry', currentNote: '' });
     loadAllData();
   };
 
@@ -273,6 +316,22 @@ export const AdminDashboardPage: React.FC = () => {
   };
 
   // Filtered lists
+  const filteredClientInquiries = clientInquiries.filter(inq => {
+    const q = searchTerm.toLowerCase();
+    const matchesSearch = 
+      (inq.full_name || '').toLowerCase().includes(q) ||
+      (inq.company_name || '').toLowerCase().includes(q) ||
+      (inq.email || '').toLowerCase().includes(q) ||
+      (inq.phone_number || '').includes(q) ||
+      (inq.country_code || '').includes(q) ||
+      (inq.service_requirement || '').toLowerCase().includes(q) ||
+      (inq.enquiry_type || '').toLowerCase().includes(q) ||
+      (inq.form_type || '').toLowerCase().includes(q);
+    const matchesFormType = formTypeFilter === 'ALL' || inq.form_type === formTypeFilter;
+    const matchesStatus = statusFilter === 'ALL' || (inq.status || '').toLowerCase() === statusFilter.toLowerCase();
+    return matchesSearch && matchesFormType && matchesStatus;
+  });
+
   const filteredEnquiries = enquiries.filter(enq => {
     const matchesSearch = 
       enq.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -438,10 +497,10 @@ export const AdminDashboardPage: React.FC = () => {
             >
               <div className="flex items-center gap-3">
                 <Inbox className="h-4 w-4" />
-                <span>Service Enquiries</span>
+                <span>Client Inquiries</span>
               </div>
               <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#050B17] text-slate-300">
-                {enquiries.length}
+                {clientInquiries.length}
               </span>
             </button>
 
@@ -564,22 +623,38 @@ export const AdminDashboardPage: React.FC = () => {
                     <Inbox className="h-4 w-4 text-cyan-400" />
                   </div>
                   <div className="font-display text-3xl font-extrabold text-white">
-                    {stats.totalEnquiries}
+                    {clientInquiries.length}
                   </div>
-                  <div className="text-[11px] text-cyan-300 font-medium">
-                    +{stats.newEnquiries} pending review
+                  <div className="flex items-center justify-between text-[11px] text-cyan-300 font-medium">
+                    <span>+{clientInquiries.filter(i => i.status === 'Pending').length} pending review</span>
+                    <span className="text-slate-400 font-mono text-[10px]">
+                      {clientInquiries.filter(i => i.form_type === 'Enterprise Consultation').length} Ent • {clientInquiries.filter(i => i.form_type === 'Executive Inquiry').length} Exec
+                    </span>
+                  </div>
+                </div>
+
+                <div className="rounded-3xl border border-sky-500/20 bg-[#0B1528]/90 p-6 shadow-xl space-y-2">
+                  <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
+                    <span>Service Enquiries & Contacts</span>
+                    <MessageSquare className="h-4 w-4 text-sky-400" />
+                  </div>
+                  <div className="font-display text-3xl font-extrabold text-white">
+                    {contacts.length + enquiries.length}
+                  </div>
+                  <div className="text-[11px] text-sky-300 font-medium">
+                    {contacts.length} Contact Submissions • {enquiries.length} Service
                   </div>
                 </div>
 
                 <div className="rounded-3xl border border-sky-500/20 bg-[#0B1528]/90 p-6 shadow-xl space-y-2">
                   <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
                     <span>Career Applications</span>
-                    <Users className="h-4 w-4 text-sky-400" />
+                    <Users className="h-4 w-4 text-purple-400" />
                   </div>
                   <div className="font-display text-3xl font-extrabold text-white">
                     {stats.careerApplications}
                   </div>
-                  <div className="text-[11px] text-sky-300 font-medium">
+                  <div className="text-[11px] text-purple-300 font-medium">
                     Active talent candidates
                   </div>
                 </div>
@@ -587,26 +662,13 @@ export const AdminDashboardPage: React.FC = () => {
                 <div className="rounded-3xl border border-sky-500/20 bg-[#0B1528]/90 p-6 shadow-xl space-y-2">
                   <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
                     <span>Newsletter Subscribers</span>
-                    <Mail className="h-4 w-4 text-purple-400" />
-                  </div>
-                  <div className="font-display text-3xl font-extrabold text-white">
-                    {stats.newsletterSubscribers}
-                  </div>
-                  <div className="text-[11px] text-purple-300 font-medium">
-                    Enterprise whitepaper leads
-                  </div>
-                </div>
-
-                <div className="rounded-3xl border border-sky-500/20 bg-[#0B1528]/90 p-6 shadow-xl space-y-2">
-                  <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
-                    <span>Security Posture</span>
-                    <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                    <Mail className="h-4 w-4 text-emerald-400" />
                   </div>
                   <div className="font-display text-3xl font-extrabold text-emerald-400">
-                    100%
+                    {stats.newsletterSubscribers}
                   </div>
                   <div className="text-[11px] text-slate-400 font-medium">
-                    Strict RLS & Honeypots
+                    Enterprise whitepaper leads
                   </div>
                 </div>
               </div>
@@ -661,9 +723,12 @@ export const AdminDashboardPage: React.FC = () => {
               {/* Recent Inquiries Quick Feed */}
               <div className="rounded-3xl border border-sky-500/20 bg-[#0B1528]/90 p-6 shadow-xl space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-display text-base font-bold text-white">
-                    Latest Incoming Inquiries
-                  </h3>
+                  <div>
+                    <h3 className="font-display text-base font-bold text-white">
+                      Latest Incoming Inquiries
+                    </h3>
+                    <p className="text-xs text-slate-400">Live incoming submissions from Enterprise Consultation and Executive Inquiry forms.</p>
+                  </div>
                   <button
                     onClick={() => setActiveTab('enquiries')}
                     className="text-xs font-bold text-cyan-400 hover:underline"
@@ -673,41 +738,105 @@ export const AdminDashboardPage: React.FC = () => {
                 </div>
 
                 <div className="space-y-3">
-                  {enquiries.slice(0, 3).map((enq) => (
-                    <div
-                      key={enq.id}
-                      className="p-4 rounded-2xl bg-[#050B17]/60 border border-sky-500/15 flex flex-wrap items-center justify-between gap-3"
-                    >
-                      <div>
-                        <h4 className="text-xs font-bold text-white">{enq.full_name} • <span className="text-cyan-300">{enq.company}</span></h4>
-                        <p className="text-[11px] text-slate-400">{enq.service} • {enq.email}</p>
+                  {(clientInquiries.length > 0 ? clientInquiries.slice(0, 5) : enquiries.slice(0, 5)).map((rawItem: any) => {
+                    const isClientInq = 'form_type' in rawItem;
+                    const item: ClientInquiry = isClientInq ? rawItem : {
+                      id: rawItem.id || 'enq-sample',
+                      form_type: 'Enterprise Consultation',
+                      full_name: rawItem.full_name,
+                      company_name: rawItem.company,
+                      email: rawItem.email,
+                      country_code: '+91',
+                      phone_number: rawItem.phone || '',
+                      service_requirement: rawItem.service,
+                      enquiry_type: null,
+                      requirement_details: rawItem.message,
+                      status: rawItem.status || 'Pending',
+                      created_at: rawItem.created_at || new Date().toISOString(),
+                    };
+
+                    const isExec = item.form_type === 'Executive Inquiry';
+                    const requirementText = item.service_requirement || item.enquiry_type || 'Consultation';
+                    const formattedDate = item.created_at ? new Date(item.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Recent';
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="p-4 rounded-2xl bg-[#050B17]/60 border border-sky-500/15 flex flex-wrap items-center justify-between gap-3 hover:border-cyan-400/30 transition-colors"
+                      >
+                        <div className="flex items-start gap-3 min-w-0">
+                          <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase shrink-0 mt-0.5 ${
+                            isExec
+                              ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                              : 'bg-sky-500/20 text-cyan-300 border border-sky-500/30'
+                          }`}>
+                            {item.form_type}
+                          </span>
+                          <div className="min-w-0">
+                            <h4 className="text-xs font-bold text-white flex items-center gap-1.5 flex-wrap">
+                              <span>{item.full_name}</span>
+                              {item.company_name && (
+                                <>
+                                  <span className="text-slate-500 font-normal">•</span>
+                                  <span className="text-cyan-300 font-medium">{item.company_name}</span>
+                                </>
+                              )}
+                            </h4>
+                            <p className="text-[11px] text-slate-400 flex items-center gap-2 flex-wrap mt-0.5">
+                              <span className="text-slate-300 font-medium">{requirementText}</span>
+                              <span className="text-slate-600">•</span>
+                              <span className="text-slate-300">{item.email}</span>
+                              <span className="text-slate-600">•</span>
+                              <span>{item.country_code} {item.phone_number}</span>
+                              <span className="text-slate-600">•</span>
+                              <span className="text-slate-500 font-mono text-[10px]">{formattedDate}</span>
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2.5 shrink-0">
+                          <span className={`text-[10px] font-bold px-2.5 py-1 rounded-lg ${
+                            item.status === 'Pending' || item.status === 'NEW'
+                              ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                              : item.status === 'In Review' || item.status === 'IN_REVIEW'
+                              ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                              : item.status === 'Contacted' || item.status === 'CONTACTED'
+                              ? 'bg-sky-500/20 text-cyan-300 border border-sky-500/30'
+                              : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                          }`}>
+                            {item.status}
+                          </span>
+                          <button
+                            onClick={() => setInquiryDetailsModal(item)}
+                            className="text-xs font-semibold text-slate-400 hover:text-cyan-300 p-1.5 rounded-lg hover:bg-white/5 transition-colors flex items-center gap-1"
+                            title="View Complete Inquiry Details"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span className="hidden sm:inline text-[11px]">Details</span>
+                          </button>
+                        </div>
                       </div>
-                      <span className={`text-[10px] font-bold px-2.5 py-1 rounded-lg ${
-                        enq.status === 'NEW' ? 'bg-rose-500/20 text-rose-300' : 'bg-sky-500/20 text-cyan-300'
-                      }`}>
-                        {enq.status}
-                      </span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
           )}
 
-          {/* TAB 2: ENQUIRIES MANAGEMENT */}
+          {/* TAB 2: CLIENT INQUIRIES MANAGEMENT */}
           {activeTab === 'enquiries' && (
             <div className="space-y-6">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <h2 className="font-display text-xl font-bold text-white">Service Consultation Enquiries</h2>
-                  <p className="text-xs text-slate-400">Manage client assessment requests and internal follow-up notes.</p>
+                  <h2 className="font-display text-xl font-bold text-white">Client Inquiries Management</h2>
+                  <p className="text-xs text-slate-400">Live database records from Enterprise Consultation and Executive Inquiry forms.</p>
                 </div>
                 <button
-                  onClick={() => exportToCSV(enquiries, 'knooviq_enquiries')}
+                  onClick={() => exportToCSV(filteredClientInquiries, 'knooviq_client_inquiries')}
                   className="flex items-center gap-2 rounded-xl bg-[#0B1528] border border-sky-500/25 px-4 py-2 text-xs font-bold text-slate-200 hover:text-white hover:border-cyan-400/50"
                 >
                   <Download className="h-4 w-4 text-cyan-400" />
-                  <span>Export CSV</span>
+                  <span>Export CSV ({filteredClientInquiries.length})</span>
                 </button>
               </div>
 
@@ -719,99 +848,195 @@ export const AdminDashboardPage: React.FC = () => {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search by name, company, email..."
+                    placeholder="Search by name, company, email, phone, requirement..."
                     className="w-full rounded-xl border border-sky-500/20 bg-[#050B17] pl-10 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
                   />
                 </div>
 
+                {/* Form Type Filter */}
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="text-slate-400">Form Type:</span>
+                  <select
+                    value={formTypeFilter}
+                    onChange={(e) => setFormTypeFilter(e.target.value as any)}
+                    className="rounded-xl border border-sky-500/20 bg-[#050B17] px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  >
+                    <option value="ALL">All Form Types</option>
+                    <option value="Enterprise Consultation">Enterprise Consultation</option>
+                    <option value="Executive Inquiry">Executive Inquiry</option>
+                  </select>
+                </div>
+
+                {/* Status Filter */}
                 <div className="flex items-center gap-2 text-xs">
                   <span className="text-slate-400">Status:</span>
                   <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    className="rounded-xl border border-sky-500/20 bg-[#050B17] px-3 py-2 text-xs text-white focus:outline-none"
+                    className="rounded-xl border border-sky-500/20 bg-[#050B17] px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
                   >
                     <option value="ALL">All Statuses</option>
-                    <option value="NEW">NEW</option>
-                    <option value="IN_REVIEW">IN_REVIEW</option>
-                    <option value="CONTACTED">CONTACTED</option>
-                    <option value="RESOLVED">RESOLVED</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Review">In Review</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Resolved">Resolved</option>
+                    <option value="Archived">Archived</option>
                   </select>
                 </div>
               </div>
 
-              {/* Table */}
+              {/* Records List */}
               <div className="space-y-4">
-                {filteredEnquiries.map((enq) => (
-                  <div key={enq.id} className="rounded-3xl border border-sky-500/20 bg-[#0B1528]/90 p-6 shadow-xl space-y-4">
-                    <div className="flex flex-wrap items-start justify-between gap-4">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h3 className="font-bold text-white text-base">{enq.full_name}</h3>
-                          <span className="text-xs text-cyan-300 font-bold">• {enq.company}</span>
-                        </div>
-                        <p className="text-xs text-slate-400 mt-1">{enq.email} | {enq.phone} | {enq.industry}</p>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <select
-                          value={enq.status}
-                          onChange={(e) => handleEnquiryStatus(enq.id || '', e.target.value as any)}
-                          className={`rounded-xl px-3 py-1.5 text-xs font-bold border focus:outline-none ${
-                            enq.status === 'NEW'
-                              ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
-                              : enq.status === 'IN_REVIEW'
-                              ? 'bg-amber-500/20 border-amber-500/40 text-amber-300'
-                              : enq.status === 'CONTACTED'
-                              ? 'bg-sky-500/20 border-sky-500/40 text-cyan-300'
-                              : 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300'
-                          }`}
-                        >
-                          <option value="NEW">NEW</option>
-                          <option value="IN_REVIEW">IN_REVIEW</option>
-                          <option value="CONTACTED">CONTACTED</option>
-                          <option value="RESOLVED">RESOLVED</option>
-                        </select>
-
-                        {admin.role === 'super_admin' && (
-                          <button
-                            onClick={() => handleDelete('enquiries', enq.id || '')}
-                            title="Delete record"
-                            className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        )}
-                      </div>
+                {filteredClientInquiries.length === 0 ? (
+                  <div className="text-center py-12 rounded-3xl border border-sky-500/15 bg-[#0B1528]/50 p-8 space-y-3">
+                    <div className="h-12 w-12 rounded-full bg-sky-500/10 text-cyan-400 mx-auto flex items-center justify-center">
+                      <Inbox className="h-6 w-6" />
                     </div>
-
-                    <div className="inline-block rounded-md bg-sky-500/15 px-2.5 py-0.5 text-xs font-bold text-cyan-300 border border-sky-400/30">
-                      Service: {enq.service}
-                    </div>
-
-                    <p className="text-xs text-slate-300 leading-relaxed bg-[#050B17]/70 rounded-2xl p-4 border border-sky-500/15">
-                      {enq.message}
+                    <h4 className="text-sm font-bold text-white">No Client Inquiries Found</h4>
+                    <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                      No records match the current search or filters. Try adjusting your search query or selecting &quot;All Form Types&quot;.
                     </p>
-
-                    {enq.internal_notes && (
-                      <div className="text-xs text-amber-300 bg-amber-500/10 rounded-xl p-3 border border-amber-500/20">
-                        <strong className="block text-[10px] uppercase font-bold text-amber-400 mb-0.5">Internal Note:</strong>
-                        {enq.internal_notes}
-                      </div>
-                    )}
-
-                    <div className="flex items-center justify-between pt-2 border-t border-sky-500/10 text-[11px] text-slate-400">
-                      <span>Submitted: {enq.created_at ? new Date(enq.created_at).toLocaleString() : 'Recent'}</span>
-                      <button
-                        onClick={() => setNoteModal({ isOpen: true, id: enq.id || '', type: 'enquiry', currentNote: enq.internal_notes || '' })}
-                        className="text-cyan-400 hover:underline flex items-center gap-1 font-semibold"
-                      >
-                        <Edit3 className="h-3 w-3" />
-                        <span>{enq.internal_notes ? 'Edit Internal Note' : 'Add Internal Note'}</span>
-                      </button>
-                    </div>
                   </div>
-                ))}
+                ) : (
+                  filteredClientInquiries.map((inq) => {
+                    const isExec = inq.form_type === 'Executive Inquiry';
+                    const wordCount = inq.requirement_details?.trim() ? inq.requirement_details.trim().split(/\s+/).filter(Boolean).length : 0;
+                    const formattedDate = inq.created_at ? new Date(inq.created_at).toLocaleString() : 'Recent';
+
+                    return (
+                      <div key={inq.id} className="rounded-3xl border border-sky-500/20 bg-[#0B1528]/90 p-6 shadow-xl space-y-4 hover:border-cyan-400/30 transition-colors">
+                        <div className="flex flex-wrap items-start justify-between gap-4">
+                          <div>
+                            <div className="flex items-center gap-2.5 flex-wrap">
+                              <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase ${
+                                isExec
+                                  ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40'
+                                  : 'bg-sky-500/20 text-cyan-300 border border-sky-500/40'
+                              }`}>
+                                {inq.form_type}
+                              </span>
+                              <h3 className="font-bold text-white text-base">{inq.full_name}</h3>
+                              {inq.company_name ? (
+                                <span className="text-xs text-cyan-300 font-bold">• {inq.company_name}</span>
+                              ) : (
+                                <span className="text-xs text-slate-500 font-medium italic">• Independent / Not specified</span>
+                              )}
+                            </div>
+                            <p className="text-xs text-slate-400 mt-1.5 flex items-center gap-2 flex-wrap">
+                              <a href={`mailto:${inq.email}`} className="text-slate-300 hover:text-cyan-300 transition-colors">
+                                {inq.email}
+                              </a>
+                              <span>•</span>
+                              <a href={`tel:${inq.country_code}${inq.phone_number}`} className="text-slate-300 hover:text-cyan-300 transition-colors">
+                                {inq.country_code} {inq.phone_number}
+                              </a>
+                            </p>
+                          </div>
+
+                          <div className="flex items-center gap-2.5 flex-wrap">
+                            <select
+                              value={inq.status}
+                              onChange={(e) => handleClientInquiryStatus(inq.id, e.target.value as InquiryStatus)}
+                              className={`rounded-xl px-3 py-1.5 text-xs font-bold border focus:outline-none transition-colors ${
+                                inq.status === 'Pending'
+                                  ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
+                                  : inq.status === 'In Review'
+                                  ? 'bg-amber-500/20 border-amber-500/40 text-amber-300'
+                                  : inq.status === 'Contacted'
+                                  ? 'bg-sky-500/20 border-sky-500/40 text-cyan-300'
+                                  : inq.status === 'Resolved'
+                                  ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300'
+                                  : 'bg-slate-500/20 border-slate-500/40 text-slate-300'
+                              }`}
+                            >
+                              <option value="Pending">Pending</option>
+                              <option value="In Review">In Review</option>
+                              <option value="Contacted">Contacted</option>
+                              <option value="Resolved">Resolved</option>
+                              <option value="Archived">Archived</option>
+                            </select>
+
+                            <button
+                              onClick={() => setInquiryDetailsModal(inq)}
+                              className="px-3 py-1.5 rounded-xl border border-sky-500/25 bg-[#050B17] text-xs font-semibold text-slate-300 hover:text-white hover:border-cyan-400/50 transition-colors flex items-center gap-1.5"
+                              title="View complete details"
+                            >
+                              <Eye className="h-3.5 w-3.5 text-cyan-400" />
+                              <span>View Details</span>
+                            </button>
+
+                            {admin.role === 'super_admin' && (
+                              <button
+                                onClick={() => handleDeleteClientInquiry(inq.id)}
+                                title="Delete record"
+                                className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Inquiry / Requirement Badge */}
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {inq.service_requirement && (
+                            <span className="inline-block rounded-md bg-sky-500/15 px-2.5 py-0.5 text-xs font-bold text-cyan-300 border border-sky-400/30">
+                              Service: {inq.service_requirement}
+                            </span>
+                          )}
+                          {inq.enquiry_type && (
+                            <span className="inline-block rounded-md bg-purple-500/15 px-2.5 py-0.5 text-xs font-bold text-purple-300 border border-purple-400/30">
+                              Enquiry Type: {inq.enquiry_type}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Requirement Details Preview */}
+                        {inq.requirement_details ? (
+                          <div className="bg-[#050B17]/70 rounded-2xl p-4 border border-sky-500/15 space-y-2">
+                            <div className="flex items-center justify-between text-[11px] text-slate-400">
+                              <span className="font-semibold text-slate-300 uppercase tracking-wider text-[10px]">Requirement Details</span>
+                              <span className="font-mono">{wordCount} / 500 words</span>
+                            </div>
+                            <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                              {inq.requirement_details}
+                            </p>
+                            {wordCount > 40 && (
+                              <button
+                                onClick={() => setInquiryDetailsModal(inq)}
+                                className="text-[11px] text-cyan-400 hover:underline font-semibold"
+                              >
+                                Read full requirement &rarr;
+                              </button>
+                            )}
+                          </div>
+                        ) : (
+                          <p className="text-xs text-slate-500 italic py-1">
+                            No requirement details submitted.
+                          </p>
+                        )}
+
+                        {inq.internal_notes && (
+                          <div className="text-xs text-amber-300 bg-amber-500/10 rounded-xl p-3 border border-amber-500/20">
+                            <strong className="block text-[10px] uppercase font-bold text-amber-400 mb-0.5">Internal Note:</strong>
+                            {inq.internal_notes}
+                          </div>
+                        )}
+
+                        <div className="flex items-center justify-between pt-2 border-t border-sky-500/10 text-[11px] text-slate-400">
+                          <span>Submitted: {formattedDate}</span>
+                          <button
+                            onClick={() => setNoteModal({ isOpen: true, id: inq.id, type: 'client_inquiry', currentNote: inq.internal_notes || '' })}
+                            className="text-cyan-400 hover:underline flex items-center gap-1 font-semibold"
+                          >
+                            <Edit3 className="h-3 w-3" />
+                            <span>{inq.internal_notes ? 'Edit Internal Note' : 'Add Internal Note'}</span>
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
               </div>
             </div>
           )}
@@ -1131,6 +1356,150 @@ export const AdminDashboardPage: React.FC = () => {
               >
                 Save Note
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Client Inquiry Complete Details Modal */}
+      {inquiryDetailsModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="rounded-3xl border border-sky-500/30 bg-[#0B1528] p-6 sm:p-8 max-w-2xl w-full shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-start justify-between gap-4 border-b border-sky-500/20 pb-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase ${
+                    inquiryDetailsModal.form_type === 'Executive Inquiry'
+                      ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40'
+                      : 'bg-sky-500/20 text-cyan-300 border border-sky-500/40'
+                  }`}>
+                    {inquiryDetailsModal.form_type}
+                  </span>
+                  <span className="text-xs font-mono text-slate-500">ID: {inquiryDetailsModal.id}</span>
+                </div>
+                <h3 className="text-xl font-bold text-white font-display">
+                  {inquiryDetailsModal.full_name}
+                </h3>
+                <p className="text-xs text-cyan-300 font-medium">
+                  {inquiryDetailsModal.company_name || 'Independent / Not specified'}
+                </p>
+              </div>
+
+              <button
+                onClick={() => setInquiryDetailsModal(null)}
+                className="p-1.5 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Close details"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Quick Metadata Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div className="rounded-2xl bg-[#050B17]/70 p-3.5 border border-sky-500/15 space-y-1">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">Email Address</span>
+                <a href={`mailto:${inquiryDetailsModal.email}`} className="text-sm font-semibold text-cyan-300 hover:underline break-all">
+                  {inquiryDetailsModal.email}
+                </a>
+              </div>
+
+              <div className="rounded-2xl bg-[#050B17]/70 p-3.5 border border-sky-500/15 space-y-1">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">Phone Number (with Country Code)</span>
+                <a href={`tel:${inquiryDetailsModal.country_code}${inquiryDetailsModal.phone_number}`} className="text-sm font-semibold text-white hover:underline">
+                  {inquiryDetailsModal.country_code} {inquiryDetailsModal.phone_number}
+                </a>
+              </div>
+
+              <div className="rounded-2xl bg-[#050B17]/70 p-3.5 border border-sky-500/15 space-y-1">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">
+                  {inquiryDetailsModal.form_type === 'Enterprise Consultation' ? 'Service Requirement' : 'Enquiry Type'}
+                </span>
+                <span className="text-sm font-semibold text-white block">
+                  {inquiryDetailsModal.service_requirement || inquiryDetailsModal.enquiry_type || 'General Consultation'}
+                </span>
+              </div>
+
+              <div className="rounded-2xl bg-[#050B17]/70 p-3.5 border border-sky-500/15 space-y-1">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">Current Status</span>
+                <div className="flex items-center gap-2 pt-0.5">
+                  <select
+                    value={inquiryDetailsModal.status}
+                    onChange={(e) => handleClientInquiryStatus(inquiryDetailsModal.id, e.target.value as InquiryStatus)}
+                    className="rounded-lg bg-[#0B1528] border border-sky-500/30 px-2.5 py-1 text-xs font-bold text-cyan-300 focus:outline-none"
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="In Review">In Review</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Resolved">Resolved</option>
+                    <option value="Archived">Archived</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Requirement Details (Max 500 words) */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-slate-400 font-bold uppercase text-[10px] tracking-wider">Requirement Details</span>
+                <span className="text-slate-500 font-mono text-[11px]">
+                  {inquiryDetailsModal.requirement_details?.trim() ? inquiryDetailsModal.requirement_details.trim().split(/\s+/).filter(Boolean).length : 0} / 500 words
+                </span>
+              </div>
+              <div className="rounded-2xl bg-[#050B17] border border-sky-500/20 p-4 max-h-48 overflow-y-auto">
+                <p className="text-xs text-slate-200 leading-relaxed whitespace-pre-wrap font-sans">
+                  {inquiryDetailsModal.requirement_details || (
+                    <span className="text-slate-500 italic">No additional requirement details were submitted with this inquiry.</span>
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {/* Internal Administrator Note */}
+            <div className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-4 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] uppercase font-bold text-amber-400 tracking-wider">Internal Administrator Note</span>
+                <button
+                  onClick={() => {
+                    setNoteModal({
+                      isOpen: true,
+                      id: inquiryDetailsModal.id,
+                      type: 'client_inquiry',
+                      currentNote: inquiryDetailsModal.internal_notes || '',
+                    });
+                  }}
+                  className="text-xs text-cyan-400 hover:underline flex items-center gap-1 font-semibold"
+                >
+                  <Edit3 className="h-3 w-3" />
+                  <span>{inquiryDetailsModal.internal_notes ? 'Edit' : 'Add Note'}</span>
+                </button>
+              </div>
+              <p className="text-xs text-slate-300">
+                {inquiryDetailsModal.internal_notes || <span className="text-slate-500 italic">No internal notes added yet.</span>}
+              </p>
+            </div>
+
+            {/* Footer */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-sky-500/20 text-xs text-slate-400">
+              <span>Submitted: {inquiryDetailsModal.created_at ? new Date(inquiryDetailsModal.created_at).toLocaleString() : 'Recent'}</span>
+
+              <div className="flex items-center gap-2">
+                {admin.role === 'super_admin' && (
+                  <button
+                    onClick={() => handleDeleteClientInquiry(inquiryDetailsModal.id)}
+                    className="px-3 py-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20 text-xs font-semibold flex items-center gap-1 transition-colors"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                    <span>Delete Record</span>
+                  </button>
+                )}
+                <button
+                  onClick={() => setInquiryDetailsModal(null)}
+                  className="px-5 py-2 rounded-xl bg-sky-500 text-white hover:bg-sky-600 font-bold text-xs transition-colors"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

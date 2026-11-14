@@ -2,6 +2,9 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { 
   AdminProfile,
   AdminRole,
+  ClientInquiry,
+  InquiryFormType,
+  InquiryStatus,
   EnquirySubmission, 
   ContactSubmission,
   JobApplicationSubmission, 
@@ -13,7 +16,13 @@ import {
   DashboardStats
 } from '../types';
 import { INITIAL_JOB_OPENINGS } from '../data/knooviqData';
-import { sanitizeInput, validateEmail, validatePhone, sanitizePhoneInput } from './validation';
+import { 
+  sanitizeInput, 
+  validateEmail, 
+  validatePhone, 
+  sanitizePhoneInput,
+  parsePhoneAndCountryCode 
+} from './validation';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -31,6 +40,7 @@ export const supabase: SupabaseClient | null = isSupabaseConfigured
 
 // Local fallback storage keys
 const LOCAL_ADMIN_KEY = 'knooviq_admin_session';
+const LOCAL_CLIENT_INQUIRIES_KEY = 'knooviq_local_client_inquiries';
 const LOCAL_ENQUIRIES_KEY = 'knooviq_local_enquiries';
 const LOCAL_CONTACTS_KEY = 'knooviq_local_contacts';
 const LOCAL_APPLICATIONS_KEY = 'knooviq_local_applications';
@@ -44,6 +54,69 @@ const ADMIN_LOCKOUT_DURATION_MS = 45 * 60 * 60 * 1000;
 const AUTHORIZED_ADMIN_EMAIL = 'admin@knooviq.com';
 const ADMIN_AUTH_SALT = 'knooviq-admin-auth-v2-salt-2026';
 const ADMIN_PASSCODE_HASH = '6cf47291c2ed7b651442dc768ff52b5cf9d4ec7de8286eb00d1447a9ad0e0238';
+
+const INITIAL_SAMPLE_CLIENT_INQUIRIES: ClientInquiry[] = [
+  {
+    id: 'ci-001',
+    form_type: 'Enterprise Consultation',
+    full_name: 'Rajesh Sharma',
+    company_name: 'Apex Global FMCG Pvt Ltd',
+    email: 'rajesh.sharma@apexfmcg.com',
+    country_code: '+91',
+    phone_number: '9820145678',
+    service_requirement: 'SAP S/4HANA Solutions',
+    enquiry_type: null,
+    requirement_details: 'We are planning to transition our ECC 6.0 system across 12 manufacturing units to SAP S/4HANA Cloud. Requesting technical assessment.',
+    status: 'Pending',
+    created_at: new Date(Date.now() - 3600000 * 3).toISOString(),
+    updated_at: new Date(Date.now() - 3600000 * 3).toISOString(),
+  },
+  {
+    id: 'ci-002',
+    form_type: 'Executive Inquiry',
+    full_name: 'Priya Mukherjee',
+    company_name: 'Orion Petrochemicals Ltd',
+    email: 'p.mukherjee@orionpetro.in',
+    country_code: '+91',
+    phone_number: '9845012390',
+    service_requirement: null,
+    enquiry_type: 'SAP & Digital Solutions',
+    requirement_details: 'Looking for 24/7 SLA-driven L2/L3 AMS support and strategic transformation assessment for our SAP Plant Maintenance and FICO landscapes.',
+    status: 'In Review',
+    created_at: new Date(Date.now() - 3600000 * 22).toISOString(),
+    updated_at: new Date(Date.now() - 3600000 * 22).toISOString(),
+  },
+  {
+    id: 'ci-003',
+    form_type: 'Enterprise Consultation',
+    full_name: 'David Van Der Bilt',
+    company_name: 'Aura Logistics BV',
+    email: 'd.vandervilt@auralogistics.eu',
+    country_code: '+31',
+    phone_number: '205550199',
+    service_requirement: 'SAP Integration & BTP',
+    enquiry_type: null,
+    requirement_details: 'Evaluating SAP BTP Integration Suite for real-time warehouse IoT tracking and third-party EDI integration.',
+    status: 'Contacted',
+    created_at: new Date(Date.now() - 3600000 * 48).toISOString(),
+    updated_at: new Date(Date.now() - 3600000 * 48).toISOString(),
+  },
+  {
+    id: 'ci-004',
+    form_type: 'Executive Inquiry',
+    full_name: 'Anand Mahindra',
+    company_name: 'Mahindra Logistics Ltd',
+    email: 'a.mahindra@mll.in',
+    country_code: '+91',
+    phone_number: '9876543210',
+    service_requirement: null,
+    enquiry_type: 'Business Enquiry',
+    requirement_details: 'Seeking high-level enterprise consultation for supply chain modernization and Clean Core SAP architecture migration.',
+    status: 'Pending',
+    created_at: new Date(Date.now() - 3600000 * 5).toISOString(),
+    updated_at: new Date(Date.now() - 3600000 * 5).toISOString(),
+  }
+];
 
 const INITIAL_SAMPLE_ENQUIRIES: EnquirySubmission[] = [
   {
@@ -179,6 +252,126 @@ function setLocalStore<T>(key: string, data: T[]): void {
 // -----------------------------------------------------------------------------
 // PUBLIC FORM SUBMISSION OPERATIONS (XSS-SANITIZED & SECURE)
 // -----------------------------------------------------------------------------
+
+export async function submitClientInquiry(inquiry: {
+  form_type: InquiryFormType | string;
+  full_name: string;
+  company_name?: string | null;
+  email: string;
+  country_code?: string;
+  phone_number?: string;
+  phone?: string;
+  service_requirement?: string | null;
+  enquiry_type?: string | null;
+  requirement_details?: string | null;
+  status?: InquiryStatus | string;
+}): Promise<{ success: boolean; id?: string; error?: string }> {
+  try {
+    // 1. Sanitize all incoming fields
+    const cleanFormType = sanitizeInput(inquiry.form_type || 'Enterprise Consultation');
+    const cleanFullName = sanitizeInput(inquiry.full_name || '');
+    const cleanCompanyName = sanitizeInput(inquiry.company_name || '');
+    const cleanEmail = sanitizeInput(inquiry.email || '');
+    const cleanServiceRequirement = sanitizeInput(inquiry.service_requirement || '');
+    const cleanEnquiryType = sanitizeInput(inquiry.enquiry_type || '');
+    const cleanRequirementDetails = sanitizeInput(inquiry.requirement_details || '');
+
+    // 2. Validate mandatory Full Name
+    if (!cleanFullName || cleanFullName.length < 2) {
+      return { success: false, error: 'Full name must be at least 2 characters.' };
+    }
+
+    // 3. Validate Email
+    const emailErr = validateEmail(cleanEmail);
+    if (emailErr) {
+      return { success: false, error: emailErr };
+    }
+
+    // 4. Parse & Validate Phone + Country Code
+    const inputPhone = inquiry.phone_number || inquiry.phone || '';
+    const parsedPhone = parsePhoneAndCountryCode(inputPhone, inquiry.country_code || '+91');
+    const phoneErr = validatePhone(parsedPhone.phoneNumber, parsedPhone.countryCode);
+    if (phoneErr) {
+      return { success: false, error: phoneErr };
+    }
+
+    // 5. Validate Form-Specific Dropdowns
+    if (cleanFormType === 'Enterprise Consultation' && !cleanServiceRequirement) {
+      return { success: false, error: 'Please select a service requirement.' };
+    }
+    if (cleanFormType === 'Executive Inquiry' && !cleanEnquiryType) {
+      return { success: false, error: 'Please select an enquiry type.' };
+    }
+
+    // 6. Validate Requirement Details (Max 500 words)
+    if (cleanRequirementDetails) {
+      const words = cleanRequirementDetails.trim().split(/\s+/).filter(Boolean);
+      if (words.length > 500) {
+        return { success: false, error: 'Requirement details cannot exceed 500 words.' };
+      }
+    }
+
+    const newRecordId = `ci-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
+    const newRecord: ClientInquiry = {
+      id: newRecordId,
+      form_type: cleanFormType,
+      full_name: cleanFullName,
+      company_name: cleanCompanyName || null,
+      email: cleanEmail,
+      country_code: parsedPhone.countryCode,
+      phone_number: parsedPhone.phoneNumber,
+      service_requirement: cleanServiceRequirement || null,
+      enquiry_type: cleanEnquiryType || null,
+      requirement_details: cleanRequirementDetails || null,
+      status: (inquiry.status as InquiryStatus) || 'Pending',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
+
+    if (supabase) {
+      const { data, error } = await supabase.from('client_inquiries').insert([{
+        form_type: newRecord.form_type,
+        full_name: newRecord.full_name,
+        company_name: newRecord.company_name,
+        email: newRecord.email,
+        country_code: newRecord.country_code,
+        phone_number: newRecord.phone_number,
+        service_requirement: newRecord.service_requirement,
+        enquiry_type: newRecord.enquiry_type,
+        requirement_details: newRecord.requirement_details,
+        status: newRecord.status,
+      }]).select('id').single();
+
+      if (error) {
+        console.error('Supabase Client Inquiry Submission Error:', error.message);
+        throw error;
+      }
+
+      pushNotification({
+        title: `New ${cleanFormType} Submission`,
+        message: `${cleanFullName}${cleanCompanyName ? ` (${cleanCompanyName})` : ''} submitted an inquiry for ${cleanServiceRequirement || cleanEnquiryType || 'Consultation'}.`,
+        type: 'ENQUIRY',
+      });
+
+      return { success: true, id: data?.id || newRecordId };
+    } else {
+      // Local fallback with reactive storage
+      const current = getLocalStore<ClientInquiry>(LOCAL_CLIENT_INQUIRIES_KEY, INITIAL_SAMPLE_CLIENT_INQUIRIES);
+      setLocalStore(LOCAL_CLIENT_INQUIRIES_KEY, [newRecord, ...current]);
+
+      pushNotification({
+        title: `New ${cleanFormType} Submission`,
+        message: `${cleanFullName}${cleanCompanyName ? ` (${cleanCompanyName})` : ''} submitted an inquiry for ${cleanServiceRequirement || cleanEnquiryType || 'Consultation'}.`,
+        type: 'ENQUIRY',
+      });
+
+      return { success: true, id: newRecordId };
+    }
+  } catch (err: unknown) {
+    const errorMsg = err instanceof Error ? err.message : 'Failed to submit inquiry. Please try again.';
+    return { success: false, error: errorMsg };
+  }
+}
 
 export async function submitEnquiry(enquiry: Omit<EnquirySubmission, 'id' | 'created_at' | 'status'>): Promise<{ success: boolean; error?: string }> {
   try {
@@ -466,6 +659,23 @@ export async function subscribeNewsletter(email: string, source: string = 'WEBSI
 // ADMIN DATA FETCHING & STATUS MANAGEMENT
 // -----------------------------------------------------------------------------
 
+export async function fetchClientInquiries(): Promise<ClientInquiry[]> {
+  try {
+    if (supabase) {
+      const { data, error } = await supabase
+        .from('client_inquiries')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      return data || [];
+    } else {
+      return getLocalStore<ClientInquiry>(LOCAL_CLIENT_INQUIRIES_KEY, INITIAL_SAMPLE_CLIENT_INQUIRIES);
+    }
+  } catch {
+    return getLocalStore<ClientInquiry>(LOCAL_CLIENT_INQUIRIES_KEY, INITIAL_SAMPLE_CLIENT_INQUIRIES);
+  }
+}
+
 export async function fetchEnquiries(): Promise<EnquirySubmission[]> {
   try {
     if (supabase) {
@@ -550,6 +760,38 @@ export async function fetchJobOpenings(): Promise<JobOpening[]> {
   }
 }
 
+export async function updateClientInquiryStatus(
+  id: string,
+  status: InquiryStatus | string,
+  internal_notes?: string
+): Promise<boolean> {
+  try {
+    if (supabase) {
+      const updatePayload: any = { status, updated_at: new Date().toISOString() };
+      if (internal_notes !== undefined) updatePayload.internal_notes = internal_notes;
+      const { error } = await supabase.from('client_inquiries').update(updatePayload).eq('id', id);
+      if (error) throw error;
+    } else {
+      const current = getLocalStore<ClientInquiry>(LOCAL_CLIENT_INQUIRIES_KEY, INITIAL_SAMPLE_CLIENT_INQUIRIES);
+      const updated = current.map(item => item.id === id ? { 
+        ...item, 
+        status: status as InquiryStatus, 
+        updated_at: new Date().toISOString(),
+        ...(internal_notes !== undefined ? { internal_notes } : {})
+      } : item);
+      setLocalStore(LOCAL_CLIENT_INQUIRIES_KEY, updated);
+    }
+    recordActivityLog('UPDATE_INQUIRY_STATUS', 'client_inquiries', id, { new_status: status, internal_notes });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function deleteClientInquiry(id: string): Promise<boolean> {
+  return deleteRecord('client_inquiries', id);
+}
+
 export async function updateEnquiryStatus(id: string, status: EnquirySubmission['status'], internal_notes?: string): Promise<boolean> {
   try {
     if (supabase) {
@@ -619,13 +861,16 @@ export async function updateJobApplicationStatus(id: string, status: JobApplicat
   }
 }
 
-export async function deleteRecord(table: 'enquiries' | 'contact_submissions' | 'career_applications' | 'newsletter_subscribers', id: string): Promise<boolean> {
+export async function deleteRecord(table: 'client_inquiries' | 'enquiries' | 'contact_submissions' | 'career_applications' | 'newsletter_subscribers', id: string): Promise<boolean> {
   try {
     if (supabase) {
       const { error } = await supabase.from(table).delete().eq('id', id);
       if (error) throw error;
     } else {
-      if (table === 'enquiries') {
+      if (table === 'client_inquiries') {
+        const current = getLocalStore<ClientInquiry>(LOCAL_CLIENT_INQUIRIES_KEY, INITIAL_SAMPLE_CLIENT_INQUIRIES);
+        setLocalStore(LOCAL_CLIENT_INQUIRIES_KEY, current.filter(i => i.id !== id));
+      } else if (table === 'enquiries') {
         const current = getLocalStore<EnquirySubmission>(LOCAL_ENQUIRIES_KEY, INITIAL_SAMPLE_ENQUIRIES);
         setLocalStore(LOCAL_ENQUIRIES_KEY, current.filter(i => i.id !== id));
       } else if (table === 'contact_submissions') {
@@ -1003,7 +1248,8 @@ export async function updateAdminProfileRole(id: string, newRole: AdminRole, isA
 // -----------------------------------------------------------------------------
 
 export async function getDashboardStats(): Promise<DashboardStats> {
-  const [enquiries, contacts, apps, newsletter, notifs] = await Promise.all([
+  const [clientInquiries, enquiries, contacts, apps, newsletter, notifs] = await Promise.all([
+    fetchClientInquiries(),
     fetchEnquiries(),
     fetchContactSubmissions(),
     fetchJobApplications(),
@@ -1011,11 +1257,18 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     fetchAdminNotifications()
   ]);
 
-  const newEnqCount = enquiries.filter(e => e.status === 'NEW').length + contacts.filter(c => c.status === 'NEW').length;
+  const totalInquiries = clientInquiries.length;
+  const enterpriseConsultations = clientInquiries.filter(i => i.form_type === 'Enterprise Consultation').length;
+  const executiveInquiries = clientInquiries.filter(i => i.form_type === 'Executive Inquiry').length;
+  const pendingCount = clientInquiries.filter(i => i.status === 'Pending').length;
+  const newEnqCount = pendingCount + enquiries.filter(e => e.status === 'NEW').length + contacts.filter(c => c.status === 'NEW').length;
   const unreadNotifsCount = notifs.filter(n => !n.is_read).length;
 
   return {
-    totalEnquiries: enquiries.length + contacts.length,
+    totalInquiries,
+    enterpriseConsultations,
+    executiveInquiries,
+    totalEnquiries: totalInquiries + enquiries.length + contacts.length,
     newEnquiries: newEnqCount,
     contactSubmissions: contacts.length,
     careerApplications: apps.length,
